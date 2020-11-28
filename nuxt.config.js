@@ -1,3 +1,5 @@
+import { I18N } from './shared/intl/i18n';
+
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -15,7 +17,11 @@ export default {
   css: [
   ],
 
-  plugins: ['@/plugins/i18n.js'],
+  // router: {
+  //   middleware: 'i18n'
+  // },
+
+  // plugins: ['@/plugins/i18n.js'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   components: true,
@@ -30,6 +36,7 @@ export default {
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
+    ['nuxt-i18n', I18N],
   ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)

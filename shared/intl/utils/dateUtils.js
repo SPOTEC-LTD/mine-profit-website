@@ -123,7 +123,7 @@ class DateUtils {
     return m ? m.format(format || this.dateTimeFormat) : '';
   }
 
-  formatToTimestamp = date => {
+  formatToTimestamp(date) {
     return date.valueOf();
   }
 
