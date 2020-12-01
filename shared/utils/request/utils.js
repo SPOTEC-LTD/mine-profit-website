@@ -1,14 +1,21 @@
 import axios from 'axios';
-import { Dialog } from 'vant';
 import ErrorObj from './ErrorObj';
 import ErrorType from './consts/ErrorType';
-import { SUCCESS } from './consts/ResponseCode';
+import {
+  SUCCESS,
+  VALIDATE_CODE_TIME_OUT,
+  APPLICATION_EXCEPTION,
+  NOT_LOGIN
+} from './consts/ResponseCode';
 
 export const isSuccess = responseCode => responseCode === SUCCESS;
 export const isSystemError = responseCode => {
   const code = parseInt(responseCode, 10);
   return code && code < 1000;
 };
+export const isValidateCodeTimeOut = responseCode => responseCode === VALIDATE_CODE_TIME_OUT;
+export const isNotLogin = responseCode => responseCode === NOT_LOGIN;
+export const isApplicationException = responseCode => responseCode === APPLICATION_EXCEPTION;
 
 const isCancel = resError => axios.isCancel(resError);
 const isTimeout = resError => resError.code === 'ECONNABORTED';
@@ -35,6 +42,7 @@ const getErrorType = resError => {
   return '';
 };
 
+const initData = { body: {}, header: {} };
 class Error {
   constructor(resError) {
     const errorType = getErrorType(resError);
@@ -44,15 +52,19 @@ class Error {
   }
 
   cancel(resError) {
-    return { resError, title: 'Cancel Request', code: this.errorType };
+    return { resError, title: 'Cancel Request', code: this.errorType, data: initData };
   }
 
   timeout(resError) {
-    return { resError, title: 'timeout Request', code: this.errorType };
+    return { resError, title: 'timeout Request', code: this.errorType, data: initData };
   }
 
   networkError(resError) {
-    return { resError, title: 'Network Error', code: this.errorType };
+    Modal.error({
+      title: 'Network Error',
+      content: '本地或者服务端网络发生错误'
+    });
+    return { resError, title: 'Network Error', code: this.errorType, data: initData };
   }
 
   httpError(resError) {
@@ -60,21 +72,21 @@ class Error {
     const errorObj = new ErrorObj(ErrorType.HTTP, this.errorType, {
       code: response.status,
       url: response.path,
-      response,
+      response
     });
 
     const { title, data } = errorObj;
     if (data.code === 404) {
-      Dialog.alert({
+      Modal.error({
         title,
-        message: `请求了不存在的接口 code: ${data.code}`,
+        content: `请求了不存在的接口 code: ${data.code}`
       });
     }
 
     if (data.code === 500 || data.code === 504) {
-      Dialog.alert({
+      Modal.error({
         title,
-        message: `服务器端出错了 code: ${data.code}`,
+        content: `服务器端出错了 code: ${data.code}`
       });
     }
 
@@ -83,3 +95,11 @@ class Error {
 }
 
 export const errorHandler = resError => new Error(resError);
+
+
+export const getServerErrorMap = ({ code, content, response }) => ({
+  code,
+  title: 'business error',
+  content,
+  ...response
+});

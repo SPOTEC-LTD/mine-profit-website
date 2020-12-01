@@ -1,7 +1,14 @@
+const path = require('path');
+
 import { I18N } from './shared/intl/i18n';
 
+function resolveCwd(...args) {
+  args.unshift(process.cwd());
+  return path.join(...args);
+};
+
 export default {
-  // Global page headers (https://go.nuxtjs.dev/config-head)
+  // Global page headers (https://go.nuxtjs.dev/config-head).
   head: {
     title: 'nuxt-web-desgin',
     meta: [
@@ -41,10 +48,18 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+    extend(config, { isDev, isClient }) {
+      console.log('config', config);
+      // config.resolve.modules.push(resolveCwd('src'));
+      // config.resolve.alias['@'] = resolveCwd('src');
+    },
     transpile: [/ant-design-vue/],
     extractCSS: true,
     babel: {
-      babelrc: true
+      babelrc: false,
+      plugins:[
+        ["import", { "libraryName": "ant-design-vue", "style": true }] // `style: true` 会加载 less 文件
+      ]
     },
 
     loaders: {

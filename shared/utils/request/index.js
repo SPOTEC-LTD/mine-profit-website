@@ -9,5 +9,5 @@ export {
   ErrorType,
   httpMethod,
   ResponseCode,
-  CancelToken,
+  CancelToken
 };

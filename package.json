@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "ant-design-vue": "^1.7.2",
+    "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "dayjs": "^1.9.6",
     "nuxt": "^2.14.6",
@@ -25,6 +26,7 @@
     "@nuxtjs/eslint-config": "^3.1.0",
     "@nuxtjs/eslint-module": "^2.0.0",
     "@nuxtjs/stylelint-module": "^4.0.0",
+    "@vue/babel-preset-jsx": "^1.2.4",
     "@vue/test-utils": "^1.1.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
@@ -35,6 +37,7 @@
     "jest": "^26.5.0",
     "less": "^3.12.2",
     "less-loader": "^7.1.0",
+    "path": "^0.12.7",
     "stylelint": "^13.7.2",
     "stylelint-config-standard": "^20.0.0",
     "vue-jest": "^3.0.4"

@@ -1,12 +1,16 @@
-export const state = () => ({
-  locales: ['en', 'fr'],
-  locale: 'en'
-})
+// import home from '../modules/home';
+import loading from '../shared/utils/loading.js';
 
-export const mutations = {
-  SET_LANG (state, locale) {
-    if (state.locales.includes(locale)) {
-      state.locale = locale
-    }
-  }
+export const strict = false
+
+export const plugins = [loading()];
+
+export const state = () => ({ });
+
+export const mutations = { };
+
+export const actions = { };
+
+export const modules = {
+  // home,
 }
