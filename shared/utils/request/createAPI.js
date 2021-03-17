@@ -1,13 +1,10 @@
-/* eslint-disable global-require */
 import isPlainObject from 'lodash/isPlainObject';
 import { toPath } from '@/shared/utils/qsHelp';
-import isServerSide from './isServerSide';
-import clientRequest from './clientRequest';
-import serverRequest from './serverRequest';
+import request from './request';
 import httpMethod from './consts/httpMethod';
 
-
-const createAPI = (method, url) => (params = {}, config = {}) => {
+// eslint-disable-next-line
+let createAPI = (method, url) => (params = {}, config = {}) => {
   const { pathParams, data } = params;
   const isPostOrPut = (method === httpMethod.POST || method === httpMethod.PUT);
 
@@ -22,8 +19,6 @@ const createAPI = (method, url) => (params = {}, config = {}) => {
     config.params = data;
   }
 
-  const request = isServerSide() ? serverRequest : clientRequest;
-
   return request({
     url: finalURL,
     method,
@@ -31,5 +26,8 @@ const createAPI = (method, url) => (params = {}, config = {}) => {
   });
 };
 
+if (__TESTING__) {
+  createAPI = (_, url) => function tTequest() { return Promise.resolve(url); };
+}
 
 export default createAPI;

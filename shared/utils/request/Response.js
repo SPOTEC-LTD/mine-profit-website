@@ -2,17 +2,15 @@ import { isSuccess, isSystemError } from './utils';
 
 export default class Response {
   constructor(jsonResponse) {
-    const { header, body } = jsonResponse;
-    const { responseCode, responseMessage } = header;
-    this.header = header;
-    this.body = body;
+    const { header } = jsonResponse;
+    const { code: responseCode, message, messageDetails } = header;
 
     this.code = responseCode;
-    this.message = responseMessage;
+    this.message = message;
+    this.messageDetails = messageDetails;
 
     this.isSuccess = isSuccess(responseCode);
     this.isSystemError = isSystemError(responseCode);
     this.isBusinessError = !this.isSystemError;
   }
 }
-

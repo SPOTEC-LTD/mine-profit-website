@@ -1,4 +1,5 @@
 export const SUCCESS = '0000';
-export const VALIDATE_CODE_TIME_OUT = '1900';
-export const NOT_LOGIN = '1800';
-export const APPLICATION_EXCEPTION = '1706';
+export const NOT_LOGIN = '2000';
+export const SECTION_BUSINESS_EXCEPTION = '1200';
+export const GLOBAL_BUSINESS_EXCEPTION = '1000';
+export const SERVER_EXCEPTION = '9999';
