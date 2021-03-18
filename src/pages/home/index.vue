@@ -14,7 +14,6 @@
         >
           Documentation
         </a>
-
         <a
           href="https://github.com/nuxt/nuxt.js"
           target="_blank"
@@ -38,7 +37,6 @@ export default {
 <style>
 .container {
   margin: 0 auto;
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;

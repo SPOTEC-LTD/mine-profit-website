@@ -39,7 +39,12 @@ export default {
     // https://go.nuxtjs.dev/eslint
     // '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/stylelint
+    "@nuxtjs/svg",
     '@nuxtjs/stylelint-module',
+    ['@nuxtjs/router', {
+      path: 'src/router',
+      fileName: 'index.js'
+    }]
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
