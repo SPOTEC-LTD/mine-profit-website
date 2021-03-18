@@ -1,23 +1,21 @@
-// import { getDepositList } from '@/api';
+import { getDepositList } from '@/api';
 
-export const state = ()=>({
+export const state = () => ({
   demandDepositList: [],
   hasGetInfo: false,
   unreadCount: 2323,
-})
+});
 
-
-
-export const mutations ={
-  updateDemandDepositList(state, demandDepositList) {
+export const mutations = {
+  updateDemandDepositList(_, demandDepositList) {
     state.demandDepositList = demandDepositList;
   },
-}
+};
 
 export const actions = {
   async getDepositList({ commit }) {
     try {
-      // const { body: { demandDepositList } } = await getDepositList();
+      const { body: { demandDepositList } } = await getDepositList();
       commit('updateDemandDepositList', demandDepositList);
 
       return Promise.resolve();
@@ -25,4 +23,4 @@ export const actions = {
       return Promise.reject(error);
     }
   },
-}
+};

@@ -1,11 +1,11 @@
-const path = require('path');
-
 import { I18N } from './shared/intl/i18n';
+
+const path = require('path');
 
 function resolveCwd(...args) {
   args.unshift(process.cwd());
   return path.join(...args);
-};
+}
 
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head).
@@ -14,11 +14,11 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: '' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+    ],
   },
 
   css: [
@@ -38,7 +38,7 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/stylelint
-    '@nuxtjs/stylelint-module'
+    '@nuxtjs/stylelint-module',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -49,17 +49,19 @@ export default {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     extend(config, { isDev, isClient }) {
-      console.log('config', config);
-      // config.resolve.modules.push(resolveCwd('src'));
-      // config.resolve.alias['@'] = resolveCwd('src');
+      config.resolve.modules.push(resolveCwd('./'));
+      config.resolve.alias['@'] = resolveCwd('./');
+
+      console.log('config', config.plugins);
     },
+
     transpile: [/ant-design-vue/],
     extractCSS: true,
     babel: {
       babelrc: false,
-      plugins:[
-        ["import", { "libraryName": "ant-design-vue", "style": true }] // `style: true` 会加载 less 文件
-      ]
+      plugins: [
+        ['import', { libraryName: 'ant-design-vue', style: true }], // `style: true` 会加载 less 文件
+      ],
     },
 
     loaders: {
@@ -68,8 +70,8 @@ export default {
           strictMath: false,
           javascriptEnabled: true,
         },
-      }
-    }
+      },
+    },
 
-  }
-}
+  },
+};

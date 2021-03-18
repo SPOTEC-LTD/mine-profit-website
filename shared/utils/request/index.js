@@ -7,5 +7,5 @@ export {
   createAPI,
   httpMethod,
   ResponseCode,
-  CancelToken
+  CancelToken,
 };

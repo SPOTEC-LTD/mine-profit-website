@@ -123,6 +123,7 @@ class DateUtils {
     return m ? m.format(format || this.dateTimeFormat) : '';
   }
 
+  // eslint-disable-next-line class-methods-use-this
   formatToTimestamp(date) {
     return date.valueOf();
   }

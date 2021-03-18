@@ -1,6 +1,8 @@
 import axios from 'axios';
 import errorModal from './errorModal';
-import { SUCCESS, SERVER_EXCEPTION, GLOBAL_BUSINESS_EXCEPTION, NOT_LOGIN } from './consts/ResponseCode';
+import {
+  SUCCESS, SERVER_EXCEPTION, GLOBAL_BUSINESS_EXCEPTION, NOT_LOGIN,
+} from './consts/ResponseCode';
 
 export const isSuccess = responseCode => responseCode === SUCCESS;
 export const isSystemError = responseCode => responseCode === SERVER_EXCEPTION;

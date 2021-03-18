@@ -1,17 +1,78 @@
 module.exports = {
-  root: true,
+  extends: [
+    // 'airbnb',
+    'airbnb-base',
+    'plugin:nuxt/recommended',
+    'plugin:vue/recommended',
+  ],
+
+  parser: 'vue-eslint-parser',
+  parserOptions: {
+    parser: 'babel-eslint',
+    ecmaVersion: 2020,
+    sourceType: 'module',
+  },
   env: {
     browser: true,
-    node: true
+    node: true,
+    mocha: true,
+    jest: true,
+    es6: true,
   },
-  parserOptions: {
-    parser: 'babel-eslint'
+  globals: {
+    location: true,
+    window: true,
+    __TESTING__: true,
+    __SERVERRENDER__: true,
+    __STATIC__: true,
+    __DEV__: true,
+    __BASE_URL__: true,
+    __PREFIX_CLS__: true,
+    mockStore: true,
+    jest: true,
   },
-  extends: [
-    'plugin:nuxt/recommended'
-  ],
-  plugins: [
-  ],
-  // add your custom rules here
-  rules: {}
-}
+  rules: {
+    'comma-dangle': [2, 'always-multiline'],
+    'no-var': 'error',
+    camelcase: 'off',
+    'no-extra-boolean-cast': 'off',
+    semi: ['error', 'always'],
+    'vue/require-prop-types': 'off',
+    'vue/require-default-prop': 'off',
+    'import/no-unresolved': [2, { ignore: ['^@/'] }],
+    'no-restricted-globals': 0,
+    'import/prefer-default-export': 'off',
+    'arrow-body-style': 0,
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: [
+          'mock/**',
+          'build/**',
+          'tests/**',
+          'scripts/**',
+        ],
+      },
+    ],
+    'vue/no-reserved-keys': 'off',
+    'vue/prop-name-casing': 'off',
+    'no-param-reassign': 'off',
+    'no-plusplus': 'off',
+    'vue/singleline-html-element-content-newline': 'off',
+    'no-unused-expressions': 'off',
+    'no-alert': 'off',
+    'arrow-parens': ['error', 'as-needed'],
+    'no-underscore-dangle': 0,
+    'max-len': ['error', { code: 125 }],
+    'vue/max-attributes-per-line': [
+      2,
+      {
+        singleline: 20,
+        multiline: {
+          max: 1,
+          allowFirstLine: false,
+        },
+      },
+    ],
+  },
+};

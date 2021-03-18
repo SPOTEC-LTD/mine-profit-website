@@ -1,6 +1,5 @@
 class Locale {
-  constructor(i18nInstance){
-
+  init(i18nInstance) {
     this.currentLocale = i18nInstance;
     this.setIntlObject(i18nInstance);
   }
@@ -18,4 +17,4 @@ class Locale {
   }
 }
 
-export default Locale;
+export default new Locale();

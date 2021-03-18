@@ -1,14 +1,13 @@
 // import getUserInfo from './api';
 
-
 const Test = {
-  data(){
+  data() {
     return ({
-      posts: {}
-    })
+      posts: {},
+    });
   },
   props: {
-    name: String
+    name: String,
   },
   async fetch() {
     // this.posts = await getUserInfo()
@@ -17,10 +16,10 @@ const Test = {
   // call fetch only on client-side
   fetchOnServer: true,
 
-  render(){
-    console.log('-00 test render')
-  return <span>test compoennts{this.name}</span>
-  }
-}
+  render() {
+    console.log('-00 test render');
+    return <span>test compoennts{this.name}</span>;
+  },
+};
 
 export default Test;

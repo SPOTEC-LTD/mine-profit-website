@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <mheader />
     <div>
       <Logo />
       <h1 class="title">
@@ -14,6 +15,7 @@
         >
           Documentation
         </a>
+
         <a
           href="https://github.com/nuxt/nuxt.js"
           target="_blank"
@@ -28,7 +30,13 @@
 </template>
 
 <script>
-export default {}
+import Header from '@/shared/components/header';
+
+export default {
+  components: {
+    mheader: Header,
+  },
+};
 </script>
 
 <style>

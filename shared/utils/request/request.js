@@ -1,9 +1,7 @@
 import axios from 'axios';
 import localStorage from '@/shared/utils/localStorage';
-import { location } from '@/shared/services/location';
-import { loginPath } from '@/router/loginRoute';
 import Response from './Response';
-import { errorHandler, isNotLogin, isGlobalBusinessError } from './utils';
+import { errorHandler, isGlobalBusinessError } from './utils';
 import errorModal from './errorModal';
 
 const request = config => axios(config);
@@ -25,7 +23,6 @@ axios.interceptors.response.use(res => {
     return data;
   }
 
-
   const response = new Response(data);
 
   if (response.isSuccess) {
@@ -38,10 +35,6 @@ axios.interceptors.response.use(res => {
 
   if (isGlobalBusinessError(response.code) && catchException) {
     errorModal({ title: response.message });
-  }
-
-  if (isNotLogin(response.code)) {
-    location.push(loginPath);
   }
 
   return Promise.reject(response);

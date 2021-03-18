@@ -22,12 +22,12 @@ let createAPI = (method, url) => (params = {}, config = {}) => {
   return request({
     url: finalURL,
     method,
-    ...config
+    ...config,
   });
 };
 
-if (__TESTING__) {
-  createAPI = (_, url) => function tTequest() { return Promise.resolve(url); };
-}
+// if (__TESTING__) {
+//   createAPI = (_, url) => function tTequest() { return Promise.resolve(url); };
+// }
 
 export default createAPI;

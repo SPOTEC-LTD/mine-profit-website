@@ -1,18 +1,18 @@
-import en from '../../locales/en-US.js'
-import zh from '../../locales/zh-CN.js'
+import en from '../../locales/en-US';
+import zh from '../../locales/zh-CN';
 
 export const I18N = {
   locales: [
     {
       code: 'en',
       iso: 'en-US',
-      name: 'English'
+      name: 'English',
     },
     {
       code: 'zh',
       iso: 'zh-CN',
-      name: '中文'
-    }
+      name: '中文',
+    },
   ],
   defaultLocale: 'en',
   // routes: {
@@ -33,6 +33,6 @@ export const I18N = {
   // },
   vueI18n: {
     fallbackLocale: 'en',
-    messages: { en, zh }
-  }
-}
+    messages: { en, zh },
+  },
+};

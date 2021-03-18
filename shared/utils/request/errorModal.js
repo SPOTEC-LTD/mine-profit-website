@@ -3,7 +3,6 @@ import { Modal } from 'ant-design-vue';
 let hasError = false;
 
 export default ({ title, content }) => {
-
   if (!hasError) {
     hasError = true;
     setTimeout(() => {
@@ -15,7 +14,7 @@ export default ({ title, content }) => {
       content,
       onClose() {
         hasError = false;
-      }
+      },
     });
   }
 };

@@ -1,7 +1,7 @@
 // import home from '../modules/home';
-import loading from '../shared/utils/loading.js';
+import loading from '@/shared/utils/loading';
 
-export const strict = false
+export const strict = false;
 
 export const plugins = [loading()];
 
@@ -13,4 +13,4 @@ export const actions = { };
 
 export const modules = {
   // home,
-}
+};
