@@ -1,4 +1,4 @@
-import { I18N } from './shared/intl/i18n';
+import { I18N } from './src/shared/intl/i18n';
 
 const path = require('path');
 
@@ -21,8 +21,8 @@ export default {
     ],
   },
 
-  css: [
-  ],
+  srcDir: 'src/',
+  css: [ ],
 
   // router: {
   //   middleware: 'i18n'
@@ -49,8 +49,8 @@ export default {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     extend(config, { isDev, isClient }) {
-      config.resolve.modules.push(resolveCwd('./'));
-      config.resolve.alias['@'] = resolveCwd('./');
+      config.resolve.modules.push(resolveCwd('src'));
+      config.resolve.alias['@'] = resolveCwd('src');
     },
 
     transpile: [/ant-design-vue/],
@@ -66,6 +66,10 @@ export default {
       less: {
         lessOptions: {
           strictMath: false,
+          modifyVars: {
+            'ant-prefix': 'mp',
+            'primary-color': 'red'
+          },
           javascriptEnabled: true,
         },
       },
