@@ -22,6 +22,7 @@ export default {
   },
 
   srcDir: 'src/',
+  globalName: 'app',
   css: [ ],
 
   // router: {
@@ -49,8 +50,8 @@ export default {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     extend(config, { isDev, isClient }) {
-      config.resolve.modules.push(resolveCwd('src'));
-      config.resolve.alias['@'] = resolveCwd('src');
+      // config.resolve.modules.push(resolveCwd('src'));
+      // config.resolve.alias['@'] = resolveCwd('src');
     },
 
     transpile: [/ant-design-vue/],

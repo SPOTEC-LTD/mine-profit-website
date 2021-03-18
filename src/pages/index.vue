@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <mheader />
     <div>
       <Logo />
       <h1 class="title">
@@ -30,12 +29,9 @@
 </template>
 
 <script>
-import Header from '@/shared/components/header';
 
 export default {
-  components: {
-    mheader: Header,
-  },
+
 };
 </script>
 

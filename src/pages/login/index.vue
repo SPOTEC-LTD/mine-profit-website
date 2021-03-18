@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <base-container class="banner">
     <div>
       <span class="red">test</span>
       <span>{{ $t("app.button.abnormalSettlement", { msg: 'hello2323' }) }}</span>
@@ -14,16 +14,18 @@
         <a-select-option value="en">英文</a-select-option>
       </a-select>
     </div>
-  </div>
+  </base-container>
 </template>
 
 <script>
 import { Button, Select, Input } from 'ant-design-vue';
+import BaseContainer from '@/shared/components/base-container';
 import locationHelp from '@/shared/utils/locationHelp';
 // import getUserInfo from '@/api';
 
 export default {
   components: {
+    'base-container': BaseContainer,
     'a-button': Button,
     'a-select': Select,
     'a-select-option': Select.Option,
@@ -55,6 +57,9 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
-  @import "./index.less";
+<style lang="less">
+.banner {
+  background-color: #d8d8d8;
+}
+
 </style>
