@@ -2,7 +2,9 @@
   <a-config-provider prefix-cls="mp">
     <div>
       <page-header />
-      <Nuxt />
+      <div class="layout">
+        <Nuxt />
+      </div>
       <page-footer />
     </div>
   </a-config-provider>
@@ -30,4 +32,5 @@ export default {
 
 <style>
 @import "~@/shared/styles/index.less";
+@import "./default.less";
 </style>
