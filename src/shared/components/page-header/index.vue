@@ -1,8 +1,7 @@
 <template>
   <div class="page-header">
     <div class="page-header-container">
-      <!-- FIXME need update to correct logo img -->
-      <img class="page-header-logo" src="~/assets/logo-white.png" alt="MINE PROFIT">
+      <img class="page-header-logo" src="~/assets/logo-black.png" alt="MINE PROFIT">
       <div class="page-header-nav">
         <nav-link href="/">首页</nav-link>
         <nav-menu hrefPrefix="/news/" :items="items">资讯公告</nav-menu>

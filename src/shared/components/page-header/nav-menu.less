@@ -1,9 +1,10 @@
 @import "@/shared/styles/variables.less";
 
 .nav-menu-trigger {
-  margin: 3px 0;
-  line-height: 18px;
   color: @color__1d1d1d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   .spotecicon {
     width: 16px;
@@ -19,6 +20,21 @@
     .spotecicon {
       transform: rotate(-90deg);
     }
+  }
+
+  .nav-menu-trigger-text {
+    line-height: 18px;
+    margin: 3px 0;
+  }
+
+  .nav-link-active-mark {
+    width: 16px;
+    height: 5px;
+    margin-top: 3px;
+  }
+
+  &--active {
+    color: @color__primary;
   }
 }
 
