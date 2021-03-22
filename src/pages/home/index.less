@@ -1,9 +1,9 @@
 @import "@/shared/styles/variables.less";
 
 .banner-container {
-  height: 398px;
-  background: url("~assets/home-banner.png") no-repeat center;
-  background-size: cover;
+  height: 474px;
+  background: url("~assets/home-banner.png") no-repeat top;
+  background-size: auto 398px;
 }
 
 .banner-content {
@@ -12,19 +12,67 @@
 
 .banner-text {
   margin-top: 67px;
-  color: @color_F78168;
+  color: #fff;
   font-size: 42px;
   font-weight: 500;
 }
 
-// .download-button {
-//   margin-top: 70px;
-// }
+.download-button {
+  position: relative;
+  top: 64px;
+  padding: 10px 32px;
+  display: flex;
+  align-items: center;
+}
+
+.qr-code {
+  margin-right: 8px;
+  width: 22px;
+}
 
 .banner-phone {
   position: absolute;
-  z-index: 100px;
+  z-index: 100;
   height: 359px;
+  right: 190px;
+  bottom: -234px;
+}
+
+// summary
+.subject-summary-container {
+  position: relative;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.subject-summary-img {
+  width: 557px;
+  border-radius: 61px;
+  background-color: #e2e9f2;
+
+  img {
+    width: 100%;
+    border-radius: 61px;
+    position: relative;
+    top: -20px;
+    right: -20px;
+  }
+}
+
+.subject-summary-content {
+  width: 600px;
+  font-size: 16px;
+}
+
+.about-title-image {
+  img {
+    width: 201px;
+  }
+}
+
+.summary-dots-icon {
+  position: absolute;
   right: 0;
-  bottom: -110px;
+  top: -4px;
 }
