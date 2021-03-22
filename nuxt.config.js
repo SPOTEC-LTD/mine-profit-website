@@ -74,7 +74,7 @@ export default {
           strictMath: false,
           modifyVars: {
             'ant-prefix': 'mp',
-            'primary-color': 'red'
+            'primary-color': '#02a6e3'
           },
           javascriptEnabled: true,
         },

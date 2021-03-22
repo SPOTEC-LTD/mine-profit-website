@@ -13,7 +13,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "ahoney": "^1.0.3",
+    "ahoney": "^1.0.4",
     "ant-design-vue": "^1.7.2",
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
