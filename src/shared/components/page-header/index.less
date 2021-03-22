@@ -1,0 +1,35 @@
+@import "~@/shared/styles/variables.less";
+
+.page-header {
+  width: 100%;
+  background-color: @color__ffffff;
+  padding: 16px 0 18px;
+}
+
+.page-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header-logo {
+  height: 34px;
+}
+
+.page-header-nav {
+  display: flex;
+  justify-content: flex-end;
+
+  & > * {
+    margin-left: 30px;
+  }
+}
+
+.page-header-download {
+  padding: 2px 15px;
+  line-height: 18px;
+  height: 24px;
+  border-radius: 12px;
+}

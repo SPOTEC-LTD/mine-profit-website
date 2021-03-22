@@ -1,10 +1,9 @@
 import qs from 'qs';
 import { toPath } from '@/shared/utils/qsHelp';
-import { locale } from '@/shared/intl';
 
 /**
  * These actions correspond to the history API.
- * The associated routerMiddleware will capture these events before they get to
+ * The associated routerMidwdleware will capture these events before they get to
  * your reducer and reissue them as the matching function on your history.
  */
 
@@ -16,7 +15,8 @@ class Location {
   buildURL = (url, options = {}) => {
     const { params = {}, query = {} } = options;
     let serializedUrl = toPath(url, params);
-    query.locale = locale.currentLocale;
+
+    // query.locale = locale.currentLocale;
 
     const queryStr = qs.stringify(query, { indices: false });
 

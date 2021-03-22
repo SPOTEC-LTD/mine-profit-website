@@ -27,3 +27,7 @@ export default {
   },
 };
 </script>
+
+<style>
+@import "~@/shared/styles/index.less";
+</style>
