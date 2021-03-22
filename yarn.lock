@@ -2174,10 +2174,10 @@ aggregate-error@^3.0.0:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
 
-ahoney@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/ahoney/-/ahoney-1.0.3.tgz#f6b6f20d436ac1339356776d5198c66f36527d12"
-  integrity sha512-idWL6Q68Zi2yD/on2oi/2kKcU93OD+VGuci283yn7lM0RvcriYdfCfMpkdlLQKOC06JTkWbDTUQQgI0wxzSpeQ==
+ahoney@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/ahoney/-/ahoney-1.0.4.tgz#fceedc9d8401ecb2869847bb3d210b24f8e5093e"
+  integrity sha512-Vwuu80s5cSOc9RCh8CZdV44uOOXHYdDcjJm4elpVIsas9Luu9kKUJm09IjEl2sHOmr2XdJGl2IMDl6FZznnz6A==
   dependencies:
     insert-css "^2.0.0"
 

@@ -1,5 +1,5 @@
 <template>
-  <c-link :to="path">
+  <c-link :to="href">
     <div class="nav-link" v-bind:class="{ 'nav-link--active': isActive }">
       <div class="nav-link-content">
         <slot />
@@ -24,19 +24,19 @@ export default {
     'c-link': Link,
   },
 
-  props: ['path', 'isNavActivated'],
+  props: ['href', 'isNavActivated'],
 
   computed: {
     isActive() {
       if (this.isNavActivated) {
-        return this.isNavActivated(this.path, this.$route.path);
+        return this.isNavActivated(this.href, this.$route.path);
       }
-      return this.path === this.$route.path;
+      return this.href === this.$route.path;
     },
   },
 };
 </script>
 
-<style>
+<style lang="less">
 @import './nav-link.less';
 </style>
