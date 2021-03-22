@@ -1,0 +1,28 @@
+.question-item {
+  position: relative;
+  display: block;
+  font-size: 16px;
+  line-height: 22px;
+  padding: 0 10px 20px;
+  text-align: left;
+  width: 448px;
+  border-bottom: 1px solid #d8d8d8;
+  cursor: pointer;
+
+  mark {
+    color: #02a6e3;
+    background: transparent;
+  }
+}
+
+.question-item::before {
+  position: absolute;
+  top: 9px;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  border: 1px solid #02a6e3;
+  background-color: #02a6e3;
+  content: "";
+}
