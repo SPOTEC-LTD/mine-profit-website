@@ -1,0 +1,20 @@
+.news-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  & > div {
+    margin-bottom: 38px;
+    margin-right: 30px;
+  }
+
+  & > div:nth-child(3n) {
+    margin-right: 0;
+  }
+}
+
+.no-data {
+  font-size: 16px;
+  line-height: 22px;
+  color: #242424;
+}

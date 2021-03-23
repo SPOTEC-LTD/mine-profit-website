@@ -9,7 +9,7 @@ const request = config => axios(config);
 // 添加请求拦截器
 axios.interceptors.request.use(config => {
   // 在发送请求之前做些什么
-  config.baseURL = __BASE_URL__;
+  config.baseURL = 'http://192.168.0.126:10000';
   config.timeout = 100000;
   config.headers.Authorization = localStorage.get('token');
   config.headers.platformType = 'WEB';

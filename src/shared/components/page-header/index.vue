@@ -4,8 +4,8 @@
       <img class="page-header-logo" src="~/assets/logo-black.png" alt="MINE PROFIT">
       <div class="page-header-nav">
         <nav-link href="/">首页</nav-link>
-        <nav-menu hrefPrefix="/news/" :items="items">资讯公告</nav-menu>
-        <nav-link href="/support">帮助中心</nav-link>
+        <nav-menu hrefPrefix="/newsAnnouncement" :items="items">资讯公告</nav-menu>
+        <nav-link href="/help">帮助中心</nav-link>
         <a-button class="page-header-download" type="primary">立即下载</a-button>
       </div>
     </div>
@@ -31,7 +31,7 @@ export default {
     return {
       items: [
         {
-          href: '/news/recommend',
+          href: '/newsAnnouncement',
           name: '好文',
           description: '深度了解行业与相关背景',
           icon: <DocFilledOutlined />,
