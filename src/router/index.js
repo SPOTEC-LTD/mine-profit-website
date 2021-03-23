@@ -5,11 +5,12 @@ import Login from '@/pages/login';
 import Help from '@/pages/help';
 import NewsAnnouncement from '@/pages/newsAnnouncement';
 import RecommendDetail from '@/pages/newsAnnouncement/recommend/detail';
+import { location } from '@/shared/services/location';
 
 Vue.use(Router);
 
 export function createRouter() {
-  return new Router({
+  const router = new Router({
     mode: 'history',
     routes: [
       {
@@ -34,4 +35,7 @@ export function createRouter() {
       },
     ],
   });
+
+  location.initialize(router);
+  return router;
 }
