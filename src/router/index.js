@@ -3,6 +3,8 @@ import Router from 'vue-router';
 import Home from '@/pages/home';
 import Login from '@/pages/login';
 import Help from '@/pages/help';
+import NewsAnnouncement from '@/pages/newsAnnouncement';
+import RecommendDetail from '@/pages/newsAnnouncement/recommend/detail';
 
 Vue.use(Router);
 
@@ -21,6 +23,14 @@ export function createRouter() {
       {
         path: '/help',
         component: Help,
+      },
+      {
+        path: '/newsAnnouncement',
+        component: NewsAnnouncement,
+      },
+      {
+        path: '/recommendDetail/:id',
+        component: RecommendDetail,
       },
     ],
   });
