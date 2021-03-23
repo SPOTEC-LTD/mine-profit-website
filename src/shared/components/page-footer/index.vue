@@ -37,7 +37,7 @@
           <div class="page-footer-nav-category">
             商务合作
           </div>
-          <a class="page-footer-nav-item">
+          <a href="#" class="page-footer-nav-item">
             联系我们
           </a>
         </div>
