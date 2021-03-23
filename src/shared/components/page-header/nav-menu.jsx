@@ -45,19 +45,21 @@ export default {
           class={`nav-menu-trigger ${isActive ? 'nav-menu-trigger--active' : ''}`}
           onClick={e => e.preventDefault()}
         >
-          <div class="nav-menu-trigger-text">
-            {this.$slots.default}
-            <RightOutlined class="nav-menu-trigger-icon" />
+          <div class="nav-menu-trigger-content">
+            <span>
+              {this.$slots.default}
+            </span>
+            {
+              isActive && (
+                <img
+                  class="nav-link-active-mark"
+                  src={activeImg}
+                  alt=""
+                />
+              )
+            }
           </div>
-          {
-            isActive && (
-              <img
-                class="nav-link-active-mark"
-                src={activeImg}
-                alt=""
-              />
-            )
-          }
+          <RightOutlined class="nav-menu-trigger-icon" />
         </a>
       </Dropdown>
     );

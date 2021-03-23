@@ -4,7 +4,7 @@
       <img class="page-header-logo" src="~/assets/logo-black.png" alt="MINE PROFIT">
       <div class="page-header-nav">
         <nav-link href="/">首页</nav-link>
-        <nav-menu hrefPrefix="/newsAnnouncement" :items="items">资讯公告</nav-menu>
+        <nav-menu href-prefix="/newsAnnouncement" :items="items">资讯公告</nav-menu>
         <nav-link href="/help">帮助中心</nav-link>
         <a-button class="page-header-download" type="primary">立即下载</a-button>
       </div>
