@@ -4,12 +4,15 @@ import Response from './Response';
 import { errorHandler, isGlobalBusinessError } from './utils';
 import errorModal from './errorModal';
 
-const request = config => axios(config);
+const createOptions = { baseURL: 'http://192.168.0.126:10000' };
+
+const axiosInstance = axios.create(createOptions);
+
+const request = config => axiosInstance(config);
 
 // 添加请求拦截器
-axios.interceptors.request.use(config => {
+axiosInstance.interceptors.request.use(config => {
   // 在发送请求之前做些什么
-  config.baseURL = 'http://192.168.0.126:10000';
   config.timeout = 100000;
   config.headers.Authorization = localStorage.get('token');
   config.headers.platformType = 'WEB';
@@ -17,7 +20,7 @@ axios.interceptors.request.use(config => {
 });
 
 // 添加响应拦截器
-axios.interceptors.response.use(res => {
+axiosInstance.interceptors.response.use(res => {
   const { data, config: { responseType, catchException = true } } = res;
   if (responseType === 'blob') {
     return data;
