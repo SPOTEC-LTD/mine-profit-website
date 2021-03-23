@@ -2,7 +2,7 @@
   <div class="page-footer">
     <div class="page-footer-container">
       <div class="page-footer-subject">
-        <img class="page-footer-vision" src="@/assets/footer-subject.png" alt="" />
+        <img class="page-footer-vision" src="@/assets/footer-subject.png" alt="">
         <div class="page-footer-powered">
           Powered by
         </div>

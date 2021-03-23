@@ -1,6 +1,6 @@
 <template>
   <c-link :to="href">
-    <div class="nav-link" v-bind:class="{ 'nav-link--active': isActive }">
+    <div class="nav-link" :class="{ 'nav-link--active': isActive }">
       <div class="nav-link-content">
         <slot />
       </div>
