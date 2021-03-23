@@ -15,13 +15,13 @@
           <div class="page-footer-nav-category">
             信息
           </div>
-          <a class="page-footer-nav-item">
+          <a href="/news/newsletter" class="page-footer-nav-item">
             快讯
           </a>
-          <a class="page-footer-nav-item">
+          <a href="/newsAnnouncement" class="page-footer-nav-item">
             好文
           </a>
-          <a class="page-footer-nav-item">
+          <a href="/news/announcement" class="page-footer-nav-item">
             公告
           </a>
         </div>
@@ -29,7 +29,7 @@
           <div class="page-footer-nav-category">
             支持
           </div>
-          <a class="page-footer-nav-item">
+          <a href="/help" class="page-footer-nav-item">
             帮助中心
           </a>
         </div>
