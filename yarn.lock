@@ -2439,10 +2439,10 @@ aggregate-error@^3.0.0:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
 
-ahoney@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.npmjs.org/ahoney/-/ahoney-1.0.4.tgz#fceedc9d8401ecb2869847bb3d210b24f8e5093e"
-  integrity sha512-Vwuu80s5cSOc9RCh8CZdV44uOOXHYdDcjJm4elpVIsas9Luu9kKUJm09IjEl2sHOmr2XdJGl2IMDl6FZznnz6A==
+ahoney@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/ahoney/-/ahoney-1.0.5.tgz#8db7e8f688de8d3e17f52dc9aead2d3c6733d4b9"
+  integrity sha512-MRDHAGo0Hiu81ULk/ygP6ANIUNpYdalKlxMVe2yaDkrsfBV91lgOh3sqHTR4Z3WZ75Sc9klhX5Qllb8pBSC2FA==
   dependencies:
     insert-css "^2.0.0"
 
