@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     goDetail(id) {
-      this.locationServices.push('/recommendDetail', { params: { id } });
+      this.locationServices.push('/recommendDetail/:id', { params: { id } });
     },
   },
 };
