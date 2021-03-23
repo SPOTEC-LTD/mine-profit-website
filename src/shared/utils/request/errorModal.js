@@ -10,6 +10,7 @@ export default ({ title, content }) => {
     }, 2000);
 
     Modal.error({
+      prefixCls: 'mp',
       title,
       content,
       onClose() {
