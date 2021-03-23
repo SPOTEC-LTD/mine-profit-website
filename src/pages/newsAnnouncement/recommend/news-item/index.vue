@@ -2,7 +2,7 @@
   <div class="news-wrapper" @click="goDetail(info.id)">
     <img class="news-image" :src="info.imageUrl" alt="">
     <span class="news-date">{{
-      dateUtils.formatDateTime(info.updateTime, "YYYY-MM-DD HH:mm")
+      updateTime
     }}</span>
     <span class="news-title">{{ info.title }}</span>
   </div>
@@ -22,9 +22,13 @@ export default {
   },
   data() {
     return {
-      dateUtils,
       locationServices,
     };
+  },
+  computed: {
+    updateTime() {
+      return dateUtils.formatDateTime(this.info.updateTime, 'YYYY-MM-DD HH:mm');
+    },
   },
   methods: {
     goDetail(id) {

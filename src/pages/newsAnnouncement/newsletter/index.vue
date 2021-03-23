@@ -1,9 +1,9 @@
 <template>
   <a-spin :spinning="loading">
-    <div class="news-content-wrapper">
-      <div class="news-content">
+    <div class="news-content">
+      <div class="news-box">
         <news-item
-          v-for="(item, index) in goodNewsList"
+          v-for="(item, index) in newsletterList"
           :key="index"
           :info="item"
         />
@@ -15,8 +15,8 @@
 
 <script>
 import { Spin } from 'ant-design-vue';
-import { getGoodNewsList } from '@/api';
-import { RECOMMEND } from '@/shared/consts/newsType';
+import { getNewsletterList } from '@/api';
+import { NEWSLETTER } from '@/shared/consts/newsType';
 import NewsItem from './news-item/index.vue';
 
 export default {
@@ -26,9 +26,9 @@ export default {
   },
   data() {
     return {
-      goodNewsList: [],
+      newsletterList: [],
       pageNum: 1,
-      pageSize: 9,
+      pageSize: 5,
       noData: false,
       loading: true,
     };
@@ -37,21 +37,21 @@ export default {
     this.$nextTick(() => {
       window.addEventListener('scroll', this.handleScroll);
     });
-    this.fetchGoodNewsList();
+    this.fetchNewsletterList();
   },
   methods: {
-    fetchGoodNewsList() {
+    fetchNewsletterList() {
       if (this.noData) {
         return;
       }
-      getGoodNewsList({
-        pathParams: { type: RECOMMEND },
+      getNewsletterList({
+        pathParams: { type: NEWSLETTER },
         data: { pageNum: this.pageNum, pageSize: this.pageSize },
       }).then(data => {
         const { body: { list } } = data;
         this.loading = false;
         this.noData = list.length === 0;
-        this.goodNewsList = [...this.goodNewsList, ...list];
+        this.newsletterList = [...this.newsletterList, ...list];
         this.pageNum += 1;
       });
     },
@@ -60,7 +60,7 @@ export default {
       const windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
       const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
       if (scrollHeight === scrollTop + windowHeight) {
-        this.fetchGoodNewsList();
+        this.fetchNewsletterList();
       }
     },
   },

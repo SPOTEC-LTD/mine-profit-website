@@ -20,7 +20,7 @@ export default {
                 <Menu.Item key={item.name}>
                   <a href={item.href}>
                     <div
-                      class={`nav-menu-item ${this.$route.path === item.href ? 'nav-menu-item--active' : ''}`}
+                      class={`nav-menu-item ${this.$route.query.type === item.type ? 'nav-menu-item--active' : ''}`}
                     >
                       <div class="nav-menu-icon">
                         {item.icon}

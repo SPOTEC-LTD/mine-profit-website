@@ -1,0 +1,5 @@
+const RECOMMEND = '1';
+const NEWSLETTER = '2';
+const ANNOUNCEMENT = '3';
+
+export { RECOMMEND, NEWSLETTER, ANNOUNCEMENT };
