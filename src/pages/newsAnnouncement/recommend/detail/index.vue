@@ -29,27 +29,28 @@ export default {
   components: {
     'base-container': BaseContainer,
   },
+
+  async asyncData({ params }) {
+    const {
+      body: { textInfo },
+    } = await fetchGoodNewsDetail({
+      pathParams: { id: params.id },
+    });
+
+    return { detail: textInfo };
+  },
   data() {
     return {
       detail: {},
       dateUtils,
     };
   },
-  mounted() {
-    fetchGoodNewsDetail({
-      pathParams: { id: this.$route.params.id },
-    }).then(data => {
-      const {
-        body: { textInfo },
-      } = data;
-      this.detail = textInfo;
-    });
-  },
   methods: {
     goGoodNews() {
       locationServices.push('/newsAnnouncement');
     },
   },
+
 };
 </script>
 
