@@ -8,7 +8,7 @@
           :info="item"
         />
       </div>
-      <div v-if="noData" class="no-data">已加载全部内容</div>
+      <div v-if="noData" class="no-data">{{ $t('allContentLoaded') }}</div>
     </div>
   </a-spin>
 </template>

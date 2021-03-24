@@ -83,6 +83,7 @@
 
 .question-top-img {
   width: 302px;
+  height: 63px;
 }
 
 .question-top-text {
@@ -106,12 +107,10 @@
 }
 
 .search-result {
-  opacity: 0;
   position: absolute;
   width: 100%;
   top: 0;
   left: 0;
-  z-index: -1;
   padding: 44px 0 0 284px;
 }
 
@@ -140,6 +139,15 @@
 
 .result-number {
   color: #02a6e3;
+}
+
+.no-result {
+  padding: 45px 0 0 248px;
+
+  & > img {
+    width: 81px;
+    height: 82px;
+  }
 }
 
 @keyframes fadeInRight {

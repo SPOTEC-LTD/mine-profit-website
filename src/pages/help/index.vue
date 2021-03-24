@@ -10,39 +10,61 @@
           v-model="searchValue"
           :max-length="30"
           class="search-input"
-          placeholder="搜索您想问的问题"
+          :placeholder="$t('searchInputPlaceholder')"
           @keyup.enter="onClickSearch">
           <div slot="suffix" class="search-button" @click="onClickSearch">
             <search-outlined />
-            <span>搜索</span>
+            <span>{{ $t('search') }}</span>
           </div>
         </a-input>
       </div>
-      <div class="question-result-box">
-        <div ref="question" class="question fadeInUp">
-          <div class="question-top">
-            <img class="question-top-img" src="@/assets/help/question-text.png" alt="">
-            <span class="question-top-text">常见问题</span>
+      <div ref="boxRef" class="question-result-box">
+        <transition
+          enter-active-class="fadeInUp"
+          leave-active-class="fadeOutUp"
+        >
+          <div v-show="isVisibleQuestion" class="question">
+            <div class="question-top">
+              <img class="question-top-img" src="@/assets/help/question-text.png" alt="">
+              <span class="question-top-text">{{ $t('commonProblem') }}</span>
+            </div>
+            <a-spin :spinning="loading">
+              <div class="question-content">
+                <question-item v-for="(item,index) in questionList" :id="item.id" :key="index" :question="item.question" />
+              </div>
+            </a-spin>
           </div>
-          <div class="question-content">
-            <question-item v-for="(item,index) in questionList" :key="index" :question="item.question" />
+        </transition>
+        <transition
+          enter-active-class="fadeInRight"
+          leave-active-class="fadeOutRight"
+        >
+          <div v-show="isVisibleResult" ref="resultRef" class="search-result">
+            <div class="search-result-top">
+              <img class="back-icon" src="@/assets/help/left-arrow.png" alt="" @click="backQuestion">
+              <span>
+                {{ $t('searchPrompt', { searchValue: resultSearchValue }) }}
+                <span class="result-number">{{ resultNumber }}</span>
+                {{ $t('number') }}
+              </span>
+            </div>
+            <a-spin :spinning="loading">
+              <div v-if="resultNumber !== 0" class="result-box">
+                <question-item
+                  v-for="(item,index) in resultList"
+                  :id="item.id"
+                  :key="index"
+                  is-highlight
+                  :result-key-word="resultSearchValue"
+                  :question="item.question"
+                />
+              </div>
+              <div v-else class="no-result">
+                <img src="@/assets/help/no-result.png" alt="">
+              </div>
+            </a-spin>
           </div>
-        </div>
-        <div ref="result" class="search-result">
-          <div class="search-result-top">
-            <img class="back-icon" src="@/assets/help/left-arrow.png" alt="" @click="backQuestion">
-            <span>关于“{{ resultSearchValue }}”的搜索结果共有 <span class="result-number">{{ resultNumber }}</span> 条</span>
-          </div>
-          <div class="result-box">
-            <question-item
-              v-for="(item,index) in resultList"
-              :key="index"
-              is-highlight
-              :result-key-word="resultSearchValue"
-              :question="item.question"
-            />
-          </div>
-        </div>
+        </transition>
       </div>
     </base-container>
   </div>
@@ -50,77 +72,84 @@
 
 <script>
 import Input from 'ant-design-vue/lib/input';
+import Spin from 'ant-design-vue/lib/spin';
 import SearchOutlined from 'ahoney/lib/icons/SearchOutlined';
 import BaseContainer from '@/shared/components/base-container';
+import { fetchQuestionList } from '@/api';
 import QuestionItem from './question-item';
 
 export default {
   components: {
     'base-container': BaseContainer,
     'a-input': Input,
+    'a-spin': Spin,
     'search-outlined': SearchOutlined,
     'question-item': QuestionItem,
   },
   data() {
-    const resultList = [{
-      question: '上架时间T+1是什么意思？',
-    },
-    {
-      question: '为什么上架？',
-    },
-    {
-      question: '上架的算力可以下架吗？',
-    }];
     return {
       searchValue: '',
       resultSearchValue: '',
-      resultNumber: resultList.length,
-      questionList: [{
-        question: '上架时间T+1是什么意思？',
-      },
-      {
-        question: '上架时间T+1是什么意思？',
-      },
-      {
-        question: '上架时间T+1是什么意思？',
-      },
-      {
-        question: '上架时间T+1是什么意思？',
-      },
-      {
-        question: '上架时间T+1是什么意思？',
-      },
-      {
-        question: '上架时间T+1是什么意思？',
-      },
-      {
-        question: '上架时间T+1是什么意思？',
-      }],
-      resultList,
+      resultNumber: 0,
+      questionList: [],
+      resultList: [],
       isFirstSearch: true,
+      isVisibleQuestion: false,
+      isVisibleResult: false,
+      loading: false,
     };
   },
+  mounted() {
+    this.fetchCommonProblem();
+    this.isVisibleQuestion = true;
+  },
   methods: {
+    fetchCommonProblem() {
+      this.loading = true;
+      this.questionList = [];
+      fetchQuestionList({
+        data: { pageNum: 1, pageSize: 6 },
+      }).then(data => {
+        this.loading = false;
+        const { body: { list } } = data;
+        this.questionList = list;
+      });
+    },
     onClickSearch() {
       if (this.isFirstSearch && this.searchValue === '') {
         return;
       }
-      this.resultSearchValue = this.searchValue;
       if (this.searchValue === '') {
         this.backQuestion();
-      } else {
-        this.$refs.question.classList.remove('fadeInUp');
-        this.$refs.result.classList.remove('fadeOutRight');
-        this.$refs.question.classList.add('fadeOutUp');
-        this.$refs.result.classList.add('fadeInRight');
+        return;
       }
+      this.resultList = [];
+      this.resultNumber = 0;
+      this.resultSearchValue = this.searchValue;
+      this.isVisibleQuestion = false;
+      this.isVisibleResult = true;
+      this.loading = true;
+      this.$refs.boxRef.style.height = '235px';
+
+      fetchQuestionList({
+        data: { title: this.searchValue },
+      }).then(data => {
+        this.loading = false;
+        const { body: { list } } = data;
+        this.resultNumber = list.length;
+        this.resultList = list;
+        this.$nextTick(() => {
+          this.$refs.boxRef.style.height = `${this.$refs.resultRef.offsetHeight}px`;
+        });
+      });
       this.isFirstSearch = false;
     },
     backQuestion() {
-      this.$refs.question.classList.remove('fadeOutUp');
-      this.$refs.result.classList.remove('fadeInRight');
-      this.$refs.question.classList.add('fadeInUp');
-      this.$refs.result.classList.add('fadeOutRight');
+      this.$nextTick(() => {
+        this.$refs.boxRef.style.height = '100%';
+      });
+      this.isVisibleQuestion = true;
+      this.isVisibleResult = false;
     },
   },
 };
