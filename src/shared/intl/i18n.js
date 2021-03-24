@@ -14,25 +14,10 @@ export const I18N = {
       name: '中文',
     },
   ],
-  defaultLocale: 'en',
-  // routes: {
-  //   about: {
-  //     zh: '/a-propos',
-  //     en: '/about-us'
-  //   },
-  //   posts: {
-  //     zh: '/articles'
-  //   },
-  //   'post/_id': {
-  //     zh: '/article/:id?',
-  //     es: '/articulo/:id?'
-  //   },
-  //   'dynamicNested/_category': {
-  //     zh: 'imbrication-dynamique/:category'
-  //   }
-  // },
+  defaultLocale: 'zh',
+
   vueI18n: {
-    fallbackLocale: 'en',
+    fallbackLocale: 'zh',
     messages: { en, zh },
   },
 };

@@ -2,7 +2,7 @@
   <base-container class="banner">
     <div>
       <span class="red">test</span>
-      <span>{{ $t("app.button.abnormalSettlement", { msg: 'hello2323' }) }}</span>
+      <span>{{ $t("searchInputPlaceholder", { msg: 'hello2323' }) }}</span>
       <a-button type="primary"> Primary </a-button>
       <a-input v-model="name" />
       <div>{{ name }}</div>
@@ -41,11 +41,10 @@ export default {
     };
   },
   beforeMount() {
-    console.log('th2323', this.$i18n);
+    console.log('th2323', this.$i18n.locale);
   },
   methods: {
     handleChange(value) {
-      console.log('this', this.$i18n.locale);
       locationHelp.redirect(this.switchLocalePath(value));
     },
   },
