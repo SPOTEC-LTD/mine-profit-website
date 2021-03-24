@@ -6,15 +6,13 @@
         <div>
           <div class="detail-date">
             {{
-              dateUtils.formatDateTime(detail.updateTime, "YYYY-MM-DD HH:mm")
+              updateTime
             }}
           </div>
           <div class="detail-title">{{ detail.title }}</div>
         </div>
       </div>
-      <div class="content-wrapper">
-        <div class="detail-content" v-html="detail.content" />
-      </div>
+      <div class="detail-content" v-html="detail.content" />
     </div>
   </base-container>
 </template>
@@ -42,8 +40,12 @@ export default {
   data() {
     return {
       detail: {},
-      dateUtils,
     };
+  },
+  computed: {
+    updateTime() {
+      return dateUtils.formatDateTime(this.detail.updateTime, 'YYYY-MM-DD HH:mm');
+    },
   },
   methods: {
     goGoodNews() {

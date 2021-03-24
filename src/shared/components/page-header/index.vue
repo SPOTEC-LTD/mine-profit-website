@@ -17,6 +17,7 @@ import { Button } from 'ant-design-vue';
 import DocFilledOutlined from 'ahoney/lib/icons/DocFilledOutlined';
 import EmailCircleOutlined from 'ahoney/lib/icons/EmailCircleOutlined';
 import TipCirccleOutlined from 'ahoney/lib/icons/TipCirccleOutlined';
+import { RECOMMEND, NEWSLETTER, ANNOUNCEMENT } from '@/shared/consts/newsType';
 
 import NavLink from './nav-link.vue';
 import NavMenu from './nav-menu.jsx';
@@ -31,20 +32,23 @@ export default {
     return {
       items: [
         {
-          href: '/newsAnnouncement',
+          href: '/newsAnnouncement?type=1',
           name: '好文',
+          type: RECOMMEND,
           description: '深度了解行业与相关背景',
           icon: <DocFilledOutlined />,
         },
         {
-          href: '/news/newsletter',
+          href: '/newsAnnouncement?type=2',
           name: '快讯',
+          type: NEWSLETTER,
           description: '实时快速的一手资讯',
           icon: <EmailCircleOutlined />,
         },
         {
-          href: '/news/announcement',
+          href: '/newsAnnouncement?type=3',
           name: '公告',
+          type: ANNOUNCEMENT,
           description: '了解官方发布的实时公告',
           icon: <TipCirccleOutlined />,
         },
