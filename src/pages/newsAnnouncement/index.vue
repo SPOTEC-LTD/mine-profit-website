@@ -1,13 +1,13 @@
 <template>
   <base-container>
     <a-tabs destroy-inactive-tab-pane :default-active-key="active" @change="callback">
-      <a-tab-pane key="1" tab="好文">
+      <a-tab-pane :key="RECOMMEND" :tab="$t('recommend')">
         <m-recommend />
       </a-tab-pane>
-      <a-tab-pane key="2" tab="快讯">
+      <a-tab-pane :key="NEWSLETTER" :tab="$t('newsletter')">
         <m-newsletter />
       </a-tab-pane>
-      <a-tab-pane key="3" tab="公告">
+      <a-tab-pane :key="ANNOUNCEMENT" :tab="$t('announcement')">
         <m-announcement />
       </a-tab-pane>
     </a-tabs>
@@ -17,7 +17,7 @@
 <script>
 import { Tabs } from 'ant-design-vue';
 import BaseContainer from '@/shared/components/base-container';
-import { RECOMMEND } from '@/shared/consts/newsType';
+import { RECOMMEND, NEWSLETTER, ANNOUNCEMENT } from '@/shared/consts/newsType';
 import Recommend from './recommend/index.vue';
 import Newsletter from './newsletter/index.vue';
 import Announcement from './announcement/index.vue';
@@ -35,6 +35,9 @@ export default {
   },
   data() {
     return {
+      RECOMMEND,
+      NEWSLETTER,
+      ANNOUNCEMENT,
       active: this.$route.query.type || RECOMMEND,
     };
   },

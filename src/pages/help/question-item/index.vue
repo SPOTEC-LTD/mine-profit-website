@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="goQuestionDetail">
     <text-highlighter
       v-if="isHighlight"
       class="question-item"
@@ -15,6 +15,7 @@
 
 <script>
 import TextHighlighter from 'vue-highlight-words';
+import locationServices from '@/shared/services/location/locationServices';
 
 export default {
   name: 'QuestionItem',
@@ -26,6 +27,9 @@ export default {
       type: String,
       default: '',
     },
+    id: {
+      type: Number,
+    },
     resultKeyWord: {
       type: String,
       default: '',
@@ -36,7 +40,14 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      locationServices,
+    };
+  },
+  methods: {
+    goQuestionDetail() {
+      this.locationServices.push('/questionDetail/:id', { params: { id: this.id } });
+    },
   },
 };
 </script>
