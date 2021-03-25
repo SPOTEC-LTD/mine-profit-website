@@ -49,7 +49,7 @@ export function createRouter() {
         component: QuestionDetail,
       },
       {
-        path: '/404',
+        path: '*',
         component: NotFound,
       },
     ]),
