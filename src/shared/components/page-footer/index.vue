@@ -13,32 +13,32 @@
       <div class="page-footer-navs">
         <div>
           <div class="page-footer-nav-category">
-            信息
+            {{ $t('information') }}
           </div>
           <a href="/newsAnnouncement?type=2" class="page-footer-nav-item">
-            快讯
+            {{ $t('newsletter') }}
           </a>
           <a href="/newsAnnouncement?type=1" class="page-footer-nav-item">
-            好文
+            {{ $t('recommendArticle') }}
           </a>
           <a href="/newsAnnouncement?type=3" class="page-footer-nav-item">
-            公告
+            {{ $t('announcement') }}
           </a>
         </div>
         <div>
           <div class="page-footer-nav-category">
-            支持
+            {{ $t('support') }}
           </div>
           <a href="/help" class="page-footer-nav-item">
-            帮助中心
+            {{ $t('helpCenter') }}
           </a>
         </div>
         <div>
           <div class="page-footer-nav-category">
-            商务合作
+            {{ $t('businessCooperation') }}
           </div>
           <a href="#" class="page-footer-nav-item">
-            联系我们
+            {{ $t('contactUs') }}
           </a>
         </div>
       </div>
