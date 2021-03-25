@@ -6,6 +6,7 @@ import Help from '@/pages/help';
 import NewsAnnouncement from '@/pages/newsAnnouncement';
 import RecommendDetail from '@/pages/newsAnnouncement/recommend/detail';
 import QuestionDetail from '@/pages/help/detail';
+import NotFound from '@/pages/404';
 import { location } from '@/shared/services/location';
 import { buildRoutes } from './utils';
 
@@ -46,6 +47,10 @@ export function createRouter() {
         path: '/questionDetail/:id',
         name: 'questionDetail',
         component: QuestionDetail,
+      },
+      {
+        path: '/404',
+        component: NotFound,
       },
     ]),
   });
