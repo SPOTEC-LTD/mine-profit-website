@@ -13,6 +13,7 @@ export default {
       <Dropdown
         overlayClassName="nav-menu-overlay"
         placement="bottomCenter"
+        getPopupContainer={triggerNode => triggerNode.parentNode}
         overlay={(
           <Menu>
             {
