@@ -30,6 +30,7 @@ export default {
       pageSize: 8,
       noData: false,
       loading: true,
+      fetching: false,
     };
   },
   mounted() {
@@ -40,22 +41,28 @@ export default {
   },
   methods: {
     fetchAnnouncementList() {
+      if (this.fetching) {
+        return;
+      }
       if (this.noData) {
         return;
       }
+      this.fetching = true;
       getAnnouncementList({ data: { pageNum: this.pageNum, pageSize: this.pageSize } }).then(data => {
         const { body: { list } } = data;
         this.loading = false;
         this.noData = list.length === 0;
         this.announcementList = [...this.announcementList, ...list];
         this.pageNum += 1;
+        this.fetching = false;
       });
     },
     handleScroll() {
+      const footerHeight = 403;
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       const windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
       const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
-      if (scrollHeight === scrollTop + windowHeight) {
+      if (scrollHeight - scrollTop - windowHeight <= footerHeight) {
         this.fetchAnnouncementList();
       }
     },

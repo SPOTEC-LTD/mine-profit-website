@@ -76,7 +76,7 @@ import Spin from 'ant-design-vue/lib/spin';
 import SearchOutlined from 'ahoney/lib/icons/SearchOutlined';
 import BaseContainer from '@/shared/components/base-container';
 import { fetchQuestionList } from '@/api';
-import QuestionItem from './question-item';
+import QuestionItem from './question-item/index.vue';
 
 export default {
   components: {
@@ -121,6 +121,10 @@ export default {
       }
       if (this.searchValue === '') {
         this.backQuestion();
+        return;
+      }
+      if (this.searchValue.trim() === '') {
+        this.$router.go(0);
         return;
       }
       this.resultList = [];
