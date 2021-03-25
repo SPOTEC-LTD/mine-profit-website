@@ -1,12 +1,14 @@
 <template>
   <div class="page-header">
     <div class="page-header-container">
-      <img class="page-header-logo" src="~/assets/logo-black.png" alt="MINE PROFIT">
+      <a href="/">
+        <img class="page-header-logo" src="~/assets/logo-black.png" alt="MINE PROFIT">
+      </a>
       <div class="page-header-nav">
-        <nav-link href="/">首页</nav-link>
-        <nav-menu href-prefix="/newsAnnouncement" :items="items">资讯公告</nav-menu>
-        <nav-link href="/help">帮助中心</nav-link>
-        <a-button class="page-header-download" type="primary">立即下载</a-button>
+        <nav-link href="/">{{ $t('home') }}</nav-link>
+        <nav-menu href-prefix="/newsAnnouncement" :items="items">{{ $t('newsAnnouncement') }}</nav-menu>
+        <nav-link href="/help">{{ $t('helpCenter') }}</nav-link>
+        <a-button class="page-header-download" type="primary">{{ $t('downloadNow') }}</a-button>
       </div>
     </div>
   </div>
@@ -33,23 +35,23 @@ export default {
       items: [
         {
           href: '/newsAnnouncement?type=1',
-          name: '好文',
+          name: this.$t('recommendArticle'),
           type: RECOMMEND,
-          description: '深度了解行业与相关背景',
+          description: this.$t('recommendArticleDesc'),
           icon: <DocFilledOutlined />,
         },
         {
           href: '/newsAnnouncement?type=2',
-          name: '快讯',
+          name: this.$t('newsletter'),
           type: NEWSLETTER,
-          description: '实时快速的一手资讯',
+          description: this.$t('newsletterDesc'),
           icon: <EmailCircleOutlined />,
         },
         {
           href: '/newsAnnouncement?type=3',
-          name: '公告',
+          name: this.$t('announcement'),
           type: ANNOUNCEMENT,
-          description: '了解官方发布的实时公告',
+          description: this.$t('announcementDesc'),
           icon: <TipCirccleOutlined />,
         },
       ],
