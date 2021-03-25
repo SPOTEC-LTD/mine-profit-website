@@ -20,6 +20,8 @@
     </base-container>
     <base-container>
       <subject-summary />
+      <our-advantage />
+      <cooperation-company />
     </base-container>
   </div>
 </template>
@@ -29,7 +31,9 @@ import { Button } from 'ant-design-vue';
 import QrCode from 'ahoney/lib/icons/QrCode';
 import BaseContainer from '@/shared/components/base-container';
 import bannerPhoneImage from '@/assets/banner-phone.png';
-import SubjectSummary from './subject-summary.vue';
+import OurAdvantage from '@/pages/home/our-advantage';
+import SubjectSummary from '@/pages/home/subject-summary';
+import cooperationCompany from '@/pages/home/cooperation-company';
 
 export default {
   components: {
@@ -37,6 +41,8 @@ export default {
     'h-qrcode': QrCode,
     'base-container': BaseContainer,
     'subject-summary': SubjectSummary,
+    'our-advantage': OurAdvantage,
+    'cooperation-company': cooperationCompany,
   },
 
   data() {
