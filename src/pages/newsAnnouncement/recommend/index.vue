@@ -31,6 +31,7 @@ export default {
       pageSize: 9,
       noData: false,
       loading: true,
+      fetching: false,
     };
   },
   mounted() {
@@ -41,9 +42,13 @@ export default {
   },
   methods: {
     fetchGoodNewsList() {
+      if (this.fetching) {
+        return;
+      }
       if (this.noData) {
         return;
       }
+      this.fetching = true;
       getGoodNewsList({
         pathParams: { type: RECOMMEND },
         data: { pageNum: this.pageNum, pageSize: this.pageSize },
@@ -53,13 +58,15 @@ export default {
         this.noData = list.length === 0;
         this.goodNewsList = [...this.goodNewsList, ...list];
         this.pageNum += 1;
+        this.fetching = false;
       });
     },
     handleScroll() {
+      const footerHeight = 403;
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       const windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
       const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
-      if (scrollHeight === scrollTop + windowHeight) {
+      if (scrollHeight - scrollTop - windowHeight <= footerHeight) {
         this.fetchGoodNewsList();
       }
     },
