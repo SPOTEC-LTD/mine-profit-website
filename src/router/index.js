@@ -7,6 +7,7 @@ import NewsAnnouncement from '@/pages/newsAnnouncement';
 import RecommendDetail from '@/pages/newsAnnouncement/recommend/detail';
 import QuestionDetail from '@/pages/help/detail';
 import NotFound from '@/pages/404';
+import MeetError from '@/pages/500';
 import { location } from '@/shared/services/location';
 import { buildRoutes } from './utils';
 
@@ -49,7 +50,13 @@ export function createRouter() {
         component: QuestionDetail,
       },
       {
+        path: '/500',
+        name: '500',
+        component: MeetError,
+      },
+      {
         path: '*',
+        name: '404',
         component: NotFound,
       },
     ]),
