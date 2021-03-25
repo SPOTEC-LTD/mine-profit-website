@@ -19,6 +19,7 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     ],
+    script: [{ src: './checkBrowserVersion.js', type: 'text/javascript', charset: 'utf-8'}]
   },
 
   srcDir: 'src/',
