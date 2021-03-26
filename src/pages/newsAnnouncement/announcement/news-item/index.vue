@@ -1,5 +1,5 @@
 <template>
-  <div class="news-wrapper">
+  <div class="news-wrapper" @click="goDetail(info.id)">
     <div class="news-date">
       {{ updateTime }}
     </div>
@@ -9,6 +9,7 @@
 
 <script>
 import dateUtils from '@/shared/intl/utils/dateUtils';
+import locationServices from '@/shared/services/location/locationServices';
 
 export default {
   props: {
@@ -23,6 +24,11 @@ export default {
   computed: {
     updateTime() {
       return dateUtils.formatDateTime(this.info.updateTime, 'YYYY-MM-DD HH:mm');
+    },
+  },
+  methods: {
+    goDetail(id) {
+      locationServices.push('/announcementDetail/:id', { params: { id } });
     },
   },
 };
