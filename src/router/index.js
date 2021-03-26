@@ -5,6 +5,7 @@ import Login from '@/pages/login';
 import Help from '@/pages/help';
 import NewsAnnouncement from '@/pages/newsAnnouncement';
 import RecommendDetail from '@/pages/newsAnnouncement/recommend/detail';
+import AnnouncementDetail from '@/pages/newsAnnouncement/announcement/detail';
 import QuestionDetail from '@/pages/help/detail';
 import NotFound from '@/pages/404';
 import MeetError from '@/pages/500';
@@ -43,6 +44,11 @@ export function createRouter() {
         path: '/recommendDetail/:id',
         name: 'recommendDetail',
         component: RecommendDetail,
+      },
+      {
+        path: '/announcementDetail/:id',
+        name: 'announcementDetail',
+        component: AnnouncementDetail,
       },
       {
         path: '/questionDetail/:id',

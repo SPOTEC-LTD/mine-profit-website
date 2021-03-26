@@ -21,9 +21,7 @@ export default {
     },
   },
   data() {
-    return {
-      locationServices,
-    };
+    return {};
   },
   computed: {
     updateTime() {
@@ -32,7 +30,7 @@ export default {
   },
   methods: {
     goDetail(id) {
-      this.locationServices.push('/recommendDetail/:id', { params: { id } });
+      locationServices.push('/recommendDetail/:id', { params: { id } });
     },
   },
 };

@@ -38,8 +38,8 @@ class Location {
   }
 
   replace(url, options = {}) {
-    const { params, search } = options;
-    const serializedUrl = this.buildURL(url, { params, search });
+    const { params, query } = options;
+    const serializedUrl = this.buildURL(url, { params, query });
 
     this.router.replace(serializedUrl);
 
@@ -47,8 +47,8 @@ class Location {
   }
 
   push(url, options = {}) {
-    const { params, search } = options;
-    const serializedUrl = this.buildURL(url, { params, search });
+    const { params, query } = options;
+    const serializedUrl = this.buildURL(url, { params, query });
 
     this.router.push(serializedUrl);
 

@@ -6,3 +6,4 @@ export const getNewsletterList = createAPI('get', '/operation/news/:type/page');
 export const getAnnouncementList = createAPI('get', '/operation/announcements/admin');
 export const fetchQuestionList = createAPI('get', '/operation/questions/admin');
 export const fetchQuestionDetail = createAPI('get', '/operation/questions/:id');
+export const fetchAnnouncementDetail = createAPI('get', '/operation/announcements/:id');
