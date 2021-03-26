@@ -18,6 +18,7 @@ import { Spin } from 'ant-design-vue';
 import { getGoodNewsList } from '@/api';
 import { RECOMMEND } from '@/shared/consts/newsType';
 import NewsItem from './news-item/index.vue';
+import scrollEvent from '../scrollEvent';
 
 export default {
   components: {
@@ -42,10 +43,7 @@ export default {
   },
   methods: {
     fetchGoodNewsList() {
-      if (this.fetching) {
-        return;
-      }
-      if (this.noData) {
+      if (this.fetching || this.noData) {
         return;
       }
       this.fetching = true;
@@ -62,13 +60,7 @@ export default {
       });
     },
     handleScroll() {
-      const footerHeight = 403;
-      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-      const windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
-      const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
-      if (scrollHeight - scrollTop - windowHeight <= footerHeight) {
-        this.fetchGoodNewsList();
-      }
+      scrollEvent(this.fetchGoodNewsList);
     },
   },
 };
