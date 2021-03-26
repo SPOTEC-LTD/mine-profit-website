@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Response from './Response';
 
-const createOptions = { baseURL: 'http://192.168.0.126:10000' };
+const createOptions = { baseURL: process.env.BASE_API };
 
 const axiosInstance = axios.create(createOptions);
 

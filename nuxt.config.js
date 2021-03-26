@@ -7,6 +7,13 @@ function resolveCwd(...args) {
   return path.join(...args);
 }
 
+const baseAPiMap = {
+  static: 'http://127.0.0.1:4008',
+  dev: 'http://192.168.0.126:10000',
+  pro: 'http://192.168.0.126:10000',
+  test: 'http://192.168.0.126:10000'
+};
+
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head).
   head: {
@@ -86,6 +93,9 @@ export default {
         },
       },
     },
-
   },
+
+  env: {
+    BASE_API: baseAPiMap[process.env.API]
+  }
 };
