@@ -14,6 +14,12 @@
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
     "test": "jest"
   },
+  "config": {
+    "nuxt": {
+      "host": "0.0.0.0",
+      "port": "3000"
+    }
+  },
   "dependencies": {
     "ahoney": "^1.0.5",
     "ant-design-vue": "^1.7.2",
