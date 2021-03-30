@@ -15,7 +15,7 @@ axiosInstance.interceptors.request.use(config => {
   // 在发送请求之前做些什么
   config.timeout = 100000;
   config.headers.Authorization = localStorage.get('token');
-  config.headers.platformType = 'WEB';
+  config.headers.platformType = 'HOME';
   return config;
 });
 
