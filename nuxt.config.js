@@ -22,6 +22,8 @@ export default {
     script: [{ src: './checkBrowserVersion.js', type: 'text/javascript', charset: 'utf-8'}]
   },
 
+  telemetry:false,
+
   srcDir: 'src/',
   globalName: 'app',
   css: [ ],
