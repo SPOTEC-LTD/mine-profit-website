@@ -33,14 +33,14 @@
             {{ $t('helpCenter') }}
           </a>
         </div>
-        <div>
+        <!-- <div>
           <div class="page-footer-nav-category">
             {{ $t('businessCooperation') }}
           </div>
           <a href="#" class="page-footer-nav-item">
             {{ $t('contactUs') }}
           </a>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
