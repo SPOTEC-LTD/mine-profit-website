@@ -10,6 +10,7 @@
         <img class="img-1" src="@/assets/download/2-1.png" alt="">
         <img class="img-2" src="@/assets/download/2-2.png" alt="">
         <img class="img-3" src="@/assets/download/2-3.png" alt="">
+        <img class="img-4" src="@/assets/download/screen-shot.png" alt="">
       </div>
       <div class="main-content">
         <div v-if="scenarioIndex === 0">
