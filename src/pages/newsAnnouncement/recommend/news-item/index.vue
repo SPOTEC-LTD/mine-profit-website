@@ -1,6 +1,8 @@
 <template>
   <div class="news-wrapper" @click="goDetail(info.id)">
-    <img class="news-image" :src="info.imageUrl" alt="">
+    <div class="image-wrapper">
+      <img class="news-image" :src="info.imageUrl" alt="">
+    </div>
     <span class="news-date">{{
       updateTime
     }}</span>
