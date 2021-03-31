@@ -16,6 +16,7 @@
 <script>
 import { Spin } from 'ant-design-vue';
 import { getAnnouncementList } from '@/api';
+import { SHOW } from '@/shared/consts/visible';
 import NewsItem from './news-item/index.vue';
 import scrollEvent from '../scrollEvent';
 
@@ -46,7 +47,7 @@ export default {
         return;
       }
       this.fetching = true;
-      getAnnouncementList({ data: { pageNum: this.pageNum, pageSize: this.pageSize } }).then(data => {
+      getAnnouncementList({ data: { pageNum: this.pageNum, pageSize: this.pageSize, showStatus: SHOW } }).then(data => {
         const { body: { list } } = data;
         this.loading = false;
         this.noData = list.length === 0;

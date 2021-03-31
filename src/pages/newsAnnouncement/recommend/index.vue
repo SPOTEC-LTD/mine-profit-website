@@ -17,6 +17,7 @@
 import { Spin } from 'ant-design-vue';
 import { getGoodNewsList } from '@/api';
 import { RECOMMEND } from '@/shared/consts/newsType';
+import { SHOW } from '@/shared/consts/visible';
 import NewsItem from './news-item/index.vue';
 import scrollEvent from '../scrollEvent';
 
@@ -49,7 +50,7 @@ export default {
       this.fetching = true;
       getGoodNewsList({
         pathParams: { type: RECOMMEND },
-        data: { pageNum: this.pageNum, pageSize: this.pageSize },
+        data: { pageNum: this.pageNum, pageSize: this.pageSize, showStatus: SHOW },
       }).then(data => {
         const { body: { list } } = data;
         this.loading = false;
