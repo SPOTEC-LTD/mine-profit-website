@@ -76,9 +76,8 @@ import Spin from 'ant-design-vue/lib/spin';
 import SearchOutlined from 'ahoney/lib/icons/SearchOutlined';
 import BaseContainer from '@/shared/components/base-container';
 import { fetchQuestionList } from '@/api';
+import { SHOW } from '@/shared/consts/visible';
 import QuestionItem from './question-item/index.vue';
-
-const SHOW = 1;
 
 export default {
   components: {
