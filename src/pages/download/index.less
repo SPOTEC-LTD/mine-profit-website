@@ -7,26 +7,40 @@
   position: relative;
   width: 1250px;
   margin: 0 auto;
-  padding-top: 116px;
+  padding-top: 142px;
   height: 814px;
   display: flex;
   justify-content: space-between;
 }
 
-.content {
+.main-imgs {
+  min-width: 580px;
+}
+
+.main-content {
   color: #0e1d34;
   display: flex;
   flex-direction: row-reverse;
-  margin-right: 116px;
+  width: 480px;
+
+  & > div {
+    width: 472px;
+  }
+
+  .title {
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 50px;
+    margin-bottom: 12px;
+  }
 
   .description {
-    font-size: 30px;
-    font-weight: 500;
-    line-height: 42px;
+    font-size: 20px;
+    line-height: 28px;
   }
 
   .qrcode-container {
-    margin-top: 20px;
+    margin-top: 28px;
     height: 344px;
     width: 354px;
     display: flex;
@@ -116,12 +130,24 @@
   height: 90px;
 }
 
+.w-120 {
+  width: 120px;
+  height: 120px;
+}
+
 .w-172 {
   width: 172px;
   height: 172px;
 }
 
+.l4-90 {
+  width: 90px;
+  height: 4px;
+}
+
 .scenario--0 {
+  padding-top: 134px;
+
   .main-imgs {
     display: flex;
     align-items: center;
@@ -150,10 +176,16 @@
     }
   }
 
-  .content {
+  .main-content {
     .text-content img {
       margin-bottom: 44px;
       height: 40px;
+    }
+
+    .description {
+      font-size: 30px;
+      font-weight: 500;
+      line-height: 42px;
     }
   }
 
@@ -164,20 +196,20 @@
     z-index: 2;
   }
 
-  .blue-1 {
+  .square-1 {
     position: absolute;
     top: 642px;
     left: 48px;
     z-index: 1;
   }
 
-  .square-1 {
+  .square-o-1 {
     position: absolute;
     top: 136px;
     left: 554px;
   }
 
-  .blue-2 {
+  .square-2 {
     position: absolute;
     top: 587px;
     right: 70px;
@@ -189,5 +221,60 @@
     top: 657px;
     right: 20px;
     z-index: 2;
+  }
+}
+
+.scenario--1 {
+  .main-imgs {
+    .img-1 {
+      height: 508px;
+      width: 249px;
+      position: absolute;
+      z-index: 6;
+      top: 248px;
+      left: 212px;
+    }
+
+    .img-2 {
+      height: 428px;
+      width: 210px;
+      position: absolute;
+      z-index: 5;
+      top: 160px;
+      left: 68px;
+    }
+
+    .img-3 {
+      height: 373px;
+      width: 183px;
+      position: absolute;
+      z-index: 5;
+      top: 112px;
+      left: 390px;
+    }
+  }
+
+  .square-o-1 {
+    position: absolute;
+    top: 80px;
+    left: -8px;
+  }
+
+  .square-1 {
+    position: absolute;
+    top: 488px;
+    right: 424px;
+  }
+
+  .matrix-1 {
+    position: absolute;
+    top: 657px;
+    right: 20px;
+  }
+
+  .line-1 {
+    position: absolute;
+    top: 640px;
+    right: -42px;
   }
 }
