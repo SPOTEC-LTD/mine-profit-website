@@ -78,6 +78,8 @@ import BaseContainer from '@/shared/components/base-container';
 import { fetchQuestionList } from '@/api';
 import QuestionItem from './question-item/index.vue';
 
+const SHOW = 1;
+
 export default {
   components: {
     'base-container': BaseContainer,
@@ -108,7 +110,9 @@ export default {
       this.loading = true;
       this.questionList = [];
       fetchQuestionList({
-        data: { pageNum: 1, pageSize: 6 },
+        data: {
+          pageNum: 1, pageSize: 6, order: 'DESC', field: 'sort', showStatus: SHOW,
+        },
       }).then(data => {
         this.loading = false;
         const { body: { list } } = data;

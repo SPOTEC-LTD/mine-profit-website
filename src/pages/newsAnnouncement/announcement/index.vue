@@ -50,7 +50,7 @@ export default {
       getAnnouncementList({ data: { pageNum: this.pageNum, pageSize: this.pageSize, showStatus: SHOW } }).then(data => {
         const { body: { list } } = data;
         this.loading = false;
-        this.noData = list.length === 0;
+        this.noData = list.length < this.pageSize;
         this.announcementList = [...this.announcementList, ...list];
         this.pageNum += 1;
         this.fetching = false;
