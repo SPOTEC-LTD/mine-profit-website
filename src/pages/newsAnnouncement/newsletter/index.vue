@@ -53,7 +53,7 @@ export default {
       }).then(data => {
         const { body: { list } } = data;
         this.loading = false;
-        this.noData = list.length === 0;
+        this.noData = list.length < this.pageSize;
         this.newsletterList = [...this.newsletterList, ...list];
         this.pageNum += 1;
         this.fetching = false;
