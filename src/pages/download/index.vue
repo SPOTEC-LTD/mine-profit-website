@@ -12,6 +12,11 @@
         <img class="img-3" src="@/assets/download/2-3.png" alt="">
         <img class="img-4" src="@/assets/download/screen-shot.png" alt="">
       </div>
+      <div v-if="scenarioIndex === 2" class="main-imgs">
+        <img class="img-1" src="@/assets/download/3-1.png" alt="">
+        <img class="img-2" src="@/assets/download/3-2.png" alt="">
+        <img class="img-3" src="@/assets/download/3-3.png" alt="">
+      </div>
       <div class="main-content">
         <div v-if="scenarioIndex === 0">
           <div class="text-content">
@@ -80,6 +85,42 @@
           <square-dots-icon class="matrix-1 dot-matrix" />
           <div class="line-1 lake-blue l4-90" />
         </div>
+        <div v-if="scenarioIndex === 2">
+          <div class="text-content">
+            <div class="title">
+              专业化数据，助你胜券在握
+            </div>
+            <div class="description">
+              专业、即时、易懂的算力数据信息，助你实时了解市场动态，掌握市场机遇。
+            </div>
+          </div>
+          <div class="qrcode-container">
+            <div class="download-now">
+              立即扫码下载
+            </div>
+            <div class="qrcode">
+              <qrcode value="www.google.com" />
+            </div>
+            <div class="version-ios">
+              <img src="@/assets/download/apple.png" alt="">
+              <div>
+                版本：1.0.1
+              </div>
+            </div>
+            <div class="version-android">
+              <img src="@/assets/download/android.png" alt="">
+              <div>
+                版本：1.0.1
+              </div>
+            </div>
+          </div>
+          <square-dots-icon class="matrix-1 dot-matrix" />
+          <div class="line-1 lake-blue l4-90" />
+          <div class="glass-1 glass w-108" />
+          <square-dots-icon class="matrix-2 dot-matrix" />
+          <div class="square-o-1 pomegranate-outlined-square w-120" />
+          <square-dots-icon class="matrix-3 dot-matrix" />
+        </div>
       </div>
     </div>
     <div class="switch">
@@ -104,7 +145,7 @@ export default {
   },
   data() {
     return {
-      scenarioIndex: 1,
+      scenarioIndex: 2,
     };
   },
 };
