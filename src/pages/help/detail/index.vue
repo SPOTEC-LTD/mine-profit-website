@@ -1,14 +1,10 @@
 <template>
   <base-container>
     <div class="detail-wrapper">
-      <div class="detail-top">
-        <img class="back-icon" src="@/assets/help/left-arrow.png" alt="" @click="goHelp">
-        <div>
-          <div class="detail-date">
-            {{
-              updateTime
-            }}
-          </div>
+      <div>
+        <div class="detail-date">{{ updateTime }}</div>
+        <div class="title-wrapper">
+          <img class="back-icon" src="@/assets/help/left-arrow.png" alt="" @click="goHelp">
           <div class="detail-title">{{ detail.question }}</div>
         </div>
       </div>
