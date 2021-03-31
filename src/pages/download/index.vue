@@ -42,7 +42,14 @@
         </div>
       </div>
     </div>
-    <div class="switcher" />
+    <div class="switch">
+      <div
+        v-for="(item, index) in 4"
+        :key="item"
+        class="switch-item"
+        :class="{'switch-item--active':index === scenarioIndex}"
+      />
+    </div>
   </div>
 </template>
 

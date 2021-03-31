@@ -63,7 +63,7 @@ export default {
   methods: {
     redirectToDownloadGuidePage() {
       locationServices.push('/download');
-    }
+    },
   },
 };
 </script>
