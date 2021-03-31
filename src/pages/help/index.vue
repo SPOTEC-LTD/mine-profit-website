@@ -11,7 +11,8 @@
           :max-length="30"
           class="search-input"
           :placeholder="$t('searchInputPlaceholder')"
-          @keyup.enter="onClickSearch">
+          @keyup.enter="onClickSearch"
+        >
           <div slot="suffix" class="search-button" @click="onClickSearch">
             <search-outlined />
             <span>{{ $t('search') }}</span>
