@@ -8,7 +8,9 @@
         <nav-link href="/">{{ $t('home') }}</nav-link>
         <nav-menu href-prefix="/newsAnnouncement" :items="items">{{ $t('newsAnnouncement') }}</nav-menu>
         <nav-link href="/help">{{ $t('helpCenter') }}</nav-link>
-        <a-button class="page-header-download" type="primary">{{ $t('downloadNow') }}</a-button>
+        <a-button class="page-header-download" type="primary" @click="redirectToDownloadGuidePage">
+          {{ $t('downloadNow') }}
+        </a-button>
       </div>
     </div>
   </div>
@@ -19,6 +21,7 @@ import { Button } from 'ant-design-vue';
 import DocFilledOutlined from 'ahoney/lib/icons/DocFilledOutlined';
 import EmailCircleOutlined from 'ahoney/lib/icons/EmailCircleOutlined';
 import TipCirccleOutlined from 'ahoney/lib/icons/TipCirccleOutlined';
+import locationServices from '@/shared/services/location/locationServices';
 import { RECOMMEND, NEWSLETTER, ANNOUNCEMENT } from '@/shared/consts/newsType';
 
 import NavLink from './nav-link.vue';
@@ -56,6 +59,11 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    redirectToDownloadGuidePage() {
+      locationServices.push('/download');
+    }
   },
 };
 </script>
