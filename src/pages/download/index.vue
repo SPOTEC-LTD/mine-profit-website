@@ -17,6 +17,11 @@
         <img class="img-2" src="@/assets/download/3-2.png" alt="">
         <img class="img-3" src="@/assets/download/3-3.png" alt="">
       </div>
+      <div v-if="scenarioIndex === 3" class="main-imgs">
+        <img class="img-1" src="@/assets/download/4-1.png" alt="">
+        <img class="img-2" src="@/assets/download/4-2.png" alt="">
+        <img class="img-3" src="@/assets/download/4-3.png" alt="">
+      </div>
       <div class="main-content">
         <div v-if="scenarioIndex === 0">
           <div class="text-content">
@@ -121,6 +126,40 @@
           <div class="square-o-1 pomegranate-outlined-square w-120" />
           <square-dots-icon class="matrix-3 dot-matrix" />
         </div>
+        <div v-if="scenarioIndex === 3">
+          <div class="text-content">
+            <div class="title">
+              一键式操作，助你快速入门
+            </div>
+            <div class="description">
+              便捷的注册、充值、算力购买流程，使你秒获算力，即刻拥有挖矿收益。
+            </div>
+          </div>
+          <div class="qrcode-container">
+            <div class="download-now">
+              立即扫码下载
+            </div>
+            <div class="qrcode">
+              <qrcode value="www.google.com" />
+            </div>
+            <div class="version-ios">
+              <img src="@/assets/download/apple.png" alt="">
+              <div>
+                版本：1.0.1
+              </div>
+            </div>
+            <div class="version-android">
+              <img src="@/assets/download/android.png" alt="">
+              <div>
+                版本：1.0.1
+              </div>
+            </div>
+          </div>
+          <div class="square-1 lake-blue w-90" />
+          <div class="glass-1 glass w-108" />
+          <div class="square-o-1 pomegranate-outlined-square w-120" />
+          <square-dots-icon class="matrix-1 dot-matrix" />
+        </div>
       </div>
     </div>
     <div class="switch">
@@ -145,7 +184,7 @@ export default {
   },
   data() {
     return {
-      scenarioIndex: 2,
+      scenarioIndex: 3,
     };
   },
 };
