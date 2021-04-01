@@ -1,12 +1,9 @@
 <template>
   <base-container>
     <div class="detail-wrapper">
-      <div>
+      <div class="title-wrapper">
         <div class="detail-date">{{ updateTime }}</div>
-        <div class="title-wrapper">
-          <img class="back-icon" src="@/assets/help/left-arrow.png" alt="" @click="goHelp">
-          <div class="detail-title">{{ detail.question }}</div>
-        </div>
+        <div class="detail-title">{{ detail.question }}</div>
       </div>
       <div class="detail-content" v-html="detail.answer" />
     </div>
