@@ -11,7 +11,8 @@
           :max-length="30"
           class="search-input"
           :placeholder="$t('searchInputPlaceholder')"
-          @keyup.enter="onClickSearch">
+          @keyup.enter="onClickSearch"
+        >
           <div slot="suffix" class="search-button" @click="onClickSearch">
             <search-outlined />
             <span>{{ $t('search') }}</span>
@@ -76,6 +77,7 @@ import Spin from 'ant-design-vue/lib/spin';
 import SearchOutlined from 'ahoney/lib/icons/SearchOutlined';
 import BaseContainer from '@/shared/components/base-container';
 import { fetchQuestionList } from '@/api';
+import { SHOW } from '@/shared/consts/visible';
 import QuestionItem from './question-item/index.vue';
 
 export default {
@@ -108,7 +110,9 @@ export default {
       this.loading = true;
       this.questionList = [];
       fetchQuestionList({
-        data: { pageNum: 1, pageSize: 6 },
+        data: {
+          pageNum: 1, pageSize: 6, order: 'DESC', field: 'sort', showStatus: SHOW,
+        },
       }).then(data => {
         this.loading = false;
         const { body: { list } } = data;

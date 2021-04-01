@@ -9,6 +9,7 @@ import AnnouncementDetail from '@/pages/newsAnnouncement/announcement/detail';
 import QuestionDetail from '@/pages/help/detail';
 import NotFound from '@/pages/404';
 import MeetError from '@/pages/500';
+import Download from '@/pages/download';
 import { location } from '@/shared/services/location';
 import { buildRoutes } from './utils';
 
@@ -54,6 +55,11 @@ export function createRouter() {
         path: '/questionDetail/:id',
         name: 'questionDetail',
         component: QuestionDetail,
+      },
+      {
+        path: '/download',
+        name: 'download',
+        component: Download,
       },
       {
         path: '/500',
