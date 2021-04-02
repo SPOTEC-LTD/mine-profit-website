@@ -21,11 +21,15 @@ export default {
   },
 
   async asyncData({ params }) {
-    const {
-      body: { textInfo },
-    } = await fetchGoodNewsDetail({
-      pathParams: { id: params.id },
-    });
+    let textInfo = {};
+    try {
+      const { body } = await fetchGoodNewsDetail({
+        pathParams: { id: params.id },
+      });
+      textInfo = body.textInfo;
+    } catch (error) {
+      console.log('error232323---000000', error);
+    }
 
     return { detail: textInfo };
   },

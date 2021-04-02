@@ -1,26 +1,28 @@
-import { getDepositList } from '@/api';
-
-export const state = () => ({
-  demandDepositList: [],
-  hasGetInfo: false,
-  unreadCount: 2323,
-});
-
-export const mutations = {
-  updateDemandDepositList(_, demandDepositList) {
-    state.demandDepositList = demandDepositList;
+export default {
+  namespaced: true,
+  state: {
+    demandDepositList: [],
+    hasGetInfo: false,
+    unreadCount: 2323234,
   },
-};
+  mutations: {
+    updateDemandDepositList(state, demandDepositList) {
+      state.demandDepositList = demandDepositList;
+    },
+  },
+  actions: {
+    // 获取用户相关信息
+    async getDepositList({ commit }) {
+      try {
+        // const { body: { demandDepositList } } = await getDepositList();
+        // commit('updateDemandDepositList', demandDepositList);
 
-export const actions = {
-  async getDepositList({ commit }) {
-    try {
-      const { body: { demandDepositList } } = await getDepositList();
-      commit('updateDemandDepositList', demandDepositList);
+        return Promise.resolve();
+      } catch (error) {
+        console.log('error', error);
 
-      return Promise.resolve();
-    } catch (error) {
-      return Promise.reject(error);
-    }
+        return Promise.reject(error);
+      }
+    },
   },
 };

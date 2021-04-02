@@ -62,6 +62,7 @@ class Error {
   httpError = resError => {
     const { response } = resError;
     const httpCode = response.status;
+
     if (httpCode === 404) {
       const errorObj = { title: 'httpError', content: `请求了不存在的接口 code: ${httpCode}` };
       errorModal(errorObj);

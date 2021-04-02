@@ -22,8 +22,14 @@ export default {
   },
 
   async asyncData({ params }) {
-    const { body: { mineQuestion } } = await fetchQuestionDetail({ pathParams: { id: params.id } });
-    return { detail: mineQuestion };
+    try {
+      const { body: { mineQuestion } } = await fetchQuestionDetail({ pathParams: { id: params.id } });
+      return { detail: mineQuestion };
+    } catch (error) {
+      console.log('error', error);
+
+      return { detail: {} };
+    }
   },
   data() {
     return {
