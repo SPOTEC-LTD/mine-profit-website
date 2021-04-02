@@ -21,9 +21,10 @@
     }
   },
   "dependencies": {
+    "aa-utils": "^1.0.5",
     "ahoney": "^1.0.5",
     "ant-design-vue": "^1.7.2",
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "dayjs": "^1.9.6",
     "lodash": "^4.17.21",

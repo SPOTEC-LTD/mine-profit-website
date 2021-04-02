@@ -1,0 +1,45 @@
+.our-vision-container {
+  padding-bottom: 130px;
+
+  .our-vision-title-image {
+    display: flex;
+    padding-bottom: 48px;
+
+    img {
+      width: 184px;
+    }
+
+    span {
+      top: 23px;
+    }
+  }
+
+  .our-mission {
+    display: flex;
+
+    .img-container {
+      width: 70%;
+      position: relative;
+
+      .img-mask {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        z-index: 1;
+
+        &:hover {
+          background-color: rgba(92, 118, 166, 0.11);
+          cursor: pointer;
+        }
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

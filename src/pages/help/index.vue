@@ -158,6 +158,7 @@ export default {
       });
       this.isVisibleQuestion = true;
       this.isVisibleResult = false;
+      this.searchValue = '';
     },
   },
 };
