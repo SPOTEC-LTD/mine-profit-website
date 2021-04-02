@@ -1,5 +1,5 @@
 <template>
-  <default-layout :with-footer="false" />
+  <default-layout :with-footer="false" :overflowx-hidden="true" />
 </template>
 
 <script>

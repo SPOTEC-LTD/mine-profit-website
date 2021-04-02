@@ -2,6 +2,7 @@
   <a-config-provider prefix-cls="mp">
     <div>
       <page-header />
+<<<<<<< HEAD
       <a-modal
         title="Title"
         :visible="false"
@@ -9,6 +10,9 @@
         <p>asdfasfasdf</p>
       </a-modal>
       <div class="layout">
+=======
+      <div class="layout" :style="{'overflow-x': overflowxHidden ? 'auto' : 'hidden'}">
+>>>>>>> 0043899 (feat: MINE-1355 remove scrollbar on x duration animation)
         <Nuxt />
       </div>
       <page-footer v-if="withFooter" />
@@ -32,6 +36,10 @@ export default {
     'a-modal': Modal,
   },
   props: {
+    overflowxHidden: {
+      type: Boolean,
+      default: false,
+    },
     withFooter: {
       type: Boolean,
       default: true,
