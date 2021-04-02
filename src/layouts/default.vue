@@ -8,10 +8,10 @@
       >
         <p>asdfasfasdf</p>
       </a-modal>
-      <div class="layout">
+      <div class="layout" :style="{'overflow-x': overflowxHidden ? 'auto' : 'hidden'}">
         <Nuxt />
       </div>
-      <page-footer />
+      <page-footer v-if="withFooter" />
     </div>
   </a-config-provider>
 </template>
@@ -30,6 +30,16 @@ export default {
     'page-header': PageHeader,
     'page-footer': PageFooter,
     'a-modal': Modal,
+  },
+  props: {
+    overflowxHidden: {
+      type: Boolean,
+      default: false,
+    },
+    withFooter: {
+      type: Boolean,
+      default: true,
+    },
   },
   beforeMount() {
     locale.init(this.$i18n);
