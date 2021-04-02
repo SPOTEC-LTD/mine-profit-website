@@ -7,7 +7,7 @@
             <div>{{ $t('mineprofitName') }}</div>
             <div>{{ $t('topHashRateFlatForm') }}</div>
           </div>
-          <a-button type="primary" shape="round" class="download-button" size="large">
+          <a-button type="primary" shape="round" class="download-button" size="large" @click="redirectToDownloadGuidePage">
             <h-qrcode class-name="qr-code" />
             <span> {{ $t('dowLoadRightNow') }} </span>
           </a-button>
@@ -36,6 +36,8 @@ import cooperationCompany from '@/pages/home/cooperation-company';
 import blockChainDate from '@/pages/home/block-chain-data';
 import ourVision from '@/pages/home/our-vision';
 
+import locationServices from '@/shared/services/location/locationServices';
+
 export default {
   components: {
     'a-button': Button,
@@ -51,6 +53,11 @@ export default {
     return {
       bannerPhoneImage,
     };
+  },
+  methods: {
+    redirectToDownloadGuidePage() {
+      locationServices.push('/download');
+    },
   },
 };
 </script>
