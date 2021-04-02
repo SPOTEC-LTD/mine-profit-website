@@ -18,6 +18,26 @@
   }
 }
 
+@keyframes glass-fade-out {
+  from {
+    opacity: 0.5;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes glass-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.5;
+  }
+}
+
 @keyframes translate-rotate-from-right {
   from {
     transform: translateX(180px) rotate(-90deg);
@@ -75,5 +95,26 @@
 
   to {
     transform: translateY(130px);
+  }
+}
+
+@keyframes translate-from-top80 {
+  from {
+    transform: translateY(-80px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  to {
+    opacity: 1;
   }
 }

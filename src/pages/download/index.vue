@@ -2,43 +2,46 @@
   <div class="download">
     <div class="scenario-container">
       <div class="main-imgs">
-        <transition name="fade-left-img1">
+        <transition name="fade-left-img1" mode="out-in">
           <img v-if="isScenario1" class="img-0-1" src="@/assets/download/1-1.png" alt="">
         </transition>
-        <transition name="fade-left-img2">
+        <transition name="fade-left-img2" mode="out-in">
           <img v-if="isScenario1" class="img-0-2" src="@/assets/download/1-2.png" alt="">
         </transition>
-        <transition name="fade-left-img3">
+        <transition name="fade-left-img3" mode="out-in">
           <img v-if="isScenario1" class="img-0-3" src="@/assets/download/1-3.png" alt="">
         </transition>
-        <transition name="fade-left-img1">
-          <img v-if="isScenario2" class="img-1-1" src="@/assets/download/2-1.png" alt="">
+        <transition name="fade-bottom-img1" mode="out-in">
+          <img v-if="isScenario2" class="img-1-1" src="@/assets/download/2-2.png" alt="">
         </transition>
-        <transition name="fade-left-img2">
-          <img v-if="isScenario2" class="img-1-2" src="@/assets/download/2-2.png" alt="">
+        <transition name="fade-bottom-img2" mode="out-in">
+          <img v-if="isScenario2" class="img-1-2" src="@/assets/download/2-3.png" alt="">
         </transition>
-        <transition name="fade-left-img3">
-          <img v-if="isScenario2" class="img-1-3" src="@/assets/download/2-3.png" alt="">
+        <transition name="fade-bottom-img3" mode="out-in">
+          <img v-if="isScenario2" class="img-1-3" src="@/assets/download/2-1.png" alt="">
         </transition>
-        <transition name="fade-left-img3">
+        <transition name="fade-delay" mode="out-in">
+          <div v-if="isScenario2" class="img-shadow"></div>
+        </transition>
+        <transition name="zoom-img4" mode="out-in">
           <img v-if="isScenario2" class="img-1-4" src="@/assets/download/screen-shot.png" alt="">
         </transition>
-        <transition name="fade-left-img1">
+        <transition name="fade-left-img1" mode="out-in">
           <img v-if="isScenario3" class="img-2-1" src="@/assets/download/3-1.png" alt="">
         </transition>
-        <transition name="fade-left-img2">
+        <transition name="fade-left-img2" mode="out-in">
           <img v-if="isScenario3" class="img-2-2" src="@/assets/download/3-2.png" alt="">
         </transition>
-        <transition name="fade-left-img3">
+        <transition name="fade-left-img3" mode="out-in">
           <img v-if="isScenario3" class="img-2-3" src="@/assets/download/3-3.png" alt="">
         </transition>
-        <transition name="fade-left-img1">
+        <transition name="fade-left-img1" mode="out-in">
           <img v-if="isScenario4" class="img-3-1" src="@/assets/download/4-1.png" alt="">
         </transition>
-        <transition name="fade-left-img2">
+        <transition name="fade-left-img2" mode="out-in">
           <img v-if="isScenario4" class="img-3-2" src="@/assets/download/4-2.png" alt="">
         </transition>
-        <transition name="fade-left-img3">
+        <transition name="fade-left-img3" mode="out-in">
           <img v-if="isScenario4" class="img-3-3" src="@/assets/download/4-3.png" alt="">
         </transition>
       </div>
@@ -105,7 +108,7 @@
           </div>
         </div>
 
-        <transition name="fade-left-rotate" mode="out-in">
+        <transition name="glass-fade-left-rotate" mode="out-in">
           <div v-if="isScenario1" class="glass-0-1 glass w-172" />
         </transition>
         <transition name="fade-left-rotate" mode="out-in">
@@ -140,7 +143,7 @@
         <transition name="fade-left-rotate" mode="out-in">
           <div v-if="isScenario3" class="line-2-1 lake-blue l4-90" />
         </transition>
-        <transition name="fade-left-rotate" mode="out-in">
+        <transition name="glass-fade-left-rotate" mode="out-in">
           <div v-if="isScenario3" class="glass-2-1 glass w-108" />
         </transition>
         <transition name="fade" mode="out-in">

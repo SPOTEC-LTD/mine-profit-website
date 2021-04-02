@@ -17,6 +17,14 @@
   animation: fade-out 2s, translate-rotate-to-left 2s;
 }
 
+.glass-fade-left-rotate-enter-active {
+  animation: glass-fade-in 2s, translate-rotate-from-right 2s;
+}
+
+.glass-fade-left-rotate-leave-active {
+  animation: glass-fade-out 2s, translate-rotate-to-left 2s;
+}
+
 .fade-down-enter-active {
   animation: fade-in 2s, translate-from-top 2s;
 }
@@ -36,7 +44,7 @@
 .fade-left-img1-enter-active {
   opacity: 0;
   animation: fade-in 0.75s, translate-from-right 0.75s;
-  animation-delay: 1.75s;
+  animation-delay: 1.25s;
 }
 
 .fade-left-img1-leave-active {
@@ -47,7 +55,7 @@
 .fade-left-img2-enter-active {
   opacity: 0;
   animation: fade-in 0.75s, translate-from-right 0.75s;
-  animation-delay: 2.25s;
+  animation-delay: 1.5s;
 }
 
 .fade-left-img2-leave-active {
@@ -58,10 +66,65 @@
 .fade-left-img3-enter-active {
   opacity: 0;
   animation: fade-in 0.75s, translate-from-right 0.75s;
-  animation-delay: 2.75s;
+  animation-delay: 1.75s;
 }
 
 .fade-left-img3-leave-active {
+  animation: fade-out 1.5s, translate-to-left 1.5s;
+  animation-delay: 1s;
+}
+
+.fade-bottom-img1-enter-active {
+  opacity: 0;
+  animation: fade-in 1s, translate-from-top80 1s;
+  animation-delay: 1.25s;
+}
+
+.fade-bottom-img1-leave-active {
+  animation: fade-out 1.5s, translate-to-left 1.5s;
+  animation-delay: 0.5s;
+}
+
+.fade-bottom-img2-enter-active {
+  opacity: 0;
+  animation: fade-in 1s, translate-from-top80 1s;
+  animation-delay: 1.5s;
+}
+
+.fade-bottom-img2-leave-active {
+  animation: fade-out 1.5s, translate-to-left 1.5s;
+  animation-delay: 0.75s;
+}
+
+.fade-bottom-img3-enter-active {
+  opacity: 0;
+  animation: fade-in 1s, translate-from-top80 1s;
+  animation-delay: 1.75s;
+}
+
+.fade-bottom-img3-leave-active {
+  animation: fade-out 1.5s, translate-to-left 1.5s;
+  animation-delay: 1s;
+}
+
+.fade-delay-enter-active {
+  opacity: 0;
+  animation: fade-in 0.4s;
+  animation-delay: 2s;
+}
+
+.fade-delay-leave-active {
+  animation: fade-out 1.5s, translate-to-left 1.5s;
+  animation-delay: 1s;
+}
+
+.zoom-img4-enter-active {
+  opacity: 0;
+  animation: zoom-in 0.4s;
+  animation-delay: 2.4s;
+}
+
+.zoom-img4-leave-active {
   animation: fade-out 1.5s, translate-to-left 1.5s;
   animation-delay: 1s;
 }
