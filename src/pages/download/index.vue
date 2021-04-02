@@ -87,29 +87,32 @@
         </transition>
 
         <div class="qrcode-container">
-          <div class="download-now">
-            立即扫码下载
-          </div>
-          <div class="qrcode">
-            <!-- FIXME update value to correct URL and version -->
-            <qrcode value="www.google.com" />
-          </div>
-          <div class="version-ios">
-            <img src="@/assets/download/apple.png" alt="">
-            <div>
-              版本：1.0.1
+          <div class="qrcode-content">
+            <div class="download-now">
+              立即扫码下载
+            </div>
+            <div class="qrcode">
+              <!-- FIXME update value to correct URL and version -->
+              <qrcode value="www.google.com" />
+            </div>
+            <div class="version-ios">
+              <img src="@/assets/download/apple.png" alt="">
+              <div>
+                版本：1.0.1
+              </div>
+            </div>
+            <div class="version-android">
+              <img src="@/assets/download/android.png" alt="">
+              <div>
+                版本：1.0.1
+              </div>
             </div>
           </div>
-          <div class="version-android">
-            <img src="@/assets/download/android.png" alt="">
-            <div>
-              版本：1.0.1
-            </div>
-          </div>
+          <glass-square :class="'qrcode-background'" />
         </div>
 
         <transition name="glass-fade-left-rotate" mode="out-in">
-          <div v-if="isScenario1" class="glass-0-1 glass w-172" />
+          <glass-square v-if="isScenario1" class="glass-0-1 w-172" />
         </transition>
         <transition name="fade-left-rotate" mode="out-in">
           <div v-if="isScenario1" class="square-0-1 lake-blue w-72" />
@@ -144,7 +147,7 @@
           <div v-if="isScenario3" class="line-2-1 lake-blue l4-90" />
         </transition>
         <transition name="glass-fade-left-rotate" mode="out-in">
-          <div v-if="isScenario3" class="glass-2-1 glass w-108" />
+          <glass-square v-if="isScenario3" class="glass-2-1 w-108" />
         </transition>
         <transition name="fade" mode="out-in">
           <square-dots-icon v-if="isScenario3" class="matrix-2-2 dot-matrix" />
@@ -160,7 +163,7 @@
           <div v-if="isScenario4" class="square-3-1 lake-blue w-90" />
         </transition>
         <transition name="fade-left-rotate" mode="out-in">
-          <div v-if="isScenario4" class="glass-3-1 glass w-108" />
+          <glass-square v-if="isScenario4" class="glass-3-1 w-108" />
         </transition>
         <transition name="fade-left-rotate" mode="out-in">
           <div v-if="isScenario4" class="square-o-3-1 pomegranate-outlined-square w-120" />
@@ -187,9 +190,12 @@
 import QRcode from '@/shared/components/qrcode';
 import SquareDotsIcon from '@/pages/home/component/square-dots-icon';
 
+import GlassSquare from './glass-square.vue';
+
 export default {
   components: {
     qrcode: QRcode,
+    'glass-square': GlassSquare,
     'square-dots-icon': SquareDotsIcon,
   },
   data() {

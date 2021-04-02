@@ -184,15 +184,32 @@
   .qrcode-container {
     height: 344px;
     width: 354px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 24px 0 40px;
     box-shadow: 0 7px 19px 0 rgba(0, 0, 0, 0.09);
     position: absolute;
     top: 288px;
     right: 115px;
     z-index: 10;
+
+    .qrcode-content {
+      position: absolute;
+      top: 0;
+      left: 103px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 0 40px;
+      z-index: 5;
+    }
+
+    .qrcode-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   .download-now {
@@ -241,13 +258,6 @@
   .switch-item + .switch-item {
     margin-left: 12px;
   }
-}
-
-.glass {
-  box-shadow: 0 7px 19px 0 rgba(0, 0, 0, 0.09);
-  filter: blur(1.5px);
-  background-color: #fbfbfb;
-  opacity: 0.5;
 }
 
 .lake-blue {
