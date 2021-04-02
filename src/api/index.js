@@ -7,3 +7,4 @@ export const getAnnouncementList = createAPI('get', '/operation/announcements/ad
 export const fetchQuestionList = createAPI('get', '/operation/questions/admin');
 export const fetchQuestionDetail = createAPI('get', '/operation/questions/:id');
 export const fetchAnnouncementDetail = createAPI('get', '/operation/announcements/:id');
+export const getMineDatalist = createAPI('get', '/block/market/website/coins');

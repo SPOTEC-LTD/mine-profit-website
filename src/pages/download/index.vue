@@ -175,7 +175,7 @@
 
 <script>
 import QRcode from '@/shared/components/qrcode';
-import SquareDotsIcon from '@/pages/home/square-dots-icon';
+import SquareDotsIcon from '@/pages/home/component/square-dots-icon';
 
 export default {
   components: {
