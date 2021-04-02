@@ -8,7 +8,7 @@
         <transition name="fade-left-img2" mode="out-in">
           <img v-if="isScenario1" class="img-0-2" src="@/assets/download/1-2.png" alt="">
         </transition>
-        <transition name="fade-left-img3" mode="out-in">
+        <transition name="fade-left-img3" mode="out-in" @after-enter="setAnimationCompleted">
           <img v-if="isScenario1" class="img-0-3" src="@/assets/download/1-3.png" alt="">
         </transition>
         <transition name="fade-bottom-img1" mode="out-in">
@@ -23,7 +23,7 @@
         <transition name="fade-delay" mode="out-in">
           <div v-if="isScenario2" class="img-shadow" />
         </transition>
-        <transition name="zoom-img4" mode="out-in">
+        <transition name="zoom-img4" mode="out-in" @after-enter="setAnimationCompleted">
           <img v-if="isScenario2" class="img-1-4" src="@/assets/download/screen-shot.png" alt="">
         </transition>
         <transition name="fade-bottom-rotate-img1" mode="out-in">
@@ -32,7 +32,7 @@
         <transition name="fade-bottom-rotate-img2" mode="out-in">
           <img v-if="isScenario3" class="img-2-2" src="@/assets/download/3-2.png" alt="">
         </transition>
-        <transition name="fade-bottom-rotate-img3" mode="out-in">
+        <transition name="fade-bottom-rotate-img3" mode="out-in" @after-enter="setAnimationCompleted">
           <img v-if="isScenario3" class="img-2-3" src="@/assets/download/3-3.png" alt="">
         </transition>
         <transition name="fade-left-img1" mode="out-in">
@@ -41,7 +41,7 @@
         <transition name="fade-left-img2" mode="out-in">
           <img v-if="isScenario4" class="img-3-2" src="@/assets/download/4-2.png" alt="">
         </transition>
-        <transition name="fade-left-img3" mode="out-in">
+        <transition name="fade-left-img3" mode="out-in" @after-enter="setAnimationCompleted">
           <img v-if="isScenario4" class="img-3-3" src="@/assets/download/4-3.png" alt="">
         </transition>
       </div>
@@ -174,12 +174,11 @@
       </div>
     </div>
     <div class="switch">
-      <!-- FIXME confirm switch method: automatic, click or scroll -->
       <div
         v-for="(item, index) in 4"
         :key="item"
         class="switch-item"
-        :class="{ 'switch-item--active': index === scenarioIndex }"
+        :class="{ 'switch-item--active': index === scenarioIndex, 'switch-item--waiting': isAnimating }"
         @click="switchToScenario(index)"
       />
     </div>
@@ -230,19 +229,26 @@ export default {
       const that = this;
       this.timeoutId = setTimeout(() => {
         that.switchToNextScenario(false);
-      }, 4000);
+      }, 6500);
     },
     switchToScenario(nextScenarioIndex) {
-      this.registerToSwitchScenarioAutomatically();
-      this.scenarioIndex = nextScenarioIndex;
+      if (!this.isAnimating) {
+        this.isAnimating = true;
+        this.scenarioIndex = nextScenarioIndex;
+        this.registerToSwitchScenarioAutomatically();
+      }
     },
     switchToNextScenario() {
       let nextScenarioIndex = this.scenarioIndex + 1;
       if (nextScenarioIndex === 4) {
         nextScenarioIndex = 0;
       }
+      this.isAnimating = true;
       this.scenarioIndex = nextScenarioIndex;
       this.registerToSwitchScenarioAutomatically();
+    },
+    setAnimationCompleted() {
+      this.isAnimating = false;
     },
   },
 };

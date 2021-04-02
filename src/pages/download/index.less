@@ -88,6 +88,8 @@
     z-index: 7;
     top: 343px;
     left: 196px;
+    box-shadow: 0 7px 19px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
   }
 
   .img-2-1 {
@@ -188,7 +190,7 @@
   .qrcode-container {
     height: 344px;
     width: 354px;
-    box-shadow: 0 7px 19px 0 rgba(0, 0, 0, 0.09);
+    box-shadow: 0 7px 19px 0 rgba(0, 0, 0, 0.1);
     position: absolute;
     top: 288px;
     right: 115px;
@@ -248,7 +250,6 @@
   display: flex;
   justify-content: center;
 
-  // FIXME update switch styles
   .switch-item {
     height: 7px;
     width: 36px;
@@ -258,6 +259,10 @@
     &.switch-item--active {
       cursor: not-allowed;
       background-color: #02a6e3;
+    }
+
+    &.switch-item--waiting {
+      cursor: not-allowed;
     }
   }
 
