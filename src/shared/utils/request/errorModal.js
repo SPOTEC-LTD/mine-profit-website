@@ -9,13 +9,14 @@ export default ({ title, content }) => {
       hasError = false;
     }, 2000);
 
-    Modal.error({
-      prefixCls: 'mp',
-      title,
-      content,
-      onClose() {
-        hasError = false;
-      },
-    });
+    console.log('---', content);
+    // Modal.error({
+    //   prefixCls: 'mp',
+    //   title,
+    //   content,
+    //   onClose() {
+    //     hasError = false;
+    //   },
+    // });
   }
 };
