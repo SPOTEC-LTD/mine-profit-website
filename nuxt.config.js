@@ -27,7 +27,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     ],
     script: [
-      { src: './checkBrowserVersion.js', type: 'text/javascript', charset: 'utf-8'},
+      { src: '/checkBrowserVersion.js', type: 'text/javascript', charset: 'utf-8'},
       { src: 'https://static.zdassets.com/ekr/snippet.js?key=9fc96a97-70d8-4320-889b-a148e19b6842', id: "ze-snippet", type: 'text/javascript', charset: 'utf-8'}
     ]
   },
