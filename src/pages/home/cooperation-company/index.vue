@@ -1,12 +1,8 @@
 <template>
   <div class="cooperation-container">
     <div class="cooperation-company-container">
-      <block-title :img="cooperationTitleImage" class="cooperation-title-image" title="合作伙伴" />
-      <div class="cooperation-introduce">
-        Mineprofit 的投资方有十几年的世界各地发电站投资背景。
-        与大多数云算力和数字矿业不同，盈算力与世界各地的拥有剩余电力的发电站和当地的电气公司合作，
-        通过搭建与整合中型数字矿场，智能电价计费模式，并额外支付分红给投资者和电力提供方，达到真正的全赢目标。
-      </div>
+      <block-title :img="cooperationTitleImage" class="cooperation-title-image" :title="$t('cooperationPartner')" />
+      <div class="cooperation-introduce">{{ $t('companyIntroduce') }}</div>
     </div>
     <square-dots-icon class="cooperation-left-icon" />
     <div>

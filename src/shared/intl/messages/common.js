@@ -15,6 +15,6 @@ export default {
   "businessCooperation": "商务合作",
   "contactUs": "联系我们",
   "home": "首页",
-  "newsAnnouncement": "咨询公告",
+  "newsAnnouncement": "资讯公告",
   "downloadNow": "立即下载"
 }

@@ -1,27 +1,29 @@
 <template>
   <div class="map-container">
-    <img class="cooperation-map-img" src="@/assets/home/map.png" alt="">
-    <img class="map-china" src="@/assets/home/mapChina.png" alt="">
-    <img class="map-canada" src="@/assets/home/mapCanada.png" alt="">
-    <!-- <img class="map-georgia" src="@/assets/home/mapGeorgia.png" alt="">
-    <img class="map-kazakhstan" src="@/assets/home/mapKazakhstan.png" alt="">
-    <img class="map-uzbekistan" src="@/assets/home/mapUzbekistan.png" alt=""> -->
+    <div class="map-img">
+      <img class="cooperation-map-img" src="@/assets/home/mapChina.png" alt="">
+      <img class="cooperation-map-img" src="@/assets/home/mapCanada.png" alt="">
+      <img class="cooperation-map-img" src="@/assets/home/mapGeorgia.png" alt="">
+      <img class="cooperation-map-img" src="@/assets/home/mapKazakhstan.png" alt="">
+      <img class="cooperation-map-img" src="@/assets/home/mapUzbekistan.png" alt="">
+    </div>
+
+    <div class="map-flag">
+      <img class="map-flag-img" src="@/assets/home/flagChina.png" alt="">
+      <img class="map-flag-img" src="@/assets/home/flagCanada.png" alt="">
+      <img class="map-flag-img" src="@/assets/home/flagGeorgia.png" alt="">
+      <img class="map-flag-img" src="@/assets/home/flagKazakhstan.png" alt="">
+      <img class="map-flag-img" src="@/assets/home/flagUzbekistan.png" alt="">
+    </div>
   </div>
 </template>
 
 <script>
 
-import cooperationTitleImage from '@/assets/home/cooperation-company.png';
-
 export default {
-  components: {
-
-  },
-
+  components: {},
   data() {
-    return {
-      cooperationTitleImage,
-    };
+    return {};
   },
 };
 </script>

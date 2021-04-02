@@ -3,7 +3,7 @@
     <div class="our-advantage-container">
       <square-dots-icon class="square-line-icon" />
       <square-dots-icon class="square-right-icon" />
-      <block-title :img="advantageTitleImage" class="advantage-title-image" title="我们的优势" />
+      <block-title :img="advantageTitleImage" class="advantage-title-image" :title="$t('ourAdvantage')" />
       <advantage-item :advantages="advantages" />
       <square-dots-icon class="square-blue-icon" />
     </div>
@@ -11,7 +11,6 @@
 </template>
 
 <script>
-
 import SquareDotsIcon from '@/pages/home/component/square-dots-icon';
 import AdvantageItem from '@/pages/home/component/advantage-item';
 import CloudOutlined from 'ahoney/lib/icons/CloudOutlined';
@@ -34,28 +33,28 @@ export default {
       advantageTitleImage,
       advantages: [
         {
-          title: '云端托管技术',
-          content: '解决挖矿门槛问题',
+          title: this.$t('cloudHostingTechnology'),
+          content: this.$t('solveThresholdProblem'),
           icon: <CloudOutlined />,
         },
         {
-          title: '智能优惠电价',
-          content: '有效降低挖矿成本',
+          title: this.$t('smartElectricityPrice'),
+          content: this.$t('lowerMinerCosts'),
           icon: <LightningOutlined />,
         },
         {
-          title: '自由算力质押',
-          content: '显著提高挖矿效益',
+          title: this.$t('pledgeFree'),
+          content: this.$t('improveMiningEfficiency'),
           icon: <MoneyLockOutlined />,
         },
         {
-          title: '投资资产保护',
-          content: '保障矿工资产安全',
+          title: this.$t('investmentAssetProtection'),
+          content: this.$t('ensureAssetsSafety'),
           icon: <UmbrellaOutlined />,
         },
         {
-          title: '算力交易市场',
-          content: '轻松完成算力买卖',
+          title: this.$t('hashRateTradingMarkets'),
+          content: this.$t('finishSalesEssay'),
           icon: <ShoppingBagOutlined />,
         },
       ],

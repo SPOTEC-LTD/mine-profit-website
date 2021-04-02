@@ -1,43 +1,116 @@
 .map-container {
   position: relative;
+  width: 1564px;
+  padding-top: 60px;
+  height: 550px;
 
-  .cooperation-map-img {
-    width: 1564px;
-    padding-top: 60px;
-  }
-
-  .map-china {
-    position: absolute;
-    top: 194px;
-    right: 243px;
-    width: 261px;
-  }
-
-  .map-canada {
+  .map-img img {
+    width: 100%;
     position: absolute;
     top: 60px;
-    left: 114px;
-    width: 393px;
+    left: 0;
+    z-index: 0;
+    opacity: 0;
+    animation: map 15s infinite;
+
+    &:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    &:nth-child(2) {
+      animation-delay: 3s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 6s;
+    }
+
+    &:nth-child(4) {
+      animation-delay: 9s;
+    }
+
+    &:nth-child(5) {
+      animation-delay: 12s;
+    }
   }
 
-  .map-georgia {
-    position: absolute;
-    top: 237px;
-    right: 630px;
-    width: 15px;
+  @keyframes map {
+    0% { opacity: 0; }
+
+    4% { opacity: 1; }
+
+    21% { opacity: 1; }
+
+    25% { opacity: 0; }
   }
 
-  .map-kazakhstan {
-    position: absolute;
-    top: 185px;
-    right: 326px;
-    width: 250px;
+  .map-flag {
+    width: 100%;
+    height: 100%;
+
+    .map-flag-img {
+      width: 162px;
+      height: 104px;
+      z-index: 1;
+      opacity: 0;
+      animation: flag 15s infinite;
+
+      &:nth-child(1) {
+        position: absolute;
+        top: 160px;
+        right: 290px;
+        animation-delay: 0s;
+      }
+
+      &:nth-child(2) {
+        position: absolute;
+        top: 40px;
+        left: 180px;
+        animation-delay: 3s;
+      }
+
+      &:nth-child(3) {
+        position: absolute;
+        top: 128px;
+        left: 844px;
+        animation-delay: 6s;
+      }
+
+      &:nth-child(4) {
+        position: absolute;
+        top: 100px;
+        left: 945px;
+        animation-delay: 9s;
+      }
+
+      &:nth-child(5) {
+        position: absolute;
+        top: 138px;
+        left: 935px;
+        animation-delay: 12s;
+      }
+    }
   }
 
-  .map-uzbekistan {
-    position: absolute;
-    top: 185px;
-    right: 226px;
-    width: 250px;
+  @keyframes flag {
+    0% {
+      opacity: 0;
+      transform: translateY(0);
+    }
+
+    4% {
+      opacity: 1;
+      transform: translateY(10px);
+    }
+
+    21% {
+      opacity: 1;
+      transform: translateY(10px);
+    }
+
+    25% {
+      opacity: 0;
+      transform: translateY(0);
+    }
   }
 }
