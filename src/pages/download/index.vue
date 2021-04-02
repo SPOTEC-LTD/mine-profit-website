@@ -2,43 +2,43 @@
   <div class="download">
     <div class="scenario-container">
       <div class="main-imgs">
-        <transition name="fade-left" mode="out-in">
+        <transition name="fade-left-img1">
           <img v-if="isScenario1" class="img-0-1" src="@/assets/download/1-1.png" alt="">
         </transition>
-        <transition name="fade-left" mode="out-in">
+        <transition name="fade-left-img2">
           <img v-if="isScenario1" class="img-0-2" src="@/assets/download/1-2.png" alt="">
         </transition>
-        <transition name="fade-left" mode="out-in">
+        <transition name="fade-left-img3">
           <img v-if="isScenario1" class="img-0-3" src="@/assets/download/1-3.png" alt="">
         </transition>
-        <transition name="fade-left" mode="out-in">
+        <transition name="fade-left-img1">
           <img v-if="isScenario2" class="img-1-1" src="@/assets/download/2-1.png" alt="">
         </transition>
-        <transition name="fade-left" mode="out-in">
+        <transition name="fade-left-img2">
           <img v-if="isScenario2" class="img-1-2" src="@/assets/download/2-2.png" alt="">
         </transition>
-        <transition name="fade-left" mode="out-in">
+        <transition name="fade-left-img3">
           <img v-if="isScenario2" class="img-1-3" src="@/assets/download/2-3.png" alt="">
         </transition>
-        <transition name="fade-left" mode="out-in">
+        <transition name="fade-left-img3">
           <img v-if="isScenario2" class="img-1-4" src="@/assets/download/screen-shot.png" alt="">
         </transition>
-        <transition name="fade-left" mode="out-in">
+        <transition name="fade-left-img1">
           <img v-if="isScenario3" class="img-2-1" src="@/assets/download/3-1.png" alt="">
         </transition>
-        <transition name="fade-left" mode="out-in">
+        <transition name="fade-left-img2">
           <img v-if="isScenario3" class="img-2-2" src="@/assets/download/3-2.png" alt="">
         </transition>
-        <transition name="fade-left" mode="out-in">
+        <transition name="fade-left-img3">
           <img v-if="isScenario3" class="img-2-3" src="@/assets/download/3-3.png" alt="">
         </transition>
-        <transition name="fade-left" mode="out-in">
+        <transition name="fade-left-img1">
           <img v-if="isScenario4" class="img-3-1" src="@/assets/download/4-1.png" alt="">
         </transition>
-        <transition name="fade-left" mode="out-in">
+        <transition name="fade-left-img2">
           <img v-if="isScenario4" class="img-3-2" src="@/assets/download/4-2.png" alt="">
         </transition>
-        <transition name="fade-left" mode="out-in">
+        <transition name="fade-left-img3">
           <img v-if="isScenario4" class="img-3-3" src="@/assets/download/4-3.png" alt="">
         </transition>
       </div>
@@ -88,6 +88,7 @@
             立即扫码下载
           </div>
           <div class="qrcode">
+            <!-- FIXME update value to correct URL and version -->
             <qrcode value="www.google.com" />
           </div>
           <div class="version-ios">
@@ -167,7 +168,7 @@
       </div>
     </div>
     <div class="switch">
-      <!-- FIXME confirm swith method: automatic, click or scroll -->
+      <!-- FIXME confirm switch method: automatic, click or scroll -->
       <div
         v-for="(item, index) in 4"
         :key="item"

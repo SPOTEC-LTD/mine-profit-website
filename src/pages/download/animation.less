@@ -2,33 +2,66 @@
 @import "~@/pages/download/keyframes.less";
 
 .fade-left-enter-active {
-  animation: fade-in-left 1.5s;
+  animation: fade-in 2s, translate-from-right 2s;
 }
 
 .fade-left-leave-active {
-  animation: fade-out-left 1.5s;
+  animation: fade-out 2s, translate-to-left 2s;
 }
 
 .fade-left-rotate-enter-active {
-  animation: fade-in-left-rotate 1.5s;
+  animation: fade-in 2s, translate-rotate-from-right 2s;
 }
 
 .fade-left-rotate-leave-active {
-  animation: fade-out-left-rotate 1.5s;
+  animation: fade-out 2s, translate-rotate-to-left 2s;
 }
 
 .fade-down-enter-active {
-  animation: fade-in-down 1.5s;
+  animation: fade-in 2s, translate-from-top 2s;
 }
 
 .fade-down-leave-active {
-  animation: fade-out-down 1.5s;
+  animation: fade-out 2s, translate-to-bottom 2s;
 }
 
 .fade-enter-active {
-  animation: fade-in 1.5s;
+  animation: fade-in 2s;
 }
 
 .fade-leave-active {
-  animation: fade-out 1.5s;
+  animation: fade-out 2s;
+}
+
+.fade-left-img1-enter-active {
+  opacity: 0;
+  animation: fade-in 0.75s, translate-from-right 0.75s;
+  animation-delay: 1.75s;
+}
+
+.fade-left-img1-leave-active {
+  animation: fade-out 1.5s, translate-to-left 1.5s;
+  animation-delay: 0.5s;
+}
+
+.fade-left-img2-enter-active {
+  opacity: 0;
+  animation: fade-in 0.75s, translate-from-right 0.75s;
+  animation-delay: 2.25s;
+}
+
+.fade-left-img2-leave-active {
+  animation: fade-out 1.5s, translate-to-left 1.5s;
+  animation-delay: 0.75s;
+}
+
+.fade-left-img3-enter-active {
+  opacity: 0;
+  animation: fade-in 0.75s, translate-from-right 0.75s;
+  animation-delay: 2.75s;
+}
+
+.fade-left-img3-leave-active {
+  animation: fade-out 1.5s, translate-to-left 1.5s;
+  animation-delay: 1s;
 }
