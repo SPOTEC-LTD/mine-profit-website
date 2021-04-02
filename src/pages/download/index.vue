@@ -51,37 +51,37 @@
           <div v-if="isScenario1" class="text-content" :class="{ [`scenario--0`]: isScenario1 }">
             <img src="@/assets/download/project.png" alt="">
             <div class="description">
-              一样的矿工，不一样的生活
+              {{ $t('downloadDesc1') }}
             </div>
           </div>
         </transition>
         <transition name="fade-down" mode="out-in">
           <div v-if="isScenario2" class="text-content">
             <div class="title">
-              算力生态圈，助你获利非凡
+              {{ $t('downloadTitle2') }}
             </div>
             <div class="description">
-              完善的算力转让、质押生态圈，让你实现灵活的算力资产配置，获得最优收益。
+              {{ $t('downloadDesc2') }}
             </div>
           </div>
         </transition>
         <transition name="fade-down" mode="out-in">
           <div v-if="isScenario3" class="text-content">
             <div class="title">
-              专业化数据，助你胜券在握
+              {{ $t('downloadTitle3') }}
             </div>
             <div class="description">
-              专业、即时、易懂的算力数据信息，助你实时了解市场动态，掌握市场机遇。
+              {{ $t('downloadDesc3') }}
             </div>
           </div>
         </transition>
         <transition name="fade-down" mode="out-in">
           <div v-if="isScenario4" class="text-content">
             <div class="title">
-              一键式操作，助你快速入门
+              {{ $t('downloadTitle4') }}
             </div>
             <div class="description">
-              便捷的注册、充值、算力购买流程，使你秒获算力，即刻拥有挖矿收益。
+              {{ $t('downloadDesc4') }}
             </div>
           </div>
         </transition>
@@ -89,7 +89,7 @@
         <div class="qrcode-container">
           <div class="qrcode-content">
             <div class="download-now">
-              立即扫码下载
+              {{ $t('downloadByScanningQRCode') }}
             </div>
             <div class="qrcode">
               <!-- FIXME update value to correct URL and version -->
@@ -98,13 +98,13 @@
             <div class="version-ios">
               <img src="@/assets/download/apple.png" alt="">
               <div>
-                版本：1.0.1
+                {{ $t('appVersion') }} 1.0.1
               </div>
             </div>
             <div class="version-android">
               <img src="@/assets/download/android.png" alt="">
               <div>
-                版本：1.0.1
+                {{ $t('appVersion') }} 1.0.1y bui
               </div>
             </div>
           </div>
