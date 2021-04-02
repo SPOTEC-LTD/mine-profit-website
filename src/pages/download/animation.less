@@ -128,3 +128,36 @@
   animation: fade-out 1.5s, translate-to-left 1.5s;
   animation-delay: 1s;
 }
+
+.fade-bottom-rotate-img1-enter-active {
+  opacity: 0;
+  animation: fade-in 1s, translate-from-top80 1s, rotate-clockwise7 1s;
+  animation-delay: 1.25s, 1.25s, 2.25s;
+}
+
+.fade-bottom-rotate-img1-leave-active {
+  animation: rotate-clockwise7 1s reverse, fade-in 1s reverse;
+  animation-delay: 0.5s, 0.5s;
+}
+
+.fade-bottom-rotate-img2-enter-active {
+  opacity: 0;
+  animation: fade-in 1s, translate-from-top80 1s;
+  animation-delay: 1.25s, 1.25s;
+}
+
+.fade-bottom-rotate-img2-leave-active {
+  animation: fade-in 1s reverse;
+  animation-delay: 0.5s;
+}
+
+.fade-bottom-rotate-img3-enter-active {
+  opacity: 0;
+  animation: fade-in 1s, translate-from-top80 1s, rotate-anticlockwise7 1s;
+  animation-delay: 1.25s, 1.25s, 2.25s;
+}
+
+.fade-bottom-rotate-img3-leave-active {
+  animation: rotate-anticlockwise7 1s reverse, fade-in 1s reverse;
+  animation-delay: 0.5s, 0.5s;
+}

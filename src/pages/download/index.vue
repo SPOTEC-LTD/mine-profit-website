@@ -26,13 +26,13 @@
         <transition name="zoom-img4" mode="out-in">
           <img v-if="isScenario2" class="img-1-4" src="@/assets/download/screen-shot.png" alt="">
         </transition>
-        <transition name="fade-left-img1" mode="out-in">
+        <transition name="fade-bottom-rotate-img1" mode="out-in">
           <img v-if="isScenario3" class="img-2-1" src="@/assets/download/3-1.png" alt="">
         </transition>
-        <transition name="fade-left-img2" mode="out-in">
+        <transition name="fade-bottom-rotate-img2" mode="out-in">
           <img v-if="isScenario3" class="img-2-2" src="@/assets/download/3-2.png" alt="">
         </transition>
-        <transition name="fade-left-img3" mode="out-in">
+        <transition name="fade-bottom-rotate-img3" mode="out-in">
           <img v-if="isScenario3" class="img-2-3" src="@/assets/download/3-3.png" alt="">
         </transition>
         <transition name="fade-left-img1" mode="out-in">
