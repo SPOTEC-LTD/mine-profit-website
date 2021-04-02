@@ -21,7 +21,7 @@
           <img v-if="isScenario2" class="img-1-3" src="@/assets/download/2-1.png" alt="">
         </transition>
         <transition name="fade-delay" mode="out-in">
-          <div v-if="isScenario2" class="img-shadow"></div>
+          <div v-if="isScenario2" class="img-shadow" />
         </transition>
         <transition name="zoom-img4" mode="out-in">
           <img v-if="isScenario2" class="img-1-4" src="@/assets/download/screen-shot.png" alt="">
@@ -201,6 +201,7 @@ export default {
   data() {
     return {
       isAnimating: true,
+      timeoutId: -1,
       scenarioIndex: 0,
     };
   },
@@ -218,9 +219,30 @@ export default {
       return this.scenarioIndex === 3;
     },
   },
+  mounted() {
+    this.registerToSwitchScenarioAutomatically();
+  },
   methods: {
+    registerToSwitchScenarioAutomatically() {
+      if (this.timeoutId > 0) {
+        clearTimeout(this.timeoutId);
+      }
+      const that = this;
+      this.timeoutId = setTimeout(() => {
+        that.switchToNextScenario(false);
+      }, 4000);
+    },
     switchToScenario(nextScenarioIndex) {
+      this.registerToSwitchScenarioAutomatically();
       this.scenarioIndex = nextScenarioIndex;
+    },
+    switchToNextScenario() {
+      let nextScenarioIndex = this.scenarioIndex + 1;
+      if (nextScenarioIndex === 4) {
+        nextScenarioIndex = 0;
+      }
+      this.scenarioIndex = nextScenarioIndex;
+      this.registerToSwitchScenarioAutomatically();
     },
   },
 };
