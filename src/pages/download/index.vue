@@ -136,14 +136,14 @@
         <transition name="fade" mode="out-in">
           <square-dots-icon v-if="isScenario2" class="matrix-1-1 dot-matrix" />
         </transition>
-        <transition name="fade-left-rotate" mode="out-in">
+        <transition name="fade-left" mode="out-in">
           <div v-if="isScenario2" class="line-1-1 lake-blue l4-90" />
         </transition>
 
         <transition name="fade" mode="out-in">
           <square-dots-icon v-if="isScenario3" class="matrix-2-1 dot-matrix" />
         </transition>
-        <transition name="fade-left-rotate" mode="out-in">
+        <transition name="fade-left" mode="out-in">
           <div v-if="isScenario3" class="line-2-1 lake-blue l4-90" />
         </transition>
         <transition name="glass-fade-left-rotate" mode="out-in">
@@ -200,6 +200,7 @@ export default {
   },
   data() {
     return {
+      isAnimating: true,
       scenarioIndex: 0,
     };
   },
