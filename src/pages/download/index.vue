@@ -104,7 +104,7 @@
             <div class="version-android">
               <img src="@/assets/download/android.png" alt="">
               <div>
-                {{ $t('appVersion') }} 1.0.1y bui
+                {{ $t('appVersion') }} 1.0.1
               </div>
             </div>
           </div>
@@ -192,6 +192,7 @@ import SquareDotsIcon from '@/pages/home/component/square-dots-icon';
 import GlassSquare from './glass-square.vue';
 
 export default {
+  layout: 'no-footer-layout',
   components: {
     qrcode: QRcode,
     'glass-square': GlassSquare,
@@ -199,7 +200,7 @@ export default {
   },
   data() {
     return {
-      isAnimating: true,
+      isAnimating: false,
       timeoutId: -1,
       scenarioIndex: 0,
     };

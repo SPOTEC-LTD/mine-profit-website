@@ -11,7 +11,7 @@
       <div class="layout">
         <Nuxt />
       </div>
-      <page-footer />
+      <page-footer v-if="withFooter" />
     </div>
   </a-config-provider>
 </template>
@@ -30,6 +30,12 @@ export default {
     'page-header': PageHeader,
     'page-footer': PageFooter,
     'a-modal': Modal,
+  },
+  props: {
+    withFooter: {
+      type: Boolean,
+      default: true,
+    },
   },
   beforeMount() {
     locale.init(this.$i18n);
