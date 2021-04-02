@@ -4,14 +4,12 @@
       <div class="banner-content">
         <div>
           <div class="banner-text">
-            <div> {{ $t('mineprofitName') }}</div>
+            <div>{{ $t('mineprofitName') }}</div>
             <div>{{ $t('topHashRateFlatForm') }}</div>
           </div>
           <a-button type="primary" shape="round" class="download-button" size="large">
             <h-qrcode class-name="qr-code" />
-            <span>
-              {{ $t('dowLoadRightNow') }}
-            </span>
+            <span> {{ $t('dowLoadRightNow') }} </span>
           </a-button>
         </div>
         <img :src="bannerPhoneImage" class="banner-phone" alt="">
@@ -53,11 +51,6 @@ export default {
     return {
       bannerPhoneImage,
     };
-  },
-  methods: {
-    onChange(a, b, c) {
-      console.log(a, b, c);
-    },
   },
 };
 </script>
