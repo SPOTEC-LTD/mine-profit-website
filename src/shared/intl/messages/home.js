@@ -28,4 +28,13 @@ export default {
   finishSalesEssay: '轻松完成算力买卖',
   essayHashRate: '盈算力',
   companyIntroduction: '是由注册于塞舌尔 Seychelles 的国际加密资产投资管理公司 Mineprofit 投资的去中心化算力投资平台，拥有塞舌尔金融牌照，受到塞舌尔金融服务管理局监管，保障广大投资者利益。',
+  businessProcess: '业务流程',
+  purchaseCloudHashRate: '购买云算力',
+  freeTradingByOfficialMarket: '通过官方市场与C2C市场进行自由交易',
+  MineprofitCloudManagement: 'Mineprofit云端算力托管',
+  autoDeployWithoutSet: '算力无需设置，自动进行部署',
+  profitOfMining: '挖矿产出收益',
+  autoClearToWallet: '产出每日自动结算至钱包账户',
+  withdrawFreely: '自由提币',
+  withdrawFreelyByBlockChain: '随时可通过区块链交易自由提币',
 };
