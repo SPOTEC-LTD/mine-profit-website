@@ -19,6 +19,7 @@
       <subject-summary />
       <our-advantage />
       <cooperation-company />
+      <business-process />
       <block-chain-data />
       <our-vision />
     </base-container>
@@ -35,6 +36,7 @@ import SubjectSummary from '@/pages/home/subject-summary';
 import cooperationCompany from '@/pages/home/cooperation-company';
 import blockChainDate from '@/pages/home/block-chain-data';
 import ourVision from '@/pages/home/our-vision';
+import businessProcess from '@/pages/home/business-process';
 
 import locationServices from '@/shared/services/location/locationServices';
 
@@ -48,6 +50,7 @@ export default {
     'cooperation-company': cooperationCompany,
     'block-chain-data': blockChainDate,
     'our-vision': ourVision,
+    'business-process': businessProcess,
   },
   data() {
     return {
