@@ -25,7 +25,20 @@
   margin: 38px 54px;
   white-space: pre-wrap;
 
-  img {
+  ::v-deep img {
     max-width: 760px;
+  }
+
+  ::v-deep table {
+    width: 100%;
+    text-align: left;
+    border-radius: 2px 2px 0 0;
+    border-collapse: separate;
+    border-spacing: 0;
+
+    td {
+      padding: 2px;
+      border: 1px solid #f0f0f0;
+    }
   }
 }
