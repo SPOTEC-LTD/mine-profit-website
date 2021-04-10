@@ -13,7 +13,7 @@
         <video-group
           :video-groupe="videoGroupe"
           :active-index="activeIndex"
-          @onVideoEnd="onVideoEnd"
+          @onTimeupdate="onTimeupdate"
         />
       </div>
     </div>
@@ -74,9 +74,16 @@ export default {
   methods: {
     changeActivesIndex(index) {
       this.activeIndex = index;
+      const video = document.querySelectorAll('.purchase-video');
+      video[index].play();
     },
-    onVideoEnd() {
-      this.activeIndex = (this.activeIndex + 1) % 4;
+    onTimeupdate({ target }, index) {
+      const video = document.querySelectorAll('.purchase-video');
+      const count = (index + 1) % 4;
+      if (target.currentTime === target.duration) {
+        video[count].play();
+        this.activeIndex = count;
+      }
     },
   },
 };
