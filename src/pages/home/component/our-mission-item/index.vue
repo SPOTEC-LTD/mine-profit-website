@@ -1,6 +1,6 @@
 <template>
   <div class="vision-item">
-    <span class="vision-title">{{ $t('ourMission') }}</span>
+    <span class="vision-title">{{ title }}</span>
     <span class="vision-content">{{ content }}</span>
   </div>
 </template>
@@ -10,6 +10,10 @@
 export default {
   props: {
     content: {
+      type: String,
+      default: '',
+    },
+    title: {
       type: String,
       default: '',
     },

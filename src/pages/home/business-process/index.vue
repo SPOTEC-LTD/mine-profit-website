@@ -10,10 +10,11 @@
           :active-index="activeIndex"
           @changeActivesIndex="changeActivesIndex"
         />
-        <div class="video-container">
-          <img :src="phoneBackground" alt="" class="phone-background">
-          <video id="introduceVideo" class="purchase-video" :src="playingVideo" autoplay muted @ended="onVideoEnd" />
-        </div>
+        <video-group
+          :video-groupe="videoGroupe"
+          :active-index="activeIndex"
+          @onVideoEnd="onVideoEnd"
+        />
       </div>
     </div>
   </div>
@@ -23,28 +24,29 @@
 import BlockTitle from '@/pages/home/component/block-title';
 import SquareDotsIcon from '@/pages/home/component/square-dots-icon';
 import businessProcessImage from '@/assets/home/business-process-title.png';
-import phoneBackground from '@/assets/home/phone.png';
 import purchaceVideo from '@/assets/home/purchaceVideo.mp4';
+import cloudManagementVideo from '@/assets/home/cloudManagementVideo.mp4';
+import miningProfitVideo from '@/assets/home/miningProfitVideo.mp4';
+import withdrawFreelyVideo from '@/assets/home/withdrawFreelyVideo.mp4';
 import ShoppingBagOutlined from 'ahoney/lib/icons/ShoppingBagOutlined';
 import MultipleRoundOutlined from 'ahoney/lib/icons/MultipleRoundOutlined';
 import ShovelOutlined from 'ahoney/lib/icons/ShovelOutlined';
 import BOutlined from 'ahoney/lib/icons/BOutlined';
 import businessProcessItem from '@/pages/home/component/business-process-item';
+import VideoGroup from '@/pages/home/component/video-group';
 
 export default {
   components: {
-    'square-dots-icon': SquareDotsIcon,
     'block-title': BlockTitle,
+    'square-dots-icon': SquareDotsIcon,
     'business-process-item': businessProcessItem,
+    'video-group': VideoGroup,
   },
   data() {
     return {
       businessProcessImage,
-      purchaceVideo,
-      playingVideo: purchaceVideo,
-      phoneBackground,
       activeIndex: 0,
-      videoGrouop: [purchaceVideo, purchaceVideo, purchaceVideo, purchaceVideo],
+      videoGroupe: [purchaceVideo, cloudManagementVideo, miningProfitVideo, withdrawFreelyVideo],
       businessProcess: [
         {
           title: this.$t('purchaseCloudHashRate'),
@@ -72,12 +74,9 @@ export default {
   methods: {
     changeActivesIndex(index) {
       this.activeIndex = index;
-      document.getElementById('introduceVideo').src = this.videoGrouop[index];
     },
     onVideoEnd() {
-      const count = (this.activeIndex + 1) % 4;
-      this.activeIndex = count;
-      document.getElementById('introduceVideo').src = this.videoGrouop[count];
+      this.activeIndex = (this.activeIndex + 1) % 4;
     },
   },
 };

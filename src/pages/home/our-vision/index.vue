@@ -6,11 +6,11 @@
         <span class="img-mask" />
         <img :src="missionOneImg" alt="">
       </div>
-      <our-mission-item :content="$t('beValidPath')" />
+      <our-mission-item :content="$t('beValidPath')" :title="$t('ourMission')" />
     </div>
 
     <div class="our-mission">
-      <our-mission-item :content="$t('beWinWinPath')" />
+      <our-mission-item :content="$t('beWinWinPath')" :title="$t('ourTarget')" />
       <div class="img-container">
         <span class="img-mask" />
         <img :src="missionTwoImg" alt="">
