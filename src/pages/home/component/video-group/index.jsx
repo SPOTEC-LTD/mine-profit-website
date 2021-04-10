@@ -16,7 +16,7 @@ const VideoGroup = {
               src={data}
               autoplay
               muted
-              onended={() => this.$emit('onVideoEnd')}
+              ontimeupdate={event => this.$emit('onTimeupdate', event, index)}
             />
           ))
         }

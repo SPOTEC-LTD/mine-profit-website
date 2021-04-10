@@ -11,7 +11,7 @@ const businessProcessItem = {
           this.businessProcess.map((item, index) => (
             <div
               class={classNames('text-introduce', { 'active-text-introduce': this.activeIndex === index })}
-              onClick={() => this.$emit('changeActivesIndex', index)}
+              onclick={() => this.$emit('changeActivesIndex', index)}
             >
                 <div class='process-icon'>{item.icon}</div>
                 <div class="text-wrapper">
