@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "cross-env API=dev nuxt dev",
+    "buildTest": "cross-env API=dev nuxt build",
     "build": "cross-env API=pro nuxt build",
     "static": "cross-env API=static nuxt dev -p 3002",
     "start": "nuxt start -p 4060",

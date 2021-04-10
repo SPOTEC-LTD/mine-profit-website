@@ -59,6 +59,5 @@ var browserInfo = window.__browserInfo;
 var isAvailableBrowser = availableBrowserList.indexOf(browserInfo.browser) >= 0;
 var isIE = browserInfo.browser === "IE";
 if (!isAvailableBrowser || (isIE && info.version.indexOf('11') < 0)) {
-  console.warn('=== The browser is not available for this site.');
   location.href = "/upgrade.html";
 }

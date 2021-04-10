@@ -21,13 +21,22 @@ export default {
   },
 
   async asyncData({ params }) {
-    const {
-      body: { mineAnnouncement },
-    } = await fetchAnnouncementDetail({
-      pathParams: { id: params.id },
-    });
+    const props = {
+      detail: { },
+    };
+    try {
+      const {
+        body: { mineAnnouncement },
+      } = await fetchAnnouncementDetail({
+        pathParams: { id: params.id },
+      });
 
-    return { detail: mineAnnouncement };
+      props.detail = mineAnnouncement;
+    } catch (error) {
+      console.log('error', error);
+    }
+
+    return props;
   },
   data() {
     return {
@@ -38,6 +47,11 @@ export default {
     updateTime() {
       return dateUtils.formatDateTime(this.detail.updateTime, 'YYYY-MM-DD HH:mm');
     },
+  },
+  mounted() {
+    fetchAnnouncementDetail({
+      pathParams: { id: 4 },
+    });
   },
 };
 </script>
