@@ -2,7 +2,10 @@
   <div class="cooperation-container">
     <div class="cooperation-company-container">
       <block-title :img="cooperationTitleImage" class="cooperation-title-image" :title="$t('cooperationPartner')" />
-      <div class="cooperation-introduce">{{ $t('companyIntroduce') }}</div>
+      <div class="cooperation-introduce">
+        <div>{{ $t('companyBackground') }}</div>
+        <div>{{ $t('companyPartner') }}</div>
+      </div>
     </div>
     <square-dots-icon class="cooperation-left-icon" />
     <div>

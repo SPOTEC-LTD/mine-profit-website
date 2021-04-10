@@ -8,7 +8,11 @@
       <div class="subject-summary-content-container">
         <div class="subject-summary-content">
           <block-title :img="aboutTitleImage" class="about-title-image" :title="$t('essayHashRate')" />
-          <div class="summary-content-text">{{ $t('companyIntroduction') }} </div>
+          <div class="summary-content-text">
+            <div class="introduce-detail">{{ $t('basicIntroduce') }} </div>
+            <div class="introduce-detail">{{ $t('secondParagraphIntroduce') }} </div>
+            <div>{{ $t('thirdlyParagraphIntroduce') }} </div>
+          </div>
         </div>
       </div>
     </div>
