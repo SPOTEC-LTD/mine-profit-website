@@ -20,7 +20,7 @@ export default {
     'base-container': BaseContainer,
   },
 
-  async asyncData({ params }) {
+  async asyncData({ params, redirect }) {
     const props = {
       detail: { },
     };
@@ -33,6 +33,7 @@ export default {
 
       props.detail = mineAnnouncement;
     } catch (error) {
+      redirect('/500');
       console.log('error', error);
     }
 

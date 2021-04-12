@@ -20,7 +20,7 @@ export default {
     'base-container': BaseContainer,
   },
 
-  async asyncData({ params }) {
+  async asyncData({ params, redirect }) {
     let textInfo = {};
     try {
       const { body } = await fetchGoodNewsDetail({
@@ -28,7 +28,7 @@ export default {
       });
       textInfo = body.textInfo;
     } catch (error) {
-      console.log('error232323---000000', error);
+      redirect('/500');
     }
 
     return { detail: textInfo };

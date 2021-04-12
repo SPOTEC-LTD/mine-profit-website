@@ -21,12 +21,12 @@ export default {
     'base-container': BaseContainer,
   },
 
-  async asyncData({ params }) {
+  async asyncData({ params, redirect }) {
     try {
       const { body: { mineQuestion } } = await fetchQuestionDetail({ pathParams: { id: params.id } });
       return { detail: mineQuestion };
     } catch (error) {
-      console.log('error', error);
+      redirect('/500');
 
       return { detail: {} };
     }
