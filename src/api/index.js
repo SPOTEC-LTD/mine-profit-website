@@ -8,3 +8,4 @@ export const fetchQuestionList = createAPI('get', '/operation/questions/admin');
 export const fetchQuestionDetail = createAPI('get', '/operation/questions/:id');
 export const fetchAnnouncementDetail = createAPI('get', '/operation/announcements/:id');
 export const getMineDatalist = createAPI('get', '/block/market/website/coins');
+export const getZendesk = createAPI('get', '/sys/api/config/zendesk');
