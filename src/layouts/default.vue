@@ -23,6 +23,7 @@ import PageFooter from '@/shared/components/page-footer';
 import locale from '@/shared/intl/utils/locale';
 import dateUtils from '@/shared/intl/utils/dateUtils';
 // import 'ant-design-vue/lib/modal/style/index';
+import { getZendesk } from '@/api';
 
 export default {
   components: {
@@ -44,6 +45,16 @@ export default {
   beforeMount() {
     locale.init(this.$i18n);
     dateUtils.locale = this.$i18n.locale;
+  },
+  mounted() {
+    getZendesk().then(({ body: { apiZendeskWebVo } }) => {
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.id = 'ze-snippet';
+      script.charset = 'utf-8';
+      script.src = `https://static.zdassets.com/ekr/snippet.js?key=${apiZendeskWebVo.appKey}`; // 填自己的js路径
+      document.querySelector('head').appendChild(script);
+    });
   },
 };
 </script>
