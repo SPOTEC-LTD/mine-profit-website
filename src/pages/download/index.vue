@@ -98,13 +98,13 @@
             <div class="version-ios">
               <img src="@/assets/download/apple.png" alt="">
               <div>
-                {{ $t('appVersion') }} 1.0.1
+                {{ $t('appVersion') }} {{iosVersion}}
               </div>
             </div>
             <div class="version-android">
               <img src="@/assets/download/android.png" alt="">
               <div>
-                {{ $t('appVersion') }} 1.0.1
+                {{ $t('appVersion') }} {{androidVersion}}
               </div>
             </div>
           </div>
@@ -186,6 +186,8 @@
 </template>
 
 <script>
+import { fetchAppVersion } from '@/api';
+
 import QRcode from '@/shared/components/qrcode';
 import SquareDotsIcon from '@/pages/home/component/square-dots-icon';
 
@@ -198,13 +200,32 @@ export default {
     'glass-square': GlassSquare,
     'square-dots-icon': SquareDotsIcon,
   },
+
+  async asyncData() {
+    try {
+      const { body: { android, iOS } } = await fetchAppVersion();
+      const androidVersion = android.version;
+      const iosVersion = iOS.version;
+      return {
+        androidVersion,
+        iosVersion,
+      };
+    } catch (error) {
+      console.log('error', error);
+    }
+    return {};
+  },
+
   data() {
     return {
       isAnimating: false,
       timeoutId: -1,
       scenarioIndex: 0,
+      iosVersion: '',
+      androidVersion: '',
     };
   },
+
   computed: {
     isScenario1() {
       return this.scenarioIndex === 0;
@@ -219,9 +240,11 @@ export default {
       return this.scenarioIndex === 3;
     },
   },
+
   mounted() {
     this.registerToSwitchScenarioAutomatically();
   },
+
   methods: {
     registerToSwitchScenarioAutomatically() {
       if (this.timeoutId > 0) {
