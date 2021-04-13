@@ -11,8 +11,14 @@ const baseAPiMap = {
   static: 'http://127.0.0.1:4008',
   dev: 'http://192.168.0.126:10000',
   pro: 'http://27.102.113.188:10000',
-  test: 'http://192.168.0.126:10000'
+  test: 'http://192.168.0.126:10000',
 };
+
+const mobileSiteHostMap = {
+  dev: 'http://192.168.0.126:7010',
+  test: 'http://192.168.0.126:7010',
+  pro: 'http://h5.mp.testmego.com',
+}
 
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head).
@@ -96,6 +102,7 @@ export default {
   },
 
   env: {
-    BASE_API: baseAPiMap[process.env.API]
+    BASE_API: baseAPiMap[process.env.API],
+    MOBILE_SITE_HOST: mobileSiteHostMap[process.env.API]
   }
 };

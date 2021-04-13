@@ -93,18 +93,18 @@
             </div>
             <div class="qrcode">
               <!-- FIXME update value to correct URL and version -->
-              <qrcode value="www.google.com" />
+              <qrcode :value="`${mobileSiteHost}/download/pre-dispatch`" />
             </div>
             <div class="version-ios">
               <img src="@/assets/download/apple.png" alt="">
               <div>
-                {{ $t('appVersion') }} {{iosVersion}}
+                {{ $t('appVersion') }} {{ iosVersion }}
               </div>
             </div>
             <div class="version-android">
               <img src="@/assets/download/android.png" alt="">
               <div>
-                {{ $t('appVersion') }} {{androidVersion}}
+                {{ $t('appVersion') }} {{ androidVersion }}
               </div>
             </div>
           </div>
@@ -223,6 +223,7 @@ export default {
       scenarioIndex: 0,
       iosVersion: '',
       androidVersion: '',
+      mobileSiteHost: process.env.MOBILE_SITE_HOST,
     };
   },
 
