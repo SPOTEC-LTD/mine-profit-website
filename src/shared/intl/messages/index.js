@@ -3,6 +3,7 @@ import help from './help';
 import newsAnnouncement from './newsAnnouncement';
 import common from './common';
 import download from './download';
+import ecosphere from './ecosphere';
 
 export default {
   ...help,
@@ -10,4 +11,5 @@ export default {
   ...newsAnnouncement,
   ...common,
   ...download,
+  ...ecosphere,
 };

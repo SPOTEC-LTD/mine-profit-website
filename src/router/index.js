@@ -11,6 +11,7 @@ import NotFound from '@/pages/404';
 import MeetError from '@/pages/500';
 import Download from '@/pages/download';
 import { location } from '@/shared/services/location';
+import Ecosphere from '@/pages/ecosphere';
 import { buildRoutes } from './utils';
 
 Vue.use(Router);
@@ -27,8 +28,13 @@ export function createRouter() {
         component: Home,
       },
       {
-        path: '/login',
-        name: 'login',
+        path: '/ecosphere',
+        name: 'ecosphere',
+        component: Ecosphere,
+      },
+      {
+        path: '/loginTest',
+        name: 'loginTest',
         component: Login,
       },
       {

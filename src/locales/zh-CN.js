@@ -73,5 +73,6 @@ export default {
   "downloadTitle4": "一键式操作，助你快速入门",
   "downloadDesc4": "便捷的注册、充值、算力购买流程，使你秒获算力，即刻拥有挖矿收益。",
   "downloadByScanningQRCode": "立即扫码下载",
-  "appVersion": "版本："
+  "appVersion": "版本：",
+  "ecosphere": "生态圈"
 }

@@ -6,6 +6,7 @@
       </a>
       <div class="page-header-nav">
         <nav-link href="/">{{ $t('home') }}</nav-link>
+        <nav-link href="/ecosphere">{{ $t('ecosphere') }}</nav-link>
         <nav-menu href-prefix="/newsAnnouncement" :items="items">{{ $t('newsAnnouncement') }}</nav-menu>
         <nav-link href="/help">{{ $t('helpCenter') }}</nav-link>
         <a-button class="page-header-download" type="primary" @click="redirectToDownloadGuidePage">
