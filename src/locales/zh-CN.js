@@ -74,5 +74,8 @@ export default {
   "downloadDesc4": "便捷的注册、充值、算力购买流程，使你秒获算力，即刻拥有挖矿收益。",
   "downloadByScanningQRCode": "立即扫码下载",
   "appVersion": "版本：",
-  "ecosphere": "生态圈"
+  "ecosphere": "生态圈",
+  "globalCooperationPartnersHunting": "寻找全球合作伙伴",
+  "huntCooperatorToDevelopMarket": "为更好的开拓加密货币矿工市场，我们希望与更多加拿大及中亚地区的矿场及大矿工合作。",
+  "welcomeContactUs": "我们欢迎您与我们取得联系，一起为加密货币矿工行业作出一份贡献。"
 }
