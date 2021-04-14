@@ -14,9 +14,9 @@ const VideoGroup = {
             <video
               class={classNames('purchase-video', { 'active-video': this.activeIndex === index })}
               src={data}
-              autoplay
+              preload
               muted
-              ontimeupdate={event => this.$emit('onTimeupdate', event, index)}
+              onended={() => this.$emit('onEnded')}
             />
           ))
         }

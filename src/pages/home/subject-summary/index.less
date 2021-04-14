@@ -2,28 +2,38 @@
 
 .subject-summary-container {
   position: relative;
-  padding-top: 65px;
+  padding-top: 45px;
   display: flex;
   justify-content: space-between;
 }
 
 .subject-summary-img {
+  position: relative;
   width: 557px;
-  border-radius: 61px;
-  background-color: #e2e9f2;
+  padding-left: 20px;
+  box-sizing: content-box;
 
   img {
-    width: 100%;
+    width: 557px;
     border-radius: 61px;
-    position: relative;
-    top: -20px;
-    right: -20px;
+  }
+
+  &::after {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 100%;
+    z-index: -1;
+    width: 557px;
+    border-radius: 61px;
+    background-color: #e2e9f2;
   }
 }
 
 .subject-summary-content-container {
   position: relative;
-  top: -20px;
 }
 
 .subject-summary-content {
