@@ -13,7 +13,7 @@
         <video-group
           :video-groupe="videoGroupe"
           :active-index="activeIndex"
-          @onTimeupdate="onTimeupdate"
+          @onEnded="onEnded"
         />
       </div>
     </div>
@@ -71,19 +71,25 @@ export default {
       ],
     };
   },
+  watch: {
+    activeIndex(newIndex, oldIndex) {
+      const video = document.querySelectorAll('.purchase-video');
+      video[newIndex].play();
+      video[oldIndex].pause();
+      video[oldIndex].currentTime = 0;
+    },
+  },
+  mounted() {
+    const video = document.querySelectorAll('.purchase-video');
+    video[this.activeIndex].play();
+  },
   methods: {
     changeActivesIndex(index) {
       this.activeIndex = index;
-      const video = document.querySelectorAll('.purchase-video');
-      video[index].play();
     },
-    onTimeupdate({ target }, index) {
-      const video = document.querySelectorAll('.purchase-video');
-      const count = (index + 1) % 4;
-      if (target.currentTime === target.duration) {
-        video[count].play();
-        this.activeIndex = count;
-      }
+    onEnded() {
+      const count = (this.activeIndex + 1) % 4;
+      this.activeIndex = count;
     },
   },
 };

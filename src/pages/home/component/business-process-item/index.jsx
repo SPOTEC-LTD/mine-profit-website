@@ -1,8 +1,17 @@
 import './index.less';
 import classNames from 'classnames';
+import throttle from 'lodash/throttle';
 
 const businessProcessItem = {
   props: ['businessProcess', 'activeIndex'],
+  methods: {
+    handleHover(index) {
+      this.$emit('changeActivesIndex', index);
+    },
+  },
+  created() {
+    this.throttleHandleHover = throttle(this.handleHover, 500);
+  },
 
   render() {
     return (
@@ -11,7 +20,7 @@ const businessProcessItem = {
           this.businessProcess.map((item, index) => (
             <div
               class={classNames('text-introduce', { 'active-text-introduce': this.activeIndex === index })}
-              onclick={() => this.$emit('changeActivesIndex', index)}
+              onmouseenter={() => this.throttleHandleHover(index)}
             >
                 <div class='process-icon'>{item.icon}</div>
                 <div class="text-wrapper">
