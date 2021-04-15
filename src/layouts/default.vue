@@ -52,7 +52,7 @@ export default {
       script.type = 'text/javascript';
       script.id = 'ze-snippet';
       script.charset = 'utf-8';
-      script.src = `https://static.zdassets.com/ekr/snippet.js?key=${apiZendeskWebVo.appKey}`; // 填自己的js路径
+      script.src = `https://static.zdassets.com/ekr/snippet.js?key=${apiZendeskWebVo.webKey}`; // 填自己的js路径
       document.querySelector('head').appendChild(script);
     });
   },
