@@ -1,0 +1,66 @@
+@import "@/shared/styles/variables.less";
+
+.c2c-market-container {
+  padding: 150px 0 50px 130px;
+  height: 726px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  .c2c-market-text {
+    padding-bottom: 90px;
+  }
+
+  .c2c-market-dots-icon {
+    position: absolute;
+    bottom: 218px;
+    left: 20px;
+  }
+
+  .c2c-market-title-img {
+    img {
+      width: 198px;
+    }
+  }
+
+  .c2c-market-introduce {
+    width: 450px;
+    line-height: 30px;
+    color: #242424;
+    font-size: 16px;
+    padding-top: 8px;
+  }
+
+  .c2c-inline-mode {
+    padding-bottom: 35px;
+  }
+
+  .c2c-img-container {
+    position: absolute;
+    right: 10px;
+    top: 150px;
+
+    img {
+      width: 652px;
+    }
+  }
+
+  .animate {
+    animation: drop-animate 1s ease-out;
+  }
+
+  @keyframes drop-animate {
+    0% {
+      top: 0;
+    }
+
+    50% {
+      top: 75;
+    }
+
+    100% {
+      top: 150px;
+    }
+  }
+}

@@ -25,7 +25,7 @@
 
 <script>
 import cooperationPartnerImg from '@/assets/ecosphere/cooperation-partner-img.png';
-import earthImg from '@/assets/ecosphere/earth.png';
+import earthImg from '@/assets/ecosphere/earth-shadow.png';
 import masterMinerImg from '@/assets/ecosphere/master-miner-img.png';
 import matureMiningFarmImg from '@/assets/ecosphere/mature-mining-farm-img.png';
 import BlockTitle from '@/pages/home/component/block-title';

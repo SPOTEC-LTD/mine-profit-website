@@ -92,7 +92,6 @@
               {{ $t('downloadByScanningQRCode') }}
             </div>
             <div class="qrcode">
-              <!-- FIXME update value to correct URL and version -->
               <qrcode :value="`${mobileSiteHost}/download/pre-dispatch`" />
             </div>
             <div class="version-ios">

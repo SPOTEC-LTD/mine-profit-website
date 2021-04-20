@@ -74,5 +74,6 @@ module.exports = {
         },
       },
     ],
+    'vue/attribute-hyphenation': 0,
   },
 };
