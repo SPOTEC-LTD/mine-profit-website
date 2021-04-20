@@ -5,7 +5,7 @@
   padding-top: 60px;
 
   .staking-market-text {
-    padding-bottom: 155px;
+    padding-bottom: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -52,6 +52,31 @@
     position: relative;
     display: flex;
     justify-content: center;
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+
+  .animate {
+    animation: move-animate 0.7s ease-out;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes move-animate {
+    0% {
+      opacity: 0;
+      transform: translateY(-60px);
+    }
+
+    50% {
+      opacity: 0.5;
+      transform: translateY(-30px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .step-line {
