@@ -1,0 +1,168 @@
+@import "@/shared/styles/variables.less";
+
+.cooperation-partner-container {
+  padding: 192px 0 229px 0;
+  position: relative;
+
+  .cooperation-title-img {
+    display: inline-block;
+    position: relative;
+    padding-bottom: 17px;
+
+    img {
+      width: 673px;
+    }
+
+    &::after {
+      display: block;
+      content: "";
+      height: 2px;
+      background-color: #ffd100;
+      width: 100%;
+      position: absolute;
+      bottom: 11px;
+      left: 0;
+    }
+  }
+
+  .cooperation-dots-icon {
+    position: absolute;
+    bottom: 100px;
+    left: 20px;
+  }
+
+  .cooperation-dots-line-icon {
+    position: absolute;
+    right: -20px;
+    bottom: 150px;
+
+    &::after {
+      display: block;
+      content: '';
+      width: 57px;
+      height: 2px;
+      background-color: #02a6e3;
+      position: absolute;
+      bottom: -58px;
+      right: 53px;
+    }
+  }
+
+  .cooperation-partner-content {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .text-container {
+    width: 330px;
+    line-height: 30px;
+    color: #242424;
+    font-size: 16px;
+  }
+
+  .welcome-contact-us {
+    padding-top: 30px;
+  }
+
+  .img-container {
+    margin-top: 120px;
+    margin-left: 30px;
+    position: relative;
+    width: 480px;
+    height: 480px;
+  }
+
+  .earth-img {
+    width: 480px;
+  }
+
+  .master-miner-img {
+    position: absolute;
+    right: 418px;
+    top: 292px;
+    width: 378px;
+  }
+
+  .mature-mining-farm-img {
+    position: absolute;
+    left: 438px;
+    top: 60px;
+    width: 378px;
+  }
+
+  .gradient-container1,
+  .gradient-container1::before,
+  .gradient-container1::after {
+    position: absolute;
+    background:
+      radial-gradient(
+        circle at center center,
+        #fff 0%,
+        #fcfdff 60%,
+        rgba(43, 140, 229, 0.34) 80.7%,
+        rgba(43, 140, 229, 0.34) 100%
+      );
+    top: 7px;
+    left: 16px;
+    width: 435px;
+    height: 435px;
+    z-index: -1;
+    content: "";
+    display: block;
+    border-radius: 50%;
+  }
+
+  .gradient-container1::before {
+    animation: wave-animate 3s infinite ease-out;
+  }
+
+  .gradient-container1::after {
+    opacity: 0;
+    animation: wave-animate 3s 1.5s infinite ease-out;
+  }
+
+  .gradient-container2,
+  .gradient-container2::before,
+  .gradient-container2::after {
+    position: absolute;
+    background:
+      radial-gradient(
+        circle at center center,
+        #fff 0%,
+        #fcfdff 60%,
+        rgba(43, 140, 229, 0.34) 80.7%,
+        rgba(43, 140, 229, 0.34) 100%
+      );
+    top: 7px;
+    left: 16px;
+    width: 435px;
+    height: 435px;
+    z-index: -1;
+    content: "";
+    display: block;
+    border-radius: 50%;
+  }
+
+  .gradient-container2::before {
+    animation: wave-animate 3s 1s infinite ease-out;
+  }
+
+  .gradient-container2::after {
+    opacity: 0;
+    animation: wave-animate 3s 2.5s infinite ease-out;
+  }
+
+  @keyframes wave-animate {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+      transform-origin: center;
+    }
+
+    100% {
+      transform: scale(1.8);
+      opacity: 0;
+      transform-origin: center;
+    }
+  }
+}
