@@ -26,7 +26,7 @@
     <base-container>
       <hashRate-ecosphere />
       <c2c-market :isC2CAnimate="isC2CAnimate" />
-      <staking-market />
+      <staking-market :isStakingAnimate="isStakingAnimate" />
       <cooperation-partner />
     </base-container>
   </div>
@@ -75,7 +75,7 @@ export default {
       androidVersion: '',
       mobileSiteHost: process.env.MOBILE_SITE_HOST,
       isC2CAnimate: false,
-      isStakingMarketAnimate: false,
+      isStakingAnimate: false,
     };
   },
   mounted() {
@@ -87,10 +87,10 @@ export default {
   methods: {
     onHandleScroll() {
       const { scrollTop } = document.documentElement;
-      if (scrollTop > 500 && scrollTop < 980) {
+      if (scrollTop > 330 && scrollTop < 1080) {
         this.isC2CAnimate = true;
-      } else {
-        this.isC2CAnimate = false;
+      } else if (scrollTop > 1200 && scrollTop < 2250) {
+        this.isStakingAnimate = true;
       }
     },
   },

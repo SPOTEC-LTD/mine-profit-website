@@ -7,7 +7,7 @@
         {{ $t('stakingMarketIntroduce') }}
       </div>
     </div>
-    <div class="staking-market-img-container">
+    <div :class="[ 'staking-market-img-container', isStakingAnimate ? 'animate' : '']">
       <img class="step-line" src="@/assets/ecosphere/step-line.png" alt="">
       <div class="step-card">
         <img src="@/assets/ecosphere/step-details.png" alt="">
@@ -58,6 +58,12 @@ export default {
   components: {
     'block-title': BlockTitle,
     'square-dots-icon': SquareDotsIcon,
+  },
+  props: {
+    isStakingAnimate: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
