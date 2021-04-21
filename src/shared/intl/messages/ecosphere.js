@@ -33,4 +33,6 @@ export default {
   refuse: '拒绝',
   yes: '是',
   no: '否',
+  forMatureMiningFarm: '如果您拥有成熟的矿场',
+  ForAMasterMiner: '如果你是一名大矿工',
 };
