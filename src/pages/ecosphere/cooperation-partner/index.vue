@@ -14,13 +14,13 @@
       </div>
       <div class="img-container">
         <img :src="earthImg" alt="" class="earth-img">
-        <div class="master-miner-img">
-          <span class="master-miner-text">{{ $t('ForAMasterMiner') }}</span>
-          <img :src="masterMinerImg" alt="">
-        </div>
         <div class="mature-mining-farm-img">
           <span class="mature-mining-text">{{ $t('forMatureMiningFarm') }}</span>
           <img :src="matureMiningFarmImg" alt="">
+        </div>
+        <div class="master-miner-img">
+          <span class="master-miner-text">{{ $t('ForAMasterMiner') }}</span>
+          <img :src="masterMinerImg" alt="">
         </div>
         <div class="gradient-container1" />
         <div class="gradient-container2" />
