@@ -9,7 +9,7 @@
       <div class="ecosphere-advantage">
         <div class="ecosphere-advantage-item">
           <img src="@/assets/ecosphere/paper-img.png" alt="">
-          <div>{{ $t('increaseProfit') }}</div>
+          <div>{{ $t('flexibleAllocationAssets') }}</div>
         </div>
         <div class="ecosphere-advantage-item">
           <img src="@/assets/ecosphere/money-img.png" alt="">

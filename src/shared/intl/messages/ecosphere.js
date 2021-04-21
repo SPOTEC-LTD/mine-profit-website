@@ -7,6 +7,7 @@ export default {
   hashRateEcosphere: '算力生态圈',
   hashRateEcosphereIntroduce: 'Mineprofit算力生态圈由“算力交易市场”和“算力质押市场”组成，实现矿场、投资者和电力公司三方共赢目标，算力生态圈让用户能够：',
   increaseProfit: '显著提高算力收益',
+  flexibleAllocationAssets: '灵活配置算力资产',
   eightTimes: '收益增速可达 8 倍',
   c2cMarket: '算力交易市场',
   c2cInlineMode: 'Mineprofit算力交易市场拥有“官方自营算力”+“C2C算力交易”的线上双选交易模式，打造高度自由的算力交易系统。',
