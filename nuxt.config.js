@@ -10,8 +10,9 @@ function resolveCwd(...args) {
 const baseAPiMap = {
   static: 'http://127.0.0.1:4008',
   dev: 'http://192.168.0.126:10000',
-  pro: 'http://27.102.113.188:10000',
   test: 'http://192.168.0.126:10000',
+  onlineTest: 'https://mp.testmego.com/__api',
+  pro: 'http://27.102.113.188:10000',
 };
 
 const mobileSiteHostMap = {
