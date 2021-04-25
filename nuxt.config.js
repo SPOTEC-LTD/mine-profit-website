@@ -18,6 +18,7 @@ const baseAPiMap = {
 const mobileSiteHostMap = {
   dev: 'http://192.168.0.126:7010',
   test: 'http://192.168.0.126:7010',
+  onlineTest: 'http://h5.mp.testmego.com',
   pro: 'http://h5.mp.testmego.com',
 }
 
