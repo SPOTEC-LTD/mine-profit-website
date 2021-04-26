@@ -94,16 +94,14 @@
             <div class="qrcode">
               <qrcode :value="`${mobileSiteHost}/download/pre-dispatch`" />
             </div>
-            <div class="version-ios">
-              <img src="@/assets/download/apple.png" alt="">
-              <div>
-                {{ $t('appVersion') }} {{ iosVersion }}
+            <div class="version-info">
+              <div class="version-ios">
+                <img src="@/assets/download/apple.png" alt="">
+                <div>{{ $t('appVersion') }} {{ iosVersion }}</div>
               </div>
-            </div>
-            <div class="version-android">
-              <img src="@/assets/download/android.png" alt="">
-              <div>
-                {{ $t('appVersion') }} {{ androidVersion }}
+              <div class="version-android">
+                <img src="@/assets/download/android.png" alt="">
+                <div>{{ $t('appVersion') }} {{ androidVersion }}</div>
               </div>
             </div>
           </div>
