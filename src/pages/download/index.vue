@@ -56,31 +56,31 @@
           </div>
         </transition>
         <transition name="fade-down" mode="out-in">
-          <div v-if="isScenario2" class="text-content">
-            <div class="title">
+          <div v-if="isScenario2" class="text-content" :class="{ ['en-text-content']: isEnLanguage }">
+            <div class="title" :class="{ ['en-title']: isEnLanguage }">
               {{ $t('downloadTitle2') }}
             </div>
-            <div class="description">
+            <div :class="{ ['en-description']: isEnLanguage }" class="description">
               {{ $t('downloadDesc2') }}
             </div>
           </div>
         </transition>
         <transition name="fade-down" mode="out-in">
-          <div v-if="isScenario3" class="text-content">
-            <div class="title">
+          <div v-if="isScenario3" class="text-content" :class="{ ['en-text-content']: isEnLanguage }">
+            <div class="title" :class="{ ['en-title']: isEnLanguage }">
               {{ $t('downloadTitle3') }}
             </div>
-            <div class="description">
+            <div :class="{ ['en-description']: isEnLanguage }" class="description">
               {{ $t('downloadDesc3') }}
             </div>
           </div>
         </transition>
         <transition name="fade-down" mode="out-in">
-          <div v-if="isScenario4" class="text-content">
-            <div class="title">
+          <div v-if="isScenario4" class="text-content" :class="{ ['en-text-content']: isEnLanguage }">
+            <div class="title" :class="{ ['en-title']: isEnLanguage }">
               {{ $t('downloadTitle4') }}
             </div>
-            <div class="description">
+            <div :class="{ ['en-description']: isEnLanguage }" class="description">
               {{ $t('downloadDesc4') }}
             </div>
           </div>
@@ -187,6 +187,7 @@ import { fetchAppVersion } from '@/api';
 
 import QRcode from '@/shared/components/qrcode';
 import SquareDotsIcon from '@/pages/home/component/square-dots-icon';
+import { EN } from '@/shared/intl/i18n';
 
 import GlassSquare from './glass-square.vue';
 
@@ -221,6 +222,7 @@ export default {
       iosVersion: '',
       androidVersion: '',
       mobileSiteHost: process.env.MOBILE_SITE_HOST,
+      isEnLanguage: this.$i18n.locale === EN,
     };
   },
 

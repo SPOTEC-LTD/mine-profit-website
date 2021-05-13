@@ -1,10 +1,12 @@
 import en from '../../locales/en-US';
 import zh from '../../locales/zh-CN';
 
+export const EN = 'en';
+
 export const I18N = {
   locales: [
     {
-      code: 'en',
+      code: EN,
       iso: 'en-US',
       name: 'English',
     },

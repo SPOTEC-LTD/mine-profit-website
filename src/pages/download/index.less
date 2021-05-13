@@ -164,9 +164,19 @@
     margin-bottom: 12px;
   }
 
+  .en-title {
+    font-size: 30px;
+    line-height: 42px;
+  }
+
   .description {
     font-size: 20px;
     line-height: 28px;
+  }
+
+  .en-description {
+    font-size: 16px;
+    line-height: 22px;
   }
 
   .version-info {
@@ -207,6 +217,10 @@
     }
   }
 
+  .en-text-content {
+    top: 112px;
+  }
+
   .qrcode-container {
     height: 344px;
     width: 354px;
@@ -215,11 +229,12 @@
     top: 288px;
     right: 115px;
     z-index: 10;
+    display: flex;
+    justify-content: center;
 
     .qrcode-content {
       position: absolute;
       top: 0;
-      left: 103px;
       display: flex;
       flex-direction: column;
       align-items: center;
