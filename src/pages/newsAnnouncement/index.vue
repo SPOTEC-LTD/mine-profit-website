@@ -1,7 +1,7 @@
 <template>
   <base-container>
     <a-tabs destroy-inactive-tab-pane :default-active-key="active" @change="callback">
-      <a-tab-pane :key="RECOMMEND" :tab="$t('recommend')">
+      <a-tab-pane :key="RECOMMEND" :tab="$t('recommendArticle')">
         <m-recommend />
       </a-tab-pane>
       <a-tab-pane :key="NEWSLETTER" :tab="$t('newsletter')">

@@ -16,4 +16,6 @@ export default {
   home: '首页',
   newsAnnouncement: '资讯公告',
   downloadNow: '立即下载',
+  language: '语言',
+  chinese: '中文',
 };
