@@ -18,3 +18,10 @@ $ yarn generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+
+开发质量问题。
+
+
+jia使用文档问题。
+运维版本问题。

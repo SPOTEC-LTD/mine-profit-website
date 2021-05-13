@@ -1,5 +1,6 @@
 import qs from 'qs';
 import { toPath } from '@/shared/utils/qsHelp';
+import locale from '@/shared/intl/utils/locale';
 
 /**
  * These actions correspond to the history API.
@@ -14,9 +15,9 @@ class Location {
 
   buildURL = (url, options = {}) => {
     const { params = {}, query = {} } = options;
-    let serializedUrl = toPath(url, params);
-
-    // query.locale = locale.currentLocale;
+    const nowLocale = locale.currentLocale.locale;
+    const resultPath = nowLocale === 'zh' ? url : `/${nowLocale}${url}`;
+    let serializedUrl = toPath(resultPath, params);
 
     const queryStr = qs.stringify(query, { indices: false });
 

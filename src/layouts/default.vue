@@ -42,9 +42,12 @@ export default {
       default: true,
     },
   },
-  beforeMount() {
+  data() {
     locale.init(this.$i18n);
     dateUtils.locale = this.$i18n.locale;
+    return {
+
+    };
   },
   mounted() {
     getZendesk().then(({ body: { apiZendeskWebVo } }) => {

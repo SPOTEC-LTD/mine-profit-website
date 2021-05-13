@@ -65,7 +65,6 @@ export default {
   "newsAnnouncement": "资讯公告",
   "downloadNow": "立即下载",
   "language": "语言",
-  "chinese": "中文",
   "downloadDesc1": "一样的矿工，不一样的生活",
   "downloadTitle2": "算力生态圈，助你获利非凡",
   "downloadDesc2": "完善的算力转让、质押生态圈，让你实现灵活的算力资产配置，获得最优收益。",

@@ -15,23 +15,39 @@
           <div class="page-footer-nav-category">
             {{ $t('information') }}
           </div>
-          <a href="/newsAnnouncement?type=2" class="page-footer-nav-item">
+          <a-link
+            :to="{ path: '/newsAnnouncement', query: { type: '2' } }"
+            :isReload="true"
+            class="page-footer-nav-item"
+          >
             {{ $t('newsletter') }}
-          </a>
-          <a href="/newsAnnouncement?type=1" class="page-footer-nav-item">
+          </a-link>
+          <a-link
+            :to="{ path: '/newsAnnouncement', query: { type: '1' } }"
+            :isReload="true"
+            class="page-footer-nav-item"
+          >
             {{ $t('recommendArticle') }}
-          </a>
-          <a href="/newsAnnouncement?type=3" class="page-footer-nav-item">
+          </a-link>
+          <a-link
+            :to="{ path: '/newsAnnouncement', query: { type: '3' } }"
+            :isReload="true"
+            class="page-footer-nav-item"
+          >
             {{ $t('announcement') }}
-          </a>
+          </a-link>
         </div>
         <div>
           <div class="page-footer-nav-category">
             {{ $t('support') }}
           </div>
-          <a href="/help" class="page-footer-nav-item">
+          <a-link
+            to="/help"
+            :isReload="true"
+            class="page-footer-nav-item"
+          >
             {{ $t('helpCenter') }}
-          </a>
+          </a-link>
         </div>
         <!-- <div>
           <div class="page-footer-nav-category">
@@ -47,7 +63,13 @@
 </template>
 
 <script>
-export default {};
+import Link from '@/shared/components/link';
+
+export default {
+  components: {
+    'a-link': Link,
+  },
+};
 </script>
 
 <style lang="less">

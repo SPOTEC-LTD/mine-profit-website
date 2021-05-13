@@ -24,7 +24,7 @@ program.parse(process.argv);
 const isExportNoTranslate = program.args[0];
 const dynamicKeyExp = /\{.+?\}/g;
 
-const getCsvPath = fileName => `i18n/translationFile/enCsv/${fileName}.csv`;
+const getCsvPath = fileName => `translationFile/enCsv/${fileName}.csv`;
 const getAllCsvPaths = () => new Promise(resolve => {
   glob(getCsvPath('*'), { }, (_, filePath) => (resolve(filePath)));
 });
@@ -86,44 +86,50 @@ const checkMissFrKeys = () => {
       missFrKeys[key] = value;
     }
   });
-  // console.log('missFrKeys', missFrKeys);
+  console.log('missFrKeys', missFrKeys);
 };
 
-const checkDynamicKeyIsEqual = (enValue, frValue) => {
+const checkDynamicKeyIsEqual = (zhValue, enValue) => {
   if (!dynamicKeyExp.test(enValue)) {
     return true;
   }
 
-  return isEqual(enValue.match(dynamicKeyExp), frValue.match(dynamicKeyExp));
+  return isEqual(zhValue.match(dynamicKeyExp), enValue.match(dynamicKeyExp));
 };
 
-const exportFrTranslateFile = params => {
+const exportEnTranslateFile = params => {
   const { allTranslateMessageList, nowTranslateMessageList, isMergeAll } = params;
-  const allFrTranslateMap = {};
+  const allEnTranslateMap = {};
   const nowBatchTranslateKeys = [];
   const noTranslateList = [];
   const nowBatchTranslatelist = isMergeAll ? allTranslateMessageList : nowTranslateMessageList;
+  console.log('nowBatchTranslatelist', nowBatchTranslatelist);
 
   forEach(enUsMessagesMap, (value, key) => {
     const translateItem = find(nowBatchTranslatelist,
       // eslint-disable-next-line max-len
-      ({ key: translatedKey, enValue }) => translatedKey === key && zhCNMessageMap[key] === enValue); // key and enValue all equal, fix the key does not change but the value has updated
+      ({ key: translatedKey, zhValue }) => {
+        if (translatedKey === key) {
+          console.log('merge failedKeys:'.red, `${key}:${value}`.red);
+        }
+        // key and enValue all equal, fix the key does not change but the value has updated
+        return translatedKey === key;
+      });
 
     const dynamicKeyIsEqual = translateItem
-      && checkDynamicKeyIsEqual(zhCNMessageMap[key], translateItem.frValue);
+      && checkDynamicKeyIsEqual(zhCNMessageMap[key], translateItem.enValue);
 
     if (translateItem && dynamicKeyIsEqual) {
-      allFrTranslateMap[key] = translateItem.frValue;
+      allEnTranslateMap[key] = translateItem.enValue;
       nowBatchTranslateKeys.push(key);
     } else {
-      allFrTranslateMap[key] = value;
+      allEnTranslateMap[key] = value;
     }
   });
 
   forEach(zhCNMessageMap, (value, key) => {
     const translateItem = find(allTranslateMessageList,
-      ({ key: translatedKey, zhValue }) => translatedKey === key && value === zhValue);
-
+      ({ key: translatedKey, zhValue }) => translatedKey === key);
     if (!translateItem) {
       // if (/[A-Za-z]/.test(value.replace(dynamicKeyExp, ''))) {
       noTranslateList.push({ key, zhValue: value });
@@ -148,7 +154,7 @@ const exportFrTranslateFile = params => {
   });
 
   // export all fr-CA translate file
-  translateStats.success && fs.writeFileSync('src/locales/en-US.js', getContent(allFrTranslateMap));
+  translateStats.success && fs.writeFileSync('src/locales/en-US.js', getContent(allEnTranslateMap));
 
   console.log(`success: ${translateStats.success}`.green);
   console.log(`noTranslate: ${translateStats.noTranslate}`.yellow);
@@ -163,17 +169,17 @@ const exportFrTranslateFile = params => {
 
 const mergeTranslate = () => {
   getAllCsvPaths()
-    .then(frCAPathList => getSourceMessageList(frCAPathList))
+    .then(enCAPathList => getSourceMessageList(enCAPathList))
     .then(allTranslateMessageList => {
       if (program.fileName) {
         extractCsv(getCsvPath(program.fileName))
           .then(nowTranslateMessageList => {
             const params = { allTranslateMessageList, nowTranslateMessageList, isMergeAll: false };
-            exportFrTranslateFile(params);
+            exportEnTranslateFile(params);
           });
       } else {
         const params = { allTranslateMessageList, nowTranslateMessageList: [], isMergeAll: true };
-        exportFrTranslateFile(params);
+        exportEnTranslateFile(params);
       }
     });
 };
