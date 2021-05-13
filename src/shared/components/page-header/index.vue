@@ -25,7 +25,6 @@ import EmailCircleOutlined from 'ahoney/lib/icons/EmailCircleOutlined';
 import TipCirccleOutlined from 'ahoney/lib/icons/TipCirccleOutlined';
 import locationServices from '@/shared/services/location/locationServices';
 import { RECOMMEND, NEWSLETTER, ANNOUNCEMENT } from '@/shared/consts/newsType';
-import locationHelp from '@/shared/utils/locationHelp';
 import { I18N } from '@/shared/intl/i18n';
 
 import NavLink from './nav-link.vue';
@@ -43,21 +42,21 @@ export default {
     return {
       items: [
         {
-          href: '/newsAnnouncement?type=1',
+          href: '/newsAnnouncement',
           name: this.$t('recommendArticle'),
           type: RECOMMEND,
           description: this.$t('recommendArticleDesc'),
           icon: <DocFilledOutlined />,
         },
         {
-          href: '/newsAnnouncement?type=2',
+          href: '/newsAnnouncement',
           name: this.$t('newsletter'),
           type: NEWSLETTER,
           description: this.$t('newsletterDesc'),
           icon: <EmailCircleOutlined />,
         },
         {
-          href: '/newsAnnouncement?type=3',
+          href: '/newsAnnouncement',
           name: this.$t('announcement'),
           type: ANNOUNCEMENT,
           description: this.$t('announcementDesc'),
@@ -68,9 +67,6 @@ export default {
     };
   },
   methods: {
-    onclickLanguage(value) {
-      locationHelp.redirect(this.switchLocalePath(value));
-    },
     redirectToDownloadGuidePage() {
       locationServices.push('/download');
     },

@@ -1,11 +1,16 @@
 import { Dropdown, Menu } from 'ant-design-vue';
 import RightOutlined from 'ahoney/lib/icons/RightOutlined';
-
+import locationHelp from '@/shared/utils/locationHelp';
 import './nav-menu.less';
 
 export default {
   name: 'LanguageMenu',
   props: ['items'],
+  methods: {
+    onclickLanguage(value) {
+      locationHelp.redirect(this.switchLocalePath(value));
+    },
+  },
   render() {
     return (
       <Dropdown
@@ -17,7 +22,7 @@ export default {
             {
               this.items.map(item => (
                 <Menu.Item key={item.code}>
-                  <div onClick={() => item.method(item.code)}>
+                  <div onClick={() => this.onclickLanguage(item.code)}>
                     <div
                       class={`nav-menu-item ${this.$i18n.locale === item.code ? 'nav-menu-item--active' : ''}`}
                     >

@@ -2,7 +2,7 @@ import isObject from 'lodash/isObject';
 import locationServices from '@/shared/services/location/locationServices';
 
 const ALink = {
-  props: ['to'],
+  props: ['to', 'isReload'],
   computed: {
     finalyTo() {
       if (isObject(this.to)) {
@@ -18,11 +18,17 @@ const ALink = {
     const props = {
       attrs: this.$attrs,
     };
-    return (
+
+    return this.isReload ? (
+      <a {...props} href={this.finalyTo}>
+        {this.$slots.default}
+      </a>
+    )
+      : (
       <router-link {...props} to={this.finalyTo}>
         {this.$slots.default}
       </router-link>
-    );
+      );
   },
 };
 

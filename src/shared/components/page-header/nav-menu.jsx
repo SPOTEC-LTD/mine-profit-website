@@ -1,5 +1,6 @@
 import { Dropdown, Menu } from 'ant-design-vue';
 import RightOutlined from 'ahoney/lib/icons/RightOutlined';
+import Link from '@/shared/components/link';
 import activeImg from '@/assets/active.png';
 
 import './nav-menu.less';
@@ -19,7 +20,7 @@ export default {
             {
               this.items.map(item => (
                 <Menu.Item key={item.name}>
-                  <a href={item.href}>
+                  <Link to={{ path: item.href, query: { type: item.type } }} isReload>
                     <div
                       class={`nav-menu-item ${this.$route.query.type === item.type ? 'nav-menu-item--active' : ''}`}
                     >
@@ -35,7 +36,7 @@ export default {
                         </div>
                       </div>
                     </div>
-                  </a>
+                  </Link>
                 </Menu.Item>
               ))
             }
