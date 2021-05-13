@@ -9,7 +9,7 @@
         class="nav-link-active-mark"
         src="@/assets/active.png"
         alt=""
-      />
+      >
     </div>
   </c-link>
 </template>
