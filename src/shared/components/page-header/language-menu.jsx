@@ -16,14 +16,14 @@ export default {
           <Menu>
             {
               this.items.map(item => (
-                <Menu.Item key={item.language}>
-                  <div onClick={() => item.method(item.value)}>
+                <Menu.Item key={item.code}>
+                  <div onClick={() => item.method(item.code)}>
                     <div
-                      class={`nav-menu-item ${this.$i18n.locale === item.value ? 'nav-menu-item--active' : ''}`}
+                      class={`nav-menu-item ${this.$i18n.locale === item.code ? 'nav-menu-item--active' : ''}`}
                     >
                       <div class="nav-menu-content">
                         <div class="nav-menu-name">
-                          {item.language}
+                          {item.name}
                         </div>
                       </div>
                     </div>

@@ -26,6 +26,7 @@ import TipCirccleOutlined from 'ahoney/lib/icons/TipCirccleOutlined';
 import locationServices from '@/shared/services/location/locationServices';
 import { RECOMMEND, NEWSLETTER, ANNOUNCEMENT } from '@/shared/consts/newsType';
 import locationHelp from '@/shared/utils/locationHelp';
+import { I18N } from '@/shared/intl/i18n';
 
 import NavLink from './nav-link.vue';
 import NavMenu from './nav-menu.jsx';
@@ -63,18 +64,7 @@ export default {
           icon: <TipCirccleOutlined />,
         },
       ],
-      languageItems: [
-        {
-          language: this.$t('chinese'),
-          value: 'zh',
-          method: this.onclickLanguage,
-        },
-        {
-          language: 'English',
-          value: 'en',
-          method: this.onclickLanguage,
-        },
-      ],
+      languageItems: I18N.locales,
     };
   },
   methods: {
