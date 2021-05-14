@@ -78,6 +78,7 @@ import SearchOutlined from 'ahoney/lib/icons/SearchOutlined';
 import BaseContainer from '@/shared/components/base-container';
 import { fetchQuestionList } from '@/api';
 import { SHOW } from '@/shared/consts/visible';
+import getLocalLanguage from '@/shared/utils/getLocalLanguage';
 import QuestionItem from './question-item/index.vue';
 
 export default {
@@ -99,6 +100,7 @@ export default {
       isVisibleQuestion: false,
       isVisibleResult: false,
       loading: false,
+      locale: getLocalLanguage(),
     };
   },
   mounted() {
@@ -111,7 +113,7 @@ export default {
       this.questionList = [];
       fetchQuestionList({
         data: {
-          pageNum: 1, pageSize: 6, order: 'DESC', field: 'sort', showStatus: SHOW,
+          pageNum: 1, pageSize: 6, order: 'DESC', field: 'sort', showStatus: SHOW, locale: this.locale,
         },
       }).then(data => {
         this.loading = false;
@@ -140,7 +142,7 @@ export default {
       this.$refs.boxRef.style.height = '235px';
 
       fetchQuestionList({
-        data: { title: this.searchValue },
+        data: { title: this.searchValue, locale: this.locale },
       }).then(data => {
         this.loading = false;
         const { body: { list } } = data;
