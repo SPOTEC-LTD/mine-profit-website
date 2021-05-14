@@ -24,7 +24,7 @@
     padding-bottom: 9px;
 
     img {
-      width: 273px;
+      height: 63px;
     }
 
     &::after {
@@ -128,14 +128,41 @@
     right: 185px;
   }
 
+  .en-ended-text {
+    right: 132px;
+  }
+
   .start-system-text {
     top: 287px;
     left: 36px;
   }
 
+  .en-start-system-text {
+    width: 190px;
+    top: 280px;
+
+    > span:last-child {
+      line-height: 22px;
+    }
+  }
+
   .test-text {
     top: 465px;
     left: 494px;
+  }
+
+  .en-test-text {
+    width: 260px;
+    top: 460px;
+    left: 482px;
+
+    > span:first-child {
+      font-size: 12px;
+    }
+
+    > span:last-child {
+      line-height: 22px;
+    }
   }
 
   .pledge-during-text {
@@ -152,10 +179,18 @@
     }
   }
 
+  .en-return-fund-text {
+    right: 34px;
+  }
+
   .agreement-text {
     position: absolute;
     top: 256px;
     left: 440px;
+  }
+
+  .en-agreement-text {
+    left: 432px;
   }
 
   .refuse-text {
@@ -164,15 +199,27 @@
     right: 435px;
   }
 
+  .en-refuse-text {
+    right: 426px;
+  }
+
   .positive-text {
     position: absolute;
     bottom: 145px;
     left: 449px;
   }
 
+  .en-positive-text {
+    left: 442px;
+  }
+
   .negative-text {
     position: absolute;
     bottom: 145px;
     right: 443px;
+  }
+
+  .en-negative-text {
+    right: 442px;
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div div class="hashRate-ecosphere-container">
     <div>
-      <block-title :img="ecosphereTitleImg" class="ecosphere-title-img" :title="$t('hashRateEcosphere')" />
+      <block-title :img="ecosphereTitleImg" class="ecosphere-title-img" :title="isChinese && $t('hashRateEcosphere')" />
       <square-dots-icon class="ecosphere-dots-icon" />
       <square-dots-icon class="ecosphere-right-dots-icon" />
       <square-dots-icon class="ecosphere-bottom-dots-icon" />
@@ -28,6 +28,7 @@
 import ecosphereTitleImg from '@/assets/ecosphere/ecosphere-title-img.png';
 import BlockTitle from '@/pages/home/component/block-title';
 import SquareDotsIcon from '@/pages/home/component/square-dots-icon';
+import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 
 export default {
   components: {
@@ -38,6 +39,7 @@ export default {
   data() {
     return {
       ecosphereTitleImg,
+      isChinese: getIsChinese(),
     };
   },
 };

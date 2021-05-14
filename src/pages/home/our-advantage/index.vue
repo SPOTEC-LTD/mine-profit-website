@@ -3,7 +3,7 @@
     <div class="our-advantage-container">
       <square-dots-icon class="square-line-icon" />
       <square-dots-icon class="square-right-icon" />
-      <block-title :img="advantageTitleImage" class="advantage-title-image" :title="$t('ourAdvantage')" />
+      <block-title :img="advantageTitleImage" class="advantage-title-image" :title="isChinese && $t('ourAdvantage')" />
       <advantage-item :advantages="advantages" />
       <square-dots-icon class="square-blue-icon" />
     </div>
@@ -20,6 +20,7 @@ import ShoppingBagOutlined from 'ahoney/lib/icons/ShoppingBagOutlined';
 import MoneyLockOutlined from 'ahoney/lib/icons/MoneyLockOutlined';
 import BlockTitle from '@/pages/home/component/block-title';
 import advantageTitleImage from '@/assets/home/advantage-title.png';
+import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 
 export default {
   components: {
@@ -30,6 +31,7 @@ export default {
 
   data() {
     return {
+      isChinese: getIsChinese(),
       advantageTitleImage,
       advantages: [
         {

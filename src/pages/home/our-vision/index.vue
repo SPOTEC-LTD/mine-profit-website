@@ -1,6 +1,6 @@
 <template>
   <div class="our-vision-container">
-    <block-title :img="ourVision" class="our-vision-title-image" :title="$t('ourVision')" />
+    <block-title :img="ourVision" class="our-vision-title-image" :title="isChinese && $t('ourVision')" />
     <div class="our-mission">
       <div class="img-container">
         <span class="img-mask" />
@@ -26,6 +26,7 @@ import ourMissionItem from '@/pages/home/component/our-mission-item';
 import ourVision from '@/assets/home/our-vsion-title.png';
 import missionOneImg from '@/assets/home/mission-1.png';
 import missionTwoImg from '@/assets/home/mission-2.png';
+import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 
 export default {
   components: {
@@ -38,6 +39,7 @@ export default {
       ourVision,
       missionOneImg,
       missionTwoImg,
+      isChinese: getIsChinese(),
     };
   },
 };

@@ -2,6 +2,7 @@ import en from '../../locales/en-US';
 import zh from '../../locales/zh-CN';
 
 export const EN = 'en';
+export const ZH = 'zh';
 
 export const I18N = {
   locales: [
@@ -11,15 +12,15 @@ export const I18N = {
       name: 'English',
     },
     {
-      code: 'zh',
+      code: ZH,
       iso: 'zh-CN',
       name: '中文',
     },
   ],
-  defaultLocale: 'zh',
+  defaultLocale: ZH,
 
   vueI18n: {
-    fallbackLocale: 'zh',
+    fallbackLocale: ZH,
     messages: { en, zh },
   },
 };

@@ -7,7 +7,7 @@
       </div>
       <div class="subject-summary-content-container">
         <div class="subject-summary-content">
-          <block-title :img="aboutTitleImage" class="about-title-image" :title="$t('essayHashRate')" />
+          <block-title :img="aboutTitleImage" class="about-title-image" :title="isChinese && $t('essayHashRate')" />
           <div class="summary-content-text">
             <div class="introduce-detail">{{ $t('basicIntroduce') }} </div>
             <div class="introduce-detail">{{ $t('secondParagraphIntroduce') }} </div>
@@ -25,6 +25,7 @@ import bannerPhoneImage from '@/assets/home/banner-phone.png';
 import aboutTitleImage from '@/assets/home/about-title.png';
 import BlockTitle from '@/pages/home/component/block-title';
 import SquareDotsIcon from '@/pages/home/component/square-dots-icon';
+import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 
 export default {
   components: {
@@ -36,6 +37,7 @@ export default {
     return {
       bannerPhoneImage,
       aboutTitleImage,
+      isChinese: getIsChinese(),
     };
   },
 };

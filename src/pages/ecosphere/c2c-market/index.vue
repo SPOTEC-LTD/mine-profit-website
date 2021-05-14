@@ -1,7 +1,7 @@
 <template>
   <div div class="c2c-market-container">
     <div class="c2c-market-text">
-      <block-title :img="c2cMarketTitleImg" class="c2c-market-title-img" :title="$t('c2cMarket')" />
+      <block-title :img="c2cMarketTitleImg" class="c2c-market-title-img" :title="isChinese && $t('c2cMarket')" />
       <square-dots-icon class="c2c-market-dots-icon" />
       <div class="c2c-market-introduce">
         <div class="c2c-inline-mode">{{ $t('c2cInlineMode') }}</div>
@@ -18,6 +18,7 @@
 import c2cMarketTitleImg from '@/assets/ecosphere/c2c-market-title-img.png';
 import BlockTitle from '@/pages/home/component/block-title';
 import SquareDotsIcon from '@/pages/home/component/square-dots-icon';
+import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 
 export default {
   components: {
@@ -33,6 +34,7 @@ export default {
   data() {
     return {
       c2cMarketTitleImg,
+      isChinese: getIsChinese(),
     };
   },
 };
