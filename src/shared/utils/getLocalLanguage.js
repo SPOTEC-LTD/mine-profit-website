@@ -1,11 +1,14 @@
-import { EN } from '@/shared/intl/i18n';
+import { EN, ZH } from '@/shared/intl/i18n';
 import { CN, US } from '@/shared/intl/consts/languages';
-import dateUtils from '@/shared/intl/utils/dateUtils';
+import locale from '@/shared/intl/utils/locale';
+
+export const getIsEnglish = () => locale.currentLocale.locale === EN;
+export const getIsChinese = () => locale.currentLocale.locale === ZH;
 
 export const getLocalLanguage = () => {
-  const isEnglish = dateUtils.locale === EN;
-  const locale = isEnglish ? US : CN;
-  return locale;
+  const isEnglish = getIsEnglish();
+  const localLanguage = isEnglish ? US : CN;
+  return localLanguage;
 };
 
 export default getLocalLanguage;

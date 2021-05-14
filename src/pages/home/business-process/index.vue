@@ -3,7 +3,11 @@
     <div class="business-process-container">
       <square-dots-icon class="business-square-line-icon" />
       <square-dots-icon class="business-square-icon" />
-      <block-title :img="businessProcessImage" class="business-process-title-image" :title="$t('businessProcess')" />
+      <block-title
+        :img="businessProcessImage"
+        class="business-process-title-image"
+        :title="isChinese && $t('businessProcess')"
+      />
       <div class="process-details">
         <business-process-item
           :business-process="businessProcess"
@@ -34,6 +38,7 @@ import ShovelOutlined from 'ahoney/lib/icons/ShovelOutlined';
 import BOutlined from 'ahoney/lib/icons/BOutlined';
 import businessProcessItem from '@/pages/home/component/business-process-item';
 import VideoGroup from '@/pages/home/component/video-group';
+import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 
 export default {
   components: {
@@ -44,6 +49,7 @@ export default {
   },
   data() {
     return {
+      isChinese: getIsChinese(),
       businessProcessImage,
       activeIndex: 0,
       videoGroupe: [purchaceVideo, cloudManagementVideo, miningProfitVideo, withdrawFreelyVideo],

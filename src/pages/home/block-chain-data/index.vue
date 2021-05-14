@@ -1,6 +1,6 @@
 <template>
   <div class="mine-data-container">
-    <block-title :img="blockChain" class="mine-data-title-image" :title="$t('mineData')" />
+    <block-title :img="blockChain" class="mine-data-title-image" :title="isChinese && $t('mineData')" />
     <div class="coin-data-container">
       <coin-mine-data
         :img="btcIcon"
@@ -31,6 +31,7 @@ import getHashrateUnit from '@/shared/utils/getHashrateUnit';
 import blockChain from '@/assets/home/block-chain-title.png';
 import btcIcon from '@/assets/home/btc-icon.png';
 import ethIcon from '@/assets/home/eth-icon.png';
+import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 
 export default {
   components: {
@@ -44,6 +45,7 @@ export default {
       ethIcon,
       BTCData: {},
       ETHData: {},
+      isChinese: getIsChinese(),
     };
   },
   mounted() {

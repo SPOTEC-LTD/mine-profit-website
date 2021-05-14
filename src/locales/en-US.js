@@ -110,5 +110,5 @@ export default {
   "no": "No",
   "forMatureMiningFarm": "If you have a mature mine",
   "ForAMasterMiner": "If you are a big miner",
-  "language": "language"
+  "language": "Language",
 }

@@ -1,7 +1,11 @@
 <template>
   <div div class="staking-market-container">
     <div class="staking-market-text">
-      <block-title :img="stakingMarketTitleImg" class="staking-market-title-img" :title="$t('stakingMarket')" />
+      <block-title
+        :img="stakingMarketTitleImg"
+        class="staking-market-title-img"
+        :title="isChinese && $t('stakingMarket')"
+      />
       <square-dots-icon class="staking-market-dots-icon" />
       <div class="staking-market-introduce">
         {{ $t('stakingMarketIntroduce') }}
@@ -19,15 +23,15 @@
           <span>{{ $t('investors') }}</span>
           <span class="title">{{ $t('WhetherAcceptInvitation') }}</span>
         </div>
-        <div class="step-card-text ended-text">
+        <div class="step-card-text ended-text" :class="{ ['en-ended-text']: isEnglish }">
           <span>{{ $t('end') }}</span>
           <span class="title">{{ $t('pledgeProcess') }}</span>
         </div>
-        <div class="step-card-text start-system-text">
+        <div class="step-card-text start-system-text" :class="{ ['en-start-system-text']: isEnglish }">
           <span>{{ $t('start') }}</span>
           <span class="title">{{ $t('mpPledgeMonitoringSystem') }}</span>
         </div>
-        <div class="step-card-text test-text">
+        <div class="step-card-text test-text" :class="{ ['en-test-text']: isEnglish }">
           <span>{{ $t('testInviterPledge') }}</span>
           <span class="title">{{ $t('WhetherRequireMet') }}</span>
         </div>
@@ -35,15 +39,15 @@
           <span>{{ $t('pledgeDuring') }}</span>
           <span class="title">{{ $t('UntilPledgeExpires') }}</span>
         </div>
-        <div class="step-card-text return-fund-text">
+        <div class="step-card-text return-fund-text" :class="{ ['en-return-fund-text']: isEnglish }">
           <span>{{ $t('LiquidationSystem') }}</span>
           <span class="title">{{ $t('returnHashRate') }}</span>
           <span>{{ $t('ReturnFundsToInvestors') }}</span>
         </div>
-        <div class="agreement-text">{{ $t('accept') }}</div>
-        <div class="refuse-text">{{ $t('refuse') }}</div>
-        <div class="positive-text">{{ $t('yes') }}</div>
-        <div class="negative-text">{{ $t('no') }}</div>
+        <div class="agreement-text" :class="{ ['en-agreement-text']: isEnglish }">{{ $t('accept') }}</div>
+        <div class="refuse-text" :class="{ ['en-refuse-text']: isEnglish }">{{ $t('refuse') }}</div>
+        <div class="positive-text" :class="{ ['en-positive-text']: isEnglish }">{{ $t('yes') }}</div>
+        <div class="negative-text" :class="{ ['en-negative-text']: isEnglish }">{{ $t('no') }}</div>
       </div>
     </div>
   </div>
@@ -53,6 +57,7 @@
 import stakingMarketTitleImg from '@/assets/ecosphere/staking-market-title-img.png';
 import BlockTitle from '@/pages/home/component/block-title';
 import SquareDotsIcon from '@/pages/home/component/square-dots-icon';
+import { getIsChinese, getIsEnglish } from '@/shared/utils/getLocalLanguage';
 
 export default {
   components: {
@@ -68,6 +73,8 @@ export default {
   data() {
     return {
       stakingMarketTitleImg,
+      isChinese: getIsChinese(),
+      isEnglish: getIsEnglish(),
     };
   },
 };

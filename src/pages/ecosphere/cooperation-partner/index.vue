@@ -3,7 +3,7 @@
     <block-title
       :img="cooperationPartnerImg"
       class="cooperation-title-img"
-      :title="$t('globalCooperationPartnersHunting')"
+      :title="isChinese && $t('globalCooperationPartnersHunting')"
     />
     <square-dots-icon class="cooperation-dots-icon" />
     <square-dots-icon class="cooperation-dots-line-icon" />
@@ -36,6 +36,7 @@ import masterMinerImg from '@/assets/ecosphere/master-miner-img.png';
 import matureMiningFarmImg from '@/assets/ecosphere/mature-mining-farm-img.png';
 import BlockTitle from '@/pages/home/component/block-title';
 import SquareDotsIcon from '@/pages/home/component/square-dots-icon';
+import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 
 export default {
   components: {
@@ -49,6 +50,7 @@ export default {
       earthImg,
       masterMinerImg,
       matureMiningFarmImg,
+      isChinese: getIsChinese(),
     };
   },
 };
