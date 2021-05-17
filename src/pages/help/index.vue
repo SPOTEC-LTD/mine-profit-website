@@ -27,7 +27,7 @@
           <div v-show="isVisibleQuestion" class="question">
             <div class="question-top">
               <img class="question-top-img" src="@/assets/help/question-text.png" alt="">
-              <span class="question-top-text">{{ $t('commonProblem') }}</span>
+              <span v-if="isChinese" class="question-top-text">{{ $t('commonProblem') }}</span>
             </div>
             <a-spin :spinning="loading">
               <div class="question-content">
@@ -78,7 +78,7 @@ import SearchOutlined from 'ahoney/lib/icons/SearchOutlined';
 import BaseContainer from '@/shared/components/base-container';
 import { fetchQuestionList } from '@/api';
 import { SHOW } from '@/shared/consts/visible';
-import getLocalLanguage from '@/shared/utils/getLocalLanguage';
+import { getLocalLanguage, getIsChinese } from '@/shared/utils/getLocalLanguage';
 import QuestionItem from './question-item/index.vue';
 
 export default {
@@ -101,6 +101,7 @@ export default {
       isVisibleResult: false,
       loading: false,
       locale: getLocalLanguage(),
+      isChinese: getIsChinese(),
     };
   },
   mounted() {
