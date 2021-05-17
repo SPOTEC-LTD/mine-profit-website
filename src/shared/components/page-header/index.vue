@@ -1,9 +1,9 @@
 <template>
   <div class="page-header">
     <div class="page-header-container">
-      <a href="/">
+      <a-link to="/">
         <img class="page-header-logo" src="~/assets/logo-black.png" alt="MINE PROFIT">
-      </a>
+      </a-link>
       <div class="page-header-nav">
         <nav-link href="/">{{ $t('home') }}</nav-link>
         <nav-link href="/ecosphere">{{ $t('ecosphere') }}</nav-link>
@@ -26,6 +26,7 @@ import TipCirccleOutlined from 'ahoney/lib/icons/TipCirccleOutlined';
 import locationServices from '@/shared/services/location/locationServices';
 import { RECOMMEND, NEWSLETTER, ANNOUNCEMENT } from '@/shared/consts/newsType';
 import { I18N } from '@/shared/intl/i18n';
+import Link from '@/shared/components/link';
 
 import NavLink from './nav-link.vue';
 import NavMenu from './nav-menu.jsx';
@@ -37,6 +38,7 @@ export default {
     'nav-link': NavLink,
     'nav-menu': NavMenu,
     'language-menu': LanguageMenu,
+    'a-link': Link,
   },
   data() {
     return {

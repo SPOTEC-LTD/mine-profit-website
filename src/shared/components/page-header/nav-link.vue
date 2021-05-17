@@ -1,12 +1,11 @@
 <template>
   <c-link :to="href">
-    <div class="nav-link" :class="{ 'nav-link--active': isActive }">
+    <div class="nav-link">
       <div class="nav-link-content">
         <slot />
       </div>
       <img
-        v-if="isActive"
-        class="nav-link-active-mark"
+        class="nav-link-active-mark mark-hidden"
         src="@/assets/active.png"
         alt=""
       >
@@ -24,19 +23,6 @@ export default {
     'c-link': Link,
   },
 
-  props: ['href', 'isNavActivated'],
-
-  computed: {
-    isActive() {
-      if (this.isNavActivated) {
-        return this.isNavActivated(this.href, this.$route.path);
-      }
-      return this.href === this.$route.path;
-    },
-  },
+  props: ['href'],
 };
 </script>
-
-<style lang="less">
-@import './nav-link.less';
-</style>
