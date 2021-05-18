@@ -54,7 +54,7 @@ const buildI18n = () => {
 
 buildI18n();
 if (process.env.NODE_ENV !== 'production') {
-console.log('process.env.NODE_ENV232', process.env.NODE_ENV);
+  console.log('process.env.NODE_ENV232', process.env.NODE_ENV);
 
   checkI18n();
 }

@@ -90,6 +90,11 @@ export default {
     },
 
     loaders: {
+      cssModules: {
+        modules: {
+          localIdentName: '[local]_[hash:base64:5]'
+        }
+      },
       less: {
         lessOptions: {
           strictMath: false,
