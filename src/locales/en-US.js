@@ -5,7 +5,6 @@ export default {
   "commonProblem": "Common problem",
   "searchPrompt": "There are common search results for \"{searchValue}\"",
   "number": "Article",
-  "abnormalSettlement": "异常结算 {msg}",
   "check": "View",
   "clear": "Clear",
   "mineData": "Pool stats",

@@ -5,7 +5,6 @@ export default {
   "commonProblem": "常见问题",
   "searchPrompt": "关于“{searchValue}”的搜索结果共有",
   "number": "条",
-  "abnormalSettlement": "异常结算 {msg}",
   "check": "查看",
   "clear": "清除",
   "mineData": "矿场数据",
