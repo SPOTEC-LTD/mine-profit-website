@@ -1,5 +1,5 @@
-import en from '../../locales/en-US';
-import zh from '../../locales/zh-CN';
+import en from '../../locales/en-US.json';
+import zh from '../../locales/zh-CN.json';
 
 export const EN = 'en';
 export const ZH = 'zh';

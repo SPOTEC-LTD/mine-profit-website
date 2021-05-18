@@ -44,11 +44,11 @@ const buildI18n = () => {
     messagesObject[key] = value;
   });
 
-  const content = `/* eslint-disable */\nexport default ${JSON.stringify(messagesObject, null, 2)}`;
+  const content = JSON.stringify(messagesObject, null, 2);
 
   !fs.existsSync('src/locales') && fs.mkdirSync('src/locales');
-  !fs.existsSync('src/locales/en-US.js') && fs.writeFileSync('src/locales/en-US.js', '');
-  fs.writeFileSync('src/locales/zh-CN.js', content);
+  !fs.existsSync('src/locales/en-US.json') && fs.writeFileSync('src/locales/en-US.json', '');
+  fs.writeFileSync('src/locales/zh-CN.json', content);
   console.log(colors.green(('i18n Compiled successfully')));
 };
 
