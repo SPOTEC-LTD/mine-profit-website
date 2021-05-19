@@ -1,18 +1,18 @@
 <template>
   <div class="page-header">
     <div class="page-header-container">
-      <a-link to="/">
-        <img class="page-header-logo" src="~/assets/logo-black.png" alt="MINE PROFIT">
-      </a-link>
+      <ALink to="/">
+        <img class="page-header-logo" src="~/assets/logo-black.png" alt="MINE PROFIT" />
+      </ALink>
       <div class="page-header-nav">
-        <nav-link href="/">{{ $t('home') }}</nav-link>
-        <nav-link href="/ecosphere">{{ $t('ecosphere') }}</nav-link>
-        <nav-menu href-prefix="/newsAnnouncement" :items="items">{{ $t('newsAnnouncement') }}</nav-menu>
-        <nav-link href="/help">{{ $t('helpCenter') }}</nav-link>
-        <language-menu :items="languageItems">{{ $t('language') }}</language-menu>
-        <a-button class="page-header-download" type="primary" @click="redirectToDownloadGuidePage">
+        <NavLink href="/">{{ $t('home') }}</NavLink>
+        <NavLink href="/ecosphere">{{ $t('ecosphere') }}</NavLink>
+        <NavMenu href-prefix="/newsAnnouncement" :items="items">{{ $t('newsAnnouncement') }}</NavMenu>
+        <NavLink href="/help">{{ $t('helpCenter') }}</NavLink>
+        <LanguageMenu :items="languageItems">{{ $t('language') }}</LanguageMenu>
+        <Button class="page-header-download" type="primary" @click="redirectToDownloadGuidePage">
           {{ $t('downloadNow') }}
-        </a-button>
+        </Button>
       </div>
     </div>
   </div>
@@ -34,11 +34,11 @@ import LanguageMenu from './language-menu.jsx';
 
 export default {
   components: {
-    'a-button': Button,
-    'nav-link': NavLink,
-    'nav-menu': NavMenu,
-    'language-menu': LanguageMenu,
-    'a-link': Link,
+    Button,
+    NavLink,
+    NavMenu,
+    LanguageMenu,
+    ALink: Link,
   },
   data() {
     return {
