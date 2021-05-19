@@ -92,7 +92,7 @@ module.exports = {
     'vue/attribute-hyphenation': 0,
     'vue/component-name-in-template-casing': ['error', 'PascalCase', {
       registeredComponentsOnly: false,
-      ignores: [],
+      ignores: ['transition'],
     }],
   },
 };
