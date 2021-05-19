@@ -1,20 +1,20 @@
 <template>
   <div>
     <div class="business-process-container">
-      <square-dots-icon class="business-square-line-icon" />
-      <square-dots-icon class="business-square-icon" />
-      <block-title
+      <SquareDotsIcon class="business-square-line-icon" />
+      <SquareDotsIcon class="business-square-icon" />
+      <BlockTitle
         :img="businessProcessImage"
         class="business-process-title-image"
         :title="isChinese && $t('businessProcess')"
       />
       <div class="process-details">
-        <business-process-item
+        <BusinessProcessItem
           :business-process="businessProcess"
           :active-index="activeIndex"
           @changeActivesIndex="changeActivesIndex"
         />
-        <video-group
+        <VideoGroup
           :video-groupe="videoGroupe"
           :active-index="activeIndex"
           @onEnded="onEnded"
@@ -36,16 +36,16 @@ import ShoppingBagOutlined from 'ahoney/lib/icons/ShoppingBagOutlined';
 import MultipleRoundOutlined from 'ahoney/lib/icons/MultipleRoundOutlined';
 import ShovelOutlined from 'ahoney/lib/icons/ShovelOutlined';
 import BOutlined from 'ahoney/lib/icons/BOutlined';
-import businessProcessItem from '@/pages/home/component/business-process-item';
-import VideoGroup from '@/pages/home/component/video-group';
+import BusinessProcessItem from '@/pages/home/component/BusinessProcessItem';
+import VideoGroup from '@/pages/home/component/VideoGroup';
 import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 
 export default {
   components: {
-    'block-title': BlockTitle,
-    'square-dots-icon': SquareDotsIcon,
-    'business-process-item': businessProcessItem,
-    'video-group': VideoGroup,
+    BlockTitle,
+    SquareDotsIcon,
+    BusinessProcessItem,
+    VideoGroup,
   },
   data() {
     return {
