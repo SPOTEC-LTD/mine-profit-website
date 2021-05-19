@@ -1,10 +1,13 @@
 <template>
-  <a-link target="_blank" class="news-wrapper" :to="{ path: '/announcementDetail/:id', params:{ id: info.id }}">
-    <div class="news-date">
-      {{ updateTime }}
+  <ALink target="_blank" class="news-wrapper" :to="{ path: '/recommendDetail/:id', params:{ id: info.id }}">
+    <div class="image-wrapper">
+      <img class="news-image" :src="info.imageUrl" alt="" />
     </div>
-    <div class="news-title">{{ info.title }}</div>
-  </a-link>
+    <span class="news-date">{{
+      updateTime
+    }}</span>
+    <span class="news-title">{{ info.title }}</span>
+  </ALink>
 </template>
 
 <script>
@@ -12,8 +15,9 @@ import dateUtils from '@/shared/intl/utils/dateUtils';
 import Link from '@/shared/components/link';
 
 export default {
+  name: 'NewsItem',
   components: {
-    'a-link': Link,
+    ALink: Link,
   },
   props: {
     info: {
@@ -33,5 +37,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  @import "./index.less";
+@import "./index.less";
 </style>

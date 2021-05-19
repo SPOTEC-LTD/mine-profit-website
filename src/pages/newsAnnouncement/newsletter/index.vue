@@ -1,8 +1,8 @@
 <template>
-  <a-spin :spinning="loading">
+  <Spin :spinning="loading">
     <div class="news-content">
       <div class="news-box">
-        <news-item
+        <NewsItem
           v-for="(item, index) in newsletterList"
           :key="index"
           :info="item"
@@ -10,7 +10,7 @@
       </div>
       <div v-if="noData" class="no-data">{{ $t('allContentLoaded') }}</div>
     </div>
-  </a-spin>
+  </Spin>
 </template>
 
 <script>
@@ -19,13 +19,13 @@ import { getNewsletterList } from '@/api';
 import { NEWSLETTER } from '@/shared/consts/newsType';
 import { SHOW } from '@/shared/consts/visible';
 import getLocalLanguage from '@/shared/utils/getLocalLanguage';
-import NewsItem from './news-item/index.vue';
+import NewsItem from './NewsItem/index.vue';
 import scrollEvent from '../scrollEvent';
 
 export default {
   components: {
-    'news-item': NewsItem,
-    'a-spin': Spin,
+    NewsItem,
+    Spin,
   },
   data() {
     return {
