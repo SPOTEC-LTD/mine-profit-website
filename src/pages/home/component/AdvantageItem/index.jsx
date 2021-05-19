@@ -1,6 +1,6 @@
 import './index.less';
 
-const advantageItem = {
+const AdvantageItem = {
   props: ['advantages'],
   render() {
     return (
@@ -19,4 +19,4 @@ const advantageItem = {
   },
 };
 
-export default advantageItem;
+export default AdvantageItem;

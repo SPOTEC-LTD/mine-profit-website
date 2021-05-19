@@ -2,7 +2,7 @@ import './index.less';
 import classNames from 'classnames';
 import throttle from 'lodash/throttle';
 
-const businessProcessItem = {
+const BusinessProcessItem = {
   props: ['businessProcess', 'activeIndex'],
   methods: {
     handleHover(index) {
@@ -35,4 +35,4 @@ const businessProcessItem = {
   },
 };
 
-export default businessProcessItem;
+export default BusinessProcessItem;

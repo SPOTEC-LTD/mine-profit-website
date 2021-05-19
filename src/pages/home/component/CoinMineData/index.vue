@@ -2,7 +2,7 @@
   <div :class="[className, 'coin-data']">
     <div class="coin-title">
       <div class="name-icon">
-        <img :src="img" alt="">
+        <img :src="img" alt="" />
         <span>{{ title }}</span>
       </div>
 

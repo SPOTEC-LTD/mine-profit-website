@@ -1,15 +1,15 @@
 <template>
   <div>
     <div class="subject-summary-container">
-      <square-dots-icon class="summary-dots-icon" />
+      <SquareDotsIcon class="summary-dots-icon" />
       <div class="subject-summary-img">
-        <a-carousel autoplay>
-          <img v-for="item in finallySummaryImg" :key="item.id" :src="item.src" alt="">
-        </a-carousel>
+        <Carousel autoplay>
+          <img v-for="item in finallySummaryImg" :key="item.id" :src="item.src" alt="" />
+        </Carousel>
       </div>
       <div class="subject-summary-content-container">
         <div class="subject-summary-content">
-          <block-title :img="aboutTitleImage" class="about-title-image" :title="isChinese && $t('essayHashRate')" />
+          <BlockTitle :img="aboutTitleImage" class="about-title-image" :title="isChinese && $t('essayHashRate')" />
           <div class="summary-content-text">
             <div class="introduce-detail">{{ $t('basicIntroduce') }} </div>
             <div class="introduce-detail">{{ $t('secondParagraphIntroduce') }} </div>
@@ -37,9 +37,9 @@ import enSummaryImg3 from '@/assets/home/en-summary-img-3.png';
 
 export default {
   components: {
-    'block-title': BlockTitle,
-    'square-dots-icon': SquareDotsIcon,
-    'a-carousel': Carousel,
+    BlockTitle,
+    SquareDotsIcon,
+    Carousel,
   },
 
   data() {
