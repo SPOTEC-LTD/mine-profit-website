@@ -1,8 +1,8 @@
 <template>
   <div class="mine-data-container">
-    <block-title :img="blockChain" class="mine-data-title-image" :title="isChinese && $t('mineData')" />
+    <BlockTitle :img="blockChain" class="mine-data-title-image" :title="isChinese && $t('mineData')" />
     <div class="coin-data-container">
-      <coin-mine-data
+      <CoinMineData
         :img="btcIcon"
         :title="BTCData.symbol"
         :now-hash-rate="BTCData.hashrate"
@@ -10,7 +10,7 @@
         :usdt-produce="BTCData.incomeUsd"
         class-name="btc-container"
       />
-      <coin-mine-data
+      <CoinMineData
         :img="ethIcon"
         :title="ETHData.symbol"
         :now-hash-rate="ETHData.hashrate"
@@ -25,7 +25,7 @@
 <script>
 import { getMineDatalist } from '@/api';
 import numberUtils from 'aa-utils/lib/numberUtils';
-import coinMineData from '@/pages/home/component/coin-mine-data';
+import CoinMineData from '@/pages/home/component/CoinMineData';
 import BlockTitle from '@/pages/home/component/block-title';
 import getHashrateUnit from '@/shared/utils/getHashrateUnit';
 import blockChain from '@/assets/home/block-chain-title.png';
@@ -35,8 +35,8 @@ import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 
 export default {
   components: {
-    'block-title': BlockTitle,
-    'coin-mine-data': coinMineData,
+    BlockTitle,
+    CoinMineData,
   },
   data() {
     return {

@@ -1,18 +1,18 @@
 <template>
   <div>
     <div class="our-advantage-container">
-      <square-dots-icon class="square-line-icon" />
-      <square-dots-icon class="square-right-icon" />
-      <block-title :img="advantageTitleImage" class="advantage-title-image" :title="isChinese && $t('ourAdvantage')" />
-      <advantage-item :advantages="advantages" />
-      <square-dots-icon class="square-blue-icon" />
+      <SquareDotsIcon class="square-line-icon" />
+      <SquareDotsIcon class="square-right-icon" />
+      <BlockTitle :img="advantageTitleImage" class="advantage-title-image" :title="isChinese && $t('ourAdvantage')" />
+      <AdvantageItem :advantages="advantages" />
+      <SquareDotsIcon class="square-blue-icon" />
     </div>
   </div>
 </template>
 
 <script>
 import SquareDotsIcon from '@/pages/home/component/square-dots-icon';
-import AdvantageItem from '@/pages/home/component/advantage-item';
+import AdvantageItem from '@/pages/home/component/AdvantageItem';
 import CloudOutlined from 'ahoney/lib/icons/CloudOutlined';
 import LightningOutlined from 'ahoney/lib/icons/LightningOutlined';
 import UmbrellaOutlined from 'ahoney/lib/icons/UmbrellaOutlined';
@@ -24,9 +24,9 @@ import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 
 export default {
   components: {
-    'advantage-item': AdvantageItem,
-    'square-dots-icon': SquareDotsIcon,
-    'block-title': BlockTitle,
+    AdvantageItem,
+    SquareDotsIcon,
+    BlockTitle,
   },
 
   data() {

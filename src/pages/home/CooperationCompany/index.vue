@@ -1,7 +1,7 @@
 <template>
   <div class="cooperation-container">
     <div class="cooperation-company-container">
-      <block-title
+      <BlockTitle
         :img="cooperationTitleImage"
         class="cooperation-title-image"
         :title="isChinese && $t('cooperationPartner')"
@@ -11,9 +11,9 @@
         <div>{{ $t('companyPartner') }}</div>
       </div>
     </div>
-    <square-dots-icon class="cooperation-left-icon" />
+    <SquareDotsIcon class="cooperation-left-icon" />
     <div>
-      <cooperation-map />
+      <CooperationMap />
     </div>
   </div>
 </template>
@@ -22,15 +22,15 @@
 
 import SquareDotsIcon from '@/pages/home/component/square-dots-icon';
 import BlockTitle from '@/pages/home/component/block-title';
-import cooperationMap from '@/pages/home/component/cooperation-map';
+import CooperationMap from '@/pages/home/component/CooperationMap';
 import cooperationTitleImage from '@/assets/home/cooperation-company.png';
 import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 
 export default {
   components: {
-    'square-dots-icon': SquareDotsIcon,
-    'block-title': BlockTitle,
-    'cooperation-map': cooperationMap,
+    SquareDotsIcon,
+    BlockTitle,
+    CooperationMap,
   },
 
   data() {
