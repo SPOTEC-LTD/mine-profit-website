@@ -1,37 +1,37 @@
 <template>
-  <base-container>
-    <a-tabs destroy-inactive-tab-pane :default-active-key="active" @change="callback">
-      <a-tab-pane :key="RECOMMEND" :tab="$t('recommendArticle')">
-        <m-recommend />
-      </a-tab-pane>
-      <a-tab-pane :key="NEWSLETTER" :tab="$t('newsletter')">
-        <m-newsletter />
-      </a-tab-pane>
-      <a-tab-pane :key="ANNOUNCEMENT" :tab="$t('announcement')">
-        <m-announcement />
-      </a-tab-pane>
-    </a-tabs>
-  </base-container>
+  <BaseContainer>
+    <Tabs destroyInactiveTabPane :defaultActiveKey="active" @change="callback">
+      <TabPane :key="RECOMMEND" :tab="$t('recommendArticle')">
+        <Recommend />
+      </TabPane>
+      <TabPane :key="NEWSLETTER" :tab="$t('newsletter')">
+        <Newsletter />
+      </TabPane>
+      <TabPane :key="ANNOUNCEMENT" :tab="$t('announcement')">
+        <Announcement />
+      </TabPane>
+    </Tabs>
+  </BaseContainer>
 </template>
 
 <script>
 import { Tabs } from 'ant-design-vue';
-import BaseContainer from '@/shared/components/base-container';
+import BaseContainer from '@/shared/components/BaseContainer';
 import { RECOMMEND, NEWSLETTER, ANNOUNCEMENT } from '@/shared/consts/newsType';
-import Recommend from './recommend/index.vue';
-import Newsletter from './newsletter/index.vue';
-import Announcement from './announcement/index.vue';
+import Recommend from './Recommend/index.vue';
+import Newsletter from './Newsletter/index.vue';
+import Announcement from './Announcement/index.vue';
 
 const { TabPane } = Tabs;
 
 export default {
   components: {
-    'a-tabs': Tabs,
-    'a-tab-pane': TabPane,
-    'm-recommend': Recommend,
-    'base-container': BaseContainer,
-    'm-newsletter': Newsletter,
-    'm-announcement': Announcement,
+    Tabs,
+    TabPane,
+    Recommend,
+    BaseContainer,
+    Newsletter,
+    Announcement,
   },
   data() {
     return {

@@ -1,5 +1,5 @@
 <template>
-  <base-container>
+  <BaseContainer>
     <div class="detail-wrapper">
       <div class="title-wrapper">
         <div class="detail-date">{{ updateTime }}</div>
@@ -7,17 +7,17 @@
       </div>
       <div class="detail-content" v-html="detail.content" />
     </div>
-  </base-container>
+  </BaseContainer>
 </template>
 
 <script>
-import BaseContainer from '@/shared/components/base-container';
+import BaseContainer from '@/shared/components/BaseContainer';
 import dateUtils from '@/shared/intl/utils/dateUtils';
 import { fetchGoodNewsDetail } from '@/api';
 
 export default {
   components: {
-    'base-container': BaseContainer,
+    BaseContainer,
   },
 
   async asyncData({ params, redirect }) {
