@@ -1,28 +1,28 @@
 <template>
-  <a-link target="_blank" class="question-wrapper" :to="{ path: '/questionDetail/:id', params:{ id }}">
-    <text-highlighter
+  <ALink target="_blank" class="question-wrapper" :to="{ path: '/questionDetail/:id', params:{ id }}">
+    <TextHighlighter
       v-if="isHighlight"
       class="question-item"
-      :search-words="[resultKeyWord]"
-      :auto-escape="true"
-      :text-to-highlight="question"
+      :searchWords="[resultKeyWord]"
+      :autoEscape="true"
+      :textToHighlight="question"
     />
     <div v-else class="question-item">
       {{ question }}
     </div>
-  </a-link>
+  </ALink>
 </template>
 
 <script>
 import TextHighlighter from 'vue-highlight-words';
 import locationServices from '@/shared/services/location/locationServices';
-import Link from '@/shared/components/link';
+import ALink from '@/shared/components/link';
 
 export default {
   name: 'QuestionItem',
   components: {
-    'text-highlighter': TextHighlighter,
-    'a-link': Link,
+    TextHighlighter,
+    ALink,
   },
   props: {
     question: {

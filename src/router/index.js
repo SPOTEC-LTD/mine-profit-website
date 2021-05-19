@@ -6,7 +6,7 @@ import Help from '@/pages/help';
 import NewsAnnouncement from '@/pages/newsAnnouncement';
 import RecommendDetail from '@/pages/newsAnnouncement/recommend/detail';
 import AnnouncementDetail from '@/pages/newsAnnouncement/announcement/detail';
-import QuestionDetail from '@/pages/help/detail';
+import QuestionDetail from '@/pages/help/Detail';
 import NotFound from '@/pages/404';
 import MeetError from '@/pages/500';
 import Download from '@/pages/download';
