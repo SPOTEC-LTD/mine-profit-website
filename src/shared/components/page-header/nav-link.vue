@@ -1,5 +1,5 @@
 <template>
-  <c-link :to="href">
+  <ALink :to="href">
     <div class="nav-link">
       <div class="nav-link-content">
         <slot />
@@ -8,9 +8,9 @@
         class="nav-link-active-mark mark-hidden"
         src="@/assets/active.png"
         alt=""
-      >
+      />
     </div>
-  </c-link>
+  </ALink>
 </template>
 
 <script>
@@ -20,7 +20,7 @@ export default {
   name: 'NavLink',
 
   components: {
-    'c-link': Link,
+    ALink: Link,
   },
 
   props: ['href'],

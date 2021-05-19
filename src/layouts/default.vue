@@ -1,19 +1,19 @@
 <template>
-  <a-config-provider prefix-cls="mp">
+  <ConfigProvider prefix-cls="mp">
     <div>
-      <page-header />
-      <a-modal
+      <PageHeader />
+      <Modal
         title="Title"
         :visible="false"
       >
         <p>asdfasfasdf</p>
-      </a-modal>
+      </Modal>
       <div class="layout" :style="{'overflow-x': overflowxHidden ? 'auto' : 'hidden'}">
         <Nuxt />
       </div>
-      <page-footer v-if="withFooter" />
+      <PageFooter v-if="withFooter" />
     </div>
-  </a-config-provider>
+  </ConfigProvider>
 </template>
 
 <script>
@@ -27,10 +27,10 @@ import { getZendesk } from '@/api';
 
 export default {
   components: {
-    'a-config-provider': ConfigProvider,
-    'page-header': PageHeader,
-    'page-footer': PageFooter,
-    'a-modal': Modal,
+    ConfigProvider,
+    PageHeader,
+    PageFooter,
+    Modal,
   },
   props: {
     overflowxHidden: {

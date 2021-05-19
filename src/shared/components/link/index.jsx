@@ -4,7 +4,7 @@ import locationServices from '@/shared/services/location/locationServices';
 const ALink = {
   props: ['to', 'isReload'],
   computed: {
-    finalyTo() {
+    finlayTo() {
       if (isObject(this.to)) {
         const { path, query = {}, params = {} } = this.to;
         return locationServices.buildURL(path, { query, params });
@@ -20,12 +20,12 @@ const ALink = {
     };
 
     return this.isReload ? (
-      <a {...props} href={this.finalyTo}>
+      <a {...props} href={this.finlayTo}>
         {this.$slots.default}
       </a>
     )
       : (
-      <router-link {...props} to={this.finalyTo}>
+      <router-link {...props} to={this.finlayTo}>
         {this.$slots.default}
       </router-link>
       );
