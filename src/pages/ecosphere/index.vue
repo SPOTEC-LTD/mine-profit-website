@@ -37,7 +37,7 @@ import { fetchAppVersion } from '@/api';
 import throttle from 'lodash/throttle';
 
 import QRcode from '@/shared/components/qrcode';
-import BaseContainer from '@/shared/components/base-container';
+import BaseContainer from '@/shared/components/BaseContainer';
 import bannerFontsImg from '@/assets/ecosphere/bannerfonts.png';
 import hashRateEcosphere from '@/pages/ecosphere/hashRate-ecosphere';
 import stakingMarket from '@/pages/ecosphere/staking-market';

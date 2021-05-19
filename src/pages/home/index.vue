@@ -35,7 +35,7 @@
 <script>
 import { Button } from 'ant-design-vue';
 import QrCode from 'ahoney/lib/icons/QrCode';
-import BaseContainer from '@/shared/components/base-container';
+import BaseContainer from '@/shared/components/BaseContainer';
 import SubjectSummary from '@/pages/home/SubjectSummary';
 import OurAdvantage from '@/pages/home/OurAdvantage';
 import OurVision from '@/pages/home/OurVision';
