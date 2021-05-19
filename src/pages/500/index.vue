@@ -1,12 +1,12 @@
 <template>
   <div class="meet-error">
-    <img src="@/assets/svg/500.svg" alt="MEET ERROR - 500">
+    <img src="@/assets/svg/500.svg" alt="MEET ERROR - 500" />
     <div class="hint">
       {{ $t('sorryPageMeetsError') }}
     </div>
-    <a-button class="back" type="primary" size="large" @click="forwardHome">
+    <Button class="back" type="primary" size="large" @click="forwardHome">
       {{ $t('backHome') }}
-    </a-button>
+    </Button>
   </div>
 </template>
 
@@ -16,7 +16,7 @@ import locationServices from '@/shared/services/location/locationServices';
 
 export default {
   components: {
-    'a-button': Button,
+    Button,
   },
 
   methods: {
