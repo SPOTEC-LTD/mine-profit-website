@@ -1,23 +1,23 @@
 <template>
   <div class="wrapper">
     <div class="banner-background" />
-    <base-container>
+    <BaseContainer>
       <div class="banner">
         <div>
-          <img class="banner-text-img" src="@/assets/help/banner-text.png" alt="">
+          <img class="banner-text-img" src="@/assets/help/banner-text.png" alt="" />
         </div>
-        <a-input
+        <AInput
           v-model="searchValue"
-          :max-length="30"
+          :maxLength="30"
           class="search-input"
           :placeholder="$t('searchInputPlaceholder')"
           @keyup.enter="onClickSearch"
         >
           <div slot="suffix" class="search-button" @click="onClickSearch">
-            <search-outlined />
+            <SearchOutlined />
             <span>{{ $t('search') }}</span>
           </div>
-        </a-input>
+        </AInput>
       </div>
       <div ref="boxRef" class="question-result-box">
         <transition
@@ -26,14 +26,14 @@
         >
           <div v-show="isVisibleQuestion" class="question">
             <div class="question-top">
-              <img class="question-top-img" src="@/assets/help/question-text.png" alt="">
+              <img class="question-top-img" src="@/assets/help/question-text.png" alt="" />
               <span v-if="isChinese" class="question-top-text">{{ $t('commonProblem') }}</span>
             </div>
-            <a-spin :spinning="loading">
+            <Spin :spinning="loading">
               <div class="question-content">
-                <question-item v-for="(item,index) in questionList" :id="item.id" :key="index" :question="item.question" />
+                <QuestionItem v-for="(item,index) in questionList" :id="item.id" :key="index" :question="item.question" />
               </div>
-            </a-spin>
+            </Spin>
           </div>
         </transition>
         <transition
@@ -42,52 +42,51 @@
         >
           <div v-show="isVisibleResult" ref="resultRef" class="search-result">
             <div class="search-result-top">
-              <img class="back-icon" src="@/assets/help/left-arrow.png" alt="" @click="backQuestion">
+              <img class="back-icon" src="@/assets/help/left-arrow.png" alt="" @click="backQuestion" />
               <span>
                 {{ $t('searchPrompt', { searchValue: resultSearchValue }) }}
                 <span class="result-number">{{ resultNumber }}</span>
                 {{ $t('number') }}
               </span>
             </div>
-            <a-spin :spinning="loading">
+            <Spin :spinning="loading">
               <div v-if="resultNumber !== 0" class="result-box">
-                <question-item
+                <QuestionItem
                   v-for="(item,index) in resultList"
                   :id="item.id"
                   :key="index"
-                  is-highlight
-                  :result-key-word="resultSearchValue"
+                  isHighlight
+                  :resultKeyWord="resultSearchValue"
                   :question="item.question"
                 />
               </div>
               <div v-else class="no-result">
-                <img src="@/assets/help/no-result.png" alt="">
+                <img src="@/assets/help/no-result.png" alt="" />
               </div>
-            </a-spin>
+            </Spin>
           </div>
         </transition>
       </div>
-    </base-container>
+    </BaseContainer>
   </div>
 </template>
 
 <script>
-import Input from 'ant-design-vue/lib/input';
-import Spin from 'ant-design-vue/lib/spin';
+import { Input, Spin } from 'ant-design-vue';
 import SearchOutlined from 'ahoney/lib/icons/SearchOutlined';
-import BaseContainer from '@/shared/components/base-container';
+import BaseContainer from '@/shared/components/BaseContainer';
 import { fetchQuestionList } from '@/api';
 import { SHOW } from '@/shared/consts/visible';
 import { getLocalLanguage, getIsChinese } from '@/shared/utils/getLocalLanguage';
-import QuestionItem from './question-item/index.vue';
+import QuestionItem from './QuestionItem/index.vue';
 
 export default {
   components: {
-    'base-container': BaseContainer,
-    'a-input': Input,
-    'a-spin': Spin,
-    'search-outlined': SearchOutlined,
-    'question-item': QuestionItem,
+    BaseContainer,
+    AInput: Input,
+    Spin,
+    SearchOutlined,
+    QuestionItem,
   },
   data() {
     return {
