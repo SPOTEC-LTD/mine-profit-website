@@ -20,8 +20,8 @@
 
 <script>
 
-import SquareDotsIcon from '@/pages/home/component/square-dots-icon';
-import BlockTitle from '@/pages/home/component/block-title';
+import SquareDotsIcon from '@/shared/components/SquareDotsIcon';
+import BlockTitle from '@/shared/components/BlockTitle';
 import CooperationMap from '@/pages/home/component/CooperationMap';
 import cooperationTitleImage from '@/assets/home/cooperation-company.png';
 import { getIsChinese } from '@/shared/utils/getLocalLanguage';

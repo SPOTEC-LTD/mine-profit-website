@@ -1,20 +1,20 @@
 <template>
   <div>
-    <base-container class="background-container">
+    <BaseContainer class="background-container">
       <div class="top-content">
         <div>
-          <img :src="bannerFontsImg" class="banner-fonts" alt="">
+          <img :src="bannerFontsImg" class="banner-fonts" alt="" />
           <div class="scan-download">
             <div class="qrcode">
-              <qrcode :value="`${mobileSiteHost}/download/pre-dispatch`" />
+              <QRcode :value="`${mobileSiteHost}/download/pre-dispatch`" />
             </div>
             <div class="download-text">
               <div class="apple-download">
-                <img src="@/assets/download/apple.png" alt="">
+                <img src="@/assets/download/apple.png" alt="" />
                 <div>{{ $t('appVersion') }} {{ iosVersion }}</div>
               </div>
               <div class="android-download">
-                <img src="@/assets/download/android.png" alt="">
+                <img src="@/assets/download/android.png" alt="" />
                 <div>{{ $t('appVersion') }} {{ androidVersion }}</div>
               </div>
               <div class="download-right-now">{{ $t('downloadRightNow') }}</div>
@@ -22,13 +22,13 @@
           </div>
         </div>
       </div>
-    </base-container>
-    <base-container>
-      <hashRate-ecosphere />
-      <c2c-market :isC2CAnimate="isC2CAnimate" />
-      <staking-market :isStakingAnimate="isStakingAnimate" />
-      <cooperation-partner />
-    </base-container>
+    </BaseContainer>
+    <BaseContainer>
+      <HashRateEcosphere />
+      <C2CMarket :isC2CAnimate="isC2CAnimate" />
+      <StakingMarket :isStakingAnimate="isStakingAnimate" />
+      <CooperationPartner />
+    </BaseContainer>
   </div>
 </template>
 
@@ -39,19 +39,19 @@ import throttle from 'lodash/throttle';
 import QRcode from '@/shared/components/qrcode';
 import BaseContainer from '@/shared/components/BaseContainer';
 import bannerFontsImg from '@/assets/ecosphere/bannerfonts.png';
-import hashRateEcosphere from '@/pages/ecosphere/hashRate-ecosphere';
-import stakingMarket from '@/pages/ecosphere/staking-market';
-import c2cMarket from '@/pages/ecosphere/c2c-market';
-import cooperationPartner from '@/pages/ecosphere/cooperation-partner';
+import HashRateEcosphere from '@/pages/ecosphere/HashRateEcosphere';
+import StakingMarket from '@/pages/ecosphere/StakingMarket';
+import C2CMarket from '@/pages/ecosphere/C2CMarket';
+import CooperationPartner from '@/pages/ecosphere/CooperationPartner';
 
 export default {
   components: {
-    qrcode: QRcode,
-    'base-container': BaseContainer,
-    'hashRate-ecosphere': hashRateEcosphere,
-    'c2c-market': c2cMarket,
-    'staking-market': stakingMarket,
-    'cooperation-partner': cooperationPartner,
+    QRcode,
+    BaseContainer,
+    HashRateEcosphere,
+    C2CMarket,
+    StakingMarket,
+    CooperationPartner,
   },
 
   async asyncData() {
