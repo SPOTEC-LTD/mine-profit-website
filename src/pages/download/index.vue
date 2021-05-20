@@ -186,7 +186,7 @@
 import { fetchAppVersion } from '@/api';
 
 import QRcode from '@/shared/components/qrcode';
-import SquareDotsIcon from '@/pages/home/component/square-dots-icon';
+import SquareDotsIcon from '@/pages/home/component/SquareDotsIcon';
 import { EN } from '@/shared/intl/i18n';
 
 import GlassSquare from './GlassSquare.vue';

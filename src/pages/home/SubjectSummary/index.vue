@@ -25,8 +25,8 @@
 import { Carousel } from 'ant-design-vue';
 import bannerPhoneImage from '@/assets/home/banner-phone.png';
 import aboutTitleImage from '@/assets/home/about-title.png';
-import BlockTitle from '@/pages/home/component/block-title';
-import SquareDotsIcon from '@/pages/home/component/square-dots-icon';
+import BlockTitle from '@/pages/home/component/BlockTitle';
+import SquareDotsIcon from '@/pages/home/component/SquareDotsIcon';
 import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 import cnSummaryImg1 from '@/assets/home/summary-img-1.png';
 import cnSummaryImg2 from '@/assets/home/summary-img-2.png';

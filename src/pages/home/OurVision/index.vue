@@ -21,7 +21,7 @@
 
 <script>
 
-import BlockTitle from '@/pages/home/component/block-title';
+import BlockTitle from '@/pages/home/component/BlockTitle';
 import OurMissionItem from '@/pages/home/component/OurMissionItem';
 import ourVision from '@/assets/home/our-vsion-title.png';
 import missionOneImg from '@/assets/home/mission-1.png';

@@ -26,7 +26,7 @@
 import { getMineDatalist } from '@/api';
 import numberUtils from 'aa-utils/lib/numberUtils';
 import CoinMineData from '@/pages/home/component/CoinMineData';
-import BlockTitle from '@/pages/home/component/block-title';
+import BlockTitle from '@/pages/home/component/BlockTitle';
 import getHashrateUnit from '@/shared/utils/getHashrateUnit';
 import blockChain from '@/assets/home/block-chain-title.png';
 import btcIcon from '@/assets/home/btc-icon.png';

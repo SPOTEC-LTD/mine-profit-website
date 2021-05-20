@@ -1,26 +1,26 @@
 <template>
   <div div class="cooperation-partner-container">
-    <block-title
+    <BlockTitle
       :img="cooperationPartnerImg"
       class="cooperation-title-img"
       :title="isChinese && $t('globalCooperationPartnersHunting')"
     />
-    <square-dots-icon class="cooperation-dots-icon" />
-    <square-dots-icon class="cooperation-dots-line-icon" />
+    <SquareDotsIcon class="cooperation-dots-icon" />
+    <SquareDotsIcon class="cooperation-dots-line-icon" />
     <div class="cooperation-partner-content">
       <div class="text-container">
         <div>{{ $t('huntCooperatorToDevelopMarket') }}</div>
         <div class="welcome-contact-us">{{ $t('welcomeContactUs') }}</div>
       </div>
       <div class="img-container">
-        <img :src="earthImg" alt="" class="earth-img">
+        <img :src="earthImg" alt="" class="earth-img" />
         <div class="mature-mining-farm-img">
           <span class="mature-mining-text">{{ $t('forMatureMiningFarm') }}</span>
-          <img :src="matureMiningFarmImg" alt="">
+          <img :src="matureMiningFarmImg" alt="" />
         </div>
         <div class="master-miner-img">
           <span class="master-miner-text">{{ $t('ForAMasterMiner') }}</span>
-          <img :src="masterMinerImg" alt="">
+          <img :src="masterMinerImg" alt="" />
         </div>
         <div class="gradient-container1" />
         <div class="gradient-container2" />
@@ -34,14 +34,14 @@ import cooperationPartnerImg from '@/assets/ecosphere/cooperation-partner-img.pn
 import earthImg from '@/assets/ecosphere/earth-shadow.png';
 import masterMinerImg from '@/assets/ecosphere/master-miner-img.png';
 import matureMiningFarmImg from '@/assets/ecosphere/mature-mining-farm-img.png';
-import BlockTitle from '@/pages/home/component/block-title';
-import SquareDotsIcon from '@/pages/home/component/square-dots-icon';
+import BlockTitle from '@/pages/home/component/BlockTitle';
+import SquareDotsIcon from '@/pages/home/component/SquareDotsIcon';
 import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 
 export default {
   components: {
-    'block-title': BlockTitle,
-    'square-dots-icon': SquareDotsIcon,
+    BlockTitle,
+    SquareDotsIcon,
   },
 
   data() {

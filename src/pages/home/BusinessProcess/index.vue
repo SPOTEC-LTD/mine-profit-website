@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import BlockTitle from '@/pages/home/component/block-title';
-import SquareDotsIcon from '@/pages/home/component/square-dots-icon';
+import BlockTitle from '@/pages/home/component/BlockTitle';
+import SquareDotsIcon from '@/pages/home/component/SquareDotsIcon';
 import businessProcessImage from '@/assets/home/business-process-title.png';
 import purchaceVideo from '@/assets/home/purchaceVideo.mp4';
 import cloudManagementVideo from '@/assets/home/cloudManagementVideo.mp4';
