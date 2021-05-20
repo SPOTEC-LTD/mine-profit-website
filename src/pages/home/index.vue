@@ -1,61 +1,63 @@
 <template>
   <div>
-    <base-container class="banner-container">
+    <BaseContainer class="banner-container">
       <div class="banner-content">
         <div>
           <div class="banner-text">
             <div>{{ $t('mineprofitName') }}</div>
             <div>{{ $t('topHashRateFlatForm') }}</div>
           </div>
-          <a-button type="primary" shape="round" class="download-button" size="large" @click="redirectToDownloadGuidePage">
-            <h-qrcode class-name="qr-code" />
+          <Button
+            type="primary"
+            shape="round"
+            class="download-button"
+            size="large"
+            @click="redirectToDownloadGuidePage"
+          >
+            <QrCode class-name="qr-code" />
             <span> {{ $t('dowLoadRightNow') }} </span>
-          </a-button>
+          </Button>
         </div>
-        <img :src="bannerPhoneImage" class="banner-phone" alt="">
+        <img src="@/assets/home/banner-phone.png" class="banner-phone" alt="" />
       </div>
-    </base-container>
-    <base-container>
-      <subject-summary />
-      <our-advantage />
-      <cooperation-company />
-      <business-process />
-      <block-chain-data />
-      <our-vision />
-    </base-container>
+    </BaseContainer>
+    <BaseContainer>
+      <SubjectSummary />
+      <OurAdvantage />
+      <CooperationCompany />
+      <BusinessProcess />
+      <BlockChainDate />
+      <OurVision />
+    </BaseContainer>
   </div>
 </template>
 
 <script>
 import { Button } from 'ant-design-vue';
 import QrCode from 'ahoney/lib/icons/QrCode';
-import BaseContainer from '@/shared/components/base-container';
-import bannerPhoneImage from '@/assets/home/banner-phone.png';
-import OurAdvantage from '@/pages/home/our-advantage';
-import SubjectSummary from '@/pages/home/subject-summary';
-import cooperationCompany from '@/pages/home/cooperation-company';
-import blockChainDate from '@/pages/home/block-chain-data';
-import ourVision from '@/pages/home/our-vision';
-import businessProcess from '@/pages/home/business-process';
-
+import BaseContainer from '@/shared/components/BaseContainer';
+import SubjectSummary from '@/pages/home/SubjectSummary';
+import OurAdvantage from '@/pages/home/OurAdvantage';
+import OurVision from '@/pages/home/OurVision';
+import CooperationCompany from '@/pages/home/CooperationCompany';
+import BusinessProcess from '@/pages/home/BusinessProcess';
+import BlockChainDate from '@/pages/home/BlockChainDate';
 import locationServices from '@/shared/services/location/locationServices';
 
 export default {
   components: {
-    'a-button': Button,
-    'h-qrcode': QrCode,
-    'base-container': BaseContainer,
-    'subject-summary': SubjectSummary,
-    'our-advantage': OurAdvantage,
-    'cooperation-company': cooperationCompany,
-    'block-chain-data': blockChainDate,
-    'our-vision': ourVision,
-    'business-process': businessProcess,
+    Button,
+    QrCode,
+    BaseContainer,
+    SubjectSummary,
+    OurAdvantage,
+    OurVision,
+    CooperationCompany,
+    BusinessProcess,
+    BlockChainDate,
   },
   data() {
-    return {
-      bannerPhoneImage,
-    };
+    return {};
   },
   methods: {
     redirectToDownloadGuidePage() {

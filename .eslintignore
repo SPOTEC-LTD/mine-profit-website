@@ -2,3 +2,4 @@
 nuxt.config.js
 node_modules
 test
+build/i18n/mergeTranslate.js

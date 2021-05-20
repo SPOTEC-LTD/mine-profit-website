@@ -20,7 +20,7 @@
 <script>
 import { Button, Select, Input } from 'ant-design-vue';
 
-import BaseContainer from '@/shared/components/base-container';
+import BaseContainer from '@/shared/components/BaseContainer';
 import locationHelp from '@/shared/utils/locationHelp';
 // import getUserInfo from '@/api';
 

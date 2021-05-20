@@ -55,11 +55,26 @@ module.exports = {
       },
     ],
     'vue/no-reserved-keys': 'off',
-    'vue/prop-name-casing': 'off',
+    'vue/prop-name-casing': ['error', 'camelCase'],
+    'vue/no-multi-spaces': ['error'],
+    'vue/no-spaces-around-equal-signs-in-attribute': ['error'],
     'no-param-reassign': 'off',
     'no-plusplus': 'off',
     'vue/singleline-html-element-content-newline': 'off',
     'no-unused-expressions': 'off',
+    'vue/html-end-tags': 0,
+    'vue/html-self-closing': ['error', {
+      html: {
+        void: 'always',
+        normal: 'always',
+        component: 'always',
+      },
+      svg: 'always',
+      math: 'always',
+    }],
+    'vue/html-closing-bracket-spacing': ['error', {
+      selfClosingTag: 'always',
+    }],
     'no-alert': 'off',
     'arrow-parens': ['error', 'as-needed'],
     'no-underscore-dangle': 0,
@@ -75,5 +90,9 @@ module.exports = {
       },
     ],
     'vue/attribute-hyphenation': 0,
+    'vue/component-name-in-template-casing': ['error', 'PascalCase', {
+      registeredComponentsOnly: false,
+      ignores: ['transition'],
+    }],
   },
 };

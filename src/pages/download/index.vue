@@ -3,53 +3,53 @@
     <div class="scenario-container">
       <div class="main-imgs">
         <transition name="fade-left-img1" mode="out-in">
-          <img v-if="isScenario1" class="img-0-1" src="@/assets/download/1-1.png" alt="">
+          <img v-if="isScenario1" class="img-0-1" src="@/assets/download/1-1.png" alt="" />
         </transition>
         <transition name="fade-left-img2" mode="out-in">
-          <img v-if="isScenario1" class="img-0-2" src="@/assets/download/1-2.png" alt="">
+          <img v-if="isScenario1" class="img-0-2" src="@/assets/download/1-2.png" alt="" />
         </transition>
-        <transition name="fade-left-img3" mode="out-in" @after-enter="setAnimationCompleted">
-          <img v-if="isScenario1" class="img-0-3" src="@/assets/download/1-3.png" alt="">
+        <transition name="fade-left-img3" mode="out-in" @afterEnter="setAnimationCompleted">
+          <img v-if="isScenario1" class="img-0-3" src="@/assets/download/1-3.png" alt="" />
         </transition>
         <transition name="fade-bottom-img1" mode="out-in">
-          <img v-if="isScenario2" class="img-1-1" src="@/assets/download/2-2.png" alt="">
+          <img v-if="isScenario2" class="img-1-1" src="@/assets/download/2-2.png" alt="" />
         </transition>
         <transition name="fade-bottom-img2" mode="out-in">
-          <img v-if="isScenario2" class="img-1-2" src="@/assets/download/2-3.png" alt="">
+          <img v-if="isScenario2" class="img-1-2" src="@/assets/download/2-3.png" alt="" />
         </transition>
         <transition name="fade-bottom-img3" mode="out-in">
-          <img v-if="isScenario2" class="img-1-3" src="@/assets/download/2-1.png" alt="">
+          <img v-if="isScenario2" class="img-1-3" src="@/assets/download/2-1.png" alt="" />
         </transition>
         <transition name="fade-delay" mode="out-in">
           <div v-if="isScenario2" class="img-shadow" />
         </transition>
-        <transition name="zoom-img4" mode="out-in" @after-enter="setAnimationCompleted">
-          <img v-if="isScenario2" class="img-1-4" src="@/assets/download/screen-shot.png" alt="">
+        <transition name="zoom-img4" mode="out-in" @afterEnter="setAnimationCompleted">
+          <img v-if="isScenario2" class="img-1-4" src="@/assets/download/screen-shot.png" alt="" />
         </transition>
         <transition name="fade-bottom-rotate-img1" mode="out-in">
-          <img v-if="isScenario3" class="img-2-1" src="@/assets/download/3-1.png" alt="">
+          <img v-if="isScenario3" class="img-2-1" src="@/assets/download/3-1.png" alt="" />
         </transition>
         <transition name="fade-bottom-rotate-img2" mode="out-in">
-          <img v-if="isScenario3" class="img-2-2" src="@/assets/download/3-2.png" alt="">
+          <img v-if="isScenario3" class="img-2-2" src="@/assets/download/3-2.png" alt="" />
         </transition>
-        <transition name="fade-bottom-rotate-img3" mode="out-in" @after-enter="setAnimationCompleted">
-          <img v-if="isScenario3" class="img-2-3" src="@/assets/download/3-3.png" alt="">
+        <transition name="fade-bottom-rotate-img3" mode="out-in" @afterEnter="setAnimationCompleted">
+          <img v-if="isScenario3" class="img-2-3" src="@/assets/download/3-3.png" alt="" />
         </transition>
         <transition name="fade-left-img1" mode="out-in">
-          <img v-if="isScenario4" class="img-3-1" src="@/assets/download/4-1.png" alt="">
+          <img v-if="isScenario4" class="img-3-1" src="@/assets/download/4-1.png" alt="" />
         </transition>
         <transition name="fade-left-img2" mode="out-in">
-          <img v-if="isScenario4" class="img-3-2" src="@/assets/download/4-2.png" alt="">
+          <img v-if="isScenario4" class="img-3-2" src="@/assets/download/4-2.png" alt="" />
         </transition>
-        <transition name="fade-left-img3" mode="out-in" @after-enter="setAnimationCompleted">
-          <img v-if="isScenario4" class="img-3-3" src="@/assets/download/4-3.png" alt="">
+        <transition name="fade-left-img3" mode="out-in" @afterEnter="setAnimationCompleted">
+          <img v-if="isScenario4" class="img-3-3" src="@/assets/download/4-3.png" alt="" />
         </transition>
       </div>
 
       <div class="main-content">
         <transition name="fade-down" mode="out-in">
           <div v-if="isScenario1" class="text-content" :class="{ [`scenario--0`]: isScenario1 }">
-            <img src="@/assets/download/project.png" alt="">
+            <img src="@/assets/download/project.png" alt="" />
             <div class="description">
               {{ $t('downloadDesc1') }}
             </div>
@@ -92,24 +92,24 @@
               {{ $t('downloadByScanningQRCode') }}
             </div>
             <div class="qrcode">
-              <qrcode :value="`${mobileSiteHost}/download/pre-dispatch`" />
+              <QRcode :value="`${mobileSiteHost}/download/pre-dispatch`" />
             </div>
             <div class="version-info">
               <div class="version-ios">
-                <img src="@/assets/download/apple.png" alt="">
+                <img src="@/assets/download/apple.png" alt="" />
                 <div>{{ $t('appVersion') }} {{ iosVersion }}</div>
               </div>
               <div class="version-android">
-                <img src="@/assets/download/android.png" alt="">
+                <img src="@/assets/download/android.png" alt="" />
                 <div>{{ $t('appVersion') }} {{ androidVersion }}</div>
               </div>
             </div>
           </div>
-          <glass-square :class="'qrcode-background'" />
+          <GlassSquare :class="'qrcode-background'" />
         </div>
 
         <transition name="glass-fade-left-rotate" mode="out-in">
-          <glass-square v-if="isScenario1" class="glass-0-1 w-172" />
+          <GlassSquare v-if="isScenario1" class="glass-0-1 w-172" />
         </transition>
         <transition name="fade-left-rotate" mode="out-in">
           <div v-if="isScenario1" class="square-0-1 lake-blue w-72" />
@@ -121,7 +121,7 @@
           <div v-if="isScenario1" class="square-0-2 lake-blue w-90" />
         </transition>
         <transition name="fade" mode="out-in">
-          <square-dots-icon v-if="isScenario1" class="matrix-0-1 dot-matrix" />
+          <SquareDotsIcon v-if="isScenario1" class="matrix-0-1 dot-matrix" />
         </transition>
 
         <transition name="fade-left-rotate" mode="out-in">
@@ -131,42 +131,42 @@
           <div v-if="isScenario2" class="square-1-1 lake-blue w-90" />
         </transition>
         <transition name="fade" mode="out-in">
-          <square-dots-icon v-if="isScenario2" class="matrix-1-1 dot-matrix" />
+          <SquareDotsIcon v-if="isScenario2" class="matrix-1-1 dot-matrix" />
         </transition>
         <transition name="fade-left" mode="out-in">
           <div v-if="isScenario2" class="line-1-1 lake-blue l4-90" />
         </transition>
 
         <transition name="fade" mode="out-in">
-          <square-dots-icon v-if="isScenario3" class="matrix-2-1 dot-matrix" />
+          <SquareDotsIcon v-if="isScenario3" class="matrix-2-1 dot-matrix" />
         </transition>
         <transition name="fade-left" mode="out-in">
           <div v-if="isScenario3" class="line-2-1 lake-blue l4-90" />
         </transition>
         <transition name="glass-fade-left-rotate" mode="out-in">
-          <glass-square v-if="isScenario3" class="glass-2-1 w-108" />
+          <GlassSquare v-if="isScenario3" class="glass-2-1 w-108" />
         </transition>
         <transition name="fade" mode="out-in">
-          <square-dots-icon v-if="isScenario3" class="matrix-2-2 dot-matrix" />
+          <SquareDotsIcon v-if="isScenario3" class="matrix-2-2 dot-matrix" />
         </transition>
         <transition name="fade-left-rotate" mode="out-in">
           <div v-if="isScenario3" class="square-o-2-1 pomegranate-outlined-square w-120" />
         </transition>
         <transition name="fade" mode="out-in">
-          <square-dots-icon v-if="isScenario3" class="matrix-2-3 dot-matrix" />
+          <SquareDotsIcon v-if="isScenario3" class="matrix-2-3 dot-matrix" />
         </transition>
 
         <transition name="fade-left-rotate" mode="out-in">
           <div v-if="isScenario4" class="square-3-1 lake-blue w-90" />
         </transition>
         <transition name="fade-left-rotate" mode="out-in">
-          <glass-square v-if="isScenario4" class="glass-3-1 w-108" />
+          <GlassSquare v-if="isScenario4" class="glass-3-1 w-108" />
         </transition>
         <transition name="fade-left-rotate" mode="out-in">
           <div v-if="isScenario4" class="square-o-3-1 pomegranate-outlined-square w-120" />
         </transition>
         <transition name="fade" mode="out-in">
-          <square-dots-icon v-if="isScenario4" class="matrix-3-1 dot-matrix" />
+          <SquareDotsIcon v-if="isScenario4" class="matrix-3-1 dot-matrix" />
         </transition>
       </div>
     </div>
@@ -186,17 +186,17 @@
 import { fetchAppVersion } from '@/api';
 
 import QRcode from '@/shared/components/qrcode';
-import SquareDotsIcon from '@/pages/home/component/square-dots-icon';
+import SquareDotsIcon from '@/shared/components/SquareDotsIcon';
 import { EN } from '@/shared/intl/i18n';
 
-import GlassSquare from './glass-square.vue';
+import GlassSquare from './GlassSquare.vue';
 
 export default {
   layout: 'no-footer-layout',
   components: {
-    qrcode: QRcode,
-    'glass-square': GlassSquare,
-    'square-dots-icon': SquareDotsIcon,
+    QRcode,
+    GlassSquare,
+    SquareDotsIcon,
   },
 
   async asyncData() {
