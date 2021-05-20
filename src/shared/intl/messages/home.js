@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export default {
   check: '查看',
   clear: '清除',
@@ -9,11 +10,9 @@ export default {
   ourTarget: '我们的目标',
   beValidPath: '向更多的人群推广获得加密货币的有效途径',
   beWinWinPath: '让矿工和电力公司双赢，开创新时代的矿工革命',
-  basicIntroduce: '盈算力是由注册于塞舌尔的国际加密资产投资管理公司Mineprofit投资的去中心化算力投资平台。',
-  secondParagraphIntroduce: `普通人由于受到矿机场地、电力资源、计算机硬件运维的技术限制从而很难加入到加密货币矿工行列中，
-    但盈算力则让普通人圆了矿工梦。盈算力的云端托管技术让矿工只需直接在盈算力购买算力进行挖矿，无需承担任何的矿机运维工作，有效降低了用户的投资门槛。`,
-  thirdlyParagraphIntroduce: `Mineprofit拥有十几年世界各地发电站投资背景。因此与普通数字矿业不同，盈算力与世界各地拥有剩余电力的发电站和当地的电气公司合作，通过搭建与整合中型数字矿场，
-    具备智能电价计费模式，并通过支付分红给投资者和电力提供方达到真正的全赢目标。`,
+  basicIntroduce: 'Mineprofit 是全球第一家算力交易平台，通过将算力供应商（包括电力提供方，矿机厂商，矿机拥有者）的算力进行打包整合成标准算力，并将这些标准算力出售给市场有需要的人群，用户可以在Mineprofit 实现完全自由的算力买卖和质押自身持有的标准算力。',
+  secondParagraphIntroduce: '无论是BTC 还是ETH 都是依托于人类社会的共识价值，Mineprofit 希望通过这些标准算力的自由交易实现全民无门槛持币的目标，让世界每个角落的人们都可以成为加密货币的拥有者，为加密货币的人类共识价值做出一份贡献。',
+  thirdlyParagraphIntroduce: '传统的大型矿场或矿工往往需要在交易所做空所挖加密货币来对冲币价下跌的风险，通过Mineprofit 矿工只需要将自己的多余算力进行打包出售便可以有效控制自己的挖矿风险，这种行为即可以扩大该币的持有人群，同时又可以有效遏制做空行为，让币价拥有更多的上涨空间，实现算力供应商与普通投资者双方共赢。',
   cooperationPartner: '合作伙伴',
   mineprofitName: 'Mineprofit 盈算力',
   topHashRateFlatForm: '全球顶尖云算力平台',
