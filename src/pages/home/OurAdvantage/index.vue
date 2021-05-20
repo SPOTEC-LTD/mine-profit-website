@@ -11,14 +11,14 @@
 </template>
 
 <script>
-import SquareDotsIcon from '@/pages/home/component/square-dots-icon';
+import SquareDotsIcon from '@/shared/components/SquareDotsIcon';
 import AdvantageItem from '@/pages/home/component/AdvantageItem';
 import CloudOutlined from 'ahoney/lib/icons/CloudOutlined';
 import LightningOutlined from 'ahoney/lib/icons/LightningOutlined';
 import UmbrellaOutlined from 'ahoney/lib/icons/UmbrellaOutlined';
 import ShoppingBagOutlined from 'ahoney/lib/icons/ShoppingBagOutlined';
 import MoneyLockOutlined from 'ahoney/lib/icons/MoneyLockOutlined';
-import BlockTitle from '@/pages/home/component/block-title';
+import BlockTitle from '@/shared/components/BlockTitle';
 import advantageTitleImage from '@/assets/home/advantage-title.png';
 import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 

@@ -1,20 +1,20 @@
 <template>
   <div div class="staking-market-container">
     <div class="staking-market-text">
-      <block-title
+      <BlockTitle
         :img="stakingMarketTitleImg"
         class="staking-market-title-img"
         :title="isChinese && $t('stakingMarket')"
       />
-      <square-dots-icon class="staking-market-dots-icon" />
+      <SquareDotsIcon class="staking-market-dots-icon" />
       <div class="staking-market-introduce">
         {{ $t('stakingMarketIntroduce') }}
       </div>
     </div>
     <div :class="[ 'staking-market-img-container', isStakingAnimate ? 'animate' : '']">
-      <img class="step-line" src="@/assets/ecosphere/step-line.png" alt="">
+      <img class="step-line" src="@/assets/ecosphere/step-line.png" alt="" />
       <div class="step-card">
-        <img src="@/assets/ecosphere/step-details.png" alt="">
+        <img src="@/assets/ecosphere/step-details.png" alt="" />
         <div class="step-card-text invite-text">
           <span>{{ $t('inviter') }}</span>
           <span class="title">{{ $t('InitiatePledgeInvitation') }}</span>
@@ -55,14 +55,14 @@
 
 <script>
 import stakingMarketTitleImg from '@/assets/ecosphere/staking-market-title-img.png';
-import BlockTitle from '@/pages/home/component/block-title';
-import SquareDotsIcon from '@/pages/home/component/square-dots-icon';
+import BlockTitle from '@/shared/components/BlockTitle';
+import SquareDotsIcon from '@/shared/components/SquareDotsIcon';
 import { getIsChinese, getIsEnglish } from '@/shared/utils/getLocalLanguage';
 
 export default {
   components: {
-    'block-title': BlockTitle,
-    'square-dots-icon': SquareDotsIcon,
+    BlockTitle,
+    SquareDotsIcon,
   },
   props: {
     isStakingAnimate: {
