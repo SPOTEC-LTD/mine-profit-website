@@ -1,0 +1,44 @@
+.detail-wrapper {
+  padding: 54px 0 128px 166px;
+  min-height: calc(100vh - 471px);
+}
+
+.title-wrapper {
+  padding-left: 54px;
+}
+
+.detail-date {
+  font-size: 14px;
+  line-height: 20px;
+  color: #959595;
+}
+
+.detail-title {
+  width: 760px;
+  font-size: 38px;
+  line-height: 53px;
+  color: #242424;
+}
+
+.detail-content {
+  width: 760px;
+  margin: 38px 54px;
+  white-space: pre-wrap;
+
+  ::v-deep img {
+    max-width: 760px;
+  }
+
+  ::v-deep table {
+    width: 100%;
+    text-align: left;
+    border-radius: 2px 2px 0 0;
+    border-collapse: separate;
+    border-spacing: 0;
+
+    td {
+      padding: 2px;
+      border: 1px solid #f0f0f0;
+    }
+  }
+}
