@@ -8,7 +8,6 @@
       />
       <div class="cooperation-introduce">
         <div>{{ $t('companyBackground') }}</div>
-        <div>{{ $t('companyPartner') }}</div>
       </div>
     </div>
     <SquareDotsIcon class="cooperation-left-icon" />
