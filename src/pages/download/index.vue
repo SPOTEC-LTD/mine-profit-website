@@ -92,7 +92,7 @@
               {{ $t('downloadByScanningQRCode') }}
             </div>
             <div class="qrcode">
-              <QRcode :value="`${mobileSiteHost}/download/pre-dispatch`" />
+              <QRcode :value="`${mobileSiteHost}/download/pre-dispatch?locale=${nowLanguage}`" />
             </div>
             <div class="version-info">
               <div class="version-ios">
@@ -187,7 +187,7 @@ import { fetchAppVersion } from '@/api';
 
 import QRcode from '@/shared/components/qrcode';
 import SquareDotsIcon from '@/shared/components/SquareDotsIcon';
-import { EN } from '@/shared/intl/i18n';
+import { getIsEnglish, getLocalLanguage } from '@/shared/utils/getLocalLanguage';
 
 import GlassSquare from './GlassSquare.vue';
 
@@ -222,7 +222,8 @@ export default {
       iosVersion: '',
       androidVersion: '',
       mobileSiteHost: process.env.MOBILE_SITE_HOST,
-      isEnLanguage: this.$i18n.locale === EN,
+      isEnLanguage: getIsEnglish(),
+      nowLanguage: getLocalLanguage(),
     };
   },
 
