@@ -3,25 +3,11 @@
 ## Build Setup
 
 ```bash
-# install dependencies
-$ yarn install
-
-# serve with hot reload at localhost:3000
-$ yarn dev
-
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
-$ yarn generate
+yarn install
+yarn dev
+yarn build
+yarn start
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
-
-
-开发质量问题。
-
-
-jia使用文档问题。
-运维版本问题。
+## 编译过后的运行需要的目录
+`.nuxt`  `i18n`   `node_modules`    `package.json`
