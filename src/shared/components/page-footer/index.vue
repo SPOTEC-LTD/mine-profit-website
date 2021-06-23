@@ -3,11 +3,13 @@
     <div class="page-footer-container">
       <div class="page-footer-subject">
         <img class="page-footer-vision" src="@/assets/footer-subject.png" alt="" />
-        <div class="page-footer-powered">
-          Powered by
-        </div>
-        <div class="page-footer-project">
-          Mineprofit
+        <div class="page-footer-social">
+          <div class="page-footer-social-content">
+            <a class="page-footer-icon" :href="socialData.twitter" target="_blank"><TwitterFilled /></a>
+            <a class="page-footer-icon" :href="socialData.facebook" target="_blank"><FacebookFilled /></a>
+            <a class="page-footer-icon"><MailFilled /></a>
+          </div>
+          <a :href="`mailto:${socialData.email}`" class="page-footer-email">{{ socialData.email }}</a>
         </div>
       </div>
       <div class="page-footer-navs">
@@ -55,11 +57,37 @@
 </template>
 
 <script>
+import { fetchBizSocialInfo } from '@/api';
 import Link from '@/shared/components/link';
+import FacebookFilled from 'ahoney/lib/icons/FacebookFilled';
+import TwitterFilled from 'ahoney/lib/icons/TwitterFilled';
+import MailFilled from 'ahoney/lib/icons/MailFilled';
 
 export default {
   components: {
     ALink: Link,
+    FacebookFilled,
+    TwitterFilled,
+    MailFilled,
+  },
+
+  data() {
+    return {
+      socialData: {},
+    };
+  },
+
+  mounted() {
+    this.fetchBizSocialData();
+  },
+
+  methods: {
+    fetchBizSocialData() {
+      fetchBizSocialInfo().then(data => {
+        const { body: { otherSettings } } = data;
+        this.socialData = otherSettings;
+      });
+    },
   },
 };
 </script>
