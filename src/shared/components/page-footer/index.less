@@ -22,13 +22,57 @@
   margin-bottom: 28px;
 }
 
-.page-footer-powered {
+.page-footer-social {
   width: 468px;
   padding-top: 24px;
   font-size: @font-size-lg;
   line-height: 22px;
   color: @color__ffffff;
   border-top: 1px solid @color__ffffff;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.page-footer-social-content {
+  width: 175px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 8px;
+}
+
+.page-footer-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: @color__ffffff;
+  border: 1px solid @color__ffffff;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    color: #8fadd9;
+    border: 1px solid #8fadd9;
+  }
+
+  .spotecicon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.page-footer-email {
+  font-size: 14px;
+  color: @color__ffffff;
+  text-decoration: underline;
+
+  &:hover {
+    color: #8fadd9;
+    text-decoration: underline;
+  }
 }
 
 .page-footer-project {
