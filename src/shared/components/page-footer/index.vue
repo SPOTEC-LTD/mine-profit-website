@@ -5,11 +5,17 @@
         <img class="page-footer-vision" src="@/assets/footer-subject.png" alt="" />
         <div class="page-footer-social">
           <div class="page-footer-social-content">
-            <a class="page-footer-icon" :href="socialData.twitter" target="_blank"><TwitterFilled /></a>
-            <a class="page-footer-icon" :href="socialData.facebook" target="_blank"><FacebookFilled /></a>
-            <a class="page-footer-icon"><MailFilled /></a>
+            <a v-if="socialData.twitter" class="page-footer-icon" :href="socialData.twitter" target="_blank">
+              <TwitterFilled />
+            </a>
+            <a v-if="socialData.facebook" class="page-footer-icon" :href="socialData.facebook" target="_blank">
+              <FacebookFilled />
+            </a>
+            <div v-if="socialData.email" class="page-footer-email">
+              <a class="page-footer-icon"><MailFilled /></a>
+              <a :href="`mailto:${socialData.email}`" class="email-address">{{ socialData.email }}</a>
+            </div>
           </div>
-          <a :href="`mailto:${socialData.email}`" class="page-footer-email">{{ socialData.email }}</a>
         </div>
       </div>
       <div class="page-footer-navs">
