@@ -13,7 +13,7 @@
             </a>
             <div v-if="socialData.email" class="page-footer-email">
               <a class="page-footer-icon"><MailFilled /></a>
-              <a :href="`mailto:${socialData.email}`" class="email-address">{{ socialData.email }}</a>
+              <a :href="`mailto:${socialData.email}`" class="email-address">Email:{{ socialData.email }}</a>
             </div>
           </div>
         </div>
