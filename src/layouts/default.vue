@@ -22,7 +22,6 @@ import PageHeader from '@/shared/components/page-header';
 import PageFooter from '@/shared/components/page-footer';
 import locale from '@/shared/intl/utils/locale';
 import dateUtils from '@/shared/intl/utils/dateUtils';
-// import 'ant-design-vue/lib/modal/style/index';
 import { getZendesk } from '@/api';
 
 export default {
@@ -48,6 +47,7 @@ export default {
     return {};
   },
   mounted() {
+    document.title = this.$t('essayHashRate')
     getZendesk().then(({ body: { apiZendeskWebVo } }) => {
       window.__lc = window.__lc || {};
       window.__lc.license = apiZendeskWebVo.webKey;
