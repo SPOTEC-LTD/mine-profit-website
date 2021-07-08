@@ -2,7 +2,8 @@
   <div class="page-footer">
     <div class="page-footer-container">
       <div class="page-footer-subject">
-        <img class="page-footer-vision" src="@/assets/footer-subject.png" alt="" />
+        <img v-if="!isEnLanguage" class="page-footer-vision" src="@/assets/footer-subject.png" alt="" />
+        <img v-if="isEnLanguage" class="en-page-footer-vision" src="@/assets/en-footer-subject.png" alt="" />
         <div class="page-footer-social">
           <div class="page-footer-social-content">
             <a v-if="socialData.twitter" class="page-footer-icon" :href="socialData.twitter" target="_blank">
@@ -68,6 +69,7 @@ import Link from '@/shared/components/link';
 import FacebookFilled from 'ahoney/lib/icons/FacebookFilled';
 import TwitterFilled from 'ahoney/lib/icons/TwitterFilled';
 import MailFilled from 'ahoney/lib/icons/MailFilled';
+import { getIsEnglish } from '@/shared/utils/getLocalLanguage';
 
 export default {
   components: {
@@ -80,6 +82,7 @@ export default {
   data() {
     return {
       socialData: {},
+      isEnLanguage: getIsEnglish(),
     };
   },
 
