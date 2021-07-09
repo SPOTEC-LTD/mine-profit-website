@@ -1,9 +1,42 @@
 @import "@/shared/styles/variables.less";
 
-.banner-container {
-  height: 474px;
-  background: url("~assets/home/home-banner.png") no-repeat top;
-  background-size: auto 398px;
+.banner-box {
+  text-align: center;
+  height: 494px;
+  margin-bottom: 114px;
+
+  .mp-carousel {
+    display: inline-block;
+    width: 1920px;
+
+    .slick-track {
+      display: flex;
+      align-items: flex-start;
+      transform: translate3d(-1920px, 0, 0);
+    }
+
+    .slick-dots {
+      bottom: 84px;
+      left: -524px;
+
+      > li {
+        margin: 0;
+        margin-right: 6px;
+        background-color: @color__ffffff;
+
+        button {
+          width: 29px;
+          border-radius: 0;
+          font-size: 0;
+        }
+      }
+
+      .slick-active button {
+        width: 68px;
+        background-color: @color__primary;
+      }
+    }
+  }
 }
 
 .banner-content {
