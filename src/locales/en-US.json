@@ -1,6 +1,6 @@
 {
     "searchInputPlaceholder": "Search for the question you want to ask",
-    "search": "Search for",
+    "search": "Search",
     "commonProblem": "Common problem",
     "searchPrompt": "There are common search results for \"{searchValue}\"",
     "number": "Article",
