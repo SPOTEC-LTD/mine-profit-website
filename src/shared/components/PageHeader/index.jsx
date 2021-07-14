@@ -1,24 +1,3 @@
-<template>
-  <div class="page-header">
-    <div class="page-header-container">
-      <ALink to="/">
-        <img class="page-header-logo" src="~/assets/logo-black.png" alt="MINE PROFIT" />
-      </ALink>
-      <div class="page-header-nav">
-        <NavLink href="/">{{ $t('home') }}</NavLink>
-        <NavLink href="/ecosphere">{{ $t('ecosphere') }}</NavLink>
-        <NavMenu href-prefix="/newsAnnouncement" :items="items">{{ $t('newsAnnouncement') }}</NavMenu>
-        <NavLink href="/help">{{ $t('helpCenter') }}</NavLink>
-        <LanguageMenu :items="languageItems">{{ $t('language') }}</LanguageMenu>
-        <Button class="page-header-download" type="primary" @click="redirectToDownloadGuidePage">
-          {{ $t('downloadNow') }}
-        </Button>
-      </div>
-    </div>
-  </div>
-</template>
-
-<script>
 import { Button } from 'ant-design-vue';
 import DocFilledOutlined from 'ahoney/lib/icons/DocFilledOutlined';
 import EmailCircleOutlined from 'ahoney/lib/icons/EmailCircleOutlined';
@@ -27,19 +6,14 @@ import locationServices from '@/shared/services/location/locationServices';
 import { RECOMMEND, NEWSLETTER, ANNOUNCEMENT } from '@/shared/consts/newsType';
 import { I18N } from '@/shared/intl/i18n';
 import Link from '@/shared/components/link';
-
+import logoImg from '@/assets/logo-black.png';
 import NavLink from './nav-link.vue';
 import NavMenu from './nav-menu.jsx';
 import LanguageMenu from './language-menu.jsx';
 
-export default {
-  components: {
-    Button,
-    NavLink,
-    NavMenu,
-    LanguageMenu,
-    ALink: Link,
-  },
+import styles from './index.less?module';
+
+const PageHeader = {
   data() {
     return {
       items: [
@@ -73,9 +47,30 @@ export default {
       locationServices.push('/download');
     },
   },
-};
-</script>
 
-<style lang="less">
-@import "./index.less";
-</style>
+  render() {
+    return (
+      <div class={styles['page-header']}>
+      <div class={styles['page-header-container']}>
+        <Link to="/">
+          <img class={styles['page-header-logo']} src={logoImg} alt="MINE PROFIT" />
+        </Link>
+        <div class={styles['page-header-nav']}>
+          <NavLink href="/">{ this.$t('home') }</NavLink>
+          <NavLink href="/ecosphere">{this.$t('ecosphere') }</NavLink>
+          <NavMenu href-prefix="/newsAnnouncement" items={this.items}>{ this.$t('newsAnnouncement') }</NavMenu>
+          <NavLink href="/help">{this.$t('helpCenter') }</NavLink>
+        </div>
+        <div>
+          <LanguageMenu items={this.languageItems}>{ this.$t('language') }</LanguageMenu>
+          <Button class={styles['page-header-download']} type="primary" onClick={this.redirectToDownloadGuidePage}>
+            { this.$t('downloadNow') }
+          </Button>
+        </div>
+      </div>
+    </div>
+    );
+  },
+};
+
+export default PageHeader;

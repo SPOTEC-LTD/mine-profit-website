@@ -22,6 +22,7 @@ module.exports = {
   globals: {
     location: true,
     window: true,
+    MOBILE_SITE_HOST: true,
     __TESTING__: true,
     __SERVERRENDER__: true,
     __STATIC__: true,
@@ -34,15 +35,22 @@ module.exports = {
   rules: {
     'comma-dangle': [2, 'always-multiline'],
     'no-var': 'error',
+    // 'object-curly-newline': ['error', { multiline: true }],
+    'object-curly-newline': 0,
     camelcase: 'off',
+    'no-console': 0,
+    'no-restricted-syntax': 0,
+    'prefer-promise-reject-errors': 0,
     'no-extra-boolean-cast': 'off',
     semi: ['error', 'always'],
     'vue/require-prop-types': 'off',
     'vue/require-default-prop': 'off',
-    'import/no-unresolved': [2, { ignore: ['^@/'] }],
+    'import/no-unresolved': 0,
+    'import/extensions': 0,
     'no-restricted-globals': 0,
     'import/prefer-default-export': 'off',
     'arrow-body-style': 0,
+    'operator-linebreak': 0,
     'import/no-extraneous-dependencies': [
       'error',
       {
@@ -72,9 +80,7 @@ module.exports = {
       svg: 'always',
       math: 'always',
     }],
-    'vue/html-closing-bracket-spacing': ['error', {
-      selfClosingTag: 'always',
-    }],
+    'vue/html-closing-bracket-spacing': ['error', { selfClosingTag: 'always' }],
     'no-alert': 'off',
     'arrow-parens': ['error', 'as-needed'],
     'no-underscore-dangle': 0,
@@ -92,7 +98,7 @@ module.exports = {
     'vue/attribute-hyphenation': 0,
     'vue/component-name-in-template-casing': ['error', 'PascalCase', {
       registeredComponentsOnly: false,
-      ignores: ['transition'],
+      ignores: ['transition', 'client-only'],
     }],
   },
 };
