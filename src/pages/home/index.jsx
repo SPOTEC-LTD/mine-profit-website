@@ -10,7 +10,7 @@ const Home = {
         <BaseContainer>
           <BlockChainDate />
         </BaseContainer>
-    </div>
+      </div>
     );
   },
 };

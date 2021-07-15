@@ -1,3 +1,5 @@
+import isNull from 'lodash/isNull';
+
 export default {
   set(key, value) { // 存储单个属性
     window.localStorage.setItem(key, value);
@@ -10,10 +12,14 @@ export default {
   },
   getObject(key) { // 读取对象，以JSON格式
     const value = window.localStorage.getItem(key);
-    if (value !== 'undefined') {
-      return JSON.parse(value);
+    let result = {};
+
+    try {
+      result = JSON.parse(value);
+    } catch (error) {
+      console.log('error');
     }
 
-    return null;
+    return isNull(result) ? {} : result;
   },
 };

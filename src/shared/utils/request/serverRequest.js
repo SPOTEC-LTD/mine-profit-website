@@ -1,4 +1,5 @@
 import axios from 'axios';
+import getUserInfoFunc from './getUserInfoFunc';
 import Response from './Response';
 
 const createOptions = { baseURL: process.env.BASE_API };
@@ -12,6 +13,16 @@ axiosInstance.interceptors.request.use(config => {
   // 在发送请求之前做些什么
   config.timeout = 100000;
   config.headers.platformType = 'HOME';
+
+  if (config.ctx) {
+    const { token } = getUserInfoFunc(config.ctx);
+    if (token) {
+      config.headers.Authorization = token;
+    }
+  } else {
+    console.console.error('ctx params is required');
+  }
+
   return config;
 });
 

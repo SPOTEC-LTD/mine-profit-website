@@ -20,6 +20,11 @@
   margin: 0 auto;
 }
 
+.header-left-content {
+  display: flex;
+  align-items: center;
+}
+
 .page-header-logo {
   height: 34px;
 }
@@ -29,22 +34,16 @@
   justify-content: flex-end;
   height: 32px;
 
-  & > * {
+  & > a {
     margin-left: 30px;
     flex-shrink: 0;
+
+    &:first-child {
+      margin-left: 50px;
+    }
   }
 
   :global {
-    .mark-hidden {
-      display: none;
-    }
-
-    .nav-link-content {
-      line-height: 18px;
-      margin: 3px 0;
-      color: @color__1d1d1d;
-    }
-
     .router-link-exact-active.router-link-active {
       .nav-link {
         display: flex;
@@ -67,9 +66,17 @@
         color: @color__primary;
       }
     }
+
+    .mark-hidden {
+      display: none;
+    }
+
+    .nav-link-content {
+      line-height: 18px;
+      margin: 3px 0;
+      color: @color__1d1d1d;
+    }
   }
-
-
 }
 
 .page-header-download {

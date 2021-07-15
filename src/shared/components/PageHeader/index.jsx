@@ -51,24 +51,26 @@ const PageHeader = {
   render() {
     return (
       <div class={styles['page-header']}>
-      <div class={styles['page-header-container']}>
-        <Link to="/">
-          <img class={styles['page-header-logo']} src={logoImg} alt="MINE PROFIT" />
-        </Link>
-        <div class={styles['page-header-nav']}>
-          <NavLink href="/">{ this.$t('home') }</NavLink>
-          <NavLink href="/ecosphere">{this.$t('ecosphere') }</NavLink>
-          <NavMenu href-prefix="/newsAnnouncement" items={this.items}>{ this.$t('newsAnnouncement') }</NavMenu>
-          <NavLink href="/help">{this.$t('helpCenter') }</NavLink>
-        </div>
-        <div>
-          <LanguageMenu items={this.languageItems}>{ this.$t('language') }</LanguageMenu>
-          <Button class={styles['page-header-download']} type="primary" onClick={this.redirectToDownloadGuidePage}>
-            { this.$t('downloadNow') }
-          </Button>
+        <div class={styles['page-header-container']}>
+          <div class={styles['header-left-content']}>
+            <Link to="/">
+              <img class={styles['page-header-logo']} src={logoImg} alt="MINE PROFIT" />
+            </Link>
+            <div class={styles['page-header-nav']}>
+              <NavLink href="/">{ this.$t('home') }</NavLink>
+              <NavLink href="/ecosphere">{this.$t('ecosphere') }</NavLink>
+              <NavMenu href-prefix="/newsAnnouncement" items={this.items}>{ this.$t('newsAnnouncement') }</NavMenu>
+              <NavLink href="/help">{this.$t('helpCenter') }</NavLink>
+            </div>
+          </div>
+          <div>
+            <LanguageMenu items={this.languageItems}>{ this.$t('language') }</LanguageMenu>
+            <Button class={styles['page-header-download']} type="primary" onClick={this.redirectToDownloadGuidePage}>
+              { this.$t('downloadNow') }
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
     );
   },
 };

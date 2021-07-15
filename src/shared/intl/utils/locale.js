@@ -1,6 +1,6 @@
 class Locale {
   init(i18nInstance) {
-    this.currentLocale = i18nInstance;
+    this.currentLocale = i18nInstance.locale;
     this.setIntlObject(i18nInstance);
   }
 
