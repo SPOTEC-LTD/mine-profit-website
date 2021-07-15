@@ -12,7 +12,6 @@ const request = config => axiosInstance(config);
 axiosInstance.interceptors.request.use(config => {
   // 在发送请求之前做些什么
   config.timeout = 100000;
-  config.headers.platformType = 'HOME';
 
   if (config.ctx) {
     const { token } = getUserInfoFunc(config.ctx);

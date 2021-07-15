@@ -15,7 +15,7 @@ class Location {
 
   buildURL = (url, options = {}) => {
     const { params = {}, query = {} } = options;
-    const nowLocale = locale.currentLocale.locale;
+    const nowLocale = locale.currentLocale;
     const resultPath = nowLocale === 'zh' ? url : `/${nowLocale}${url}`;
     let serializedUrl = toPath(resultPath, params);
 

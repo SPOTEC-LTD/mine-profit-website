@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/pages/home';
-import Login from '@/pages/login';
+import Login from '@/pages/Login';
 import Help from '@/pages/help';
 import NewsAnnouncement from '@/pages/newsAnnouncement';
 import RecommendDetail from '@/pages/newsAnnouncement/Recommend/detail';
@@ -13,6 +13,7 @@ import Download from '@/pages/download';
 import { location } from '@/shared/services/location';
 import Ecosphere from '@/pages/ecosphere';
 import { buildRoutes } from './utils';
+import { homePath, loginPath } from './consts/urls';
 
 Vue.use(Router);
 
@@ -23,7 +24,12 @@ export function createRouter() {
     mode: 'history',
     routes: buildRoutes([
       {
-        path: '/',
+        path: loginPath,
+        name: 'login',
+        component: Login,
+      },
+      {
+        path: homePath,
         name: 'home',
         component: Home,
       },
@@ -31,11 +37,6 @@ export function createRouter() {
         path: '/ecosphere',
         name: 'ecosphere',
         component: Ecosphere,
-      },
-      {
-        path: '/loginTest',
-        name: 'loginTest',
-        component: Login,
       },
       {
         path: '/help',

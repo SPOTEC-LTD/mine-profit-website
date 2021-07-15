@@ -2,8 +2,8 @@
 
 .page-header {
   width: 100%;
-  background-color: @color__ffffff;
-  padding: 16px 0 18px;
+  background-color: @white;
+  padding: 16px 20px 18px 20px;
   position: fixed;
   z-index: 1000;
   top: 0;
@@ -15,7 +15,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1250px;
   min-width: 610px;
   margin: 0 auto;
 }
@@ -27,6 +26,7 @@
 
 .page-header-logo {
   height: 34px;
+  width: 200px;
 }
 
 .page-header-nav {
@@ -77,6 +77,10 @@
       color: @color__1d1d1d;
     }
   }
+}
+
+.header-right-content {
+  display: flex;
 }
 
 .page-header-download {

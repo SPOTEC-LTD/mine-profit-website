@@ -25,6 +25,8 @@ const createAPI = (method, url) => (params = {}, config = {}) => {
 
   config.headers = {
     lang: languages[locale.currentLocale],
+    platformType: 'HOME',
+    timeout: 100000,
   };
 
   if (config.ctx) { // fix product evn axios error bug

@@ -7,9 +7,10 @@ import { RECOMMEND, NEWSLETTER, ANNOUNCEMENT } from '@/shared/consts/newsType';
 import { I18N } from '@/shared/intl/i18n';
 import Link from '@/shared/components/link';
 import logoImg from '@/assets/logo-black.png';
-import NavLink from './nav-link.vue';
-import NavMenu from './nav-menu.jsx';
-import LanguageMenu from './language-menu.jsx';
+import NavLink from './NavLink';
+import NavMenu from './NavMenu';
+import LanguageMenu from './LanguageMenu';
+import LoginInfo from './LoginInfo';
 
 import styles from './index.less?module';
 
@@ -46,6 +47,67 @@ const PageHeader = {
     redirectToDownloadGuidePage() {
       locationServices.push('/download');
     },
+    getNews() {
+      return [
+        {
+          href: '/newsAnnouncement',
+          name: this.$t('recommendArticle'),
+          type: RECOMMEND,
+          description: this.$t('recommendArticleDesc'),
+          icon: <DocFilledOutlined />,
+        },
+        {
+          href: '/newsAnnouncement',
+          name: this.$t('newsletter'),
+          type: NEWSLETTER,
+          description: this.$t('newsletterDesc'),
+          icon: <EmailCircleOutlined />,
+        },
+        {
+          href: '/newsAnnouncement',
+          name: this.$t('announcement'),
+          type: ANNOUNCEMENT,
+          description: this.$t('announcementDesc'),
+          icon: <TipCirccleOutlined />,
+        },
+      ];
+    },
+    getAboutUs() {
+      return ([
+        {
+          href: '/newsAnnouncement',
+          name: '关于我们',
+          type: RECOMMEND,
+          description: this.$t('recommendArticleDesc'),
+          icon: <DocFilledOutlined />,
+        },
+        {
+          href: '/ecosphere',
+          name: this.$t('ecosphere'),
+          type: NEWSLETTER,
+          description: this.$t('newsletterDesc'),
+          icon: <EmailCircleOutlined />,
+        },
+      ]);
+    },
+    getHashrateMarkets() {
+      return ([
+        {
+          href: '/newsAnnouncement',
+          name: '官方市场',
+          type: RECOMMEND,
+          description: this.$t('recommendArticleDesc'),
+          icon: <DocFilledOutlined />,
+        },
+        {
+          href: '/ecosphere',
+          name: 'C2C市场',
+          type: NEWSLETTER,
+          description: this.$t('newsletterDesc'),
+          icon: <EmailCircleOutlined />,
+        },
+      ]);
+    },
   },
 
   render() {
@@ -58,12 +120,14 @@ const PageHeader = {
             </Link>
             <div class={styles['page-header-nav']}>
               <NavLink href="/">{ this.$t('home') }</NavLink>
-              <NavLink href="/ecosphere">{this.$t('ecosphere') }</NavLink>
-              <NavMenu href-prefix="/newsAnnouncement" items={this.items}>{ this.$t('newsAnnouncement') }</NavMenu>
+              <NavMenu hrefPrefix="/newsAnnouncement" items={this.getAboutUs()}>关于我们</NavMenu>
+              <NavMenu hrefPrefix="/newsAnnouncement" items={this.getAboutUs()}>算力市场</NavMenu>
+              <NavMenu hrefPrefix="/newsAnnouncement" items={this.items}>{ this.$t('newsAnnouncement') }</NavMenu>
               <NavLink href="/help">{this.$t('helpCenter') }</NavLink>
             </div>
           </div>
-          <div>
+          <div class={styles['header-right-content']}>
+            <LoginInfo />
             <LanguageMenu items={this.languageItems}>{ this.$t('language') }</LanguageMenu>
             <Button class={styles['page-header-download']} type="primary" onClick={this.redirectToDownloadGuidePage}>
               { this.$t('downloadNow') }
