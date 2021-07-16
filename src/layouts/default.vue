@@ -11,7 +11,7 @@
       >
         <Nuxt />
       </div>
-      <PageFooter v-if="withFooter" />
+      <!-- <PageFooter v-if="withFooter" /> -->
     </div>
   </ConfigProvider>
 </template>

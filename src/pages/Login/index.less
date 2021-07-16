@@ -1,3 +1,52 @@
-/deep/ .banner {
-  background-color: red;
+@import "@/shared/styles/variables.less";
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #0e1d34;
+  padding-top: 120px;
+  height: calc(100vh - 68px);
+
+  &-title {
+    text-align: center;
+    margin-bottom: 25px;
+
+    div {
+      &:first-child {
+        color: #242424;
+        font-size: 22px;
+        font-weight: 500;
+      }
+
+      &:last-child {
+        color: #939393;
+        font-size: 14px;
+      }
+    }
+  }
+
+  &-content {
+    background-color: @white;
+    border-radius: 12px;
+    padding: 35px 52px 45px 52px;
+  }
+}
+
+.tabs {
+  :global {
+    .mp-tabs-top-bar {
+      border-bottom: 0;
+      text-align: center;
+    }
+
+    .mp-tabs-ink-bar {
+      background-color: transparent;
+      background-image: url("~assets/sign/tabActiveImg.png");
+      background-repeat: no-repeat;
+      background-position-x: center;
+      background-size: 16px 5px;
+      height: 6px;
+    }
+  }
 }
