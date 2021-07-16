@@ -1,4 +1,4 @@
-import { Tabs } from 'ant-design-vue';
+import { Tabs, Divider } from 'ant-design-vue';
 import { mapActions, mapState } from 'vuex';
 import Schema from 'async-validator';
 import produce from 'immer';
@@ -6,6 +6,7 @@ import * as API from '@/api/sign';
 import { SIGN, GET_PHONE_CODE, GET_EMAIL_CODE, LOGIN } from '@/modules/sign';
 import { PHONE, EMAIL } from '@/shared/consts/registerType';
 import dateUtils from '@/shared/intl/utils/dateUtils';
+import PrimaryButton from '@/shared/components/PrimaryButton';
 import { passwordReg, phoneReg } from '@/shared/consts/rules';
 import * as verCodeType from '@/shared/consts/verCodeType';
 // import storageUserInfo from './storageUserInfo';
@@ -27,6 +28,7 @@ const Login = {
         type: PHONE,
         password: '',
       },
+      formError: {},
       isVisibleServiceProtocol: false,
       isVisiblePrivacyProtocol: false,
     };
@@ -88,11 +90,15 @@ const Login = {
 
       const validator = new Schema(resultDescriptor);
 
-      return validator.validate(this.formData, { first: true })
+      return validator.validate(this.formData, { first: false })
         .then(() => {
           return true;
         }).catch(({ errors }) => {
-          const [{ message }] = errors;
+          errors.forEach(({ field, message }) => {
+            this.$set(this.formError, field, message);
+          });
+
+          // const [{ message }] = errors;
           // Toast({
           //   message,
           //   icon: 'warning-o',
@@ -104,16 +110,22 @@ const Login = {
     },
 
     handleTabChange(key) {
-      this.formData.type = key;
-      this.formData.code = '';
+      this.isVerificationLogin = key === 'verCode';
     },
 
     handleChangeLoginType() {
-      this.isVerificationLogin = !this.isVerificationLogin;
+      if (this.isPhone) {
+        this.formData.type = EMAIL;
+      } else {
+        this.formData.type = PHONE;
+      }
     },
 
     onValueChange({ key, value }) {
       this.formData[key] = value;
+      if (this.formError[key]) {
+        this.$set(this.formError, key, '');
+      }
     },
 
     async getVerCode() {
@@ -190,12 +202,17 @@ const Login = {
             <div>登录Mineprofit</div>
             <div>未注册账号将直接注册并登录</div>
           </div>
-          <Tabs defaultActiveKey="1" class={styles.tabs}>
-            <Tabs.TabPane key="1" tab="验证码登录" />
-            <Tabs.TabPane key="2" tab="密码登录" />
+          <Tabs
+            defaultActiveKey="verCode"
+            class={styles.tabs}
+            onChange={this.handleTabChange}
+          >
+            <Tabs.TabPane key="verCode" tab="验证码登录" />
+            <Tabs.TabPane key="password" tab="密码登录" />
           </Tabs>
-          <div>
+          <div class={styles.form}>
             <Form
+              formError={this.formError}
               countries={this.countries}
               isPhone={this.isPhone}
               isVerificationLogin={this.isVerificationLogin}
@@ -203,9 +220,23 @@ const Login = {
               formData={this.formData}
               getVerCode={this.getVerCode}
             />
+            <PrimaryButton
+              loading={this.loginLoading}
+              onClick={this.handleSubmit}
+            >
+              登录
+            </PrimaryButton>
+            <div class={styles['protocol-link']}>登录即代表你已经同意了《XX协议》</div>
+
+            <Divider>其他登录方式</Divider>
+
+            <div class={styles['login-type']}>
+              <span onClick={this.handleChangeLoginType}>
+                {this.isPhone ? '邮箱登录' : '手机登录'}
+              </span>
+            </div>
           </div>
         </div>
-
       </div>
     );
   },

@@ -5,6 +5,7 @@ import styles from './index.less?module';
 
 const Form = {
   props: {
+    formError: Object,
     formData: {
       type: Object,
       default: () => ({}),
@@ -37,14 +38,18 @@ const Form = {
           phonePrefix={this.formData.phonePrefix}
           onChange={value => this.onFieldChange(value, 'phone')}
           onPhonePrefixChange={value => this.onFieldChange(value, 'phonePrefix')}
+          error={this.formError.phone}
         />
       );
     },
   },
 
   render() {
+    console.log('this.formError.email', this.formError.email);
+
     const emailNode = (
       <BgInput
+        error={this.formError.email}
         class={styles['email-input']}
         label={this.$t('signInEmailNum')}
         value={this.formData.email}
@@ -55,6 +60,7 @@ const Form = {
     const passwordInputNode = (
       <BgInput
         value={this.formData.password}
+        error={this.formError.password}
         label="密码"
         type="password"
         onChange={value => this.onFieldChange(value, 'password')}
@@ -66,6 +72,7 @@ const Form = {
         key={`${this.isPhone}`}
         value={this.formData.code}
         getVerCode={this.getVerCode}
+        error={this.formError.code}
         onInput={value => this.onFieldChange(value, 'code')}
       />
     );
@@ -75,17 +82,9 @@ const Form = {
         {
           this.isPhone ? this.getPhoneInputNode() : emailNode
         }
-
-        {passwordInputNode}
-
-        {emailNode}
         {
-          verificationInputNode
-        }
-
-        {/* {
           this.isVerificationLogin ? verificationInputNode : passwordInputNode
-        } */}
+        }
       </div>
     );
   },

@@ -42,8 +42,6 @@ const PhoneInput = {
     },
 
     handleAreaCodeChange(value) {
-      console.log('value', value);
-
       if (value) {
         this.$emit('phonePrefixChange', value.code);
       }
@@ -57,9 +55,15 @@ const PhoneInput = {
       props: this.$attrs,
     };
 
-    console.log('countries', this.countries);
     const selectNode = (
-      <Select defaultValue={this.phonePrefix} onChange={this.handleAreaCodeChange}>
+      <Select
+        class="phone-prefix-select"
+        defaultValue={this.phonePrefix}
+        onChange={this.handleAreaCodeChange}
+        showSearch
+        suffixIcon={<TriangleFilled className="select-icon" />}
+        dropdownMatchSelectWidth={false}
+      >
       {
         this.countries.map(item => (
           <Select.Option key={item.nation}>
@@ -71,15 +75,14 @@ const PhoneInput = {
     </Select>
     );
     return (
-      <div>
-        <BgInput
-          prefix={selectNode}
-          value={this.phoneValue}
-          maxLength={11}
-          label="手机号"
-          {...finlayProps}
-        />
-      </div>
+      <BgInput
+        className="phone-input"
+        prefix={selectNode}
+        value={this.phoneValue}
+        maxLength={11}
+        label="手机号"
+        {...finlayProps}
+      />
     );
   },
 };

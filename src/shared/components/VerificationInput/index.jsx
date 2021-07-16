@@ -4,7 +4,6 @@ import BgInput from '../BgInput';
 
 import './index.less';
 
-// const { Countdown } = Statistic;
 
 const VerificationInput = {
   inheritAttrs: false,
@@ -20,9 +19,9 @@ const VerificationInput = {
 
   methods: {
     handleGetVerCode() {
-      // this.getVerCode().then(() => {
+      this.getVerCode().then(() => {
         this.isCountDown = true;
-      // });
+      });
     },
 
     handleCountDownFinish() {

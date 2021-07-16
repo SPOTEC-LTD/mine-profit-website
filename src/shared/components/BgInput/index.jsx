@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import isUndefined from 'lodash/isUndefined';
 import './index.less';
 
@@ -25,6 +26,7 @@ const BgInput = {
         this.selfValue = e.target.value;
       }
 
+      console.log('232323')
       this.$emit('change', e.target.value);
     },
 
@@ -43,9 +45,9 @@ const BgInput = {
 
   render() {
     const finallyValue = isUndefined(this.value) ? this.selfValue : this.value;
-    console.log('this.$attrs', this.$attrs)
+
     return (
-      <div class={['bg-input-control', { className: this.className }]}>
+      <div class={classNames('bg-input-control', this.className)}>
         <div
           class={[
             'bg-input-field',
@@ -70,7 +72,7 @@ const BgInput = {
                 on: this.$listeners,
                 attrs: this.$attrs,
               }}
-              onChange={this.handleChange}
+              onInput={this.handleChange}
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
             />
