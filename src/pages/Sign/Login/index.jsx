@@ -163,6 +163,13 @@ const Login = {
       if (isValidatorPass) {
         const data = produce(this.formData, draft => {
           draft.isVerificationLogin = this.isVerificationLogin;
+          if (this.isPhone) {
+            delete draft.email;
+          } else {
+            delete draft.phone;
+            delete draft.phonePrefix;
+          }
+
           if (this.isVerificationLogin) {
             delete draft.password;
           } else {
