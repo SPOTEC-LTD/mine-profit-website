@@ -1,8 +1,9 @@
 import classNames from 'classnames';
+import omit from 'lodash/omit';
 import isUndefined from 'lodash/isUndefined';
 import './index.less';
 
-const BgInput = {
+const LabelInput = {
   props: {
     className: String,
     label: [String, Object],
@@ -25,8 +26,6 @@ const BgInput = {
       if (!isUndefined(this.value)) {
         this.selfValue = e.target.value;
       }
-
-      console.log('232323')
       this.$emit('change', e.target.value);
     },
 
@@ -69,7 +68,7 @@ const BgInput = {
               type="text"
               value={finallyValue}
               {...{
-                on: this.$listeners,
+                on: omit(this.$listeners, 'change'),
                 attrs: this.$attrs,
               }}
               onInput={this.handleChange}
@@ -97,4 +96,4 @@ const BgInput = {
   },
 };
 
-export default BgInput;
+export default LabelInput;

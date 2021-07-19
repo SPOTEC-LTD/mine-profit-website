@@ -1,9 +1,8 @@
 import { Statistic } from 'ant-design-vue';
 import classNames from 'classnames';
-import BgInput from '../BgInput';
+import LabelInput from '../LabelInput';
 
 import './index.less';
-
 
 const VerificationInput = {
   inheritAttrs: false,
@@ -37,12 +36,14 @@ const VerificationInput = {
           {
           this.isCountDown
             ? (
-            <Statistic.Countdown
-              value={Date.now() + 1000 * 60}
-              format="ss"
-              onFinish={this.handleCountDownFinish}
-            />)
-            : <div onClick={this.handleGetVerCode}>{this.$t('fetchVerificationCode')}</div>
+                <Statistic.Countdown
+                  value={Date.now() + 1000 * 60}
+                  format="ss"
+                  suffix="s"
+                  onFinish={this.handleCountDownFinish}
+                />
+            )
+            : <div class="get-vercode-button" onClick={this.handleGetVerCode}>{this.$t('fetchVerificationCode')}</div>
           }
         </div>
       );
@@ -56,7 +57,7 @@ const VerificationInput = {
     };
 
     return (
-      <BgInput
+      <LabelInput
         class={classNames('verification-input', this.className)}
         label={this.$t('verificationCode')}
         suffix={this.getButton()}

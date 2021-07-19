@@ -2,6 +2,8 @@ import { Tabs, Divider } from 'ant-design-vue';
 import { mapActions, mapState } from 'vuex';
 import Schema from 'async-validator';
 import produce from 'immer';
+import PhoneFilled from 'ahoney/lib/icons/PhoneFilled';
+import EmailFilled from 'ahoney/lib/icons/EmailFilled';
 import * as API from '@/api/sign';
 import { SIGN, GET_PHONE_CODE, GET_EMAIL_CODE, LOGIN } from '@/modules/sign';
 import { PHONE, EMAIL } from '@/shared/consts/registerType';
@@ -9,7 +11,8 @@ import dateUtils from '@/shared/intl/utils/dateUtils';
 import PrimaryButton from '@/shared/components/PrimaryButton';
 import { passwordReg, phoneReg } from '@/shared/consts/rules';
 import * as verCodeType from '@/shared/consts/verCodeType';
-// import storageUserInfo from './storageUserInfo';
+import Notification from '@/shared/services/Notification';
+import storageUserInfo from './storageUserInfo';
 import Form from './Form';
 import styles from './index.less?module';
 
@@ -28,7 +31,9 @@ const Login = {
         type: PHONE,
         password: '',
       },
-      formError: {},
+      formError: {
+
+      },
       isVisibleServiceProtocol: false,
       isVisiblePrivacyProtocol: false,
     };
@@ -97,14 +102,6 @@ const Login = {
           errors.forEach(({ field, message }) => {
             this.$set(this.formError, field, message);
           });
-
-          // const [{ message }] = errors;
-          // Toast({
-          //   message,
-          //   icon: 'warning-o',
-          //   duration: 1000,
-          //   className: styles['toast-info'],
-          // });
           return false;
         });
     },
@@ -173,23 +170,10 @@ const Login = {
           }
         });
 
-        // this[LOGIN](data)
-        //   .then(result => {
-        //     Toast({
-        //       message: this.$t('loginSuccess'),
-        //       icon: 'warning-o',
-        //       duration: 1000,
-        //     });
-        //     storageUserInfo(result);
-        //   })
-        //   .catch(({ message }) => {
-        //     Toast({
-        //       message,
-        //       icon: 'warning-o',
-        //       duration: 1000,
-        //       className: styles['toast-info'],
-        //     });
-        //   });
+        this[LOGIN](data)
+          .then(result => {
+            storageUserInfo(result);
+          });
       }
     },
   },
@@ -199,16 +183,16 @@ const Login = {
       <div class={styles.login}>
         <div class={styles['login-content']}>
           <div class={styles['login-title']}>
-            <div>登录Mineprofit</div>
-            <div>未注册账号将直接注册并登录</div>
+            <div>{this.$t('loginMineprofit')}</div>
+            <div>{this.$t('signInTips')}</div>
           </div>
           <Tabs
             defaultActiveKey="verCode"
             class={styles.tabs}
             onChange={this.handleTabChange}
           >
-            <Tabs.TabPane key="verCode" tab="验证码登录" />
-            <Tabs.TabPane key="password" tab="密码登录" />
+            <Tabs.TabPane key="verCode" tab={this.$t('signInVerifyCode')} />
+            <Tabs.TabPane key="password" tab={this.$t('signInPwd')} />
           </Tabs>
           <div class={styles.form}>
             <Form
@@ -220,21 +204,31 @@ const Login = {
               formData={this.formData}
               getVerCode={this.getVerCode}
             />
+
+            <div class={styles['login-type']} onClick={this.handleChangeLoginType}>
+              {
+                this.isPhone ?
+                  <div class={styles['login-type-content']}>
+                    <EmailFilled />
+                    <span>{this.$t('emailLogin')}</span>
+                  </div>
+                  :
+                  <div class={styles['login-type-content']}>
+                    <PhoneFilled />
+                    <span>{this.$t('phoneLogin')}</span>
+                  </div>
+              }
+            </div>
             <PrimaryButton
               loading={this.loginLoading}
               onClick={this.handleSubmit}
             >
-              登录
+              {this.$t('login')}
             </PrimaryButton>
+            {
+            // TODO i18n
+            }
             <div class={styles['protocol-link']}>登录即代表你已经同意了《XX协议》</div>
-
-            <Divider>其他登录方式</Divider>
-
-            <div class={styles['login-type']}>
-              <span onClick={this.handleChangeLoginType}>
-                {this.isPhone ? '邮箱登录' : '手机登录'}
-              </span>
-            </div>
           </div>
         </div>
       </div>

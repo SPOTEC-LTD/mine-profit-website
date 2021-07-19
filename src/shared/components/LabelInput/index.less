@@ -6,10 +6,10 @@
   height: 100%;
   padding: 24px 15px 8px 15px;
   line-height: 16px;
-  font-size: 14px;
-  color: #263241;
+  font-size: @font-size-lg;
+  color: @color__263241;
   z-index: 1;
-  border: 1px solid #dfe2e7;
+  border: 1px solid @color__dfe2e7;
   transition: border 0.3s;
   outline: 0;
 
@@ -36,7 +36,7 @@
   &-affix {
     display: flex;
     align-items: center;
-    border: 1px solid #dfe2e7;
+    border: 1px solid @color__dfe2e7;
     border-radius: 6px;
 
     .bg-input {
@@ -72,8 +72,8 @@
     position: absolute;
     height: 20px;
     line-height: 20px;
-    font-size: 14px;
-    color: #9aa5b5;
+    font-size: @font-size-lg;
+    color: @color__9aa5b5;
     left: 16px;
     top: 17px;
     z-index: 2;
@@ -90,6 +90,6 @@
 }
 
 .error_message {
-  color: #fe6565;
+  color: @color__fe6565;
   font-size: 14px;
 }

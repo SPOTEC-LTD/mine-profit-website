@@ -1,8 +1,7 @@
 import { Select } from 'ant-design-vue';
-import classNames from 'classnames';
 import TriangleFilled from 'ahoney/lib/icons/TriangleFilled';
 import filterInt from '@/shared/utils/filterInt';
-import BgInput from '../BgInput';
+import LabelInput from '../LabelInput';
 import './index.less';
 
 const PhoneInput = {
@@ -52,7 +51,7 @@ const PhoneInput = {
   render() {
     const finlayProps = {
       on: this.$listeners,
-      props: this.$attrs,
+      attrs: this.$attrs,
     };
 
     const selectNode = (
@@ -61,12 +60,13 @@ const PhoneInput = {
         defaultValue={this.phonePrefix}
         onChange={this.handleAreaCodeChange}
         showSearch
+        optionLabelProp="label"
         suffixIcon={<TriangleFilled className="select-icon" />}
         dropdownMatchSelectWidth={false}
       >
       {
         this.countries.map(item => (
-          <Select.Option key={item.nation}>
+          <Select.Option key={item.nation} label={item.code}>
             {`${item.code} ${item.zh}`}
           </Select.Option>
         ))
@@ -75,13 +75,14 @@ const PhoneInput = {
     </Select>
     );
     return (
-      <BgInput
+      <LabelInput
         className="phone-input"
         prefix={selectNode}
         value={this.phoneValue}
         maxLength={11}
-        label="手机号"
+        onChange={value => this.$emit('change', value)}
         {...finlayProps}
+        label={this.$t('signInPhoneNum')}
       />
     );
   },

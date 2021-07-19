@@ -1,6 +1,6 @@
 import PhoneInput from '@/shared/components/PhoneInput';
 import VerificationInput from '@/shared/components/VerificationInput';
-import BgInput from '@/shared/components/BgInput';
+import LabelInput from '@/shared/components/LabelInput';
 import styles from './index.less?module';
 
 const Form = {
@@ -45,10 +45,8 @@ const Form = {
   },
 
   render() {
-    console.log('this.formError.email', this.formError.email);
-
     const emailNode = (
-      <BgInput
+      <LabelInput
         error={this.formError.email}
         class={styles['email-input']}
         label={this.$t('signInEmailNum')}
@@ -58,10 +56,10 @@ const Form = {
     );
 
     const passwordInputNode = (
-      <BgInput
+      <LabelInput
         value={this.formData.password}
         error={this.formError.password}
-        label="密码"
+        label={this.$t('password')}
         type="password"
         onChange={value => this.onFieldChange(value, 'password')}
       />
@@ -73,7 +71,7 @@ const Form = {
         value={this.formData.code}
         getVerCode={this.getVerCode}
         error={this.formError.code}
-        onInput={value => this.onFieldChange(value, 'code')}
+        onChange={value => this.onFieldChange(value, 'code')}
       />
     );
 

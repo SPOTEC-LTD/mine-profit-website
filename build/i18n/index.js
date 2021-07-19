@@ -4,6 +4,7 @@ import colors from 'colors';
 import glob from 'glob';
 import path from 'path';
 import forEach from 'lodash/forEach';
+import endsWith from 'lodash/endsWith';
 import zhCNMessageMap from '../../src/shared/intl/messages/index';
 
 function resolveCwd(...args) {
@@ -20,20 +21,17 @@ const getMessagesFilePaths = () => new Promise((resolve, reject) => {
 const checkI18n = () => {
   getMessagesFilePaths().then(filePaths => {
     const allMessagesMap = {};
-    const messagefilePaths = filePaths.filter(filePath => filePath !== 'src/shared/intl/messages/index.js');
+    const messagefilePaths = filePaths.filter(filePath => !endsWith(filePath, 'index.js'));
     messagefilePaths.forEach(filePath => {
       // eslint-disable-next-line import/no-dynamic-require
-      const mesageMap = require(resolveCwd(filePath)).default;
-      forEach(mesageMap, (value, key) => {
+      const messageMap = require(resolveCwd(filePath)).default;
+      forEach(messageMap, (value, key) => {
         if (allMessagesMap[key]) {
           console.log(colors.red(`i18n ${key} Already defined`));
         }
-
-        if (allMessagesMap[key] && allMessagesMap[key] === value) {
-          console.log(colors.red(`i18n ${value} Already defined`));
-        }
       });
-      Object.assign(allMessagesMap, mesageMap);
+
+      Object.assign(allMessagesMap, messageMap);
     });
   });
 };
