@@ -11,12 +11,13 @@
       >
         <Nuxt />
       </div>
-      <PageFooter v-if="withFooter" />
+      <!-- <PageFooter v-if="withFooter" /> -->
     </div>
   </ConfigProvider>
 </template>
 
 <script>
+import Vue from 'vue';
 import { ConfigProvider, Modal } from 'ant-design-vue';
 import Cookies from 'universal-cookie';
 import PageHeader from '@/shared/components/PageHeader';
@@ -24,6 +25,8 @@ import PageFooter from '@/shared/components/page-footer';
 import locale from '@/shared/intl/utils/locale';
 import dateUtils from '@/shared/intl/utils/dateUtils';
 import localStorage from '@/shared/utils/localStorage';
+import { ErrorNode } from '@/shared/services/Notification';
+
 import { getZendesk } from '@/api';
 
 export default {
@@ -49,33 +52,14 @@ export default {
     return {};
   },
   mounted() {
+    Vue.component('ErrorNode', ErrorNode);
+
     document.title = this.$t('essayHashRate')
     this.setLivechat();
     this.upateDocumentTitle();
     this.$router.afterEach(() => {
       this.upateDocumentTitle();
     });
-
-
-    const userInfo = {
-      "userId":595,
-      "nickName":"christine_test黑鲨娇滴滴今日人家都嗯我就逗逗你",
-      "invitationCode":"GHSUH",
-      "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNSU5FIiwicm9sZXMiOltdLCJ1c2VySWQiOjU5NSwidXNlclR5cGUiOiJVU0VSIiwiZXhwIjoxNjM0OTU2NTUxMjgwLCJpYXQiOjE2MjYzMTY1NTEyODAsImp0aSI6ImM0Mzc3OGUxLTAzZTUtNDQ4NC1iZTM4LTk2ODQ5ZTA1MmZkMyIsInVzZXJuYW1lIjoiMTIyMjIyMjIyQHFxLmNvbSJ9.X-ZcjbKkgYbzmAJ6D8inZJxvHM6DkiIqzFrSlNn3hVw","avatar":"http://192.168.0.126:8010/__minio/bucket/464a2983-696d-450d-9635-9517e69b2239.jpeg",
-      "registerStatus":false,
-      "isDealCode":1,
-      "kycStatus":3,
-      "hasBind":1,
-      "createTime":1619502599000
-    }
-
-
-      localStorage.setObject('userInfo', userInfo);
-      localStorage.set('token', userInfo.token);
-      const cookies = new Cookies();
-
-      cookies.set('token', userInfo.token, { path: '/' });
-      cookies.set('userId', userInfo.userId, { path: '/' });
   },
 
   methods: {

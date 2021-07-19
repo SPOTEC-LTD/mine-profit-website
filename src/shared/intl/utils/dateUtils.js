@@ -4,8 +4,8 @@ import localeData from 'dayjs/plugin/localeData';
 import utc from 'dayjs/plugin/utc';
 import duration from 'dayjs/plugin/duration';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import timezone from 'dayjs/plugin/timezone';
 import isNumber from 'lodash/isNumber';
-import isInteger from 'lodash/isInteger';
 import { CN } from '../consts/languages';
 import { dayjsLocaleMap } from '../consts/localeTypes';
 
@@ -14,6 +14,7 @@ dayjs.extend(customParseFormat);
 dayjs.extend(duration);
 dayjs.extend(relativeTime);
 dayjs.extend(utc);
+dayjs.extend(timezone);
 
 const createMoment = value => {
   if (value) {
@@ -30,7 +31,7 @@ const createMoment = value => {
 class DateUtils {
   constructor() {
     this.currentDateFormat = 'YYYY-MM-DD';
-    this.currentTimeFormat = 'HH:mm:ss';
+    this.currentTimeFormat = 'HH:mm';
     this.currentTimeZoneOffset = 28800000;
 
     Object.defineProperties(this, {
@@ -128,13 +129,13 @@ class DateUtils {
     return date.valueOf();
   }
 
+  // eslint-disable-next-line class-methods-use-this
   getToday() {
-    if (isInteger(this.currentTimeZoneOffset)) {
-      const offset = this.currentTimeZoneOffset;
-
-      return dayjs().utc().utcOffset(offset, false).format('x');
-    }
     return dayjs();
+  }
+
+  getTimeZone = () => {
+    return dayjs.tz.guess();
   }
 }
 

@@ -11,6 +11,17 @@ export const getQueryString = (qs = window.location.search) => {
 
 export const getQueryObject = (qs = getQueryString()) => queryString.parse(qs);
 
+export const getPathAndQueryObject = search => {
+  const searchQueryObject = {};
+  if (search) {
+    const [path, query] = search.split('?');
+    searchQueryObject.path = path;
+    searchQueryObject.query = getQueryObject(query);
+    return searchQueryObject;
+  }
+  return searchQueryObject;
+};
+
 export const toQueryString = object => `?${queryString.stringify(object, { encode: true })}`;
 
 export const urlToList = url => {

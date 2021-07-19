@@ -1,0 +1,96 @@
+@import "@/shared/styles/variables.less";
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: @color__0e1d34;
+  padding-top: 120px;
+  height: calc(100vh - 68px);
+
+  &-title {
+    text-align: center;
+    margin-bottom: 25px;
+
+    div {
+      &:first-child {
+        color: #242424;
+        font-size: 22px;
+        font-weight: 500;
+      }
+
+      &:last-child {
+        color: @color__939393;
+        font-size: 14px;
+      }
+    }
+  }
+
+  &-content {
+    background-color: @white;
+    border-radius: 12px;
+    padding: 35px 52px 45px 52px;
+  }
+}
+
+.tabs {
+  :global {
+    .mp-tabs-top-bar {
+      border-bottom: 0;
+      text-align: center;
+    }
+
+    .mp-tabs-tab {
+      font-size: @font-size-lg;
+    }
+
+    .mp-tabs-ink-bar {
+      background-color: transparent;
+      background-image: url("~assets/sign/tabActiveImg.png");
+      background-repeat: no-repeat;
+      background-position-x: center;
+      background-size: 16px 5px;
+      height: 6px;
+    }
+  }
+}
+
+.form {
+  width: 345px;
+
+  :global {
+    .bg-input-control {
+      &:first-child {
+        margin-bottom: 20px;
+      }
+
+      &:last-child {
+        margin-bottom: 6px;
+      }
+    }
+  }
+}
+
+.protocol-link {
+  margin-top: 12px;
+  color: @color__939393;
+}
+
+.login-type {
+  text-align: right;
+  cursor: pointer;
+  margin-bottom: 44px;
+  color: @color__primary;
+
+  &-content {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  :global {
+    .spotecicon {
+      margin-right: 3px;
+    }
+  }
+}
