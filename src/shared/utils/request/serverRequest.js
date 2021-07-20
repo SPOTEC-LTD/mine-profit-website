@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { isNotLogin } from '@/shared/utils/request/utils';
+import { loginPath } from '@/router/consts/urls';
 import getUserInfoFunc from './getUserInfoFunc';
 import Response from './Response';
 
@@ -11,15 +13,11 @@ const request = config => axiosInstance(config);
 // 添加请求拦截器
 axiosInstance.interceptors.request.use(config => {
   // 在发送请求之前做些什么
-  config.timeout = 100000;
-
   if (config.ctx) {
     const { token } = getUserInfoFunc(config.ctx);
     if (token) {
       config.headers.Authorization = token;
     }
-  } else {
-    console.console.error('ctx params is required');
   }
 
   return config;
@@ -27,11 +25,17 @@ axiosInstance.interceptors.request.use(config => {
 
 // 添加响应拦截器
 axiosInstance.interceptors.response.use(res => {
-  const { data } = res;
+  const { data, config: { ctx, catchException = true } } = res;
   const response = new Response(data);
   if (response.isSuccess) {
     return Promise.resolve(data);
   }
+
+  if (isNotLogin(response.code) && catchException) {
+    // const finlayUrl = ctx.locale === 'zh' ? loginPath : `/${ctx.locale}${loginPath}`;
+    // ctx.redirect(`${finlayUrl}?redirectUrl=${ctx.route.fullPath}`);
+  }
+
   return Promise.reject(response);
 }, resError => {
   return Promise.reject(resError);
