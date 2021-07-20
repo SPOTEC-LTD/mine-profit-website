@@ -1,10 +1,33 @@
-@import "~@/shared/styles/variables.less";
+@import '~@/shared/styles/variables.less';
 
 .login-info {
-  margin-right: 30px;
+  margin-right: 38px;
 }
 
 .login-text {
-  font-size: 14px;
+  font-size: @font-size-base;
+  color: @color__1d1d1d;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.name {
+  max-width: 64px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: @font-size-lg;
+  line-height: 22px;
   color: @color__1d1d1d;
 }

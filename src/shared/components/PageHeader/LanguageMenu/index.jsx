@@ -1,5 +1,5 @@
 import { Dropdown, Menu } from 'ant-design-vue';
-import RightOutlined from 'ahoney/lib/icons/RightOutlined';
+import LagFilled from 'ahoney/lib/icons/LagFilled';
 import locationHelp from '@/shared/utils/locationHelp';
 import './index.less';
 
@@ -39,16 +39,8 @@ export default {
           </Menu>
         )}
       >
-        <a
-          class='nav-menu-trigger'
-          onClick={e => e.preventDefault()}
-        >
-          <div class="nav-menu-trigger-content">
-            <span>
-              {this.$slots.default}
-            </span>
-          </div>
-          <RightOutlined class="nav-menu-trigger-icon" />
+        <a class="language-icon-box">
+          <LagFilled className="language-icon" />
         </a>
       </Dropdown>
     );

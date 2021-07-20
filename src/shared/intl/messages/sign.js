@@ -23,4 +23,5 @@ export default {
   loginMineprofit: '登录Mineprofit',
   emailLogin: '邮箱登录',
   phoneLogin: '手机登录',
+  loginSignUp: '登录/注册',
 };
