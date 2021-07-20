@@ -2,6 +2,7 @@ import { Button } from 'ant-design-vue';
 import DocFilledOutlined from 'ahoney/lib/icons/DocFilledOutlined';
 import EmailCircleOutlined from 'ahoney/lib/icons/EmailCircleOutlined';
 import TipCirccleOutlined from 'ahoney/lib/icons/TipCirccleOutlined';
+import MailFilled from 'ahoney/lib/icons/MailFilled';
 import locationServices from '@/shared/services/location/locationServices';
 import { RECOMMEND, NEWSLETTER, ANNOUNCEMENT } from '@/shared/consts/newsType';
 import { I18N } from '@/shared/intl/i18n';
@@ -128,6 +129,7 @@ const PageHeader = {
           </div>
           <div class={styles['header-right-content']}>
             <LoginInfo />
+            <MailFilled className={styles.email} />
             <LanguageMenu items={this.languageItems}>{ this.$t('language') }</LanguageMenu>
             <Button class={styles['page-header-download']} type="primary" onClick={this.redirectToDownloadGuidePage}>
               { this.$t('downloadNow') }
