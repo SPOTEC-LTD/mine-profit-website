@@ -1,0 +1,44 @@
+@import "../variables.less";
+
+.mine-tabs-card {
+  .mp-tabs-top-bar {
+    border: 0;
+  }
+
+  .mp-tabs-nav-container {
+    border-radius: 4px;
+    background-color: #f7f8fc;
+    box-shadow: 0 8px 11px 0 rgba(92, 118, 166, 0.05);
+  }
+
+  .mp-tabs-tab {
+    color: #494949;
+    font-size: 16px;
+    font-weight: 500;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    min-width: 110px;
+    text-align: center;
+    transition: none;
+
+    &:hover {
+      color: #494949;
+    }
+
+    &-active {
+      border: 1px solid #3093ea;
+      border-radius: 4px;
+      background-color: #3093ea;
+      color: #fff;
+
+      &:hover {
+        color: #fff;
+      }
+
+    }
+  }
+
+  .mp-tabs-ink-bar {
+    display: none !important;
+  }
+}

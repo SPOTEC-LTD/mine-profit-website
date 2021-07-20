@@ -1,4 +1,4 @@
-import { Tabs, Divider } from 'ant-design-vue';
+import { Tabs } from 'ant-design-vue';
 import { mapActions, mapState } from 'vuex';
 import Schema from 'async-validator';
 import produce from 'immer';
@@ -11,7 +11,6 @@ import dateUtils from '@/shared/intl/utils/dateUtils';
 import PrimaryButton from '@/shared/components/PrimaryButton';
 import { passwordReg, phoneReg } from '@/shared/consts/rules';
 import * as verCodeType from '@/shared/consts/verCodeType';
-import Notification from '@/shared/services/Notification';
 import storageUserInfo from './storageUserInfo';
 import Form from './Form';
 import styles from './index.less?module';

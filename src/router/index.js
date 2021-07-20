@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from '@/pages/home';
 import Login from '@/pages/Sign/Login';
+import Home from '@/pages/home';
 import Help from '@/pages/help';
 import NewsAnnouncement from '@/pages/newsAnnouncement';
 import RecommendDetail from '@/pages/newsAnnouncement/Recommend/detail';
@@ -13,6 +13,8 @@ import Download from '@/pages/download';
 import { location } from '@/shared/services/location';
 import Ecosphere from '@/pages/ecosphere';
 import { buildRoutes } from './utils';
+import accountRoutes from './accountRoutes';
+
 import { homePath, loginPath } from './consts/urls';
 
 Vue.use(Router);
@@ -28,6 +30,7 @@ export function createRouter() {
         name: 'login',
         component: Login,
       },
+      ...accountRoutes,
       {
         path: homePath,
         name: 'home',
