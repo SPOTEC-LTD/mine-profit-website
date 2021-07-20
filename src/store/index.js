@@ -1,8 +1,9 @@
-import { getUserBaseInfo } from '@/api/account';
+import { getUserBaseInfo } from '@/api/account/userInfo';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import loadingPlugin from './loadingPlugin';
 import sign from '../modules/sign';
 import home from '../modules/home';
+import hashRate from '../modules/account/hashRate';
 import publicData from '../modules/public';
 
 const UPDATE_USER_INFO = 'updateUserInfo';
@@ -35,5 +36,6 @@ export const actions = {
 export const modules = {
   home,
   sign,
+  hashRate,
   publicData,
 };

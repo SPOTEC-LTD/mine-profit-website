@@ -5,6 +5,7 @@ import newsAnnouncement from './newsAnnouncement';
 import common from './common';
 import download from './download';
 import ecosphere from './ecosphere';
+import account from './account';
 
 export default {
   ...sign,
@@ -14,4 +15,5 @@ export default {
   ...common,
   ...download,
   ...ecosphere,
+  ...account,
 };
