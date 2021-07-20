@@ -11,3 +11,4 @@ export const getMineDatalist = createAPI('get', '/block/market/website/coins');
 export const getZendesk = createAPI('get', '/sys/api/config/zendesk');
 export const fetchAppVersion = createAPI('get', '/sys/app/version/current');
 export const fetchBizSocialInfo = createAPI('get', '/sys/basis/biz/other');
+export const getMarketsList = createAPI('get', '/block/market/app/coins');

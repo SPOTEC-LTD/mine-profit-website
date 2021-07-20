@@ -1,0 +1,56 @@
+@import "@/shared/styles/variables.less";
+
+.coin-markets-box {
+  margin-bottom: 20px;
+
+  :global {
+    .mp-table-thead > tr > th {
+      color: @color__969696;
+      background: @white;
+      padding: 10px 0;
+    }
+
+    .mp-table-tbody > tr > td {
+      color: @color__232323;
+      font-size: @font-size-lg;
+      font-weight: 500;
+      line-height: 22px;
+      padding: 10px 0;
+    }
+
+    .mp-table-thead > tr > th,
+    .mp-table-tbody > tr > td {
+      border-bottom: 1px solid @color__efefef;
+    }
+  }
+}
+
+.coin-name {
+  img {
+    width: 40px;
+    height: 40px;
+    margin-right: 2px;
+  }
+}
+
+.coin-symbolCN {
+  margin-left: 6px;
+  color: @color__c0c0c0;
+  font-weight: normal;
+}
+
+.more {
+  color: @color__primary;
+  font-weight: 500;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  :global {
+    .spotecicon {
+      width: 12px;
+      height: 12px;
+    }
+  }
+}

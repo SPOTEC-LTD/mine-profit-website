@@ -39,4 +39,11 @@ export default {
   autoClearToWallet: '产出每日自动结算至钱包账户',
   withdrawFreely: '自由提币',
   withdrawFreelyByBlockChain: '随时可通过区块链交易自由提币',
+  noticeCarouselTitle: '查看更多',
+  chainType: '币种',
+  currentPrice: '当前价',
+  priceRate: '24H涨跌',
+  marketQuotations: '行情',
+  kLineHashRate: '全网算力',
+  moreCoinPrice: '更多币价',
 };

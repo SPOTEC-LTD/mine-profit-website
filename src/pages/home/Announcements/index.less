@@ -1,0 +1,45 @@
+@import "@/shared/styles/variables.less";
+
+.announce-wrapper {
+  margin: 42px auto 40px;
+  height: 50px;
+  width: 490px;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+
+  .announce-left {
+    display: flex;
+
+    .announce-img-box {
+      margin-right: 30px;
+
+      img {
+        width: 19px;
+      }
+    }
+
+    .announce-main-box {
+      height: 22px;
+      width: 300px;
+      font-size: @font-size-lg;
+      font-weight: 500;
+      line-height: 22px;
+
+      .announce-main {
+        color: @color__232323;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  .announce-more {
+    font-weight: 500;
+    line-height: 20px;
+  }
+}
