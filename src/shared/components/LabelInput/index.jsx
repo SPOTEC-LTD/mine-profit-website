@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import omit from 'lodash/omit';
 import isUndefined from 'lodash/isUndefined';
+import trimEnd from 'lodash/trimEnd';
 import './index.less';
 
 const LabelInput = {
@@ -26,7 +27,8 @@ const LabelInput = {
       if (!isUndefined(this.value)) {
         this.selfValue = e.target.value;
       }
-      this.$emit('change', e.target.value);
+      console.log('---23-', e.target.value)
+      this.$emit('change', trimEnd(e.target.value));
     },
 
     handleFocus() {
