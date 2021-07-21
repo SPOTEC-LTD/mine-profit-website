@@ -6,6 +6,7 @@ import common from './common';
 import download from './download';
 import ecosphere from './ecosphere';
 import account from './account';
+import productMarketing from './productMarketing';
 
 export default {
   ...sign,
@@ -16,4 +17,5 @@ export default {
   ...download,
   ...ecosphere,
   ...account,
+  ...productMarketing,
 };

@@ -284,5 +284,20 @@
   "payRepaySuccess": "还款成功！",
   "payRedeemSuccess": "赎回成功！",
   "operationSuccess": "操作成功",
-  "pledgeRemainCount": "今日还能进行质押取消操作{pledgeCount}次"
+  "pledgeRemainCount": "今日还能进行质押取消操作{pledgeCount}次",
+  "distilledHashRate": "精选算力",
+  "newUserUsed": "新客专享",
+  "marketNewBuyBuff": "新购加成",
+  "marketRenewBuff": "复购续期",
+  "marketPartPrice": "每份售价",
+  "marketOnlineTime": "开售",
+  "marketExpect": "敬请期待",
+  "marketRemainHashrate": "可购算力",
+  "marketImmediateBuy": "立即购买",
+  "marketEverydayNetOutput": "每日净产出",
+  "marketPartHash": "每份算力",
+  "part": "份",
+  "day": "天",
+  "marketNetOutput": "日净产出",
+  "moreHashRate": "更多算力"
 }

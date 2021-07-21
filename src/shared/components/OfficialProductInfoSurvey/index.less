@@ -1,0 +1,29 @@
+@import "@/shared/styles/variables.less";
+
+.official-product-survey-wrapper {
+  padding: 6px 3px;
+  color: @color_242424;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.product-cell-node-wrapper {
+  color: @color_242424;
+  font-size: @font-size__13;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 245px;
+  padding: 3px 12px;
+
+  &:nth-child(odd) {
+    background-color: @color_f8f8f8;
+  }
+}
+
+.product-cell-node-unit {
+  color: @color__8b8b8b;
+  padding-left: 2px;
+}

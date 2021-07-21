@@ -1,22 +1,21 @@
 @import "@/shared/styles/variables.less";
 
-.download-button {
-  position: relative;
-  top: 84px;
-  padding: 10px 32px;
+.more {
+  color: @color__primary;
+  font-weight: 500;
+  padding-bottom: 10px;
   display: flex;
+  justify-content: center;
   align-items: center;
+
+  :global {
+    .spotecicon {
+      width: 12px;
+      height: 12px;
+    }
+  }
 }
 
-.qr-code {
-  margin-right: 8px;
-  width: 22px;
-}
-
-.banner-phone {
-  position: absolute;
-  z-index: 1;
-  height: 359px;
-  right: 0;
-  bottom: -234px;
+.more-cursor {
+  cursor: pointer;
 }
