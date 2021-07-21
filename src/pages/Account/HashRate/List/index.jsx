@@ -6,14 +6,14 @@ import { HASH_RATE, GET_PRODUCT_HASHRATE_LIST, hashrateStatusMap } from '@/modul
 import * as hashRateAPI from '@/api/account/hashRate';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import KeepTabs from '@/shared/components/KeepTabs';
+import NoData from '@/shared/components/NoData';
 import TotalSection from './TotalSection';
-// import Ordinary from './Ordinary';
+import Ordinary from './Ordinary';
 import styles from './index.less?module';
 
 const { TabPane } = KeepTabs;
 
 const HashrateList = {
-
   async asyncData(ctx) {
     const { userId } = getUserInfoFunc(ctx);
 
@@ -104,20 +104,22 @@ const HashrateList = {
   render() {
     return (
       <BaseContainer>
-        <Select
-          class={styles['hashrate-type-select']}
-          defaultValue='BTC'
-          onChange={this.handleSelectChange}
-          suffixIcon={<TriangleFilled className="select-icon" />}
-        >
-          {
-            ['BTC', 'ETH'].map(value => (
-              <Select.Option key={value}>
-                {value}
-              </Select.Option>
-            ))
-          }
-        </Select>
+        <div>
+          <Select
+            class={styles['hashrate-type-select']}
+            defaultValue='BTC'
+            onChange={this.handleSelectChange}
+            suffixIcon={<TriangleFilled className="select-icon" />}
+          >
+            {
+              ['BTC', 'ETH'].map(value => (
+                <Select.Option key={value}>
+                  {value}
+                </Select.Option>
+              ))
+            }
+          </Select>
+        </div>
         <TotalSection
           hashrateType={this.hashrateType}
           statistics={this.statistics}
@@ -128,11 +130,54 @@ const HashrateList = {
               value={this.hashTypeStatusKey}
               onChange={this.onTabsChange}
             >
-              <TabPane name={hashrateStatusMap.ORDINARY} title={this.$t('typeNormal')}>
-                <div>
-                ddsad
-                </div>
+              <TabPane key={hashrateStatusMap.ORDINARY} tab={this.$t('typeNormal')}>
+              {
+                  !!this.ordinaryList.length ?
+                    <Ordinary
+                      dataSource={this.ordinaryList}
+                      onRefresh={this.getProductHashrateListAction}
+                      onToTransferPage={this.toTransferPage}
+                    />
+                    :
+                    <NoData class={styles['no-data']} />
+                }
               </TabPane>
+              {/* <TabPane name={hashrateStatusMap.CLOSE} title={this.$t('typeClose')}>
+                {
+                  !!this.closeList.length ?
+                    <Close dataSource={this.closeList} />
+                    :
+                    <NoData class={styles['no-data']} />
+                }
+
+              </TabPane>
+              <TabPane name={hashrateStatusMap.PLEDGES} class={styles['pledges-tab']} title={this.$t('typePledge')}>
+                {
+                  !!this.pledgesList.length ?
+                    <Pledges dataSource={this.pledgesList} onRefresh={this.getProductHashrateListAction} />
+                    :
+                    <NoData class={styles['no-data']} />
+                }
+              </TabPane>
+              <TabPane name={hashrateStatusMap.TRANSFER} title={this.$t('typeTransfer')}>
+                {
+                  !!this.transferList.length ?
+                    <Transfer
+                      dataSource={this.transferList}
+                      onRefresh={this.getProductHashrateListAction}
+                    />
+                    :
+                    <NoData class={styles['no-data']} />
+                }
+              </TabPane>
+              <TabPane name={hashrateStatusMap.SHUTDOWN} title={this.$t('typeShutDown')}>
+                {
+                  this.shutdownList.length ?
+                    <Shutdown dataSource={this.shutdownList} onToTransferPage={this.toTransferPage} />
+                    :
+                  <NoData class={styles['no-data']} />
+                }
+              </TabPane> */}
             </KeepTabs>
           </Spin>
       </BaseContainer>

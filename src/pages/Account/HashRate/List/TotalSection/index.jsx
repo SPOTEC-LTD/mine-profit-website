@@ -53,17 +53,15 @@ const TotalSection = {
           const resultValue = bigNumberToFixed(item.value, 8);
           return (
             <div class={styles['output-item']}>
-              <div>{item.label}</div>
-              <div
-                class={styles['output-item-value']}
-              >
+              <div class={styles['output-item-label']}>{item.label}</div>
+              <div class={styles['output-item-value']}>
                 <span>{item.usePlus && resultValue > 0 ? `+${resultValue}` : resultValue}</span>
                 <span class={styles['output-item-value-unit']}>{this.hashrateType}</span>
               </div>
             </div>
           );
         })}
-      </div>
+    </div>
     );
   },
 };

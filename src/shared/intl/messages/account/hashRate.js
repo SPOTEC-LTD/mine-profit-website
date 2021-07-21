@@ -105,7 +105,6 @@ export default {
   hashrateCanOpen: '可开机算力',
   hashrateOpenPrice: '开机维护费',
   hashrateNumOpened: '开机后算力',
-  hashrateTime: '开挖时间',
   pledgePageTitle: '算力质押',
   pledgeHelp: '质押帮助',
   pledgeCanPledgePart: '可质押算力份数',

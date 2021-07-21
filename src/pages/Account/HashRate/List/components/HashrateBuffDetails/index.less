@@ -1,0 +1,48 @@
+@import '@/shared/styles/variables.less';
+
+.wrapper {
+  text-align: center;
+}
+
+.icon {
+  width: 105px;
+  height: 105px;
+}
+
+.title {
+  margin: 9px 0 4px;
+  line-height: 22px;
+}
+
+.description {
+  font-size: @font-size__13;
+  line-height: 18px;
+}
+
+.table-box {
+  overflow: hidden;
+  margin-top: 10px;
+  border-radius: 4px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  > tr:first-child {
+    color: @white;
+    font-size: @font-size-sm;
+    line-height: 17px;
+    background-color: @color__primary;
+    height: 25px;
+  }
+
+  > tr:last-child {
+    border-bottom: none;
+  }
+}
+
+.table-item {
+  line-height: 20px;
+  height: 28px;
+}

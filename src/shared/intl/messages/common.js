@@ -17,4 +17,5 @@ export default {
   newsAnnouncement: '资讯公告',
   downloadNow: '立即下载',
   language: '语言',
+  noData: '暂无数据',
 };

@@ -1,0 +1,18 @@
+@import "@/shared/styles/variables.less";
+
+.p-cell-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.line-border-list {
+  .p-cell-item {
+    padding: 11px 0 11px 9px;
+    font-size: @font-size__15;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
