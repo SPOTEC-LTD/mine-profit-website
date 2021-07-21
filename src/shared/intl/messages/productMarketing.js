@@ -1,0 +1,18 @@
+export default {
+  distilledHashRate: '精选算力',
+  newUserUsed: '新客专享',
+  marketNewBuyBuff: '新购加成',
+  marketRenewBuff: '复购续期',
+  marketPartPrice: '每份售价',
+  marketOnlineTime: '开售',
+  marketExpect: '敬请期待',
+  marketRemainHashrate: '可购算力',
+  marketImmediateBuy: '立即购买',
+  marketEverydayNetOutput: '每日净产出',
+  hashrateTime: '开挖时间',
+  marketPartHash: '每份算力',
+  part: '份',
+  day: '天',
+  marketNetOutput: '日净产出',
+  moreHashRate: '更多算力',
+};

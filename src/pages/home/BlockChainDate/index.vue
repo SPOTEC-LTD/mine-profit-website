@@ -1,6 +1,6 @@
 <template>
   <div class="mine-data-container">
-    <BlockTitle :img="blockChain" class="mine-data-title-image" :title="isChinese && $t('mineData')" />
+    <Title :title="isChinese && $t('mineData')" />
     <div class="coin-data-container">
       <CoinMineData
         v-for="(item,index) in coinList"
@@ -20,18 +20,17 @@
 import { getMineDatalist } from '@/api';
 import numberUtils from 'aa-utils/lib/numberUtils';
 import CoinMineData from '@/pages/home/component/CoinMineData';
-import BlockTitle from '@/shared/components/BlockTitle';
 import getHashrateUnit from '@/shared/utils/getHashrateUnit';
 import blockChain from '@/assets/home/block-chain-title.png';
 import btcIcon from '@/assets/home/btc-icon.png';
 import ethIcon from '@/assets/home/eth-icon.png';
 import { getIsChinese } from '@/shared/utils/getLocalLanguage';
+import Title from '@/pages/home/component/Title';
 
-/* eslint-disable object-curly-newline */
 export default {
   components: {
-    BlockTitle,
     CoinMineData,
+    Title,
   },
   data() {
     return {

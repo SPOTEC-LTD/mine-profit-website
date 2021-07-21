@@ -1,10 +1,9 @@
-import { mapActions, mapState } from 'vuex';
-
 import * as API from '@/api';
-import { HOME, GET_MARKETS_LIST } from '@/modules/home';
-import BaseContainer from '@/shared/components/BaseContainer';
-import BlockChainDate from '@/pages/home/BlockChainDate';
+import { mapActions, mapState } from 'vuex';
 import ProductMarket from '@/pages/home/ProductMarket';
+import BlockChainDate from '@/pages/home/BlockChainDate';
+import BaseContainer from '@/shared/components/BaseContainer';
+import { HOME, GET_MARKETS_LIST, GET_HOME_PRODUCT_LIST } from '@/modules/home';
 import Banner from './Banner';
 import Announcements from './Announcements';
 import CoinMarkets from './CoinMarkets';
@@ -25,18 +24,24 @@ const Home = {
 
     return props;
   },
+
   computed: {
     ...mapState({
       marketsList: state => state.home.marketsList,
+      productList: state => state.home.productList,
       marketsLoading: state => state.loading.effects[`${HOME}/${GET_MARKETS_LIST}`],
     }),
   },
+
   mounted() {
     this[GET_MARKETS_LIST]();
+    this[GET_HOME_PRODUCT_LIST]();
   },
+
   methods: {
-    ...mapActions(HOME, [GET_MARKETS_LIST]),
+    ...mapActions(HOME, [GET_MARKETS_LIST, GET_HOME_PRODUCT_LIST]),
   },
+
   render() {
     return (
       <div>
@@ -44,8 +49,8 @@ const Home = {
         <BaseContainer>
           <Announcements announcementList={this.announcementList} />
           <CoinMarkets data={this.marketsList} loading={this.marketsLoading} />
+          <ProductMarket productList={this.productList} rateExchangeList={this.rateExchangeList} />
           <BlockChainDate />
-          <ProductMarket />
         </BaseContainer>
       </div>
     );
