@@ -1,6 +1,7 @@
 import { Row, Col } from 'ant-design-vue';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import ProductTitle from '@/shared/components/ProductTitle';
+import DateUtils from '@/shared/intl/utils/dateUtils';
 import ProportionCellValue from '@/pages/Account/HashRate/List/components/ProportionCellValue';
 import HashrateBuffCellValue from '@/pages/Account/HashRate/List/components/HashrateBuffCellValue';
 import Card from '@/pages/Account/HashRate/List/components/Card';
@@ -10,49 +11,45 @@ import locationServices from '@/shared/services/location/locationServices';
 import { VIP_HASHRATE } from '@/pages/Account/HashRate/consts/hashrateType';
 import CardFooter from './CardFooter';
 
-import styles from './index.less?module';
-
 const Ordinary = {
   props: ['dataSource'],
-  data() {
-    return {
-      isVisibleTransferPage: false,
-      nowClickData: {},
-    };
-  },
   methods: {
     getListData(data) {
-      const isVipHashrate = data.type === VIP_HASHRATE;
-
       const listData = [
         {
-          label: this.$t('ratioDialogRatio'),
+          label: this.$t('ratioDialogRatio'), // '分配比例',
           value: <ProportionCellValue data={data} />,
         },
         {
           label: this.$t('hashrateBuff'),
-          hidden: isVipHashrate,
           value: (<HashrateBuffCellValue data={data} />),
         },
         {
-          label: this.$t('hashrateYesterdayNetOutput'),
-          value: <CellValue value={bigNumberToFixed(data.yesterdayOutput, 8)} unit={data.hashrateType} />,
+          label: this.$t('marketStartMineTime'), // '开挖时间',
+          value: DateUtils.formatDate(data.excavationTime, 'YYYY.MM.DD'),
         },
         {
-          label: this.$t('hashrateTodayNetOutputPre'),
-          value: <CellValue value={bigNumberToFixed(data.todayExpectedOutput || 0, 8)} unit={data.hashrateType} />,
+          label: this.$t('marketClosePeriod'), // '封闭期',
+          hidden: data.transCloseDays === 0,
+          value: (
+            <CellValue
+              value={`${data.passTime}/${data.transCloseDays}`}
+              unit={this.$t('day')}
+            />
+          ),
+        },
+        {
+          label: this.$t('hashrateYesterdayNetOutput'), // '昨日净产出',
+          value: (
+            <CellValue
+              value={bigNumberToFixed(data.yesterdayIncome || '0', 8)}
+              unit={data.hashrateType}
+            />
+          ),
         },
       ];
 
       return listData.filter(({ hidden }) => !hidden);
-    },
-
-    closeTransferPage(to) {
-      if (to) {
-        this.$emit('toTransferPage');
-      }
-      this.isVisibleTransferPage = false;
-      document.title = this.$t('mineTitleHashrate');
     },
 
     onClickToProductTemplate(ptId, isVipHashrate) {
@@ -68,7 +65,7 @@ const Ordinary = {
 
   render() {
     return (
-      <div class={styles['list-container']}>
+      <div>
         <Row gutter={28} type="flex">
         {
           this.dataSource.map(item => {
@@ -77,13 +74,9 @@ const Ordinary = {
               <ProductTitle
                 className="card-product-title"
                 chainType={item.hashrateType}
-                leftExtra={isVipHashrate && item.name}
+                leftExtra={item.productName}
                 scopedSlots={{
-                  name: () => (
-                    isVipHashrate
-                      ? <span>{this.$t('hashrateVIPHash')}</span>
-                      : <span class={['product-title-value', 'no-wrap']}>{item.name}</span>
-                  ),
+                  name: () => (<span class='product-title-value'>{item.productTemplateName}</span>),
                 }}
                 onHandleClick={() => { this.onClickToProductTemplate(item.productTemplateId, isVipHashrate); }}
               />
@@ -94,7 +87,7 @@ const Ordinary = {
                 <Card
                   scopedSlots={{
                     header: () => header,
-                    footer: () => <CardFooter data={item} isVipHashrate={isVipHashrate} />,
+                    footer: () => <CardFooter data={item} />,
                   }}
                 >
                   <ListCell dataSource={this.getListData(item)} />
