@@ -7,9 +7,9 @@ export const TRANSFER_CANCEL = 3;
 
 export const getTransferStatusMap = status => {
   const statusMap = {
-    [TRANSFER_ING]: locale.intl.t('transferStatusTransfering'), // '转让中 ···',
-    [TRANSFER_DONE]: locale.intl.t('transferStatusDone'), // '已完成 ✓',
-    [TRANSFER_CANCEL]: locale.intl.t('transferStatusConfirming'), // '取消确认中 ···',
+    [TRANSFER_ING]: locale.t('transferStatusTransfering'), // '转让中 ···',
+    [TRANSFER_DONE]: locale.t('transferStatusDone'), // '已完成 ✓',
+    [TRANSFER_CANCEL]: locale.t('transferStatusConfirming'), // '取消确认中 ···',
   };
   return statusMap[status] || statusMap;
 };

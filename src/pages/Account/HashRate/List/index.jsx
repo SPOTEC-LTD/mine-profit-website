@@ -10,6 +10,7 @@ import NoData from '@/shared/components/NoData';
 import TotalSection from './TotalSection';
 import Ordinary from './Ordinary';
 import Close from './Close';
+import Transfer from './Transfer';
 import styles from './index.less?module';
 
 const { TabPane } = KeepTabs;
@@ -125,62 +126,62 @@ const HashrateList = {
           hashrateType={this.hashrateType}
           statistics={this.statistics}
         />
-          <Spin spinning={this.getProductHashrateListLoading}>
-            <KeepTabs
-              class="mine-tabs-card"
-              value={this.hashTypeStatusKey}
-              onChange={this.onTabsChange}
-            >
-              <TabPane key={hashrateStatusMap.ORDINARY} tab={this.$t('typeNormal')}>
+        <Spin spinning={this.getProductHashrateListLoading}>
+          <KeepTabs
+            class={['mine-tabs-card', styles['hashrate-list-container']]}
+            value={this.hashTypeStatusKey}
+            onChange={this.onTabsChange}
+          >
+            <TabPane key={hashrateStatusMap.ORDINARY} tab={this.$t('typeNormal')}>
               {
-                  !!this.ordinaryList.length ?
-                    <Ordinary
-                      dataSource={this.ordinaryList}
-                      onRefresh={this.getProductHashrateListAction}
-                      onToTransferPage={this.toTransferPage}
-                    />
-                    :
-                    <NoData class={styles['no-data']} />
-                }
-              </TabPane>
-              <TabPane key={hashrateStatusMap.CLOSE} tab={this.$t('typeClose')}>
-                {
-                  !!this.closeList.length ?
-                    <Close dataSource={this.closeList} />
-                    :
-                    <NoData class={styles['no-data']} />
-                }
-
-              </TabPane>
-              {/* <TabPane name={hashrateStatusMap.PLEDGES} class={styles['pledges-tab']} title={this.$t('typePledge')}>
-                {
-                  !!this.pledgesList.length ?
-                    <Pledges dataSource={this.pledgesList} onRefresh={this.getProductHashrateListAction} />
-                    :
-                    <NoData class={styles['no-data']} />
-                }
-              </TabPane>
-              <TabPane name={hashrateStatusMap.TRANSFER} title={this.$t('typeTransfer')}>
-                {
-                  !!this.transferList.length ?
-                    <Transfer
-                      dataSource={this.transferList}
-                      onRefresh={this.getProductHashrateListAction}
-                    />
-                    :
-                    <NoData class={styles['no-data']} />
-                }
-              </TabPane>
-              <TabPane name={hashrateStatusMap.SHUTDOWN} title={this.$t('typeShutDown')}>
-                {
-                  this.shutdownList.length ?
-                    <Shutdown dataSource={this.shutdownList} onToTransferPage={this.toTransferPage} />
-                    :
+                !!this.ordinaryList.length ?
+                  <Ordinary
+                    dataSource={this.ordinaryList}
+                    onRefresh={this.getProductHashrateListAction}
+                    onToTransferPage={this.toTransferPage}
+                  />
+                  :
                   <NoData class={styles['no-data']} />
-                }
-              </TabPane> */}
-            </KeepTabs>
-          </Spin>
+              }
+            </TabPane>
+            <TabPane key={hashrateStatusMap.CLOSE} tab={this.$t('typeClose')}>
+              {
+                !!this.closeList.length ?
+                  <Close dataSource={this.closeList} />
+                  :
+                  <NoData class={styles['no-data']} />
+              }
+
+            </TabPane>
+            {/* <TabPane name={hashrateStatusMap.PLEDGES} class={styles['pledges-tab']} title={this.$t('typePledge')}>
+              {
+                !!this.pledgesList.length ?
+                  <Pledges dataSource={this.pledgesList} onRefresh={this.getProductHashrateListAction} />
+                  :
+                  <NoData class={styles['no-data']} />
+              }
+            </TabPane> */}
+            <TabPane key={hashrateStatusMap.TRANSFER} tab={this.$t('typeTransfer')}>
+              {
+                !!this.transferList.length ?
+                  <Transfer
+                    dataSource={this.transferList}
+                    onRefresh={this.getProductHashrateListAction}
+                  />
+                  :
+                  <NoData class={styles['no-data']} />
+              }
+            </TabPane>
+            {/* <TabPane name={hashrateStatusMap.SHUTDOWN} title={this.$t('typeShutDown')}>
+              {
+                this.shutdownList.length ?
+                  <Shutdown dataSource={this.shutdownList} onToTransferPage={this.toTransferPage} />
+                  :
+                <NoData class={styles['no-data']} />
+              }
+            </TabPane> */}
+          </KeepTabs>
+        </Spin>
       </BaseContainer>
     );
   },

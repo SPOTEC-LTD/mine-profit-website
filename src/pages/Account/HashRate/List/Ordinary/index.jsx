@@ -68,8 +68,7 @@ const Ordinary = {
 
   render() {
     return (
-      <div class={styles['list-container']}>
-        <Row gutter={28} type="flex">
+      <Row gutter={28} type="flex">
         {
           this.dataSource.map(item => {
             const isVipHashrate = item.type === VIP_HASHRATE;
@@ -103,8 +102,7 @@ const Ordinary = {
             );
           })
         }
-        </Row>
-      </div>
+      </Row>
 
     );
   },
