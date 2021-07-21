@@ -49,7 +49,7 @@ const Home = {
         <BaseContainer>
           <Announcements announcementList={this.announcementList} />
           <CoinMarkets data={this.marketsList} loading={this.marketsLoading} />
-          <ProductMarket productList={this.productList} rateExchangeList={this.rateExchangeList} />
+          <ProductMarket productList={this.productList} />
           <BlockChainDate />
         </BaseContainer>
       </div>
