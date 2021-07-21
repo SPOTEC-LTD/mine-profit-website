@@ -9,6 +9,7 @@ import KeepTabs from '@/shared/components/KeepTabs';
 import NoData from '@/shared/components/NoData';
 import TotalSection from './TotalSection';
 import Ordinary from './Ordinary';
+import Close from './Close';
 import styles from './index.less?module';
 
 const { TabPane } = KeepTabs;
@@ -142,7 +143,7 @@ const HashrateList = {
                     <NoData class={styles['no-data']} />
                 }
               </TabPane>
-              {/* <TabPane name={hashrateStatusMap.CLOSE} title={this.$t('typeClose')}>
+              <TabPane key={hashrateStatusMap.CLOSE} tab={this.$t('typeClose')}>
                 {
                   !!this.closeList.length ?
                     <Close dataSource={this.closeList} />
@@ -151,7 +152,7 @@ const HashrateList = {
                 }
 
               </TabPane>
-              <TabPane name={hashrateStatusMap.PLEDGES} class={styles['pledges-tab']} title={this.$t('typePledge')}>
+              {/* <TabPane name={hashrateStatusMap.PLEDGES} class={styles['pledges-tab']} title={this.$t('typePledge')}>
                 {
                   !!this.pledgesList.length ?
                     <Pledges dataSource={this.pledgesList} onRefresh={this.getProductHashrateListAction} />

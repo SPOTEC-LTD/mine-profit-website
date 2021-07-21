@@ -4,6 +4,7 @@ export default {
   typePledge: '质押',
   typeTransfer: '转让',
   typeShutDown: '关机',
+  marketClosePeriod: '封闭期',
   hashrateYesterdayNetOutput: '昨日净产出',
   hashrateAllNetOutput: '累计净产出',
   hashrateTotalHash: '总算力',
