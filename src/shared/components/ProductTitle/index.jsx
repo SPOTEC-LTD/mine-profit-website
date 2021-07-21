@@ -35,8 +35,8 @@ const ProductTitle = {
 
   render() {
     const chainTypeMap = {
-      BTC: <div class='btc-icon'><BtcFilled /></div>,
-      ETH: <div class='eth-icon'><EthFilled /></div>,
+      BTC: <div class='chain-icon btc-icon'><BtcFilled /></div>,
+      ETH: <div class='chain-icon eth-icon'><EthFilled /></div>,
     };
 
     const rightContent = this.$scopedSlots.rightContent && this.$scopedSlots.rightContent();

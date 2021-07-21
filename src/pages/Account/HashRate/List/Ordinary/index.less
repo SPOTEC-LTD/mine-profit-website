@@ -1,24 +1,38 @@
 @import "@/shared/styles/variables.less";
 
-.present {
-  font-size: 12px;
-  border-radius: 4px;
-  margin-right: 4px;
-  padding: 0 4px;
-  flex-shrink: 0;
-  color: @white;
-  background: linear-gradient(225deg, @color__primary 0%, @color_00c9c4 100%);
+.list-container {
+  :global {
+    .mp-col {
+      margin-bottom: 30px;
+    }
+  }
 }
 
-.vip-hashrate-footer {
-  border-top: 1px solid #f3f3f3;
-  padding: 11px 25px;
+.footer-left-content {
+  display: flex;
+  align-items: center;
+}
+
+.present {
+  font-size: @font-size-sm;
+  margin-left: 4px;
+  padding: 0 5px;
+  flex-shrink: 0;
+  color: @white;
+  border-radius: 2px;
+  background: linear-gradient(225deg, @color__primary 0%, @color__00c9c4 100%);
+}
+
+.time-countdown {
+  :global {
+    .mp-statistic-content {
+      font-size: @font-size-sm;
+      color: @color__0e1d34;
+    }
+  }
 }
 
 .vip-hashrate-footer-time {
-  background-color: #8598bb;
-  color: @white;
-  padding: 3px 8px;
-  border-radius: 4px;
-  display: inline-block;
+  font-size: @font-size-sm;
+  color: @color__0e1d34;
 }

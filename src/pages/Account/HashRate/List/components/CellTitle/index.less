@@ -1,0 +1,55 @@
+@import "@/shared/styles/variables.less";
+
+.title-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  .spotecicon {
+    color: @color__8598bb;
+    fill: @white;
+    width: 16Px;
+    height: 16Px;
+    margin-left: 4px;
+  }
+}
+
+.cell-pre-title {
+  white-space: nowrap;
+  color: @color__1d1d1d;
+}
+
+.tag-mention {
+  border-radius: 16px;
+  max-width: 264px;
+  font-size: @font-size__15;
+}
+
+.notification-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-radius: 16px;
+
+  .spotecicon {
+    color: @white;
+
+    svg {
+      width: 21px;
+      height: 21px;
+    }
+  }
+}
+
+.notification-title {
+  padding-bottom: 4px;
+}
+
+.notification-main-content {
+  text-align: left;
+}
+
+.notification-slogan {
+  padding-left: 12px;
+  font-size: @font-size__13;
+}

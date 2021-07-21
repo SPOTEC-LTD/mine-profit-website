@@ -1,5 +1,5 @@
 import AccountDetail from '@/pages/Account/Detail';
-import HashrateList from '@/pages/Account/Hashrate/List';
+import HashRateList from '@/pages/Account/HashRate/List';
 import * as urls from './consts/urls';
 
 export default [
@@ -9,8 +9,8 @@ export default [
     component: AccountDetail,
   },
   {
-    path: urls.accountHashrateListPath,
-    name: 'HashrateList',
-    component: HashrateList,
+    path: urls.accountHashRateListPath,
+    name: 'HashRateList',
+    component: HashRateList,
   },
 ];

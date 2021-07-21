@@ -2,9 +2,6 @@
   <ConfigProvider prefix-cls="mp">
     <div>
       <PageHeader />
-      <Modal title="Title" :visible="false">
-        <p>asdfasfasdf</p>
-      </Modal>
       <div
         class="layout"
         :style="{ 'overflow-x': overflowxHidden ? 'auto' : 'hidden' }"
@@ -34,7 +31,6 @@ export default {
     ConfigProvider,
     PageHeader,
     PageFooter,
-    Modal,
   },
   props: {
     overflowxHidden: {
@@ -53,7 +49,7 @@ export default {
   },
   mounted() {
     Vue.component('ErrorNode', ErrorNode);
-
+    Vue.use(Modal);
     document.title = this.$t('essayHashRate')
     this.setLivechat();
     this.upateDocumentTitle();

@@ -49,6 +49,7 @@ const BaseModal = {
         <Modal
           class="base-modal"
           showConfirmButton={false}
+          footer={null}
           v-model={this.showDialog}
           { ...{
             on: this.$listeners,

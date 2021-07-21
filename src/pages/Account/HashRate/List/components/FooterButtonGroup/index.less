@@ -1,0 +1,31 @@
+@import "@/shared/styles/variables.less";
+
+.footer-button {
+  display: flex;
+
+  :global {
+    .mp-btn {
+      border: 0;
+      color: @color__1d1d1d;
+      padding: 0;
+      font-size: 16px;
+      transition: none;
+
+      &:last-child {
+        margin-left: 30px;
+      }
+
+      .spotecicon {
+        margin-right: 6px;
+      }
+
+      &:not([disabled]):hover {
+        color: @color__primary;
+
+        .spotecicon {
+          fill: @color__primary;
+        }
+      }
+    }
+  }
+}
