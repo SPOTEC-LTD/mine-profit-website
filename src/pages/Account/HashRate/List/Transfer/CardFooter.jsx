@@ -63,7 +63,6 @@ const CardFooter = {
     const tagNode = (
       <StatusTag
         color={statusTagMap[data.status]}
-        label={data.name}
         tagText={getTransferStatusMap(data.status)}
       />
     );

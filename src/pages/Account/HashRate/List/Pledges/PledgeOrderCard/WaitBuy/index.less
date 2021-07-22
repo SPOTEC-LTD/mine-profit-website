@@ -1,0 +1,58 @@
+@import "@/shared/styles/variables.less";
+
+.wait-confirm {
+  display: flex;
+  border-top: 1px solid @color__f3f3f3;
+
+  &-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 11px 0;
+
+    &:first-child {
+      border-right: 1px solid @color__f3f3f3;
+    }
+
+    &-label {
+      color: @color__242424;
+      font-size: @font-size-sm;
+      font-weight: 500;
+      margin-bottom: 1px;
+    }
+
+    :global {
+      .p-cell-value {
+        color: @color__primary;
+        font-size: @font-size__15;
+      }
+
+      .p-cell-unit {
+        color: @color__8b8b8b;
+        font-size: @font-size-sm;
+        margin-left: 4px;
+        align-self: flex-end;
+      }
+    }
+  }
+}
+
+.count-down {
+  margin-left: 2px;
+}
+
+.count-down-box {
+  display: flex;
+  align-items: flex-end;
+  font-size: @font-size-base;
+  margin-top: 10px;
+  padding: 0 16px;
+}
+
+.cancel {
+  color: @color__primary;
+  text-decoration: underline;
+  margin-left: 4px;
+  cursor: pointer;
+}
