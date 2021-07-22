@@ -1,0 +1,53 @@
+.our-vision-container {
+  padding-bottom: 130px;
+
+  .our-vision-title-image {
+    display: flex;
+    padding-bottom: 48px;
+
+    img {
+      width: 184px;
+    }
+
+    span {
+      top: 23px;
+    }
+  }
+
+  .our-mission {
+    display: flex;
+
+    .img-container {
+      width: 70%;
+      position: relative;
+      overflow: hidden;
+
+      .img-mask {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        z-index: 1;
+      }
+
+      img {
+        width: 100%;
+        z-index: 1;
+        transition: all 1s;
+      }
+
+      &:hover {
+        .img-mask {
+          background-color: rgba(92, 118, 166, 0.11);
+        }
+
+        img {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}

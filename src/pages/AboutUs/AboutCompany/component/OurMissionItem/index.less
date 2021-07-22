@@ -1,0 +1,32 @@
+.vision-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-left: 45px;
+  width: 30%;
+  background-color: #02a6e3;
+  color: white;
+  padding-top: 63px;
+
+  .vision-title {
+    font-size: 20px;
+    font-weight: 500;
+    padding-bottom: 9px;
+  }
+
+  .vision-content {
+    position: relative;
+
+    &::after {
+      width: 57px;
+      height: 1px;
+      position: absolute;
+      border-bottom: 1px solid white;
+      display: block;
+      content: '';
+      top: 140px;
+      left: 0;
+    }
+  }
+}

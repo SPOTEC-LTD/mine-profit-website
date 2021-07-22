@@ -4,10 +4,13 @@ import EmailCircleOutlined from 'ahoney/lib/icons/EmailCircleOutlined';
 import TipCirccleOutlined from 'ahoney/lib/icons/TipCirccleOutlined';
 import MailFilled from 'ahoney/lib/icons/MailFilled';
 import locationServices from '@/shared/services/location/locationServices';
+import { OFFICIAL_PRODUCT, C2C_PRODUCT } from '@/shared/consts/productType';
 import { RECOMMEND, NEWSLETTER, ANNOUNCEMENT } from '@/shared/consts/newsType';
+import { ABOUT_US, ECOSPHERE } from '@/shared/consts/aboutUsType';
 import { I18N } from '@/shared/intl/i18n';
 import Link from '@/shared/components/link';
 import logoImg from '@/assets/logo-black.png';
+import * as urls from '@/router/consts/urls';
 import NavLink from './NavLink';
 import NavMenu from './NavMenu';
 import LanguageMenu from './LanguageMenu';
@@ -18,29 +21,6 @@ import styles from './index.less?module';
 const PageHeader = {
   data() {
     return {
-      items: [
-        {
-          href: '/newsAnnouncement',
-          name: this.$t('recommendArticle'),
-          type: RECOMMEND,
-          description: this.$t('recommendArticleDesc'),
-          icon: <DocFilledOutlined />,
-        },
-        {
-          href: '/newsAnnouncement',
-          name: this.$t('newsletter'),
-          type: NEWSLETTER,
-          description: this.$t('newsletterDesc'),
-          icon: <EmailCircleOutlined />,
-        },
-        {
-          href: '/newsAnnouncement',
-          name: this.$t('announcement'),
-          type: ANNOUNCEMENT,
-          description: this.$t('announcementDesc'),
-          icon: <TipCirccleOutlined />,
-        },
-      ],
       languageItems: I18N.locales,
     };
   },
@@ -51,21 +31,21 @@ const PageHeader = {
     getNews() {
       return [
         {
-          href: '/newsAnnouncement',
+          href: urls.newsAnnouncementPath,
           name: this.$t('recommendArticle'),
           type: RECOMMEND,
           description: this.$t('recommendArticleDesc'),
           icon: <DocFilledOutlined />,
         },
         {
-          href: '/newsAnnouncement',
+          href: urls.newsAnnouncementPath,
           name: this.$t('newsletter'),
           type: NEWSLETTER,
           description: this.$t('newsletterDesc'),
           icon: <EmailCircleOutlined />,
         },
         {
-          href: '/newsAnnouncement',
+          href: urls.newsAnnouncementPath,
           name: this.$t('announcement'),
           type: ANNOUNCEMENT,
           description: this.$t('announcementDesc'),
@@ -76,36 +56,29 @@ const PageHeader = {
     getAboutUs() {
       return ([
         {
-          href: '/newsAnnouncement',
-          name: '关于我们',
-          type: RECOMMEND,
-          description: this.$t('recommendArticleDesc'),
-          icon: <DocFilledOutlined />,
+          href: urls.aboutUsPaths,
+          name: this.$t('aboutUs'),
+          type: ABOUT_US,
+
         },
         {
-          href: '/ecosphere',
+          href: urls.aboutUsPaths,
           name: this.$t('ecosphere'),
-          type: NEWSLETTER,
-          description: this.$t('newsletterDesc'),
-          icon: <EmailCircleOutlined />,
+          type: ECOSPHERE,
         },
       ]);
     },
     getHashrateMarkets() {
       return ([
         {
-          href: '/newsAnnouncement',
-          name: '官方市场',
-          type: RECOMMEND,
-          description: this.$t('recommendArticleDesc'),
-          icon: <DocFilledOutlined />,
+          href: urls.productMarketingPath,
+          name: this.$t('marketOfficialMarket'),
+          type: OFFICIAL_PRODUCT,
         },
         {
-          href: '/ecosphere',
-          name: 'C2C市场',
-          type: NEWSLETTER,
-          description: this.$t('newsletterDesc'),
-          icon: <EmailCircleOutlined />,
+          href: urls.productMarketingPath,
+          name: this.$t('marketC2CMarket'),
+          type: C2C_PRODUCT,
         },
       ]);
     },
@@ -116,14 +89,16 @@ const PageHeader = {
       <div class={styles['page-header']}>
         <div class={styles['page-header-container']}>
           <div class={styles['header-left-content']}>
-            <Link to="/">
+            <Link to={urls.homePath}>
               <img class={styles['page-header-logo']} src={logoImg} alt="MINE PROFIT" />
             </Link>
             <div class={styles['page-header-nav']}>
-              <NavLink href="/">{ this.$t('home') }</NavLink>
-              <NavMenu hrefPrefix="/newsAnnouncement" items={this.getAboutUs()}>关于我们</NavMenu>
-              <NavMenu hrefPrefix="/newsAnnouncement" items={this.getAboutUs()}>算力市场</NavMenu>
-              <NavMenu hrefPrefix="/newsAnnouncement" items={this.items}>{ this.$t('newsAnnouncement') }</NavMenu>
+              <NavLink href={urls.homePath}>{ this.$t('home') }</NavLink>
+              <NavMenu hrefPrefix={urls.aboutUsPaths} items={this.getAboutUs()}>{this.$t('aboutUs')}</NavMenu>
+              <NavMenu hrefPrefix={urls.marketingPaths} items={this.getHashrateMarkets()}>
+                {this.$t('hashRateMarket')}
+              </NavMenu>
+              <NavMenu hrefPrefix={urls.newsPath} items={this.getNews()}>{ this.$t('newsAnnouncement') }</NavMenu>
               <NavLink href="/help">{this.$t('helpCenter') }</NavLink>
             </div>
           </div>
