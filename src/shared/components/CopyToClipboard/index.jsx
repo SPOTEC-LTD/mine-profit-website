@@ -1,5 +1,5 @@
 import CopyToClipboard from 'vue-copy-to-clipboard';
-import successModal from '@/shared/utils/request/successModal';
+import successModal from '@/shared/services/Notification/successModal';
 
 const CopyToClipboardWrap = {
   props: {
