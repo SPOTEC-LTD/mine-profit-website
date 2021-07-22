@@ -11,6 +11,7 @@ import TotalSection from './TotalSection';
 import Ordinary from './Ordinary';
 import Close from './Close';
 import Transfer from './Transfer';
+import Shutdown from './Shutdown';
 import styles from './index.less?module';
 
 const { TabPane } = KeepTabs;
@@ -172,14 +173,14 @@ const HashrateList = {
                   <NoData class={styles['no-data']} />
               }
             </TabPane>
-            {/* <TabPane name={hashrateStatusMap.SHUTDOWN} title={this.$t('typeShutDown')}>
+            <TabPane key={hashrateStatusMap.SHUTDOWN} tab={this.$t('typeShutDown')}>
               {
                 this.shutdownList.length ?
                   <Shutdown dataSource={this.shutdownList} onToTransferPage={this.toTransferPage} />
                   :
                 <NoData class={styles['no-data']} />
               }
-            </TabPane> */}
+            </TabPane>
           </KeepTabs>
         </Spin>
       </BaseContainer>

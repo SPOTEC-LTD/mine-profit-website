@@ -8,12 +8,12 @@ export const HASHRATE_PRICE_LOWER = 5; // 算力价值过低产出不能支付�
 
 export const getShutDownReasonMap = statusValue => {
   const messageMap = {
-    [SEND_ERROR]: locale.intl.t('hashrateShutDownReasonOne'),
-    [VIOLATION_OBTAIN]: locale.intl.t('hashrateShutDownReasonTwo'),
-    [OTHER_REASON]: locale.intl.t('hashrateShutDownReasonThree'),
-    [EXPIRE]: locale.intl.t('hashrateShutDownReasonFour'),
-    [HASHRATE_PRICE_LOWER]: locale.intl.t('hashrateShutDownReasonFive'),
+    [SEND_ERROR]: locale.t('hashrateShutDownReasonOne'),
+    [VIOLATION_OBTAIN]: locale.t('hashrateShutDownReasonTwo'),
+    [OTHER_REASON]: locale.t('hashrateShutDownReasonThree'),
+    [EXPIRE]: locale.t('hashrateShutDownReasonFour'),
+    [HASHRATE_PRICE_LOWER]: locale.t('hashrateShutDownReasonFive'),
   };
 
-  return messageMap[statusValue] || locale.intl.t('investNoReason');
+  return messageMap[statusValue] || locale.t('investNoReason');
 };

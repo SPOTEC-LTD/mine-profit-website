@@ -48,14 +48,12 @@ const CardFooter = {
   render() {
     const { data } = this;
     return (
-      <div>
-        <FooterLayout
-          scopedSlots={{
-            leftContent: () => <AmountValue data={data} />,
-            rightContent: () => <FooterButtonGroup dataSource={this.getButtonDataSource(data)} />,
-          }}
-        />
-      </div>
+      <FooterLayout
+        scopedSlots={{
+          leftContent: () => <AmountValue data={data} />,
+          rightContent: () => <FooterButtonGroup dataSource={this.getButtonDataSource(data)} />,
+        }}
+      />
     );
   },
 };

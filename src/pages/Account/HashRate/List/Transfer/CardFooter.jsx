@@ -71,14 +71,12 @@ const CardFooter = {
     const footerButtonGroupNode = isShowButton ? <FooterButtonGroup dataSource={this.getButtonDataSource(data)} /> : '';
 
     return (
-      <div>
-        <FooterLayout
-          scopedSlots={{
-            leftContent: () => tagNode,
-            rightContent: () => footerButtonGroupNode,
-          }}
-        />
-      </div>
+      <FooterLayout
+        scopedSlots={{
+          leftContent: () => tagNode,
+          rightContent: () => footerButtonGroupNode,
+        }}
+      />
     );
   },
 };
