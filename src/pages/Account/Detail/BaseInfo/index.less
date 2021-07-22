@@ -1,6 +1,155 @@
-@import "@/shared/styles/variables.less";
+@import '@/shared/styles/variables.less';
 
 .account-base-info {
   color: @white;
-  background-color: #182742;
+  background-color: @color__182742;
+}
+
+.info-box {
+  display: flex;
+  justify-content: space-between;
+  width: 1200px;
+  padding: 38px 0;
+}
+
+.info-left {
+  display: flex;
+}
+
+.avatar {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.info-left-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: @font-size-sm;
+  line-height: 17px;
+}
+
+.nickname {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: @font-size__20;
+  line-height: 28px;
+}
+
+.info-left-operate {
+  margin-bottom: 7px;
+
+  > a {
+    text-decoration: underline;
+  }
+
+  > a:first-child {
+    margin-right: 12px;
+  }
+}
+
+.info-right {
+  display: flex;
+  align-items: center;
+}
+
+.invite-info-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid @color__8598bb;
+  padding: 18px 28px 18px 26px;
+
+  > div {
+    margin-right: 43px;
+  }
+
+  > div:last-child {
+    margin-right: 0;
+  }
+}
+
+.view-qr-box {
+  height: 25px;
+
+  .qr-icon {
+    width: 23px;
+    height: 23px;
+  }
+}
+
+.hashrate-coupon {
+  display: flex;
+  align-items: center;
+  padding: 14px 26px;
+  border: 1px solid @color__8598bb;
+  border-radius: 8px;
+  background-color: rgba(133, 152, 187, 0.19);
+  margin-left: 40px;
+
+  .coupon-icon {
+    width: 19px;
+    height: 19px;
+    margin-right: 4px;
+  }
+
+  > span:last-child {
+    font-size: @font-size-lg;
+    line-height: 22px;
+  }
+
+  :global {
+    .mp-badge-count {
+      background-color: @color__fe6565;
+      box-shadow: none;
+      padding: 0 4px;
+      font-size: @font-size-sm;
+      line-height: 17px;
+      border-radius: 8px;
+      height: 16px;
+
+      .mp-scroll-number-only,
+      .mp-scroll-number-only-unit {
+        height: 16px;
+      }
+    }
+  }
+}
+
+.invite-info-label {
+  font-size: @font-size-sm;
+  line-height: 17px;
+  margin-bottom: 6px;
+}
+
+.invite-info-value {
+  font-size: @font-size__18;
+  line-height: 25px;
+}
+
+.view-qr {
+  font-size: @font-size-sm;
+  line-height: 17px;
+  color: @color__8598bb;
+  margin-left: 5px;
+}
+
+.invite-detail {
+  font-size: @font-size-lg;
+  line-height: 22px;
+
+  .invite-detail-icon {
+    width: 20px;
+    height: 16px;
+    margin-left: 4px;
+  }
+}
+
+.invite-info-unit {
+  font-size: @font-size-sm;
+  line-height: 17px;
 }

@@ -26,11 +26,15 @@ export const state = () => ({
 export const actions = {
   async nuxtServerInit({ commit }, ctx) {
     const { userId } = getUserInfoFunc(ctx);
-    try {
-      const { body: { userInfo } } = await getUserBaseInfo({ pathParams: { userId } }, { ctx, catchException: false });
-      commit(UPDATE_USER_INFO, userInfo);
-    } catch (error) {
-      console.log('error', error);
+    if (userId) {
+      try {
+        const { body: { userInfo } } = await getUserBaseInfo({ pathParams: { userId } }, { ctx, catchException: false });
+        commit(UPDATE_USER_INFO, userInfo);
+      } catch (error) {
+        console.log('error', error);
+      }
+    } else {
+      commit(UPDATE_USER_INFO, {});
     }
   },
 };

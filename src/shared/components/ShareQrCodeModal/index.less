@@ -1,0 +1,54 @@
+@import '@/shared/styles/variables.less';
+
+.wrapper {
+  position: relative;
+  text-align: center;
+}
+
+.title {
+  font-size: @font-size__18;
+  line-height: 25px;
+  color: @color__242424;
+  margin-bottom: 24px;
+}
+
+.button-box {
+  margin-top: 20px;
+
+  > button:last-child {
+    margin-left: 17px;
+  }
+}
+
+.modal-wrap {
+  :global {
+    .mp-modal-body {
+      padding: 26px 28px 31px;
+      border-radius: 8px;
+    }
+
+    .mp-modal-close {
+      right: -56px;
+
+      .spotecicon {
+        width: 20px;
+        height: 20px;
+        color: @white;
+      }
+    }
+  }
+}
+
+.share-prompt {
+  position: absolute;
+  bottom: -124px;
+  left: -28px;
+  width: 261px;
+  font-size: @font-size__18;
+  line-height: 25px;
+  color: @white;
+  padding: 16px 25px 17px;
+  background-color: @color__182742;
+  border-radius: 8px;
+  white-space: pre-wrap;
+}
