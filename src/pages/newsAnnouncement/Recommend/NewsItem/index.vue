@@ -1,5 +1,5 @@
 <template>
-  <ALink target="_blank" class="news-wrapper" :to="{ path: '/recommendDetail/:id', params:{ id: info.id }}">
+  <ALink target="_blank" class="news-wrapper" :to="{ path: urls.recommendDetailPath, params:{ id: info.id }}">
     <div class="image-wrapper">
       <img class="news-image" :src="info.imageUrl" alt="" />
     </div>
@@ -12,6 +12,7 @@
 
 <script>
 import dateUtils from '@/shared/intl/utils/dateUtils';
+import * as urls from '@/router/consts/urls';
 import Link from '@/shared/components/link';
 
 export default {
@@ -25,8 +26,11 @@ export default {
       default: () => {},
     },
   },
+
   data() {
-    return {};
+    return {
+      urls,
+    };
   },
   computed: {
     updateTime() {

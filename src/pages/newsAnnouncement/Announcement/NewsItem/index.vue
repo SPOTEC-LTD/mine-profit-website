@@ -1,5 +1,5 @@
 <template>
-  <ALink target="_blank" class="news-wrapper" :to="{ path: '/announcementDetail/:id', params:{ id: info.id }}">
+  <ALink target="_blank" class="news-wrapper" :to="{ path: urls.announcementDetailPath, params:{ id: info.id }}">
     <div class="news-date">
       {{ updateTime }}
     </div>
@@ -9,6 +9,7 @@
 
 <script>
 import dateUtils from '@/shared/intl/utils/dateUtils';
+import * as urls from '@/router/consts/urls';
 import Link from '@/shared/components/link';
 
 export default {
@@ -22,7 +23,9 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      urls,
+    };
   },
   computed: {
     updateTime() {

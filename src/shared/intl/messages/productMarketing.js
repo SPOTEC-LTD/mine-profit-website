@@ -15,4 +15,8 @@ export default {
   day: '天',
   marketNetOutput: '日净产出',
   moreHashRate: '更多算力',
+  marketOfficialMarket: '官方市场',
+  marketC2CMarket: 'C2C市场',
+  aboutUs: '关于我们',
+  hashRateMarket: '算力市场',
 };
