@@ -41,6 +41,7 @@ const QRcode = {
     QRCode[method](value, finallyOptions, (err, result) => {
       if (method === 'toDataURL') {
         this.imgUrl = result;
+        this.$emit('getQrCodeUrl', result);
       }
 
       if (err) {

@@ -8,7 +8,7 @@ import { OFFICIAL_PRODUCT, C2C_PRODUCT } from '@/shared/consts/productType';
 import { RECOMMEND, NEWSLETTER, ANNOUNCEMENT } from '@/shared/consts/newsType';
 import { ABOUT_US, ECOSPHERE } from '@/shared/consts/aboutUsType';
 import { I18N } from '@/shared/intl/i18n';
-import Link from '@/shared/components/link';
+import Link from '@/shared/components/Link';
 import logoImg from '@/assets/logo-black.png';
 import * as urls from '@/router/consts/urls';
 import NavLink from './NavLink';
@@ -104,7 +104,9 @@ const PageHeader = {
           </div>
           <div class={styles['header-right-content']}>
             <LoginInfo />
-            <MailFilled className={styles.email} />
+            <div class={styles['email-box']}>
+              <MailFilled className={styles.email} />
+            </div>
             <LanguageMenu items={this.languageItems}>{ this.$t('language') }</LanguageMenu>
             <Button class={styles['page-header-download']} type="primary" onClick={this.redirectToDownloadGuidePage}>
               { this.$t('downloadNow') }

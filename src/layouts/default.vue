@@ -15,14 +15,14 @@
 
 <script>
 import Vue from 'vue';
-import { ConfigProvider, Modal } from 'ant-design-vue';
+import { ConfigProvider, Modal, Badge } from 'ant-design-vue';
 import Cookies from 'universal-cookie';
 import PageHeader from '@/shared/components/PageHeader';
 import PageFooter from '@/shared/components/page-footer';
 import locale from '@/shared/intl/utils/locale';
 import dateUtils from '@/shared/intl/utils/dateUtils';
 import localStorage from '@/shared/utils/localStorage';
-import { ErrorNode } from '@/shared/services/Notification';
+import { ErrorNode, SuccessNode } from '@/shared/services/Notification';
 
 import { getZendesk } from '@/api';
 
@@ -49,6 +49,7 @@ export default {
   },
   mounted() {
     Vue.component('ErrorNode', ErrorNode);
+    Vue.component('SuccessNode', SuccessNode);
     Vue.use(Modal);
     document.title = this.$t('essayHashRate')
     this.setLivechat();

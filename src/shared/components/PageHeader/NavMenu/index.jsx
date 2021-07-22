@@ -1,6 +1,6 @@
 import { Dropdown, Menu } from 'ant-design-vue';
 import RightOutlined from 'ahoney/lib/icons/RightOutlined';
-import Link from '@/shared/components/link';
+import Link from '@/shared/components/Link';
 import activeImg from '@/assets/active.png';
 import './index.less';
 

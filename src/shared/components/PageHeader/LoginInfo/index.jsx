@@ -1,7 +1,8 @@
 import { mapState } from 'vuex';
 import isEmpty from 'lodash/isEmpty';
-import { loginPath } from '@/router/consts/urls';
-import Link from '@/shared/components/link';
+import locationServices from '@/shared/services/location/locationServices';
+import { loginPath, accountDetailPath } from '@/router/consts/urls';
+import Link from '@/shared/components/Link';
 import styles from './index.less?module';
 
 // TODO 只做了显示，需要补上跳转和相应操作
@@ -14,7 +15,11 @@ const LoginInfo = {
       return isEmpty(this.userInfo);
     },
   },
-
+  methods: {
+    toAccountDetailPage() {
+      locationServices.push(accountDetailPath);
+    },
+  },
   render() {
     const { avatar, nickName } = this.userInfo;
     return (
@@ -25,7 +30,7 @@ const LoginInfo = {
           </Link>
         )}
         {!this.noLogin && (
-          <div class={styles['user-info']}>
+          <div class={styles['user-info']} onClick={this.toAccountDetailPage}>
             <img class={styles.avatar} src={avatar} alt="" />
             <span class={styles.name}>{nickName}</span>
           </div>

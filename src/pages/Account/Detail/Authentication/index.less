@@ -1,0 +1,101 @@
+@import '@/shared/styles/variables.less';
+
+.wrapper {
+  position: relative;
+  padding: 14px 30px;
+  border: 1px solid @color__9eacc6;
+  margin-top: 28px;
+  color: @color__242424;
+}
+
+.enter-image {
+  position: absolute;
+  right: 26px;
+  bottom: -7px;
+  width: 218px;
+  height: 170px;
+  z-index: @z-index__99;
+}
+
+.auth-item-box {
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
+
+  :global {
+    .spotecicon {
+      width: 14px;
+      height: 14px;
+      margin-right: 4px;
+    }
+  }
+
+  > a {
+    margin-right: 48px;
+  }
+}
+
+.auth-item {
+  color: @color__primary;
+  text-decoration: underline;
+
+  :global {
+    .spotecicon {
+      fill: @white;
+    }
+  }
+}
+
+.pass {
+  color: @color__primary;
+
+  :global {
+    .spotecicon {
+      fill: @white;
+    }
+  }
+}
+
+.no-auth-item {
+  color: @color__fe6565;
+  text-decoration: underline;
+
+  :global {
+    .spotecicon {
+      fill: @color__fe6565;
+      color: @white;
+    }
+  }
+}
+
+.title {
+  font-size: @font-size-lg;
+  line-height: 22px;
+}
+
+.sub-title {
+  font-size: @font-size-sm;
+  line-height: 17px;
+  margin-top: 6px;
+}
+
+.pending {
+  color: @color__ffd100;
+
+  :global {
+    .spotecicon {
+      fill: @white;
+    }
+  }
+}
+
+.reject {
+  color: @color__fe6565;
+  text-decoration: underline;
+
+  :global {
+    .spotecicon {
+      fill: @white;
+    }
+  }
+}

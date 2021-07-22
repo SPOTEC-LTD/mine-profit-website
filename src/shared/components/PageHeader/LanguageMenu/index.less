@@ -1,4 +1,4 @@
-@import "~@/shared/styles/variables.less";
+@import '~@/shared/styles/variables.less';
 
 .nav-menu-overlay {
   .mp-dropdown-menu {
@@ -41,8 +41,18 @@
 }
 
 .language-icon-box {
-  font-size: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  width: 36px;
   margin: 0 30px;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: @color__f0f0f0;
+    border-radius: 4px;
+  }
 
   .language-icon {
     width: 24px;

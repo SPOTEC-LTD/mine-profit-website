@@ -1,4 +1,4 @@
-import Link from '@/shared/components/link';
+import Link from '@/shared/components/Link';
 import activeImg from '@/assets/active.png';
 
 const NavLink = {
