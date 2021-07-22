@@ -15,7 +15,7 @@ import FooterLayout from '../components/FooterLayout';
 import StatusTag from '../components/StatusTag';
 
 const CardFooter = {
-  props: ['data', 'isVipHashrate'],
+  props: ['data'],
 
   methods: {
     getButtonDataSource(data) {
@@ -71,14 +71,12 @@ const CardFooter = {
     const footerButtonGroupNode = isShowButton ? <FooterButtonGroup dataSource={this.getButtonDataSource(data)} /> : '';
 
     return (
-      <div>
-        <FooterLayout
-          scopedSlots={{
-            leftContent: () => tagNode,
-            rightContent: () => footerButtonGroupNode,
-          }}
-        />
-      </div>
+      <FooterLayout
+        scopedSlots={{
+          leftContent: () => tagNode,
+          rightContent: () => footerButtonGroupNode,
+        }}
+      />
     );
   },
 };

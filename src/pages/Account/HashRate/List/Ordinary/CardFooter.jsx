@@ -104,14 +104,12 @@ const CardFooter = {
     );
 
     return (
-      <div>
-        <FooterLayout
-          scopedSlots={{
-            leftContent: () => leftContentNode,
-            rightContent: () => footer,
-          }}
-        />
-      </div>
+      <FooterLayout
+        scopedSlots={{
+          leftContent: () => leftContentNode,
+          rightContent: () => footer,
+        }}
+      />
     );
   },
 };

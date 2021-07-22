@@ -1,56 +1,43 @@
 import { Row, Col } from 'ant-design-vue';
-import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
+import numberUtils from 'aa-utils/lib/numberUtils';
 import ProductTitle from '@/shared/components/ProductTitle';
-import ProportionCellValue from '@/pages/Account/HashRate/List/components/ProportionCellValue';
-import HashrateBuffCellValue from '@/pages/Account/HashRate/List/components/HashrateBuffCellValue';
+import DateUtils from '@/shared/intl/utils/dateUtils';
+import { ON } from '@/pages/Account/HashRate/consts/shutdownStatus';
 import Card from '@/pages/Account/HashRate/List/components/Card';
 import ListCell from '@/pages/Account/HashRate/List/components/ListCell';
 import CellValue from '@/pages/Account/HashRate/List/components/CellValue';
 import locationServices from '@/shared/services/location/locationServices';
 import { VIP_HASHRATE } from '@/pages/Account/HashRate/consts/hashrateType';
+
 import CardFooter from './CardFooter';
 
 const Ordinary = {
   props: ['dataSource'],
-  data() {
-    return {
-      isVisibleTransferPage: false,
-      nowClickData: {},
-    };
-  },
   methods: {
     getListData(data) {
-      const isVipHashrate = data.type === VIP_HASHRATE;
-
       const listData = [
         {
-          label: this.$t('ratioDialogRatio'),
-          value: <ProportionCellValue data={data} />,
+          label: this.$t('hashrateShutDownHashrate'), // 关机算力
+          value: (
+            <CellValue
+              value={numberUtils.formatNumber(data.amount, { minimumFractionDigits: 2 })}
+              unit={data.unit}
+            />),
         },
         {
-          label: this.$t('hashrateBuff'),
-          hidden: isVipHashrate,
-          value: (<HashrateBuffCellValue data={data} />),
-        },
-        {
-          label: this.$t('hashrateYesterdayNetOutput'),
-          value: <CellValue value={bigNumberToFixed(data.yesterdayOutput, 8)} unit={data.hashrateType} />,
-        },
-        {
-          label: this.$t('hashrateTodayNetOutputPre'),
-          value: <CellValue value={bigNumberToFixed(data.todayExpectedOutput || 0, 8)} unit={data.hashrateType} />,
+          label: this.$t('hashrateShutDownTime'), // 关机时间
+          value: DateUtils.formatDate(data.shutdownTime, 'YYYY.MM.DD') || '1970.01.01',
         },
       ];
 
-      return listData.filter(({ hidden }) => !hidden);
-    },
+      const excavationTime = [
+        {
+          label: this.$t('marketStartMineTime'), // 开挖时间
+          value: DateUtils.formatDate(data.excavationTime, 'YYYY.MM.DD') || '1970.01.01',
+        },
+      ];
 
-    closeTransferPage(to) {
-      if (to) {
-        this.$emit('toTransferPage');
-      }
-      this.isVisibleTransferPage = false;
-      document.title = this.$t('mineTitleHashrate');
+      return data.shutdownStatus === ON ? [...listData, ...excavationTime] : listData;
     },
 
     onClickToProductTemplate(ptId, isVipHashrate) {
@@ -70,17 +57,19 @@ const Ordinary = {
         {
           this.dataSource.map(item => {
             const isVipHashrate = item.type === VIP_HASHRATE;
+            const nameNode = (
+              <span class='product-title-value'>
+                { isVipHashrate ? this.$t('hashrateVIPHash') : item.name}
+              </span>
+            );
+
             const header = (
               <ProductTitle
                 className="card-product-title"
                 chainType={item.hashrateType}
                 leftExtra={isVipHashrate && item.name}
                 scopedSlots={{
-                  name: () => (
-                    isVipHashrate
-                      ? <span>{this.$t('hashrateVIPHash')}</span>
-                      : <span class={['product-title-value', 'no-wrap']}>{item.name}</span>
-                  ),
+                  name: () => nameNode,
                 }}
                 onHandleClick={() => { this.onClickToProductTemplate(item.productTemplateId, isVipHashrate); }}
               />
@@ -91,7 +80,7 @@ const Ordinary = {
                 <Card
                   scopedSlots={{
                     header: () => header,
-                    footer: () => <CardFooter data={item} isVipHashrate={isVipHashrate} />,
+                    footer: () => <CardFooter data={item} />,
                   }}
                 >
                   <ListCell dataSource={this.getListData(item)} />
@@ -101,7 +90,6 @@ const Ordinary = {
           })
         }
       </Row>
-
     );
   },
 };

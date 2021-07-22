@@ -1,0 +1,36 @@
+@import "@/shared/styles/variables.less";
+
+.shutdown-reason {
+  color: @color__primary;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  :global {
+    .spotecicon {
+      width: 14px;
+      height: 14px;
+      margin-right: 4px;
+    }
+  }
+}
+
+.no-footer {
+  padding-bottom: 14px;
+}
+
+.shutdown-tag-content {
+  display: flex;
+  align-items: center;
+
+  :global {
+    .spotecicon {
+      width: 10px !important;
+      height: 10px !important;
+      margin-left: 4px;
+    }
+  }
+}
