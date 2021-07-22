@@ -10,8 +10,6 @@ import locationServices from '@/shared/services/location/locationServices';
 import { VIP_HASHRATE } from '@/pages/Account/HashRate/consts/hashrateType';
 import CardFooter from './CardFooter';
 
-import styles from './index.less?module';
-
 const Ordinary = {
   props: ['dataSource'],
   data() {

@@ -15,7 +15,7 @@ import FooterLayout from '../components/FooterLayout';
 import StatusTag from '../components/StatusTag';
 
 const CardFooter = {
-  props: ['data', 'isVipHashrate'],
+  props: ['data'],
 
   methods: {
     getButtonDataSource(data) {

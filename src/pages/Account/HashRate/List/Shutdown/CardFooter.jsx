@@ -15,7 +15,7 @@ import StatusTag from '../components/StatusTag';
 import styles from './index.less?module';
 
 const CardFooter = {
-  props: ['data', 'isVipHashrate'],
+  props: ['data'],
 
   methods: {
     getButtonDataSource(data) {
