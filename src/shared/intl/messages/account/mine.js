@@ -22,7 +22,7 @@ export default {
   authenticationFailed: '实名认证失败',
   copy: '复制',
   download: '下载',
-  qrCodeSharePrompt: '请将二维码图片分享给朋友\n使用手机扫描打开',
+  qrCodeSharePrompt: '请将二维码图片分享给朋友使用手机扫描打开',
   myQrCode: '我的二维码',
   copySuccess: '复制成功',
 };
