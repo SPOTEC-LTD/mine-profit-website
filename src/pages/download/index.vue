@@ -185,7 +185,7 @@
 <script>
 import { fetchAppVersion } from '@/api';
 
-import QRcode from '@/shared/components/qrcode';
+import QRcode from '@/shared/components/QRcode';
 import SquareDotsIcon from '@/shared/components/SquareDotsIcon';
 import { getIsEnglish, getLocalLanguage } from '@/shared/utils/getLocalLanguage';
 
