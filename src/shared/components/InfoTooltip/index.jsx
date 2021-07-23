@@ -20,7 +20,7 @@ const ToolTipWrap = {
           scopedSlots={{
             title: () => (
               <div>
-                <div class='info-title'>{this.title}</div>
+                {this.title && <div class='info-title'>{this.title}</div>}
                 <div class='info-content'>{this.content}</div>
               </div>
             ),
