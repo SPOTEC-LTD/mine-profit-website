@@ -9,11 +9,11 @@ export const END_REPAYMENT = 6; // 已还款
 
 export const getPledgeOderStatusMap = value => {
   const mapValue = {
-    [WAIT_BUY]: `${locale.intl.t('pledgeStatusWaitBuy')} ···`,
-    [PLEDGES_ING]: `${locale.intl.t('pledgeStatusPledging')} ···`,
-    [BALANCE_PENDING]: `${locale.intl.t('pledgeStatusWaitConfirm')} ···`,
-    [SETTLE_ACCOUNTS]: `${locale.intl.t('pledgeStatusSettled')} ✓`,
-    [END_REPAYMENT]: `${locale.intl.t('pledgeStatusRepayed')} ✓`,
+    [WAIT_BUY]: `${locale.t('pledgeStatusWaitBuy')} ···`,
+    [PLEDGES_ING]: `${locale.t('pledgeStatusPledging')} ···`,
+    [BALANCE_PENDING]: `${locale.t('pledgeStatusWaitConfirm')} ···`,
+    [SETTLE_ACCOUNTS]: `${locale.t('pledgeStatusSettled')} ✓`,
+    [END_REPAYMENT]: `${locale.t('pledgeStatusRepayed')} ✓`,
 
   };
   return mapValue[value] || mapValue;
@@ -22,26 +22,26 @@ export const getPledgeOderStatusMap = value => {
 export const getPledgesOderStatusList = () => [
   {
     value: null,
-    text: locale.intl.t('all'),
+    text: locale.t('all'),
   },
   {
     value: WAIT_BUY,
-    text: locale.intl.t('pledgeStatusWaitBuy'),
+    text: locale.t('pledgeStatusWaitBuy'),
   },
   {
     value: PLEDGES_ING,
-    text: locale.intl.t('pledgeStatusPledging'),
+    text: locale.t('pledgeStatusPledging'),
   },
   {
     value: BALANCE_PENDING,
-    text: locale.intl.t('pledgeStatusWaitConfirm'),
+    text: locale.t('pledgeStatusWaitConfirm'),
   },
   {
     value: SETTLE_ACCOUNTS,
-    text: locale.intl.t('pledgeStatusSettled'),
+    text: locale.t('pledgeStatusSettled'),
   },
   {
     value: END_REPAYMENT,
-    text: locale.intl.t('pledgeStatusRepayed'),
+    text: locale.t('pledgeStatusRepayed'),
   },
 ];

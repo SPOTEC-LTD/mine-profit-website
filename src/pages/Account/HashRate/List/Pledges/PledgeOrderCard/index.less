@@ -1,0 +1,33 @@
+@import "@/shared/styles/variables.less";
+
+.balance-pending-card-footer {
+  margin-top: 0;
+}
+
+.count-down-box {
+  display: flex;
+  align-items: flex-end;
+  font-size: @font-size__14;
+  margin-top: 10px;
+  padding: 0 16px;
+}
+
+.count-down {
+  width: 80px;
+  margin-left: 6px;
+
+  :global {
+    .van-count-down {
+      line-height: 17px;
+    }
+  }
+}
+
+.cancel {
+  color: @color___primary;
+  text-decoration: underline;
+}
+
+.modal-text {
+  text-align: center;
+}

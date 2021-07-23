@@ -4,10 +4,21 @@ const FooterLayout = {
   render() {
     return (
       <div>
-        {this.$scopedSlots.topExtra && this.$scopedSlots.topExtra() }
+        {
+          this.$scopedSlots.topExtra &&
+          (
+            <div class={styles['top-extra']}>
+              {this.$scopedSlots.topExtra()}
+            </div>
+          )
+         }
         <div class={styles.footer}>
           <div>{this.$scopedSlots.leftContent()}</div>
-          <div>{this.$scopedSlots.rightContent()}</div>
+          {
+            this.$scopedSlots.rightContent && (
+              <div>{this.$scopedSlots.rightContent()}</div>
+            )
+          }
         </div>
       </div>
 

@@ -18,4 +18,6 @@ export default {
   downloadNow: '立即下载',
   language: '语言',
   noData: '暂无数据',
+  confirm: '确认',
+  all: '全部',
 };

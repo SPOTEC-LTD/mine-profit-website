@@ -63,7 +63,6 @@ const CardFooter = {
       const tagNode = (
         <StatusTag
           color={isShutdown ? '#cacaca' : '#ffd407'}
-          label={data.name}
           tagText={isShutdown ? <PowerOffButton /> : this.$t('hashrateOpening')}
         />
       );

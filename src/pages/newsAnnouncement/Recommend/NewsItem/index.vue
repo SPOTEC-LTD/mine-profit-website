@@ -13,7 +13,7 @@
 <script>
 import dateUtils from '@/shared/intl/utils/dateUtils';
 import * as urls from '@/router/consts/urls';
-import Link from '@/shared/components/link';
+import Link from '@/shared/components/Link';
 
 export default {
   name: 'NewsItem',

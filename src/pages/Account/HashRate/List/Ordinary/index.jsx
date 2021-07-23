@@ -79,7 +79,7 @@ const Ordinary = {
                   name: () => (
                     isVipHashrate
                       ? <span>{this.$t('hashrateVIPHash')}</span>
-                      : <span class={['product-title-value', 'no-wrap']}>{item.name}</span>
+                      : <span class={['product-title-value']}>{item.name}</span>
                   ),
                 }}
                 onHandleClick={() => { this.onClickToProductTemplate(item.productTemplateId, isVipHashrate); }}

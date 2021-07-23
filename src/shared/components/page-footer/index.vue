@@ -65,7 +65,7 @@
 
 <script>
 import { fetchBizSocialInfo } from '@/api';
-import Link from '@/shared/components/link';
+import Link from '@/shared/components/Link';
 import FacebookFilled from 'ahoney/lib/icons/FacebookFilled';
 import TwitterFilled from 'ahoney/lib/icons/TwitterFilled';
 import MailFilled from 'ahoney/lib/icons/MailFilled';

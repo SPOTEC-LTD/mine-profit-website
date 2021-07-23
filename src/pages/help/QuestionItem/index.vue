@@ -16,7 +16,7 @@
 <script>
 import TextHighlighter from 'vue-highlight-words';
 import locationServices from '@/shared/services/location/locationServices';
-import ALink from '@/shared/components/link';
+import ALink from '@/shared/components/Link';
 
 export default {
   name: 'QuestionItem',
