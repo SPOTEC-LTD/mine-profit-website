@@ -3,7 +3,6 @@ import { Table, Dropdown, Menu } from 'ant-design-vue';
 
 // import { accountSettingPath } from '@/router/consts/urls';
 import { HASH_RATE_COUPONS, GET_COUPONS } from '@/modules/hashRateCoupons';
-import { SOURCE_HASH_RATE_COUPONS } from '@/shared/consts/entryPageModes';
 import dateUtils from '@/shared/intl/utils/dateUtils';
 import BaseContainer from '@/shared/components/BaseContainer';
 import ToolTipWrap from '@/shared/components/ToolTipWrap';
@@ -39,7 +38,6 @@ const HashRateCoupons = {
 
     getCouponsList() {
       const data = {
-        type: SOURCE_HASH_RATE_COUPONS,
         hashrateCouponEnum: this.couponsStatus,
       };
       this[GET_COUPONS](data);
@@ -64,7 +62,6 @@ const HashRateCoupons = {
         dataIndex: 'coin',
         align: 'center',
         width: 170,
-        // TODO: 待添加'获得时间'字段
         customRender: (_, { createTime }) => dateUtils.formatDateTime(createTime, dateTimeFormat),
       },
       {
@@ -101,7 +98,7 @@ const HashRateCoupons = {
               {status === EXPIRE && (
                 <ToolTipWrap
                   className={styles['icon-tooltip']}
-                  title={'getExpiredReason(shutdownReason)'}
+                  title={getExpiredReason(shutdownReason)}
                 />
               )}
             </div>
@@ -146,7 +143,7 @@ const HashRateCoupons = {
       <div class={styles['hashrate-coupons-box']}>
         <BaseContainer>
           {/* TODO: 面包屑 待加 */}
-          {/* TODO: 下拉框 待换 */}
+          {/* TODO: 下拉框 待改 */}
           <Dropdown
             trigger={['click']}
             overlayClassName="hashrate-overlay"
