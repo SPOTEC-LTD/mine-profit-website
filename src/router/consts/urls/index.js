@@ -7,6 +7,7 @@ export const accountPath = '/account';
 export const accountDetailPath = `${accountPath}/detail`;
 export const accountHashRateListPath = `${accountPath}/hashrate/list`;
 export const bindInvitationCodePath = `${accountPath}/bindInvitationCode`;
+export const hashRateCouponsPath = `${accountPath}/hashRateCoupons`;
 
 // ==== aboutUsPaths
 export const aboutUsPaths = '/aboutUs';

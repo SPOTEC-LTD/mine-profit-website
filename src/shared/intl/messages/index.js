@@ -7,6 +7,7 @@ import download from './download';
 import ecosphere from './ecosphere';
 import account from './account';
 import productMarketing from './productMarketing';
+import hashRateCoupons from './hashRateCoupons';
 
 export default {
   ...sign,
@@ -18,4 +19,5 @@ export default {
   ...ecosphere,
   ...account,
   ...productMarketing,
+  ...hashRateCoupons,
 };
