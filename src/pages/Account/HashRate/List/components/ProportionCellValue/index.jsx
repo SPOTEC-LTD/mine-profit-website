@@ -1,5 +1,5 @@
 import numberUtils from 'aa-utils/lib/numberUtils';
-import BaseModal from '@/shared/components/BaseModal';
+import InfoModal from '@/shared/components/InfoModal';
 import CellValue from '@/pages/Account/HashRate/List/components/CellValue';
 // import ProportionDetails from '../ProportionDetails';
 import styles from './index.less?module';
@@ -17,7 +17,7 @@ const ProportionCellValue = {
       <CellValue
         scopedSlots={{
           value: () => (
-            <BaseModal
+            <InfoModal
               disabled={!hasPromotionBonus}
               scopedSlots={{
                 content: () => (
@@ -34,7 +34,7 @@ const ProportionCellValue = {
                   )
                 }
               </span>
-            </BaseModal>
+            </InfoModal>
           ),
         }}
         showIcon={hasPromotionBonus}

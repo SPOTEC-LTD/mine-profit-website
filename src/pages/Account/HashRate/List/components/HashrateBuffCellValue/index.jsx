@@ -1,6 +1,6 @@
 import { mapActions, mapState, mapMutations } from 'vuex';
 import classNames from 'classnames';
-import BaseModal from '@/shared/components/BaseModal';
+import InfoModal from '@/shared/components/InfoModal';
 import CellValue from '@/pages/Account/HashRate/List/components/CellValue';
 import {
   HASH_RATE, GET_ORDINARY_HASHRATE_BUFF, GET_CLOSE_HASHRATE_BUFF, UPDATE_HASHRATE_BUFF_LIST,
@@ -48,7 +48,7 @@ const HashrateBuffCellValue = {
       <CellValue
         scopedSlots={{
           value: () => (
-            <BaseModal
+            <InfoModal
               disabled={!amountBuffHasValue}
               onOpen={this.onOpen}
               onClosed={this.onClosedModal}
@@ -60,7 +60,7 @@ const HashrateBuffCellValue = {
               >
                 {amountBuffHasValue ? bigNumberToFixed(this.data.amountBuff, 2) : '-'}
               </span>
-            </BaseModal>
+            </InfoModal>
           ),
         }}
         unit={this.data.unit}
