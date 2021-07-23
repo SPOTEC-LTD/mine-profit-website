@@ -6,7 +6,7 @@ import PledgesHashrateCellValue from '@/pages/Account/HashRate/List/components/P
 import getFormatBigNumber from '@/pages/Account/HashRate/utils/getFormatBigNumber';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 
-const Ordinary = {
+const EndRepayment = {
   props: ['data'],
   methods: {
     getListData(data) {
@@ -99,4 +99,4 @@ const Ordinary = {
   },
 };
 
-export default Ordinary;
+export default EndRepayment;

@@ -10,7 +10,7 @@ import { TRANSFER_VIP_HASHRATE } from '@/pages/Account/HashRate/consts/Transferh
 
 import CardFooter from './CardFooter';
 
-const Ordinary = {
+const Transfer = {
   props: ['dataSource'],
   methods: {
     getTransferItemAmount(data) {
@@ -84,7 +84,6 @@ const Ordinary = {
               <ProductTitle
                 className="card-product-title"
                 chainType={item.hashrateType}
-                leftExtra={item.productName}
                 scopedSlots={{
                   name: () => (<span class='product-title-value'>{item.name}</span>),
                 }}
@@ -111,4 +110,4 @@ const Ordinary = {
   },
 };
 
-export default Ordinary;
+export default Transfer;

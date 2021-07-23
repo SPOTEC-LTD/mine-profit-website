@@ -14,7 +14,6 @@ import WaitBuyCard from './PledgeOrderCard/WaitBuy';
 import BalancePendingCard from './PledgeOrderCard/BalancePending';
 import SettleAccountsCard from './PledgeOrderCard/SettleAccounts';
 import EndRepaymentCard from './PledgeOrderCard/EndRepayment';
-import styles from './index.less?module';
 
 const orderCardComponentMap = {
   [WAIT_BUY]: WaitBuyCard,
@@ -61,7 +60,7 @@ const Pledges = {
       <Row gutter={28} type="flex">
         {
           this.dataSource.map(item => {
-            const CardComponent = orderCardComponentMap[4];
+            const CardComponent = orderCardComponentMap[item.status];
             return (
               <Col span={8}>
                 <CardComponent
