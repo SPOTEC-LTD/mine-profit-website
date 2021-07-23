@@ -1,6 +1,6 @@
-import { Select, Spin } from 'ant-design-vue';
+import { Spin } from 'ant-design-vue';
 import { mapActions, mapState } from 'vuex';
-import TriangleFilled from 'ahoney/lib/icons/TriangleFilled';
+import Select from '@/shared/components/Select';
 import BaseContainer from '@/shared/components/BaseContainer';
 import { HASH_RATE, GET_PRODUCT_HASHRATE_LIST, hashrateStatusMap } from '@/modules/account/hashRate';
 import * as hashRateAPI from '@/api/account/hashRate';
@@ -112,9 +112,8 @@ const HashrateList = {
         <div>
           <Select
             class={styles['hashrate-type-select']}
-            defaultValue='BTC'
+            value={this.hashrateType}
             onChange={this.handleSelectChange}
-            suffixIcon={<TriangleFilled className="select-icon" />}
           >
             {
               ['BTC', 'ETH'].map(value => (
@@ -129,39 +128,42 @@ const HashrateList = {
           hashrateType={this.hashrateType}
           statistics={this.statistics}
         />
-        <Spin spinning={this.getProductHashrateListLoading}>
+
           <KeepTabs
             class={['mine-tabs-card', styles['hashrate-list-container']]}
             value={this.hashTypeStatusKey}
             onChange={this.onTabsChange}
           >
             <TabPane key={hashrateStatusMap.ORDINARY} tab={this.$t('typeNormal')}>
-              {
-                !!this.ordinaryList.length ?
-                  <Ordinary
-                    dataSource={this.ordinaryList}
-                    onRefresh={this.getProductHashrateListAction}
-                    onToTransferPage={this.toTransferPage}
-                  />
-                  :
-                  <NoData class={styles['no-data']} />
-              }
+              <Spin spinning={this.getProductHashrateListLoading}>
+                {
+                  !!this.ordinaryList.length ?
+                    <Ordinary
+                      dataSource={this.ordinaryList}
+                      onRefresh={this.getProductHashrateListAction}
+                      onToTransferPage={this.toTransferPage}
+                    />
+                    :
+                    <NoData class={styles['no-data']} />
+                }
+              </Spin>
             </TabPane>
             <TabPane key={hashrateStatusMap.CLOSE} tab={this.$t('typeClose')}>
-              {
-                !!this.closeList.length ?
-                  <Close dataSource={this.closeList} />
-                  :
-                  <NoData class={styles['no-data']} />
-              }
-
+              <Spin spinning={this.getProductHashrateListLoading}>
+                {
+                  !!this.closeList.length ?
+                    <Close dataSource={this.closeList} />
+                    :
+                    <NoData class={styles['no-data']} />
+                }
+              </Spin>
             </TabPane>
             <TabPane key={hashrateStatusMap.PLEDGES} class={styles['pledges-tab']} tab={this.$t('typePledge')}>
+
                 <Select
                   class={styles['pledges-status-select']}
                   value={this.orderStatus}
                   onChange={this.onOrderChange}
-                  suffixIcon={<TriangleFilled className="select-icon" />}
                 >
                   {
                     getPledgesOderStatusList().map(({ text, value }) => (
@@ -171,34 +173,39 @@ const HashrateList = {
                     ))
                   }
                 </Select>
+                <Spin spinning={this.getProductHashrateListLoading}>
+                  {
+                    !!this.pledgesList.length ?
+                      <Pledges dataSource={this.pledgesList} onRefresh={this.getProductHashrateListAction} />
+                      :
+                      <NoData class={styles['no-data']} />
+                  }
+                </Spin>
+            </TabPane>
+            <TabPane key={hashrateStatusMap.TRANSFER} tab={this.$t('typeTransfer')}>
+              <Spin spinning={this.getProductHashrateListLoading}>
                 {
-                  !!this.pledgesList.length ?
-                    <Pledges dataSource={this.pledgesList} onRefresh={this.getProductHashrateListAction} />
+                  !!this.transferList.length ?
+                    <Transfer
+                      dataSource={this.transferList}
+                      onRefresh={this.getProductHashrateListAction}
+                    />
                     :
                     <NoData class={styles['no-data']} />
                 }
-            </TabPane>
-            <TabPane key={hashrateStatusMap.TRANSFER} tab={this.$t('typeTransfer')}>
-              {
-                !!this.transferList.length ?
-                  <Transfer
-                    dataSource={this.transferList}
-                    onRefresh={this.getProductHashrateListAction}
-                  />
-                  :
-                  <NoData class={styles['no-data']} />
-              }
+              </Spin>
             </TabPane>
             <TabPane key={hashrateStatusMap.SHUTDOWN} tab={this.$t('typeShutDown')}>
-              {
-                this.shutdownList.length ?
-                  <Shutdown dataSource={this.shutdownList} onToTransferPage={this.toTransferPage} />
-                  :
-                <NoData class={styles['no-data']} />
-              }
+              <Spin spinning={this.getProductHashrateListLoading}>
+                {
+                  this.shutdownList.length ?
+                    <Shutdown dataSource={this.shutdownList} onToTransferPage={this.toTransferPage} />
+                    :
+                  <NoData class={styles['no-data']} />
+                }
+              </Spin>
             </TabPane>
           </KeepTabs>
-        </Spin>
       </BaseContainer>
     );
   },

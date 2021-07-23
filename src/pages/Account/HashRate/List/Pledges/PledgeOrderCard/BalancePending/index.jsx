@@ -8,7 +8,7 @@ import PledgesHashrateCellValue from '@/pages/Account/HashRate/List/components/P
 import { settleTimeFormat } from '@/pages/Account/HashRate/consts/timeFormat';
 import CardFooter from './CardFooter';
 
-const Ordinary = {
+const BalancePending = {
   props: ['data'],
   methods: {
     getListData(data) {
@@ -68,4 +68,4 @@ const Ordinary = {
   },
 };
 
-export default Ordinary;
+export default BalancePending;

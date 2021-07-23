@@ -11,7 +11,7 @@ import locationServices from '@/shared/services/location/locationServices';
 import { VIP_HASHRATE } from '@/pages/Account/HashRate/consts/hashrateType';
 import CardFooter from './CardFooter';
 
-const Ordinary = {
+const Close = {
   props: ['dataSource'],
   methods: {
     getListData(data) {
@@ -103,4 +103,4 @@ const Ordinary = {
   },
 };
 
-export default Ordinary;
+export default Close;

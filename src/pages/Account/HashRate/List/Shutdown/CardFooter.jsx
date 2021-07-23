@@ -31,8 +31,7 @@ const CardFooter = {
           label: this.$t('hashrateOperationTransfer'),
           icon: <SquareSwitchOutlined />,
           onClick: () => {
-            this.isVisibleTransferPage = true;
-            this.nowClickData = data;
+            console.log('hashrateOperationTransfer');
           },
         },
       ];

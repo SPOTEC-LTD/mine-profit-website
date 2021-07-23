@@ -33,12 +33,6 @@ const CardFooter = {
         [HASHRATE_NO_ENOUGH]: this.$t('hashratePledgeAllNotEnough'),
         [HASHRATE_NUMBER_NO_ENOUGH]: this.$t('hashratePledgeSameNotEnough'),
       };
-
-      // Toast({
-      //   message: pledgeMessageMap[isPledge],
-      //   icon: 'warning-o',
-      //   duration: 1000,
-      // });
     },
 
     getButtonDataSource(data) {
@@ -46,7 +40,7 @@ const CardFooter = {
         {
           label: this.$t('typeTransfer'),
           icon: <SquareSwitchOutlined />,
-          onClick: () => { this.isVisibleTransferPage = true; this.nowClickData = data; },
+          onClick: () => { console.log('----typeTransfer') },
         },
         {
           label: this.$t('typePledge'),
@@ -91,7 +85,7 @@ const CardFooter = {
   render() {
     const { data, isVipHashrate } = this;
 
-    const footer = isVipHashrate ?
+    const rightContentNode = isVipHashrate ?
       this.getVipHashrateFooter(data)
       :
     <FooterButtonGroup dataSource={this.getButtonDataSource(data)} />;
@@ -107,7 +101,7 @@ const CardFooter = {
       <FooterLayout
         scopedSlots={{
           leftContent: () => leftContentNode,
-          rightContent: () => footer,
+          rightContent: () => rightContentNode,
         }}
       />
     );

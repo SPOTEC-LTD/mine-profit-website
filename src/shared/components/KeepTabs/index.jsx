@@ -2,6 +2,7 @@ import { Tabs } from 'ant-design-vue';
 import isUndefined from 'lodash/isUndefined';
 
 const KeepTabs = {
+  inheritAttrs: false,
   props: {
     defaultName: { type: String },
     value: {

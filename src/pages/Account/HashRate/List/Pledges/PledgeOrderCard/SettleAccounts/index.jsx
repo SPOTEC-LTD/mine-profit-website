@@ -16,7 +16,7 @@ import {
 } from '@/shared/consts/settleStatus';
 import CardFooter from './CardFooter';
 
-const Ordinary = {
+const SettleAccounts = {
   props: ['data'],
   methods: {
     getReturnTotalAmountData(data) {
@@ -144,4 +144,4 @@ const Ordinary = {
   },
 };
 
-export default Ordinary;
+export default SettleAccounts;

@@ -1,7 +1,5 @@
 import { Statistic } from 'ant-design-vue';
-import {
-  SharedFilled,
-} from 'ahoney/lib/icons';
+import SharedFilled from 'ahoney/lib/icons/SharedFilled';
 import FooterButtonGroup from '@/pages/Account/HashRate/List/components/FooterButtonGroup';
 import FooterLayout from '@/pages/Account/HashRate/List/components/FooterLayout';
 import locationServices from '@/shared/services/location/locationServices';

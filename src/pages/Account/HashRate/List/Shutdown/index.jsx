@@ -11,7 +11,7 @@ import { VIP_HASHRATE } from '@/pages/Account/HashRate/consts/hashrateType';
 
 import CardFooter from './CardFooter';
 
-const Ordinary = {
+const Shutdown = {
   props: ['dataSource'],
   methods: {
     getListData(data) {
@@ -94,4 +94,4 @@ const Ordinary = {
   },
 };
 
-export default Ordinary;
+export default Shutdown;

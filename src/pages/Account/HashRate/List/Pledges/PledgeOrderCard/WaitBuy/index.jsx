@@ -5,7 +5,7 @@ import CellValue from '@/pages/Account/HashRate/List/components/CellValue';
 import PledgesHashrateCellValue from '@/pages/Account/HashRate/List/components/PledgesHashrateCellValue';
 import CardFooter from './CardFooter';
 
-const Ordinary = {
+const WaitBuy = {
   props: ['data'],
   methods: {
     getListData(data) {
@@ -58,4 +58,4 @@ const Ordinary = {
   },
 };
 
-export default Ordinary;
+export default WaitBuy;

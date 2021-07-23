@@ -14,6 +14,12 @@ import {
 import FooterLayout from '../components/FooterLayout';
 import StatusTag from '../components/StatusTag';
 
+const statusTagMap = {
+  [TRANSFER_ING]: '#f1b617',
+  [TRANSFER_DONE]: '#11bc29',
+  [TRANSFER_CANCEL]: '#df5353',
+};
+
 const CardFooter = {
   props: ['data'],
 
@@ -52,12 +58,6 @@ const CardFooter = {
 
   render() {
     const { data } = this;
-    const statusTagMap = {
-      [TRANSFER_ING]: '#f1b617',
-      [TRANSFER_DONE]: '#11bc29',
-      [TRANSFER_CANCEL]: '#df5353',
-    };
-
     const isShowButton = data.status !== TRANSFER_CANCEL && data.isCancel;
 
     const tagNode = (

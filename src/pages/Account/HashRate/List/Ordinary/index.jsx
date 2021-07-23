@@ -45,14 +45,6 @@ const Ordinary = {
       return listData.filter(({ hidden }) => !hidden);
     },
 
-    closeTransferPage(to) {
-      if (to) {
-        this.$emit('toTransferPage');
-      }
-      this.isVisibleTransferPage = false;
-      document.title = this.$t('mineTitleHashrate');
-    },
-
     onClickToProductTemplate(ptId, isVipHashrate) {
       const currentFullPath = this.$router.history.current.fullPath;
       if (!isVipHashrate) {
