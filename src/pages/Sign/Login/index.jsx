@@ -11,7 +11,6 @@ import dateUtils from '@/shared/intl/utils/dateUtils';
 import PrimaryButton from '@/shared/components/PrimaryButton';
 import { passwordReg, phoneReg } from '@/shared/consts/rules';
 import * as verCodeType from '@/shared/consts/verCodeType';
-import { UPDATE_USER_INFO } from '@/store';
 import storageUserInfo from './storageUserInfo';
 import Form from './Form';
 import styles from './index.less?module';
@@ -180,7 +179,6 @@ const Login = {
         this[LOGIN](data)
           .then(result => {
             storageUserInfo(result);
-            this.$store.commit(UPDATE_USER_INFO, result);
           });
       }
     },

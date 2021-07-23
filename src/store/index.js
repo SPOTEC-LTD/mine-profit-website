@@ -1,5 +1,6 @@
 import { getUserBaseInfo } from '@/api/account/userInfo';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
+import { UPDATE_USER_INFO } from '@/store/consts/actionType';
 import loadingPlugin from './loadingPlugin';
 import sign from '../modules/sign';
 import home from '../modules/home';
@@ -7,8 +8,6 @@ import hashRate from '../modules/account/hashRate';
 import publicData from '../modules/public';
 import rateExchange from '../modules/rateExchange';
 import officialMarket from '../modules/officialMarket';
-
-const UPDATE_USER_INFO = 'updateUserInfo';
 
 export const strict = false;
 export const plugins = [loadingPlugin()];
