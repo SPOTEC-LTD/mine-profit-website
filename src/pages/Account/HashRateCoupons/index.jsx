@@ -6,7 +6,6 @@ import { HASH_RATE_COUPONS, GET_COUPONS } from '@/modules/hashRateCoupons';
 import dateUtils from '@/shared/intl/utils/dateUtils';
 import BaseContainer from '@/shared/components/BaseContainer';
 import InfoTooltip from '@/shared/components/InfoTooltip';
-import InfoModal from '@/shared/components/InfoModal';
 
 import { FOREVER } from './consts/validPeriodStatus';
 import { ALL, EXPIRE, getCouponsStatus } from './consts/couponUsedStatus';
@@ -140,18 +139,6 @@ const HashRateCoupons = {
     return (
       <div class={styles['hashrate-coupons-box']}>
         <BaseContainer>
-
-
-          <InfoModal
-            showDialog
-            scopedSlots={{ content: () => '111' }}
-          >
-            111111111
-          </InfoModal>
-
-
-
-
           {/* TODO: 面包屑 待加 */}
           {/* TODO: 下拉框 待改 */}
           <Dropdown
