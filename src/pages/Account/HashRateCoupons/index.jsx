@@ -91,12 +91,12 @@ const HashRateCoupons = {
         align: 'center',
         width: 100,
         // TODO: 待添加'失效原因'字段
-        customRender: (_, { status, shutdownReason }) => {
+        customRender: (_, { status, expirationReason }) => {
           return (
             <div class={styles['status-box']}>
               <div class={{ [styles['color-red']]: status === EXPIRE }}>{getCouponsStatus(status)}</div>
               {status === EXPIRE && (
-                <InfoTooltip content={getExpiredReason(shutdownReason)} />
+                <InfoTooltip content={getExpiredReason(expirationReason)} />
               )}
             </div>
           );

@@ -1,6 +1,6 @@
 import CloseOutlined from 'ahoney/lib/icons/CloseOutlined';
 import QRcode from '@/shared/components/QRcode';
-import BaseModal from '@/shared/components/BaseModal';
+import InfoModal from '@/shared/components/InfoModal';
 import ModalButton from '@/shared/components/ModalButton';
 import CopyToClipboard from '@/shared/components/CopyToClipboard';
 
@@ -49,7 +49,7 @@ const ShareQrCodeModal = {
   },
   render() {
     return (
-      <BaseModal
+      <InfoModal
         centered
         hiddenButton
         footer={null}
@@ -60,7 +60,7 @@ const ShareQrCodeModal = {
           content: this.getContent,
         }}>
         {this.$scopedSlots.default()}
-      </BaseModal>
+      </InfoModal>
     );
   },
 };
