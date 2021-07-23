@@ -5,7 +5,7 @@ import { Table, Dropdown, Menu } from 'ant-design-vue';
 import { HASH_RATE_COUPONS, GET_COUPONS } from '@/modules/hashRateCoupons';
 import dateUtils from '@/shared/intl/utils/dateUtils';
 import BaseContainer from '@/shared/components/BaseContainer';
-import ToolTipWrap from '@/shared/components/ToolTipWrap';
+import InfoTooltip from '@/shared/components/InfoTooltip';
 
 import { FOREVER } from './consts/validPeriodStatus';
 import { ALL, EXPIRE, getCouponsStatus } from './consts/couponUsedStatus';
@@ -96,10 +96,7 @@ const HashRateCoupons = {
             <div class={styles['status-box']}>
               <div class={{ [styles['color-red']]: status === EXPIRE }}>{getCouponsStatus(status)}</div>
               {status === EXPIRE && (
-                <ToolTipWrap
-                  className={styles['icon-tooltip']}
-                  title={getExpiredReason(shutdownReason)}
-                />
+                <InfoTooltip content={getExpiredReason(shutdownReason)} />
               )}
             </div>
           );

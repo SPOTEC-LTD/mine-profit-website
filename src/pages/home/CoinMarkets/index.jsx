@@ -97,11 +97,10 @@ const CoinMarkets = {
         align: 'right',
         width: 260,
         customRender: (_, { globalHashrate, hashrateUnitSuffix }) => {
+          const { hashrate, unit } = getHashrateUnit(globalHashrate);
           return (
             <div class={styles['coin-price']}>
-              {
-                `${getHashrateUnit(globalHashrate).hashrate} ${getHashrateUnit(globalHashrate).unit}${hashrateUnitSuffix}`
-              }
+              {`${hashrate} ${unit}${hashrateUnitSuffix}`}
             </div>
           );
         },

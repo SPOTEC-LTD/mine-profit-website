@@ -7,14 +7,24 @@ const ToolTipWrap = {
   inheritAttrs: false,
   props: {
     className: String,
+    title: String,
+    content: String,
   },
 
   render() {
     return (
-      <div class={classNames('tool_tip_wrap', this.className)}>
+      <div class={classNames('info-tooltip-wrap', this.className)}>
         <Tooltip
-          getPopupContainer={triggerNode => triggerNode.parentNode}
+          overlayClassName='info-tooltip'
           placement='right'
+          scopedSlots={{
+            title: () => (
+              <div>
+                <div class='info-title'>{this.title}</div>
+                <div class='info-content'>{this.content}</div>
+              </div>
+            ),
+          }}
           {...{
             on: this.$listeners,
             props: this.$attrs,
