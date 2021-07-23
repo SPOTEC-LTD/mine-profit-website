@@ -5,7 +5,7 @@ import QrCode from 'ahoney/lib/icons/QrCode';
 import DoubleUserFilled from 'ahoney/lib/icons/DoubleUserFilled';
 import BaseContainer from '@/shared/components/BaseContainer';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
-import { UPDATE_USER_INFO } from '@/store';
+import { UPDATE_USER_INFO } from '@/store/consts/actionType';
 import ShareQrCodeModal from '@/shared/components/ShareQrCodeModal';
 import logout from './logout';
 import styles from './index.less?module';
