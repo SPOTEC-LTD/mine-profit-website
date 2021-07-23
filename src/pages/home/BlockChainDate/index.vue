@@ -62,7 +62,8 @@ export default {
         const dataList = list.map(item => {
           item.icon = this.iconMap[item.symbol];
           item.symbol = item.symbol.toUpperCase();
-          item.hashrate = getHashrateUnit(item.hashrate);
+          const { hashrate, unit } = getHashrateUnit(item.hashrate);
+          item.hashrate = `${hashrate} ${unit}`;
           item.incomeCoin = this.getFormatBigFloatNumber(item.incomeCoin, 8);
           item.incomeUsd = this.getFormatBigFloatNumber(item.incomeUsd, 8);
           return item;

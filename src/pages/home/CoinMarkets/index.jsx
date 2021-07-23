@@ -1,6 +1,6 @@
 import { Table } from 'ant-design-vue';
 import numberUtils from 'aa-utils/lib/numberUtils';
-import RightOutlined from 'ahoney/lib/icons/RightOutlined';
+import getHashrateUnit from '@/shared/utils/getHashrateUnit';
 
 import styles from './index.less?module';
 
@@ -44,13 +44,12 @@ const CoinMarkets = {
       {
         title: this.$t('chainType'),
         dataIndex: 'coin',
-        // TODO: 待添加字段
         customRender: (_, { symbol, icon, symbolCN }) => {
           return (
             <div class={styles['coin-name']}>
               <img src={icon} alt="" />
               <span>{symbol.toUpperCase()}</span>
-              <span class={styles['coin-symbolCN']}>{'symbolCN'}</span>
+              <span class={styles['coin-symbolCN']}>{symbolCN}</span>
             </div>
           );
         },
@@ -97,16 +96,11 @@ const CoinMarkets = {
         dataIndex: 'globalHashrate',
         align: 'right',
         width: 260,
-        // TODO: 待添加字段
-        customRender: (_, { globalHashrate }) => {
+        customRender: (_, { globalHashrate, hashrateUnitSuffix }) => {
+          const { hashrate, unit } = getHashrateUnit(globalHashrate);
           return (
             <div class={styles['coin-price']}>
-              {
-                `${numberUtils.formatNumber(globalHashrate, {
-                  minimumFractionDigits: 2,
-                  useGrouping: false,
-                })} H/s`
-              }
+              {`${hashrate} ${unit}${hashrateUnitSuffix}`}
             </div>
           );
         },
@@ -122,12 +116,8 @@ const CoinMarkets = {
           pagination={false}
         />
         {this.isHidden && (
-          <div
-            class={styles.more}
-            onClick={() => { this.showMore = true; }}
-          >
-            <span>{this.$t('moreCoinPrice')}</span>
-            <RightOutlined />
+          <div class={styles.more}>
+            <span onClick={() => { this.showMore = true; }}>{this.$t('moreCoinPrice')}</span>
           </div>
         )}
       </div>

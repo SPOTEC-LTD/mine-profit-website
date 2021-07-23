@@ -8,6 +8,7 @@ import hashRate from '../modules/account/hashRate';
 import publicData from '../modules/public';
 import rateExchange from '../modules/rateExchange';
 import officialMarket from '../modules/officialMarket';
+import hashRateCoupons from '../modules/hashRateCoupons';
 
 export const strict = false;
 export const plugins = [loadingPlugin()];
@@ -45,4 +46,5 @@ export const modules = {
   publicData,
   rateExchange,
   officialMarket,
+  hashRateCoupons,
 };

@@ -1,0 +1,65 @@
+@import "@/shared/styles/variables.less";
+
+.color-red {
+  color: @color__fe6565;
+}
+
+.hashrate-coupons-box {
+  :global {
+    .mp-table-thead > tr > th {
+      background: @color__dde5f3;
+      color: @color__1d1d1d;
+      font-size: @font-size-sm;
+      line-height: 18px;
+      padding: 4px 0;
+    }
+
+    .mp-table-tbody > tr > td {
+      color: @color__1d1d1d;
+      font-size: @font-size-base;
+      line-height: 20px;
+      padding: 15px;
+    }
+
+    .mp-table-thead > tr > th,
+    .mp-table-tbody > tr > td {
+      border-bottom: 1px solid @color__e6e6e6;
+    }
+
+    .mp-table-footer {
+      background-color: @white;
+      padding: 0;
+    }
+  }
+}
+
+.gray-row {
+  :global {
+    .mp-table-row-cell-ellipsis,
+    .mp-table-row-cell-break-word {
+      color: @color__939393 !important;
+      background: @color__f4f4f4;
+    }
+  }
+}
+
+.hashrate-status-dropdown {
+  margin: 0;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.status-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  :global {
+    .spotecicon {
+      width: 17px;
+      height: 17px;
+      margin-left: 2px;
+      color: @color__fe6565;
+    }
+  }
+}
