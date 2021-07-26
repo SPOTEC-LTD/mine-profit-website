@@ -15,5 +15,4 @@ export default {
   used: '已使用',
   expired: '已失效',
   status: '状态',
-  day: '天',
 };
