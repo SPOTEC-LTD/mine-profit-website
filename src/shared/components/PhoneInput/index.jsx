@@ -41,9 +41,7 @@ const PhoneInput = {
     },
 
     handleAreaCodeChange(value) {
-      if (value) {
-        this.$emit('phonePrefixChange', value.code);
-      }
+      this.$emit('phonePrefixChange', value.label);
       this.popupShow = false;
     },
   },
@@ -57,9 +55,10 @@ const PhoneInput = {
     const selectNode = (
       <Select
         class="phone-prefix-select"
-        defaultValue={this.phonePrefix}
+        defaultValue={{ label: this.phonePrefix, key: 37 }}
         onChange={this.handleAreaCodeChange}
         showSearch
+        labelInValue
         optionLabelProp="label"
         suffixIcon={<TriangleFilled className="select-icon" />}
         dropdownMatchSelectWidth={false}

@@ -5,6 +5,7 @@ import loadingPlugin from './loadingPlugin';
 import sign from '../modules/sign';
 import home from '../modules/home';
 import hashRate from '../modules/account/hashRate';
+import account from '../modules/account/account';
 import publicData from '../modules/public';
 import rateExchange from '../modules/rateExchange';
 import hashRateCoupons from '../modules/hashRateCoupons';
@@ -47,4 +48,5 @@ export const modules = {
   rateExchange,
   hashRateCoupons,
   officialProduct,
+  account,
 };

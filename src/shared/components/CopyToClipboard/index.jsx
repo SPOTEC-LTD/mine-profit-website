@@ -1,5 +1,5 @@
 import CopyToClipboard from 'vue-copy-to-clipboard';
-import successModal from '@/shared/services/Notification/successModal';
+import Notification from '@/shared/services/Notification';
 
 const CopyToClipboardWrap = {
   props: {
@@ -13,7 +13,7 @@ const CopyToClipboardWrap = {
     return (
       <CopyToClipboard
         text={this.text}
-        onCopy={() => successModal({ title: this.$t('copySuccess') })}
+        onCopy={() => Notification.success(this.$t('copySuccess')) }
         {...finlayProps}
       >
         {this.$scopedSlots.default()}

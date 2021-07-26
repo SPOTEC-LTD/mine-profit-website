@@ -15,7 +15,7 @@
 
 <script>
 import Vue from 'vue';
-import { ConfigProvider, Modal, Badge } from 'ant-design-vue';
+import { ConfigProvider, Modal } from 'ant-design-vue';
 import Cookies from 'universal-cookie';
 import PageHeader from '@/shared/components/PageHeader';
 import PageFooter from '@/shared/components/page-footer';
