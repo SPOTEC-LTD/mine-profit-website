@@ -1,7 +1,13 @@
 import { CheckCircleFilled, PendingFilled, QuestionCircleFilled, CloseCircleTFilled } from 'ahoney/lib/icons';
 import { EMAIL } from '@/shared/consts/registerType';
 import { PENDING, PASS, REJECT, NOT_SUBMIT } from '@/shared/consts/kycStatus';
-import { accountDetailPath, bindPhonePath, bindEmailPath, setDealPasswordPath } from '@/router/consts/urls';
+import {
+  accountDetailPath,
+  bindPhonePath,
+  bindEmailPath,
+  setDealPasswordPath,
+  setLoginPasswordPath,
+} from '@/router/consts/urls';
 import authEnterImage from '@/assets/account/auth-enter-image.png';
 import Link from '@/shared/components/Link';
 
@@ -73,7 +79,7 @@ const Authentication = {
         {
           text: this.$t('loginPwd'),
           isAuth: isPassword,
-          path: accountDetailPath,
+          path: setLoginPasswordPath,
         },
         {
           text: this.$t('accountAndSecurityTradePwd'),

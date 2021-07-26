@@ -10,7 +10,8 @@ export const bindInvitationCodePath = `${accountPath}/bindInvitationCode`;
 export const hashRateCouponsPath = `${accountPath}/hashRateCoupons`;
 export const bindPhonePath = `${accountPath}/bindPhone`;
 export const bindEmailPath = `${accountPath}/bindEmail`;
-export const setDealPasswordPath = '/account/setDealPassword';
+export const setDealPasswordPath = `${accountPath}/setDealPassword`;
+export const setLoginPasswordPath = `${accountPath}/setLoginPassword`;
 
 // ==== aboutUsPaths
 export const aboutUsPaths = '/aboutUs';

@@ -4,6 +4,7 @@ import HashRateCoupons from '@/pages/Account/HashRateCoupons';
 import BindPhone from '@/pages/Account/BindPhone';
 import BindEmail from '@/pages/Account/BindEmail';
 import SetDealPassword from '@/pages/Account/SetDealPassword';
+import SetLoginPassword from '@/pages/Account/SetLoginPassword';
 import * as urls from './consts/urls';
 
 export default [
@@ -36,5 +37,10 @@ export default [
     path: urls.setDealPasswordPath,
     name: 'dealPasswordSet',
     component: SetDealPassword,
+  },
+  {
+    path: urls.setLoginPasswordPath,
+    name: 'loginPasswordSet',
+    component: SetLoginPassword,
   },
 ];
