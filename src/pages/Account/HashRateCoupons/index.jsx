@@ -23,7 +23,6 @@ const HashRateCoupons = {
   data() {
     return {
       couponsStatus: ALL,
-      showDialog: false,
     };
   },
   computed: mapState({
@@ -76,9 +75,11 @@ const HashRateCoupons = {
         />
       );
     },
+
     closeDialog() {
-      this.showDialog = false;
+      this.$refs.testModal.close();
     },
+
     confirm() {
       console.log('做一些操作');
       this.closeDialog();
@@ -171,12 +172,10 @@ const HashRateCoupons = {
       <div class={styles['hashrate-coupons-box']}>
         <BaseContainer>
           <BaseModal
-            visible={this.showDialog}
-            footer={this.getFooterNode()}
-            onOpen={() => { this.showDialog = true; }}
-            onClose={this.closeDialog}
+            title="test title"
+            ref="testModal"
             scopedSlots={{
-              content: () => '',
+              content: () => this.getFooterNode(),
             }}
           >
             点我
