@@ -1,4 +1,3 @@
-import { mapState } from 'vuex';
 import { Badge } from 'ant-design-vue';
 import HashCouponFilled from 'ahoney/lib/icons/HashCouponFilled';
 import QrCode from 'ahoney/lib/icons/QrCode';
@@ -14,11 +13,7 @@ const Detail = {
   props: {
     info: Object,
     inviteInfo: Object,
-  },
-  computed: {
-    ...mapState({
-      userInfo: state => state.userInfo,
-    }),
+    userInfo: Object,
   },
   methods: {
     handleLogout() {
@@ -27,6 +22,7 @@ const Detail = {
     },
     getInviteItem() {
       const { invitationCode, inviteReward, inviteCount } = this.inviteInfo;
+      // TODO 需要动态域名和国际化
       const link = 'http://192.168.0.126:7010/register/588?locale=en-US';
       const qrCodeItem = (
         <div>
@@ -76,7 +72,6 @@ const Detail = {
   render() {
     const { validCouponCount } = this.info;
     const { avatar, nickName, registerAccount, level } = this.userInfo;
-    // TODO 需要动态域名和国际化
     return (
       <BaseContainer class={styles['account-base-info']}>
         <div class={styles['info-box']}>

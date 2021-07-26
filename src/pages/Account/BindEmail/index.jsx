@@ -1,6 +1,5 @@
 import { FormModel, Input, Statistic } from 'ant-design-vue';
 import { mapActions, mapState } from 'vuex';
-import * as API from '@/api/sign';
 import { SIGN, GET_EMAIL_CODE } from '@/modules/sign';
 import { ACCOUNT, BIND_PHONE_OR_EMAIL } from '@/modules/account/account';
 import * as verCodeType from '@/shared/consts/verCodeType';
@@ -10,20 +9,12 @@ import locationServices from '@/shared/services/location/locationServices';
 import PageButton from '@/shared/components/PageButton';
 import { emailReg } from '@/shared/consts/rules';
 import Notification from '@/shared/services/Notification';
-import errorModal from '@/shared/utils/request/errorModal';
 import { GLOBAL_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
 import styles from './index.less?module';
 
 const { Item } = FormModel;
 
-const BindPhone = {
-  async asyncData(ctx) {
-    const {
-      body: { list },
-    } = await API.getCountries({}, { ctx });
-
-    return { countries: list };
-  },
+const BindEmail = {
   data() {
     return {
       isCountDown: false,
@@ -68,7 +59,7 @@ const BindPhone = {
             })
             .catch(({ code, message }) => {
               if (GLOBAL_BUSINESS_EXCEPTION !== code) {
-                errorModal({ title: message });
+                Notification.error(message);
               }
             });
         }
@@ -112,13 +103,15 @@ const BindPhone = {
                   message: this.$t('emailWrongFormat'),
                   trigger: 'blur',
                 },
-              ]}>
+              ]}
+            >
               <Input v-model={this.form.email} placeholder={this.$t('fillNeedBindEmail')} />
             </Item>
             <Item
               label={this.$t('verificationCode')}
               prop="code"
-              rules={[{ required: true, message: this.$t('verifyCodeRequired'), trigger: 'change' }]}>
+              rules={[{ required: true, message: this.$t('verifyCodeRequired'), trigger: 'change' }]}
+            >
               <Input
                 maxLength={6}
                 v-model={this.form.code}
@@ -138,4 +131,4 @@ const BindPhone = {
   },
 };
 
-export default BindPhone;
+export default BindEmail;

@@ -48,7 +48,7 @@ const Detail = {
   render() {
     return (
       <div>
-        <BaseInfo info={this.badge} inviteInfo={this.inviteInfo}/>
+        <BaseInfo info={this.badge} userInfo={this.userInfo} inviteInfo={this.inviteInfo}/>
         <BaseContainer class={styles['account-other-info']}>
           <Authentication userInfo={this.userInfo} />
           <Wallet />
