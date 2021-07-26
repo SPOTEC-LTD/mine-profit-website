@@ -9,7 +9,7 @@ import { accountDetailPath } from '@/router/consts/urls';
 import locationServices from '@/shared/services/location/locationServices';
 import PageButton from '@/shared/components/PageButton';
 import { emailReg } from '@/shared/consts/rules';
-import successModal from '@/shared/services/Notification/successModal';
+import Notification from '@/shared/services/Notification';
 import errorModal from '@/shared/utils/request/errorModal';
 import { GLOBAL_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
 import styles from './index.less?module';
@@ -33,17 +33,6 @@ const BindPhone = {
         type: EMAIL,
       },
       buttonText: this.$t('fetch'),
-      rules: {
-        email: [
-          { required: true, message: this.$t('emailAddressRequire'), trigger: 'change' },
-          {
-            pattern: emailReg,
-            message: this.$t('emailWrongFormat'),
-            trigger: 'blur',
-          },
-        ],
-        code: [{ required: true, message: this.$t('verifyCodeRequired'), trigger: 'change' }],
-      },
     };
   },
   computed: {
@@ -74,11 +63,13 @@ const BindPhone = {
         if (valid) {
           this[BIND_PHONE_OR_EMAIL](this.form)
             .then(() => {
+              Notification.success(this.$t('bindSuccess'));
               locationServices.push(accountDetailPath);
-              successModal({ title: this.$t('bindSuccess') });
             })
             .catch(({ code, message }) => {
-              if (GLOBAL_BUSINESS_EXCEPTION !== code) errorModal({ title: message });
+              if (GLOBAL_BUSINESS_EXCEPTION !== code) {
+                errorModal({ title: message });
+              }
             });
         }
         return false;
@@ -110,11 +101,24 @@ const BindPhone = {
     return (
       <div class={styles.wrapper}>
         <div class={styles['form-wrap']}>
-          <FormModel ref="ruleForm" hideRequiredMark props={{ model: this.form }} rules={this.rules} class="form">
-            <Item label={this.$t('emailAddress')} prop="email">
+          <FormModel ref="ruleForm" hideRequiredMark props={{ model: this.form }} class="form">
+            <Item
+              label={this.$t('emailAddress')}
+              prop="email"
+              rules={[
+                { required: true, message: this.$t('emailAddressRequire'), trigger: 'change' },
+                {
+                  pattern: emailReg,
+                  message: this.$t('emailWrongFormat'),
+                  trigger: 'blur',
+                },
+              ]}>
               <Input v-model={this.form.email} placeholder={this.$t('fillNeedBindEmail')} />
             </Item>
-            <Item label={this.$t('verificationCode')} prop="code">
+            <Item
+              label={this.$t('verificationCode')}
+              prop="code"
+              rules={[{ required: true, message: this.$t('verifyCodeRequired'), trigger: 'change' }]}>
               <Input
                 maxLength={6}
                 v-model={this.form.code}

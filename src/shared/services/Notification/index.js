@@ -12,11 +12,18 @@ export default {
       ...config,
     });
   },
-  success(config) {
+  success(value, config) {
     Notification.open({
       prefixCls: 'mp-notification',
       class: 'success-notification',
       duration: 1.3,
+      message: h => {
+        return h('SuccessNode', {
+          props: {
+            value,
+          },
+        });
+      },
       ...config,
     });
   },

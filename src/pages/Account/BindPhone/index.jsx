@@ -10,7 +10,7 @@ import { accountDetailPath } from '@/router/consts/urls';
 import locationServices from '@/shared/services/location/locationServices';
 import PageButton from '@/shared/components/PageButton';
 import { phoneReg } from '@/shared/consts/rules';
-import successModal from '@/shared/services/Notification/successModal';
+import Notification from '@/shared/services/Notification';
 import errorModal from '@/shared/utils/request/errorModal';
 import { GLOBAL_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
 import styles from './index.less?module';
@@ -37,21 +37,6 @@ const BindPhone = {
         type: PHONE,
       },
       buttonText: this.$t('fetch'),
-      rules: {
-        phone: [
-          { required: true, message: this.$t('phoneRequired'), trigger: 'change' },
-          {
-            validator: (rule, value) => {
-              if (value && this.form.phonePrefix === phonePrefixInitValue && !phoneReg.test(value)) {
-                return Promise.reject(this.$t('phoneNumberWrongFormat'));
-              }
-              return Promise.resolve();
-            },
-            trigger: 'blur',
-          },
-        ],
-        code: [{ required: true, message: this.$t('verifyCodeRequired'), trigger: 'change' }],
-      },
     };
   },
   computed: {
@@ -83,11 +68,13 @@ const BindPhone = {
         if (valid) {
           this[BIND_PHONE_OR_EMAIL](this.form)
             .then(() => {
+              Notification.success(this.$t('bindSuccess'));
               locationServices.push(accountDetailPath);
-              successModal({ title: this.$t('bindSuccess') });
             })
             .catch(({ code, message }) => {
-              if (GLOBAL_BUSINESS_EXCEPTION !== code) errorModal({ title: message });
+              if (GLOBAL_BUSINESS_EXCEPTION !== code) {
+                errorModal({ title: message });
+              }
             });
         }
         return false;
@@ -146,8 +133,23 @@ const BindPhone = {
     return (
       <div class={styles.wrapper}>
         <div class={styles['form-wrap']}>
-          <FormModel ref="ruleForm" hideRequiredMark props={{ model: this.form }} rules={this.rules} class="form">
-            <Item ref="phone" label={this.$t('signInPhoneNum')} prop="phone">
+          <FormModel ref="ruleForm" hideRequiredMark props={{ model: this.form }} class="form">
+            <Item
+              ref="phone"
+              label={this.$t('signInPhoneNum')}
+              prop="phone"
+              rules={[
+                { required: true, message: this.$t('phoneRequired'), trigger: 'change' },
+                {
+                  validator: (rule, value) => {
+                    if (value && this.form.phonePrefix === phonePrefixInitValue && !phoneReg.test(value)) {
+                      return Promise.reject(this.$t('phoneNumberWrongFormat'));
+                    }
+                    return Promise.resolve();
+                  },
+                  trigger: 'blur',
+                },
+              ]}>
               <div class={styles['phone-input']}>
                 {this.getSelectNode()}
                 <Input
@@ -163,7 +165,10 @@ const BindPhone = {
                 />
               </div>
             </Item>
-            <Item label={this.$t('verificationCode')} prop="code">
+            <Item
+              label={this.$t('verificationCode')}
+              prop="code"
+              rules={[{ required: true, message: this.$t('verifyCodeRequired'), trigger: 'change' }]}>
               <Input
                 maxLength={6}
                 v-model={this.form.code}

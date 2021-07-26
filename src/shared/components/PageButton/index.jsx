@@ -16,7 +16,8 @@ const PageButton = {
                   on: this.$listeners,
                   props: this.$attrs,
                 }}
-                class="page-button">
+                class="page-button"
+              >
                 {this.$scopedSlots.default()}
               </Button>
             </div>
