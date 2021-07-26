@@ -314,6 +314,15 @@
   "qrCodeSharePrompt": "请将二维码图片分享给朋友使用手机扫描打开",
   "myQrCode": "我的二维码",
   "copySuccess": "复制成功",
+  "fetch": "获取",
+  "refetch": "重新获取",
+  "bindSuccess": "绑定成功",
+  "fillNeedBindPhone": "填写您需要绑定的手机号",
+  "fillGetPhoneVerificationCode": "填写您收到的手机证码",
+  "emailAddress": "邮箱地址",
+  "fillNeedBindEmail": "填写您要绑定的邮箱",
+  "emailAddressRequire": "邮箱地址不能为空",
+  "fillGetEmailVerificationCode": "填写您收到的邮箱验证码",
   "distilledHashRate": "精选算力",
   "newUserUsed": "新客专享",
   "marketNewBuyBuff": "新购加成",
@@ -334,6 +343,8 @@
   "marketC2CMarket": "C2C市场",
   "aboutUs": "关于我们",
   "hashRateMarket": "算力市场",
+  "BTCHashRate": "BTC算力",
+  "ETHHashRate": "ETH算力",
   "permanent": "永久",
   "termOfValidity": "有效期",
   "allStatus": "全部状态",
@@ -349,7 +360,5 @@
   "unused": "未使用",
   "used": "已使用",
   "expired": "已失效",
-  "status": "状态",
-  "BTCHashRate": "BTC算力",
-  "ETHHashRate": "ETH算力"
+  "status": "状态"
 }

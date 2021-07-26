@@ -8,6 +8,8 @@ export const accountDetailPath = `${accountPath}/detail`;
 export const accountHashRateListPath = `${accountPath}/hashrate/list`;
 export const bindInvitationCodePath = `${accountPath}/bindInvitationCode`;
 export const hashRateCouponsPath = `${accountPath}/hashRateCoupons`;
+export const bindPhonePath = `${accountPath}/bindPhone`;
+export const bindEmailPath = `${accountPath}/bindEmail`;
 
 // ==== aboutUsPaths
 export const aboutUsPaths = '/aboutUs';

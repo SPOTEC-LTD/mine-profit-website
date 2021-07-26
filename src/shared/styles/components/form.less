@@ -1,0 +1,36 @@
+@import '../variables.less';
+
+.form {
+  .mp-form-item {
+    .mp-form-item-label {
+      margin-bottom: 6px;
+      line-height: 17px;
+
+      > label::after {
+        display: none;
+      }
+
+      > label {
+        font-size: @font-size-sm;
+        color: @color__242424;
+      }
+    }
+  }
+
+  .mp-input {
+    height: 44px;
+    padding: 11px 12px;
+    line-height: 22px;
+    font-size: @font-size-lg;
+    background-color: @color__f7f8fc;
+  }
+
+  .mp-input-suffix {
+    right: 20px;
+  }
+
+  .has-error .mp-input,
+  .has-error .mp-input:hover {
+    background-color: @color__f7f8fc;
+  }
+}
