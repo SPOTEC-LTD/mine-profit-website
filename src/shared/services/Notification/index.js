@@ -4,14 +4,25 @@ import ErrorNode from './ErrorNode';
 import SuccessNode from './SuccessNode';
 
 export default {
-  error(config) {
+  error(value, config) {
     Notification.open({
       prefixCls: 'mp-notification',
       class: 'error-notification',
       duration: 1.3,
+      message: h => {
+        return h(
+          'ErrorNode',
+          {
+            props: {
+              value,
+            },
+          },
+        );
+      },
       ...config,
     });
   },
+
   success(value, config) {
     Notification.open({
       prefixCls: 'mp-notification',
