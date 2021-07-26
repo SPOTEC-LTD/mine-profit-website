@@ -6,6 +6,8 @@ import { HASH_RATE_COUPONS, GET_COUPONS } from '@/modules/hashRateCoupons';
 import dateUtils from '@/shared/intl/utils/dateUtils';
 import BaseContainer from '@/shared/components/BaseContainer';
 import InfoTooltip from '@/shared/components/InfoTooltip';
+import BaseModal from '@/shared/components/BaseModal';
+import ModalFooterButtonGroup from '@/shared/components/ModalFooterButtonGroup';
 
 import { FOREVER } from './consts/validPeriodStatus';
 import { ALL, EXPIRE, getCouponsStatus } from './consts/couponUsedStatus';
@@ -21,6 +23,7 @@ const HashRateCoupons = {
   data() {
     return {
       couponsStatus: ALL,
+      showDialog: false,
     };
   },
   computed: mapState({
@@ -52,6 +55,33 @@ const HashRateCoupons = {
     changeCouponsStatus(value) {
       this.couponsStatus = value;
       this.getCouponsList();
+    },
+    getFooterNode() {
+      const dataSource = [
+        {
+          onClick: this.closeDialog,
+          loading: false,
+          label: '取消',
+        },
+        {
+          onClick: this.confirm,
+          loading: false,
+          label: '确认',
+        },
+      ];
+      return (
+        <ModalFooterButtonGroup
+          className={styles['confirm-modal']}
+          dataSource={dataSource}
+        />
+      );
+    },
+    closeDialog() {
+      this.showDialog = false;
+    },
+    confirm() {
+      console.log('做一些操作');
+      this.closeDialog();
     },
   },
 
@@ -136,9 +166,21 @@ const HashRateCoupons = {
         },
       },
     ];
+
     return (
       <div class={styles['hashrate-coupons-box']}>
         <BaseContainer>
+          <BaseModal
+            visible={this.showDialog}
+            footer={this.getFooterNode()}
+            onOpen={() => { this.showDialog = true; }}
+            onClose={this.closeDialog}
+            scopedSlots={{
+              content: () => '',
+            }}
+          >
+            点我
+          </BaseModal>
           {/* TODO: 面包屑 待加 */}
           {/* TODO: 下拉框 待改 */}
           <Dropdown

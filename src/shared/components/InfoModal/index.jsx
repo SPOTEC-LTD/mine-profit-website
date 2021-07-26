@@ -47,11 +47,11 @@ const BaseModal = {
       <span>
         <span onClick={this.onOpenDialog}>{this.$scopedSlots.default()}</span>
         <Modal
-          class="base-modal"
+          class="info-modal"
           showConfirmButton={false}
           footer={null}
           v-model={this.showDialog}
-          { ...{
+          {...{
             on: this.$listeners,
             props: this.$attrs,
           }}
