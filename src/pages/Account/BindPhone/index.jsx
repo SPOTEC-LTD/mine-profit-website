@@ -11,7 +11,6 @@ import locationServices from '@/shared/services/location/locationServices';
 import PageButton from '@/shared/components/PageButton';
 import { phoneReg } from '@/shared/consts/rules';
 import Notification from '@/shared/services/Notification';
-import errorModal from '@/shared/utils/request/errorModal';
 import { GLOBAL_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
 import styles from './index.less?module';
 
@@ -73,7 +72,7 @@ const BindPhone = {
             })
             .catch(({ code, message }) => {
               if (GLOBAL_BUSINESS_EXCEPTION !== code) {
-                errorModal({ title: message });
+                Notification.error(message);
               }
             });
         }
@@ -118,7 +117,8 @@ const BindPhone = {
             labelInValue
             optionLabelProp="label"
             suffixIcon={<TriangleFilled className="select-icon" />}
-            dropdownMatchSelectWidth={false}>
+            dropdownMatchSelectWidth={false}
+          >
             {this.countries.map(item => (
               <Select.Option key={item.nation} label={item.code}>
                 {`${item.code} ${item.zh}`}
@@ -149,7 +149,8 @@ const BindPhone = {
                   },
                   trigger: 'blur',
                 },
-              ]}>
+              ]}
+            >
               <div class={styles['phone-input']}>
                 {this.getSelectNode()}
                 <Input
@@ -168,7 +169,8 @@ const BindPhone = {
             <Item
               label={this.$t('verificationCode')}
               prop="code"
-              rules={[{ required: true, message: this.$t('verifyCodeRequired'), trigger: 'change' }]}>
+              rules={[{ required: true, message: this.$t('verifyCodeRequired'), trigger: 'change' }]}
+            >
               <Input
                 maxLength={6}
                 v-model={this.form.code}
