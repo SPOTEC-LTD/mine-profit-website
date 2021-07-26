@@ -1,0 +1,31 @@
+
+@import "@/shared/styles/variables.less";
+
+.product-list-wrapper {
+  :global {
+    .mp-tabs-bar {
+      .mp-tabs-nav-container {
+        box-shadow: none;
+      }
+    }
+
+    .mp-tabs-nav-wrap {
+      background-color: @white;
+      color: @color__242424;
+
+      .mp-tabs-tab {
+        font-weight: normal;
+      }
+
+      .mp-tabs-tab-active {
+        color: @color__primary;
+        background-color: @white;
+        border: 1px solid @color__primary;
+
+        &:hover {
+          color: @color__primary;
+        }
+      }
+    }
+  }
+}

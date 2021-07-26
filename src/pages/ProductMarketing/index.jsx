@@ -1,11 +1,11 @@
-import { Tabs } from 'ant-design-vue';
+import KeepTabs from '@/shared/components/KeepTabs';
 import BaseContainer from '@/shared/components/BaseContainer';
 import { OFFICIAL_PRODUCT, C2C_PRODUCT } from '@/shared/consts/productType';
 import OfficialMarketing from './OfficialMarketing';
 import C2CMarketing from './C2CMarketing';
-import './index.less';
+import styles from './index.less?module';
 
-const { TabPane } = Tabs;
+const { TabPane } = KeepTabs;
 
 const ProductMarketing = {
   data() {
@@ -14,27 +14,28 @@ const ProductMarketing = {
     };
   },
 
-  mounted() {
-    this.$router.push({ query: { ...this.$route.query, type: this.$route.query.type || OFFICIAL_PRODUCT } });
-  },
-
   methods: {
-    callback(key) {
-      this.$router.push({ query: { ...this.$route.query, type: key } });
+    onTabsChange(newKey) {
+      this.active = newKey;
     },
   },
 
   render() {
     return (
-      <BaseContainer>
-        <Tabs destroyInactiveTabPane defaultActiveKey={this.active} onChange={this.callback}>
+      <BaseContainer class={styles['product-market-wrapper']}>
+        <KeepTabs
+          class='mine-tabs-line'
+          value={this.active}
+          onChange={this.onTabsChange}
+          activeKeyName="type"
+        >
           <TabPane key={OFFICIAL_PRODUCT} tab={this.$t('marketOfficialMarket')}>
             <OfficialMarketing />
           </TabPane>
           <TabPane key={C2C_PRODUCT} tab={this.$t('marketC2CMarket')}>
             <C2CMarketing />
           </TabPane>
-        </Tabs>
+        </KeepTabs>
       </BaseContainer>
     );
   },

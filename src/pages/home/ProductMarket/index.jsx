@@ -1,7 +1,9 @@
 import RightOutlined from 'ahoney/lib/icons/RightOutlined';
 import Title from '@/pages/home/component/Title';
-import ProductBriefCell from '@/shared/components/ProductBriefCell';
-
+import { productMarketingPath } from '@/router/consts/urls';
+import { OFFICIAL_PRODUCT } from '@/shared/consts/productType';
+import ProductListCell from '@/shared/components/ProductListCell';
+import locationServices from '@/shared/services/location/locationServices';
 import styles from './index.less?module';
 
 const ProductMarket = {
@@ -14,8 +16,7 @@ const ProductMarket = {
 
   methods: {
     onClickMore() {
-      // TODO 跳转至产品列表页面
-      console.log('linkToList');
+      locationServices.push(productMarketingPath, { query: { type: OFFICIAL_PRODUCT } });
     },
   },
 
@@ -23,7 +24,7 @@ const ProductMarket = {
     return (
       <div>
         <Title title={this.$t('distilledHashRate')} />
-        {this.productList.map(item => <ProductBriefCell productData={item} key={item.id} />)}
+        <ProductListCell productList={this.productList} />
         <div class={styles.more}>
           <div onClick={this.onClickMore} class={styles['more-cursor']}>
             <span>{this.$t('moreHashRate')}</span>

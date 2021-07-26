@@ -49,3 +49,32 @@
     display: none !important;
   }
 }
+
+.mine-tabs-line {
+  .mp-tabs-bar {
+    border: 0;
+  }
+
+  .mp-tabs-tab {
+    color: @color__494949;
+    font-size: @font-size-lg;
+    min-width: 110px;
+    text-align: center;
+    transition: none;
+    padding: 12px 20px;
+    padding-right: @font-size__20;
+    font-weight: normal;
+
+    &:hover {
+      color: @color__primary;
+    }
+
+    &-active {
+      font-weight: 600;
+    }
+  }
+
+  .mp-tabs-ink-bar {
+    background-color: @color__primary;
+  }
+}

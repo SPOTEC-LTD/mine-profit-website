@@ -1,18 +1,18 @@
 import { Tabs } from 'ant-design-vue';
+import omit from 'lodash/omit';
 import isUndefined from 'lodash/isUndefined';
 
 const KeepTabs = {
   inheritAttrs: false,
   props: {
+    activeKeyName: { type: String, default: 'activeName' },
     defaultName: { type: String },
-    value: {
-      type: String,
-    },
+    value: { type: String },
   },
 
   data() {
     return {
-      activeName: this.$route.query.activeName || this.defaultName,
+      [this.activeKeyName]: this.$route.query[this.activeKeyName] || this.defaultName,
     };
   },
 
@@ -22,10 +22,15 @@ const KeepTabs = {
     },
   },
 
+  destroyed() {
+    const finalQuery = omit(this.$route.query, [this.activeKeyName]);
+    this.$router.replace({ query: finalQuery });
+  },
+
   methods: {
     asyncUrlQuery(newActiveKey) {
-      if (this.$route.query.activeName !== newActiveKey) {
-        this.$router.replace({ query: { ...this.$route.query, activeName: newActiveKey } });
+      if (this.$route.query[this.activeKeyName] !== newActiveKey) {
+        this.$router.replace({ query: { ...this.$route.query, [this.activeKeyName]: newActiveKey } });
       }
     },
 
@@ -40,7 +45,7 @@ const KeepTabs = {
   },
 
   render() {
-    const resultValue = isUndefined(this.value) ? this.activeName : this.value;
+    const resultValue = isUndefined(this.value) ? this.activeKeyName : this.value;
     return (
       <Tabs
         animated={false}
