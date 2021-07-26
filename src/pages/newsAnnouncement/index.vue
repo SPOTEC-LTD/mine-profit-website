@@ -1,6 +1,6 @@
 <template>
   <BaseContainer>
-    <Tabs destroyInactiveTabPane :defaultActiveKey="active" @change="callback">
+    <KeepTabs class="mine-tabs-line" activeKeyName="type" :value="active" @change="onTabsChange">
       <TabPane :key="RECOMMEND" :tab="$t('recommendArticle')">
         <Recommend />
       </TabPane>
@@ -10,28 +10,28 @@
       <TabPane :key="ANNOUNCEMENT" :tab="$t('announcement')">
         <Announcement />
       </TabPane>
-    </Tabs>
+    </KeepTabs>
   </BaseContainer>
 </template>
 
 <script>
-import { Tabs } from 'ant-design-vue';
+import KeepTabs from '@/shared/components/KeepTabs';
 import BaseContainer from '@/shared/components/BaseContainer';
 import { RECOMMEND, NEWSLETTER, ANNOUNCEMENT } from '@/shared/consts/newsType';
 import Recommend from './Recommend/index.vue';
 import Newsletter from './Newsletter/index.vue';
 import Announcement from './Announcement/index.vue';
 
-const { TabPane } = Tabs;
+const { TabPane } = KeepTabs;
 
 export default {
   components: {
-    Tabs,
     TabPane,
     Recommend,
     BaseContainer,
     Newsletter,
     Announcement,
+    KeepTabs,
   },
   data() {
     return {
@@ -41,17 +41,11 @@ export default {
       active: this.$route.query.type || RECOMMEND,
     };
   },
-  mounted() {
-    this.$router.push({ query: { ...this.$route.query, type: this.$route.query.type || RECOMMEND } });
-  },
+
   methods: {
-    callback(key) {
-      this.$router.push({ query: { ...this.$route.query, type: key } });
+    onTabsChange(newKey) {
+      this.active = newKey;
     },
   },
 };
 </script>
-
-<style lang='less' scoped>
-  @import "./index.less";
-</style>

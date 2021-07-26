@@ -1,4 +1,3 @@
-import { mapActions, mapState } from 'vuex';
 import getTimes from '@/shared/utils/getTimes';
 import getCoinRate from '@/shared/utils/getCoinRate';
 import TagGroup from '@/pages/home/component/TagGroup';
@@ -7,7 +6,6 @@ import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import RestC2CProduct from '@/shared/components/RestC2CProduct';
 import ProductInfoSurvey from '@/shared/components/ProductInfoSurvey';
 import RestOfficialProduct from '@/shared/components/RestOfficialProduct';
-import { RATE_EXCHANGE, GET_RATE_EXCHANGE } from '@/modules/rateExchange';
 import OfficialProductInfoSurvey from '@/shared/components/OfficialProductInfoSurvey';
 import './index.less';
 
@@ -21,20 +19,17 @@ const ProductBriefCell = {
       type: Boolean,
       default: true,
     },
-  },
-
-  mounted() {
-    this[GET_RATE_EXCHANGE]();
-  },
-
-  computed: {
-    ...mapState({
-      rateExchangeList: state => state.rateExchange.rateExchangeList,
-    }),
+    rateList: {
+      type: Array,
+      default: true,
+    },
   },
 
   methods: {
-    ...mapActions(RATE_EXCHANGE, [GET_RATE_EXCHANGE]),
+    onClickToDetail() {
+      // TODO 跳转至产品详情
+      console.log(this.productData.id);
+    },
 
     getC2CProductTitleProps() {
       const { name, chainType } = this.productData;
@@ -55,11 +50,11 @@ const ProductBriefCell = {
     const { isOfficialMarket } = this;
     const { price } = this.productData;
     const propsTitleProps = isOfficialMarket ? this.getOfficialProductTitleProps() : this.getC2CProductTitleProps();
-    const rate = +getCoinRate({ rateList: this.rateExchangeList, coin: 'cny' });
+    const rate = +getCoinRate({ rateList: this.rateList, coin: 'cny' });
     const cnyPrice = getTimes({ number: price, times: rate, decimal: 2 });
 
     return (
-      <div class="product-brief-cell-container">
+      <div class="product-brief-cell-container" onClick={this.onClickToDetail}>
         <div class='product-title-intro'>
           <ProductTitle {...{ attrs: propsTitleProps }} class='product-card-title' />
           {isOfficialMarket && <TagGroup productData={this.productData} />}

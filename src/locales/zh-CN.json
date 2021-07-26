@@ -349,5 +349,7 @@
   "unused": "未使用",
   "used": "已使用",
   "expired": "已失效",
-  "status": "状态"
+  "status": "状态",
+  "BTCHashRate": "BTC算力",
+  "ETHHashRate": "ETH算力"
 }
