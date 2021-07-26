@@ -1,25 +1,24 @@
 import { Modal } from 'ant-design-vue';
 import CancelledOutlined from 'ahoney/lib/icons/CancelledOutlined';
+import omit from 'lodash/omit';
 
 import './index.less';
 
 const BaseModal = {
-  props: {
-    visible: {
-      type: Boolean,
-      default: false,
-    },
-
-    footer: Object,
+  data() {
+    return {
+      visible: false,
+    };
   },
+
   methods: {
-    onOpen(e) {
-      e.stopPropagation();
+    open() {
+      this.visible = true;
       this.$emit('open');
     },
 
-    onClose(e) {
-      e.stopPropagation();
+    close() {
+      this.visible = false;
       this.$emit('close');
     },
   },
@@ -27,20 +26,18 @@ const BaseModal = {
   render() {
     return (
       <span>
-        <span class='click-node' onClick={this.onOpen}>{this.$scopedSlots.default()}</span>
+        <span class='click-node' onClick={this.open}>{this.$scopedSlots.default()}</span>
         <Modal
-          title="Title"
           class="base-modal"
           footer={null}
           visible={this.visible}
-          closeIcon={<CancelledOutlined onClick={this.onClose} />}
+          closeIcon={<CancelledOutlined onClick={this.close} />}
           {...{
-            on: this.$listeners,
+            on: omit(this.$listeners, ['open', 'close']),
             props: this.$attrs,
           }}
         >
           {this.$scopedSlots.content()}
-          {this.footer}
         </Modal>
       </span>
     );
