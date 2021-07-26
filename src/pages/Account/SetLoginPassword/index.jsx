@@ -3,7 +3,7 @@ import { mapActions, mapState } from 'vuex';
 import omit from 'lodash/omit';
 import * as API from '@/api/account/userInfo';
 import { SIGN, GET_EMAIL_CODE, GET_PHONE_CODE } from '@/modules/sign';
-import { ACCOUNT, UPDATE_DEAL_PASSWORD } from '@/modules/account/account';
+import { ACCOUNT, UPDATE_LOGIN_PASSWORD } from '@/modules/account/account';
 import * as verCodeType from '@/shared/consts/verCodeType';
 import { accountDetailPath } from '@/router/consts/urls';
 import locationServices from '@/shared/services/location/locationServices';
@@ -17,7 +17,7 @@ import styles from './index.less?module';
 
 const { Item } = FormModel;
 
-const SetDealPassword = {
+const SetLoginPassword = {
   async asyncData(ctx) {
     const { userId } = getUserInfoFunc(ctx);
     const props = { userInfo: {} };
@@ -39,15 +39,15 @@ const SetDealPassword = {
       isCountDown: false,
       form: {
         code: '',
-        newDealCode: '',
-        confirmNewDealCode: '',
+        newPassword: '',
+        confirmNewLoginCode: '',
       },
       buttonText: this.$t('fetch'),
     };
   },
   computed: {
     ...mapState({
-      loading: state => state.loading.effects[`${ACCOUNT}/${UPDATE_DEAL_PASSWORD}`],
+      loading: state => state.loading.effects[`${ACCOUNT}/${UPDATE_LOGIN_PASSWORD}`],
     }),
     isPhone() {
       return this.userInfo.registerType === PHONE;
@@ -59,11 +59,11 @@ const SetDealPassword = {
   },
   methods: {
     ...mapActions(SIGN, [GET_EMAIL_CODE, GET_PHONE_CODE]),
-    ...mapActions(ACCOUNT, [UPDATE_DEAL_PASSWORD]),
+    ...mapActions(ACCOUNT, [UPDATE_LOGIN_PASSWORD]),
     getVerCode() {
       let resultActinType = GET_PHONE_CODE;
       let params = {
-        codeType: verCodeType.DEAL,
+        codeType: verCodeType.PASSWORD,
         phonePrefix: this.userInfo.phonePrefix,
         phone: this.userInfo.registerAccount,
       };
@@ -71,7 +71,7 @@ const SetDealPassword = {
       if (!this.isPhone) {
         resultActinType = GET_EMAIL_CODE;
         params = {
-          codeType: verCodeType.DEAL,
+          codeType: verCodeType.PASSWORD,
           email: this.userInfo.registerAccount,
         };
       }
@@ -85,9 +85,9 @@ const SetDealPassword = {
       this.$refs.ruleForm.validate(valid => {
         if (valid) {
           const { registerAccount, phonePrefix } = this.userInfo;
-          const resultData = omit(this.form, ['confirmNewDealCode']);
+          const resultData = omit(this.form, ['confirmNewLoginCode']);
           resultData.registerAccount = this.isPhone ? `${phonePrefix}${registerAccount}` : registerAccount;
-          this[UPDATE_DEAL_PASSWORD](resultData)
+          this[UPDATE_LOGIN_PASSWORD](resultData)
             .then(() => {
               Notification.success(this.$t('setSuccessfully'));
               locationServices.push(accountDetailPath);
@@ -95,8 +95,8 @@ const SetDealPassword = {
             .catch(error => {
               const { isBusinessError, messageDetails, code } = error;
               if (isBusinessError && code === SECTION_BUSINESS_EXCEPTION) {
-                const { newDealCode } = messageDetails;
-                Notification.error(newDealCode);
+                const { newPassword } = messageDetails;
+                Notification.error(newPassword);
               }
             });
         }
@@ -124,9 +124,9 @@ const SetDealPassword = {
         </div>
       );
     },
-    validateConfirmNewDealCode() {
-      if (this.form.confirmNewDealCode !== '') {
-        this.$refs.ruleForm.validateField('confirmNewDealCode');
+    validateConfirmNewLoginCode() {
+      if (this.form.confirmNewLoginCode !== '') {
+        this.$refs.ruleForm.validateField('confirmNewLoginCode');
       }
     },
   },
@@ -167,30 +167,30 @@ const SetDealPassword = {
               />
             </Item>
             <Item
-              label={this.$t('accountAndSecurityTradePwd')}
-              prop="newDealCode"
+              label={this.$t('loginPwd')}
+              prop="newPassword"
               rules={[
-                { pattern: passwordReg, message: this.$t('tradePwdSettingPwdTypeTips') },
-                { required: true, message: this.$t('payPwdEmptyHint') },
+                { pattern: passwordReg, message: this.$t('pwdSettingPwdTypeTips') },
+                { required: true, message: this.$t('loginPasswordRequire') },
               ]}
             >
               <Input
-                v-model={this.form.newDealCode}
+                v-model={this.form.newPassword}
                 placeholder={this.$t('passwordInputPlaceholder')}
                 maxLength={20}
                 type="password"
-                onChange={this.validateConfirmNewDealCode}
+                onChange={this.validateConfirmNewLoginCode}
               />
             </Item>
             <Item
-              label={this.$t('tradePwdSettingTradePwdAgain')}
-              prop="confirmNewDealCode"
+              label={this.$t('pwdSettingNewPwdAgain')}
+              prop="confirmNewLoginCode"
               rules={[
-                { pattern: passwordReg, message: this.$t('tradePwdSettingPwdTypeTips') },
-                { required: true, message: this.$t('confirmNewDealCodeRequired') },
+                { pattern: passwordReg, message: this.$t('pwdSettingPwdTypeTips') },
+                { required: true, message: this.$t('confirmNewLoginCodeRequired') },
                 {
                   validator: (rule, value) => {
-                    if (value && this.form.newDealCode !== '' && value !== this.form.newDealCode) {
+                    if (value && this.form.newPassword !== '' && value !== this.form.newPassword) {
                       return false;
                     }
 
@@ -201,7 +201,7 @@ const SetDealPassword = {
               ]}
             >
               <Input
-                v-model={this.form.confirmNewDealCode}
+                v-model={this.form.confirmNewLoginCode}
                 placeholder={this.$t('passwordInputPlaceholder')}
                 maxLength={20}
                 type="password"
@@ -217,4 +217,4 @@ const SetDealPassword = {
   },
 };
 
-export default SetDealPassword;
+export default SetLoginPassword;
