@@ -8,22 +8,19 @@ const BaseContainer = {
   props: ['contentClassName'],
   computed: {
     breadcrumbData() {
-      const { showBreadcrumb, path } = this.$route.meta;
-      if (showBreadcrumb) {
-        const { routes } = this.$router.options;
-        const resultData = [];
-        path.split('/').forEach(name => {
-          if (name) {
-            resultData.push({
-              title: this.$t(name),
-              path: find(routes, { name: `${name}___${this.$i18n.locale}` }).path,
-            });
-          }
-        });
-        console.log(' this.$route', routes);
-        return resultData;
-      }
-      return [];
+      const { path } = this.$route.meta;
+      const { routes } = this.$router.options;
+      const resultData = [];
+      path.split('/').forEach(name => {
+        if (name) {
+          resultData.push({
+            title: this.$t(name),
+            path: find(routes, { name: `${name}___${this.$i18n.locale}` }).path,
+          });
+        }
+      });
+
+      return resultData;
     },
   },
 
@@ -41,15 +38,13 @@ const BaseContainer = {
                 }}
               >
                 {
-                  showBreadcrumb && (
-                    this.breadcrumbData.map(({ title, path }) => {
-                      return (
-                        <Breadcrumb.Item>
-                          <Link to={path}>{title}</Link>
-                        </Breadcrumb.Item>
-                      );
-                    })
-                  )
+                  this.breadcrumbData.map(({ title, path }) => {
+                    return (
+                      <Breadcrumb.Item>
+                        <Link to={path}>{title}</Link>
+                      </Breadcrumb.Item>
+                    );
+                  })
                 }
               </Breadcrumb>
             )
