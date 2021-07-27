@@ -2,7 +2,6 @@ export default {
   permanent: '永久',
   termOfValidity: '有效期',
   allStatus: '全部状态',
-  vipCouponTitle: 'VIP算力券',
   shareOutdate: '已过期',
   useLimit: '使用限制',
   couponUseLimit: '新购算力>=',

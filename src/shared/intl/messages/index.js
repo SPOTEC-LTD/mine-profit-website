@@ -8,8 +8,10 @@ import ecosphere from './ecosphere';
 import account from './account';
 import productMarketing from './productMarketing';
 import hashRateCoupons from './hashRateCoupons';
+import pageName from './pageName';
 
 export default {
+  ...pageName,
   ...sign,
   ...help,
   ...home,

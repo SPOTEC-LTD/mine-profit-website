@@ -1,7 +1,7 @@
 import isObject from 'lodash/isObject';
 import locationServices from '@/shared/services/location/locationServices';
 
-const ALink = {
+const Link = {
   props: ['to', 'isReload'],
   computed: {
     finlayTo() {
@@ -32,4 +32,4 @@ const ALink = {
   },
 };
 
-export default ALink;
+export default Link;
