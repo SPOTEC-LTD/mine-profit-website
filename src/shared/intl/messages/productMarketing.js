@@ -22,4 +22,8 @@ export default {
   all: '全部',
   BTCHashRate: 'BTC算力',
   ETHHashRate: 'ETH算力',
+  publishTime: '发布时间',
+  unitPrice: '单价',
+  fieldOrder: '排序:',
+  altogether: '共',
 };

@@ -1,11 +1,13 @@
 import getTimes from '@/shared/utils/getTimes';
 import getCoinRate from '@/shared/utils/getCoinRate';
 import TagGroup from '@/pages/home/component/TagGroup';
+import PersonAvatar from '@/shared/components/PersonAvatar';
 import ProductTitle from '@/shared/components/ProductTitle';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import RestC2CProduct from '@/shared/components/RestC2CProduct';
 import ProductInfoSurvey from '@/shared/components/ProductInfoSurvey';
 import RestOfficialProduct from '@/shared/components/RestOfficialProduct';
+import C2CProductInfoSurvey from '@/shared/components/C2CProductInfoSurvey';
 import OfficialProductInfoSurvey from '@/shared/components/OfficialProductInfoSurvey';
 import './index.less';
 
@@ -58,6 +60,7 @@ const ProductBriefCell = {
         <div class='product-title-intro'>
           <ProductTitle {...{ attrs: propsTitleProps }} class='product-card-title' />
           {isOfficialMarket && <TagGroup productData={this.productData} />}
+          {!isOfficialMarket && <PersonAvatar productData={this.productData} />}
         </div>
         <div class='product-info-intro'>
           <ProductInfoSurvey
@@ -66,6 +69,7 @@ const ProductBriefCell = {
             infoValue={`${bigNumberToFixed(price, 2)} USDT`}
             className='market-part-wrapper'
           />
+          {!isOfficialMarket && <C2CProductInfoSurvey c2cProductData={this.productData} />}
           {isOfficialMarket && <OfficialProductInfoSurvey dataSource={this.productData} />}
         </div>
 

@@ -22,11 +22,6 @@ const KeepTabs = {
     },
   },
 
-  destroyed() {
-    const finalQuery = omit(this.$route.query, [this.activeKeyName]);
-    this.$router.replace({ query: finalQuery });
-  },
-
   methods: {
     asyncUrlQuery(newActiveKey) {
       if (this.$route.query[this.activeKeyName] !== newActiveKey) {
@@ -54,6 +49,7 @@ const KeepTabs = {
           on: this.$listeners,
           props: this.$attrs,
         }}
+        scopedSlots={omit(this.$scopedSlots, ['default'])}
         activeKey={resultValue}
         onChange={this.onChange}
         >

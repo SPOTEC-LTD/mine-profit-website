@@ -1,10 +1,16 @@
-import ProductMarketing from '@/pages/ProductMarketing';
+import OfficialMarketing from '@/pages/ProductMarketing/OfficialMarketing';
+import C2CMarketing from '@/pages/ProductMarketing/C2CMarketing';
 import * as urls from './consts/urls';
 
 export default [
   {
-    path: urls.productMarketingPath,
+    path: urls.officialMarketingPath,
     name: 'hashRateMarket',
-    component: ProductMarketing,
+    component: OfficialMarketing,
+  },
+  {
+    path: urls.c2cMarketingPath,
+    name: 'marketC2CMarket',
+    component: C2CMarketing,
   },
 ];

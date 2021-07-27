@@ -1,0 +1,27 @@
+@import "@/shared/styles/variables.less";
+
+.menu-container {
+  display: flex;
+  font-size: @font-size__20;
+  justify-content: flex-start;
+  background-color: @white;
+  margin-bottom: 24px;
+
+  a {
+    padding: 7px 26px;
+    flex-grow: 1;
+    text-align: center;
+    color: @color__242424;
+
+    &.active-link {
+      color: @color__182742;
+      font-weight: 500;
+      border-bottom: 2px solid @color__primary;
+    }
+  }
+}
+
+.menu-content {
+  display: flex;
+  align-items: center;
+}

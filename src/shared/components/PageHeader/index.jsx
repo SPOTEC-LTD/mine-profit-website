@@ -4,7 +4,6 @@ import EmailCircleOutlined from 'ahoney/lib/icons/EmailCircleOutlined';
 import TipCirccleOutlined from 'ahoney/lib/icons/TipCirccleOutlined';
 import MailFilled from 'ahoney/lib/icons/MailFilled';
 import locationServices from '@/shared/services/location/locationServices';
-import { OFFICIAL_PRODUCT, C2C_PRODUCT } from '@/shared/consts/productType';
 import { RECOMMEND, NEWSLETTER, ANNOUNCEMENT } from '@/shared/consts/newsType';
 import { ABOUT_US, ECOSPHERE } from '@/shared/consts/aboutUsType';
 import { I18N } from '@/shared/intl/i18n';
@@ -71,14 +70,12 @@ const PageHeader = {
     getHashrateMarkets() {
       return ([
         {
-          href: urls.productMarketingPath,
+          href: urls.officialMarketingPath,
           name: this.$t('marketOfficialMarket'),
-          type: OFFICIAL_PRODUCT,
         },
         {
-          href: urls.productMarketingPath,
+          href: urls.c2cMarketingPath,
           name: this.$t('marketC2CMarket'),
-          type: C2C_PRODUCT,
         },
       ]);
     },

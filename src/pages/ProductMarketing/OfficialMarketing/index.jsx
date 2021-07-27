@@ -3,9 +3,11 @@ import { mapActions, mapState, mapMutations } from 'vuex';
 import NoData from '@/shared/components/NoData';
 import KeepTabs from '@/shared/components/KeepTabs';
 import { ALL, BTC, ETH } from '@/shared/consts/coinType';
+import BaseContainer from '@/shared/components/BaseContainer';
 import ProductListCell from '@/shared/components/ProductListCell';
 import { UPDATE_PRODUCT_LIST, OFFICIAL_PRODUCT,
   GET_OFFICIAL_PRODUCT_LIST, UPDATE_ACTIVE_COIN } from '@/modules/officialProduct';
+import TopNav from '../components/TopNav';
 import styles from './index.less?module';
 
 const { TabPane } = KeepTabs;
@@ -13,7 +15,7 @@ const { TabPane } = KeepTabs;
 const OfficialMarketing = {
   data() {
     return {
-      activeChainType: this.$route.query.activeName || ALL,
+      activeChainType: this.$route.query.OfficialCoinType || ALL,
     };
   },
 
@@ -26,8 +28,8 @@ const OfficialMarketing = {
   }),
 
   mounted() {
-    const chainType = this.active || this.activeCoin || this.activeChainType;
-    this.active = chainType;
+    const chainType = this.activeChainType || this.activeCoin || ALL;
+    this.activeChainType = chainType;
     const data = chainType === ALL ? {} : { chainType };
     this.getProductList(data);
   },
@@ -59,10 +61,12 @@ const OfficialMarketing = {
 
   render() {
     return (
-      <div class={styles['product-list-wrapper']}>
+      <BaseContainer class={styles['product-list-wrapper']}>
+        <TopNav />
         <Spin spinning={this.getListLoading}>
           <KeepTabs
             class='mine-tabs-card'
+            activeKeyName="OfficialCoinType"
             value={this.activeChainType}
             onChange={this.onTabsChange}
           >
@@ -77,7 +81,7 @@ const OfficialMarketing = {
             </TabPane>
           </KeepTabs>
         </Spin>
-      </div>
+      </BaseContainer>
     );
   },
 };

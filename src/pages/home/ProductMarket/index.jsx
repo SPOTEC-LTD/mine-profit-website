@@ -1,7 +1,6 @@
 import RightOutlined from 'ahoney/lib/icons/RightOutlined';
 import Title from '@/pages/home/component/Title';
-import { productMarketingPath } from '@/router/consts/urls';
-import { OFFICIAL_PRODUCT } from '@/shared/consts/productType';
+import { officialMarketingPath } from '@/router/consts/urls';
 import ProductListCell from '@/shared/components/ProductListCell';
 import locationServices from '@/shared/services/location/locationServices';
 import styles from './index.less?module';
@@ -16,7 +15,7 @@ const ProductMarket = {
 
   methods: {
     onClickMore() {
-      locationServices.push(productMarketingPath, { query: { type: OFFICIAL_PRODUCT } });
+      locationServices.push(officialMarketingPath);
     },
   },
 

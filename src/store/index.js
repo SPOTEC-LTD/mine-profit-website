@@ -10,6 +10,7 @@ import publicData from '../modules/public';
 import rateExchange from '../modules/rateExchange';
 import hashRateCoupons from '../modules/hashRateCoupons';
 import officialProduct from '../modules/officialProduct';
+import c2cMarket from '../modules/c2cMarket';
 
 export const strict = false;
 export const plugins = [loadingPlugin()];
@@ -49,4 +50,5 @@ export const modules = {
   hashRateCoupons,
   officialProduct,
   account,
+  c2cMarket,
 };

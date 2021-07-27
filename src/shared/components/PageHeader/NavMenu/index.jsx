@@ -17,27 +17,23 @@ export default {
         overlay={(
           <Menu>
             {
-              this.items.map(item => (
-                <Menu.Item key={item.name}>
-                  <Link to={{ path: item.href, query: { type: item.type } }} isReload>
-                    <div
-                      class={`nav-menu-item ${this.$route.query.type === item.type ? 'nav-menu-item--active' : ''}`}
-                    >
-                      <div class="nav-menu-icon">
-                        {item.icon}
-                      </div>
-                      <div class="nav-menu-content">
-                        <div class="nav-menu-name">
-                          {item.name}
-                        </div>
-                        <div class="nav-menu-desc">
-                          {item.description}
+              this.items.map(item => {
+                const choosesType = this.$route.query.type && this.$route.query.type === item.type;
+                const chooseRouter = this.$route.fullPath === item.href;
+                return (
+                  <Menu.Item key={item.name}>
+                    <Link to={{ path: item.href, query: { type: item.type } }} isReload>
+                      <div class={`nav-menu-item ${choosesType || chooseRouter ? 'nav-menu-item--active' : ''}`}>
+                        <div class="nav-menu-icon">{item.icon}</div>
+                        <div class="nav-menu-content">
+                          <div class="nav-menu-name">{item.name}</div>
+                          <div class="nav-menu-desc">{item.description}</div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
-                </Menu.Item>
-              ))
+                    </Link>
+                  </Menu.Item>
+                );
+              })
             }
           </Menu>
         )}
@@ -47,9 +43,7 @@ export default {
           onClick={e => e.preventDefault()}
         >
           <div class="nav-menu-trigger-content">
-            <span>
-              {this.$slots.default}
-            </span>
+            <span>{this.$slots.default}</span>
             {
               isActive && (
                 <img
