@@ -10,7 +10,7 @@ import * as urls from './consts/urls';
 export default [
   {
     path: urls.accountDetailPath,
-    name: 'Detail',
+    name: 'account',
     component: AccountDetail,
   },
   {
@@ -20,7 +20,8 @@ export default [
   },
   {
     path: urls.hashRateCouponsPath,
-    name: 'vipCouponTitle',
+    meta: { showBreadcrumb: true },
+    name: 'hashRateCoupons',
     component: HashRateCoupons,
   },
   {

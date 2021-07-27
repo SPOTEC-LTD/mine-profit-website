@@ -1,4 +1,6 @@
 {
+  "account": "我的账户",
+  "hashRateCoupons": "VIP算力券",
   "signInTips": "未注册账号将直接注册并登录",
   "verificationCodeRequired": "验证码不能为空",
   "emailRequired": "邮箱不能为空",
@@ -363,7 +365,6 @@
   "permanent": "永久",
   "termOfValidity": "有效期",
   "allStatus": "全部状态",
-  "vipCouponTitle": "VIP算力券",
   "shareOutdate": "已过期",
   "useLimit": "使用限制",
   "couponUseLimit": "新购算力>=",

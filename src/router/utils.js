@@ -10,6 +10,8 @@ export const buildRoutes = routes => {
       }
 
       finallyRoutes.push({
+        ...route,
+        meta: { ...route.meta, path: route.path },
         component: route.component,
         path: finallyPath,
         name: `${route.name}___${code}`,

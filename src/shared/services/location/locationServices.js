@@ -1,4 +1,5 @@
 import qs from 'qs';
+import startsWith from 'lodash/startsWith';
 import { toPath } from '@/shared/utils/qsHelp';
 import locale from '@/shared/intl/utils/locale';
 
@@ -15,9 +16,11 @@ class Location {
 
   buildURL = (url, options = {}) => {
     const { params = {}, query = {} } = options;
-    const nowLocale = locale.currentLocale;
-    const resultPath = nowLocale === 'zh' ? url : `/${nowLocale}${url}`;
-    let serializedUrl = toPath(resultPath, params);
+    let serializedUrl = toPath(url, params);
+
+    if (locale.currentLocale !== 'zh' && !startsWith(serializedUrl, `/${locale.currentLocale}`)) {
+      serializedUrl = `/${locale.currentLocale}${serializedUrl}`;
+    }
 
     const queryStr = qs.stringify(query, { indices: false });
 

@@ -1,4 +1,7 @@
 /* eslint-disable global-require */
+import forEach from 'lodash/forEach';
+import isUndefined from 'lodash/isUndefined';
+import isNull from 'lodash/isNull';
 import isPlainObject from 'lodash/isPlainObject';
 import { toPath } from '@/shared/utils/qsHelp';
 import isServerSide from '@/shared/utils/isServerSide';
@@ -14,8 +17,14 @@ const createAPI = (method, url) => (params = {}, config = {}) => {
 
   let finalURL = url;
   if (isPlainObject(pathParams)) {
+    forEach(pathParams, (value, key) => {
+      if (isUndefined(value) || isNull(value)) {
+        pathParams[key] = 'null';
+      }
+    });
     finalURL = toPath(url, pathParams);
   }
+
 
   if (isPostOrPut) {
     config.data = data;
