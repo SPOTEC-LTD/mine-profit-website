@@ -19,7 +19,6 @@ export default {
   marketC2CMarket: 'C2C市场',
   aboutUs: '关于我们',
   hashRateMarket: '算力市场',
-  all: '全部',
   BTCHashRate: 'BTC算力',
   ETHHashRate: 'ETH算力',
   publishTime: '发布时间',

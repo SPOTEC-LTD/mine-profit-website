@@ -98,6 +98,7 @@
   "language": "语言",
   "noData": "暂无数据",
   "confirm": "确认",
+  "cancel": "取消",
   "all": "全部",
   "downloadDesc1": "一样的矿工，不一样的生活",
   "downloadTitle2": "算力生态圈，助你获利非凡",
@@ -380,5 +381,11 @@
   "unused": "未使用",
   "used": "已使用",
   "expired": "已失效",
-  "status": "状态"
+  "status": "状态",
+  "hashRateNum": "算力数量：",
+  "shareRatio": "分成比例：",
+  "vipCouponUseLimit": "使用限制：新购算力>=",
+  "vipCouponDateForever": "有效期：永久",
+  "vipCouponDate": "有效期：",
+  "chooseCoupon": "选择算力券"
 }

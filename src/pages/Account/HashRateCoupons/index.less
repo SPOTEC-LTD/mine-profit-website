@@ -6,6 +6,10 @@
 
 .hashrate-coupons-box {
   :global {
+    .mp-table-wrapper {
+      padding-bottom: 80px;
+    }
+
     .mp-table-thead > tr > th {
       background: @color__dde5f3;
       color: @color__1d1d1d;
@@ -43,10 +47,15 @@
   }
 }
 
-.hashrate-status-dropdown {
-  margin: 0;
-  margin-bottom: 20px;
-  margin-top: 20px;
+.hashrate-status-select {
+  width: 218px;
+  margin: 20px 0;
+}
+
+.tooltip-name {
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .status-box {
@@ -60,17 +69,6 @@
       height: 17px;
       margin-left: 2px;
       color: @color__fe6565;
-    }
-  }
-}
-
-.confirm-modal {
-  :global {
-    .mp-btn {
-      &:last-child {
-        background-color: @color__primary;
-        color: @white;
-      }
     }
   }
 }
