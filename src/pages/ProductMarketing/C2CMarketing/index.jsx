@@ -115,6 +115,7 @@ const C2CMarketing = {
   },
 
   render() {
+    const resultListNode = this.ListNode();
     return (
       <BaseContainer class={styles['product-list-wrapper']}>
         <TopNav />
@@ -126,15 +127,9 @@ const C2CMarketing = {
             onChange={this.onTabsChange}
             scopedSlots={{ tabBarExtraContent: this.getFieldOrderList }}
           >
-            <TabPane key={ALL} tab={this.$t('all')}>
-              {this.ListNode()}
-            </TabPane>
-            <TabPane key={BTC} tab={this.$t('BTCHashRate')}>
-              {this.ListNode()}
-            </TabPane>
-            <TabPane key={ETH} tab={this.$t('ETHHashRate')}>
-              {this.ListNode()}
-            </TabPane>
+            <TabPane key={ALL} tab={this.$t('all')}>{resultListNode}</TabPane>
+            <TabPane key={BTC} tab={this.$t('BTCHashRate')}>{resultListNode}</TabPane>
+            <TabPane key={ETH} tab={this.$t('ETHHashRate')}>{resultListNode}</TabPane>
           </KeepTabs>
           <Pagination
             total={this.pageInfo.total}
