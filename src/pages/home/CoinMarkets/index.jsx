@@ -1,7 +1,7 @@
 import { Table } from 'ant-design-vue';
 import numberUtils from 'aa-utils/lib/numberUtils';
 import getHashrateUnit from '@/shared/utils/getHashrateUnit';
-
+import CoinLineChart from './CoinLineChart';
 import styles from './index.less?module';
 
 const CoinMarkets = {
@@ -86,10 +86,14 @@ const CoinMarkets = {
       },
       {
         title: this.$t('marketQuotations'),
-        dataIndex: 'market',
+        dataIndex: 'latest',
         align: 'right',
-        width: 340,
-        // TODO: 待添加 k线图
+        width: 240,
+        customRender: value => {
+          return (
+            <CoinLineChart data={value} />
+          );
+        },
       },
       {
         title: this.$t('kLineHashRate'),
