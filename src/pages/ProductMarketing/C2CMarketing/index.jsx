@@ -98,6 +98,15 @@ const C2CMarketing = {
         </span>
       );
     },
+
+    ListNode() {
+      return (
+        this.c2cMarketList.length ?
+          <ProductListCell productList={this.c2cMarketList} isOfficialMarket={false}/>
+          :
+          <NoData />
+      );
+    },
   },
 
   destroyed() {
@@ -118,28 +127,13 @@ const C2CMarketing = {
             scopedSlots={{ tabBarExtraContent: this.getFieldOrderList }}
           >
             <TabPane key={ALL} tab={this.$t('all')}>
-              {
-                !!this.c2cMarketList.length ?
-                <ProductListCell productList={this.c2cMarketList} isOfficialMarket={false}/>
-                  :
-                <NoData />
-              }
+              {this.ListNode()}
             </TabPane>
             <TabPane key={BTC} tab={this.$t('BTCHashRate')}>
-              {
-                !!this.c2cMarketList.length ?
-                <ProductListCell productList={this.c2cMarketList} isOfficialMarket={false} />
-                  :
-                <NoData />
-              }
+              {this.ListNode()}
             </TabPane>
             <TabPane key={ETH} tab={this.$t('ETHHashRate')}>
-              {
-                !!this.c2cMarketList.length ?
-                <ProductListCell productList={this.c2cMarketList} isOfficialMarket={false} />
-                  :
-                <NoData />
-              }
+              {this.ListNode()}
             </TabPane>
           </KeepTabs>
           <Pagination
