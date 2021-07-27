@@ -8,6 +8,10 @@ const ProductMarket = {
       type: Array,
       default: () => [],
     },
+    isOfficialMarket: {
+      type: Boolean,
+      default: true,
+    },
   },
 
   mounted() {
@@ -33,6 +37,7 @@ const ProductMarket = {
               productData={item}
               key={item.id}
               rateList={this.rateExchangeList}
+              isOfficialMarket={this.isOfficialMarket}
             />
           ),
         )}
