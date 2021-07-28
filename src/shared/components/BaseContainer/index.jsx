@@ -5,7 +5,10 @@ import Link from '@/shared/components/Link';
 import './index.less';
 
 const BaseContainer = {
-  props: ['contentClassName'],
+  props: {
+    contentClassName: String,
+    breadcrumb: { type: Boolean, default: true },
+  },
   computed: {
     breadcrumbData() {
       const { path } = this.$route.meta;
@@ -30,7 +33,7 @@ const BaseContainer = {
       <div class="container">
         <div class={['content', this.contentClassName]}>
           {
-            showBreadcrumb && (
+            this.breadcrumb && showBreadcrumb && (
               <Breadcrumb
                 class="page-breadcrumb"
                 scopedSlots={{
@@ -49,7 +52,7 @@ const BaseContainer = {
               </Breadcrumb>
             )
           }
-         {this.$slots.default}
+        {this.$slots.default}
         </div>
       </div>
     );

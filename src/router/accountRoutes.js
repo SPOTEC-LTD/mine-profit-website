@@ -5,6 +5,7 @@ import BindPhone from '@/pages/Account/BindPhone';
 import BindEmail from '@/pages/Account/BindEmail';
 import SetDealPassword from '@/pages/Account/SetDealPassword';
 import SetLoginPassword from '@/pages/Account/SetLoginPassword';
+import RealNameAuth from '@/pages/Account/RealNameAuth';
 import * as urls from './consts/urls';
 
 export default [
@@ -26,22 +27,32 @@ export default [
   },
   {
     path: urls.bindPhonePath,
+    meta: { showBreadcrumb: true },
     name: 'bindPhone',
     component: BindPhone,
   },
   {
     path: urls.bindEmailPath,
+    meta: { showBreadcrumb: true },
     name: 'bindEmail',
     component: BindEmail,
   },
   {
     path: urls.setDealPasswordPath,
+    meta: { showBreadcrumb: true },
     name: 'dealPasswordSet',
     component: SetDealPassword,
   },
   {
     path: urls.setLoginPasswordPath,
+    meta: { showBreadcrumb: true },
     name: 'loginPasswordSet',
     component: SetLoginPassword,
+  },
+  {
+    path: urls.realNameAuthPath,
+    meta: { showBreadcrumb: true },
+    name: 'realNameAuth',
+    component: RealNameAuth,
   },
 ];

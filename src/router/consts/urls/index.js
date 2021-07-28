@@ -1,6 +1,7 @@
 // ===== mainPaths
 export const homePath = '/';
 export const loginPath = '/sign/login';
+export const downloadPath = '/download';
 
 // ==== accountPaths
 export const accountPath = '/account';
@@ -10,8 +11,9 @@ export const bindInvitationCodePath = `${accountPath}/bindInvitationCode`;
 export const hashRateCouponsPath = `${accountPath}/hashRateCoupons`;
 export const bindPhonePath = `${accountPath}/bindPhone`;
 export const bindEmailPath = `${accountPath}/bindEmail`;
-export const setDealPasswordPath = `${accountPath}/setDealPassword`;
-export const setLoginPasswordPath = `${accountPath}/setLoginPassword`;
+export const setDealPasswordPath = `${accountPath}/dealPasswordSet`;
+export const setLoginPasswordPath = `${accountPath}/loginPasswordSet`;
+export const realNameAuthPath = `${accountPath}/realNameAuth`;
 
 // ==== aboutUsPaths
 export const aboutUsPaths = '/aboutUs';

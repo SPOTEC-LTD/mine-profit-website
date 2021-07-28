@@ -10,10 +10,11 @@ import locationServices from '@/shared/services/location/locationServices';
 import PageButton from '@/shared/components/PageButton';
 import { emailReg, passwordReg } from '@/shared/consts/rules';
 import { PHONE } from '@/shared/consts/registerType';
+import BaseContainer from '@/shared/components/BaseContainer';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import Notification from '@/shared/services/Notification';
 import { SECTION_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
-import styles from './index.less?module';
+import styles from '../index.less?module';
 
 const { Item } = FormModel;
 
@@ -137,78 +138,80 @@ const SetDealPassword = {
       : this.$t('fillGetEmailVerificationCode');
     return (
       <div class={styles.wrapper}>
-        <div class={styles['form-wrap']}>
-          <FormModel ref="ruleForm" hideRequiredMark props={{ model: this.form }} class="form">
-            <Item
-              label={accountLabel}
-              rules={[
-                { required: true, message: this.$t('emailAddressRequire'), trigger: 'change' },
-                {
-                  pattern: emailReg,
-                  message: this.$t('emailWrongFormat'),
-                  trigger: 'blur',
-                },
-              ]}
-            >
-              <Input value={this.registerAccountValue} disabled />
-            </Item>
-            <Item
-              label={this.$t('verificationCode')}
-              prop="code"
-              rules={[{ required: true, message: this.$t('verifyCodeRequired'), trigger: 'change' }]}
-            >
-              <Input
-                maxLength={6}
-                v-model={this.form.code}
-                placeholder={verificationCodePlaceholder}
-                scopedSlots={{
-                  suffix: this.getButton,
-                }}
-              />
-            </Item>
-            <Item
-              label={this.$t('accountAndSecurityTradePwd')}
-              prop="newDealCode"
-              rules={[
-                { pattern: passwordReg, message: this.$t('tradePwdSettingPwdTypeTips') },
-                { required: true, message: this.$t('payPwdEmptyHint') },
-              ]}
-            >
-              <Input
-                v-model={this.form.newDealCode}
-                placeholder={this.$t('passwordInputPlaceholder')}
-                maxLength={20}
-                type="password"
-                onChange={this.validateConfirmNewDealCode}
-              />
-            </Item>
-            <Item
-              label={this.$t('tradePwdSettingTradePwdAgain')}
-              prop="confirmNewDealCode"
-              rules={[
-                { pattern: passwordReg, message: this.$t('tradePwdSettingPwdTypeTips') },
-                { required: true, message: this.$t('confirmNewDealCodeRequired') },
-                {
-                  validator: (rule, value) => {
-                    if (value && this.form.newDealCode !== '' && value !== this.form.newDealCode) {
-                      return false;
-                    }
-
-                    return true;
+        <BaseContainer contentClassName={styles['content-wrap']}>
+          <div class={styles['form-wrap']}>
+            <FormModel ref="ruleForm" hideRequiredMark props={{ model: this.form }} class="form">
+              <Item
+                label={accountLabel}
+                rules={[
+                  { required: true, message: this.$t('emailAddressRequire'), trigger: 'change' },
+                  {
+                    pattern: emailReg,
+                    message: this.$t('emailWrongFormat'),
+                    trigger: 'blur',
                   },
-                  message: this.$t('twoPasswordNotEqual'),
-                },
-              ]}
-            >
-              <Input
-                v-model={this.form.confirmNewDealCode}
-                placeholder={this.$t('passwordInputPlaceholder')}
-                maxLength={20}
-                type="password"
-              />
-            </Item>
-          </FormModel>
-        </div>
+                ]}
+              >
+                <Input value={this.registerAccountValue} disabled />
+              </Item>
+              <Item
+                label={this.$t('verificationCode')}
+                prop="code"
+                rules={[{ required: true, message: this.$t('verifyCodeRequired'), trigger: 'change' }]}
+              >
+                <Input
+                  maxLength={6}
+                  v-model={this.form.code}
+                  placeholder={verificationCodePlaceholder}
+                  scopedSlots={{
+                    suffix: this.getButton,
+                  }}
+                />
+              </Item>
+              <Item
+                label={this.$t('accountAndSecurityTradePwd')}
+                prop="newDealCode"
+                rules={[
+                  { pattern: passwordReg, message: this.$t('tradePwdSettingPwdTypeTips') },
+                  { required: true, message: this.$t('payPwdEmptyHint') },
+                ]}
+              >
+                <Input
+                  v-model={this.form.newDealCode}
+                  placeholder={this.$t('passwordInputPlaceholder')}
+                  maxLength={20}
+                  type="password"
+                  onChange={this.validateConfirmNewDealCode}
+                />
+              </Item>
+              <Item
+                label={this.$t('tradePwdSettingTradePwdAgain')}
+                prop="confirmNewDealCode"
+                rules={[
+                  { pattern: passwordReg, message: this.$t('tradePwdSettingPwdTypeTips') },
+                  { required: true, message: this.$t('confirmNewDealCodeRequired') },
+                  {
+                    validator: (rule, value) => {
+                      if (value && this.form.newDealCode !== '' && value !== this.form.newDealCode) {
+                        return false;
+                      }
+
+                      return true;
+                    },
+                    message: this.$t('twoPasswordNotEqual'),
+                  },
+                ]}
+              >
+                <Input
+                  v-model={this.form.confirmNewDealCode}
+                  placeholder={this.$t('passwordInputPlaceholder')}
+                  maxLength={20}
+                  type="password"
+                />
+              </Item>
+            </FormModel>
+          </div>
+        </BaseContainer>
         <PageButton type="primary" loading={this.loading} onClick={this.onSubmit}>
           {this.$t('confirm')}
         </PageButton>

@@ -8,9 +8,10 @@ import { accountDetailPath } from '@/router/consts/urls';
 import locationServices from '@/shared/services/location/locationServices';
 import PageButton from '@/shared/components/PageButton';
 import { emailReg } from '@/shared/consts/rules';
+import BaseContainer from '@/shared/components/BaseContainer';
 import Notification from '@/shared/services/Notification';
 import { GLOBAL_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
-import styles from './index.less?module';
+import styles from '../index.less?module';
 
 const { Item } = FormModel;
 
@@ -91,38 +92,40 @@ const BindEmail = {
   render() {
     return (
       <div class={styles.wrapper}>
-        <div class={styles['form-wrap']}>
-          <FormModel ref="ruleForm" hideRequiredMark props={{ model: this.form }} class="form">
-            <Item
-              label={this.$t('emailAddress')}
-              prop="email"
-              rules={[
-                { required: true, message: this.$t('emailAddressRequire'), trigger: 'change' },
-                {
-                  pattern: emailReg,
-                  message: this.$t('emailWrongFormat'),
-                  trigger: 'blur',
-                },
-              ]}
-            >
-              <Input v-model={this.form.email} placeholder={this.$t('fillNeedBindEmail')} />
-            </Item>
-            <Item
-              label={this.$t('verificationCode')}
-              prop="code"
-              rules={[{ required: true, message: this.$t('verifyCodeRequired'), trigger: 'change' }]}
-            >
-              <Input
-                maxLength={6}
-                v-model={this.form.code}
-                placeholder={this.$t('fillGetEmailVerificationCode')}
-                scopedSlots={{
-                  suffix: this.getButton,
-                }}
-              />
-            </Item>
-          </FormModel>
-        </div>
+        <BaseContainer contentClassName={styles['content-wrap']}>
+          <div class={styles['form-wrap']}>
+            <FormModel ref="ruleForm" hideRequiredMark props={{ model: this.form }} class="form">
+              <Item
+                label={this.$t('emailAddress')}
+                prop="email"
+                rules={[
+                  { required: true, message: this.$t('emailAddressRequire'), trigger: 'change' },
+                  {
+                    pattern: emailReg,
+                    message: this.$t('emailWrongFormat'),
+                    trigger: 'blur',
+                  },
+                ]}
+              >
+                <Input v-model={this.form.email} placeholder={this.$t('fillNeedBindEmail')} />
+              </Item>
+              <Item
+                label={this.$t('verificationCode')}
+                prop="code"
+                rules={[{ required: true, message: this.$t('verifyCodeRequired'), trigger: 'change' }]}
+              >
+                <Input
+                  maxLength={6}
+                  v-model={this.form.code}
+                  placeholder={this.$t('fillGetEmailVerificationCode')}
+                  scopedSlots={{
+                    suffix: this.getButton,
+                  }}
+                />
+              </Item>
+            </FormModel>
+          </div>
+        </BaseContainer>
         <PageButton type="primary" loading={this.loading} onClick={this.onSubmit}>
           {this.$t('confirm')}
         </PageButton>

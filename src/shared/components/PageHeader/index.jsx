@@ -25,7 +25,7 @@ const PageHeader = {
   },
   methods: {
     redirectToDownloadGuidePage() {
-      locationServices.push('/download');
+      locationServices.push(urls.downloadPath);
     },
     getNews() {
       return [
@@ -105,7 +105,7 @@ const PageHeader = {
               <MailFilled className={styles.email} />
             </div>
             <LanguageMenu items={this.languageItems}>{ this.$t('language') }</LanguageMenu>
-            <Button class={styles['page-header-download']} type="primary" onClick={this.redirectToDownloadGuidePage}>
+            <Button class="download-button" type="primary" onClick={this.redirectToDownloadGuidePage}>
               { this.$t('downloadNow') }
             </Button>
           </div>
