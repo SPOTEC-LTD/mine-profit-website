@@ -19,5 +19,6 @@ export default {
   language: '语言',
   noData: '暂无数据',
   confirm: '确认',
+  cancel: '取消',
   all: '全部',
 };

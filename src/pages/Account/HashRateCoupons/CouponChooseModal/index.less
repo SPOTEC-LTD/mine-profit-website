@@ -1,0 +1,21 @@
+@import "@/shared/styles/variables.less";
+
+.modal-content-box {
+  max-height: 450px;
+  overflow-y: scroll;
+}
+
+.confirm-modal {
+  :global {
+    .mp-btn {
+      &:last-child {
+        background-color: @color__primary;
+        color: @white;
+      }
+    }
+  }
+}
+
+.no-data {
+  height: 250px;
+}

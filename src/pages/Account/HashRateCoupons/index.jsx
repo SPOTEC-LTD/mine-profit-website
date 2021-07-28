@@ -1,18 +1,19 @@
 import { mapState, mapActions } from 'vuex';
-import { Table, Dropdown, Menu } from 'ant-design-vue';
+import { Table } from 'ant-design-vue';
+import InfoCircleFilled from 'ahoney/lib/icons/InfoCircleFilled';
 
 // import { accountSettingPath } from '@/router/consts/urls';
 import { HASH_RATE_COUPONS, GET_COUPONS } from '@/modules/hashRateCoupons';
+import { FOREVER } from '@/shared/consts/validPeriodStatus';
+import { COUPON_ALL, getCouponsTypesList } from '@/shared/consts/couponsTypes';
+import { ALL_STATUS, EXPIRE, getCouponsStatus } from '@/shared/consts/couponUsedStatus';
 import dateUtils from '@/shared/intl/utils/dateUtils';
 import BaseContainer from '@/shared/components/BaseContainer';
 import InfoTooltip from '@/shared/components/InfoTooltip';
-import BaseModal from '@/shared/components/BaseModal';
-import ModalFooterButtonGroup from '@/shared/components/ModalFooterButtonGroup';
+import Select from '@/shared/components/Select';
 
-import { FOREVER } from './consts/validPeriodStatus';
-import { ALL, EXPIRE, getCouponsStatus } from './consts/couponUsedStatus';
-import { getCouponsTypesList, getCouponsTypes } from './consts/couponsTypes';
 import { getExpiredReason } from './consts/causeOfFailure';
+import CouponChooseModal from './CouponChooseModal'; // TODO: 待删
 
 import styles from './index.less?module';
 
@@ -22,13 +23,14 @@ const dateTimeFormat = `${dateFormat} HH:mm`;
 const HashRateCoupons = {
   data() {
     return {
-      couponsStatus: ALL,
+      couponsStatus: ALL_STATUS,
+      couponId: null, // TODO: 待删
+      couponName: '', // TODO: 待删
     };
   },
   computed: mapState({
     couponsList: state => state.hashRateCoupons.couponsList,
     getListLoading: state => state.loading.effects[`${HASH_RATE_COUPONS}/${GET_COUPONS}`],
-
   }),
 
   mounted() {
@@ -40,7 +42,7 @@ const HashRateCoupons = {
 
     getCouponsList() {
       const data = {
-        hashrateCouponEnum: this.couponsStatus,
+        hashrateCouponEnum: this.couponsStatus || null,
       };
       this[GET_COUPONS](data);
     },
@@ -55,34 +57,12 @@ const HashRateCoupons = {
       this.couponsStatus = value;
       this.getCouponsList();
     },
-    getFooterNode() {
-      const dataSource = [
-        {
-          onClick: this.closeDialog,
-          loading: false,
-          label: '取消',
-        },
-        {
-          onClick: this.confirm,
-          loading: false,
-          label: '确认',
-        },
-      ];
-      return (
-        <ModalFooterButtonGroup
-          className={styles['confirm-modal']}
-          dataSource={dataSource}
-        />
-      );
-    },
 
-    closeDialog() {
-      this.$refs.testModal.close();
-    },
-
-    confirm() {
-      console.log('做一些操作');
-      this.closeDialog();
+    // TODO: 待删
+    handleCouponChange(couponInfo = {}) {
+      const { couponId, couponName } = couponInfo;
+      this.couponId = couponId;
+      this.couponName = couponName;
     },
   },
 
@@ -100,6 +80,16 @@ const HashRateCoupons = {
         dataIndex: 'name',
         align: 'center',
         ellipsis: true,
+        customRender: (_, { name }) => {
+          return (
+            <InfoTooltip
+              content={name}
+              trigger='click'
+            >
+              <div class={styles['tooltip-name']}>{name}</div>
+            </InfoTooltip>
+          );
+        },
       },
       {
         title: this.$t('termOfValidity'),
@@ -121,13 +111,14 @@ const HashRateCoupons = {
         dataIndex: 'status',
         align: 'center',
         width: 100,
-        // TODO: 待添加'失效原因'字段
         customRender: (_, { status, expirationReason }) => {
           return (
             <div class={styles['status-box']}>
               <div class={{ [styles['color-red']]: status === EXPIRE }}>{getCouponsStatus(status)}</div>
               {status === EXPIRE && (
-                <InfoTooltip content={getExpiredReason(expirationReason)} />
+                <InfoTooltip trigger='click' content={getExpiredReason(expirationReason)}>
+                  <InfoCircleFilled />
+                </InfoTooltip>
               )}
             </div>
           );
@@ -171,35 +162,29 @@ const HashRateCoupons = {
     return (
       <div class={styles['hashrate-coupons-box']}>
         <BaseContainer>
-          <BaseModal
-            title="test title"
-            ref="testModal"
-            scopedSlots={{
-              content: () => this.getFooterNode(),
-            }}
+          {/* TODO: 模态框 待删 */}
+          <CouponChooseModal
+            list={this.couponsList}
+            usesCouponId={this.couponId}
+            onCouponChange={this.handleCouponChange}
           >
-            点我
-          </BaseModal>
+            点我{this.couponId}{this.couponName}
+          </CouponChooseModal>
           {/* TODO: 面包屑 待加 */}
-          {/* TODO: 下拉框 待改 */}
-          <Dropdown
-            trigger={['click']}
-            overlayClassName="hashrate-overlay"
-            getPopupContainer={triggerNode => triggerNode.parentNode}
-            overlay={(
-              <Menu onClick={({ key }) => this.changeCouponsStatus(key)}>
-                {getCouponsTypesList().map(({ name, value }) => (
-                  <Menu.Item key={value}>
-                    {name}
-                  </Menu.Item>
-                ))}
-              </Menu>
-            )}
+          <Select
+            class={styles['hashrate-status-select']}
+            defaultValue={COUPON_ALL}
+            onChange={this.changeCouponsStatus}
           >
-            <Dropdown.Button class={styles['hashrate-status-dropdown']}>
-              {getCouponsTypes(this.couponsStatus)}
-            </Dropdown.Button>
-          </Dropdown>
+            {getCouponsTypesList().map(({ name, value }, index) => (
+              <Select.Option
+                key={index}
+                value={value}
+              >
+                {name}
+              </Select.Option>
+            ))}
+          </Select>
           <Table
             rowClassName={({ status }) => (status === EXPIRE ? styles['gray-row'] : '')}
             columns={columns}

@@ -14,4 +14,10 @@ export default {
   used: '已使用',
   expired: '已失效',
   status: '状态',
+  hashRateNum: '算力数量：',
+  shareRatio: '分成比例：',
+  vipCouponUseLimit: '使用限制：新购算力>=',
+  vipCouponDateForever: '有效期：永久',
+  vipCouponDate: '有效期：',
+  chooseCoupon: '选择算力券',
 };

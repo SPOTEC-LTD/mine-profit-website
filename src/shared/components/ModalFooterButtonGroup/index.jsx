@@ -14,8 +14,9 @@ const FooterButtonGroup = {
     return (
       <div class={classNames(styles.footer, this.className)}>
         {
-          this.dataSource.map(item => (
+          this.dataSource.map((item, index) => (
             <Button
+              key={index}
               type="default"
               onClick={item.onClick || noop}
               loading={item.loading}
