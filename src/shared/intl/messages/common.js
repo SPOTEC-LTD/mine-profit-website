@@ -21,4 +21,6 @@ export default {
   confirm: '确认',
   cancel: '取消',
   all: '全部',
+  markeMyOrde: '我的订单',
+  mineTitleHashrate: '算力',
 };

@@ -5,6 +5,7 @@ import loadingPlugin from './loadingPlugin';
 import sign from '../modules/sign';
 import home from '../modules/home';
 import hashRate from '../modules/account/hashRate';
+import investment from '../modules/account/investment';
 import account from '../modules/account/account';
 import publicData from '../modules/public';
 import rateExchange from '../modules/rateExchange';
@@ -51,4 +52,5 @@ export const modules = {
   officialProduct,
   account,
   c2cMarket,
+  investment,
 };
