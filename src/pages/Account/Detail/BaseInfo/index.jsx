@@ -5,6 +5,7 @@ import DoubleUserFilled from 'ahoney/lib/icons/DoubleUserFilled';
 import BaseContainer from '@/shared/components/BaseContainer';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import { UPDATE_USER_INFO } from '@/store/consts/actionType';
+import { hashRateCouponsPath } from '@/router/consts/urls';
 import ShareQrCodeModal from '@/shared/components/ShareQrCodeModal';
 import logout from './logout';
 import styles from './index.less?module';
@@ -89,7 +90,7 @@ const Detail = {
           </div>
           <div class={styles['info-right']}>
             <div class={styles['invite-info-box']}>{this.getInviteItem().map(item => item)}</div>
-            <div class={styles['hashrate-coupon']}>
+            <div class={styles['hashrate-coupon']} onClick={() => { window.open(hashRateCouponsPath); }}>
               <HashCouponFilled className={styles['coupon-icon']} />
               <Badge count={validCouponCount}>
                 <span>{this.$t('myHashrateCoupon')}</span>

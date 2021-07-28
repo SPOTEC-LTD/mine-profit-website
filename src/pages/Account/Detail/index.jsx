@@ -1,6 +1,8 @@
 import BaseContainer from '@/shared/components/BaseContainer';
 import { getUserBadge, getInviteInfo, getUserBaseInfo } from '@/api/account/userInfo';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
+import { getWalletAssets } from '@/api/account/wallet';
+import getOrderBalance from '@/shared/utils/getOrderBalance';
 import BaseInfo from './BaseInfo';
 import Authentication from './Authentication';
 import Wallet from './Wallet';
@@ -15,8 +17,14 @@ const Detail = {
       userInfo: {},
       badge: {},
       inviteInfo: {},
+      userBalance: {
+        totalUsdt: 0,
+        totalCny: 0,
+        balanceList: [],
+      },
     };
 
+    const getWalletDetailPromise = getWalletAssets({}, { ctx });
     const getUserBadgePromise = getUserBadge({}, { ctx });
     const fetchInviteInfo = getInviteInfo({ pathParams: { userId } }, { ctx });
     const fetchUserBaseInfo = getUserBaseInfo({ pathParams: { userId } }, { ctx });
@@ -43,15 +51,22 @@ const Detail = {
       console.log('error', error);
     }
 
+    try {
+      const { body: { userBalance } } = await getWalletDetailPromise;
+      props.userBalance = { ...userBalance, balanceList: getOrderBalance(userBalance.balanceList) };
+    } catch (error) {
+      console.log('error', error);
+    }
+
     return props;
   },
   render() {
     return (
       <div>
-        <BaseInfo info={this.badge} userInfo={this.userInfo} inviteInfo={this.inviteInfo}/>
+        <BaseInfo info={this.badge} userInfo={this.userInfo} inviteInfo={this.inviteInfo} />
         <BaseContainer class={styles['account-other-info']}>
           <Authentication userInfo={this.userInfo} />
-          <Wallet />
+          <Wallet userBalance={this.userBalance} />
           <Hashrate />
           <Investment />
         </BaseContainer>
