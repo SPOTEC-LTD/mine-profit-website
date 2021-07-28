@@ -15,6 +15,7 @@
       > label {
         font-size: @font-size-sm;
         color: @color__242424;
+        font-weight: 600;
       }
     }
   }
@@ -30,6 +31,7 @@
 
   .mp-input[disabled] {
     background-color: @white;
+    border-color: @color__d9d9d9;
   }
 
   .mp-input-disabled {
@@ -42,6 +44,7 @@
     line-height: 22px;
     font-size: @font-size-lg;
     background-color: @color__f7f8fc;
+    border-color: transparent;
   }
 
   .mp-input-suffix {
@@ -51,5 +54,25 @@
   .has-error .mp-input,
   .has-error .mp-input:hover {
     background-color: @color__f7f8fc;
+  }
+
+  .mp-select-selection {
+    height: 44px;
+    line-height: 22px;
+    font-size: @font-size-lg;
+    background-color: @color__f7f8fc;
+    border-color: transparent;
+  }
+
+  .mp-select-selection__rendered {
+    line-height: 44px;
+  }
+
+  .mp-calendar-picker {
+    width: 100%;
+  }
+
+  .mp-calendar-picker:hover .mp-calendar-picker-input:not(.mp-input-disabled) {
+    border-color: transparent;
   }
 }

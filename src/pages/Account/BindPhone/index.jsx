@@ -6,6 +6,7 @@ import { SIGN, GET_PHONE_CODE } from '@/modules/sign';
 import { ACCOUNT, BIND_PHONE_OR_EMAIL } from '@/modules/account/account';
 import * as verCodeType from '@/shared/consts/verCodeType';
 import { PHONE } from '@/shared/consts/registerType';
+import BaseContainer from '@/shared/components/BaseContainer';
 import { accountDetailPath } from '@/router/consts/urls';
 import locationServices from '@/shared/services/location/locationServices';
 import PageButton from '@/shared/components/PageButton';
@@ -107,6 +108,8 @@ const BindPhone = {
       this.form.phonePrefix = value.label;
     },
     getSelectNode() {
+      const lang = this.$i18n.locale;
+
       return (
         <div>
           <Select
@@ -114,14 +117,15 @@ const BindPhone = {
             defaultValue={{ label: this.form.phonePrefix, key: 37 }}
             onChange={this.handleAreaCodeChange}
             showSearch
+            optionFilterProp="search"
             labelInValue
             optionLabelProp="label"
             suffixIcon={<TriangleFilled className="select-icon" />}
             dropdownMatchSelectWidth={false}
           >
             {this.countries.map(item => (
-              <Select.Option key={item.nation} label={item.code}>
-                {`${item.code} ${item.zh}`}
+              <Select.Option search={`${item.code} ${item[lang]}`} key={item.nation} label={item.code}>
+                {`${item.code} ${item[lang]}`}
               </Select.Option>
             ))}
           </Select>
@@ -132,56 +136,58 @@ const BindPhone = {
   render() {
     return (
       <div class={styles.wrapper}>
-        <div class={styles['form-wrap']}>
-          <FormModel ref="ruleForm" hideRequiredMark props={{ model: this.form }} class="form">
-            <Item
-              ref="phone"
-              label={this.$t('signInPhoneNum')}
-              prop="phone"
-              rules={[
-                { required: true, message: this.$t('phoneRequired'), trigger: 'change' },
-                {
-                  validator: (rule, value) => {
-                    if (value && this.form.phonePrefix === phonePrefixInitValue && !phoneReg.test(value)) {
-                      return Promise.reject(this.$t('phoneNumberWrongFormat'));
-                    }
-                    return Promise.resolve();
+        <BaseContainer contentClassName={styles['content-wrap']}>
+          <div class={styles['form-wrap']}>
+            <FormModel ref="ruleForm" hideRequiredMark props={{ model: this.form }} class="form">
+              <Item
+                ref="phone"
+                label={this.$t('signInPhoneNum')}
+                prop="phone"
+                rules={[
+                  { required: true, message: this.$t('phoneRequired'), trigger: 'change' },
+                  {
+                    validator: (rule, value) => {
+                      if (value && this.form.phonePrefix === phonePrefixInitValue && !phoneReg.test(value)) {
+                        return Promise.reject(this.$t('phoneNumberWrongFormat'));
+                      }
+                      return Promise.resolve();
+                    },
+                    trigger: 'blur',
                   },
-                  trigger: 'blur',
-                },
-              ]}
-            >
-              <div class={styles['phone-input']}>
-                {this.getSelectNode()}
+                ]}
+              >
+                <div class={styles['phone-input']}>
+                  {this.getSelectNode()}
+                  <Input
+                    maxLength={11}
+                    v-model={this.form.phone}
+                    placeholder={this.$t('fillNeedBindPhone')}
+                    onBlur={() => {
+                      this.$refs.phone.onFieldBlur();
+                    }}
+                    onChange={() => {
+                      this.$refs.phone.onFieldChange();
+                    }}
+                  />
+                </div>
+              </Item>
+              <Item
+                label={this.$t('verificationCode')}
+                prop="code"
+                rules={[{ required: true, message: this.$t('verifyCodeRequired'), trigger: 'change' }]}
+              >
                 <Input
-                  maxLength={11}
-                  v-model={this.form.phone}
-                  placeholder={this.$t('fillNeedBindPhone')}
-                  onBlur={() => {
-                    this.$refs.phone.onFieldBlur();
-                  }}
-                  onChange={() => {
-                    this.$refs.phone.onFieldChange();
+                  maxLength={6}
+                  v-model={this.form.code}
+                  placeholder={this.$t('fillGetPhoneVerificationCode')}
+                  scopedSlots={{
+                    suffix: this.getButton,
                   }}
                 />
-              </div>
-            </Item>
-            <Item
-              label={this.$t('verificationCode')}
-              prop="code"
-              rules={[{ required: true, message: this.$t('verifyCodeRequired'), trigger: 'change' }]}
-            >
-              <Input
-                maxLength={6}
-                v-model={this.form.code}
-                placeholder={this.$t('fillGetPhoneVerificationCode')}
-                scopedSlots={{
-                  suffix: this.getButton,
-                }}
-              />
-            </Item>
-          </FormModel>
-        </div>
+              </Item>
+            </FormModel>
+          </div>
+        </BaseContainer>
         <PageButton type="primary" loading={this.loading} onClick={this.onSubmit}>
           {this.$t('confirm')}
         </PageButton>

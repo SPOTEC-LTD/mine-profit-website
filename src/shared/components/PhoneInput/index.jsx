@@ -52,6 +52,8 @@ const PhoneInput = {
       attrs: this.$attrs,
     };
 
+    const lang = this.$i18n.locale;
+
     const selectNode = (
       <Select
         class="phone-prefix-select"
@@ -59,14 +61,15 @@ const PhoneInput = {
         onChange={this.handleAreaCodeChange}
         showSearch
         labelInValue
+        optionFilterProp="search"
         optionLabelProp="label"
         suffixIcon={<TriangleFilled className="select-icon" />}
         dropdownMatchSelectWidth={false}
       >
       {
         this.countries.map(item => (
-          <Select.Option key={item.nation} label={item.code}>
-            {`${item.code} ${item.zh}`}
+          <Select.Option search={`${item.code} ${item[lang]}`} key={item.nation} label={item.code}>
+            {`${item.code} ${item[lang]}`}
           </Select.Option>
         ))
       }

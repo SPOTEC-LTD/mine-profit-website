@@ -91,11 +91,9 @@ const Detail = {
             <div class={styles['invite-info-box']}>{this.getInviteItem().map(item => item)}</div>
             <div class={styles['hashrate-coupon']}>
               <HashCouponFilled className={styles['coupon-icon']} />
-              <client-only>
-                <Badge count={validCouponCount}>
-                  <span>{this.$t('myHashrateCoupon')}</span>
-                </Badge>
-              </client-only>
+              <Badge count={validCouponCount}>
+                <span>{this.$t('myHashrateCoupon')}</span>
+              </Badge>
             </div>
           </div>
         </div>

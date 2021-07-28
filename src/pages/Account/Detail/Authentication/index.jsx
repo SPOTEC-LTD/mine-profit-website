@@ -2,7 +2,7 @@ import { CheckCircleFilled, PendingFilled, QuestionCircleFilled, CloseCircleTFil
 import { EMAIL } from '@/shared/consts/registerType';
 import { PENDING, PASS, REJECT, NOT_SUBMIT } from '@/shared/consts/kycStatus';
 import {
-  accountDetailPath,
+  realNameAuthPath,
   bindPhonePath,
   bindEmailPath,
   setDealPasswordPath,
@@ -24,7 +24,7 @@ const Authentication = {
       return (
         <div>
           {isLink ? (
-            <Link to={accountDetailPath}>
+            <Link to={realNameAuthPath} target="_blank">
               <div class={className}>
                 {icon}
                 <span>{value}</span>
@@ -97,7 +97,7 @@ const Authentication = {
           <div class={styles['sub-title']}>{this.$t('personalAuthenticationPrompt')}</div>
           <div class={styles['auth-item-box']}>
             {this.getAuthItem().map(({ path, text, isAuth }) => (
-              <Link to={path}>
+              <Link to={path} target="_blank">
                 <div class={isAuth ? styles['auth-item'] : styles['no-auth-item']}>
                   {isAuth ? <CheckCircleFilled /> : <QuestionCircleFilled />}
                   <span>{text}</span>
