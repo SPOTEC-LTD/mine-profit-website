@@ -4,3 +4,4 @@ node_modules
 test
 build/i18n/mergeTranslate.js
 src/layouts/default.vue
+src/shared/components/VueEChart/echarts.min.js
