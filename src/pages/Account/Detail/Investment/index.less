@@ -1,0 +1,26 @@
+@import "@/shared/styles/variables.less";
+
+.table {
+  border: 1px solid @color__cacaca;
+  border-radius: 4px;
+
+  :global {
+    .mp-table-thead {
+      & > tr > th {
+        padding-top: 4px;
+        padding-bottom: 4px;
+        font-size: @font-size-sm;
+        border-bottom: 0;
+        background-color: @color__dde5f3;
+      }
+    }
+
+    .mp-table-tbody > tr > td {
+      font-size: @font-size-sm;
+    }
+
+    .mp-table-placeholder {
+      border: 0;
+    }
+  }
+}

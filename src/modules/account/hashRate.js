@@ -18,6 +18,7 @@ const hashrateListApiMap = {
 };
 
 export const HASH_RATE = 'hashRate';
+export const GET_PRODUCT_HASHRATE_STATISTICS = 'getProductHashrateStatistics';
 export const GET_PRODUCT_HASHRATE_LIST = 'getProductOrdinaryHashrate';
 export const GET_ORDINARY_HASHRATE_BUFF = 'getOrdinaryHashrateBuff';
 export const GET_CLOSE_HASHRATE_BUFF = 'getCloseHashrateBuff';
@@ -33,6 +34,7 @@ export const PLEDGE_REDEEM_PAY = 'pledgeRedeemPay';
 export const PLEDGE_REPAYMENT_PAY = 'pledgeRepaymentPay';
 export const PLEDGE_CONFIRM_SETTLE = 'pledgeConfirmSettle';
 
+const UPDATE_PRODUCT_HASHRATE_STATISTICS_LIST = 'updateProductHashrateStatisticsList';
 const UPDATE_PRODUCT_HASHRATE_LIST = 'updateProductHashrateList';
 export const UPDATE_HASHRATE_BUFF_LIST = 'updateHashrateBuffList';
 export const UPDATE_HASHRATE_PLEDGES_SOURCE_INFO = 'updateHashratePledgesSourceInfo';
@@ -44,6 +46,23 @@ export const UPDATE_PLEDGE_REPAYMENT_INFO = 'updatePledgeRepaymentInfo';
 export default {
   namespaced: true,
   state: {
+    statisticsList: [
+      {
+        hashrateType: 'BTC',
+        unit: 'T',
+        totalAmount: '0',
+        totalOutput: '0',
+        yesterdayTotalOutput: '0',
+      },
+      {
+        hashrateType: 'ETH',
+        unit: 'M',
+        totalAmount: '0',
+        totalOutput: '0',
+        yesterdayTotalOutput: '0',
+        isShutdown: 1,
+      },
+    ],
     ordinary: [],
     pledges: [],
     shutdown: [],
@@ -67,6 +86,9 @@ export default {
     },
   },
   mutations: {
+    [UPDATE_PRODUCT_HASHRATE_STATISTICS_LIST](state, { data }) {
+      state.statisticsList = data;
+    },
     [UPDATE_PRODUCT_HASHRATE_LIST](state, { data, key }) {
       state[key] = data;
     },
@@ -87,6 +109,17 @@ export default {
     },
   },
   actions: {
+    async [GET_PRODUCT_HASHRATE_STATISTICS]({ commit }) {
+      const { userId } = localStorage.getObject('userInfo');
+      try {
+        const { body: { list } } = await API.getProductHashrateStatistics({ pathParams: { userId } });
+        commit(UPDATE_PRODUCT_HASHRATE_STATISTICS_LIST, { data: list });
+        return Promise.resolve();
+      } catch (error) {
+        return Promise.reject(error);
+      }
+    },
+
     async [GET_PRODUCT_HASHRATE_LIST]({ commit }, params) {
       const { userId } = localStorage.getObject('userInfo');
       const { hashTypeStatusKey, ...restParams } = params;

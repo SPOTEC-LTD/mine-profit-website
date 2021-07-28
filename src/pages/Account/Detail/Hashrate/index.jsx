@@ -1,23 +1,101 @@
+import { Row, Col, Button, Spin } from 'ant-design-vue';
+import { mapActions, mapState } from 'vuex';
+import { EthIcon, BtcIcon } from '@/shared/components/ChainIcon';
+import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
+import { HASH_RATE, GET_PRODUCT_HASHRATE_STATISTICS } from '@/modules/account/hashRate';
+import locationServices from '@/shared/services/location/locationServices';
+import { accountHashRateListPath } from '@/router/consts/urls';
 import Card from '../components/Card';
 import WidgetTitle from '../components/WidgetTitle';
-
-// import './index.less';
+import styles from './index.less?module';
 
 const Hashrate = {
+  computed: {
+    ...mapState({
+      getProductHashrateStatisticsLoading: state => state.loading.effects[`${HASH_RATE}/${GET_PRODUCT_HASHRATE_STATISTICS}`],
+      statisticsList: state => state.hashRate.statisticsList,
+    }),
+  },
+
+  mounted() {
+    this[GET_PRODUCT_HASHRATE_STATISTICS]();
+  },
+
+  methods: {
+    ...mapActions(HASH_RATE, [GET_PRODUCT_HASHRATE_STATISTICS]),
+    redirectToHashRateList(hashrateType) {
+      locationServices.push(accountHashRateListPath, { query: { hashrateType } });
+    },
+
+    getCellNode({ title, value }) {
+      return (
+        <div>
+          <div class={styles.label}>{title}</div>
+          <div class={styles.value}>{value}</div>
+        </div>
+      );
+    },
+
+    getTablePartData(item) {
+      const yTotalValue = bigNumberToFixed(item.yesterdayTotalOutput, 8);
+      return [
+        {
+          title: this.$t('hashrateTotalHash'),
+          value: `${bigNumberToFixed(item.totalAmount, 8)} ${item.unit}`,
+        },
+        {
+          title: this.$t('hashrateAllNetOutput'),
+          value: `${bigNumberToFixed(item.totalOutput, 8)} ${item.hashrateType}`,
+        },
+        {
+          title: this.$t('hashrateTotalHash'),
+          value: `${yTotalValue > 0 ? `+${yTotalValue}` : yTotalValue} ${item.hashrateType}`,
+        },
+      ];
+    },
+  },
+
   render() {
+    const iconMap = {
+      BTC: <EthIcon />,
+      ETH: <BtcIcon />,
+    };
     return (
-      <div>
+      <Spin spinning={this.getProductHashrateStatisticsLoading}>
         <WidgetTitle
           scopedSlots={{
-            rightContent: () => <span>我的订单</span>,
+            rightContent: () => <span>{this.$t('markeMyOrde')}</span>,
           }}
         >
-          算力
+          {this.$t('mineTitleHashrate')}
         </WidgetTitle>
         <Card>
-          <div>算力列表</div>
+          {
+            this.statisticsList.map(item => {
+              return (
+                <Row gutter={10} type="flex" align="middle" class={styles['table-row']}>
+                  <Col span={4}>
+                    <div>
+                      {iconMap[item.hashrateType]}
+                      {item.hashrateType}
+                    </div>
+                  </Col>
+                  {
+                    this.getTablePartData(item).map(({ title, value }) => (
+                      <Col span={6}>
+                        { this.getCellNode({ title, value }) }
+                      </Col>
+                    ))
+                  }
+                  <Col span={2}>
+                    <Button type="primary" onClick={() => this.redirectToHashRateList(item.hashrateType)}>详情</Button>
+                  </Col>
+                </Row>
+              );
+            })
+          }
         </Card>
-      </div>
+      </Spin>
     );
   },
 };
