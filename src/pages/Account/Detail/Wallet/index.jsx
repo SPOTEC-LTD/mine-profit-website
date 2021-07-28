@@ -1,16 +1,20 @@
 import Card from '../components/Card';
 import WidgetTitle from '../components/WidgetTitle';
+import WalletAssets from './WalletAssets';
 
-// import './index.less';
+import styles from './index.less?module';
 
 const Wallet = {
+  props: { userBalance: Object },
   render() {
     return (
       <div>
-        <WidgetTitle>钱包</WidgetTitle>
+        <WidgetTitle>{this.$t('mineTitleWallet')}</WidgetTitle>
         <Card>
-          <div>钱包详情</div>
-          <div>钱包记录</div>
+          <div class={styles.wallet}>
+            <WalletAssets class={styles['wallet-box']} userBalance={this.userBalance} />
+            <div class={styles['wallet-box']}>{this.$t('walletDetail')}</div>
+          </div>
         </Card>
       </div>
     );
