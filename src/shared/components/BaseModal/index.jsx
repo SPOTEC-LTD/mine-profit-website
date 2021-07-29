@@ -26,9 +26,13 @@ const BaseModal = {
   render() {
     return (
       <span>
-        <span class='click-node' onClick={this.open}>{this.$scopedSlots.default()}</span>
+        {
+          this.$scopedSlots.default &&
+          <span class='click-node' onClick={this.open}>{this.$scopedSlots.default()}</span>
+        }
         <Modal
           class="base-modal"
+          centered
           footer={null}
           visible={this.visible}
           closeIcon={<CancelledOutlined onClick={this.close} />}

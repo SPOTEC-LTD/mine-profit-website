@@ -17,7 +17,7 @@ const FooterButtonGroup = {
           this.dataSource.map((item, index) => (
             <Button
               key={index}
-              type="default"
+              type={item.type || 'default'}
               onClick={item.onClick || noop}
               loading={item.loading}
             >

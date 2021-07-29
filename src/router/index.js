@@ -57,6 +57,7 @@ export function createRouter() {
       {
         path: '/download',
         name: 'download',
+        meta: { hiddenFooter: true },
         component: Download,
       },
       {

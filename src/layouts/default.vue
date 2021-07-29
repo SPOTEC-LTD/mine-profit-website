@@ -37,10 +37,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    withFooter: {
-      type: Boolean,
-      default: true,
-    },
   },
   data() {
     locale.init(this.$i18n);

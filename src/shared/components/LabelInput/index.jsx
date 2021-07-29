@@ -27,7 +27,7 @@ const LabelInput = {
       if (!isUndefined(this.value)) {
         this.selfValue = e.target.value;
       }
-      console.log('---23-', e.target.value)
+
       this.$emit('change', trimEnd(e.target.value));
     },
 

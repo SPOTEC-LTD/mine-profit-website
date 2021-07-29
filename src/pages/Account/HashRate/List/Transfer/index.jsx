@@ -96,7 +96,9 @@ const Transfer = {
                 <Card
                   scopedSlots={{
                     header: () => header,
-                    footer: () => <CardFooter data={item} />,
+                    footer: () => (
+                      <CardFooter data={item} onRefresh={() => this.$emit('refresh')} />
+                    ),
                   }}
                 >
                   <ListCell dataSource={this.getListData(item)} />
