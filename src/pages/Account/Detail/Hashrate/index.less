@@ -1,6 +1,19 @@
 
 @import "@/shared/styles/variables.less";
 
+.coin-container {
+  display: flex;
+  align-items: center;
+
+  :global {
+    .spotecicon {
+      width: 22px;
+      height: 22px;
+      margin-right: 8px;
+    }
+  }
+}
+
 .label {
   color: @color__494949;
   font-size: @font-size-sm;

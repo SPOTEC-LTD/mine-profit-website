@@ -4,7 +4,8 @@ import { EthIcon, BtcIcon } from '@/shared/components/ChainIcon';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import { HASH_RATE, GET_PRODUCT_HASHRATE_STATISTICS } from '@/modules/account/hashRate';
 import locationServices from '@/shared/services/location/locationServices';
-import { accountHashRateListPath } from '@/router/consts/urls';
+import { accountHashRateListPath, accountOrdersPath } from '@/router/consts/urls';
+import Link from '@/shared/components/Link';
 import Card from '../components/Card';
 import WidgetTitle from '../components/WidgetTitle';
 import styles from './index.less?module';
@@ -64,7 +65,13 @@ const Hashrate = {
       <Spin spinning={this.getProductHashrateStatisticsLoading}>
         <WidgetTitle
           scopedSlots={{
-            rightContent: () => <span>{this.$t('markeMyOrde')}</span>,
+            rightContent: () => (
+              <Link
+                class="modal-text-link"
+                to={accountOrdersPath}
+              >
+                {this.$t('markeMyOrde')}
+              </Link>),
           }}
         >
           {this.$t('mineTitleHashrate')}
@@ -75,9 +82,9 @@ const Hashrate = {
               return (
                 <Row gutter={10} type="flex" align="middle" class={styles['table-row']}>
                   <Col span={4}>
-                    <div>
+                    <div class={styles['coin-container']}>
                       {iconMap[item.hashrateType]}
-                      {item.hashrateType}
+                      <span>{item.hashrateType}</span>
                     </div>
                   </Col>
                   {
