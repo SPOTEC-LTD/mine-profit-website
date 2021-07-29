@@ -6,6 +6,7 @@ export const downloadPath = '/download';
 // ==== accountPaths
 export const accountPath = '/account';
 export const accountDetailPath = `${accountPath}/detail`;
+export const accountOrdersPath = `${accountPath}/orders`;
 export const accountHashRateListPath = `${accountPath}/hashrate/list`;
 export const bindInvitationCodePath = `${accountPath}/bindInvitationCode`;
 export const hashRateCouponsPath = `${accountPath}/hashRateCoupons`;

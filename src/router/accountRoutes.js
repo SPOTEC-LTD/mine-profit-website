@@ -6,6 +6,7 @@ import BindEmail from '@/pages/Account/BindEmail';
 import SetDealPassword from '@/pages/Account/SetDealPassword';
 import SetLoginPassword from '@/pages/Account/SetLoginPassword';
 import RealNameAuth from '@/pages/Account/RealNameAuth';
+import Orders from '@/pages/Account/Orders';
 import * as urls from './consts/urls';
 
 export default [
@@ -13,6 +14,12 @@ export default [
     path: urls.accountDetailPath,
     name: 'account',
     component: AccountDetail,
+  },
+  {
+    path: urls.accountOrdersPath,
+    name: 'orders',
+    meta: { showBreadcrumb: true },
+    component: Orders,
   },
   {
     path: urls.accountHashRateListPath,
