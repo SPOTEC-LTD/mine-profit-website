@@ -23,4 +23,5 @@ export default {
   all: '全部',
   markeMyOrde: '我的订单',
   mineTitleHashrate: '算力',
+  well: '好的',
 };

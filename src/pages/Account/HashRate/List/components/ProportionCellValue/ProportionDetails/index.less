@@ -1,0 +1,46 @@
+@import '@/shared/styles/variables.less';
+
+.wrapper {
+  text-align: center;
+}
+
+.icon {
+  width: 143px;
+  height: 106px;
+}
+
+.title {
+  margin: 9px 0 4px;
+  font-size: @font-size-lg;
+  line-height: 22px;
+  color: @color__242424;
+}
+
+.description {
+  font-size: @font-size__13;
+  line-height: 18px;
+  color: @color__242424;
+  margin-bottom: 21px;
+  text-align: left;
+}
+
+.default-bonus,
+.other-bonus {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 8px;
+  height: 28px;
+  font-size: @font-size-base;
+  line-height: 20px;
+  color: @color__242424;
+}
+
+.other-bonus {
+  > div:first-child {
+    text-align: left;
+  }
+}
+
+.default-bonus {
+  background-color: @color__f9f9f9;
+}

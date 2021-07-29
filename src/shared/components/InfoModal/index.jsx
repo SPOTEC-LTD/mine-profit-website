@@ -30,11 +30,13 @@ const BaseModal = {
       if (!this.disabled) {
         this.showDialog = true;
       }
+      this.$emit('open');
     },
 
     onCloseDialog(e) {
       e.stopPropagation();
       this.showDialog = false;
+      this.$emit('closed');
     },
   },
 
@@ -50,6 +52,8 @@ const BaseModal = {
           class="info-modal"
           showConfirmButton={false}
           footer={null}
+          centered
+          width={280}
           v-model={this.showDialog}
           {...{
             on: this.$listeners,
