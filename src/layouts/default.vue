@@ -8,7 +8,7 @@
       >
         <Nuxt />
       </div>
-      <!-- <PageFooter v-if="withFooter" /> -->
+      <PageFooter v-if="!hiddenFooter"/>
     </div>
   </ConfigProvider>
 </template>
@@ -49,8 +49,11 @@ export default {
       zh: zhCN,
       en: enUS
     }
+
+    console.log('--', this.$route)
     return {
-      anLocale: anLocalMap[this.$i18n.locale]
+      anLocale: anLocalMap[this.$i18n.locale],
+      hiddenFooter: this.$route.meta.hiddenFooter
     };
   },
   mounted() {

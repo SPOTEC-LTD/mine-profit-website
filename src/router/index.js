@@ -28,6 +28,7 @@ export function createRouter() {
       {
         path: loginPath,
         name: 'login',
+        meta: { hiddenFooter: true },
         component: Login,
       },
       ...accountRoutes,
