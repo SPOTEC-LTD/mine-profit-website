@@ -4,7 +4,8 @@
     <BaseContainer>
       <div class="banner">
         <div>
-          <img class="banner-text-img" src="@/assets/help/banner-text.png" alt="" />
+          <img v-if="isChinese" class="banner-text-img" src="@/assets/help/banner-text.png" alt="" />
+          <img v-if="!isChinese" class="banner-text-en-img" src="@/assets/help/banner-text-en.png" alt="" />
         </div>
         <AInput
           v-model="searchValue"
