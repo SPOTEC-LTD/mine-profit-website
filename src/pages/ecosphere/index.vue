@@ -1,44 +1,15 @@
 <template>
-  <div>
-    <BaseContainer class="background-container">
-      <div class="top-content">
-        <div>
-          <img :src="bannerFontsImg" class="banner-fonts" alt="" />
-          <div class="scan-download">
-            <div class="qrcode">
-              <QRcode :value="`${mobileSiteHost}/download/pre-dispatch`" />
-            </div>
-            <div class="download-text">
-              <div class="apple-download">
-                <img src="@/assets/download/apple.png" alt="" />
-                <div>{{ $t('appVersion') }} {{ iosVersion }}</div>
-              </div>
-              <div class="android-download">
-                <img src="@/assets/download/android.png" alt="" />
-                <div>{{ $t('appVersion') }} {{ androidVersion }}</div>
-              </div>
-              <div class="download-right-now">{{ $t('downloadRightNow') }}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </BaseContainer>
-    <BaseContainer>
-      <HashRateEcosphere />
-      <C2CMarket :isC2CAnimate="isC2CAnimate" />
-      <StakingMarket :isStakingAnimate="isStakingAnimate" />
-      <CooperationPartner />
-    </BaseContainer>
-  </div>
+  <BaseContainer>
+    <HashRateEcosphere />
+    <C2CMarket :isC2CAnimate="isC2CAnimate" />
+    <StakingMarket :isStakingAnimate="isStakingAnimate" />
+    <CooperationPartner />
+  </BaseContainer>
 </template>
 
 <script>
-import { fetchAppVersion } from '@/api';
 import throttle from 'lodash/throttle';
-
-import QRcode from '@/shared/components/qrcode';
 import BaseContainer from '@/shared/components/BaseContainer';
-import bannerFontsImg from '@/assets/ecosphere/bannerfonts.png';
 import HashRateEcosphere from '@/pages/ecosphere/HashRateEcosphere';
 import StakingMarket from '@/pages/ecosphere/StakingMarket';
 import C2CMarket from '@/pages/ecosphere/C2CMarket';
@@ -46,33 +17,14 @@ import CooperationPartner from '@/pages/ecosphere/CooperationPartner';
 
 export default {
   components: {
-    QRcode,
     BaseContainer,
     HashRateEcosphere,
     C2CMarket,
     StakingMarket,
     CooperationPartner,
   },
-
-  async asyncData() {
-    try {
-      const { body: { android, iOS } } = await fetchAppVersion();
-      const androidVersion = android.version;
-      const iosVersion = iOS.version;
-      return {
-        androidVersion,
-        iosVersion,
-      };
-    } catch (error) {
-      console.log('error', error);
-    }
-    return {};
-  },
   data() {
     return {
-      bannerFontsImg,
-      iosVersion: '',
-      androidVersion: '',
       mobileSiteHost: process.env.MOBILE_SITE_HOST,
       isC2CAnimate: false,
       isStakingAnimate: false,
