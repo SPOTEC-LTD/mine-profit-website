@@ -1,7 +1,7 @@
 import numberUtils from 'aa-utils/lib/numberUtils';
 import InfoModal from '@/shared/components/InfoModal';
 import CellValue from '@/pages/Account/HashRate/List/components/CellValue';
-// import ProportionDetails from '../ProportionDetails';
+import ProportionDetails from './ProportionDetails';
 import styles from './index.less?module';
 
 const ProportionCellValue = {
@@ -21,7 +21,11 @@ const ProportionCellValue = {
               disabled={!hasPromotionBonus}
               scopedSlots={{
                 content: () => (
-                  <span>adfasf</span>
+                  <ProportionDetails
+                    promotionBonus={promotionBonus}
+                    proportion={proportion}
+                    levelName={levelName}
+                  />
                 ),
               }}>
               <span>

@@ -145,4 +145,6 @@ export default {
   payRedeemSuccess: '赎回成功！',
   operationSuccess: '操作成功',
   pledgeRemainCount: '今日还能进行质押取消操作{pledgeCount}次',
+  additionRatio: '加成比例',
+  additionTime: '加成时间',
 };

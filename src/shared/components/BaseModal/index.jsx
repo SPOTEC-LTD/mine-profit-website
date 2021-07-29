@@ -33,6 +33,7 @@ const BaseModal = {
         <Modal
           class="base-modal"
           centered
+          width={300}
           footer={null}
           visible={this.visible}
           closeIcon={<CancelledOutlined onClick={this.close} />}

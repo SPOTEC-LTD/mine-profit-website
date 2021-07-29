@@ -4,9 +4,9 @@ import {
   GET_HASHRATE_PLEDGES_SOURCE_INFO,
   UPDATE_HASHRATE_PLEDGES_SOURCE_INFO,
 } from '@/modules/account/hashRate';
-import InfoModal from '@/shared/components/InfoModal';
+import BaseModal from '@/shared/components/BaseModal';
 import CellValue from '@/pages/Account/HashRate/List/components/CellValue';
-// import PledgesHashrateDetails from '../PledgesHashrateDetails';
+import PledgesHashrateDetails from './PledgesHashrateDetails';
 
 const PledgesHashrateCellValue = {
   props: {
@@ -32,17 +32,18 @@ const PledgesHashrateCellValue = {
       <CellValue
         scopedSlots={{
           value: () => (
-            <InfoModal
+            <BaseModal
+              title={this.data.productTemplateName}
               disabled={this.data.amount <= 0}
               onOpen={this.onOpen}
               onClosed={this.onClosedModal}
               hiddenButton
               close-on-click-overlay
               scopedSlots={{
-                content: () => '<PledgesHashrateDetails loading={this.loading} />',
+                content: () => <PledgesHashrateDetails loading={this.loading} />,
               }}>
               <span class="modal-text-link">{this.data.amount}</span>
-            </InfoModal>
+            </BaseModal>
           ),
         }}
         unit={this.data.unit}
