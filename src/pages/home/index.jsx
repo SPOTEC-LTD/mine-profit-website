@@ -4,6 +4,7 @@ import ProductMarket from '@/pages/home/ProductMarket';
 import BlockChainDate from '@/pages/home/BlockChainDate';
 import BaseContainer from '@/shared/components/BaseContainer';
 import { HOME, GET_MARKETS_LIST, GET_HOME_PRODUCT_LIST } from '@/modules/home';
+import RankEnter from '@/pages/home/RankEnter';
 import Banner from './Banner';
 import Announcements from './Announcements';
 import CoinMarkets from './CoinMarkets';
@@ -50,6 +51,9 @@ const Home = {
           <Announcements announcementList={this.announcementList} />
           <CoinMarkets data={this.marketsList} loading={this.marketsLoading} />
           <ProductMarket productList={this.productList} />
+        </BaseContainer>
+        <RankEnter />
+        <BaseContainer>
           <BlockChainDate />
         </BaseContainer>
       </div>

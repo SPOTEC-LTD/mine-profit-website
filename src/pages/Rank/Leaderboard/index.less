@@ -1,0 +1,119 @@
+@import '@/shared/styles/variables.less';
+
+.leaderboard {
+  color: @white;
+}
+
+.duration {
+  padding-top: 30px;
+  padding-left: 500px;
+  height: 116px;
+  background: url('~@/assets/rank/rank-duration.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.duration-value {
+  font-weight: 600;
+  font-size: @font-size__18;
+  line-height: 25px;
+}
+
+.duration-scope {
+  font-size: @font-size-base;
+  line-height: 20px;
+}
+
+.my-ranking {
+  padding: 69px 79px 42px;
+  height: 176px;
+  background: url('~@/assets/rank/my-ranking.png');
+  background-size: 1220px auto;
+  background-repeat: no-repeat;
+  background-position-x: -10px;
+}
+
+.en-my-ranking {
+  background: url('~@/assets/rank/en-my-ranking.png');
+  background-size: 1220px auto;
+  background-repeat: no-repeat;
+  background-position-x: -10px;
+}
+
+.check-reward-set {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 38px;
+  font-size: @font-size__17;
+  line-height: 24px;
+  height: 58px;
+  border-radius: 7px;
+  background: linear-gradient(180deg, rgba(152, 123, 76, 0.4) 0%, rgba(123, 97, 63, 0.4) 100%);
+  box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.5);
+  border: 1px solid @color__e2bd77;
+
+  :global {
+    .spotecicon {
+      width: 10px;
+      height: 5px;
+      transform: rotateZ(-90deg);
+      margin-right: 6px;
+    }
+  }
+}
+
+.reward-img {
+  position: absolute;
+  bottom: 8px;
+  right: 25px;
+  width: 194px;
+  height: 124px;
+}
+
+.all-ranking {
+  padding: 89px 79px 29px;
+  height: 537px;
+  background: url('~@/assets/rank/all-ranking.png');
+  background-size: 1220px auto;
+  background-repeat: no-repeat;
+  background-position-x: -10px;
+
+  :global {
+    .rank-card-wrapper {
+      margin-bottom: 14px;
+    }
+  }
+}
+
+.en-all-ranking {
+  background: url('~@/assets/rank/en-all-ranking.png');
+  background-size: 1220px auto;
+  background-repeat: no-repeat;
+  background-position-x: -10px;
+}
+
+.view-history-box {
+  text-align: center;
+  margin-top: 14px;
+}
+
+.view-history {
+  display: inline-block;
+  cursor: pointer;
+  font-size: @font-size__20;
+  line-height: 28px;
+  padding-top: 11px;
+  width: 182px;
+  height: 50px;
+  background: url('~@/assets/rank/history-rank.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.rules-text {
+  margin-top: 10px;
+  font-size: @font-size-lg;
+  line-height: 30px;
+  color: @color__8fadd9;
+}
