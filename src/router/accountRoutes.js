@@ -1,5 +1,6 @@
 import AccountDetail from '@/pages/Account/Detail';
 import HashRateList from '@/pages/Account/HashRate/List';
+import HashRateTurnOn from '@/pages/Account/HashRateTurnOn';
 import HashRateCoupons from '@/pages/Account/HashRateCoupons';
 import BindPhone from '@/pages/Account/BindPhone';
 import BindEmail from '@/pages/Account/BindEmail';
@@ -34,8 +35,14 @@ export default [
   },
   {
     path: urls.accountHashRateListPath,
-    name: 'HashRateList',
+    name: 'hashRateList',
     component: HashRateList,
+  },
+  {
+    path: urls.hashRateTurnOnPath,
+    name: 'hashRateTurnOn',
+    meta: { showBreadcrumb: true },
+    component: HashRateTurnOn,
   },
   {
     path: urls.hashRateCouponsPath,

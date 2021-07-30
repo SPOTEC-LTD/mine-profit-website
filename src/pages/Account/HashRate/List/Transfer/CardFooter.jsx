@@ -61,14 +61,14 @@ const CardFooter = {
       ];
     },
 
-    closeCancelModal() {
+    onCloseModal() {
       this.$refs.cancelModal.close();
     },
 
     onModalConfirm() {
       this[TRANSFER_CANCEL_ACTION]({ id: this.data.id })
         .then(() => {
-          this.closeCancelModal();
+          this.onCloseModal();
           this.$emit('refresh');
         });
     },
@@ -76,7 +76,7 @@ const CardFooter = {
     getFooterNode() {
       const dataSource = [
         {
-          onClick: this.closeCancelModal,
+          onClick: this.onCloseModal,
           label: this.$t('cancel'),
         },
         {

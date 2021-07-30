@@ -147,4 +147,7 @@ export default {
   pledgeRemainCount: '今日还能进行质押取消操作{pledgeCount}次',
   additionRatio: '加成比例',
   additionTime: '加成时间',
+  payInputPwd: '请输入交易密码',
+  payForgetPwd: '忘记交易密码?',
+  payPwdEmptyHint: '交易密码不能为空',
 };

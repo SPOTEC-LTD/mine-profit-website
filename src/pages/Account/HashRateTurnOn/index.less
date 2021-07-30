@@ -1,0 +1,46 @@
+@import "@/shared/styles/variables.less";
+
+.container {
+  width: 610px;
+}
+
+.button {
+  margin-top: 40px;
+}
+
+.form-info {
+  border: 1px solid @color__e6e6e6;
+  padding: 9px 30px;
+  margin-top: 28px;
+
+  :global {
+    .p-cell-item {
+      flex-direction: column;
+    }
+
+    .p-cell-item-label {
+      font-size: @font-size-base;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+
+      .spotecicon {
+        width: 13px;
+        height: 13px;
+        position: relative;
+        top: -1px;
+      }
+    }
+
+    .p-cell-item-value {
+      margin-top: 3px;
+      border: 1px solid @color__e6e6e6;
+      border-radius: 4px;
+      padding: 11px 12px;
+    }
+  }
+}
+
+.tips {
+  margin-top: 19px;
+}

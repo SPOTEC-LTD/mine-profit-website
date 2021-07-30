@@ -46,7 +46,6 @@ export default {
       en: enUS
     }
 
-    console.log('--', this.$route)
     return {
       anLocale: anLocalMap[this.$i18n.locale],
       hiddenFooter: this.$route.meta.hiddenFooter
