@@ -9,7 +9,7 @@ import NewWindowGuide from '@/shared/components/NewWindowGuide';
 
 import styles from './index.less?module';
 
-const WalletAssets = {
+const Assets = {
   props: { userBalance: Object },
 
   methods: {
@@ -129,4 +129,4 @@ const WalletAssets = {
   },
 };
 
-export default WalletAssets;
+export default Assets;
