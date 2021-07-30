@@ -47,12 +47,6 @@ const HashRateCoupons = {
       this[GET_COUPONS](data);
     },
 
-    finallyCouponsList() {
-      return this.couponsList.map((item, index) => {
-        return { key: index, ...item };
-      });
-    },
-
     changeCouponsStatus(value) {
       this.couponsStatus = value;
       this.getCouponsList();
@@ -116,7 +110,7 @@ const HashRateCoupons = {
             <div class={styles['status-box']}>
               <div class={{ [styles['color-red']]: status === EXPIRE }}>{getCouponsStatus(status)}</div>
               {status === EXPIRE && (
-                <InfoTooltip trigger='click' content={getExpiredReason(expirationReason)}>
+                <InfoTooltip content={getExpiredReason(expirationReason)}>
                   <InfoCircleFilled />
                 </InfoTooltip>
               )}
@@ -160,40 +154,40 @@ const HashRateCoupons = {
     ];
 
     return (
-      <div class={styles['hashrate-coupons-box']}>
-        <BaseContainer>
-          {/* TODO: 模态框 待删 */}
-          <CouponChooseModal
-            list={this.couponsList}
-            usesCouponId={this.couponId}
-            onCouponChange={this.handleCouponChange}
-          >
-            点我{this.couponId}{this.couponName}
-          </CouponChooseModal>
-          {/* TODO: 面包屑 待加 */}
-          <Select
-            class={styles['hashrate-status-select']}
-            defaultValue={COUPON_ALL}
-            onChange={this.changeCouponsStatus}
-          >
-            {getCouponsTypesList().map(({ name, value }, index) => (
-              <Select.Option
-                key={index}
-                value={value}
-              >
-                {name}
-              </Select.Option>
-            ))}
-          </Select>
-          <Table
-            rowClassName={({ status }) => (status === EXPIRE ? styles['gray-row'] : '')}
-            columns={columns}
-            dataSource={this.finallyCouponsList()}
-            loading={this.getListLoading}
-            pagination={false}
-          />
-        </BaseContainer>
-      </div>
+      <BaseContainer class={['select-table', styles['hashrate-coupons-box']]}>
+        {/* TODO: 模态框 待删 */}
+        <CouponChooseModal
+          list={this.couponsList}
+          usesCouponId={this.couponId}
+          onCouponChange={this.handleCouponChange}
+        >
+          点我{this.couponId}{this.couponName}
+        </CouponChooseModal>
+        {/* TODO: 面包屑 待加 */}
+        <Select
+          class={styles['hashrate-status-select']}
+          defaultValue={COUPON_ALL}
+          onChange={this.changeCouponsStatus}
+        >
+          {getCouponsTypesList().map(({ name, value }, index) => (
+            <Select.Option
+              key={index}
+              value={value}
+            >
+              {name}
+            </Select.Option>
+          ))}
+        </Select>
+        <Table
+          class='blue-table'
+          rowKey={(_, index) => index}
+          rowClassName={({ status }) => (status === EXPIRE ? styles['gray-row'] : '')}
+          columns={columns}
+          dataSource={this.couponsList}
+          loading={this.getListLoading}
+          pagination={false}
+        />
+      </BaseContainer>
     );
   },
 };

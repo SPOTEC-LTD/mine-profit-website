@@ -7,9 +7,20 @@ import SetDealPassword from '@/pages/Account/SetDealPassword';
 import SetLoginPassword from '@/pages/Account/SetLoginPassword';
 import RealNameAuth from '@/pages/Account/RealNameAuth';
 import Orders from '@/pages/Account/Orders';
+import Transactions from '@/pages/Account/Detail/Wallet/Transactions';
 import * as urls from './consts/urls';
 
+const walletRoutes = [
+  {
+    path: urls.transactionsPath,
+    meta: { showBreadcrumb: true },
+    name: 'transactions',
+    component: Transactions,
+  },
+];
+
 export default [
+  ...walletRoutes,
   {
     path: urls.accountDetailPath,
     name: 'account',

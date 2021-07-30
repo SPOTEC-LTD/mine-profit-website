@@ -1,0 +1,32 @@
+@import "@/shared/styles/variables.less";
+
+.filter-group {
+  padding-bottom: 20px;
+  display: flex;
+
+  :global {
+    .mp-select {
+      margin-right: 30px;
+
+      .mp-select-selection__rendered {
+        color: @color__242424;
+        font-size: @font-size-lg;
+        font-weight: 500;
+      }
+    }
+
+    .mp-calendar-picker-input.mp-input {
+      width: 162px;
+    }
+  }
+}
+
+.date-picker-box {
+  margin-right: 30px;
+  color: @color__242424;
+  font-size: @font-size-lg;
+}
+
+.middle-to {
+  padding: 0 8px;
+}

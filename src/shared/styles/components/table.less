@@ -1,0 +1,28 @@
+@import '@/shared/styles/variables.less';
+
+.blue-table {
+  .mp-table-thead > tr > th {
+    background: @color__dde5f3;
+    color: @color__1d1d1d;
+    font-size: @font-size-sm;
+    line-height: 18px;
+    padding: 4px 0;
+  }
+
+  .mp-table-tbody > tr > td {
+    color: @color__1d1d1d;
+    font-size: @font-size-base;
+    line-height: 20px;
+    padding: 15px;
+  }
+
+  .mp-table-thead > tr > th,
+  .mp-table-tbody > tr > td {
+    border-bottom: 1px solid @color__e6e6e6;
+  }
+
+  .mp-table-footer {
+    background-color: @white;
+    padding: 0;
+  }
+}

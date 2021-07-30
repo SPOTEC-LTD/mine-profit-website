@@ -1,6 +1,7 @@
 import Card from '../components/Card';
 import WidgetTitle from '../components/WidgetTitle';
-import WalletAssets from './WalletAssets';
+import Assets from './Assets';
+import Detail from './Detail';
 
 import styles from './index.less?module';
 
@@ -12,8 +13,8 @@ const Wallet = {
         <WidgetTitle>{this.$t('mineTitleWallet')}</WidgetTitle>
         <Card>
           <div class={styles.wallet}>
-            <WalletAssets class={styles['wallet-box']} userBalance={this.userBalance} />
-            <div class={styles['wallet-box']}>{this.$t('walletDetail')}</div>
+            <Assets class={styles['wallet-box']} userBalance={this.userBalance} />
+            <Detail class={styles['wallet-box']} />
           </div>
         </Card>
       </div>
