@@ -7,6 +7,7 @@ import './index.less';
 const BaseContainer = {
   props: {
     contentClassName: String,
+    className: String,
     breadcrumb: { type: Boolean, default: true },
   },
   computed: {
@@ -30,7 +31,7 @@ const BaseContainer = {
   render() {
     const { showBreadcrumb } = this.$route.meta;
     return (
-      <div class="container">
+      <div class={['container', this.className]}>
         <div class={['content', this.contentClassName]}>
           {
             this.breadcrumb && showBreadcrumb && (

@@ -31,7 +31,7 @@ const KeepTabs = {
 
     onChange(newActiveKey) {
       if (!this.value) {
-        this.activeName = newActiveKey;
+        this[this.activeKeyName] = newActiveKey;
         this.asyncUrlQuery(newActiveKey);
       }
 
@@ -40,7 +40,7 @@ const KeepTabs = {
   },
 
   render() {
-    const resultValue = isUndefined(this.value) ? this.activeKeyName : this.value;
+    const resultValue = isUndefined(this.value) ? this[this.activeKeyName] : this.value;
     return (
       <Tabs
         animated={false}

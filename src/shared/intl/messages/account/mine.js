@@ -79,4 +79,5 @@ export default {
   girl: '女',
   videoAuthRequestText: '请按照以下方式录制一段视频并上传录制时请说出以下认证数字',
   uploadVideo: '上传视频',
+  videoLengthPrompt: '*视频长度请控制在10秒内',
 };

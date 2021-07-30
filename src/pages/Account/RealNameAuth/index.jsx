@@ -426,6 +426,7 @@ const RealNameAuth = {
                       </Spin>
                     </Upload>
                   </div>
+                  <div class={styles['video-length-prompt']}>{this.$t('videoLengthPrompt')}</div>
                 </Item>
               </FormModel>
             </div>

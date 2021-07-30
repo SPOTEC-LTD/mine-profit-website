@@ -9,6 +9,7 @@ import MeetError from '@/pages/500';
 import Download from '@/pages/download';
 import { location } from '@/shared/services/location';
 import AboutUs from '@/pages/AboutUs';
+import Rank from '@/pages/Rank';
 import { buildRoutes } from './utils';
 import accountRoutes from './accountRoutes';
 import newsRoutes from './newsRoutes';
@@ -59,6 +60,11 @@ export function createRouter() {
         name: 'download',
         meta: { hiddenFooter: true },
         component: Download,
+      },
+      {
+        path: urls.rankPath,
+        name: 'rank',
+        component: Rank,
       },
       {
         path: '/500',

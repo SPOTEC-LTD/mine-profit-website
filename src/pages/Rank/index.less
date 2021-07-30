@@ -1,0 +1,245 @@
+@import '@/shared/styles/variables.less';
+
+.rank-top-bg {
+  height: 409px;
+  background-image: url('~@/assets/rank/rank-top-bg.png');
+  background-size: cover;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.rank-content-bg {
+  background-color: @color__182742;
+}
+
+.rank-top-content {
+  position: relative;
+
+  :global {
+    .rank-left-icon-enter-active :local {
+      opacity: 0;
+      animation: translate-from-left 0.6s;
+      animation-delay: 0.6s;
+    }
+
+    .rank-left-icon-leave-active :local {
+      animation: translate-to-right 1s;
+      animation-delay: 0.5s;
+    }
+
+    .rank-right-icon-enter-active :local {
+      opacity: 0;
+      animation: translate-from-right 0.6s;
+      animation-delay: 0.6s;
+    }
+
+    .rank-right-icon-leave-active :local {
+      animation: translate-to-left 1s;
+      animation-delay: 0.5s;
+    }
+
+    .rank-icon-enter-active :local {
+      opacity: 0;
+      animation: fadeInDown 0.3s;
+    }
+
+    .rank-icon-leave-active :local {
+      animation: fadeOutUp 0.3s;
+    }
+  }
+}
+
+.rank-content {
+  padding: 60px 0 10px;
+  height: 1144px;
+  background-image: url('~@/assets/rank/rank-content-bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  :global {
+    .mp-tabs-bar {
+      border-bottom: none;
+    }
+
+    .mp-tabs-nav {
+      width: 100%;
+      text-align: center;
+    }
+
+    .mp-tabs.mp-tabs-card .mp-tabs-card-bar .mp-tabs-nav-container {
+      height: 64px;
+    }
+
+    .mp-tabs.mp-tabs-card .mp-tabs-card-bar .mp-tabs-tab {
+      width: 167px;
+      height: 64px;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.5);
+      padding: 11px 0 0;
+      background: url('~@/assets/rank/tab-button.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .mp-tabs.mp-tabs-card .mp-tabs-card-bar .mp-tabs-tab-active {
+      background: url('~@/assets/rank/tab-button-active.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+.tab-button {
+  width: 118px;
+  height: 42px;
+}
+
+.income-icon,
+.angel-icon,
+.new-purchase-icon {
+  position: absolute;
+  top: 36px;
+  width: 257px;
+  height: 283px;
+  left: calc(50% - 136px);
+  z-index: @z-index__1;
+}
+
+.income-left-icon {
+  position: absolute;
+  top: 84px;
+  left: 148px;
+  width: 135px;
+  height: 187px;
+}
+
+.income-right-icon {
+  position: absolute;
+  top: 75px;
+  right: 177px;
+  width: 128px;
+  height: 179px;
+}
+
+.angel-left-icon {
+  position: absolute;
+  top: 50px;
+  left: 153px;
+  width: 136px;
+  height: 224px;
+}
+
+.angel-right-icon {
+  position: absolute;
+  top: 55px;
+  right: 237px;
+  width: 126px;
+  height: 184px;
+}
+
+.new-purchase-left-icon {
+  position: absolute;
+  top: 87px;
+  left: 147px;
+  width: 136px;
+  height: 170px;
+}
+
+.new-purchase-right-icon {
+  position: absolute;
+  top: 82px;
+  right: 207px;
+  width: 165px;
+  height: 161px;
+}
+
+.top-name {
+  position: absolute;
+  top: 10px;
+  left: calc(50% - 162px);
+  width: 324px;
+  height: 107px;
+}
+
+@keyframes fadeInDown {
+  from {
+    transform: translate3d(0, -22%, 0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    transform: translate3d(0, -22%, 0);
+    opacity: 0;
+  }
+}
+
+.fadeOutUp {
+  opacity: 0;
+  animation: 0.6s;
+  animation-name: fadeOutUp;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+@keyframes translate-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes translate-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes translate-to-left {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(180px);
+  }
+}
+
+@keyframes translate-to-right {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(-180px);
+  }
+}

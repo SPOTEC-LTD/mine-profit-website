@@ -9,6 +9,7 @@ import account from './account';
 import productMarketing from './productMarketing';
 import hashRateCoupons from './hashRateCoupons';
 import pageName from './pageName';
+import rank from './rank';
 
 export default {
   ...pageName,
@@ -22,4 +23,5 @@ export default {
   ...account,
   ...productMarketing,
   ...hashRateCoupons,
+  ...rank,
 };
