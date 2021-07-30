@@ -4,9 +4,6 @@ import './index.less';
 
 const DatePickerWrap = {
   inheritAttrs: false,
-  props: {
-    value: Number,
-  },
   render() {
     return (
       <span>
@@ -26,7 +23,5 @@ const DatePickerWrap = {
     );
   },
 };
-
-DatePickerWrap.Option = DatePicker.Option;
 
 export default DatePickerWrap;

@@ -14,12 +14,6 @@ const dateTimeFormat = `${dateFormat} HH:mm`;
 
 const DetailTable = {
   props: {
-    query: {
-      type: Object,
-      default() {
-        return {};
-      },
-    },
     columnsConfig: {
       type: Array,
       default() {
@@ -47,7 +41,13 @@ const DetailTable = {
     ...mapActions(WALLET, [GET_WALLET_DETAIL]),
 
     getWalletDetailList(options = {}) {
-      const { reset } = options;
+      const { reset, query = {} } = options;
+      Object.keys(query).forEach(key => {
+        if (!query[key]) {
+          delete query[key];
+        }
+      });
+      this.query = query;
       const data = {
         pageSize: 10,
         pageNum: reset ? 1 : this.pageNum,
@@ -58,8 +58,8 @@ const DetailTable = {
 
     finallyColumns() {
       const ledgerTagMap = {
-        [PROGRESSING]: <span>进行中</span>,
-        [FAIL]: <span class={styles.fail}>失败</span>,
+        [PROGRESSING]: <span>{this.$t('walletStatusOngoing')}</span>,
+        [FAIL]: <span class={styles.fail}>{this.$t('walletStatusFailure')}</span>,
         [SUCCESS]: <CorrectOutlined />,
       };
 
@@ -95,7 +95,7 @@ const DetailTable = {
 
     handlePageChange(page) {
       this.pageNum = page;
-      this.getWalletDetailList();
+      this.getWalletDetailList({ query: this.query });
     },
   },
 

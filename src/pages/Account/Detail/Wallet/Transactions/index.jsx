@@ -8,40 +8,29 @@ import DetailTable from '../components/DetailTable';
 
 import styles from './index.less?module';
 
-const COIN_TYPE = 'coinType';
+const CHAIN_TYPE = 'chainType';
 const LEDGER_TYPE = 'ledgerType';
 const LEDGER_STATUS = 'ledgerStatus';
 
 const Transactions = {
-  data() {
-    return {
-      ledgerType: '',
-      chainType: '',
-      ledgerStatus: '',
-      startTime: null,
-      endTime: null,
-    };
-  },
-
   methods: {
-    changeCouponsStatus(value) {
-      this.couponsStatus = value;
-      this.$refs.detailTableRef.getWalletDetailList();
-    },
-    selectChange(str, val) {
-      this[str] = val;
-      this.$nextTick(() => { this.$refs.detailTableRef.getWalletDetailList({ reset: true }); });
-    },
-    getQuery() {
-      return {
-        ledgerType: this.ledgerType || null,
-        chainType: this.chainType || null,
-        status: this.ledgerStatus || null,
+    getWalletDetail() {
+      const query = {
+        ledgerType: this.ledgerType,
+        chainType: this.chainType,
+        status: this.ledgerStatus,
+        startTime: this.startTime,
+        endTime: this.endTime,
       };
+      this.$refs.detailTableRef.getWalletDetailList({ reset: true, query });
+    },
+    selectChange(paramName, val) {
+      this[paramName] = val;
+      this.getWalletDetail();
     },
     dateChange(date, timeType) {
       this[timeType] = new Date(date).valueOf();
-      this.$nextTick(() => { this.$refs.detailTableRef.getWalletDetailList({ reset: true }); });
+      this.getWalletDetail();
     },
     disabledStartDate(startTime) {
       const { endTime } = this;
@@ -60,14 +49,6 @@ const Transactions = {
   },
 
   render() {
-    const query = {
-      ledgerType: this.ledgerType || null,
-      chainType: this.chainType || null,
-      status: this.ledgerStatus || null,
-      startTime: this.startTime || null,
-      endTime: this.endTime || null,
-    };
-
     const columns = [
       { title: this.$t('transactionTime') },
       { title: this.$t('transactionType') },
@@ -75,7 +56,7 @@ const Transactions = {
       { title: this.$t('transactionStatus') },
     ];
 
-    const coinTypeList = [
+    const chainTypeList = [
       { text: this.$t('walletAllCoins'), value: HASH_RATE_ALL },
       { text: HASH_RATE_USDT, value: HASH_RATE_USDT },
       { text: HASH_RATE_BTC, value: HASH_RATE_BTC },
@@ -84,7 +65,7 @@ const Transactions = {
 
     const dropdownList = [
       { name: LEDGER_TYPE, optionsList: getLedgerTypeList(), defaultValue: WALLET_TYPE_ALL },
-      { name: COIN_TYPE, optionsList: coinTypeList, defaultValue: HASH_RATE_ALL },
+      { name: CHAIN_TYPE, optionsList: chainTypeList, defaultValue: HASH_RATE_ALL },
       { name: LEDGER_STATUS, optionsList: getLedgerStatusList(), defaultValue: WALLET_STATUS_ALL },
     ];
 
@@ -93,13 +74,11 @@ const Transactions = {
         <div class={['select-table', styles['filter-group']]}>
           <div class={styles['date-picker-box']}>
             <DatePicker
-              value={this.startTime}
               disabledDate={this.disabledStartDate}
               onChange={(_, dateString) => this.dateChange(dateString, 'startTime')}
             />
-            <span class={styles['middle-to']}>至</span>
+            <span class={styles['middle-to']}>{this.$t('to')}</span>
             <DatePicker
-              value={this.endTime}
               disabledDate={this.disabledEndDate}
               onChange={(_, dateString) => this.dateChange(dateString, 'endTime')}
             />
@@ -125,7 +104,6 @@ const Transactions = {
         <DetailTable
           ref='detailTableRef'
           columnsConfig={columns}
-          query={query}
         />
       </BaseContainer>
     );

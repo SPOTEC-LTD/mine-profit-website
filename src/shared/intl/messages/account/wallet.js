@@ -29,4 +29,5 @@ export default {
   coinNumber: '数量',
   walletType: '类型',
   time: '时间',
+  to: '至',
 };
