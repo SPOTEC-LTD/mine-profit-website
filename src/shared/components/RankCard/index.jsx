@@ -13,6 +13,19 @@ import defaultAvatar from '@/assets/rank/defaultAvatar.png';
 
 import './index.less';
 
+const topImgMap = {
+  1: rankTop1,
+  2: rankTop2,
+  3: rankTop3,
+  4: rankTop4,
+  5: rankTop5,
+  6: rankTop6,
+  7: rankTop7,
+  8: rankTop8,
+  9: rankTop9,
+  10: rankTop10,
+};
+
 const RankCard = {
   props: {
     position: {
@@ -40,40 +53,7 @@ const RankCard = {
     let imageSrc;
     const topStyle = position > 3 ? 'top-10' : 'top-3';
     if (isInRank) {
-      switch (position) {
-        case 1:
-          imageSrc = rankTop1;
-          break;
-        case 2:
-          imageSrc = rankTop2;
-          break;
-        case 3:
-          imageSrc = rankTop3;
-          break;
-        case 4:
-          imageSrc = rankTop4;
-          break;
-        case 5:
-          imageSrc = rankTop5;
-          break;
-        case 6:
-          imageSrc = rankTop6;
-          break;
-        case 7:
-          imageSrc = rankTop7;
-          break;
-        case 8:
-          imageSrc = rankTop8;
-          break;
-        case 9:
-          imageSrc = rankTop9;
-          break;
-        case 10:
-          imageSrc = rankTop10;
-          break;
-        default:
-          break;
-      }
+      imageSrc = topImgMap[position];
     }
     return (
       <div
