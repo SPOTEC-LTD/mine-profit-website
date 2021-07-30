@@ -25,6 +25,7 @@
             {{ $t('information') }}
           </div>
           <ALink
+            v-if="!isEnLanguage"
             :to="{ path: '/newsAnnouncement', query: { type: '2' } }"
             :isReload="true"
             class="page-footer-nav-item"

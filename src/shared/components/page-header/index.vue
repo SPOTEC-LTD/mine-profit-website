@@ -27,7 +27,7 @@ import locationServices from '@/shared/services/location/locationServices';
 import { RECOMMEND, NEWSLETTER, ANNOUNCEMENT } from '@/shared/consts/newsType';
 import { I18N } from '@/shared/intl/i18n';
 import Link from '@/shared/components/link';
-
+import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 import NavLink from './nav-link.vue';
 import NavMenu from './nav-menu.jsx';
 import LanguageMenu from './language-menu.jsx';
@@ -52,6 +52,7 @@ export default {
         },
         {
           href: '/newsAnnouncement',
+          hidden: !getIsChinese(),
           name: this.$t('newsletter'),
           type: NEWSLETTER,
           description: this.$t('newsletterDesc'),
