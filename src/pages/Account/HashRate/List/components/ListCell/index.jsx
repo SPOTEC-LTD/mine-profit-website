@@ -22,14 +22,14 @@ const ListCell = {
         {
           this.dataSource.map(item => (
             <div class={classNames('p-cell-item', this.className)}>
-              <div>
+              <div class="p-cell-item-label">
                 <CellTitle
                   title={item.label}
                   showMention={item.showMention}
                   notificationContent={item.notificationContent}
                 />
               </div>
-              <div>{item.value}</div>
+              <div class="p-cell-item-value">{item.value}</div>
             </div>
           ))
         }

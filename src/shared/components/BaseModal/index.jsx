@@ -1,10 +1,15 @@
 import { Modal } from 'ant-design-vue';
 import CancelledOutlined from 'ahoney/lib/icons/CancelledOutlined';
 import omit from 'lodash/omit';
+import isUndefined from 'lodash/isUndefined';
 
 import './index.less';
 
 const BaseModal = {
+  props: {
+    value: Boolean,
+  },
+
   data() {
     return {
       visible: false,
@@ -24,6 +29,7 @@ const BaseModal = {
   },
 
   render() {
+    const resultVisible = isUndefined(this.value) ? this.visible : this.value;
     return (
       <span>
         {
@@ -35,7 +41,7 @@ const BaseModal = {
           centered
           width={300}
           footer={null}
-          visible={this.visible}
+          visible={resultVisible}
           closeIcon={<CancelledOutlined onClick={this.close} />}
           {...{
             on: omit(this.$listeners, ['open', 'close']),

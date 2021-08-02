@@ -10,6 +10,7 @@ import { OFF } from '@/pages/Account/HashRate/consts/shutdownStatus';
 import { PRODUCT } from '@/pages/Account/HashRate/consts/hashrateType';
 import { getShutDownReasonMap } from '@/pages/Account/HashRate/consts/shutdownReason';
 import PowerOffButton from '@/shared/components/PowerOffButton';
+import { hashRateTurnOnPath } from '@/router/consts/urls';
 import FooterLayout from '../components/FooterLayout';
 import StatusTag from '../components/StatusTag';
 import styles from './index.less?module';
@@ -24,7 +25,7 @@ const CardFooter = {
           label: this.$t('hashrateOpen'),
           icon: <CircleShutdownOutlined />,
           onClick: () => {
-            locationServices.push('HashRateTurnOnPath', { params: { productTemplateId: data.id } });
+            locationServices.push(hashRateTurnOnPath, { params: { productTemplateId: data.id } });
           },
         },
         {
