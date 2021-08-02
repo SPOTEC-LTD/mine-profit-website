@@ -29,6 +29,8 @@ export const recommendDetailPath = `${newsPath}/recommendDetail/:id`;
 export const announcementDetailPath = `${newsPath}/announcementDetail/:id`;
 
 // ==== officialMarketingPaths
-export const marketingPaths = '/productMarketing';
+export const marketingPaths = '/hashRateMarket';
 export const officialMarketingPath = `${marketingPaths}/officialMarketing`;
-export const c2cMarketingPath = `${marketingPaths}/c2cMarketing`;
+export const c2cMarketingPath = `${marketingPaths}/marketC2CMarket`;
+export const officialDetailsPath = `${officialMarketingPath}/marketHashDetail`;
+export const c2cDetailsPath = `${c2cMarketingPath}/marketHashDetail`;

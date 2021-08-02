@@ -3318,10 +3318,10 @@
   resolved "https://registry.npm.taobao.org/@xtuc/long/download/@xtuc/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha1-0pHGpOl5ibXGHZrPOWrk/hM6cY0=
 
-aa-utils@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/aa-utils/-/aa-utils-1.0.5.tgz#dc9e7a2e51babe3e22e5f241426533907baf011d"
-  integrity sha512-SJyHYcAsxqVX5MNj0SZkklnor81TeSW4zISQIPn2HKJpMZQh9yEgJUpWgy0igxh7Q4aW1ExJWOWbZX2yBduJ2w==
+aa-utils@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/aa-utils/-/aa-utils-1.0.6.tgz#657138da3ee55e8e34ac66fe5315942957aa1b07"
+  integrity sha512-oqJnyXoY/gpJlfUutGVPdWM8HI9ijIcXqWp3Nrzig40C2rvitwA4St+XTQuA09KrDS2irsxGpYVcPVW5JQhhgw==
   dependencies:
     antd "^4.6.6"
     classnames "^2.2.6"

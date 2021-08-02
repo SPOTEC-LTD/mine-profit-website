@@ -6,7 +6,7 @@ const PageButton = {
   render() {
     return (
       <div class="page-button-wrap">
-        <BaseContainer breadcrumb={false}>
+        <BaseContainer hasBreadcrumb={false}>
           <div class="page-button-content">
             <div>{this.$scopedSlots.leftContent && this.$scopedSlots.leftContent()}</div>
             <div class="content-right">
