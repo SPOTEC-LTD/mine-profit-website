@@ -25,7 +25,7 @@ const MarketNewBuyBuff = {
               <span class="market-new-buy-day">{this.$t('day')}</span>
             </div>
           </div>
-          <div class={['day-rate', 'white-day-rate']} >
+          <div class="day-rate white-day-rate" >
             <span>{this.$t('additionRatio')}</span>
             <div>
               <span>{this.buffRate}</span>

@@ -34,7 +34,7 @@ const MarketRenewBuff = {
               <span class="day">{this.$t('day')}</span>
             </div>
           </div>
-          <div class={['day-rate', 'white-day-rate']}>
+          <div class="day-rate white-day-rate">
             <span>{this.$t('renewalDialogRenewableHashrate')}</span>
             <div>
               <span>{this.dupAmount}</span>

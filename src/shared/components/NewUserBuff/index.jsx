@@ -25,7 +25,7 @@ const NewUserBuff = {
   },
 
   mounted() {
-    this.time = getNewRegisterTime()?.countDownTime;
+    this.time = getNewRegisterTime().countDownTime;
   },
 
   render() {
@@ -61,7 +61,7 @@ const NewUserBuff = {
               <span class="new-user-day">{ this.$t('discount') }</span>
             </div>
           </div>
-          <div class={['day-rate', 'white-day-rate']}>
+          <div class="day-rate white-day-rate">
             <span class='limit-num'>{ this.$t('limitNum') }</span>
             <div>
               <span>{this.customerLimit}</span>
