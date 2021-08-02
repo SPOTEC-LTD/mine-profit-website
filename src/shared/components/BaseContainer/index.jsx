@@ -9,7 +9,7 @@ const BaseContainer = {
   props: {
     contentClassName: String,
     className: String,
-    breadcrumb: { type: Boolean, default: true },
+    hasBreadcrumb: { type: Boolean, default: true },
   },
   computed: {
     breadcrumbData() {
@@ -17,7 +17,6 @@ const BaseContainer = {
       const { routes } = this.$router.options;
       const resultData = [];
       path.split('/').forEach(name => {
-        console.log('name', startsWith(name, ':'));
         if (name && !startsWith(name, ':')) {
           resultData.push({
             title: this.$t(name),
@@ -36,7 +35,7 @@ const BaseContainer = {
       <div class={['container', this.className]}>
         <div class={['content', this.contentClassName]}>
           {
-            this.breadcrumb && showBreadcrumb && (
+            this.hasBreadcrumb && showBreadcrumb && (
               <Breadcrumb
                 class="page-breadcrumb"
                 scopedSlots={{

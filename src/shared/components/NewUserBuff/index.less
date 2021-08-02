@@ -1,0 +1,77 @@
+@import "@/shared/styles/variables.less";
+
+.new-user-container {
+  background-color: @white;
+  color: @color__242424;
+  font-size: @font-size-base;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.new-customer {
+  position: absolute;
+  top: -7px;
+  left: -30px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(to right, @color__f5c575, @color__fde0a6);
+  color: @color__613500;
+  font-size: @font-size-sm;
+  padding-right: 3px;
+
+  .new-customer-img {
+    width: 23px;
+    height: 23px;
+  }
+
+  .new-customer-span {
+    transform: scale(0.9);
+  }
+}
+
+.new-buy-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 15px;
+}
+
+.new-user-img {
+  width: 98px;
+  height: 98px;
+  padding-bottom: 7px;
+}
+
+.remain-time {
+  font-size: @font-size-base;
+  padding-top: 11px;
+
+  .mp-statistic-content-value {
+    color: @color__8b8b8b;
+    font-size: @font-size__13;
+  }
+}
+
+.day-rate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: @color__f9f9f9;
+  line-height: 20px;
+  padding: 4px 8px;
+  font-size: @font-size-base;
+
+  .new-user-day {
+    padding-left: 3px;
+    color: @color__8b8b8b;
+  }
+}
+
+.white-day-rate {
+  background-color: @white;
+}
+
+.limit-num {
+  max-width: 150px;
+}

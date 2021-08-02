@@ -2,7 +2,7 @@ import { mapActions, mapState } from 'vuex';
 import ProductBriefCell from '@/shared/components/ProductBriefCell';
 import { RATE_EXCHANGE, GET_RATE_EXCHANGE } from '@/modules/rateExchange';
 
-const ProductMarket = {
+const ProductListCell = {
   props: {
     productList: {
       type: Array,
@@ -46,4 +46,4 @@ const ProductMarket = {
   },
 };
 
-export default ProductMarket;
+export default ProductListCell;

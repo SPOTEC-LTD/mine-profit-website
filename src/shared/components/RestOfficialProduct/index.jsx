@@ -1,4 +1,5 @@
 import { Button } from 'ant-design-vue';
+import includes from 'lodash/includes';
 import getTimes from '@/shared/utils/getTimes';
 import getMinus from '@/shared/utils/getMinus';
 import getDivided from '@/shared/utils/getDivided';
@@ -19,7 +20,7 @@ const RestOfficialProduct = {
 
   render() {
     const { sale, total, status, onlineTime, customerLimit, tags, amount, unit } = this.productData;
-    const isNewUser = tags.includes(NEW_USER_USED);
+    const isNewUser = includes(tags, NEW_USER_USED);
     const newUserTotal = getTimes({ number: customerLimit, times: amount, decimal: 0 });
     const restCount = getMinus({ number: total, minuend: sale, decimal: 0 });
     const isSaleOut = restCount <= 0;
