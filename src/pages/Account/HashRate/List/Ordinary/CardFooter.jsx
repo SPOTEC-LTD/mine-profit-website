@@ -12,6 +12,9 @@ import { ORDINARY } from '@/pages/Account/HashRate/consts/pledgeSourceType';
 import FooterButtonGroup from '@/pages/Account/HashRate/List/components/FooterButtonGroup';
 import DateUtils from '@/shared/intl/utils/dateUtils';
 import locationServices from '@/shared/services/location/locationServices';
+import Notification from '@/shared/services/Notification';
+import { transferHashratePath } from '@/router/consts/urls';
+import { POWER_ON } from '@/shared/consts/powerStatus';
 import FooterLayout from '../components/FooterLayout';
 import AmountValue from '../components/AmountValue';
 import styles from './index.less?module';
@@ -33,6 +36,8 @@ const CardFooter = {
         [HASHRATE_NO_ENOUGH]: this.$t('hashratePledgeAllNotEnough'),
         [HASHRATE_NUMBER_NO_ENOUGH]: this.$t('hashratePledgeSameNotEnough'),
       };
+
+      Notification.error(pledgeMessageMap[isPledge]);
     },
 
     getButtonDataSource(data) {
@@ -40,7 +45,12 @@ const CardFooter = {
         {
           label: this.$t('typeTransfer'),
           icon: <SquareSwitchOutlined />,
-          onClick: () => { console.log('----typeTransfer') },
+          onClick: () => {
+            locationServices.push(transferHashratePath, {
+              params: { productTemplateId: data.productTemplateId },
+              query: { source: ORDINARY, hashrateType: data.hashrateType, hasPowerOff: POWER_ON },
+            });
+          },
         },
         {
           label: this.$t('typePledge'),

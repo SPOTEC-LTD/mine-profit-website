@@ -1,6 +1,7 @@
 import AccountDetail from '@/pages/Account/Detail';
 import HashRateList from '@/pages/Account/HashRate/List';
 import HashRateTurnOn from '@/pages/Account/HashRateTurnOn';
+import TransferHashrate from '@/pages/Account/TransferHashrate';
 import HashRateCoupons from '@/pages/Account/HashRateCoupons';
 import BindPhone from '@/pages/Account/BindPhone';
 import BindEmail from '@/pages/Account/BindEmail';
@@ -37,6 +38,12 @@ export default [
     path: urls.accountHashRateListPath,
     name: 'hashRateList',
     component: HashRateList,
+  },
+  {
+    path: urls.transferHashratePath,
+    name: 'transferHashrate',
+    meta: { showBreadcrumb: true },
+    component: TransferHashrate,
   },
   {
     path: urls.hashRateTurnOnPath,

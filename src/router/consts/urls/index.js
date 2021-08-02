@@ -10,6 +10,7 @@ export const accountDetailPath = `${accountPath}/detail`;
 export const accountOrdersPath = `${accountPath}/orders`;
 export const accountHashRateListPath = `${accountPath}/hashrateList`;
 export const hashRateTurnOnPath = `${accountPath}/hashRateTurnOn/:productTemplateId`;
+export const transferHashratePath = `${accountPath}/transferHashrate/:productTemplateId`;
 export const bindInvitationCodePath = `${accountPath}/bindInvitationCode`;
 export const hashRateCouponsPath = `${accountPath}/hashRateCoupons`;
 export const bindPhonePath = `${accountPath}/bindPhone`;

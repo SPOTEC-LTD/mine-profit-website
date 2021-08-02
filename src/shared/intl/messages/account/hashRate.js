@@ -153,4 +153,5 @@ export default {
   payPwdEmptyHint: '交易密码不能为空',
   hashRateTurnOn: '算力开机',
   inputDealPassword: '输入交易密码',
+  marketFieldHintMax: '最多',
 };

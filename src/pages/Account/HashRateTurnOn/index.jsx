@@ -11,6 +11,7 @@ import CellValue from '@/pages/Account/HashRate/List/components/CellValue';
 import ConfirmPayDialog from '@/shared/components/ConfirmPayDialog';
 import CountDownToLink from '@/shared/components/CountDownToLink';
 import { HASH_RATE, HASHRATE_POWER_ON, hashrateStatusMap } from '@/modules/account/hashRate';
+import FormContainer from '@/shared/components/FormContainer';
 import ErrorAlert from './ErrorAlert';
 import styles from './index.less?module';
 
@@ -136,12 +137,12 @@ const HashRateTurnOn = {
           <div>
             <ProductTitle name={hashRateDetail.productTemplateName} chainType={hashRateDetail.hashrateType} />
 
-            <div class={styles['form-info']}>
+            <FormContainer>
               <ListCell class='line-border-list' dataSource={this.getListData()} />
-            </div>
-            <div class={styles['form-info']}>
+            </FormContainer>
+            <FormContainer>
               <ListCell class='line-border-list' dataSource={this.getListTwoData()} />
-            </div>
+            </FormContainer>
             <ErrorAlert class={styles.tips} value={this.$t('hashrateOpenTips')} />
             <ConfirmPayDialog
               onCancel={() => {

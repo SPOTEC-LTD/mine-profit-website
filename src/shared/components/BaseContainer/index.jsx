@@ -17,7 +17,6 @@ const BaseContainer = {
       const { routes } = this.$router.options;
       const resultData = [];
       path.split('/').forEach(name => {
-        console.log('name', startsWith(name, ':'));
         if (name && !startsWith(name, ':')) {
           resultData.push({
             title: this.$t(name),
