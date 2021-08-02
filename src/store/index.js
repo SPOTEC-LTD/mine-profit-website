@@ -1,6 +1,7 @@
 import { getUserBaseInfo } from '@/api/account/userInfo';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import { UPDATE_USER_INFO } from '@/store/consts/actionType';
+import rank from '../modules/rank';
 import loadingPlugin from './loadingPlugin';
 import sign from '../modules/sign';
 import home from '../modules/home';
@@ -55,4 +56,5 @@ export const modules = {
   c2cMarket,
   investment,
   wallet,
+  rank,
 };

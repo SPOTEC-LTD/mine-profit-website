@@ -1,0 +1,70 @@
+@import '@/shared/styles/variables.less';
+
+.reward-card-wrapper {
+  overflow: hidden;
+  color: @color__242424;
+  font-size: @font-size__15;
+  line-height: 21px;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.26);
+}
+
+.card-top {
+  height: 60px;
+  background-image: url('~@/assets/rank/reward-background.png');
+  background-repeat: no-repeat;
+  background-size: 100% 60px;
+}
+
+.top-background {
+  display: block;
+  width: 100%;
+}
+
+.top-text-box {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-left: 13px;
+}
+
+.top-text {
+  margin-right: 4px;
+  color: @color__primary;
+  font-size: @font-size__20;
+  line-height: 28px;
+}
+
+.card-bottom {
+  padding: 6px 13px 5px;
+  background-color: @white;
+}
+
+.card-bottom-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+
+  > div {
+    width: 100%;
+  }
+}
+
+.reward-item-icon {
+  width: 31px;
+  height: 31px;
+  margin-right: 9px;
+}
+
+.reward-item-type {
+  color: @color__cacaca;
+  font-size: @font-size-sm;
+  line-height: 17px;
+}
+
+.reward-item-name {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}

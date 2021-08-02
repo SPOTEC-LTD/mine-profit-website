@@ -80,8 +80,8 @@ const Rank = {
       return this.isEnglish ? enBuyerTab : buyerTab;
     },
     isTotalIncomeRank() {
-      const { rankType } = this.$route.query;
-      return !rankType || rankType === INCOME;
+      const { rankType = INCOME } = this.$route.query;
+      return rankType === INCOME;
     },
     isAngelRank() {
       return this.$route.query.rankType === ANGEL;
