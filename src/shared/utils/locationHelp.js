@@ -1,3 +1,5 @@
+import locationServices from '@/shared/services/location/locationServices';
+
 // fix ie not popup
 let message;
 const beforeunloadEvent = e => {
@@ -24,6 +26,11 @@ class LocationHelp {
       listenBeforeunload();
       this.beforeunloadPrompt = true;
     }
+  }
+
+  open = (url, options) => {
+    const finalURL = locationServices.buildURL(url, options);
+    window.open(finalURL);
   }
 
   redirect(url, { notExecuteUnloadCallback = false, defaultConfirm = false } = {}) {

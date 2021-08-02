@@ -1,14 +1,14 @@
 import { Input } from 'ant-design-vue';
 import BaseModal from '@/shared/components/BaseModal';
 import ModalFooterButtonGroup from '@/shared/components/ModalFooterButtonGroup';
+import locationHelp from '@/shared/utils/locationHelp';
+import { setDealPasswordPath } from '@/router/consts/urls';
 import './index.less';
 
 const ConfirmPayDialog = {
   props: {
     show: Boolean,
     loading: Boolean,
-    title: String,
-    fromPageTitle: String,
   },
 
   data() {
@@ -19,7 +19,7 @@ const ConfirmPayDialog = {
   },
 
   methods: {
-    handlePassWord(e) {
+    handlePassWordChange(e) {
       this.password = e.target.value;
       if (this.error) {
         this.error = false;
@@ -38,11 +38,6 @@ const ConfirmPayDialog = {
       this.$emit('cancel');
       this.password = '';
       this.error = false;
-    },
-
-    openProtocol(e) {
-      e.stopPropagation();
-      this.isVisibleInvestProtocol = true;
     },
 
     getFooterNode() {
@@ -72,45 +67,43 @@ const ConfirmPayDialog = {
       <div class="payment-dialog">
         <Input
           value={this.password}
-          onInput={this.handlePassWord}
+          onChange={this.handlePassWordChange}
           name="password"
           type="password"
           maxlength="20"
           placeholder={this.$t('payInputPwd')}
         />
 
-        <div class="pay-forget-password">
+        <div class="other-info">
           <div class="error_message">
             {
               this.error ? this.$t('payPwdEmptyHint') : ''
             }
           </div>
           <span
+            class="pay-forget-password"
             onClick={() => {
-              // TODO
-              console.log('--新开页到交易密码');
+              locationHelp.open(setDealPasswordPath);
             }}>
             {this.$t('payForgetPwd')}
           </span>
         </div>
         {
           this.getFooterNode()
-      }
+        }
       </div>
     );
 
     return (
         <BaseModal
-          title="输入交易密码"
+          title={this.$t('inputDealPassword')}
           width={400}
           value={this.show}
           onClose={this.onCancelModal}
           scopedSlots={{
             content: () => content,
           }}
-        >
-
-        </BaseModal>
+        />
     );
   },
 };

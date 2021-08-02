@@ -4,7 +4,7 @@ import ProductTitle from '@/shared/components/ProductTitle';
 import { getHashRateTurnOnDetail } from '@/api/account/hashRate';
 import BaseContainer from '@/shared/components/BaseContainer';
 import PageButton from '@/shared/components/PageButton';
-import { hashRateListPath } from '@/router/consts/urls';
+import { accountHashRateListPath } from '@/router/consts/urls';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import ListCell from '@/pages/Account/HashRate/List/components/ListCell';
 import CellValue from '@/pages/Account/HashRate/List/components/CellValue';
@@ -35,7 +35,7 @@ const HashRateTurnOn = {
   data() {
     return {
       isShowPasswordInput: false,
-      showCountDownToLink: true,
+      showCountDownToLink: false,
     };
   },
   computed: {
@@ -154,7 +154,7 @@ const HashRateTurnOn = {
             />
             <CountDownToLink
               to={{
-                path: hashRateListPath,
+                path: accountHashRateListPath,
                 query: { hashrateType: hashRateDetail.hashrateType, activeName: hashrateStatusMap.SHUTDOWN },
               }}
               show={this.showCountDownToLink}

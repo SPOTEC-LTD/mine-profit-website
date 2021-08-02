@@ -9,7 +9,7 @@ import './index.less';
 const CountDownToLink = {
   props: {
     show: Boolean,
-    time: { type: Number, default: 400000 },
+    time: { type: Number, default: 4000 },
     to: [String, Object],
     pageName: String,
     operatingSuccess: String,
