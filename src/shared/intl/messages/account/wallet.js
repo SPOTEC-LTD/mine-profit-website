@@ -30,4 +30,9 @@ export default {
   walletType: '类型',
   time: '时间',
   to: '至',
+  walletSelectCoinType: '选择币种',
+  withDrawChainName: '链名称',
+  qrCode: '二维码',
+  address: '地址',
+  tips: '提示',
 };

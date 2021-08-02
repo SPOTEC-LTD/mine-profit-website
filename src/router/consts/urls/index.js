@@ -18,6 +18,7 @@ export const setDealPasswordPath = `${accountPath}/dealPasswordSet`;
 export const setLoginPasswordPath = `${accountPath}/loginPasswordSet`;
 export const realNameAuthPath = `${accountPath}/realNameAuth`;
 export const transactionsPath = `${accountPath}/transactions`;
+export const depositPath = `${accountPath}/walletAllTypesCharge`;
 
 // ==== aboutUsPaths
 export const aboutUsPaths = '/aboutUs';

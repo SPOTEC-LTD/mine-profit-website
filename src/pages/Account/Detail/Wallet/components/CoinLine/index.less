@@ -1,0 +1,40 @@
+@import "@/shared/styles/variables.less";
+
+.btn-gray {
+  background: @color__d3dbea;
+  border: 0;
+  color: @white;
+}
+
+.btn-blue {
+  border: 1px solid @color__primary;
+  color: @color__primary;
+}
+
+.line-button {
+  outline: 0;
+  height: 34px;
+  width: 105px;
+  font-weight: 500;
+  margin-right: 12px;
+}
+
+.active-button {
+  height: 21px;
+  width: 29px;
+  background: linear-gradient(to top left, @color__primary 50%, transparent 50%);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  :global {
+    .spotecicon {
+      color: @white;
+      width: 8px;
+      height: 8px;
+      position: absolute;
+      bottom: 3px;
+      right: 4px;
+    }
+  }
+}

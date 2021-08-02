@@ -1,0 +1,53 @@
+@import "@/shared/styles/variables.less";
+
+.coin-Select-box {
+  background-color: @color__f7f8fc;
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  :global {
+    .spotecicon {
+      width: 22px;
+      height: 22px;
+    }
+
+    .mp-select .mp-select-selection {
+      height: 44px;
+      border: 0;
+      font-weight: 500;
+      color: @color__primary;
+    }
+
+    .mp-select-arrow .mp-select-arrow-icon {
+      display: flex;
+      align-items: center;
+    }
+
+    .mp-select-open .mp-select-arrow-icon svg {
+      transform: rotate(-90deg);
+    }
+
+    .mp-select-open .mp-select-selection,
+    .mp-select-focused .mp-select-selection,
+    .mp-select-selection:focus,
+    .mp-select-selection:active {
+      box-shadow: none;
+    }
+  }
+}
+
+.Suffix-box {
+  color: @color__primary;
+  font-size: @font-size-base;
+  font-weight: 500;
+
+  .Suffix-icon {
+    width: 7px;
+    height: 7px;
+    margin-left: 3px;
+    transform: rotate(90deg);
+  }
+}
