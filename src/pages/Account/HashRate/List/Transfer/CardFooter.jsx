@@ -3,7 +3,7 @@ import {
   SharedFilled,
   InfoCircleFilled,
 } from 'ahoney/lib/icons';
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 import FooterButtonGroup from '@/pages/Account/HashRate/List/components/FooterButtonGroup';
 import locationServices from '@/shared/services/location/locationServices';
 import { HASH_RATE, TRANSFER_CANCEL_ACTION, hashrateStatusMap } from '@/modules/account/hashRate';
@@ -13,9 +13,8 @@ import {
   TRANSFER_CANCEL,
   getTransferStatusMap,
 } from '@/pages/Account/HashRate/consts/transferOderStatus';
-import BaseModal from '@/shared/components/BaseModal';
+import ConfirmModal from '@/shared/components/ConfirmModal';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
-import ModalFooterButtonGroup from '@/shared/components/ModalFooterButtonGroup';
 import FooterLayout from '../components/FooterLayout';
 import StatusTag from '../components/StatusTag';
 import styles from './index.less?module';
@@ -28,6 +27,11 @@ const statusTagMap = {
 
 const CardFooter = {
   props: ['data'],
+  computed: {
+    ...mapState({
+      transferCancelLoading: state => state.loading.effects[`${HASH_RATE}/${TRANSFER_CANCEL_ACTION}`],
+    }),
+  },
 
   methods: {
     ...mapActions(HASH_RATE, [TRANSFER_CANCEL_ACTION]),
@@ -72,28 +76,6 @@ const CardFooter = {
           this.$emit('refresh');
         });
     },
-
-    getFooterNode() {
-      const dataSource = [
-        {
-          onClick: this.onCloseModal,
-          label: this.$t('cancel'),
-        },
-        {
-          onClick: this.onModalConfirm,
-          type: 'primary',
-          label: this.$t('confirm'),
-          loading: this.getVipListLoading,
-        },
-      ];
-
-      return (
-        <ModalFooterButtonGroup
-          className={styles['confirm-modal']}
-          dataSource={dataSource}
-        />
-      );
-    },
   },
 
   render() {
@@ -111,23 +93,19 @@ const CardFooter = {
 
     return (
       <div>
-        <BaseModal
+        <ConfirmModal
           ref="cancelModal"
+          onConfirm={this.onModalConfirm}
           title={this.$t('hashrateCancelTransfer')}
-          scopedSlots={{
-            content: () => (
-              <div class={styles['cannel-modal']}>
-                <InfoCircleFilled />
-                <div class={styles['cannel-content']}>
-                  {`${bigNumberToFixed(data.amount - data.transAmount, 2)}${data.unit}${this.$t('transferCancelHint')}`}
-                </div>
-                {this.getFooterNode()}
-            </div>
-            ),
-          }}
+          confirmLoading={this.transferCancelLoading}
         >
-
-        </BaseModal>
+          <div class={styles['cannel-modal']}>
+            <InfoCircleFilled />
+            <div class={styles['cannel-content']}>
+              {`${bigNumberToFixed(data.amount - data.transAmount, 2)}${data.unit}${this.$t('transferCancelHint')}`}
+            </div>
+          </div>
+        </ConfirmModal>
         <FooterLayout
           scopedSlots={{
             leftContent: () => tagNode,

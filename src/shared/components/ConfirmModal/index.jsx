@@ -1,12 +1,13 @@
 import BaseModal from '@/shared/components/BaseModal';
 import ModalFooterButtonGroup from '@/shared/components/ModalFooterButtonGroup';
+import isUndefined from 'lodash/isUndefined';
 import './index.less';
 
 const ConfirmModal = {
   props: {
-    value: {
+    visible: {
       type: Boolean,
-      default: false,
+      default: undefined,
     },
     cancelButtonText: {
       type: [String, Object],
@@ -20,12 +21,32 @@ const ConfirmModal = {
     },
   },
 
+  data() {
+    return {
+      value: false,
+    };
+  },
+
   methods: {
+    open() {
+      this.value = true;
+      this.$emit('open');
+    },
+
+    close() {
+      this.value = false;
+      this.$emit('close');
+    },
+
     onConfirmModal() {
       this.$emit('confirm');
     },
 
     onCancelModal() {
+      if (isUndefined(this.visible)) {
+        this.value = false;
+      }
+
       this.$emit('cancel');
     },
 
@@ -61,13 +82,20 @@ const ConfirmModal = {
       </div>
     );
 
+    const resultVisible = isUndefined(this.visible) ? this.value : this.visible;
+
     return (
       <BaseModal
-        value={this.value}
+        value={resultVisible}
         onClose={this.onCancelModal}
         scopedSlots={{
           content: () => content,
         }}
+        {
+          ...{
+            attrs: this.$attrs,
+          }
+        }
       />
     );
   },

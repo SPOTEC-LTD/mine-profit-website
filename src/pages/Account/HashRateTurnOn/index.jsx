@@ -150,7 +150,7 @@ const HashRateTurnOn = {
               }}
               loading={this.powerOnLoading}
               onConfirm={this.onPowerOn}
-              show={this.isShowPasswordInput}
+              visible={this.isShowPasswordInput}
               title={this.$t('hashrateConfirmOpen')}
             />
             <CountDownToLink
@@ -158,7 +158,7 @@ const HashRateTurnOn = {
                 path: accountHashRateListPath,
                 query: { hashrateType: hashRateDetail.hashrateType, activeName: hashrateStatusMap.SHUTDOWN },
               }}
-              show={this.showCountDownToLink}
+              visible={this.showCountDownToLink}
               operatingSuccess={this.$t('hashrateOpenSuccess')}
               promptText={this.$t('hashrateOpenSuccessTips')}
             />

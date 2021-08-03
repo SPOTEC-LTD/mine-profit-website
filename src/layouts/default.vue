@@ -56,7 +56,7 @@ export default {
     Vue.component('SuccessNode', SuccessNode);
     Vue.use(Modal);
     document.title = this.$t('essayHashRate')
-    this.setLivechat();
+    // this.setLivechat();
     this.upateDocumentTitle();
     this.$router.afterEach(() => {
       this.upateDocumentTitle();

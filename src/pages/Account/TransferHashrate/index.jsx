@@ -3,17 +3,18 @@ import { mapActions, mapState } from 'vuex';
 import numberUtils from 'aa-utils/lib/numberUtils';
 import ExclamationCircleFilled from 'ahoney/lib/icons/ExclamationCircleFilled';
 import * as API from '@/api/account/hashRate';
-import { HASH_RATE, HASHRATE_TRANSFER } from '@/modules/account/hashRate';
+import { HASH_RATE, HASHRATE_TRANSFER, hashrateStatusMap } from '@/modules/account/hashRate';
 import ProductTitle from '@/shared/components/ProductTitle';
 import BaseContainer from '@/shared/components/BaseContainer';
 import PageButton from '@/shared/components/PageButton';
 import FormContainer from '@/shared/components/FormContainer';
 import ConfirmModal from '@/shared/components/ConfirmModal';
 import ConfirmPayDialog from '@/shared/components/ConfirmPayDialog';
-import {POWER_ON, POWER_OFF } from '@/shared/consts/powerStatus';
+import { POWER_ON, POWER_OFF } from '@/shared/consts/powerStatus';
+import locationServices from '@/shared/services/location/locationServices';
 import CountDownToLink from '@/shared/components/CountDownToLink';
 import getTimes from '@/shared/utils/getTimes';
-// import TradeBeforeVerified from '@/shared/components/TradeBeforeVerified';
+import { accountHashRateListPath } from '@/router/consts/urls';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import getMinus from '@/shared/utils/getMinus';
 
@@ -43,7 +44,6 @@ const TransferHashrate = {
 
       const { body: { c2cTransAmount } } = await API.getTransferableAmount({ pathParams: params }, { ctx });
       props = c2cTransAmount;
-      console.log('c2cTransAmount', c2cTransAmount);
     } catch (error) {
       console.log('error', error);
     }
@@ -103,7 +103,6 @@ const TransferHashrate = {
           if (this.hasPowerOff === POWER_ON) {
             this.isShowPasswordInput = true;
           } else {
-            console.log('000000000');
             this.isVisibleTransferPrompt = true;
           }
         }
@@ -112,14 +111,28 @@ const TransferHashrate = {
     },
 
     onSubmit(password) {
-      this[HASHRATE_TRANSFER]({
-        ptId: this.productTemplateId,
+      const { productTemplateId } = this.$route.params;
+      const params = {
+        ptId: productTemplateId,
         password,
-        hasPowerOff: this.hasPowerOff,
+        hasPowerOff: +this.hasPowerOff,
         ...this.formData,
-      }).then(() => {
+      };
+
+      console.log('params', params);
+
+      this[HASHRATE_TRANSFER](params).then(() => {
         this.isShowPasswordInput = false;
         this.showCountDownToLink = true;
+      });
+    },
+
+    onRedirectToTransfer() {
+      locationServices.push(accountHashRateListPath, {
+        query: {
+          hashrateType: this.hashrateType,
+          activeName: hashrateStatusMap.TRANSFER,
+        },
       });
     },
   },
@@ -198,7 +211,7 @@ const TransferHashrate = {
                     suffix: () => `USDT/${this.unit}`,
                   }}
                   v-model={this.formData.price}
-                  placeholder="0.01-9999.99"
+                  placeholder={`${MIN_PRICE}-${MAX_PRICE}`}
                 />
               </Item>
               {
@@ -214,18 +227,17 @@ const TransferHashrate = {
                   </Item>
                 ))
               }
-
             </FormModel>
           </FormContainer>
         </BaseContainer>
         <ConfirmModal
           onConfirm={() => {
             this.isControlCheck = true;
-            this.isShowPasswordInput = true; // TODO tmp
+            this.isShowPasswordInput = true; // TODO tmp 加入检测组件后需要删除掉
             this.isVisibleTransferPrompt = false;
           }}
           onCancel={() => { this.isVisibleTransferPrompt = false; }}
-          value={this.isVisibleTransferPrompt}
+          visible={this.isVisibleTransferPrompt}
           confirmButtonText={this.$t('transferContinue')}
         >
           <div class={styles['transfer-prompt']}>
@@ -249,11 +261,11 @@ const TransferHashrate = {
           }}
           loading={this.submitLoading}
           onConfirm={this.onSubmit}
-          show={this.isShowPasswordInput}
+          visible={this.isShowPasswordInput}
           title={this.$t('transferItemAmount')}
         />
         <CountDownToLink
-          onConfirm={() => this.$emit('closeTransferPage', 'toPage')}
+          onConfirm={this.onRedirectToTransfer}
           show={this.showCountDownToLink}
           operatingSuccess={this.$t('hashrateOpenSuccess')}
           promptText={this.$t('hashrateOpenSuccessTips')}
