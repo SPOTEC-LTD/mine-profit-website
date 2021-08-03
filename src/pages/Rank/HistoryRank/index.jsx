@@ -31,14 +31,16 @@ const HistoryRank = {
     }),
     options() {
       return this.historyDuration.map(item => {
-        item.label = this.$t('year', { value: item.year });
-        item.value = item.year;
-        item.children = item.list.map(subItem => {
-          subItem.label = `${this.$t('issue', { value: `${subItem.number}`.padStart(2, 0) })} (${subItem.date})`;
-          subItem.value = subItem.duration;
-          return subItem;
-        });
-        return item;
+        const children = item.list.map(subItem => ({
+          label: `${this.$t('issue', { value: `${subItem.number}`.padStart(2, 0) })} (${subItem.date})`,
+          value: subItem.duration,
+          number: subItem.number,
+        }));
+        return {
+          label: this.$t('year', { value: item.year }),
+          value: item.year,
+          children,
+        };
       });
     },
     formatTopList() {

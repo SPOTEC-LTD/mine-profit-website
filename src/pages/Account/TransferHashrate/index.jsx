@@ -152,7 +152,7 @@ const TransferHashrate = {
               ref="form"
               hideRequiredMark
               props={{ model: this.formData }}
-              class="form"
+              class="normal-form"
             >
               <Item
                 label={this.$t('hashrateOperationTransfer')}
