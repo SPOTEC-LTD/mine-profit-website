@@ -1,5 +1,5 @@
 import CloseOutlined from 'ahoney/lib/icons/CloseOutlined';
-import QRcode from '@/shared/components/QRcode';
+import QRCodeModule from '@/shared/components/QRCodeModule';
 import InfoModal from '@/shared/components/InfoModal';
 import ModalButton from '@/shared/components/ModalButton';
 import CopyToClipboard from '@/shared/components/CopyToClipboard';
@@ -21,7 +21,7 @@ const ShareQrCodeModal = {
       return (
         <div class={styles.wrapper}>
           <div class={styles.title}>{this.title}</div>
-          <QRcode
+          <QRCodeModule
             onGetQrCodeUrl={url => {
               this.qrCodeUrl = url;
             }}

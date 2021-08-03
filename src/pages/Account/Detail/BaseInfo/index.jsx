@@ -1,6 +1,6 @@
 import { Badge } from 'ant-design-vue';
 import HashCouponFilled from 'ahoney/lib/icons/HashCouponFilled';
-import QrCode from 'ahoney/lib/icons/QrCode';
+import QrCodeIcon from 'ahoney/lib/icons/QrCode';
 import DoubleUserFilled from 'ahoney/lib/icons/DoubleUserFilled';
 import BaseContainer from '@/shared/components/BaseContainer';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
@@ -29,7 +29,7 @@ const Detail = {
         <div>
           <div class={styles['invite-info-label']}>{this.$t('myInvitationQRCode')}</div>
           <div class={styles['view-qr-box']}>
-            <QrCode className={styles['qr-icon']} />
+            <QrCodeIcon className={styles['qr-icon']} />
             <ShareQrCodeModal title={this.$t('myInvitationQRCode')} value={link}>
               <a class={styles['view-qr']}>{this.$t('clickView')}</a>
             </ShareQrCodeModal>
