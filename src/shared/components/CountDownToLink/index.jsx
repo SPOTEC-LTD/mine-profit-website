@@ -24,13 +24,11 @@ const CountDownToLink = {
       this.$emit('confirm');
     },
 
-    onChange({ seconds }) {
-      if (seconds === 0) {
-        if (this.to) {
-          this.toPage();
-        }
-        this.$emit('confirm');
+    onChange() {
+      if (this.to) {
+        this.toPage();
       }
+      this.$emit('confirm');
     },
 
     toPage() {

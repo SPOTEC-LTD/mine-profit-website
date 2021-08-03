@@ -1,13 +1,12 @@
 import { Input } from 'ant-design-vue';
-import BaseModal from '@/shared/components/BaseModal';
-import ModalFooterButtonGroup from '@/shared/components/ModalFooterButtonGroup';
+import ConfirmModal from '@/shared/components/ConfirmModal';
 import locationHelp from '@/shared/utils/locationHelp';
 import { setDealPasswordPath } from '@/router/consts/urls';
 import './index.less';
 
 const ConfirmPayDialog = {
   props: {
-    show: Boolean,
+    visible: Boolean,
     loading: Boolean,
   },
 
@@ -39,27 +38,6 @@ const ConfirmPayDialog = {
       this.password = '';
       this.error = false;
     },
-
-    getFooterNode() {
-      const dataSource = [
-        {
-          onClick: this.onCancelModal,
-          label: this.$t('cancel'),
-        },
-        {
-          onClick: this.onModalConfirm,
-          type: 'primary',
-          label: this.$t('confirm'),
-          loading: this.loading,
-        },
-      ];
-
-      return (
-        <ModalFooterButtonGroup
-          dataSource={dataSource}
-        />
-      );
-    },
   },
 
   render() {
@@ -88,22 +66,23 @@ const ConfirmPayDialog = {
             {this.$t('payForgetPwd')}
           </span>
         </div>
-        {
-          this.getFooterNode()
-        }
       </div>
     );
 
     return (
-        <BaseModal
+        <ConfirmModal
           title={this.$t('inputDealPassword')}
           width={400}
-          value={this.show}
-          onClose={this.onCancelModal}
+          visible={this.visible}
+          confirmLoading={this.loading}
+          onCancel={this.onCancelModal}
+          onConfirm={this.onModalConfirm}
           scopedSlots={{
             content: () => content,
           }}
-        />
+        >
+          {content}
+        </ConfirmModal>
     );
   },
 };

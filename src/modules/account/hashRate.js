@@ -70,15 +70,10 @@ export default {
     transfer: [],
     hashrateBuffList: [],
     hashratePledgesSourceInfo: [],
-    transferableAmount: {
-      amount: 0,
-      refPrice: 0,
-    },
     pledgeRedeemInfo: {
       principal: 0,
       payAmountUsdt: 0,
       penaltyInterest: 0,
-
     },
     pledgeRepaymentInfo: {
       principal: 0,

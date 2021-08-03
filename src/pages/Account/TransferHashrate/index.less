@@ -1,0 +1,70 @@
+@import "@/shared/styles/variables.less";
+
+.container {
+  width: 460px;
+}
+
+.button {
+  margin-top: 40px;
+}
+
+.amount-input-suffix {
+  span {
+    &:first-child {
+      margin-right: 48px;
+      font-weight: 500;
+      color: @color__242424;
+    }
+
+    &:last-child {
+      color: @color__primary;
+      font-weight: 500;
+      cursor: pointer;
+    }
+  }
+}
+
+.transfer-prompt {
+  padding: 19px 10px 3px 10px;
+  text-align: center;
+  white-space: pre-wrap;
+  font-size: @font-size-base;
+  line-height: 24px;
+  color: @color__494949;
+
+  .prompt-icon {
+    width: 73px;
+    height: 73px;
+    color: @white;
+    fill: @color__ffd100;
+  }
+
+  > div:last-child {
+    margin-top: 7px;
+  }
+}
+
+.dec-content {
+  padding-left: 50px;
+  display: flex;
+  align-items: flex-start;
+  text-align: left;
+
+  &:last-child {
+    margin-top: 7px;
+  }
+}
+
+.prompt-index {
+  flex-shrink: 0;
+  display: inline-block;
+  text-align: center;
+  width: 14px;
+  height: 14px;
+  font-size: @font-size-sm;
+  color: @white;
+  border-radius: 50%;
+  margin-right: 4px;
+  transform: translateY(5px);
+  background: linear-gradient(225deg, @color__primary 0%, @color__00c9c4 100%);
+}

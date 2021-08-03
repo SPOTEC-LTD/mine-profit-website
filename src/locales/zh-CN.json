@@ -338,6 +338,7 @@
   "payForgetPwd": "忘记交易密码?",
   "hashRateTurnOn": "算力开机",
   "inputDealPassword": "输入交易密码",
+  "marketFieldHintMax": "最多",
   "typeInRevenue": "收益中",
   "typeSettled": "已结算",
   "investItemPrincipal": "认购本金",

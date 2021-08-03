@@ -152,4 +152,5 @@ export default {
   payForgetPwd: '忘记交易密码?',
   hashRateTurnOn: '算力开机',
   inputDealPassword: '输入交易密码',
+  marketFieldHintMax: '最多',
 };
