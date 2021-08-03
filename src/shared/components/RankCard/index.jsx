@@ -10,6 +10,8 @@ import rankTop8 from '@/assets/rank/rank-top-8.png';
 import rankTop9 from '@/assets/rank/rank-top-9.png';
 import rankTop10 from '@/assets/rank/rank-top-10.png';
 import defaultAvatar from '@/assets/rank/defaultAvatar.png';
+import Link from '@/shared/components/Link';
+import { loginPath } from '@/router/consts/urls';
 
 import './index.less';
 
@@ -45,6 +47,7 @@ const RankCard = {
       type: String,
       default: 'USDT',
     },
+    isShowLogin: { type: Boolean, default: false },
   },
 
   render() {
@@ -75,10 +78,14 @@ const RankCard = {
               <div class="no-rank-text">{this.$t('noInLeaderboard')}</div>
             </div>
           )}
-          <div class="user-info">
-            <img class="avatar" src={avatar || defaultAvatar} alt="" />
-            <div class="name">{name}</div>
-          </div>
+          {this.isShowLogin ? (
+            <Link class='login-link' to={loginPath}>{this.$t('loginViewMyRanking')}</Link>
+          ) : (
+            <div class="user-info">
+              <img class="avatar" src={avatar || defaultAvatar} alt="" />
+              <div class="name">{name}</div>
+            </div>
+          )}
         </div>
         <div class="rank-card-right">
           <span class="amount">

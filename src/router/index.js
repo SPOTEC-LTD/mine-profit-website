@@ -10,6 +10,7 @@ import Download from '@/pages/download';
 import { location } from '@/shared/services/location';
 import AboutUs from '@/pages/AboutUs';
 import Rank from '@/pages/Rank';
+import HistoryRank from '@/pages/Rank/HistoryRank';
 import { buildRoutes } from './utils';
 import accountRoutes from './accountRoutes';
 import newsRoutes from './newsRoutes';
@@ -65,6 +66,11 @@ export function createRouter() {
         path: urls.rankPath,
         name: 'rank',
         component: Rank,
+      },
+      {
+        path: urls.historyRankPath,
+        name: 'historyRank',
+        component: HistoryRank,
       },
       {
         path: '/500',

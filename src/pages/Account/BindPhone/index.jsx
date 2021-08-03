@@ -138,7 +138,7 @@ const BindPhone = {
       <div class={styles.wrapper}>
         <BaseContainer contentClassName={styles['content-wrap']}>
           <div class={styles['form-wrap']}>
-            <FormModel ref="ruleForm" hideRequiredMark props={{ model: this.form }} class="form">
+            <FormModel ref="ruleForm" hideRequiredMark props={{ model: this.form }} class="normal-form">
               <Item
                 ref="phone"
                 label={this.$t('signInPhoneNum')}
