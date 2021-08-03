@@ -2,7 +2,6 @@
 export const homePath = '/';
 export const loginPath = '/sign/login';
 export const downloadPath = '/download';
-export const rankPath = '/rank';
 
 // ==== accountPaths
 export const accountPath = '/account';
@@ -36,3 +35,7 @@ export const officialMarketingPath = `${marketingPaths}/officialMarketing`;
 export const c2cMarketingPath = `${marketingPaths}/marketC2CMarket`;
 export const officialDetailsPath = `${officialMarketingPath}/marketHashDetail`;
 export const c2cDetailsPath = `${c2cMarketingPath}/marketHashDetail`;
+
+// ==== rankPaths
+export const rankPath = '/rank';
+export const historyRankPath = '/historyRank';

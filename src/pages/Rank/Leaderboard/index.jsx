@@ -11,6 +11,8 @@ import { RANK, UPDATE_REWARD_SET_LIST, GET_REWARD_SET_LIST } from '@/modules/ran
 import { INCOME, ANGEL, BUYER, rankTypeMap } from '@/pages/Rank/consts/rankType';
 import BaseModal from '@/shared/components/BaseModal';
 import NoData from '@/shared/components/NoData';
+import locationServices from '@/shared/services/location/locationServices';
+import { historyRankPath } from '@/router/consts/urls';
 import RewardSet from '../RewardSet';
 import styles from './index.less?module';
 
@@ -47,23 +49,30 @@ const Leaderboard = {
     },
   },
   render() {
-    const { duration, date, sort, nickName, amount, avatar } = this.info;
-    const topFive = slice(this.info.topList, 0, 5);
-    const topFiveAfter = slice(this.info.topList, 5, 10);
+    const { duration, date, sort, nickName, amount, avatar, userId } = this.info;
+    const topFive = slice(this.formatTopList, 0, 5);
+    const topFiveAfter = slice(this.formatTopList, 5, 10);
     const { rankType = INCOME } = this.$route.query;
 
     return (
       <div class={styles.leaderboard}>
         <div class={styles.duration}>
           <div>
-            <div class={styles['duration-value']}>{this.$t('issue', { value: duration })}</div>
+            <div class={styles['duration-value']}>{this.$t('issue', { value: duration || '-' })}</div>
             <div class={styles['duration-scope']}>{date}</div>
           </div>
         </div>
         <div class={[styles['my-ranking'], { [styles['en-my-ranking']]: this.isEnglish }]}>
           <Row gutter={[30, 0]}>
             <Col span={12}>
-              <RankCard position={sort} amount={amount} name={nickName} avatar={avatar} unit={this.unit} />
+              <RankCard
+                isShowLogin={!userId}
+                position={sort}
+                amount={amount}
+                name={nickName}
+                avatar={avatar}
+                unit={this.unit}
+              />
             </Col>
             <Col span={12}>
               <BaseModal
@@ -109,14 +118,19 @@ const Leaderboard = {
               ))}
             </Col>
             {
-              isEmpty(this.info.topList) && (
+              isEmpty(this.formatTopList) && (
               <Col span={24}>
                 <NoData class={styles['no-data']} />
               </Col>)
             }
           </Row>
           <div class={styles['view-history-box']}>
-            <div class={styles['view-history']}>{this.$t('viewHistoryRank')}</div>
+            <div
+              class={styles['view-history']}
+              onClick={ () => locationServices.push(historyRankPath, { query: { rankType: this.$route.query.rankType } }) }
+            >
+              {this.$t('viewHistoryRank')}
+            </div>
           </div>
         </div>
         {rankType === INCOME && (

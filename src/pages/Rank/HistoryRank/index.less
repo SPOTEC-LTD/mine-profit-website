@@ -1,0 +1,119 @@
+@import '@/shared/styles/variables.less';
+
+.history-rank-bg {
+  background-color: @color__182742;
+}
+
+.history-rank-content {
+  padding: 60px 0 10px;
+  height: 1000px;
+  background-image: url('~@/assets/rank/rank-content-bg.png');
+  background-size: cover;
+  background-position-x: -20px;
+  background-repeat: no-repeat;
+
+  :global {
+    .normal-form .mp-form-item {
+      margin-bottom: 0;
+    }
+
+    .normal-form .mp-form-item .mp-form-item-label > label {
+      color: @white;
+    }
+
+    .mp-cascader-picker-arrow {
+      width: 23px;
+      height: 23px;
+      font-size: 23px;
+      color: @primary-color;
+      transform: translateY(-6px);
+    }
+
+    .mp-cascader-picker-clear {
+      right: 40px;
+    }
+  }
+}
+
+.inquiry-button {
+  width: 89px;
+  height: 44px;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.my-ranking {
+  margin-top: 52px;
+  padding: 69px 79px 42px;
+  height: 176px;
+  background: url('~@/assets/rank/my-ranking.png');
+  background-size: 1220px auto;
+  background-repeat: no-repeat;
+  background-position-x: -10px;
+}
+
+.en-my-ranking {
+  background: url('~@/assets/rank/en-my-ranking.png');
+  background-size: 1220px auto;
+  background-repeat: no-repeat;
+  background-position-x: -10px;
+}
+
+.all-ranking {
+  padding: 89px 79px 29px;
+  height: 481px;
+  background: url('~@/assets/rank/history-all-ranking.png');
+  background-size: 1220px auto;
+  background-repeat: no-repeat;
+  background-position-x: -10px;
+
+  :global {
+    .rank-card-wrapper {
+      margin-bottom: 14px;
+    }
+  }
+}
+
+.en-all-ranking {
+  background: url('~@/assets/rank/en-history-all-ranking.png');
+  background-size: 1220px auto;
+  background-repeat: no-repeat;
+  background-position-x: -10px;
+}
+
+.rules-text {
+  margin-top: 10px;
+  font-size: @font-size-lg;
+  line-height: 30px;
+  color: @color__8fadd9;
+}
+
+.no-data {
+  min-height: 345px;
+}
+
+.cascader-popup {
+  :global {
+    .mp-cascader-menu-item-active {
+      color: @primary-color;
+    }
+
+    .mp-cascader-menu-item-expand-icon {
+      display: none;
+    }
+
+    .mp-cascader-menu:last-child {
+      min-width: 274px;
+    }
+
+    .ant-empty {
+      text-align: center;
+    }
+  }
+}
+
+.period-text {
+  font-size: @font-size-lg;
+  line-height: 22px;
+  color: @color__242424;
+}

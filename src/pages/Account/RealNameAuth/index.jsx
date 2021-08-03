@@ -232,7 +232,7 @@ const RealNameAuth = {
                 <div class={styles['method-desc']}>{this.$t('authMethodThreeDesc')}</div>
               </div>
 
-              <FormModel ref="ruleForm" hideRequiredMark props={{ model: this.form }} class="form">
+              <FormModel ref="ruleForm" hideRequiredMark props={{ model: this.form }} class="normal-form">
                 <Row gutter={[32, 0]}>
                   <Col span={12}>
                     <Item label={this.$t('name')}>
