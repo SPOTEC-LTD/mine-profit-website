@@ -244,7 +244,7 @@ const OfficialProductDetails = {
         <BaseContainer>
           <ProductTitle class={styles['product-detail-title']} chainType={chainType} name={ptName} leftExtra={name}/>
           <TagGroup productData={this.officialProductDetails} class={styles['product-detail-tags']} />
-          <ContentContainer>
+          <ContentContainer class={styles['official-product-card-wrapper']}>
             <CellGroup cellData={this.getDataList()}/>
           </ContentContainer>
           <Title title={this.$t('marketDetailDescription')} class={styles['product-detail-dec-title']}/>
