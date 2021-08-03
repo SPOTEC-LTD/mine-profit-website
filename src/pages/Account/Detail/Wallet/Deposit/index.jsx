@@ -6,7 +6,7 @@ import * as API from '@/api/account/wallet';
 import CopyToClipboard from '@/shared/components/CopyToClipboard';
 import BaseContainer from '@/shared/components/BaseContainer';
 import ChainSelect from '@/shared/components/ChainSelect';
-import QrCode from '@/shared/components/QrCode';
+import QRCodeModule from '@/shared/components/QRCodeModule';
 
 import { LINE_USDT_ERC20 } from '../consts/lineType';
 import CoinLine from '../components/CoinLine';
@@ -77,7 +77,7 @@ const Deposit = {
               </Item>
             )}
             <Item label={this.$t('qrCode')}>
-              <QrCode
+              <QRCodeModule
                 key={address}
                 class={styles['qr-code']}
                 options={{ width: 132 }}

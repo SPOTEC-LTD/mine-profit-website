@@ -12,7 +12,7 @@ import * as accountAPI from '@/api/account/userInfo';
 import TriangleFilled from 'ahoney/lib/icons/TriangleFilled';
 import PageButton from '@/shared/components/PageButton';
 import locationServices from '@/shared/services/location/locationServices';
-import QRcode from '@/shared/components/QRcode';
+import QRCodeModule from '@/shared/components/QRCodeModule';
 import { downloadPath, accountDetailPath } from '@/router/consts/urls';
 import frontIdPhoto from '@/assets/account/front-id-photo.png';
 import backIdPhoto from '@/assets/account/back-id-photo.png';
@@ -220,7 +220,7 @@ const RealNameAuth = {
                 <div class={styles['method-title']}>{this.$t('authMethodTwoTitle')}</div>
                 <div class={styles['method-desc']}>{this.$t('authMethodTwoDesc')}</div>
                 <div class={styles['qr-code-box']}>
-                  <QRcode value={mobileAuthAddress} options={{ width: 136 }} />
+                  <QRCodeModule value={mobileAuthAddress} options={{ width: 136 }} />
                 </div>
               </div>
               <div></div>

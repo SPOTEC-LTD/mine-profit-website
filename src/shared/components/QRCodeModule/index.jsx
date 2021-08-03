@@ -1,7 +1,7 @@
 import QRCode from 'qrcode';
 import isFunction from 'lodash/isFunction';
 
-const QRcode = {
+const QRCodeModule = {
   data() {
     return {
       imgUrl: '',
@@ -66,4 +66,4 @@ const QRcode = {
   },
 };
 
-export default QRcode;
+export default QRCodeModule;
