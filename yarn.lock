@@ -14306,7 +14306,7 @@ vue-client-only@^2.0.0:
 
 vue-copy-to-clipboard@^1.0.3:
   version "1.0.3"
-  resolved "https://registry.yarnpkg.com/vue-copy-to-clipboard/-/vue-copy-to-clipboard-1.0.3.tgz#b415302b343b9185add4fc579c0721a16c8e65ac"
+  resolved "https://registry.npmjs.org/vue-copy-to-clipboard/-/vue-copy-to-clipboard-1.0.3.tgz#b415302b343b9185add4fc579c0721a16c8e65ac"
   integrity sha512-FSgewqG+2NwNsAnKOZqZ6GZqNvrbauVh/Y5z+xkbu9AmFqiWlQLKaFc+7BcsYCVZ2TaQnhjcHbDycVRVGFJypQ==
   dependencies:
     copy-to-clipboard "^3.3.1"

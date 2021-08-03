@@ -33,15 +33,14 @@ const Assets = {
           <div class={styles['info-right']}>
             <div
               class={styles['wallet-button']}
-              // TODO: 跳转地址 待改
-              onClick={() => { window.open(hashRateCouponsPath); }}
+              onClick={() => { window.open(depositPath); }}
             >
               <LockOutline />
               <div>{this.$t('walletAllTypesCharge')}</div>
             </div>
             <div
               class={styles['wallet-button']}
-              // TODO: 跳转地址 待改
+              // TODO: 跳转地址 待改为 提币
               onClick={() => { window.open(hashRateCouponsPath); }}
             >
               <HandCardOutlined />
@@ -67,7 +66,7 @@ const Assets = {
                 <div class={styles['bottom-guide']}>
                   <NewWindowGuide
                     label={this.$t('withdrawAddressManagement')}
-                    // TODO: 跳转地址 待改
+                    // TODO: 跳转地址 待改为 地址管理
                     onGuide={() => { window.open(hashRateCouponsPath); }}
                   />
                 </div>
@@ -92,15 +91,14 @@ const Assets = {
                   </div>
                   <div class={styles['coin-card-operate']}>
                     <div class={styles['card-right-button']}>
-                      {/*  // TODO: 跳转地址 待改 */}
-                      <span onClick={() => { window.open(hashRateCouponsPath); }}>
+                      <span onClick={() => { window.open(`${depositPath}?coinType=${item.chainType}`); }}>
                         {this.$t('walletAllTypesCharge')}
                       </span>
                     </div>
                     <div class={styles['card-right-button']}>
-                      {/*  // TODO: 跳转地址 待改 */}
-                      <span onClick={() => { window.open(hashRateCouponsPath); }}>
-                        {/* // TODO: 资格检测 */}
+                      {/*  TODO: 跳转地址 待改为 提币 */}
+                      <span onClick={() => { window.open(`${depositPath}?coinType=${item.chainType}`); }}>
+                        {/* TODO: 资格检测 */}
                         {/* <TradeBeforeVerified
                         class={styles['link-item-withdraw']}
                         isVerifiedKyc

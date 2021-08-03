@@ -1,0 +1,63 @@
+@import "@/shared/styles/variables.less";
+
+.account-deposit {
+  width: 610px;
+}
+
+.deposit {
+  border: 1px solid @color__e6e6e6;
+  padding: 22px 30px 33px;
+  margin-bottom: 96px;
+}
+
+.qr-code {
+  text-align: center;
+  min-height: 132px;
+}
+
+.address-input {
+  :global {
+    .mp-input {
+      color: @color__242424;
+      font-size: @font-size-sm !important;
+      font-weight: 600;
+    }
+
+    .mp-input-suffix {
+      color: @color__primary;
+      font-weight: 500;
+      cursor: pointer;
+    }
+  }
+}
+
+.bottom-tips {
+  border: 1px solid @color__fe6565;
+  background-color: rgba(254, 101, 101, 0.07);
+  padding: 11px 124px 10px 30px;
+  display: flex;
+  justify-content: space-between;
+
+  :global {
+    .spotecicon {
+      width: 17px;
+      height: 17px;
+      margin-top: 3px;
+      color: @color__fe6565;
+    }
+  }
+}
+
+.tips-box {
+  width: 370px;
+  color: @color__242424;
+  font-size: @font-size-sm;
+  line-height: 17px;
+  white-space: pre-wrap;
+
+  span {
+    font-size: @font-size-lg;
+    font-weight: 500;
+    line-height: 22px;
+  }
+}
