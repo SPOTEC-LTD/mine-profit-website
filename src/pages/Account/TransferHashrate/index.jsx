@@ -17,6 +17,7 @@ import getTimes from '@/shared/utils/getTimes';
 import { accountHashRateListPath } from '@/router/consts/urls';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import getMinus from '@/shared/utils/getMinus';
+import NumberInput from '@/shared/components/NumberInput';
 
 import styles from './index.less?module';
 
@@ -173,8 +174,11 @@ const TransferHashrate = {
                   },
                 ]}
               >
-                <Input
-                  v-model={this.formData.amount}
+                <NumberInput
+                  value={this.formData.amount}
+                  max={+this.amount}
+                  precision={2}
+                  onChange={value => { this.formData.amount = value; }}
                   scopedSlots={{
                     suffix: () => (
                       <div class={styles['amount-input-suffix']}>
@@ -205,12 +209,14 @@ const TransferHashrate = {
                   },
                 ]}
               >
-                <Input
-                  maxLength={6}
+                <NumberInput
+                  value={this.formData.price}
+                  onChange={value => { this.formData.price = value; }}
+                  max={MAX_PRICE}
+                  precision={2}
                   scopedSlots={{
                     suffix: () => `USDT/${this.unit}`,
                   }}
-                  v-model={this.formData.price}
                   placeholder={`${MIN_PRICE}-${MAX_PRICE}`}
                 />
               </Item>
