@@ -125,28 +125,26 @@ const Address = {
       };
       const { method, query } = methodsMap[this.manageModel];
       this[method](query)
-        .then(
-          message => {
+        .then(() => {
+          this.isShowPasswordInput = false;
+          this.getWithdrawalAddressList({ reset: true });
+          Notification.success(this.$t('operationSuccess'));
+        })
+        .catch(error => {
+          const { isBusinessError, code, messageDetails } = error;
+          if (isBusinessError && code === SECTION_BUSINESS_EXCEPTION) {
             this.isShowPasswordInput = false;
-            this.getWithdrawalAddressList({ reset: true });
-            Notification.success(message);
-          },
-          error => {
-            const { isBusinessError, code, messageDetails } = error;
-            if (isBusinessError && code === SECTION_BUSINESS_EXCEPTION) {
-              this.isShowPasswordInput = false;
-              Notification.error(messageDetails.address);
-            }
-          },
-        );
+            Notification.error(messageDetails.address);
+          }
+        });
     },
 
     deleteModalConfirm() {
       this[DELETE_ADDRESS]({ id: this.deleteId })
-        .then(message => {
+        .then(() => {
           this.showDeleteModal = false;
           this.getWithdrawalAddressList({ reset: true });
-          Notification.success(message);
+          Notification.success(this.$t('operationSuccess'));
         });
     },
   },

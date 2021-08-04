@@ -76,8 +76,8 @@ export default {
     async [ADD_ADDRESS](_, data) {
       try {
         const { userId } = localStorage.getObject('userInfo');
-        const { header: { message } } = await API.addAddress({ data, pathParams: { userId } });
-        return Promise.resolve(message);
+        await API.addAddress({ data, pathParams: { userId } });
+        return Promise.resolve();
       } catch (error) {
         return Promise.reject(error);
       }
@@ -85,8 +85,8 @@ export default {
     async [DELETE_ADDRESS](_, { id }) {
       try {
         const { userId } = localStorage.getObject('userInfo');
-        const { header: { message } } = await await API.deleteAddress({ pathParams: { userId, id } });
-        return Promise.resolve(message);
+        await API.deleteAddress({ pathParams: { userId, id } });
+        return Promise.resolve();
       } catch (error) {
         return Promise.reject(error);
       }
@@ -94,8 +94,8 @@ export default {
     async [EDIT_ADDRESS](_, { id, data }) {
       try {
         const { userId } = localStorage.getObject('userInfo');
-        const { header: { message } } = await await API.editAddress({ data, pathParams: { userId, id } });
-        return Promise.resolve(message);
+        await API.editAddress({ data, pathParams: { userId, id } });
+        return Promise.resolve();
       } catch (error) {
         return Promise.reject(error);
       }
