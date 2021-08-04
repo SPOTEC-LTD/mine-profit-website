@@ -43,23 +43,25 @@ const CountDownToLink = {
 
   render() {
     const content = (
-      <div class='count-down-dialog'>
-        <div class='count-down-mention'>
-          <img src={jumpPageImage} alt="" class='count-down-img'/>
-          <span class='count-down-mention-content'>{this.operatingSuccess}</span>
+      <div class="count-down-dialog">
+        <div class="count-down-mention">
+          <img src={jumpPageImage} alt="" class="count-down-img" />
+          <span class="count-down-mention-content">{this.operatingSuccess}</span>
         </div>
 
-        <div class='count-down-time'>
-          <Statistic.Countdown
-            value={Date.now() + this.time}
-            format="ss"
-            onFinish={this.onChange}
-            class='count-down-clock'
-          />
-          <span>{this.promptText || `${this.$t('linkToPageInTime')} ${this.pageName}`}</span>
-        </div>
+        {(this.promptText || this.pageName) && (
+          <div class="count-down-time">
+            <Statistic.Countdown
+              value={Date.now() + this.time}
+              format="ss"
+              onFinish={this.onChange}
+              class="count-down-clock"
+            />
+            <span>{this.promptText || `${this.$t('linkToPageInTime')} ${this.pageName}`}</span>
+          </div>
+        )}
 
-        <PrimaryButton class='count-down-confirm-btn' onClick={this.handleConfirm}>
+        <PrimaryButton class="count-down-confirm-btn" onClick={this.handleConfirm}>
           {this.$t('confirm')}
         </PrimaryButton>
       </div>

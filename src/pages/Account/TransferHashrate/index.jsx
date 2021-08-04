@@ -120,8 +120,6 @@ const TransferHashrate = {
         ...this.formData,
       };
 
-      console.log('params', params);
-
       this[HASHRATE_TRANSFER](params).then(() => {
         this.isShowPasswordInput = false;
         this.showCountDownToLink = true;
@@ -145,7 +143,7 @@ const TransferHashrate = {
     const inBuffAmount = getMinus({ number: this.formData.amount, minuend: noBuffAmount });
 
     return (
-      <div>
+      <div class={styles.wrapper}>
         <BaseContainer contentClassName={styles.container}>
           <ProductTitle chainType={hashrateType} name={name} />
           <FormContainer>
@@ -183,7 +181,7 @@ const TransferHashrate = {
                     suffix: () => (
                       <div class={styles['amount-input-suffix']}>
                         <span>{this.unit}</span>
-                        <span onClick={() => { this.formData.amount = this.amount; }}>全部</span>
+                        <span onClick={() => { this.formData.amount = this.amount; }}>{this.$t('all')}</span>
                       </div>
                     ),
                   }}
@@ -282,7 +280,7 @@ const TransferHashrate = {
           loading={this.loading}
           onClick={this.onPageButtonConfirm}
         >
-          {this.$t('confirm')}
+          {this.$t('confirmTransfer')}
         </PageButton>
       </div>
     );
