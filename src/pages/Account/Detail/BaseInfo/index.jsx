@@ -7,6 +7,8 @@ import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import { UPDATE_USER_INFO } from '@/store/consts/actionType';
 import { hashRateCouponsPath } from '@/router/consts/urls';
 import ShareQrCodeModal from '@/shared/components/ShareQrCodeModal';
+import defaultAvatar from '@/assets/rank/defaultAvatar.png';
+import { getLocalLanguage } from '@/shared/utils/getLocalLanguage';
 import logout from './logout';
 import styles from './index.less?module';
 
@@ -23,14 +25,15 @@ const Detail = {
     },
     getInviteItem() {
       const { invitationCode, inviteReward, inviteCount } = this.inviteInfo;
-      // TODO 需要动态域名和国际化
-      const link = 'http://192.168.0.126:7010/register/588?locale=en-US';
+      const { id } = this.userInfo;
+      const link = `${process.env.MOBILE_SITE_HOST}/register/${id}?locale=${getLocalLanguage()}`;
+
       const qrCodeItem = (
         <div>
           <div class={styles['invite-info-label']}>{this.$t('myInvitationQRCode')}</div>
           <div class={styles['view-qr-box']}>
             <QrCodeIcon className={styles['qr-icon']} />
-            <ShareQrCodeModal title={this.$t('myInvitationQRCode')} value={link}>
+            <ShareQrCodeModal title={this.$t('myInvitationQRCode')} content={link}>
               <a class={styles['view-qr']}>{this.$t('clickView')}</a>
             </ShareQrCodeModal>
           </div>
@@ -77,14 +80,14 @@ const Detail = {
       <BaseContainer class={styles['account-base-info']}>
         <div class={styles['info-box']}>
           <div class={styles['info-left']}>
-            <img class={styles.avatar} src={avatar} alt="" />
+            <img class={styles.avatar} src={avatar || defaultAvatar } alt="" />
             <div class={styles['info-left-content']}>
-              <div class={styles.nickname}>{nickName}</div>
+              <div class={styles.nickname}>{nickName || '-'}</div>
               <div class={styles['info-left-operate']}>
                 <a>{this.$t('edit')}</a>
                 <a onClick={this.handleLogout}>{this.$t('logout')}</a>
               </div>
-              <div>{`${this.$t('accountAndSecurityAccount')}：${registerAccount}`}</div>
+              <div>{`${this.$t('accountAndSecurityAccount')}：${registerAccount || '-'}`}</div>
               <div>{`${this.$t('promoteRank')}：${level || '-'}`}</div>
             </div>
           </div>

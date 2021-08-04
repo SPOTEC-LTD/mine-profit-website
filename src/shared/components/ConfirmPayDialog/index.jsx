@@ -48,7 +48,7 @@ const ConfirmPayDialog = {
           onChange={this.handlePassWordChange}
           name="password"
           type="password"
-          maxlength="20"
+          maxLength={20}
           placeholder={this.$t('payInputPwd')}
         />
 

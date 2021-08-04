@@ -58,8 +58,8 @@ const Hashrate = {
 
   render() {
     const iconMap = {
-      BTC: <EthIcon />,
-      ETH: <BtcIcon />,
+      BTC: <BtcIcon />,
+      ETH: <EthIcon />,
     };
     return (
       <Spin spinning={this.getProductHashrateStatisticsLoading}>

@@ -33,6 +33,7 @@ export const GET_PLEDGE_REPAYMENT_INFO = 'getPledgeRepaymentInfo';
 export const PLEDGE_REDEEM_PAY = 'pledgeRedeemPay';
 export const PLEDGE_REPAYMENT_PAY = 'pledgeRepaymentPay';
 export const PLEDGE_CONFIRM_SETTLE = 'pledgeConfirmSettle';
+export const GET_HASHRATE_PLEDGE_INFO = 'getHashratePledgeInfo';
 
 const UPDATE_PRODUCT_HASHRATE_STATISTICS_LIST = 'updateProductHashrateStatisticsList';
 const UPDATE_PRODUCT_HASHRATE_LIST = 'updateProductHashrateList';
@@ -42,6 +43,7 @@ export const TRANSFER_CANCEL_ACTION = 'cancelTransfer';
 export const UPDATE_TRANSFERABLE_AMOUNT = 'updateTransferableAmount';
 export const UPDATE_PLEDGE_REDEEM_INFO = 'updatePledgeRedeemInfo';
 export const UPDATE_PLEDGE_REPAYMENT_INFO = 'updatePledgeRepaymentInfo';
+export const UPDATE_HASHRATE_PLEDGE_INFO = 'updateHashratePledgeInfo';
 
 export default {
   namespaced: true,
@@ -79,6 +81,15 @@ export default {
       principal: 0,
       remainTime: 0,
     },
+    hashratePledgeInfo: {
+      maxPledgePortion: 0,
+      maxPledgeAmount: 0,
+      hashrateUnitPrice: 0,
+      annualRate: 0,
+      eachHashrateAmount: 0,
+      unit: '-',
+      name: '--',
+    },
   },
   mutations: {
     [UPDATE_PRODUCT_HASHRATE_STATISTICS_LIST](state, { data }) {
@@ -101,6 +112,9 @@ export default {
     },
     [UPDATE_PLEDGE_REPAYMENT_INFO](state, params) {
       state.pledgeRepaymentInfo = params;
+    },
+    [UPDATE_HASHRATE_PLEDGE_INFO](state, params) {
+      state.hashratePledgeInfo = params;
     },
   },
   actions: {
@@ -279,6 +293,18 @@ export default {
 
       try {
         await API.pledgeConfirmSettle({ pathParams: { userId, ...params } });
+
+        return Promise.resolve();
+      } catch (error) {
+        return Promise.reject(error);
+      }
+    },
+    async [GET_HASHRATE_PLEDGE_INFO]({ commit }, { productTemplateId, ...restData }) {
+      const { userId } = localStorage.getObject('userInfo');
+      const pathParams = { userId, productTemplateId };
+      try {
+        const { body: { hashratePledgeInfo } } = await API.getHashRatePledgeDetail({ pathParams, data: restData });
+        commit(UPDATE_HASHRATE_PLEDGE_INFO, hashratePledgeInfo);
 
         return Promise.resolve();
       } catch (error) {
