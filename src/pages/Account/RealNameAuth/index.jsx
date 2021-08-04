@@ -1,7 +1,6 @@
 import { Button, FormModel, Input, Row, Col, Select, DatePicker, Upload, Spin } from 'ant-design-vue';
 import { mapActions, mapState } from 'vuex';
 import moment from 'moment';
-import produce from 'immer';
 import split from 'lodash/split';
 import isEmpty from 'lodash/isEmpty';
 import BaseContainer from '@/shared/components/BaseContainer';
@@ -159,10 +158,9 @@ const RealNameAuth = {
       return true;
     },
     handleSubmit() {
-      const params = produce(this.form, draft => {
-        draft.imageUrlList = this.imageUrlList;
-        draft.birthday = this.form.birthday.format('YYYY-MM-DD');
-      });
+      const params = { ...this.form };
+      params.imageUrlList = this.imageUrlList;
+      params.birthday = this.form.birthday.format('YYYY-MM-DD');
 
       this[USER_REAL_NAME_AUTH](params)
         .then(() => {

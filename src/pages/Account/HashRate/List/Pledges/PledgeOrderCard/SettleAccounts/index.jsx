@@ -1,4 +1,5 @@
 import numberUtils from 'aa-utils/lib/numberUtils';
+import includes from 'lodash/includes';
 import dateUtils from '@/shared/intl/utils/dateUtils';
 import Card from '@/pages/Account/HashRate/List/components/Card';
 import ListCell from '@/pages/Account/HashRate/List/components/ListCell';
@@ -115,7 +116,7 @@ const SettleAccounts = {
           value: dateUtils.formatDate(data.settleTime, settleTimeFormat),
         },
         {
-          label: [INVEST_REDEEM, INVEST_REPAY].includes(data.settleStatus)
+          label: includes([INVEST_REDEEM, INVEST_REPAY], data.settleStatus)
             ? this.$t('pledgeRedeemPrincipaled') : this.$t('pledgeRedeemPrincipal'),
           value: (
             <CellValue

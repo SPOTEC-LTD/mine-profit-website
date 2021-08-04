@@ -1,4 +1,3 @@
-import produce from 'immer';
 import { Spin, Pagination } from 'ant-design-vue';
 import { mapState, mapActions, mapMutations } from 'vuex';
 import NoData from '@/shared/components/NoData';
@@ -31,9 +30,8 @@ const C2CMarketing = {
   mounted() {
     const chainType = this.activeChainType || this.paramData.chainType || ALL;
     this.activeChainType = chainType;
-    const resultParamData = produce(this.paramData, draft => {
-      draft.chainType = chainType === ALL ? undefined : chainType;
-    });
+    const resultParamData = { ...this.paramData, chainType: chainType === ALL ? undefined : chainType };
+
     this.getProductList(resultParamData);
   },
 
@@ -54,25 +52,21 @@ const C2CMarketing = {
 
     onTabsChange(key) {
       this.activeChainType = key;
-      const resultParamData = produce(this.paramData, draft => {
-        draft.chainType = key === ALL ? undefined : key;
-      });
+      const resultParamData = { ...this.paramData, chainType: key === ALL ? undefined : key };
+
       this.getProductList(resultParamData);
     },
 
     handleSortChange(options = {}) {
       const { order, field } = options;
-      const resultParamData = produce(this.paramData, draft => {
-        draft.order = order;
-        draft.field = field;
-      });
+      const resultParamData = { ...this.paramData, order, field };
+
       this.getProductList(resultParamData);
     },
 
-    onPageChange(current) {
-      const resultParamData = produce(this.paramData, draft => {
-        draft.pageNum = current;
-      });
+    onPageChange(pageNum) {
+      const resultParamData = { ...this.paramData, pageNum };
+
       this.getProductList(resultParamData);
     },
 

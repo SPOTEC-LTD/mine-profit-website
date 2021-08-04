@@ -5,6 +5,7 @@ import utc from 'dayjs/plugin/utc';
 import duration from 'dayjs/plugin/duration';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import timezone from 'dayjs/plugin/timezone';
+import momentTimezone from 'moment-timezone'; // fix ie tz.guess bug;
 import isNumber from 'lodash/isNumber';
 import { CN } from '../consts/languages';
 import { dayjsLocaleMap } from '../consts/localeTypes';
@@ -135,7 +136,7 @@ class DateUtils {
   }
 
   getTimeZone = () => {
-    return dayjs.tz.guess();
+    return momentTimezone.tz.guess();
   }
 }
 

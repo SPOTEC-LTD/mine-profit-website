@@ -32,7 +32,7 @@ const LoginInfo = {
         {!this.noLogin && (
           <div class={styles['user-info']} onClick={this.toAccountDetailPage}>
             <img class={styles.avatar} src={avatar} alt="" />
-            <span class={styles.name}>{nickName}</span>
+            <span class={styles.name} title={nickName}>{nickName}</span>
           </div>
         )}
       </div>

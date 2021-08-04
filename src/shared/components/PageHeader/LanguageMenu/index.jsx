@@ -1,5 +1,5 @@
 import { Dropdown, Menu } from 'ant-design-vue';
-import LagFilled from 'ahoney/lib/icons/LagFilled';
+import EarthFilled from 'ahoney/lib/icons/EarthFilled';
 import locationHelp from '@/shared/utils/locationHelp';
 import './index.less';
 
@@ -40,7 +40,7 @@ export default {
         )}
       >
         <a class="language-icon-box">
-          <LagFilled className="language-icon" />
+          <EarthFilled className="language-icon" />
         </a>
       </Dropdown>
     );

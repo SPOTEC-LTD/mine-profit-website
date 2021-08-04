@@ -1,7 +1,6 @@
 import { Tabs } from 'ant-design-vue';
 import { mapActions, mapState } from 'vuex';
 import Schema from 'async-validator';
-import produce from 'immer';
 import PhoneFilled from 'ahoney/lib/icons/PhoneFilled';
 import EmailFilled from 'ahoney/lib/icons/EmailFilled';
 import * as API from '@/api/sign';
@@ -11,6 +10,8 @@ import dateUtils from '@/shared/intl/utils/dateUtils';
 import PrimaryButton from '@/shared/components/PrimaryButton';
 import { passwordReg, phoneReg } from '@/shared/consts/rules';
 import * as verCodeType from '@/shared/consts/verCodeType';
+import Notification from '@/shared/services/Notification';
+import { SECTION_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
 import storageUserInfo from './storageUserInfo';
 import Form from './Form';
 import styles from './index.less?module';
@@ -160,25 +161,32 @@ const Login = {
 
       const isValidatorPass = await this.validatorForm(validatorKeys);
       if (isValidatorPass) {
-        const data = produce(this.formData, draft => {
-          draft.isVerificationLogin = this.isVerificationLogin;
-          if (this.isPhone) {
-            delete draft.email;
-          } else {
-            delete draft.phone;
-            delete draft.phonePrefix;
-          }
+        const paramsData = { ...this.formData };
 
-          if (this.isVerificationLogin) {
-            delete draft.password;
-          } else {
-            delete draft.code;
-          }
-        });
+        paramsData.isVerificationLogin = this.isVerificationLogin;
+        if (this.isPhone) {
+          delete paramsData.email;
+        } else {
+          delete paramsData.phone;
+          delete paramsData.phonePrefix;
+        }
 
-        this[LOGIN](data)
+        if (this.isVerificationLogin) {
+          delete paramsData.password;
+        } else {
+          delete paramsData.code;
+        }
+
+        console.log('paramsData', paramsData);
+
+        this[LOGIN](paramsData)
           .then(result => {
             storageUserInfo(result);
+          })
+          .catch(({ message, code }) => {
+            if (code === SECTION_BUSINESS_EXCEPTION) {
+              Notification.error(message);
+            }
           });
       }
     },
