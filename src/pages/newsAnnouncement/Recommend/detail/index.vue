@@ -21,7 +21,6 @@ export default {
   },
 
   async asyncData({ params, redirect }) {
-    console.log(params);
     let textInfo = {};
     try {
       const { body } = await fetchGoodNewsDetail({

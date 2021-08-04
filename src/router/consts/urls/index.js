@@ -20,6 +20,7 @@ export const setLoginPasswordPath = `${accountPath}/loginPasswordSet`;
 export const realNameAuthPath = `${accountPath}/realNameAuth`;
 export const transactionsPath = `${accountPath}/transactions`;
 export const depositPath = `${accountPath}/walletAllTypesCharge`;
+export const addressPath = `${accountPath}/withdrawAddressManagement`;
 
 // ==== aboutUsPaths
 export const aboutUsPaths = '/aboutUs';

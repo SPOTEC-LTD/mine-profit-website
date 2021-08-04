@@ -12,6 +12,10 @@ const ChainSelect = {
       type: Array,
       default: () => [],
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   methods: {
     getSuffixNode() {
@@ -31,12 +35,13 @@ const ChainSelect = {
     };
 
     return (
-      <div class={styles['coin-Select-box']}>
+      <div class={styles['coin-select-box']}>
         {iconMap[this.coin]}
         <Select
-          defaultValue={this.coin}
+          value={this.coin}
           suffixIcon={this.getSuffixNode}
           onChange={value => this.$emit('coinChange', value)}
+          disabled={this.disabled}
         >
           {columns.map((value, i) => (
             <Select.Option

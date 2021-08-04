@@ -12,6 +12,7 @@ import RealNameAuth from '@/pages/Account/RealNameAuth';
 import Orders from '@/pages/Account/Orders';
 import Transactions from '@/pages/Account/Detail/Wallet/Transactions';
 import Deposit from '@/pages/Account/Detail/Wallet/Deposit';
+import Address from '@/pages/Account/Detail/Wallet/Address';
 import * as urls from './consts/urls';
 
 const walletRoutes = [
@@ -26,6 +27,12 @@ const walletRoutes = [
     meta: { showBreadcrumb: true },
     name: 'walletAllTypesCharge',
     component: Deposit,
+  },
+  {
+    path: urls.addressPath,
+    meta: { showBreadcrumb: true },
+    name: 'withdrawAddressManagement',
+    component: Address,
   },
 ];
 

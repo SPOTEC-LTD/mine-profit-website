@@ -63,7 +63,7 @@ const Transactions = {
       { text: HASH_RATE_ETH, value: HASH_RATE_ETH },
     ];
 
-    const dropdownList = [
+    const selectList = [
       { name: LEDGER_TYPE, optionsList: getLedgerTypeList(), defaultValue: WALLET_TYPE_ALL },
       { name: CHAIN_TYPE, optionsList: chainTypeList, defaultValue: HASH_RATE_ALL },
       { name: LEDGER_STATUS, optionsList: getLedgerStatusList(), defaultValue: WALLET_STATUS_ALL },
@@ -83,7 +83,7 @@ const Transactions = {
               onChange={(_, dateString) => this.dateChange(dateString, 'endTime')}
             />
           </div>
-          {dropdownList.map(({ name, optionsList, defaultValue }, index) => (
+          {selectList.map(({ name, optionsList, defaultValue }, index) => (
             <Select
               class={styles['hashrate-status-select']}
               key={index}

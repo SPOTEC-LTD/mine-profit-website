@@ -7,6 +7,7 @@ const CoinLine = {
   props: {
     lineType: String,
     buttonList: { type: Array, default: () => [] },
+    disabled: { type: Boolean, default: false },
   },
   render() {
     return (
@@ -15,6 +16,7 @@ const CoinLine = {
           <Button
             key={index}
             class={[styles['line-button'], this.lineType === line ? styles['btn-blue'] : styles['btn-gray']]}
+            disabled={this.disabled && this.lineType !== line}
             onClick={() => this.$emit('changeLine', line)}
           >
             {buttonText}

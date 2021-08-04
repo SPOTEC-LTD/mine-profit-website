@@ -6,9 +6,7 @@ import isUndefined from 'lodash/isUndefined';
 import './index.less';
 
 const BaseModal = {
-  props: {
-    value: { type: Boolean, default: undefined },
-  },
+  props: ['value'],
 
   data() {
     return {

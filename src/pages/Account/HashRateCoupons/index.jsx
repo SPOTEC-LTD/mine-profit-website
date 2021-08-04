@@ -163,7 +163,6 @@ const HashRateCoupons = {
         >
           点我{this.couponId}{this.couponName}
         </CouponChooseModal>
-        {/* TODO: 面包屑 待加 */}
         <Select
           class={styles['hashrate-status-select']}
           defaultValue={COUPON_ALL}
