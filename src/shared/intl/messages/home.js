@@ -14,7 +14,6 @@ export default {
   secondParagraphIntroduce: '无论是BTC 还是ETH 都是依托于人类社会的共识价值，Mineprofit 希望通过这些标准算力的自由交易实现全民无门槛持币的目标，让世界每个角落的人们都可以成为加密货币的拥有者，为加密货币的人类共识价值做出一份贡献。',
   thirdlyParagraphIntroduce: '传统的大型矿场或矿工往往需要在交易所做空所挖加密货币来对冲币价下跌的风险，通过Mineprofit 矿工只需要将自己的多余算力进行打包出售便可以有效控制自己的挖矿风险，这种行为即可以扩大该币的持有人群，同时又可以有效遏制做空行为，让币价拥有更多的上涨空间，实现算力供应商与普通投资者双方共赢。',
   cooperationPartner: '合作伙伴',
-  mineprofitName: 'Mineprofit 盈算力',
   topHashRateFlatForm: '全球顶尖云算力平台',
   dowLoadRightNow: '立即下载',
   ourAdvantage: '我们的优势',

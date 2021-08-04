@@ -25,7 +25,7 @@ import EmailCircleOutlined from 'ahoney/lib/icons/EmailCircleOutlined';
 import TipCirccleOutlined from 'ahoney/lib/icons/TipCirccleOutlined';
 import locationServices from '@/shared/services/location/locationServices';
 import { RECOMMEND, NEWSLETTER, ANNOUNCEMENT } from '@/shared/consts/newsType';
-import { I18N } from '@/shared/intl/i18n';
+import { I18N } from '@@/i18n';
 import Link from '@/shared/components/link';
 
 import NavLink from './nav-link.vue';

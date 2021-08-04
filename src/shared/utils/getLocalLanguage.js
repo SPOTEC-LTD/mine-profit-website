@@ -1,4 +1,4 @@
-import { EN, ZH } from '@/shared/intl/i18n';
+import { EN, ZH } from '@@/i18n';
 import { CN, US } from '@/shared/intl/consts/languages';
 import locale from '@/shared/intl/utils/locale';
 
