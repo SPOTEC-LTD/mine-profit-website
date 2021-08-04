@@ -113,6 +113,7 @@ const Investment = {
             <KeepTabs.TabPane key="settled" tab={this.$t('typeSettled')}>
               <Table
                 class={styles.table}
+                rowKey="id"
                 columns={columns}
                 dataSource={this.settledList}
                 loading={this.getListLoading}
