@@ -2,6 +2,7 @@ import AccountDetail from '@/pages/Account/Detail';
 import HashRateList from '@/pages/Account/HashRate/List';
 import HashRateTurnOn from '@/pages/Account/HashRateTurnOn';
 import TransferHashrate from '@/pages/Account/TransferHashrate';
+import PledgeHashrate from '@/pages/Account/PledgeHashrate';
 import HashRateCoupons from '@/pages/Account/HashRateCoupons';
 import BindPhone from '@/pages/Account/BindPhone';
 import BindEmail from '@/pages/Account/BindEmail';
@@ -51,6 +52,12 @@ export default [
     name: 'transferHashrate',
     meta: { showBreadcrumb: true },
     component: TransferHashrate,
+  },
+  {
+    path: urls.pledgeHashratePath,
+    name: 'pledgePageTitle',
+    meta: { showBreadcrumb: true },
+    component: PledgeHashrate,
   },
   {
     path: urls.hashRateTurnOnPath,

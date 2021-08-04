@@ -1,0 +1,32 @@
+@import "@/shared/styles/variables.less";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: calc(100vh - 428px);
+}
+
+.container {
+  width: 610px;
+}
+
+.button {
+  margin-top: 72px;
+}
+
+.amount-input-suffix {
+  span {
+    &:first-child {
+      margin-right: 48px;
+      font-weight: 500;
+      color: @color__242424;
+    }
+
+    &:last-child {
+      color: @color__primary;
+      font-weight: 500;
+      cursor: pointer;
+    }
+  }
+}

@@ -7,7 +7,7 @@ import './index.less';
 
 const BaseModal = {
   props: {
-    value: Boolean,
+    value: { type: Boolean, default: undefined },
   },
 
   data() {

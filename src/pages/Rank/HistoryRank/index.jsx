@@ -20,7 +20,6 @@ const HistoryRank = {
     return {
       selectDuration: [],
       isEnglish: getIsEnglish(),
-      rankType: this.$route.query.rankType || INCOME,
     };
   },
   computed: {
@@ -29,6 +28,10 @@ const HistoryRank = {
       historyDuration: state => state.rank.historyDuration,
       searchLoading: state => state.loading.effects[`${RANK}/${GET_HISTORY_RANK_INFO}`],
     }),
+    currentRankType() {
+      const { rankType = INCOME } = this.$route.query;
+      return rankType;
+    },
     options() {
       return this.historyDuration.map(item => {
         const children = item.list.map(subItem => ({
@@ -54,12 +57,12 @@ const HistoryRank = {
       return this.info.topList;
     },
     unit() {
-      return this.$route.query.rankType === BUYER ? 'T' : 'USDT';
+      return this.currentRankType === BUYER ? 'T' : 'USDT';
     },
   },
   mounted() {
-    this[GET_HISTORY_RANK_INFO]({ topType: rankTypeMap[this.rankType] });
-    this[GET_HISTORY_DURATION](rankTypeMap[this.rankType]);
+    this[GET_HISTORY_RANK_INFO]({ topType: rankTypeMap[this.currentRankType] });
+    this[GET_HISTORY_DURATION](rankTypeMap[this.currentRankType]);
   },
   methods: {
     ...mapActions(RANK, [GET_HISTORY_RANK_INFO, GET_HISTORY_DURATION]),
@@ -77,8 +80,7 @@ const HistoryRank = {
     },
     onSearch() {
       const [, duration] = this.selectDuration;
-      const { rankType } = this.$route.query;
-      this[GET_HISTORY_RANK_INFO]({ duration, topType: rankTypeMap[rankType] });
+      this[GET_HISTORY_RANK_INFO]({ duration, topType: rankTypeMap[this.currentRankType] });
     },
   },
   render() {
@@ -100,7 +102,7 @@ const HistoryRank = {
               <Item label={this.$t('rankType')}>
                 <Select
                   onChange={this.handleRankTypeChange}
-                  defaultValue={this.rankType}
+                  defaultValue={this.currentRankType}
                   optionLabelProp="label"
                   suffixIcon={<TriangleFilled className="select-icon" />}
                   dropdownMatchSelectWidth={false}
@@ -186,19 +188,19 @@ const HistoryRank = {
             )}
           </Row>
         </div>
-        {this.rankType === INCOME && (
+        {this.currentRankType === INCOME && (
           <div class={styles['rules-text']}>
             <div>{this.$t('incomeRankRule1')}</div>
             <div>{this.$t('incomeRankRule2')}</div>
           </div>
         )}
-        {this.rankType === ANGEL && (
+        {this.currentRankType === ANGEL && (
           <div class={styles['rules-text']}>
             <div>{this.$t('newBuyRankRule1')}</div>
             <div>{this.$t('newBuyRankRule2')}</div>
           </div>
         )}
-        {this.rankType === BUYER && (
+        {this.currentRankType === BUYER && (
           <div class={styles['rules-text']}>
             <div>{this.$t('angelRankRule1')}</div>
             <div>{this.$t('angelRankRule2')}</div>

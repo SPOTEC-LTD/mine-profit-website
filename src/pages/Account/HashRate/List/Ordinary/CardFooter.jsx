@@ -13,7 +13,7 @@ import FooterButtonGroup from '@/pages/Account/HashRate/List/components/FooterBu
 import DateUtils from '@/shared/intl/utils/dateUtils';
 import locationServices from '@/shared/services/location/locationServices';
 import Notification from '@/shared/services/Notification';
-import { transferHashratePath } from '@/router/consts/urls';
+import { transferHashratePath, pledgeHashratePath } from '@/router/consts/urls';
 import { POWER_ON } from '@/shared/consts/powerStatus';
 import FooterLayout from '../components/FooterLayout';
 import AmountValue from '../components/AmountValue';
@@ -25,7 +25,7 @@ const CardFooter = {
   methods: {
     pledgeAction({ isPledge, productTemplateId, hashrateType }) {
       if (isPledge === HASHRATE_ENOUGH) {
-        locationServices.push('pledgeHashratePath', {
+        locationServices.push(pledgeHashratePath, {
           params: { productTemplateId },
           query: { source: ORDINARY, hashrateType },
         });
