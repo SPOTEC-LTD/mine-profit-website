@@ -10,7 +10,6 @@ import styles from './index.less?module';
 const AddressHeader = {
   props: {
     coin: String,
-    default: '',
   },
   methods: {
     coinChange(value) {
