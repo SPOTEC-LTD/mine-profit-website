@@ -299,12 +299,11 @@ export default {
         return Promise.reject(error);
       }
     },
-    async [GET_HASHRATE_PLEDGE_INFO]({ commit }, { productTemplateId, ...rest }) {
+    async [GET_HASHRATE_PLEDGE_INFO]({ commit }, { productTemplateId, ...restData }) {
       const { userId } = localStorage.getObject('userInfo');
-
+      const pathParams = { userId, productTemplateId };
       try {
-        // eslint-disable-next-line max-len
-        const { body: { hashratePledgeInfo } } = await API.getHashRatePledgeDetail({ pathParams: { userId, productTemplateId }, data: rest });
+        const { body: { hashratePledgeInfo } } = await API.getHashRatePledgeDetail({ pathParams, data: restData });
         commit(UPDATE_HASHRATE_PLEDGE_INFO, hashratePledgeInfo);
 
         return Promise.resolve();

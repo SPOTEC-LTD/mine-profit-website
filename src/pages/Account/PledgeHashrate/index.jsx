@@ -18,6 +18,7 @@ import ConfirmPayDialog from '@/shared/components/ConfirmPayDialog';
 import locationServices from '@/shared/services/location/locationServices';
 import ShareQrCodeModal from '@/shared/components/ShareQrCodeModal';
 import { getLocalLanguage } from '@/shared/utils/getLocalLanguage';
+import { CLOSE } from '@/pages/Account/HashRate/consts/pledgeSourceType';
 import styles from './index.less?module';
 
 const { Item } = FormModel;
@@ -76,8 +77,11 @@ const PledgeHashrate = {
     },
   },
   mounted() {
-    const { hashrateType, ...rest } = this.$route.query;
-    this[GET_HASHRATE_PLEDGE_INFO]({ ...this.$route.params, ...rest }).then(() => {
+    const { productTemplateId } = this.$route.params;
+    const { source, id, sourceType, hashrateType } = this.$route.query;
+    const params = +source === CLOSE ? { source, id, sourceType, hashrateType } : { source };
+
+    this[GET_HASHRATE_PLEDGE_INFO]({ productTemplateId, ...params }).then(() => {
       const { pledgeCount } = this.hashratePledgeInfo;
       const canCancelCount = MAX_CANCEL_COUNT - pledgeCount;
       if (canCancelCount <= 3 && canCancelCount > 0) {
