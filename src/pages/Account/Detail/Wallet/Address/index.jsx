@@ -9,6 +9,7 @@ import BaseContainer from '@/shared/components/BaseContainer';
 import ConfirmPayDialog from '@/shared/components/ConfirmPayDialog';
 import Notification from '@/shared/services/Notification';
 import ConfirmModal from '@/shared/components/ConfirmModal';
+import InfoTooltip from '@/shared/components/InfoTooltip';
 
 import AddressHeader from './AddressHeader';
 import AddOrEditAddressModal from './AddOrEditAddressModal';
@@ -170,6 +171,18 @@ const Address = {
         dataIndex: 'addressName',
         align: 'center',
         ellipsis: true,
+        customRender: (_, { addressName }) => {
+          return (
+            <div class={styles['tooltip-box']}>
+              <InfoTooltip
+                content={addressName}
+                trigger='click'
+              >
+                <div class={styles['tooltip-name']}>{addressName}</div>
+              </InfoTooltip>
+            </div>
+          );
+        },
       },
       {
         title: this.$t('address'),

@@ -59,12 +59,14 @@ const HeaderNav = {
                 : <EthFilled className={styles['icon-eth']} />
               }
               <div class={styles['card-header-info']}>
-                <InfoTooltip
-                  content={name}
-                  trigger='click'
-                >
-                  <div class={styles['card-title']}>{name}</div>
-                </InfoTooltip>
+                <div class={styles['tooltip-box']}>
+                  <InfoTooltip
+                    content={name}
+                    trigger='click'
+                  >
+                    <div class={styles['card-title']}>{name}</div>
+                  </InfoTooltip>
+                </div>
                 <div class={styles['card-time']}>
                   {this.finallyTimeString}
                 </div>

@@ -39,7 +39,7 @@ export default {
   walletAddressName: '地址名称',
   walletChainType: '链类型',
   walletCoinType: '币种类型',
-  walletAdd: '新增',
+  add: '新建',
   delete: '删除',
   walletConfirmDeleteAddress: '确认删除该地址？',
   walletChargeAddress: '充值地址',

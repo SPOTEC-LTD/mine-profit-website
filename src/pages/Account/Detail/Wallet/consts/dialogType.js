@@ -1,2 +1,2 @@
-export const ADD = 'walletAdd';
+export const ADD = 'add';
 export const EDIT = 'edit';

@@ -76,12 +76,14 @@ const HashRateCoupons = {
         ellipsis: true,
         customRender: (_, { name }) => {
           return (
-            <InfoTooltip
-              content={name}
-              trigger='click'
-            >
-              <div class={styles['tooltip-name']}>{name}</div>
-            </InfoTooltip>
+            <div class={styles['tooltip-box']}>
+              <InfoTooltip
+                content={name}
+                trigger='click'
+              >
+                <div class={styles['tooltip-name']}>{name}</div>
+              </InfoTooltip>
+            </div>
           );
         },
       },

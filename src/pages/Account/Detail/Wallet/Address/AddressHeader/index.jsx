@@ -71,7 +71,7 @@ const AddressHeader = {
           class={styles['add-button']}
           onClick={() => this.$emit('openAddModal')}
         >
-          {this.$t('walletAdd')}
+          {this.$t('add')}
         </Button>
       </div>
 
