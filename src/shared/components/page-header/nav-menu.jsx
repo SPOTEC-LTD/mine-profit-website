@@ -18,7 +18,7 @@ export default {
         overlay={(
           <Menu>
             {
-              this.items.map(item => (
+              this.items.map(item => !item.hidden && (
                 <Menu.Item key={item.name}>
                   <Link to={{ path: item.href, query: { type: item.type } }} isReload>
                     <div

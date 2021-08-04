@@ -4,7 +4,7 @@
       <TabPane :key="RECOMMEND" :tab="$t('recommendArticle')">
         <Recommend />
       </TabPane>
-      <TabPane :key="NEWSLETTER" :tab="$t('newsletter')">
+      <TabPane v-if="isChinese" :key="NEWSLETTER" :tab="$t('newsletter')">
         <Newsletter />
       </TabPane>
       <TabPane :key="ANNOUNCEMENT" :tab="$t('announcement')">
@@ -18,6 +18,7 @@
 import { Tabs } from 'ant-design-vue';
 import BaseContainer from '@/shared/components/BaseContainer';
 import { RECOMMEND, NEWSLETTER, ANNOUNCEMENT } from '@/shared/consts/newsType';
+import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 import Recommend from './Recommend/index.vue';
 import Newsletter from './Newsletter/index.vue';
 import Announcement from './Announcement/index.vue';
@@ -39,6 +40,7 @@ export default {
       NEWSLETTER,
       ANNOUNCEMENT,
       active: this.$route.query.type || RECOMMEND,
+      isChinese: getIsChinese(),
     };
   },
   mounted() {
