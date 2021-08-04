@@ -2,7 +2,7 @@ import { Carousel } from 'ant-design-vue';
 
 import gongGaoIcon from '@/assets/home/gonggao.svg';
 import NavLink from '@/shared/components/NavLink';
-// import { announcementDetailPath, infoPath } from '@/router/consts/urls';
+import { announcementDetailPath } from '@/router/consts/urls';
 import styles from './index.less?module';
 
 const Announcements = {
@@ -35,8 +35,7 @@ const Announcements = {
                   key={i}
                   class={styles['announce-main']}
                   to={{
-                    // path: announcementDetailPath,
-                    path: '/', // TODO
+                    path: announcementDetailPath,
                     params: { id },
                     query: { redirectPageUrl: currentFullPath },
                   }}

@@ -2,7 +2,7 @@ import { Modal } from 'ant-design-vue';
 import PrimaryButton from '@/shared/components/PrimaryButton';
 import './index.less';
 
-const BaseModal = {
+const InfoModal = {
   props: {
     disabled: {
       type: Boolean,
@@ -72,4 +72,4 @@ const BaseModal = {
   },
 };
 
-export default BaseModal;
+export default InfoModal;

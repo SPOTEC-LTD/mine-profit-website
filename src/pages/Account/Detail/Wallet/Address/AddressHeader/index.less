@@ -1,0 +1,61 @@
+@import "@/shared/styles/variables.less";
+
+.filter-group {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0 20px;
+}
+
+.coin-line-select {
+  display: flex;
+
+  :global {
+    .mp-select .mp-select-selection {
+      border: 0;
+      font-size: @font-size-lg;
+      font-weight: 500;
+      color: @color__242424;
+    }
+
+    .mp-select-arrow .mp-select-arrow-icon {
+      display: flex;
+      align-items: center;
+    }
+
+    .mp-select-open .mp-select-selection,
+    .mp-select-focused .mp-select-selection,
+    .mp-select-selection:focus,
+    .mp-select-selection:active {
+      box-shadow: none;
+    }
+  }
+}
+
+.coin-select {
+  width: 218px;
+  background-color: @color__f7f8fc;
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+
+  .icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  :global {
+    .mp-select .mp-select-selection {
+      width: 186px !important;
+    }
+  }
+}
+
+.add-button {
+  height: 38px;
+  width: 95px;
+  font-size: @font-size-lg;
+  font-weight: 500;
+}

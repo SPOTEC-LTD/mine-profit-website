@@ -2,13 +2,13 @@ import { FormModel, Input } from 'ant-design-vue';
 import filter from 'lodash/filter';
 import InfoCircleFilled from 'ahoney/lib/icons/InfoCircleFilled';
 
+import { LINE_USDT_ERC20, LINE_USDT_OMNI } from '@/pages/Account/Detail/Wallet/consts/lineType';
 import * as API from '@/api/account/wallet';
 import CopyToClipboard from '@/shared/components/CopyToClipboard';
 import BaseContainer from '@/shared/components/BaseContainer';
 import ChainSelect from '@/shared/components/ChainSelect';
 import QRCodeModule from '@/shared/components/QRCodeModule';
 
-import { LINE_USDT_ERC20 } from '../consts/lineType';
 import CoinLine from '../components/CoinLine';
 
 import styles from './index.less?module';

@@ -3,7 +3,7 @@ import numberUtils from 'aa-utils/lib/numberUtils';
 import LockOutline from 'ahoney/lib/icons/LockOutline';
 import HandCardOutlined from 'ahoney/lib/icons/HandCardOutlined';
 
-import { hashRateCouponsPath, depositPath } from '@/router/consts/urls';
+import { hashRateCouponsPath, addressPath, depositPath } from '@/router/consts/urls';
 import { EthIcon, BtcIcon, UsdtIcon } from '@/shared/components/ChainIcon';
 import NewWindowGuide from '@/shared/components/NewWindowGuide';
 
@@ -66,8 +66,7 @@ const Assets = {
                 <div class={styles['bottom-guide']}>
                   <NewWindowGuide
                     label={this.$t('withdrawAddressManagement')}
-                    // TODO: 跳转地址 待改为 地址管理
-                    onGuide={() => { window.open(hashRateCouponsPath); }}
+                    onGuide={() => { window.open(addressPath); }}
                   />
                 </div>
               ),
