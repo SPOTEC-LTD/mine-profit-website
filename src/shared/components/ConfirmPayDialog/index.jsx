@@ -54,9 +54,7 @@ const ConfirmPayDialog = {
 
         <div class="other-info">
           <div class="error_message">
-            {
-              this.error ? this.$t('payPwdEmptyHint') : ''
-            }
+            { this.error ? this.$t('payPwdEmptyHint') : '' }
           </div>
           <span
             class="pay-forget-password"
@@ -77,9 +75,7 @@ const ConfirmPayDialog = {
           confirmLoading={this.loading}
           onCancel={this.onCancelModal}
           onConfirm={this.onModalConfirm}
-          scopedSlots={{
-            content: () => content,
-          }}
+          scopedSlots={{ content: () => content }}
         >
           {content}
         </ConfirmModal>

@@ -1,7 +1,7 @@
-import classNames from 'classnames';
 import includes from 'lodash/includes';
 import { Popover } from 'ant-design-vue';
 import getTimes from '@/shared/utils/getTimes';
+import numberUtils from 'aa-utils/lib/numberUtils';
 import NewBuyBuffButton from '@/shared/components/NewBuyBuffButton';
 import NewUserButton from '@/shared/components/NewUserButton';
 import NewUserBuff from '@/shared/components/NewUserBuff';
@@ -18,6 +18,11 @@ const TagGroup = {
       type: Object,
       default: () => {},
     },
+    isSettlementPage: {
+      type: Boolean,
+      default: false,
+    },
+    purchaseAmount: [Number, String],
   },
 
   methods: {
@@ -65,34 +70,63 @@ const TagGroup = {
         />
       );
     },
+
+    marketNewBuyDecNode() {
+      const { buffDays, buffRate } = this.productData;
+      return (
+        <span>{this.$t('marketDiscountNewBuyDes', { buffDays, buffRate: `+${numberUtils.times(+buffRate, 100)}%` })} </span>
+      );
+    },
+
+    marketRenewDecNode() {
+      const { dupAmount, dupBuffDays, unit } = this.productData;
+      const buyAmount = this.purchaseAmount > +dupAmount ? dupAmount : this.purchaseAmount;
+      const resultDupAmount = +dupAmount ? buyAmount : dupAmount;
+      return (
+        <div>
+          {this.$t('marketDiscountRenewLeft')}
+          <span class='market-renew-mount'>{`${bigNumberToFixed(resultDupAmount, 2)}${unit}`}</span>
+          <span>{this.$t('marketDiscountRenewRight', { buffDays: dupBuffDays })} </span>
+        </div>
+      );
+    },
   },
 
   render() {
     const { tags } = this.productData;
-    const isNewUser = includes(tags, NEW_USER_USED);
+    const isNewUser = includes(tags, NEW_USER_USED) && !this.isSettlementPage;
     const isNewBuy = includes(tags, MARKET_NEW_BUY_BUFF);
     const isRenewBuy = includes(tags, MARKET_RENEW_BUFF);
 
     return (
-      <div class={classNames('tag-groups', this.className)}>
+      <div class={['tag-groups', { 'settlement-wrapper': this.isSettlementPage }, this.className]}>
         {isNewUser && (
           this.mentionTips({
             content: this.newUserMentionNode,
             trigger: () => <NewUserButton class='group-tag' />,
           })
         )}
+
         {isNewBuy && (
-          this.mentionTips({
-            content: this.marketNewBuyBuffNode,
-            trigger: () => <NewBuyBuffButton class='group-tag'>{this.$t('marketNewBuyBuff')}</NewBuyBuffButton>,
-          })
+          <div class='tag-market-button-buff'>
+            { this.mentionTips({
+              content: this.marketNewBuyBuffNode,
+              trigger: () => <NewBuyBuffButton class='group-tag'>{this.$t('marketNewBuyBuff')}</NewBuyBuffButton>,
+            })}
+            {this.isSettlementPage && <div class='tag-market-button-suffix'>{this.marketNewBuyDecNode()}</div>}
+          </div>
         )}
+
         {isRenewBuy && (
-          this.mentionTips({
-            content: this.marketRenewBuffNode,
-            trigger: () => <NewBuyBuffButton class='group-tag'>{this.$t('marketRenewBuff')}</NewBuyBuffButton>,
-          })
+          <div class='tag-market-button-buff'>
+            { this.mentionTips({
+              content: this.marketRenewBuffNode,
+              trigger: () => <NewBuyBuffButton class='group-tag'>{this.$t('marketRenewBuff')}</NewBuyBuffButton>,
+            })}
+            {this.isSettlementPage && <div class='tag-market-button-suffix'>{this.marketRenewDecNode()}</div>}
+          </div>
         )}
+
       </div>
     );
   },

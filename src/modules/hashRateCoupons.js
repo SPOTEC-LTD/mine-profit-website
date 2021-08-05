@@ -51,6 +51,7 @@ export default {
       const { userId } = localStorage.getObject('userInfo');
       try {
         const { body: { list } } = await API.getVipCoupons({ data, pathParams: { userId } });
+        commit(RESET_VIP_COUPONS_LIST, []);
         commit(UPDATE_VIP_COUPONS, list);
 
         return Promise.resolve();

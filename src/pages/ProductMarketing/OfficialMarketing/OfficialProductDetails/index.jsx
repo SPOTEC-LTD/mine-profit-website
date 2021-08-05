@@ -19,7 +19,6 @@ import Notification from '@/shared/services/Notification';
 import * as officialProductAPI from '@/api/officialMarket';
 import { NEW_USER_USED } from '@/shared/consts/productTag';
 import ProductTitle from '@/shared/components/ProductTitle';
-import { officialMarketingPath } from '@/router/consts/urls';
 import BaseContainer from '@/shared/components/BaseContainer';
 import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
@@ -31,13 +30,14 @@ import CellTitle from '@/pages/Account/HashRate/List/components/CellTitle';
 import DetailContent from '@/pages/ProductMarketing/components/DetailContent';
 import PurchaseButton from '@/pages/ProductMarketing/components/PurchaseButton';
 import ContentContainer from '@/pages/ProductMarketing/components/ContentContainer';
+import { officialMarketingPath, officialSettlementPath } from '@/router/consts/urls';
 import initValue from '../consts/productInitialValue';
 import styles from './index.less?module';
 
 const OfficialProductDetails = {
   async asyncData(ctx) {
     const props = { officialProductDetails: initValue, rest: '', rateExchangeList: [], isError: false };
-    const getProductPromise = officialProductAPI.getProductDetails({ pathParams: { id: ctx.query.id } }, { ctx });
+    const getProductPromise = officialProductAPI.getProductDetails({ pathParams: { id: ctx.params.id } }, { ctx });
     const getRateExchangeList = rateExchangeAPI.getRateExchange({}, { ctx });
 
     try {
@@ -96,7 +96,7 @@ const OfficialProductDetails = {
         },
         {
           icon: <ReticuleOutlined />,
-          title: <CellTitle title={this.$t('marketConvertUnitPrice')} />, // 折合单价
+          title: <CellTitle title={this.$t('marketConvertUnitPrice')} />,
           content: <DetailContent
             mount={getTimes({ number: unitPrice, times: rate, decimal: 2 })}
             unit={`USDT/${unit}`}
@@ -222,10 +222,8 @@ const OfficialProductDetails = {
     },
 
     purchaseNow() {
-      // TODO 跳转至结算页面
       const { id, ptId } = this.officialProductDetails;
-      console.log(id, ptId);
-      // locationServices.push(officialProductSettlementPath, { params: { id, ptId } });
+      locationServices.push(officialSettlementPath, { params: { id, ptId } });
     },
   },
 

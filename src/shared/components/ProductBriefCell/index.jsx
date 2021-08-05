@@ -34,10 +34,10 @@ const ProductBriefCell = {
   methods: {
     onClickToDetail() {
       if (this.isOfficialMarket) {
-        locationServices.push(officialDetailsPath, { query: { id: this.productData.id } });
+        locationServices.push(officialDetailsPath, { params: { id: this.productData.id } });
         return;
       }
-      locationServices.push(c2cDetailsPath, { query: { id: this.productData.id } });
+      locationServices.push(c2cDetailsPath, { params: { id: this.productData.id } });
     },
 
     getC2CProductTitleProps() {

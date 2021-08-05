@@ -8,7 +8,7 @@ import './index.less';
 
 const CountDownToLink = {
   props: {
-    show: Boolean,
+    visible: Boolean,
     time: { type: Number, default: 4000 },
     to: [String, Object],
     pageName: String,
@@ -70,10 +70,8 @@ const CountDownToLink = {
     return (
       <BaseModal
         width={270}
-        value={this.show}
-        scopedSlots={{
-          content: () => content,
-        }}
+        value={this.visible}
+        scopedSlots={{ content: () => content }}
       />
     );
   },

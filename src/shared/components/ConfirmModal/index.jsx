@@ -19,6 +19,10 @@ const ConfirmModal = {
       type: Boolean,
       default: false,
     },
+    confirmDisabled: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -61,6 +65,7 @@ const ConfirmModal = {
           type: 'primary',
           label: this.confirmButtonText || this.$t('confirm'),
           loading: this.confirmLoading,
+          disabled: this.confirmDisabled,
         },
       ];
 
