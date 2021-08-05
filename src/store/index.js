@@ -14,6 +14,7 @@ import hashRateCoupons from '../modules/hashRateCoupons';
 import officialProduct from '../modules/officialProduct';
 import c2cMarket from '../modules/c2cMarket';
 import wallet from '../modules/account/wallet';
+import user from '../modules/user';
 
 export const strict = false;
 export const plugins = [loadingPlugin()];
@@ -57,4 +58,5 @@ export const modules = {
   investment,
   wallet,
   rank,
+  user,
 };

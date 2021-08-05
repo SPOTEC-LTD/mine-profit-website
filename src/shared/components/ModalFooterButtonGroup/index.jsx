@@ -20,6 +20,7 @@ const FooterButtonGroup = {
               type={item.type || 'default'}
               onClick={item.onClick || noop}
               loading={item.loading}
+              disabled={item.disabled}
             >
               <span>{item.label}</span>
             </Button>

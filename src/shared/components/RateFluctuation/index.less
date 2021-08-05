@@ -1,0 +1,82 @@
+@import "@/shared/styles/variables.less";
+
+.fluctuation-container {
+  width: 100%;
+  padding: 3px 50px 0 50px;
+}
+
+.fluctuation-operating-btn {
+  height: 127px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size: @font-size__17;
+  margin-top: 15px;
+  padding: 22px 0;
+}
+
+.fluctuation-confirm-btn {
+  height: 36px;
+}
+
+.fluctuation-cancel-btn {
+  width: 100%;
+  background-color: @white;
+  border: 1px solid @color__primary;
+  height: 34px;
+  color: @color__primary;
+  border-radius: 8px;
+}
+
+.fluctuation-mention {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 26px 0 24px;
+}
+
+.fluctuation-img {
+  width: 104px;
+}
+
+.fluctuation-mention-content {
+  max-width: 192px;
+  color: @color__242424;
+  font-size: @font-size-base;
+  text-align: center;
+  padding-top: 22px;
+}
+
+.fluctuation-pay-mount-title {
+  color: @color__242424;
+  font-size: @font-size__13;
+  font-weight: 500;
+}
+
+.fluctuation-pay-mount {
+  background-color: @color__f9f9f9;
+  font-size: @font-size-base;
+  height: 28px;
+  line-height: 28px;
+}
+
+.fluctuation-pay-unit {
+  color: @color__8b8b8b;
+  padding-left: 3px;
+}
+
+.fluctuation-wait-pay {
+  padding-top: 16px;
+
+  .fluctuation-pay-mount {
+    color: @color__fe6565;
+  }
+}
+
+.fluctuation-no-balance {
+  color: @color__fe6565;
+  font-size: @font-size__13;
+  padding-top: 4px;
+}

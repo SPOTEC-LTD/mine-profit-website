@@ -35,8 +35,10 @@ export const announcementDetailPath = `${newsPath}/announcementDetail/:id`;
 export const marketingPaths = '/hashRateMarket';
 export const officialMarketingPath = `${marketingPaths}/officialMarketing`;
 export const c2cMarketingPath = `${marketingPaths}/marketC2CMarket`;
-export const officialDetailsPath = `${officialMarketingPath}/marketHashDetail`;
+export const officialDetailsPath = `${officialMarketingPath}/marketHashDetail/:id`;
 export const c2cDetailsPath = `${c2cMarketingPath}/marketHashDetail`;
+export const officialSettlementPath = `${officialDetailsPath}/marketConfirmSettle/:ptId`;
+export const c2cSettlementPath = `${c2cDetailsPath}/marketConfirmSettle`;
 
 // ==== rankPaths
 export const rankPath = '/rank';
