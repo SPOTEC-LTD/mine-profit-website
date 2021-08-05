@@ -61,20 +61,18 @@ const PayWaySelector = {
   mounted() {
     this.payAmount = bigNumberToFixed(this.willPayAmount, 2);
     this[GET_USER_BALLANCE]();
-    this.onHandleClickDocument();
+    document.addEventListener('click', this.onHandleClickDocument);
   },
 
   destroyed() {
-    window.removeEventListener('click', this.onHandleClickDocument);
+    document.removeEventListener('click', this.onHandleClickDocument);
   },
 
   methods: {
     ...mapActions(USER, [GET_USER_BALLANCE]),
 
     onHandleClickDocument() {
-      document.addEventListener('click', () => {
-        this.menuVisible = false;
-      });
+      this.menuVisible = false;
     },
 
     handleClickMenu(e) {

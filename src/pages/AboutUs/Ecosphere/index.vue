@@ -29,11 +29,11 @@ export default {
   },
 
   mounted() {
-    window.addEventListener('scroll', throttle(this.onHandleScroll, 500), false);
+    window.addEventListener('scroll', this.onHandleThrottleScroll, false);
   },
 
   destroyed() {
-    window.removeEventListener('scroll', this.onHandleScroll);
+    window.removeEventListener('scroll', this.onHandleThrottleScroll);
   },
 
   methods: {
@@ -44,6 +44,10 @@ export default {
       } else if (scrollTop > 1200 && scrollTop < 2250) {
         this.isStakingAnimate = true;
       }
+    },
+
+    onHandleThrottleScroll() {
+      throttle(this.onHandleScroll, 500);
     },
   },
 };
