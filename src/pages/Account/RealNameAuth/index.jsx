@@ -3,6 +3,7 @@ import { mapActions, mapState } from 'vuex';
 import moment from 'moment';
 import split from 'lodash/split';
 import isEmpty from 'lodash/isEmpty';
+import omit from 'lodash/omit';
 import BaseContainer from '@/shared/components/BaseContainer';
 import appIcon from '@/assets/account/app-icon.png';
 import * as API from '@/api/sign';
@@ -20,7 +21,9 @@ import { uploadFileUrl } from '@/api/file';
 import { MALE, FEMALE } from '@/shared/consts/getGenders';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import { ID_CARD, DRIVING_LICENSE, PASSPORT } from '@/shared/consts/getIdTypes';
+import { getIsChinese, getIsEnglish } from '@/shared/utils/getLocalLanguage';
 import Notification from '@/shared/services/Notification';
+import NumberInput from '@/shared/components/NumberInput';
 import styles from './index.less?module';
 
 const { Item } = FormModel;
@@ -45,7 +48,6 @@ const RealNameAuth = {
       frontPhotoLoading: false,
       backPhotoUrl: '',
       backPhotoLoading: false,
-      isShowBackUpload: true,
       videoUploadLoading: false,
       form: {
         nation: '',
@@ -53,9 +55,10 @@ const RealNameAuth = {
         currentAddress: '',
         idNumber: '',
         idType: ID_CARD,
-        name: '',
         videoUrl: '',
         sex: MALE,
+        lastName: '',
+        firstName: '',
       },
     };
   },
@@ -102,11 +105,6 @@ const RealNameAuth = {
       this.backPhotoUrl = '';
     },
     handleIdTypeChange(value) {
-      if (value === DRIVING_LICENSE) {
-        this.isShowBackUpload = false;
-      } else {
-        this.isShowBackUpload = true;
-      }
       this.resetUploadData();
       this.form.idType = value;
     },
@@ -158,9 +156,14 @@ const RealNameAuth = {
       return true;
     },
     handleSubmit() {
-      const params = { ...this.form };
+      let name = `${this.form.lastName}${this.form.firstName}`;
+      if (getIsEnglish()) {
+        name = `${this.form.firstName} ${this.form.lastName}`;
+      }
+      const params = omit(this.form, ['firstName', 'lastName']);
       params.imageUrlList = this.imageUrlList;
       params.birthday = this.form.birthday.format('YYYY-MM-DD');
+      params.name = name;
 
       this[USER_REAL_NAME_AUTH](params)
         .then(() => {
@@ -185,13 +188,26 @@ const RealNameAuth = {
       { value: PASSPORT, text: this.$t('passport') },
     ];
 
+    let firstPromptText = this.$t('realNameAuthIDCardFront');
+    let secondPromptText = this.$t('realNameAuthIDCardBack');
+
+    if (this.form.idType === DRIVING_LICENSE) {
+      firstPromptText = this.$t('realNameAuthDriverFront');
+      secondPromptText = this.$t('realNameAuthDriverBack');
+    }
+
+    if (this.form.idType === PASSPORT) {
+      firstPromptText = this.$t('realNameAuthPassportCover');
+      secondPromptText = this.$t('realNameAuthPassportContent');
+    }
+
     const sexColumns = [
       { value: MALE, text: this.$t('boy') },
       { value: FEMALE, text: this.$t('girl') },
     ];
 
-    const frontUploadText = this.frontPhotoUrl ? this.$t('reUpload') : this.$t('uploadIdPhotoFace');
-    const backUploadText = this.backPhotoUrl ? this.$t('reUpload') : this.$t('uploadIdpPhotoBack');
+    const frontUploadText = this.frontPhotoUrl ? this.$t('reUpload') : firstPromptText;
+    const backUploadText = this.backPhotoUrl ? this.$t('reUpload') : secondPromptText;
     const codeItemList = split(this.videoAuthCode, '');
     // TODO 地址暂时固定，需要后端配合
     const mobileAuthAddress = 'http://192.168.0.126:9060';
@@ -232,15 +248,25 @@ const RealNameAuth = {
 
               <FormModel ref="ruleForm" hideRequiredMark props={{ model: this.form }} class="normal-form">
                 <Row gutter={[32, 0]}>
-                  <Col span={12}>
-                    <Item label={this.$t('name')}>
-                      <Input
-                        v-model={this.form.name}
-                        maxLength={20}
-                        placeholder={this.$t('realNameAuthNameInput')}
-                      />
+                  {getIsChinese() && (
+                    <Col span={6}>
+                      <Item label={this.$t('familyName')}>
+                        <Input v-model={this.form.lastName} maxLength={50} />
+                      </Item>
+                    </Col>
+                  )}
+                  <Col span={6}>
+                    <Item label={this.$t('givenName')}>
+                      <Input v-model={this.form.firstName} maxLength={50} />
                     </Item>
                   </Col>
+                  {getIsEnglish() && (
+                    <Col span={6}>
+                      <Item label={this.$t('familyName')}>
+                        <Input v-model={this.form.lastName} maxLength={50} />
+                      </Item>
+                    </Col>
+                  )}
                   <Col span={12}>
                     <Item label={this.$t('nationality')}>
                       <Select
@@ -286,6 +312,7 @@ const RealNameAuth = {
                         defaultValue={defaultDateValue}
                         disabledDate={this.disabledDate}
                         allowClear={false}
+                        showToday={false}
                         inputReadOnly
                         dropdownClassName={styles['dropdown-box']}
                       />
@@ -312,8 +339,11 @@ const RealNameAuth = {
                   </Col>
                   <Col span={12}>
                     <Item label={this.$t('realNameAuthCertificateNum')}>
-                      <Input
-                        v-model={this.form.idNumber}
+                      <NumberInput
+                        value={this.form.idNumber}
+                        onChange={value => {
+                          this.form.idNumber = value;
+                        }}
                         maxLength={20}
                         placeholder={this.$t('realNameAuthCertificateNumInput')}
                       />
@@ -355,31 +385,29 @@ const RealNameAuth = {
                       </Spin>
                     </div>
                   </Upload>
-                  {this.isShowBackUpload && (
-                    <Upload
-                      accept="image/*"
-                      action={uploadFileUrl}
-                      showUploadList={false}
-                      supportServerRender
-                      onChange={this.backPhotoChange}
-                      beforeUpload={this.photoBeforeUpload}
-                    >
-                      <div class={styles['upload-enter']}>
-                        <Spin spinning={this.backPhotoLoading}>
-                          {this.backPhotoUrl ? (
-                            <div class={styles['upload-img-box']}>
-                              <img src={this.backPhotoUrl} alt="" />
-                            </div>
-                          ) : (
-                            <div class={styles['no-upload']}>
-                              <img src={backIdPhoto} alt="" />
-                            </div>
-                          )}
-                          <div class={styles['upload-prompt']}>{backUploadText}</div>
-                        </Spin>
-                      </div>
-                    </Upload>
-                  )}
+                  <Upload
+                    accept="image/*"
+                    action={uploadFileUrl}
+                    showUploadList={false}
+                    supportServerRender
+                    onChange={this.backPhotoChange}
+                    beforeUpload={this.photoBeforeUpload}
+                  >
+                    <div class={styles['upload-enter']}>
+                      <Spin spinning={this.backPhotoLoading}>
+                        {this.backPhotoUrl ? (
+                          <div class={styles['upload-img-box']}>
+                            <img src={this.backPhotoUrl} alt="" />
+                          </div>
+                        ) : (
+                          <div class={styles['no-upload']}>
+                            <img src={backIdPhoto} alt="" />
+                          </div>
+                        )}
+                        <div class={styles['upload-prompt']}>{backUploadText}</div>
+                      </Spin>
+                    </div>
+                  </Upload>
                 </Item>
                 <Item label={this.$t('authVideoTitle')}>
                   <div class={styles['video-upload-box']}>

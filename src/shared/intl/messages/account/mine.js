@@ -81,4 +81,12 @@ export default {
   videoAuthRequestText: '请按照以下方式录制一段视频并上传录制时请说出以下认证数字',
   uploadVideo: '上传视频',
   videoLengthPrompt: '*视频长度请控制在10秒内',
+  realNameAuthIDCardFront: '上传身份证正面',
+  realNameAuthIDCardBack: '上传身份证背面',
+  realNameAuthPassportCover: '上传护照封面',
+  realNameAuthPassportContent: '上传护照个人信息页',
+  realNameAuthDriverFront: '上传驾驶证正面',
+  realNameAuthDriverBack: '上传驾驶证背面',
+  familyName: '姓',
+  givenName: '名',
 };
