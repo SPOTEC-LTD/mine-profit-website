@@ -8,8 +8,7 @@ import { INT } from './numberType';
 const NumberInput = {
   inheritAttrs: false,
   props: {
-    className: String,
-    value: String,
+    value: [String, Number],
     precision: Number,
     numberType: String,
     buttonNode: Function,

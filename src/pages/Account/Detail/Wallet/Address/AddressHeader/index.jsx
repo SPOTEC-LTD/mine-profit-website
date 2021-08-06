@@ -35,7 +35,7 @@ const AddressHeader = {
           <div class={styles['coin-select']}>
             {this.coin && iconMap[getType(this.coin, COIN)]}
             <Select
-              defaultValue={HASH_RATE_ALL}
+              value={getType(this.coin, COIN)}
               onChange={this.coinChange}
             >
               {coinList.map(({ text, value }, i) => (
@@ -48,10 +48,10 @@ const AddressHeader = {
               ))}
             </Select>
           </div>
-          {this.coin !== HASH_RATE_ALL && getType(this.coin, COIN) === 'USDT' && (
+          {getType(this.coin, COIN) === 'USDT' && (
             <Select
               class={styles['hashrate-status-select']}
-              defaultValue={this.coin}
+              value={this.coin}
               onChange={value => this.$emit('coinChange', value)}
             >
               {lineList.map(({ text, value }, i) => (

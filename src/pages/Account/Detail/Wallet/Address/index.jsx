@@ -21,7 +21,7 @@ const Address = {
     return {
       pageNum: 1,
       addressInfo: {},
-      coin: '',
+      coin: this.$route.query.coinType || '',
       manageModel: '',
       isShowPasswordInput: false,
       showDeleteModal: false,

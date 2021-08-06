@@ -1,0 +1,31 @@
+@import "@/shared/styles/variables.less";
+
+.bottom-tips {
+  border: 1px solid @color__fe6565;
+  background-color: rgba(254, 101, 101, 0.07);
+  padding: 11px 30px;
+  display: flex;
+
+  :global {
+    .spotecicon {
+      width: 17px;
+      height: 17px;
+      margin-top: 3px;
+      margin-right: 5px;
+      color: @color__fe6565;
+    }
+  }
+}
+
+.tips-box {
+  color: @color__242424;
+  font-size: @font-size-sm;
+  line-height: 17px;
+  white-space: pre-wrap;
+
+  span {
+    font-size: @font-size-lg;
+    font-weight: 500;
+    line-height: 22px;
+  }
+}

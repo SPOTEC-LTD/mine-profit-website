@@ -5,7 +5,7 @@ import { COIN, LINE_USDT_ERC20, LINE_USDT_OMNI, getType } from '@/pages/Account/
 import ChainSelect from '@/shared/components/ChainSelect';
 import ConfirmModal from '@/shared/components/ConfirmModal';
 
-import { validateAddress } from '../utils/validatorAddress';
+import { validateAddress } from '../../utils/validatorAddress';
 import CoinLine from '../../components/CoinLine';
 
 import styles from './index.less?module';

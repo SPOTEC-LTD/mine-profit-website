@@ -15,6 +15,7 @@ import Deposit from '@/pages/Account/Detail/Wallet/Deposit';
 import Address from '@/pages/Account/Detail/Wallet/Address';
 import PledgeRedeem from '@/pages/Account/PledgeRedeem';
 import PledgeRepayment from '@/pages/Account/PledgeRepayment';
+import Withdraw from '@/pages/Account/Detail/Wallet/Withdraw';
 import * as urls from './consts/urls';
 
 const walletRoutes = [
@@ -35,6 +36,12 @@ const walletRoutes = [
     meta: { showBreadcrumb: true },
     name: 'withdrawAddressManagement',
     component: Address,
+  },
+  {
+    path: urls.withdrawPath,
+    meta: { showBreadcrumb: true },
+    name: 'walletAllTypesCarry',
+    component: Withdraw,
   },
 ];
 

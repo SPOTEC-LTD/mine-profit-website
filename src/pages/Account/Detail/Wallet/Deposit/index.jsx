@@ -1,8 +1,8 @@
 import { FormModel, Input } from 'ant-design-vue';
+import isEmpty from 'lodash/isEmpty';
 import filter from 'lodash/filter';
-import InfoCircleFilled from 'ahoney/lib/icons/InfoCircleFilled';
 
-import { LINE_USDT_ERC20, LINE_USDT_OMNI } from '@/pages/Account/Detail/Wallet/consts/lineType';
+import { LINE_USDT_ERC20 } from '@/pages/Account/Detail/Wallet/consts/lineType';
 import * as API from '@/api/account/wallet';
 import CopyToClipboard from '@/shared/components/CopyToClipboard';
 import BaseContainer from '@/shared/components/BaseContainer';
@@ -10,12 +10,12 @@ import ChainSelect from '@/shared/components/ChainSelect';
 import QRCodeModule from '@/shared/components/QRCodeModule';
 
 import CoinLine from '../components/CoinLine';
+import BottomTips from '../components/BottomTips';
 
 import styles from './index.less?module';
 
 const { Item } = FormModel;
 const Deposit = {
-  props: { userBalance: Object },
   data() {
     return {
       coin: this.$route.query.coinType || 'USDT',
@@ -35,11 +35,12 @@ const Deposit = {
   },
   computed: {
     finallyCoinInfo() {
+      const defaultInfo = { note: '', address: '' };
       let finallyCoinList = filter(this.coinList, { coin: this.coin });
       if (finallyCoinList.length > 1) {
         finallyCoinList = filter(this.coinList, { chainType: this.lineType });
       }
-      return finallyCoinList[0];
+      return isEmpty(finallyCoinList) ? defaultInfo : finallyCoinList[0];
     },
   },
   methods: {
@@ -94,13 +95,7 @@ const Deposit = {
               />
             </Item>
           </FormModel>
-          <div class={styles['bottom-tips']}>
-            <InfoCircleFilled />
-            <div class={styles['tips-box']}>
-              <span>{this.$t('tips')}</span>
-              <div>{note}</div>
-            </div>
-          </div>
+          <BottomTips note={note} />
         </div>
       </BaseContainer>
     );
