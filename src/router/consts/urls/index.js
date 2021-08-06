@@ -21,6 +21,8 @@ export const realNameAuthPath = `${accountPath}/realNameAuth`;
 export const transactionsPath = `${accountPath}/transactions`;
 export const depositPath = `${accountPath}/walletAllTypesCharge`;
 export const addressPath = `${accountPath}/withdrawAddressManagement`;
+export const pledgeRepaymentPath = `${accountPath}/payTypeRepay/:id`;
+export const pledgeRedeemPath = `${accountPath}/payTypeRedeem/:id`;
 
 // ==== aboutUsPaths
 export const aboutUsPaths = '/aboutUs';

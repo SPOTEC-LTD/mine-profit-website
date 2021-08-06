@@ -136,7 +136,7 @@ export default {
   shareCopyTransferLinkDes: '我在MineProfit发布了一份算力转让标的，点击查看[{link}]',
   pledgeDeadlineCountDown: '到期倒计时',
   pledgeRepayPrincipal: '待还款本金',
-  pledgeRepayExplain: '*还款完成后结算时质押算力将全额返还',
+  pledgeRepayExplain: '还款完成后结算时质押算力将全额返还',
   pledgeRedeemInterest: '待支付罚息',
   pledgeRedeemTotalMoney: '总计',
   pledgeImmediateRedeem: '立即赎回',
@@ -159,4 +159,8 @@ export default {
   confirmTransfer: '确认转让',
   copyLink: '复制链接',
   myHashratePledgeShare: '我的算力质押分享',
+  myHashrateTransferShare: '我的算力转让分享',
+  confirmRepayment: '确认还款',
+  confirmRedeem: '确认赎回',
+  waitPay: '待支付',
 };

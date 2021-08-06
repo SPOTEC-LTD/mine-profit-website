@@ -4,6 +4,9 @@ import {
 } from 'ahoney/lib/icons';
 import FooterButtonGroup from '@/pages/Account/HashRate/List/components/FooterButtonGroup';
 import FooterLayout from '@/pages/Account/HashRate/List/components/FooterLayout';
+import { pledgeRedeemPath, pledgeRepaymentPath } from '@/router/consts/urls';
+import Notification from '@/shared/services/Notification';
+import locationServices from '@/shared/services/location/locationServices';
 import PledgeStatusTag from '../components/PledgeStatusTag';
 
 const CardFooter = {
@@ -19,16 +22,17 @@ const CardFooter = {
           disabled,
           onClick: () => {
             if (disabled) {
-              // Toast({ message: this.$t('pledgeRepayTips') });
+              Notification.error(this.$t('pledgeRepayTips'));
               return;
             }
+            locationServices.push(pledgeRepaymentPath, { params: { id: data.id } });
           },
         },
         {
           label: this.$t('payTypeRedeem'), // '提前赎回',
           icon: <SyncOutlined />,
           onClick: () => {
-            console.log('提前赎回');
+            locationServices.push(pledgeRedeemPath, { params: { id: data.id } });
           },
         },
       ];

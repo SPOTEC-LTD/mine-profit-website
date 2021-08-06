@@ -5,8 +5,7 @@ import {
 } from 'ahoney/lib/icons';
 import { mapActions, mapState } from 'vuex';
 import FooterButtonGroup from '@/pages/Account/HashRate/List/components/FooterButtonGroup';
-import locationServices from '@/shared/services/location/locationServices';
-import { HASH_RATE, TRANSFER_CANCEL_ACTION, hashrateStatusMap } from '@/modules/account/hashRate';
+import { HASH_RATE, TRANSFER_CANCEL_ACTION } from '@/modules/account/hashRate';
 import {
   TRANSFER_ING,
   TRANSFER_DONE,
@@ -15,6 +14,8 @@ import {
 } from '@/pages/Account/HashRate/consts/transferOderStatus';
 import ConfirmModal from '@/shared/components/ConfirmModal';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
+import { getLocalLanguage } from '@/shared/utils/getLocalLanguage';
+import ShareQrCodeModal from '@/shared/components/ShareQrCodeModal';
 import FooterLayout from '../components/FooterLayout';
 import StatusTag from '../components/StatusTag';
 import styles from './index.less?module';
@@ -27,6 +28,11 @@ const statusTagMap = {
 
 const CardFooter = {
   props: ['data'],
+  data() {
+    return {
+      showShareQrCodeModal: false,
+    };
+  },
   computed: {
     ...mapState({
       transferCancelLoading: state => state.loading.effects[`${HASH_RATE}/${TRANSFER_CANCEL_ACTION}`],
@@ -41,17 +47,7 @@ const CardFooter = {
           label: this.$t('transferShare'), // '分享给朋友',
           icon: <SharedFilled />,
           onClick: () => {
-            locationServices.push(
-              'sharePath',
-              {
-                query: {
-                  id: data.id,
-                  shareType: 'customerC2C',
-                  activeName: hashrateStatusMap.TRANSFER,
-                  hashrateType: data.hashrateType,
-                },
-              },
-            );
+            this.showShareQrCodeModal = true;
           },
         },
         {
@@ -81,6 +77,7 @@ const CardFooter = {
   render() {
     const { data } = this;
     const isShowButton = data.status !== TRANSFER_CANCEL && data.isCancel;
+    const link = `${process.env.MOBILE_SITE_HOST}/shareItem/customerC2C/${data.id}?locale=${getLocalLanguage()}`;
 
     const tagNode = (
       <StatusTag
@@ -111,6 +108,15 @@ const CardFooter = {
             leftContent: () => tagNode,
             rightContent: () => footerButtonGroupNode,
           }}
+        />
+        <ShareQrCodeModal
+          value={this.showShareQrCodeModal}
+          onClose={() => {
+            this.showShareQrCodeModal = false;
+            this.$emit('refresh');
+          }}
+          title={this.$t('myHashrateTransferShare')}
+          content={link}
         />
       </div>
     );

@@ -2,22 +2,26 @@ import { Statistic } from 'ant-design-vue';
 import SharedFilled from 'ahoney/lib/icons/SharedFilled';
 import FooterButtonGroup from '@/pages/Account/HashRate/List/components/FooterButtonGroup';
 import FooterLayout from '@/pages/Account/HashRate/List/components/FooterLayout';
-import locationServices from '@/shared/services/location/locationServices';
-import { hashrateStatusMap } from '@/modules/account/hashRate';
+import { getLocalLanguage } from '@/shared/utils/getLocalLanguage';
+import ShareQrCodeModal from '@/shared/components/ShareQrCodeModal';
 import PledgeStatusTag from '../components/PledgeStatusTag';
 import styles from './index.less?module';
 
 const CardFooter = {
   props: ['data'],
-
+  data() {
+    return {
+      showShareQrCodeModal: false,
+    };
+  },
   methods: {
-    getButtonDataSource(id) {
+    getButtonDataSource() {
       return [
         {
           label: this.$t('transferShare'),
           icon: <SharedFilled />,
           onClick: () => {
-            locationServices.push('sharePath', { query: { id, activeName: hashrateStatusMap.PLEDGES } });
+            this.showShareQrCodeModal = true;
           },
         },
       ];
@@ -26,6 +30,7 @@ const CardFooter = {
 
   render() {
     const { data } = this;
+    const link = `${process.env.MOBILE_SITE_HOST}/shareItem/pledges/${data.id}?locale=${getLocalLanguage()}`;
     const format = this.$t('remainTimeMS', {
       minute: 'mm',
       second: 'ss',
@@ -46,13 +51,24 @@ const CardFooter = {
     );
 
     return (
-      <FooterLayout
-        scopedSlots={{
-          topExtra: () => topExtra,
-          leftContent: () => <PledgeStatusTag status={data.status} />,
-          rightContent: () => <FooterButtonGroup dataSource={this.getButtonDataSource(data.id)} />,
-        }}
-      />
+      <div>
+        <FooterLayout
+          scopedSlots={{
+            topExtra: () => topExtra,
+            leftContent: () => <PledgeStatusTag status={data.status} />,
+            rightContent: () => <FooterButtonGroup dataSource={this.getButtonDataSource(data.id)} />,
+          }}
+        />
+        <ShareQrCodeModal
+          value={this.showShareQrCodeModal}
+          onClose={() => {
+            this.showShareQrCodeModal = false;
+            this.$emit('refresh');
+          }}
+          title={this.$t('myHashratePledgeShare')}
+          content={link}
+        />
+      </div>
     );
   },
 };

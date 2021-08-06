@@ -4,6 +4,7 @@ import ListCell from '@/pages/Account/HashRate/List/components/ListCell';
 import CellValue from '@/pages/Account/HashRate/List/components/CellValue';
 import PledgesHashrateCellValue from '@/pages/Account/HashRate/List/components/PledgesHashrateCellValue';
 import getFormatBigNumber from '@/pages/Account/HashRate/utils/getFormatBigNumber';
+import ProportionCellValue from '@/pages/Account/HashRate/List/components/ProportionCellValue';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 
 const EndRepayment = {

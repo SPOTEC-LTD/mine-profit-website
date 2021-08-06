@@ -12,7 +12,7 @@ import ConfirmPayDialog from '@/shared/components/ConfirmPayDialog';
 import CountDownToLink from '@/shared/components/CountDownToLink';
 import { HASH_RATE, HASHRATE_POWER_ON, hashrateStatusMap } from '@/modules/account/hashRate';
 import FormContainer from '@/shared/components/FormContainer';
-import ErrorAlert from './ErrorAlert';
+import ErrorAlert from '@/shared/components/ErrorAlert';
 import styles from './index.less?module';
 
 const HashRateTurnOn = {

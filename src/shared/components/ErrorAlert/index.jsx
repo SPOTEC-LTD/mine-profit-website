@@ -4,12 +4,13 @@ import './index.less';
 const ErrorAlert = {
   props: {
     value: String,
+    className: String,
   },
 
   render() {
     return (
-      <div class="error-alert">
-        <div><InfoCircleFilled /></div>
+      <div class={['error-alert', this.className]}>
+        <InfoCircleFilled />
         <div>{this.value}</div>
       </div>
     );

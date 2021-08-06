@@ -17,6 +17,7 @@ const PayWaySelector = {
     willPayAmount: [Number, String],
     btcRate: [Number, String],
     ethRate: [Number, String],
+    className: String,
   },
 
   data() {
@@ -132,7 +133,7 @@ const PayWaySelector = {
 
   render() {
     return (
-      <FormContainer class='pay-way-selector-container'>
+      <FormContainer className={this.className} title={this.$t('confirmPay')}>
         <div class='pay-way-selector-title'>{this.$t('choosePayWay')}</div>
         <Dropdown
           overlayClassName="pay-way-overlay"

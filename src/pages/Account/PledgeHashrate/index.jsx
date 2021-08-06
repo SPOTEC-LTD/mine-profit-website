@@ -156,12 +156,14 @@ const PledgeHashrate = {
     },
   },
   render() {
-    const { hashrateType = this.$route.query.hashrateType, maxPledgePortion, name } = this.hashratePledgeInfo;
+    const {
+      hashrateType = this.$route.query.hashrateType, maxPledgePortion, name, maxPledgeAmount, unit,
+    } = this.hashratePledgeInfo;
     // eslint-disable-next-line max-len
     const link = `${process.env.MOBILE_SITE_HOST}/shareItem/pledges/${this.pledgeId}?locale=${this.nowLanguage}`;
 
     return (
-      <div class={styles.wrapper}>
+      <div class="page-mid-content">
         <BaseContainer contentClassName={styles.container}>
           <Spin spinning={this.fetchInfoLoading}>
             <ProductTitle chainType={hashrateType} name={name} />
@@ -209,6 +211,9 @@ const PledgeHashrate = {
                     }}
                     placeholder={`${this.$t('marketFieldHintMax')}${maxPledgePortion}`}
                   />
+                  <div class={styles['pledge-amount-prompt']}>
+                    {`${this.$t('pledgeCanPledgeAmount')}：${maxPledgeAmount}${unit}`}
+                  </div>
                 </Item>
                 <Item
                   label={this.$t('pledgeDuration')}
@@ -251,7 +256,7 @@ const PledgeHashrate = {
             this.showShareQrCodeModal = true;
             this.showCountDownToLink = false;
           }}
-          show={this.showCountDownToLink}
+          visible={this.showCountDownToLink}
           operatingSuccess={this.$t('hashratePledgeSuccess')}
         />
         <ShareQrCodeModal
