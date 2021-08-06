@@ -3,7 +3,7 @@ import numberUtils from 'aa-utils/lib/numberUtils';
 import LockOutline from 'ahoney/lib/icons/LockOutline';
 import HandCardOutlined from 'ahoney/lib/icons/HandCardOutlined';
 
-import { hashRateCouponsPath, addressPath, depositPath } from '@/router/consts/urls';
+import { addressPath, depositPath, withdrawPath } from '@/router/consts/urls';
 import { EthIcon, BtcIcon, UsdtIcon } from '@/shared/components/ChainIcon';
 import NewWindowGuide from '@/shared/components/NewWindowGuide';
 
@@ -40,8 +40,7 @@ const Assets = {
             </div>
             <div
               class={styles['wallet-button']}
-              // TODO: 跳转地址 待改为 提币
-              onClick={() => { window.open(hashRateCouponsPath); }}
+              onClick={() => { window.open(withdrawPath); }}
             >
               <HandCardOutlined />
               <div>{this.$t('walletAllTypesCarry')}</div>
@@ -95,8 +94,7 @@ const Assets = {
                       </span>
                     </div>
                     <div class={styles['card-right-button']}>
-                      {/*  TODO: 跳转地址 待改为 提币 */}
-                      <span onClick={() => { window.open(`${depositPath}?coinType=${item.chainType}`); }}>
+                      <span onClick={() => { window.open(`${withdrawPath}?coinType=${item.chainType}`); }}>
                         {/* TODO: 资格检测 */}
                         {/* <TradeBeforeVerified
                         class={styles['link-item-withdraw']}

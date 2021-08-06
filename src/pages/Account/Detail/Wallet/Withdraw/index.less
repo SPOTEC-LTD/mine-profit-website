@@ -1,0 +1,60 @@
+@import "@/shared/styles/variables.less";
+
+.account-withdraw {
+  width: 610px;
+}
+
+.withdraw {
+  border: 1px solid @color__e6e6e6;
+  padding: 22px 30px 33px;
+  margin-bottom: 96px;
+}
+
+.withdraw-balance {
+  color: @color__242424;
+  font-size: @font-size-sm;
+  font-weight: 600;
+  line-height: 17px;
+  margin-top: 6px;
+}
+
+.address {
+  display: flex;
+  align-items: center;
+
+  &-input {
+    width: 442px;
+
+    :global {
+      .mp-input {
+        color: @color__242424;
+        font-size: @font-size-sm !important;
+        font-weight: 600;
+      }
+
+      .mp-input-suffix {
+        color: @color__primary;
+        font-weight: 500;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &-btn {
+    height: 38px;
+    margin-left: 12px;
+    font-size: @font-size-lg;
+  }
+}
+
+.withdraw-number {
+  cursor: pointer;
+  color: @color__primary;
+  font-weight: 500;
+}
+
+.arrival {
+  color: @color__242424;
+  font-size: @font-size-lg;
+  line-height: 22px;
+}

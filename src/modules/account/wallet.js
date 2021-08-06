@@ -30,12 +30,15 @@ export default {
     [UPDATE_WALLET_DETAIL](state, list) {
       state.walletDetailList = list;
     },
+
     [UPDATE_WITHDRAWAL_ADDRESS](state, list) {
       state.withdrawalAddressList = list;
     },
+
     [UPDATE_PAGE_INFO](state, pageInfo) {
       state.pageInfo = pageInfo;
     },
+
     [RESET_STATE](state) {
       state.walletDetailList = [];
       state.withdrawalAddressList = [];
@@ -65,14 +68,6 @@ export default {
       }
     },
 
-    // async [WITHDRAWAL](_, data) {
-    //   try {
-    //     await API.updateWithDraw({ data });
-    //     return Promise.resolve();
-    //   } catch (error) {
-    //     return Promise.reject(error);
-    //   }
-    // },
     async [ADD_ADDRESS](_, data) {
       try {
         const { userId } = localStorage.getObject('userInfo');
@@ -82,6 +77,7 @@ export default {
         return Promise.reject(error);
       }
     },
+
     async [DELETE_ADDRESS](_, { id }) {
       try {
         const { userId } = localStorage.getObject('userInfo');
@@ -91,10 +87,20 @@ export default {
         return Promise.reject(error);
       }
     },
+
     async [EDIT_ADDRESS](_, { id, data }) {
       try {
         const { userId } = localStorage.getObject('userInfo');
         await API.editAddress({ data, pathParams: { userId, id } });
+        return Promise.resolve();
+      } catch (error) {
+        return Promise.reject(error);
+      }
+    },
+
+    async [WITHDRAWAL](_, data) {
+      try {
+        await API.updateWithDraw({ data });
         return Promise.resolve();
       } catch (error) {
         return Promise.reject(error);
