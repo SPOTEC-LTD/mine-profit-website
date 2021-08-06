@@ -10,7 +10,9 @@ import { OFF } from '@/pages/Account/HashRate/consts/shutdownStatus';
 import { PRODUCT } from '@/pages/Account/HashRate/consts/hashrateType';
 import { getShutDownReasonMap } from '@/pages/Account/HashRate/consts/shutdownReason';
 import PowerOffButton from '@/shared/components/PowerOffButton';
-import { hashRateTurnOnPath } from '@/router/consts/urls';
+import { hashRateTurnOnPath, transferHashratePath } from '@/router/consts/urls';
+import { CLOSE } from '@/pages/Account/HashRate/consts/pledgeSourceType';
+import { POWER_OFF } from '@/shared/consts/powerStatus';
 import FooterLayout from '../components/FooterLayout';
 import StatusTag from '../components/StatusTag';
 import styles from './index.less?module';
@@ -32,7 +34,10 @@ const CardFooter = {
           label: this.$t('hashrateOperationTransfer'),
           icon: <SquareSwitchOutlined />,
           onClick: () => {
-            console.log('hashrateOperationTransfer');
+            locationServices.push(transferHashratePath, {
+              params: { productTemplateId: data.productTemplateId },
+              query: { source: CLOSE, hashrateType: data.hashrateType, hasPowerOff: POWER_OFF },
+            });
           },
         },
       ];

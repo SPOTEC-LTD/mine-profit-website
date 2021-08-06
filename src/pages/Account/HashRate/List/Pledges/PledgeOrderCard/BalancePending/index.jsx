@@ -59,7 +59,7 @@ const BalancePending = {
       <Card
         scopedSlots={{
           header: () => this.$scopedSlots.title(),
-          footer: () => <CardFooter data={data} />,
+          footer: () => <CardFooter onRefresh={() => this.$emit('refresh')} data={data} />,
         }}
       >
         <ListCell dataSource={this.getListData(data)} />

@@ -274,8 +274,8 @@ const TransferHashrate = {
         <CountDownToLink
           onConfirm={this.onRedirectToTransfer}
           visible={this.showCountDownToLink}
-          operatingSuccess={this.$t('hashrateOpenSuccess')}
-          promptText={this.$t('hashrateOpenSuccessTips')}
+          operatingSuccess={this.$t('hashratePublishSuccess')}
+          promptText={this.$t('hashrateJumpTransfer')}
         />
         <PageButton
           class={styles.button}
