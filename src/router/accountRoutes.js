@@ -13,6 +13,8 @@ import Orders from '@/pages/Account/Orders';
 import Transactions from '@/pages/Account/Detail/Wallet/Transactions';
 import Deposit from '@/pages/Account/Detail/Wallet/Deposit';
 import Address from '@/pages/Account/Detail/Wallet/Address';
+import PledgeRedeem from '@/pages/Account/PledgeRedeem';
+import PledgeRepayment from '@/pages/Account/PledgeRepayment';
 import * as urls from './consts/urls';
 
 const walletRoutes = [
@@ -107,5 +109,17 @@ export default [
     meta: { showBreadcrumb: true },
     name: 'realNameAuth',
     component: RealNameAuth,
+  },
+  {
+    path: urls.pledgeRedeemPath,
+    meta: { showBreadcrumb: true },
+    name: 'payTypeRedeem',
+    component: PledgeRedeem,
+  },
+  {
+    path: urls.pledgeRepaymentPath,
+    meta: { showBreadcrumb: true },
+    name: 'payTypeRepay',
+    component: PledgeRepayment,
   },
 ];

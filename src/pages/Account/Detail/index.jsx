@@ -16,7 +16,11 @@ const Detail = {
     const props = {
       userInfo: {},
       badge: {},
-      inviteInfo: {},
+      inviteInfo: {
+        invitationCode: '-',
+        inviteReward: 0,
+        inviteCount: 0,
+      },
       userBalance: {
         totalUsdt: 0,
         totalCny: 0,

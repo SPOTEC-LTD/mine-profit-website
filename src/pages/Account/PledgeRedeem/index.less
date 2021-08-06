@@ -1,0 +1,41 @@
+@import '@/shared/styles/variables.less';
+
+.container {
+  width: 610px;
+
+  :global {
+    .form-container {
+      padding-top: 20px;
+    }
+  }
+}
+
+.pay-prompt {
+  margin: 19px 0 14px;
+}
+
+.wait-pay {
+  color: @color__1d1d1d;
+  font-weight: 500;
+
+  &-label {
+    font-size: @font-size-lg;
+  }
+
+  &-value {
+    color: @color__fe6565;
+    font-size: @font-size__26;
+  }
+
+  &-unit {
+    font-size: @font-size-sm;
+  }
+}
+
+.form-container-wrap {
+  margin: 31px 0 20px;
+}
+
+.pay-way-wrap {
+  margin-bottom: 20px;
+}

@@ -143,7 +143,7 @@ const TransferHashrate = {
     const inBuffAmount = getMinus({ number: this.formData.amount, minuend: noBuffAmount });
 
     return (
-      <div class={styles.wrapper}>
+      <div class="page-mid-content">
         <BaseContainer contentClassName={styles.container}>
           <ProductTitle chainType={hashrateType} name={name} />
           <FormContainer>
@@ -187,6 +187,9 @@ const TransferHashrate = {
                   }}
                   placeholder={`${this.$t('marketFieldHintMax')}${this.amount}`}
                 />
+                <div class={styles['transfer-amount-prompt']}>
+                  {`${this.$t('transferRemainAmount')}：${this.amount}${this.unit}`}
+                </div>
               </Item>
               <Item
                 label={this.$t('transferItemPrice')}
@@ -270,7 +273,7 @@ const TransferHashrate = {
         />
         <CountDownToLink
           onConfirm={this.onRedirectToTransfer}
-          show={this.showCountDownToLink}
+          visible={this.showCountDownToLink}
           operatingSuccess={this.$t('hashrateOpenSuccess')}
           promptText={this.$t('hashrateOpenSuccessTips')}
         />

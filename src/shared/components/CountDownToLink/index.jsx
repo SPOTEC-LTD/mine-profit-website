@@ -53,7 +53,7 @@ const CountDownToLink = {
           <div class="count-down-time">
             <Statistic.Countdown
               value={Date.now() + this.time}
-              format="ss"
+              format="s"
               onFinish={this.onChange}
               class="count-down-clock"
             />
