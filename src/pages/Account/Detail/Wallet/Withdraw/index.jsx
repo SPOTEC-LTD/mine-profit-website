@@ -38,7 +38,7 @@ const Withdraw = {
         amount: null,
       },
       isShowPasswordInput: false,
-      showNoActiveModal: true,
+      showNoActiveModal: false,
     };
   },
   async asyncData(ctx) {
