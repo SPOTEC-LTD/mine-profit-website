@@ -47,7 +47,6 @@ const Settlement = {
   data() {
     return {
       value: '',
-      hashRatePrice: '0',
       coinWillPay: '0',
       payCoin: 'USDT',
       isShowPasswordInput: false,
@@ -63,11 +62,9 @@ const Settlement = {
       placeOrderLoading: state => state.loading.effects[`${C2C_MARKET}/${PLACE_C2C_ORDER}`],
       c2cOrderResult: state => state.c2cMarket.c2cOrderResult,
     }),
-  },
 
-  watch: {
-    value() {
-      this.hashRatePrice = numberUtils.times(this.value, this.c2cDetail.price);
+    hashRatePrice() {
+      return numberUtils.times(this.value, this.c2cDetail.price);
     },
   },
 
