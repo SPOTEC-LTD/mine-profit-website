@@ -44,6 +44,10 @@ const StationMail = {
     },
   },
 
+  mounted() {
+    this.fetchStationMailList();
+  },
+
   methods: {
     ...mapMutations(STATION_MAIL, [RESET_STATE]),
     ...mapActions(STATION_MAIL, [GET_STATION_MAIL_LIST, MAIL_READ_DETAIL]),

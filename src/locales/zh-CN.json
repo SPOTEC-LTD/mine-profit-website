@@ -481,6 +481,7 @@
   "editPersonalInfo": "修改个人信息",
   "uploadAvatar": "上传头像",
   "nickname": "昵称",
+  "nicknameRequire": "昵称不能为空",
   "marketOrderBuyTime": "购买时间",
   "hashRateName": "算力名称",
   "marketOrderHashrateNum": "算力数量",
