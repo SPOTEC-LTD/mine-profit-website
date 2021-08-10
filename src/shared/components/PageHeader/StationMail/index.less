@@ -107,7 +107,7 @@
 }
 
 .confirm {
-  transition: 0.3s;
+  transition: all 0.3s;
   display: flex;
   justify-content: flex-end;
   background-color: @color__f1f1f1;
@@ -134,5 +134,16 @@
     position: absolute;
     bottom: -6px;
     right: 40px;
+  }
+}
+
+.no-login {
+  &:hover {
+    background-color: @white;
+  }
+
+  .email {
+    color: @color__cacaca;
+    cursor: auto;
   }
 }

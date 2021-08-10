@@ -2,6 +2,7 @@ import { mapState, mapActions, mapMutations } from 'vuex';
 import { Popover, Tabs } from 'ant-design-vue';
 import MailFilled from 'ahoney/lib/icons/MailFilled';
 import RightOutlined from 'ahoney/lib/icons/RightOutlined';
+import isEmpty from 'lodash/isEmpty';
 
 import {
   STATION_MAIL, GET_STATION_MAIL_LIST, MAIL_READ_DETAIL, RESET_STATE,
@@ -32,14 +33,15 @@ const StationMail = {
 
   computed: {
     ...mapState({
+      userInfo: state => state.userInfo,
       stationMailList: state => state.stationMail.stationMailList,
       pageInfo: state => state.stationMail.pageInfo,
       getListLoading: state => state.loading.effects[`${STATION_MAIL}/${GET_STATION_MAIL_LIST}`],
     }),
-  },
 
-  mounted() {
-    this.fetchStationMailList();
+    noLogin() {
+      return isEmpty(this.userInfo);
+    },
   },
 
   methods: {
@@ -187,12 +189,18 @@ const StationMail = {
       if (visible) {
         this.isMailDetail = false;
         this.isShowAllReadNode = false;
+        this.fetchStationMailList({ reset: true });
       }
     },
   },
 
   render() {
-    return (
+    const mailNode = (
+      <div class={[styles['email-box'], { [styles['no-login']]: this.noLogin }]}>
+        <MailFilled className={styles.email} />
+      </div>
+    );
+    const popoverNode = (
       <div>
         <Popover
           overlayClassName={styles['station-mail']}
@@ -201,14 +209,11 @@ const StationMail = {
           content={this.getPopoverContent}
           onVisibleChange={this.visibleChange}
         >
-          <div
-            class={styles['email-box']}
-          >
-            <MailFilled className={styles.email} />
-          </div>
+          {mailNode}
         </Popover>
       </div>
     );
+    return this.noLogin ? mailNode : popoverNode;
   },
 };
 
