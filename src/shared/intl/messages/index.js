@@ -10,6 +10,7 @@ import productMarketing from './productMarketing';
 import hashRateCoupons from './hashRateCoupons';
 import pageName from './pageName';
 import rank from './rank';
+import protocol from './protocol';
 
 export default {
   ...pageName,
@@ -24,4 +25,5 @@ export default {
   ...productMarketing,
   ...hashRateCoupons,
   ...rank,
+  ...protocol,
 };

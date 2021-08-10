@@ -7,6 +7,30 @@
   .mp-input {
     height: 36px;
   }
+
+  .mp-checkbox-wrapper {
+    width: 100%;
+    text-align: center;
+    font-size: @font-size-sm;
+    line-height: 17px;
+  }
+
+  .mp-checkbox-inner {
+    width: 10px;
+    height: 10px;
+  }
+
+  .mp-checkbox-inner::after {
+    left: 18%;
+  }
+
+  .has-protocol-info {
+    margin-bottom: 19px;
+  }
+}
+
+.has-prompt-payment-dialog {
+  padding-top: 27px;
 }
 
 .other-info {
@@ -27,4 +51,20 @@
 .pay-protocol-name {
   color: @color__primary;
   line-height: 17px;
+}
+
+.pay-prompt {
+  white-space: pre-wrap;
+  text-align: center;
+
+  .spotecicon {
+    width: 72px;
+    height: 72px;
+    color: @color__ffd100;
+    fill: @white;
+  }
+
+  > div {
+    margin: 6px 0 26px;
+  }
 }

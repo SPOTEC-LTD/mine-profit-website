@@ -15,6 +15,7 @@ import { buildRoutes } from './utils';
 import accountRoutes from './accountRoutes';
 import newsRoutes from './newsRoutes';
 import productMarketingRoutes from './productMarketingRoutes';
+import protocolRoutes from './protocolRoutes';
 import * as urls from './consts/urls';
 
 import { homePath, loginPath } from './consts/urls';
@@ -36,6 +37,7 @@ export function createRouter() {
       ...accountRoutes,
       ...newsRoutes,
       ...productMarketingRoutes,
+      ...protocolRoutes,
       {
         path: homePath,
         name: 'home',
