@@ -3,6 +3,7 @@ import C2CMarketing from '@/pages/ProductMarketing/C2CMarketing';
 import OfficialProductDetails from '@/pages/ProductMarketing/OfficialMarketing/OfficialProductDetails';
 import C2CProductDetails from '@/pages/ProductMarketing/C2CMarketing/C2CProductDetails';
 import OfficialProductSettlement from '@/pages/ProductMarketing/OfficialMarketing/Settlement';
+import C2CProductSettlement from '@/pages/ProductMarketing/C2CMarketing/Settlement';
 import * as urls from './consts/urls';
 
 export default [
@@ -39,5 +40,10 @@ export default [
     // meta: { showBreadcrumb: true },
     name: 'marketConfirmSettle',
     component: OfficialProductSettlement,
+  },
+  {
+    path: urls.c2cSettlementPath,
+    name: 'marketConfirmSettle__c2c',
+    component: C2CProductSettlement,
   },
 ];

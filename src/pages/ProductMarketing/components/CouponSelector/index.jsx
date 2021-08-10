@@ -13,6 +13,12 @@ const CouponSelector = {
     },
   },
 
+  data() {
+    return {
+      modalVisible: false,
+    };
+  },
+
   methods: {
     handleCouponChange(couponInfo = {}) {
       this.$emit('couponChange', couponInfo);
@@ -32,11 +38,12 @@ const CouponSelector = {
           </div>
 
           <CouponChooseModal
+            onHandleModalVisible={visible => { this.modalVisible = visible; }}
             couponsList={this.couponsList}
             usesCouponId={this.couponId}
             onCouponChange={this.handleCouponChange}
           >
-            <div class='coupon-selector-chooser'>
+            <div class={['coupon-selector-chooser', { 'closed-modal': !this.modalVisible }]}>
               <span class='coupon-selector-name'>
                 {this.$t('chooseRestCoupon', { rest: this.couponsList.length })}
               </span>

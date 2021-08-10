@@ -84,4 +84,6 @@ export default {
   payBuySuccess: '买入成功！',
   marketRateChangeHint: '尊敬的客户，由于汇率波动\n您的支付金额发生了变动',
   marketPayChainTypeNotEnough: '*当前{paymentChainType}金额不足',
+  orderPrice: '订单总价',
+  hashRateUnitPrice: '算力单价',
 };

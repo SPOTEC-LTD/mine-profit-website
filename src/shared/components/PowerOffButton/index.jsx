@@ -2,12 +2,7 @@ import CloseOutlined from 'ahoney/lib/icons/CloseOutlined';
 import './index.less';
 
 const PowerOffButton = {
-  props: {
-    product: {
-      type: Object,
-      default: () => {},
-    },
-  },
+  props: {},
 
   render() {
     return (

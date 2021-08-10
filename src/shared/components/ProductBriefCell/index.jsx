@@ -2,11 +2,13 @@ import includes from 'lodash/includes';
 import getTimes from '@/shared/utils/getTimes';
 import getCoinRate from '@/shared/utils/getCoinRate';
 import TagGroup from '@/pages/home/component/TagGroup';
+import { POWER_OFF } from '@/shared/consts/isPowerOff';
 import { NEW_USER_USED } from '@/shared/consts/productTag';
 import PersonAvatar from '@/shared/components/PersonAvatar';
 import ProductTitle from '@/shared/components/ProductTitle';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import RestC2CProduct from '@/shared/components/RestC2CProduct';
+import PowerOffButton from '@/shared/components/PowerOffButton';
 import ProductInfoSurvey from '@/shared/components/ProductInfoSurvey';
 import RestOfficialProduct from '@/shared/components/RestOfficialProduct';
 import locationServices from '@/shared/services/location/locationServices';
@@ -45,6 +47,11 @@ const ProductBriefCell = {
       return { chainType, name };
     },
 
+    getC2CPowerOffButton() {
+      const { hasPowerOff } = this.productData;
+      return hasPowerOff === POWER_OFF ? { rightContent: () => <PowerOffButton/> } : {};
+    },
+
     getOfficialProductTitleProps() {
       const { name, chainType, ptName } = this.productData;
       return {
@@ -73,12 +80,12 @@ const ProductBriefCell = {
     },
 
     getC2CSurveyProps(rate) {
-      const { price } = this.productData;
+      const { price, unit } = this.productData;
       const cnyPrice = getTimes({ number: price, times: rate, decimal: 2 });
       return {
-        infoUnit: `≈${cnyPrice} CNY`,
+        infoUnit: `≈${cnyPrice} CNY/${unit}`,
         infoName: this.$t('sellPrice'),
-        infoValue: `${bigNumberToFixed(price, 2)} USDT`,
+        infoValue: `${bigNumberToFixed(price, 2)} USDT/${unit}`,
       };
     },
   },
@@ -88,11 +95,17 @@ const ProductBriefCell = {
     const rate = +getCoinRate({ rateList: this.rateList, coin: 'cny' });
     const propsTitleProps = isOfficialMarket ? this.getOfficialProductTitleProps() : this.getC2CProductTitleProps();
     const propsSurveyProps = isOfficialMarket ? this.getOfficialProductSurveyProps(rate) : this.getC2CSurveyProps(rate);
+    const titleScope = this.isOfficialMarket ? {} : this.getC2CPowerOffButton();
+    const isPowerOff = !!Object.keys(titleScope).length;
 
     return (
       <div class="product-brief-cell-container" onClick={this.onClickToDetail}>
         <div class='product-title-intro'>
-          <ProductTitle {...{ attrs: propsTitleProps }} class='product-card-title' />
+          <ProductTitle
+            {...{ attrs: propsTitleProps }}
+            scopedSlots={titleScope}
+            class={['product-card-title', { 'power-off-product-title': isPowerOff }]}
+          />
           {isOfficialMarket && <TagGroup productData={this.productData} />}
           {!isOfficialMarket && <PersonAvatar productData={this.productData} />}
         </div>

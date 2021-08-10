@@ -11,12 +11,12 @@ const C2CProductInfoSurvey = {
   },
 
   render() {
-    const { chainType, income } = this.c2cProductData;
+    const { chainType, income, unit } = this.c2cProductData;
 
     return (
       <div class='c2c-product-cell-wrapper'>
         <ProductInfoSurvey
-          infoUnit={chainType}
+          infoUnit={`${chainType}/${unit}`}
           infoName={this.$t('marketNetOutput')}
           infoValue={bigNumberToFixed(income, 8)}
         />

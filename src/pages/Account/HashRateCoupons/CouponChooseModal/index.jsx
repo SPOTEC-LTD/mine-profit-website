@@ -87,6 +87,8 @@ const CouponChooseModal = {
         ref="chooseCouponModal"
         title={this.$t('chooseCoupon')}
         width={433}
+        onOpen={() => { this.$emit('handleModalVisible', true); }}
+        onClose={() => { this.$emit('handleModalVisible', false); }}
         scopedSlots={{
           content: () => (
             <div>

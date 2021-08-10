@@ -11,14 +11,18 @@ import getDivided from '@/shared/utils/getDivided';
 import RichText from '@/shared/components/RichText';
 import getCoinRate from '@/shared/utils/getCoinRate';
 import * as rateExchangeAPI from '@/api/rateExchange';
+import { POWER_OFF } from '@/shared/consts/isPowerOff';
+import { c2cSettlementPath } from '@/router/consts/urls';
 import ProductTitle from '@/shared/components/ProductTitle';
 import BaseContainer from '@/shared/components/BaseContainer';
 import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import defaultAvatar from '@/assets/account/defaultAvatar.png';
+import PowerOffButton from '@/shared/components/PowerOffButton';
 import RestMount from '@/pages/ProductMarketing/components/RestMount';
 import CellGroup from '@/pages/ProductMarketing/components/CellGroup';
 import CellTitle from '@/pages/Account/HashRate/List/components/CellTitle';
+import locationServices from '@/shared/services/location/locationServices';
 import DetailContent from '@/pages/ProductMarketing/components/DetailContent';
 import PurchaseButton from '@/pages/ProductMarketing/components/PurchaseButton';
 import ContentContainer from '@/pages/ProductMarketing/components/ContentContainer';
@@ -26,9 +30,9 @@ import styles from './index.less?module';
 
 const C2CProductDetails = {
   async asyncData(ctx) {
-    const { query } = ctx;
+    const { params } = ctx;
     const props = { c2cProductDetails: {}, rateExchangeList: [] };
-    const getProductPromise = c2cMarketAPI.getC2CDetails({ pathParams: { id: query.id } }, { ctx });
+    const getProductPromise = c2cMarketAPI.getC2CDetails({ pathParams: { id: params.id } }, { ctx });
     const getRateExchangeList = rateExchangeAPI.getRateExchange({}, { ctx });
     try {
       const { body: { c2cDetail } } = await getProductPromise;
@@ -59,10 +63,8 @@ const C2CProductDetails = {
 
   methods: {
     purchaseNow() {
-      // TODO 跳转至结算页面
       const { id } = this.c2cProductDetails;
-      console.log(id);
-      // locationServices.push(officialProductSettlementPath, { params: { id } });
+      locationServices.push(c2cSettlementPath, { params: { id } });
     },
 
     getSalePriceNode() {
@@ -159,14 +161,19 @@ const C2CProductDetails = {
   },
 
   render() {
-    const { name, chainType, desc, unit, saleAmount, totalAmount } = this.c2cProductDetails;
+    const { name, chainType, desc, unit, saleAmount, totalAmount, hasPowerOff } = this.c2cProductDetails;
     const rest = getMinus({ number: totalAmount, minuend: saleAmount, decimal: 2 });
     const restPercentage = getDivided({ number: rest, divisor: +totalAmount, decimal: 2 });
 
     return (
       <div>
         <BaseContainer >
-          <ProductTitle class={styles['product-detail-title']} chainType={chainType} name={name} />
+          <ProductTitle
+            class={styles['product-detail-title']}
+            chainType={chainType}
+            name={name}
+            scopedSlots={hasPowerOff === POWER_OFF ? { rightContent: () => <PowerOffButton/> } : {}}
+          />
           <ContentContainer class={styles['c2c-product-card-wrapper']}>
             <CellGroup cellData={this.getDataList()} isC2CMarket={true} />
           </ContentContainer>
