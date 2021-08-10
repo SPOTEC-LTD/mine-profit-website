@@ -12,6 +12,8 @@ import { passwordReg, phoneReg } from '@/shared/consts/rules';
 import * as verCodeType from '@/shared/consts/verCodeType';
 import Notification from '@/shared/services/Notification';
 import { SECTION_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
+import Link from '@/shared/components/Link';
+import { serviceProtocolPath, privacyProtocolPath } from '@/router/consts/urls';
 import storageUserInfo from './storageUserInfo';
 import Form from './Form';
 import styles from './index.less?module';
@@ -242,7 +244,11 @@ const Login = {
             {
             // TODO i18n
             }
-            <div class={styles['protocol-link']}>登录即代表你已经同意了《XX协议》</div>
+            <div class={styles['protocol-link']}>
+              <span>{this.$t('loginMeansAgreed')}</span>
+              <Link to={serviceProtocolPath} target="_blank">{`《${this.$t('serviceProtocolName')}》`}</Link>
+              <Link to={privacyProtocolPath} target="_blank">{`《${this.$t('privacyProtocolName')}》`}</Link>
+            </div>
           </div>
         </div>
       </div>

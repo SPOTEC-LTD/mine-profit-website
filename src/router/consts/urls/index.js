@@ -46,3 +46,8 @@ export const c2cSettlementPath = `${c2cDetailsPath}/marketConfirmSettle`;
 // ==== rankPaths
 export const rankPath = '/rank';
 export const historyRankPath = '/historyRank';
+
+// ===== protocolPaths
+export const investProtocolPath = '/investProtocol';
+export const privacyProtocolPath = '/privacyProtocol';
+export const serviceProtocolPath = '/serviceProtocol';

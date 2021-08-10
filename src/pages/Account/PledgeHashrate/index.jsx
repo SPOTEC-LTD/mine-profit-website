@@ -249,7 +249,8 @@ const PledgeHashrate = {
           loading={this.submitLoading}
           onConfirm={this.onSubmit}
           visible={this.isShowPasswordInput}
-          title={this.$t('transferItemAmount')}
+          prompt={this.$t('hashratePledgeConfirmHint')}
+          hasProtocol
         />
         <CountDownToLink
           onConfirm={() => {

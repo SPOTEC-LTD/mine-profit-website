@@ -24,4 +24,5 @@ export default {
   emailLogin: '邮箱登录',
   phoneLogin: '手机登录',
   loginSignUp: '登录/注册',
+  loginMeansAgreed: '登录即代表你已经同意了',
 };
