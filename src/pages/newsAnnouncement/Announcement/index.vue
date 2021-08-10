@@ -18,8 +18,8 @@ import { Spin } from 'ant-design-vue';
 import { getAnnouncementList } from '@/api';
 import { SHOW } from '@/shared/consts/visible';
 import getLocalLanguage from '@/shared/utils/getLocalLanguage';
+import scrollEvent from '@/shared/utils/scrollEvent';
 import NewsItem from './NewsItem/index.vue';
-import scrollEvent from '../scrollEvent';
 
 export default {
   components: {

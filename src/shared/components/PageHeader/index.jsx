@@ -2,7 +2,6 @@ import { Button } from 'ant-design-vue';
 import DocFilledOutlined from 'ahoney/lib/icons/DocFilledOutlined';
 import EmailCircleOutlined from 'ahoney/lib/icons/EmailCircleOutlined';
 import TipCirccleOutlined from 'ahoney/lib/icons/TipCirccleOutlined';
-import MailFilled from 'ahoney/lib/icons/MailFilled';
 import locationServices from '@/shared/services/location/locationServices';
 import { RECOMMEND, NEWSLETTER, ANNOUNCEMENT } from '@/shared/consts/newsType';
 import { ABOUT_US, ECOSPHERE } from '@/shared/consts/aboutUsType';
@@ -14,6 +13,7 @@ import NavLink from './NavLink';
 import NavMenu from './NavMenu';
 import LanguageMenu from './LanguageMenu';
 import LoginInfo from './LoginInfo';
+import StationMail from './StationMail';
 
 import styles from './index.less?module';
 
@@ -101,9 +101,7 @@ const PageHeader = {
           </div>
           <div class={styles['header-right-content']}>
             <LoginInfo />
-            <div class={styles['email-box']}>
-              <MailFilled className={styles.email} />
-            </div>
+            <StationMail />
             <LanguageMenu items={this.languageItems}>{ this.$t('language') }</LanguageMenu>
             <Button class="download-button" type="primary" onClick={this.redirectToDownloadGuidePage}>
               { this.$t('downloadNow') }

@@ -1,0 +1,138 @@
+@import "~@/shared/styles/variables.less";
+
+.station-mail {
+  width: 290px;
+
+  :global {
+    .mp-list-item,
+    .mp-popover-inner-content {
+      padding: 0;
+    }
+
+    .mp-popover-title {
+      padding: 0;
+    }
+
+    .mp-list-split .mp-list-item,
+    .mp-popover-title {
+      border-bottom: 1px solid @color__f1f1f1;
+      background: @white;
+    }
+  }
+
+  &-title {
+    display: flex;
+    justify-content: space-between;
+    color: @color__242424;
+    font-size: @font-size-lg;
+    font-weight: 500;
+    line-height: 22px;
+    padding: 13px 21px 13px 23px;
+  }
+
+  &-all-read {
+    color: @color__primary;
+    font-size: @font-size-base;
+    line-height: 20px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.detail-title {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+
+  :global {
+    .spotecicon {
+      color: @color__primary;
+      margin-right: 4px;
+      cursor: pointer;
+    }
+  }
+}
+
+.email-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: @color__f0f0f0;
+    border-radius: 4px;
+  }
+
+  .email {
+    width: 23px;
+    height: 20px;
+    color: @color__primary;
+    cursor: pointer;
+  }
+}
+
+.mail-list {
+  height: 295px;
+  overflow: scroll;
+  background-color: @color__f1f1f1;
+}
+
+.mail-detail {
+  padding: 12px 20px 19px;
+  color: @color__242424;
+
+  &-title {
+    font-size: @font-size__20;
+    line-height: 28px;
+    font-weight: 600;
+  }
+
+  &-time {
+    color: @color__ababab;
+    font-size: @font-size-sm;
+    line-height: 17px;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+
+  &-main {
+    font-size: @font-size-base;
+    line-height: 26px;
+    margin-top: 10px;
+    white-space: pre-wrap;
+  }
+}
+
+.confirm {
+  transition: 0.3s;
+  display: flex;
+  justify-content: flex-end;
+  background-color: @color__f1f1f1;
+  padding: 5px 21px;
+  position: relative;
+
+  &-all-read {
+    color: @color__primary;
+    cursor: pointer;
+  }
+
+  &-cancel {
+    color: @color__242424;
+    font-weight: normal;
+    margin-left: 14px;
+    cursor: pointer;
+  }
+
+  &-icon {
+    border-top: 6px solid @color__f1f1f1;
+    border-right: 12px solid transparent;
+    border-bottom: 0;
+    border-left: 12px solid transparent;
+    position: absolute;
+    bottom: -6px;
+    right: 40px;
+  }
+}
