@@ -1,4 +1,5 @@
-const scrollEvent = (fetchList, target = {}, bottomHeight) => {
+const scrollEvent = (fetchList, option = {}) => {
+  const { target, bottomHeight } = option;
   const footerHeight = bottomHeight || 403;
   const scrollTop = target.scrollTop || document.documentElement.scrollTop || document.body.scrollTop;
   const windowHeight = target.clientHeight || document.documentElement.clientHeight || document.body.clientHeight;

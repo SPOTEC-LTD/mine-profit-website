@@ -119,7 +119,7 @@ const StationMail = {
     },
 
     handleListScroll(target) {
-      scrollEvent(this.fetchStationMailList, target, 40);
+      scrollEvent(this.fetchStationMailList, { target, bottomHeight: 40 });
     },
 
     onTabsChange(activeKey) {
