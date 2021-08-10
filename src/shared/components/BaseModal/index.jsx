@@ -16,12 +16,16 @@ const BaseModal = {
 
   methods: {
     open() {
-      this.visible = true;
+      if (isUndefined(this.value)) {
+        this.visible = true;
+      }
       this.$emit('open');
     },
 
     close() {
-      this.visible = false;
+      if (isUndefined(this.value)) {
+        this.visible = false;
+      }
       this.$emit('close');
     },
   },

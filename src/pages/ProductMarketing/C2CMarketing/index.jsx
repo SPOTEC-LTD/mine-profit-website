@@ -52,7 +52,11 @@ const C2CMarketing = {
 
     onTabsChange(key) {
       this.activeChainType = key;
-      const resultParamData = { ...this.paramData, chainType: key === ALL ? undefined : key };
+      const resultParamData = {
+        ...this.paramData,
+        chainType: key === ALL ? undefined : key,
+        pageNum: PAGE_NUM,
+      };
 
       this.getProductList(resultParamData);
     },
@@ -129,7 +133,7 @@ const C2CMarketing = {
             total={this.pageInfo.total}
             showTotal={total => this.getPageTotalNode(total)}
             pageSize={PAGE_SIZE}
-            defaultCurrent={PAGE_NUM}
+            current={this.pageInfo.pageNum}
             onChange={this.onPageChange}
           />
         </Spin>

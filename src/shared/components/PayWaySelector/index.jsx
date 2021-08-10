@@ -82,16 +82,17 @@ const PayWaySelector = {
     },
 
     handleCoinChange(coin) {
-      this.choosesCoin = coin;
+      let resultMount;
       if (coin === 'USDT') {
-        this.payAmount = bigNumberToFixed(this.willPayAmount, 2);
-        return;
+        resultMount = bigNumberToFixed(this.willPayAmount, 2);
+      } else {
+        const rate = coin === 'BTC' ? this.btcRate : this.ethRate;
+        resultMount = getDivided({ number: this.willPayAmount, divisor: rate, decimal: 8 });
       }
-
-      const rate = coin === 'BTC' ? this.btcRate : this.ethRate;
-      const resultMount = getDivided({ number: this.willPayAmount, divisor: rate, decimal: 8 });
+      this.choosesCoin = coin;
       this.payAmount = resultMount;
-      this.$emit('handlePayNow', this.choosesCoin);
+
+      this.$emit('handlePayNow', coin, resultMount);
     },
 
     getMenuNode() {
@@ -149,7 +150,10 @@ const PayWaySelector = {
               <span>{this.choosesCoin}</span>
             </div>
             {!this.menuVisible && (
-              <div onClick={this.handleClickMenu} class='fold-click-show-selector'>{this.$t('otherPayWay')}</div>
+              <div onClick={this.handleClickMenu} class='fold-click-show-selector'>
+                <span>{this.$t('otherPayWay')}</span>
+                <TriangleFilled />
+              </div>
             )}
             {this.menuVisible && (
               <div onClick={this.handleClickMenu} class='click-show-selector'>
