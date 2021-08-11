@@ -11,4 +11,6 @@ export default {
   verifyTypeDialogTryAgain: '请重试',
   authFinishTips: '您提交的实名认证信息已收到\n请耐心等待',
   tryAgain: '点击重试',
+  accountAndSecurityAuth: '认证中',
+  accountAndSecurityAuthFail: '认证失败',
 };

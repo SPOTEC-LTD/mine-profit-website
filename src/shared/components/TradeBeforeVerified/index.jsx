@@ -66,6 +66,13 @@ const TradeBeforeVerified = {
       }
     },
 
+    closeDialog(e) {
+      if (e) {
+        e.stopPropagation();
+      }
+      this.showDialog = false;
+    },
+
     getRejectDescribe() {
       return (
         <span>
@@ -100,26 +107,30 @@ const TradeBeforeVerified = {
       const rejectBtnList = [{
         label: this.$t('tryAgain'),
         show: true,
-        onClick: this.realNameAuth,
+        onClick: () => { window.open(realNameAuthPath); },
         type: 'primary',
       }];
       const kycStatusMap = {
         [NOT_SUBMIT]: {
+          title: this.$t('supplementaryInformation'),
           btnList: notSubmitBtnList,
           image: verifyImgDialog,
           describe: this.$t('verifyDialogContent'),
         },
         [PENDING]: {
+          title: this.$t('accountAndSecurityAuth'),
           btnList: pendingBtnList,
           image: verifyPendingImage,
           describe: this.$t('authFinishTips'),
         },
         [REJECT]: {
+          title: this.$t('accountAndSecurityAuthFail'),
           btnList: rejectBtnList,
           image: verifyRejectImage,
           describe: this.getRejectDescribe(),
         },
         [PASS]: {
+          title: '',
           btnList: [],
           image: '',
           describe: '',
@@ -148,7 +159,7 @@ const TradeBeforeVerified = {
       return (
         <BaseModal
           value={this.showDialog}
-          title={this.$t('supplementaryInformation')}
+          title={this.getDialogInfo(this.kycStatus).title}
           width={396}
           onCancel={() => { this.showDialog = false; }}
           scopedSlots={{

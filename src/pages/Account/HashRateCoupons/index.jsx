@@ -2,7 +2,6 @@ import { mapState, mapActions } from 'vuex';
 import { Table } from 'ant-design-vue';
 import InfoCircleFilled from 'ahoney/lib/icons/InfoCircleFilled';
 
-// import { accountSettingPath } from '@/router/consts/urls';
 import { HASH_RATE_COUPONS, GET_COUPONS } from '@/modules/hashRateCoupons';
 import { FOREVER } from '@/shared/consts/validPeriodStatus';
 import { COUPON_ALL, getCouponsTypesList } from '@/shared/consts/couponsTypes';
@@ -13,7 +12,6 @@ import InfoTooltip from '@/shared/components/InfoTooltip';
 import Select from '@/shared/components/Select';
 
 import { getExpiredReason } from './consts/causeOfFailure';
-import CouponChooseModal from './CouponChooseModal'; // TODO: 待删
 
 import styles from './index.less?module';
 
@@ -24,8 +22,6 @@ const HashRateCoupons = {
   data() {
     return {
       couponsStatus: ALL_STATUS,
-      couponId: null, // TODO: 待删
-      couponName: '', // TODO: 待删
     };
   },
   computed: mapState({
@@ -50,13 +46,6 @@ const HashRateCoupons = {
     changeCouponsStatus(value) {
       this.couponsStatus = value;
       this.getCouponsList();
-    },
-
-    // TODO: 待删
-    handleCouponChange(couponInfo = {}) {
-      const { couponId, couponName } = couponInfo;
-      this.couponId = couponId;
-      this.couponName = couponName;
     },
   },
 
@@ -157,14 +146,6 @@ const HashRateCoupons = {
 
     return (
       <BaseContainer class={['select-table', styles['hashrate-coupons-box']]}>
-        {/* TODO: 模态框 待删 */}
-        <CouponChooseModal
-          list={this.couponsList}
-          usesCouponId={this.couponId}
-          onCouponChange={this.handleCouponChange}
-        >
-          点我{this.couponId}{this.couponName}
-        </CouponChooseModal>
         <Select
           class={styles['hashrate-status-select']}
           defaultValue={COUPON_ALL}
