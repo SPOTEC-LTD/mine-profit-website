@@ -1,5 +1,6 @@
 import { Button, Statistic } from 'ant-design-vue';
 import getNewRegisterTime from '@/shared/utils/getNewRegisterTime';
+import TradeBeforeVerified from '@/shared/components/TradeBeforeVerified';
 import './index.less';
 
 const PurchaseButton = {
@@ -39,12 +40,14 @@ const PurchaseButton = {
         second: 'ss',
       });
       return (
-        <button class={['new-user-btn', 'all-btn-size']} onClick={this.purchaseNow}>
-          <div class='new-user-text'>{this.$t('shareInvestNow')}</div>
-          <div class='new-user-count'>
-            <Statistic.Countdown value={Date.now() + this.newUserTime} format={format} />
-          </div>
-        </button>
+        <TradeBeforeVerified onVerifiedPass={this.purchaseNow}>
+          <button class={['new-user-btn', 'all-btn-size']}>
+            <div class='new-user-text'>{this.$t('shareInvestNow')}</div>
+            <div class='new-user-count'>
+              <Statistic.Countdown value={Date.now() + this.newUserTime} format={format} />
+            </div>
+          </button>
+        </TradeBeforeVerified>
       );
     },
   },
@@ -57,13 +60,14 @@ const PurchaseButton = {
     return (
       <div class="operate-btn-wrapper">
         {!unNormalButton && (
-          <Button
-            class={['primary-buy-btn', 'all-btn-size']}
-            type="primary"
-            onClick={this.purchaseNow}
-          >
-            {this.$t('shareInvestNow')}
-          </Button>
+          <TradeBeforeVerified onVerifiedPass={this.purchaseNow}>
+            <Button
+              class={['primary-buy-btn', 'all-btn-size']}
+              type="primary"
+            >
+              {this.$t('shareInvestNow')}
+            </Button>
+          </TradeBeforeVerified>
         )}
 
         {isNew && this.newUserPurchaseNode()}

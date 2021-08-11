@@ -18,6 +18,7 @@ import { accountHashRateListPath } from '@/router/consts/urls';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import getMinus from '@/shared/utils/getMinus';
 import NumberInput from '@/shared/components/NumberInput';
+import TradeBeforeVerified from '@/shared/components/TradeBeforeVerified';
 
 import styles from './index.less?module';
 
@@ -240,7 +241,6 @@ const TransferHashrate = {
         <ConfirmModal
           onConfirm={() => {
             this.isControlCheck = true;
-            this.isShowPasswordInput = true; // TODO tmp 加入检测组件后需要删除掉
             this.isVisibleTransferPrompt = false;
           }}
           onCancel={() => { this.isVisibleTransferPrompt = false; }}
@@ -270,6 +270,10 @@ const TransferHashrate = {
           onConfirm={this.onSubmit}
           visible={this.isShowPasswordInput}
           title={this.$t('transferItemAmount')}
+        />
+        <TradeBeforeVerified
+          onVerifiedPass={() => { this.isShowPasswordInput = true; }}
+          isControlCheck={this.isControlCheck}
         />
         <CountDownToLink
           onConfirm={this.onRedirectToTransfer}

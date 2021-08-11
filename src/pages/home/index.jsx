@@ -5,6 +5,8 @@ import BlockChainDate from '@/pages/home/BlockChainDate';
 import BaseContainer from '@/shared/components/BaseContainer';
 import { HOME, GET_MARKETS_LIST, GET_HOME_PRODUCT_LIST } from '@/modules/home';
 import RankEnter from '@/pages/home/RankEnter';
+import TradeBeforeVerified from '@/shared/components/TradeBeforeVerified';
+import localStorage from '@/shared/utils/localStorage';
 import Banner from './Banner';
 import Announcements from './Announcements';
 import CoinMarkets from './CoinMarkets';
@@ -35,6 +37,12 @@ const Home = {
   },
 
   mounted() {
+    const { registerStatus } = localStorage.getObject('userInfo');
+    const isNotFirstShow = localStorage.get('isNotFirstShow');
+    if (registerStatus && !isNotFirstShow) {
+      this.isControlCheck = true;
+      localStorage.set('isNotFirstShow', true);
+    }
     this[GET_MARKETS_LIST]();
     this[GET_HOME_PRODUCT_LIST]();
   },
@@ -56,6 +64,11 @@ const Home = {
         <BaseContainer>
           <BlockChainDate />
         </BaseContainer>
+
+        <TradeBeforeVerified
+          isVerifiedKyc
+          isControlCheck={this.isControlCheck}
+        />
       </div>
     );
   },
