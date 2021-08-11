@@ -1,5 +1,5 @@
 import { Badge } from 'ant-design-vue';
-import { HashCouponFilled, QrCodeIcon, DoubleUserFilled } from 'ahoney/lib/icons';
+import { HashCouponFilled, QrCode, DoubleUserFilled } from 'ahoney/lib/icons';
 import BaseContainer from '@/shared/components/BaseContainer';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import { UPDATE_USER_INFO } from '@/store/consts/actionType';
@@ -9,7 +9,7 @@ import defaultAvatar from '@/assets/rank/defaultAvatar.png';
 import { getLocalLanguage } from '@/shared/utils/getLocalLanguage';
 import BaseModal from '@/shared/components/BaseModal';
 import EditAvatarNickname from '../components/EditAvatarNickname';
-
+import InviteDetail from '../components/InviteDetail';
 import logout from './logout';
 import styles from './index.less?module';
 
@@ -22,6 +22,7 @@ const Detail = {
   data() {
     return {
       isVisibleEditInfoModal: false,
+      isVisibleInviteDetailModal: false,
     };
   },
 
@@ -39,7 +40,7 @@ const Detail = {
         <div>
           <div class={styles['invite-info-label']}>{this.$t('myInvitationQRCode')}</div>
           <div class={styles['view-qr-box']}>
-            <QrCodeIcon className={styles['qr-icon']} />
+            <QrCode className={styles['qr-icon']} />
             <ShareQrCodeModal title={this.$t('myInvitationQRCode')} content={link}>
               <a class={styles['view-qr']}>{this.$t('clickView')}</a>
             </ShareQrCodeModal>
@@ -72,12 +73,20 @@ const Detail = {
         </div>
       );
       const detailItem = (
-        <div class={styles['invite-detail']}>
+        <div
+          class={styles['invite-detail']}
+          onClick={() => {
+            this.isVisibleInviteDetailModal = true;
+          }}
+        >
           {this.$t('inviteFriendsDetail')}
           <DoubleUserFilled className={styles['invite-detail-icon']} />
         </div>
       );
       return [qrCodeItem, inviteCodeItem, inviteRewardItem, inviteCountItem, detailItem];
+    },
+    closeInviteDetailModal() {
+      this.isVisibleInviteDetailModal = false;
     },
   },
   render() {
@@ -131,6 +140,7 @@ const Detail = {
           width={376}
           title={this.$t('editPersonalInfo')}
           value={this.isVisibleEditInfoModal}
+          destroyOnClose
           scopedSlots={{
             content: () => (
               <EditAvatarNickname
@@ -144,6 +154,14 @@ const Detail = {
           onClose={() => {
             this.isVisibleEditInfoModal = false;
           }}
+        />
+        <BaseModal
+          value={this.isVisibleInviteDetailModal}
+          destroyOnClose
+          width={622}
+          title={this.$t('inviteFriendsDetail')}
+          scopedSlots={{ content: () => <InviteDetail onCloseModal={this.closeInviteDetailModal} /> }}
+          onclose={this.closeInviteDetailModal}
         />
       </BaseContainer>
     );

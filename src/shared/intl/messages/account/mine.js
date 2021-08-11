@@ -93,4 +93,5 @@ export default {
   uploadAvatar: '上传头像',
   nickname: '昵称',
   nicknameRequire: '昵称不能为空',
+  awardAmount: '奖励金额',
 };
