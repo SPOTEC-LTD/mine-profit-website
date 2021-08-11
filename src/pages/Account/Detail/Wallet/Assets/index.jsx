@@ -6,6 +6,7 @@ import HandCardOutlined from 'ahoney/lib/icons/HandCardOutlined';
 import { addressPath, depositPath, withdrawPath } from '@/router/consts/urls';
 import { EthIcon, BtcIcon, UsdtIcon } from '@/shared/components/ChainIcon';
 import NewWindowGuide from '@/shared/components/NewWindowGuide';
+import TradeBeforeVerified from '@/shared/components/TradeBeforeVerified';
 
 import styles from './index.less?module';
 
@@ -38,13 +39,16 @@ const Assets = {
               <LockOutline />
               <div>{this.$t('walletAllTypesCharge')}</div>
             </div>
-            <div
-              class={styles['wallet-button']}
-              onClick={() => { window.open(withdrawPath); }}
+            <TradeBeforeVerified
+              class={styles['withdraw-card']}
+              isVerifiedKyc
+              onVerifiedPass={() => { window.open(withdrawPath); }}
             >
-              <HandCardOutlined />
-              <div>{this.$t('walletAllTypesCarry')}</div>
-            </div>
+              <div class={styles['wallet-button']}>
+                <HandCardOutlined />
+                <div>{this.$t('walletAllTypesCarry')}</div>
+              </div>
+            </TradeBeforeVerified>
           </div>
         </div>
       );
@@ -88,23 +92,19 @@ const Assets = {
                     </div>
                   </div>
                   <div class={styles['coin-card-operate']}>
-                    <div class={styles['card-right-button']}>
-                      <span onClick={() => { window.open(`${depositPath}?coinType=${item.chainType}`); }}>
-                        {this.$t('walletAllTypesCharge')}
-                      </span>
+                    <div
+                      class={styles['card-right-button']}
+                      onClick={() => { window.open(`${depositPath}?coinType=${item.chainType}`); }}
+                    >
+                      {this.$t('walletAllTypesCharge')}
                     </div>
-                    <div class={styles['card-right-button']}>
-                      <span onClick={() => { window.open(`${withdrawPath}?coinType=${item.chainType}`); }}>
-                        {/* TODO: 资格检测 */}
-                        {/* <TradeBeforeVerified
-                        class={styles['link-item-withdraw']}
-                        isVerifiedKyc
-                        onVerifiedPass={() => this.toWithdrawPage(item.chainType)}
-                      > */}
-                        {this.$t('walletAllTypesCarry')}
-                        {/* </TradeBeforeVerified> */}
-                      </span>
-                    </div>
+                    <TradeBeforeVerified
+                      class={styles['card-right-button']}
+                      isVerifiedKyc
+                      onVerifiedPass={() => { window.open(`${withdrawPath}?coinType=${item.chainType}`); }}
+                    >
+                      {this.$t('walletAllTypesCarry')}
+                    </TradeBeforeVerified>
                   </div>
                 </List.Item>
               ))}

@@ -1,14 +1,12 @@
 import localStorage from '@/shared/utils/localStorage';
-import PrimaryButton from '@/shared/components/PrimaryButton';
 import { getUserInfo } from '@/api/user';
 import { PENDING, PASS, REJECT, NOT_SUBMIT } from '@/shared/consts/kycStatus';
 import { setDealPasswordPath, realNameAuthPath } from '@/router/consts/urls';
 import verifyImgDialog from '@/assets/account/verify_img_dialog.png';
 import verifyPendingImage from '@/assets/account/verify-pending-image.png';
 import verifyRejectImage from '@/assets/account/verify-reject-image.png';
-import closeIconGray from '@/assets/account/nav_icon_close_gray.png';
-import locationServices from '@/shared/services/location/locationServices';
 import BaseModal from '@/shared/components/BaseModal';
+import ModalFooterButtonGroup from '@/shared/components/ModalFooterButtonGroup';
 
 import './index.less';
 
@@ -67,34 +65,6 @@ const TradeBeforeVerified = {
         this.$emit('verifiedPass');
       }
     },
-    closeDialog(e) {
-      if (e) {
-        e.stopPropagation();
-      }
-      this.showDialog = false;
-    },
-    closeVerifyDialog(e) {
-      this.closeDialog(e);
-      this.$emit('dialogClose');
-    },
-    buttonClick(e, method) {
-      e.stopPropagation();
-      this.closeDialog();
-      this[method]();
-    },
-    toAppointPage(path) {
-      const currentFullPath = this.$router.history.current.fullPath;
-      locationServices.push(
-        path,
-        { query: { redirectPageUrl: currentFullPath } },
-      );
-    },
-    setDealPassword() {
-      this.toAppointPage(setDealPasswordPath);
-    },
-    realNameAuth() {
-      this.toAppointPage(realNameAuthPath);
-    },
 
     getRejectDescribe() {
       return (
@@ -109,25 +79,29 @@ const TradeBeforeVerified = {
     getDialogInfo(status) {
       const notSubmitBtnList = [
         {
-          text: this.$t('accountAndSecurityTradePwd'),
+          label: this.$t('accountAndSecurityTradePwd'),
           show: !this.isDealCodeSet,
-          method: 'setDealPassword',
+          onClick: () => { window.open(setDealPasswordPath); },
+          type: 'primary',
         },
         {
-          text: this.$t('realNameAuth'),
+          label: this.$t('realNameAuth'),
           show: this.isVerifiedKyc && this.isKycNotSubmit,
-          method: 'realNameAuth',
+          onClick: () => { window.open(realNameAuthPath); },
+          type: 'primary',
         },
       ];
       const pendingBtnList = [{
-        text: this.$t('confirm'),
+        label: this.$t('confirm'),
         show: true,
-        method: 'closeDialog',
+        onClick: this.closeDialog,
+        type: 'primary',
       }];
       const rejectBtnList = [{
-        text: this.$t('tryAgain'),
+        label: this.$t('tryAgain'),
         show: true,
-        method: 'realNameAuth',
+        onClick: this.realNameAuth,
+        type: 'primary',
       }];
       const kycStatusMap = {
         [NOT_SUBMIT]: {
@@ -154,56 +128,40 @@ const TradeBeforeVerified = {
       return kycStatusMap[this.isDealCodeSet ? status : NOT_SUBMIT];
     },
 
-    getDialogNode() {
+    getDialogContentNode() {
       const { btnList, image, describe } = this.getDialogInfo(this.kycStatus);
       return (
-        <BaseModal
-          value={this.value}
-          title={this.$t('activeWithDrawTitle')}
-          width={658}
-          onCancel={() => { this.$emit('closeNoActive'); }}
-          scopedSlots={{
-            content: this.getActiveWaysNode,
-          }}
-        />
-        {/* <Dialog.Component
-          class="user-verified-wrapper"
-          showCancelButton={false}
-          showConfirmButton={false}
-          value={this.showDialog}
-          {...{
-            props: this.$attrs,
-          }}
-        >
-          <img
-            src={closeIconGray}
-            class="close-icon"
-            alt=""
-            onClick={e => this.closeVerifyDialog(e)}
-          />
+        <div>
           <div class="user-verified-img">
             <img src={image} alt="" />
           </div>
           <div class="user-verified-content">{describe}</div>
-          {btnList.map((item, index) => {
-            return item.show && (
-              <PrimaryButton
-                key={index}
-                class="user-verified-btn"
-                onClick={e => this.buttonClick(e, item.method)}
-              >
-                {item.text}
-              </PrimaryButton>
-            );
-          })}
-        </Dialog.Component> */}
+          <ModalFooterButtonGroup
+            className={'button-group'}
+            dataSource={btnList}
+          />
+        </div>
+      );
+    },
+
+    getDialogNode() {
+      return (
+        <BaseModal
+          value={this.showDialog}
+          title={this.$t('supplementaryInformation')}
+          width={396}
+          onCancel={() => { this.showDialog = false; }}
+          scopedSlots={{
+            content: this.getDialogContentNode,
+          }}
+        />
       );
     },
   },
 
   render() {
     const resultNode = this.$slots.default ? (
-      <div>
+      <div class='trade-before-verified'>
         <span onClick={this.onVerifiedUserStatus}>
           {this.$slots.default}
         </span>
