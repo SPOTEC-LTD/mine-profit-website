@@ -1,5 +1,6 @@
 import * as API from '@/api/account/userInfo';
 import localStorage from '@/shared/utils/localStorage';
+import { UPDATE_USER_INFO } from '@/store/consts/actionType';
 
 export const ACCOUNT = 'account';
 
@@ -97,12 +98,13 @@ export default {
         return Promise.reject(error);
       }
     },
-    async [GET_USER_BASE_INFO]() {
+    async [GET_USER_BASE_INFO]({ commit }) {
       const { userId } = localStorage.getObject('userInfo');
       try {
         const {
           body: { userInfo },
         } = await API.getUserBaseInfo({ pathParams: { userId } });
+        commit(UPDATE_USER_INFO, userInfo, { root: true });
 
         return Promise.resolve(userInfo);
       } catch (error) {

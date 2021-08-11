@@ -89,4 +89,8 @@ export default {
   realNameAuthDriverBack: '上传驾驶证背面',
   familyName: '姓',
   givenName: '名',
+  editPersonalInfo: '修改个人信息',
+  uploadAvatar: '上传头像',
+  nickname: '昵称',
+  nicknameRequire: '昵称不能为空',
 };

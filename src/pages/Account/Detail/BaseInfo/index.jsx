@@ -1,7 +1,5 @@
 import { Badge } from 'ant-design-vue';
-import HashCouponFilled from 'ahoney/lib/icons/HashCouponFilled';
-import QrCodeIcon from 'ahoney/lib/icons/QrCode';
-import DoubleUserFilled from 'ahoney/lib/icons/DoubleUserFilled';
+import { HashCouponFilled, QrCodeIcon, DoubleUserFilled } from 'ahoney/lib/icons';
 import BaseContainer from '@/shared/components/BaseContainer';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import { UPDATE_USER_INFO } from '@/store/consts/actionType';
@@ -9,6 +7,9 @@ import { hashRateCouponsPath } from '@/router/consts/urls';
 import ShareQrCodeModal from '@/shared/components/ShareQrCodeModal';
 import defaultAvatar from '@/assets/rank/defaultAvatar.png';
 import { getLocalLanguage } from '@/shared/utils/getLocalLanguage';
+import BaseModal from '@/shared/components/BaseModal';
+import EditAvatarNickname from '../components/EditAvatarNickname';
+
 import logout from './logout';
 import styles from './index.less?module';
 
@@ -18,6 +19,12 @@ const Detail = {
     inviteInfo: Object,
     userInfo: Object,
   },
+  data() {
+    return {
+      isVisibleEditInfoModal: false,
+    };
+  },
+
   methods: {
     handleLogout() {
       logout();
@@ -76,15 +83,29 @@ const Detail = {
   render() {
     const { validCouponCount } = this.info;
     const { avatar, nickName, registerAccount, level } = this.userInfo;
+
     return (
       <BaseContainer class={styles['account-base-info']}>
         <div class={styles['info-box']}>
           <div class={styles['info-left']}>
-            <img class={styles.avatar} src={avatar || defaultAvatar } alt="" />
+            <img
+              class={styles.avatar}
+              src={avatar || defaultAvatar}
+              alt=""
+              onClick={() => {
+                this.isVisibleEditInfoModal = true;
+              }}
+            />
             <div class={styles['info-left-content']}>
               <div class={styles.nickname}>{nickName || '-'}</div>
               <div class={styles['info-left-operate']}>
-                <a>{this.$t('edit')}</a>
+                <a
+                  onClick={() => {
+                    this.isVisibleEditInfoModal = true;
+                  }}
+                >
+                  {this.$t('edit')}
+                </a>
                 <a onClick={this.handleLogout}>{this.$t('logout')}</a>
               </div>
               <div>{`${this.$t('accountAndSecurityAccount')}：${registerAccount || '-'}`}</div>
@@ -93,7 +114,12 @@ const Detail = {
           </div>
           <div class={styles['info-right']}>
             <div class={styles['invite-info-box']}>{this.getInviteItem().map(item => item)}</div>
-            <div class={styles['hashrate-coupon']} onClick={() => { window.open(hashRateCouponsPath); }}>
+            <div
+              class={styles['hashrate-coupon']}
+              onClick={() => {
+                window.open(hashRateCouponsPath);
+              }}
+            >
               <HashCouponFilled className={styles['coupon-icon']} />
               <Badge count={validCouponCount}>
                 <span>{this.$t('myHashrateCoupon')}</span>
@@ -101,6 +127,24 @@ const Detail = {
             </div>
           </div>
         </div>
+        <BaseModal
+          width={376}
+          title={this.$t('editPersonalInfo')}
+          value={this.isVisibleEditInfoModal}
+          scopedSlots={{
+            content: () => (
+              <EditAvatarNickname
+                onCloseModal={() => {
+                  this.isVisibleEditInfoModal = false;
+                }}
+                userInfo={this.userInfo}
+              />
+            ),
+          }}
+          onClose={() => {
+            this.isVisibleEditInfoModal = false;
+          }}
+        />
       </BaseContainer>
     );
   },
