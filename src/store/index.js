@@ -15,6 +15,7 @@ import officialProduct from '../modules/officialProduct';
 import c2cMarket from '../modules/c2cMarket';
 import wallet from '../modules/account/wallet';
 import user from '../modules/user';
+import stationMail from '../modules/stationMail';
 
 export const strict = false;
 export const plugins = [loadingPlugin()];
@@ -59,4 +60,5 @@ export const modules = {
   wallet,
   rank,
   user,
+  stationMail,
 };

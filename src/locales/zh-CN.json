@@ -822,5 +822,10 @@
   "investProtocolText_10": "因本协议引起的或与本协议有关的任何争议由双方协商解决，协商不成任何一方可向合同签订地人民法院提起诉讼。",
   "investProtocolTitle_11": "十一、生效",
   "investProtocolText_11": "本协议生效后，除经双方协议一致并达成书面协议，任何一方不得变更和解除协议。",
-  "investProtocolFooterText": "我对本协议的全部条款均无疑议，并对当事人有关权利义务和责任限制或免除条款的法律含义有准确无误的理解。"
+  "investProtocolFooterText": "我对本协议的全部条款均无疑议，并对当事人有关权利义务和责任限制或免除条款的法律含义有准确无误的理解。",
+  "drawerMessage": "站内信",
+  "unread": "未读",
+  "read": "已读",
+  "allRead": "全部已读",
+  "confirmAllRead": "确认已读"
 }

@@ -1,0 +1,45 @@
+@import "~@/shared/styles/variables.less";
+
+.list-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.cell-self-title {
+  display: flex;
+  align-items: center;
+
+  span {
+    color: @color__494949;
+    font-size: @font-size__15;
+    line-height: 21px;
+  }
+}
+
+.red-dot {
+  background-color: @color__fe6565;
+  padding: 3px;
+  border-radius: 100%;
+  margin-right: 6px;
+}
+
+.item-time {
+  color: @color__ababab;
+  font-size: @font-size-sm;
+  line-height: 17px;
+  margin-top: 4px;
+}
+
+.no-data {
+  height: 295px;
+  background-color: @white;
+
+  img {
+    width: 64px;
+  }
+}

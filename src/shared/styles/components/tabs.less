@@ -78,3 +78,29 @@
     background-color: @color__primary;
   }
 }
+
+.mp-tabs-short {
+  .mp-tabs-bar {
+    margin: 0;
+    border-bottom: 1px solid @color__f1f1f1;
+  }
+
+  .mp-tabs-tab {
+    padding: 7px 20px;
+    color: @color__8b8b8b;
+
+    &:hover {
+      color: @color__primary;
+    }
+
+    &-active {
+      font-weight: 500;
+      color: @color__primary;
+    }
+  }
+
+  .mp-tabs-ink-bar {
+    width: 11px !important;
+    left: 30px;
+  }
+}

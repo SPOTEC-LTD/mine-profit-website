@@ -11,6 +11,7 @@ import hashRateCoupons from './hashRateCoupons';
 import pageName from './pageName';
 import rank from './rank';
 import protocol from './protocol';
+import stationMail from './stationMail';
 
 export default {
   ...pageName,
@@ -26,4 +27,5 @@ export default {
   ...hashRateCoupons,
   ...rank,
   ...protocol,
+  ...stationMail,
 };
