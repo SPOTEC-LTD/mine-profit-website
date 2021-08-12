@@ -8,6 +8,7 @@ import ProductListCell from '@/shared/components/ProductListCell';
 import { PAGE_SIZE, PAGE_NUM } from '@/shared/consts/defaultInfoAmount';
 import FieldOrderList from '@/shared/components/FieldOrder/FieldOrderList';
 import { C2C_MARKET, GET_C2C_MARKET_LIST, UPDATE_ACTIVE_COIN, RESET_STATE } from '@/modules/c2cMarket';
+import MarketingBanner from '../components/MarketingBanner';
 import TopNav from '../components/TopNav';
 import styles from './index.less?module';
 
@@ -115,29 +116,32 @@ const C2CMarketing = {
   render() {
     const resultListNode = this.ListNode();
     return (
-      <BaseContainer class={styles['product-list-wrapper']}>
-        <TopNav />
-        <Spin spinning={this.getListLoading}>
-          <KeepTabs
-            class='mine-tabs-card'
-            activeKeyName="c2cCoinType"
-            value={this.activeChainType}
-            onChange={this.onTabsChange}
-            scopedSlots={{ tabBarExtraContent: this.getFieldOrderList }}
-          >
-            <TabPane key={ALL} tab={this.$t('all')}>{resultListNode}</TabPane>
-            <TabPane key={BTC} tab={this.$t('BTCHashRate')}>{resultListNode}</TabPane>
-            <TabPane key={ETH} tab={this.$t('ETHHashRate')}>{resultListNode}</TabPane>
-          </KeepTabs>
-          <Pagination
-            total={this.pageInfo.total}
-            showTotal={total => this.getPageTotalNode(total)}
-            pageSize={PAGE_SIZE}
-            current={this.pageInfo.pageNum}
-            onChange={this.onPageChange}
-          />
-        </Spin>
-      </BaseContainer>
+      <div>
+        <MarketingBanner />
+        <BaseContainer class={styles['product-list-wrapper']}>
+          <TopNav />
+          <Spin spinning={this.getListLoading}>
+            <KeepTabs
+              class='mine-tabs-card'
+              activeKeyName="c2cCoinType"
+              value={this.activeChainType}
+              onChange={this.onTabsChange}
+              scopedSlots={{ tabBarExtraContent: this.getFieldOrderList }}
+            >
+              <TabPane key={ALL} tab={this.$t('all')}>{resultListNode}</TabPane>
+              <TabPane key={BTC} tab={this.$t('BTCHashRate')}>{resultListNode}</TabPane>
+              <TabPane key={ETH} tab={this.$t('ETHHashRate')}>{resultListNode}</TabPane>
+            </KeepTabs>
+            <Pagination
+              total={this.pageInfo.total}
+              showTotal={total => this.getPageTotalNode(total)}
+              pageSize={PAGE_SIZE}
+              current={this.pageInfo.pageNum}
+              onChange={this.onPageChange}
+            />
+          </Spin>
+        </BaseContainer>
+      </div>
     );
   },
 };

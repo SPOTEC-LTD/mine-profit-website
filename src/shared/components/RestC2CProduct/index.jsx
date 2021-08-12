@@ -15,7 +15,7 @@ const RestC2CProduct = {
   },
 
   render() {
-    const { totalAmount, saleAmount } = this.productData;
+    const { totalAmount, saleAmount, unit } = this.productData;
     const rest = getMinus({ number: totalAmount, minuend: saleAmount, decimal: 2 });
     const salePercentage = getDivided({ number: saleAmount, divisor: totalAmount, decimal: 2 });
     const total = bigNumberToFixed(totalAmount, 2);
@@ -24,7 +24,7 @@ const RestC2CProduct = {
       <div class='rest-c2c-product-container'>
         <LineProgress
           name={this.$t('marketRemainHashrate')}
-          number={`${rest}/${total} ${this.$t('part')}`}
+          number={`${rest}/${total} ${unit}`}
           percentage={+getMinus({ number: 100, minuend: numberUtils.times(salePercentage, 100), decimal: 0 })}
           class='sale-rest'
         />

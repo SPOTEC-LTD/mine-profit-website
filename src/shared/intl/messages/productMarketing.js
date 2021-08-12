@@ -88,4 +88,6 @@ export default {
   hashRateUnitPrice: '算力单价',
   marketItemRemainAmount: '可购买',
   marketNoGoodsAvailable: '暂无可购买产品',
+  highFreeTrading: '高度自由的算力交易系统',
+  twoTypeOfMode: 'Mineprofit算力交易市场拥有“官方自营算力”+“C2C算力交易”的线上双选交易模式',
 };

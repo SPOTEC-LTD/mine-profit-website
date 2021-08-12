@@ -8,6 +8,7 @@ import ProductListCell from '@/shared/components/ProductListCell';
 import { UPDATE_PRODUCT_LIST, OFFICIAL_PRODUCT,
   GET_OFFICIAL_PRODUCT_LIST, UPDATE_ACTIVE_COIN } from '@/modules/officialProduct';
 import TopNav from '../components/TopNav';
+import MarketingBanner from '../components/MarketingBanner';
 import styles from './index.less?module';
 
 const { TabPane } = KeepTabs;
@@ -61,27 +62,30 @@ const OfficialMarketing = {
 
   render() {
     return (
-      <BaseContainer class={styles['product-list-wrapper']}>
-        <TopNav />
-        <Spin spinning={this.getListLoading}>
-          <KeepTabs
-            class='mine-tabs-card'
-            activeKeyName="OfficialCoinType"
-            value={this.activeChainType}
-            onChange={this.onTabsChange}
-          >
-            <TabPane key={ALL} tab={this.$t('all')}>
-              {!!this.allProductList.length ? <ProductListCell productList={this.allProductList} /> : <NoData />}
-            </TabPane>
-            <TabPane key={BTC} tab={this.$t('BTCHashRate')}>
-              {!!this.btcProductList.length ? <ProductListCell productList={this.btcProductList} /> : <NoData />}
-            </TabPane>
-            <TabPane key={ETH} tab={this.$t('ETHHashRate')}>
-              {!!this.ethProductList.length ? <ProductListCell productList={this.ethProductList} /> : <NoData />}
-            </TabPane>
-          </KeepTabs>
-        </Spin>
-      </BaseContainer>
+      <div>
+        <MarketingBanner />
+        <BaseContainer class={styles['product-list-wrapper']}>
+          <TopNav />
+          <Spin spinning={this.getListLoading}>
+            <KeepTabs
+              class='mine-tabs-card'
+              activeKeyName="OfficialCoinType"
+              value={this.activeChainType}
+              onChange={this.onTabsChange}
+            >
+              <TabPane key={ALL} tab={this.$t('all')}>
+                {!!this.allProductList.length ? <ProductListCell productList={this.allProductList} /> : <NoData />}
+              </TabPane>
+              <TabPane key={BTC} tab={this.$t('BTCHashRate')}>
+                {!!this.btcProductList.length ? <ProductListCell productList={this.btcProductList} /> : <NoData />}
+              </TabPane>
+              <TabPane key={ETH} tab={this.$t('ETHHashRate')}>
+                {!!this.ethProductList.length ? <ProductListCell productList={this.ethProductList} /> : <NoData />}
+              </TabPane>
+            </KeepTabs>
+          </Spin>
+        </BaseContainer>
+      </div>
     );
   },
 };
