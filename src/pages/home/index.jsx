@@ -18,7 +18,14 @@ const Home = {
   async asyncData(ctx) {
     const props = {
       announcementList: [],
-      versionInfo: {},
+      versionInfo: {
+        android: {
+          version: '-',
+        },
+        iOS: {
+          version: '-',
+        },
+      },
     };
     const getAnnouncementPromise = API.getAnnouncementList({}, { ctx });
 
