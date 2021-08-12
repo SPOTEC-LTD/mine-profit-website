@@ -39,6 +39,8 @@ export const marketingPaths = '/hashRateMarket';
 export const officialMarketingPath = `${marketingPaths}/officialMarketing`;
 export const c2cMarketingPath = `${marketingPaths}/marketC2CMarket`;
 export const officialDetailsPath = `${officialMarketingPath}/marketHashDetail/:id`;
+// TODO面包屑问题
+export const productTemplatePath = `${officialMarketingPath}/marketHashDetail/productTemplate/:id`;
 export const c2cDetailsPath = `${c2cMarketingPath}/marketHashDetail/:id`;
 export const officialSettlementPath = `${officialDetailsPath}/marketConfirmSettle/:ptId`;
 export const c2cSettlementPath = `${c2cDetailsPath}/marketConfirmSettle`;

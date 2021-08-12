@@ -31,6 +31,10 @@ const ProductTitle = {
     onClick() {
       this.$emit('handleClick');
     },
+    onClickRight(e) {
+      e.stopPropagation();
+      this.$emit('clickToLink');
+    },
   },
 
   render() {
@@ -40,6 +44,7 @@ const ProductTitle = {
     };
 
     const rightContent = this.$scopedSlots.rightContent && this.$scopedSlots.rightContent();
+    const rightMiddleContent = this.$scopedSlots.rightMiddleContent && this.$scopedSlots.rightMiddleContent();
 
     return (
       <div class={classNames('product-title', this.className)} onClick={this.onClick}>
@@ -58,6 +63,7 @@ const ProductTitle = {
             </div>
             {this.leftExtra && <div class={['product-name-extra', 'no-wrap']}>{this.leftExtra}</div>}
           </div>
+          <div onClick={this.onClickRight}>{rightMiddleContent}</div>
         </div>
       </div>
     );

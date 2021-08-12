@@ -270,7 +270,6 @@ const Settlement = {
               />
             </FormContainer>
 
-            <Title title={this.$t('confirmPay')} class={styles['confirm-settle-dec-title']}/>
             <PayWaySelector
               onHandlePayNow={coin => { this.payCoin = coin; }}
               willPayAmount={this.hashRatePrice}

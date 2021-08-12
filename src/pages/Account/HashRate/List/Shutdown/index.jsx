@@ -1,5 +1,6 @@
 import { Row, Col } from 'ant-design-vue';
 import numberUtils from 'aa-utils/lib/numberUtils';
+import { productTemplatePath } from '@/router/consts/urls';
 import ProductTitle from '@/shared/components/ProductTitle';
 import DateUtils from '@/shared/intl/utils/dateUtils';
 import { ON } from '@/pages/Account/HashRate/consts/shutdownStatus';
@@ -41,12 +42,8 @@ const Shutdown = {
     },
 
     onClickToProductTemplate(ptId, isVipHashrate) {
-      const currentFullPath = this.$router.history.current.fullPath;
       if (!isVipHashrate) {
-        locationServices.push(
-          'officialProductTemplatePath',
-          { params: { id: ptId }, query: { redirectHashRateUrl: currentFullPath } },
-        );
+        locationServices.push(productTemplatePath, { params: { id: ptId } });
       }
     },
   },

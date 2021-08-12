@@ -1,4 +1,5 @@
 import { Row, Col } from 'ant-design-vue';
+import { productTemplatePath } from '@/router/consts/urls';
 import ProductTitle from '@/shared/components/ProductTitle';
 import {
   WAIT_BUY,
@@ -45,13 +46,8 @@ const Pledges = {
     },
 
     onClickToProductTemplate(ptId, isVipHashrate) {
-      const currentFullPath = this.$router.history.current.fullPath;
       if (!isVipHashrate) {
-        // TODO 需要跳到产品详情
-        locationServices.push(
-          '',
-          { params: { id: ptId }, query: { redirectHashRateUrl: currentFullPath } },
-        );
+        locationServices.push(productTemplatePath, { params: { id: ptId } });
       }
     },
   },

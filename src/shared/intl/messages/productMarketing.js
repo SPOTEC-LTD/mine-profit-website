@@ -86,4 +86,6 @@ export default {
   marketPayChainTypeNotEnough: '*当前{paymentChainType}金额不足',
   orderPrice: '订单总价',
   hashRateUnitPrice: '算力单价',
+  marketItemRemainAmount: '可购买',
+  marketNoGoodsAvailable: '暂无可购买产品',
 };
