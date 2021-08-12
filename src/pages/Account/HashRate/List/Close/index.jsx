@@ -1,4 +1,5 @@
 import { Row, Col } from 'ant-design-vue';
+import { productTemplatePath } from '@/router/consts/urls';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import ProductTitle from '@/shared/components/ProductTitle';
 import DateUtils from '@/shared/intl/utils/dateUtils';
@@ -53,12 +54,8 @@ const Close = {
     },
 
     onClickToProductTemplate(ptId, isVipHashrate) {
-      const currentFullPath = this.$router.history.current.fullPath;
       if (!isVipHashrate) {
-        locationServices.push(
-          'officialProductTemplatePath',
-          { params: { id: ptId }, query: { redirectHashRateUrl: currentFullPath } },
-        );
+        locationServices.push(productTemplatePath, { params: { id: ptId } });
       }
     },
   },

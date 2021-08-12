@@ -1,5 +1,6 @@
 import { Row, Col } from 'ant-design-vue';
 import numberUtils from 'aa-utils/lib/numberUtils';
+import { productTemplatePath } from '@/router/consts/urls';
 import ProductTitle from '@/shared/components/ProductTitle';
 import Card from '@/pages/Account/HashRate/List/components/Card';
 import ListCell from '@/pages/Account/HashRate/List/components/ListCell';
@@ -63,12 +64,8 @@ const Transfer = {
     },
 
     onClickToProductTemplate(ptId, isVipHashrate) {
-      const currentFullPath = this.$router.history.current.fullPath;
       if (!isVipHashrate) {
-        locationServices.push(
-          'officialProductTemplatePath',
-          { params: { id: ptId }, query: { redirectHashRateUrl: currentFullPath } },
-        );
+        locationServices.push(productTemplatePath, { params: { id: ptId } });
       }
     },
   },

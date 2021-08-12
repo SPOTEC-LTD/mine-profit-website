@@ -1,6 +1,7 @@
 import OfficialMarketing from '@/pages/ProductMarketing/OfficialMarketing';
 import C2CMarketing from '@/pages/ProductMarketing/C2CMarketing';
 import OfficialProductDetails from '@/pages/ProductMarketing/OfficialMarketing/OfficialProductDetails';
+import productTemplate from '@/pages/ProductMarketing/ProductTemplate';
 import C2CProductDetails from '@/pages/ProductMarketing/C2CMarketing/C2CProductDetails';
 import OfficialProductSettlement from '@/pages/ProductMarketing/OfficialMarketing/Settlement';
 import C2CProductSettlement from '@/pages/ProductMarketing/C2CMarketing/Settlement';
@@ -27,6 +28,13 @@ export default [
     meta: { showBreadcrumb: true },
     name: 'marketHashDetail',
     component: OfficialProductDetails,
+  },
+  {
+    path: urls.productTemplatePath,
+    // TODO 和产品详情一模一样的url
+    // meta: { showBreadcrumb: true },
+    name: 'marketHashDetail__template',
+    component: productTemplate,
   },
   {
     path: urls.c2cDetailsPath,
