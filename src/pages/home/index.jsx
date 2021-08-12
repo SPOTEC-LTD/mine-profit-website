@@ -10,11 +10,22 @@ import localStorage from '@/shared/utils/localStorage';
 import Banner from './Banner';
 import Announcements from './Announcements';
 import CoinMarkets from './CoinMarkets';
+import Download from './Download';
+
+import styles from './index.less?module';
 
 const Home = {
   async asyncData(ctx) {
     const props = {
       announcementList: [],
+      versionInfo: {
+        android: {
+          version: '-',
+        },
+        iOS: {
+          version: '-',
+        },
+      },
     };
     const getAnnouncementPromise = API.getAnnouncementList({}, { ctx });
 
@@ -23,6 +34,13 @@ const Home = {
       props.announcementList = list;
     } catch (error) {
       console.log('error');
+    }
+
+    try {
+      const { body } = await API.fetchAppVersion({}, { ctx });
+      props.versionInfo = body;
+    } catch (error) {
+      console.log('error', error);
     }
 
     return props;
@@ -63,6 +81,9 @@ const Home = {
         <RankEnter />
         <BaseContainer>
           <BlockChainDate />
+        </BaseContainer>
+        <BaseContainer className={styles['download-wrap']}>
+          <Download versionInfo={this.versionInfo} />
         </BaseContainer>
 
         <TradeBeforeVerified
