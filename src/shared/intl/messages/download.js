@@ -8,5 +8,10 @@ export default {
   downloadTitle4: '一键式操作，助你快速入门',
   downloadDesc4: '便捷的注册、充值、算力购买流程，使你秒获算力，即刻拥有挖矿收益。',
   downloadByScanningQRCode: '立即扫码下载',
-  appVersion: '版本：'
+  appVersion: '版本：',
+  downloadApp: '下载MineProfit APP',
+  downloadAppSubTitle: '随时·随地·随心',
+  transactionHashrate: '交易算力',
+  understandInformation: '了解资讯',
+  gainProfit: '获得收益',
 }

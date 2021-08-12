@@ -27,6 +27,7 @@ const QRCodeModule = {
       default: () => {
       },
     },
+    className: String,
   },
 
   mounted() {
@@ -57,7 +58,7 @@ const QRCodeModule = {
 
   render() {
     return (
-      <div>
+      <div class={this.className}>
         {
           this.imgUrl && <img src={this.imgUrl} alt="" />
         }
