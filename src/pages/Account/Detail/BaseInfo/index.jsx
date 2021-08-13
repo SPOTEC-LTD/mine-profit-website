@@ -9,6 +9,7 @@ import defaultAvatar from '@/assets/rank/defaultAvatar.png';
 import { getLocalLanguage } from '@/shared/utils/getLocalLanguage';
 import BaseModal from '@/shared/components/BaseModal';
 import locationServices from '@/shared/services/location/locationServices';
+import locationHelp from '@/shared/utils/locationHelp';
 import EditAvatarNickname from '../components/EditAvatarNickname';
 import InviteDetail from '../components/InviteDetail';
 import logout from './logout';
@@ -136,7 +137,7 @@ const Detail = {
             <div
               class={styles['hashrate-coupon']}
               onClick={() => {
-                window.open(hashRateCouponsPath);
+                locationHelp.open(hashRateCouponsPath);
               }}
             >
               <HashCouponFilled className={styles['coupon-icon']} />

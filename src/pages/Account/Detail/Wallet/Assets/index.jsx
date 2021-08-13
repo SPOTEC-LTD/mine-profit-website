@@ -7,6 +7,7 @@ import { addressPath, depositPath, withdrawPath } from '@/router/consts/urls';
 import { EthIcon, BtcIcon, UsdtIcon } from '@/shared/components/ChainIcon';
 import NewWindowGuide from '@/shared/components/NewWindowGuide';
 import TradeBeforeVerified from '@/shared/components/TradeBeforeVerified';
+import locationHelp from '@/shared/utils/locationHelp';
 
 import styles from './index.less?module';
 
@@ -34,7 +35,7 @@ const Assets = {
           <div class={styles['info-right']}>
             <div
               class={styles['wallet-button']}
-              onClick={() => { window.open(depositPath); }}
+              onClick={() => { locationHelp.open(depositPath); }}
             >
               <LockOutline />
               <div>{this.$t('walletAllTypesCharge')}</div>
@@ -42,7 +43,7 @@ const Assets = {
             <TradeBeforeVerified
               class={styles['withdraw-card']}
               isVerifiedKyc
-              onVerifiedPass={() => { window.open(withdrawPath); }}
+              onVerifiedPass={() => { locationHelp.open(withdrawPath); }}
             >
               <div class={styles['wallet-button']}>
                 <HandCardOutlined />
@@ -69,7 +70,7 @@ const Assets = {
                 <div class={styles['bottom-guide']}>
                   <NewWindowGuide
                     label={this.$t('withdrawAddressManagement')}
-                    onGuide={() => { window.open(addressPath); }}
+                    onGuide={() => { locationHelp.open(addressPath); }}
                   />
                 </div>
               ),
@@ -94,14 +95,18 @@ const Assets = {
                   <div class={styles['coin-card-operate']}>
                     <div
                       class={styles['card-right-button']}
-                      onClick={() => { window.open(`${depositPath}?coinType=${item.chainType}`); }}
+                      onClick={() => {
+                        locationHelp.open(depositPath, { params: { coinType: item.chainType } });
+                      }}
                     >
                       {this.$t('walletAllTypesCharge')}
                     </div>
                     <TradeBeforeVerified
                       class={styles['card-right-button']}
                       isVerifiedKyc
-                      onVerifiedPass={() => { window.open(`${withdrawPath}?coinType=${item.chainType}`); }}
+                      onVerifiedPass={() => {
+                        locationHelp.open(withdrawPath, { params: { coinType: item.chainType } });
+                      }}
                     >
                       {this.$t('walletAllTypesCarry')}
                     </TradeBeforeVerified>

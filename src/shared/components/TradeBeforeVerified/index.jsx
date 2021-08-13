@@ -7,6 +7,7 @@ import verifyPendingImage from '@/assets/account/verify-pending-image.png';
 import verifyRejectImage from '@/assets/account/verify-reject-image.png';
 import BaseModal from '@/shared/components/BaseModal';
 import ModalFooterButtonGroup from '@/shared/components/ModalFooterButtonGroup';
+import locationHelp from '@/shared/utils/locationHelp';
 
 import './index.less';
 
@@ -88,13 +89,13 @@ const TradeBeforeVerified = {
         {
           label: this.$t('accountAndSecurityTradePwd'),
           show: !this.isDealCodeSet,
-          onClick: () => { window.open(setDealPasswordPath); },
+          onClick: () => { locationHelp.open(setDealPasswordPath); },
           type: 'primary',
         },
         {
           label: this.$t('realNameAuth'),
           show: this.isVerifiedKyc && this.isKycNotSubmit,
-          onClick: () => { window.open(realNameAuthPath); },
+          onClick: () => { locationHelp.open(realNameAuthPath); },
           type: 'primary',
         },
       ];
@@ -107,7 +108,7 @@ const TradeBeforeVerified = {
       const rejectBtnList = [{
         label: this.$t('tryAgain'),
         show: true,
-        onClick: () => { window.open(realNameAuthPath); },
+        onClick: () => { locationHelp.open(realNameAuthPath); },
         type: 'primary',
       }];
       const kycStatusMap = {

@@ -1,5 +1,6 @@
 import { transactionsPath } from '@/router/consts/urls';
 import NewWindowGuide from '@/shared/components/NewWindowGuide';
+import locationHelp from '@/shared/utils/locationHelp';
 import DetailTable from '../components/DetailTable';
 
 import styles from './index.less?module';
@@ -23,7 +24,7 @@ const Detail = {
         <div class={styles['bottom-guide']}>
           <NewWindowGuide
             label={this.$t('walletDetailTitle')}
-            onGuide={() => { window.open(transactionsPath); }}
+            onGuide={() => { locationHelp.open(transactionsPath); }}
           />
         </div>
       </div>

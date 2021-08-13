@@ -27,7 +27,6 @@ export default {
     },
     [UPDATE_BADGE_INFO](state, badge) {
       state.badgeInfo = badge;
-      console.log(badge);
     },
     [RESET_STATE](state) {
       state.stationMailList = [];
