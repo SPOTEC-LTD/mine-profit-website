@@ -20,6 +20,7 @@ import Select from '@/shared/components/Select';
 import ConfirmPayDialog from '@/shared/components/ConfirmPayDialog';
 import Notification from '@/shared/services/Notification';
 import locationServices from '@/shared/services/location/locationServices';
+import locationHelp from '@/shared/utils/locationHelp';
 
 import NoActiveModal from './NoActiveModal';
 import CoinLine from '../components/CoinLine';
@@ -254,7 +255,9 @@ const Withdraw = {
                   <ModalButton
                     class={styles['address-btn']}
                     type="primary"
-                    onClick={() => { window.open(`${addressPath}?coinType=${this.finallyChainType}`); }}
+                    onClick={() => {
+                      locationHelp.open(addressPath, { params: { coinType: this.finallyChainType } });
+                    }}
                   >
                     {this.$t('addressManagement')}
                   </ModalButton>

@@ -1,8 +1,9 @@
 import { Carousel } from 'ant-design-vue';
 
 import gongGaoIcon from '@/assets/home/gonggao.svg';
-import NavLink from '@/shared/components/NavLink';
-import { announcementDetailPath } from '@/router/consts/urls';
+import Link from '@/shared/components/Link';
+import { announcementDetailPath, newsAnnouncementPath } from '@/router/consts/urls';
+import { ANNOUNCEMENT } from '@/shared/consts/newsType';
 import styles from './index.less?module';
 
 const Announcements = {
@@ -31,7 +32,7 @@ const Announcements = {
           >
             {
               this.announcementList.map(({ title, id }, i) => (
-                <NavLink
+                <Link
                   key={i}
                   class={styles['announce-main']}
                   to={{
@@ -41,18 +42,17 @@ const Announcements = {
                   }}
                 >
                   {title}
-                </NavLink>
+                </Link>
               ))
             }
           </Carousel>
         </div>
-        <NavLink
+        <Link
           class={styles['announce-more']}
-          // to={{ path: infoPath, query: { activeName: 'announcement' } }}
-          to='/' // TODO
+          to={{ path: newsAnnouncementPath, query: { type: ANNOUNCEMENT } }}
         >
           {this.$t('noticeCarouselTitle')}
-        </NavLink>
+        </Link>
       </div>
     );
   },
