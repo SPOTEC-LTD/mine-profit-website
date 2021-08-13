@@ -7,7 +7,7 @@ import { accountDetailPath } from '@/router/consts/urls';
 import locationServices from '@/shared/services/location/locationServices';
 import PrimaryButton from '@/shared/components/PrimaryButton';
 import Notification from '@/shared/services/Notification';
-import locationHelp from '@/shared/utils/locationHelp';
+import { getPathAndQueryObject } from '@/shared/utils/qsHelp';
 import styles from './index.less?module';
 
 const BindInvitationCode = {
@@ -54,7 +54,8 @@ const BindInvitationCode = {
       this.formInvitation.invitationCode = '';
       const { redirectUrl } = this.$router.currentRoute.query;
       if (redirectUrl) {
-        locationHelp.redirect({ url: redirectUrl });
+        const { path, query } = getPathAndQueryObject(redirectUrl);
+        locationServices.push(path, { query });
       } else {
         locationServices.push(accountDetailPath);
       }
