@@ -15,7 +15,7 @@ export default userInfo => {
   const { redirectUrl } = getQueryObject();
 
   if (userInfo.registerStatus) {
-    locationServices.push(bindInvitationCodePath, { query: { isNewUser: true, redirectUrl } });
+    locationServices.push(bindInvitationCodePath, { query: { isNewUser: true } });
     return;
   }
 
