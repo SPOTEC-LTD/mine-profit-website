@@ -179,8 +179,6 @@ const Login = {
           delete paramsData.code;
         }
 
-        console.log('paramsData', paramsData);
-
         this[LOGIN](paramsData)
           .then(result => {
             storageUserInfo(result);
@@ -242,7 +240,7 @@ const Login = {
               {this.$t('login')}
             </PrimaryButton>
             {
-            // TODO i18n
+              // TODO i18n
             }
             <div class={styles['protocol-link']}>
               <span>{this.$t('loginMeansAgreed')}</span>

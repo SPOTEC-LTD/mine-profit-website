@@ -16,6 +16,7 @@ import Address from '@/pages/Account/Detail/Wallet/Address';
 import PledgeRedeem from '@/pages/Account/PledgeRedeem';
 import PledgeRepayment from '@/pages/Account/PledgeRepayment';
 import Withdraw from '@/pages/Account/Detail/Wallet/Withdraw';
+import BindInvitationCode from '@/pages/Account/BindInvitationCode';
 import * as urls from './consts/urls';
 
 const walletRoutes = [
@@ -128,5 +129,10 @@ export default [
     meta: { showBreadcrumb: true },
     name: 'payTypeRepay',
     component: PledgeRepayment,
+  },
+  {
+    path: urls.bindInvitationCodePath,
+    name: 'inputInviteCodeBind',
+    component: BindInvitationCode,
   },
 ];

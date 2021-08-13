@@ -1,11 +1,11 @@
 import { mapState, mapActions, mapMutations } from 'vuex';
-import { Popover, Tabs } from 'ant-design-vue';
+import { Popover, Tabs, Badge } from 'ant-design-vue';
 import MailFilled from 'ahoney/lib/icons/MailFilled';
 import RightOutlined from 'ahoney/lib/icons/RightOutlined';
 import isEmpty from 'lodash/isEmpty';
 
 import {
-  STATION_MAIL, GET_STATION_MAIL_LIST, MAIL_READ_DETAIL, RESET_STATE,
+  STATION_MAIL, GET_STATION_MAIL_LIST, MAIL_READ_DETAIL, RESET_STATE, GET_USER_BADGE,
 } from '@/modules/stationMail';
 import { mailAllRead } from '@/api/stationMail';
 import scrollEvent from '@/shared/utils/scrollEvent';
@@ -34,6 +34,7 @@ const StationMail = {
   computed: {
     ...mapState({
       userInfo: state => state.userInfo,
+      badgeInfo: state => state.stationMail.badgeInfo,
       stationMailList: state => state.stationMail.stationMailList,
       pageInfo: state => state.stationMail.pageInfo,
       getListLoading: state => state.loading.effects[`${STATION_MAIL}/${GET_STATION_MAIL_LIST}`],
@@ -44,9 +45,13 @@ const StationMail = {
     },
   },
 
+  mounted() {
+    !this.noLogin && this[GET_USER_BADGE]();
+  },
+
   methods: {
     ...mapMutations(STATION_MAIL, [RESET_STATE]),
-    ...mapActions(STATION_MAIL, [GET_STATION_MAIL_LIST, MAIL_READ_DETAIL]),
+    ...mapActions(STATION_MAIL, [GET_STATION_MAIL_LIST, MAIL_READ_DETAIL, GET_USER_BADGE]),
 
     fetchStationMailList(option = {}) {
       const { reset } = option;
@@ -99,6 +104,7 @@ const StationMail = {
                   rotate={180}
                   onClick={() => {
                     this.isMailDetail = false;
+                    this[GET_USER_BADGE]();
                     this.fetchStationMailList({ reset: true });
                   }}
                 />
@@ -201,15 +207,18 @@ const StationMail = {
       </div>
     );
     const popoverNode = (
-      <div>
+      <div ref='popoverNode' class={styles['mail-popover']}>
         <Popover
           overlayClassName={styles['station-mail']}
           placement='bottom'
           title={this.getPopoverTitle}
           content={this.getPopoverContent}
           onVisibleChange={this.visibleChange}
+          getPopupContainer={() => this.$refs.popoverNode}
         >
-          {mailNode}
+          <Badge count={this.badgeInfo.internalMsg}>
+            {mailNode}
+          </Badge>
         </Popover>
       </div>
     );

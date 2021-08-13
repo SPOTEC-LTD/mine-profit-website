@@ -126,10 +126,10 @@ const AddOrEditAddressModal = {
             prop='addressName'
             rules={[{ required: true, message: this.$t('walletInputAddressName') }]}
           >
-            <Input.TextArea
-              autoSize
+            <Input
               placeholder={this.$t('walletAddressNameTip')}
               v-model={this.addressInfo.addressName}
+              maxLength={20}
             />
           </Item>
         </FormModel>

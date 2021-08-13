@@ -1,13 +1,14 @@
 import { Badge } from 'ant-design-vue';
-import { HashCouponFilled, QrCode, DoubleUserFilled } from 'ahoney/lib/icons';
+import { HashCouponFilled, QrCode } from 'ahoney/lib/icons';
 import BaseContainer from '@/shared/components/BaseContainer';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import { UPDATE_USER_INFO } from '@/store/consts/actionType';
-import { hashRateCouponsPath } from '@/router/consts/urls';
+import { bindInvitationCodePath, hashRateCouponsPath } from '@/router/consts/urls';
 import ShareQrCodeModal from '@/shared/components/ShareQrCodeModal';
 import defaultAvatar from '@/assets/rank/defaultAvatar.png';
 import { getLocalLanguage } from '@/shared/utils/getLocalLanguage';
 import BaseModal from '@/shared/components/BaseModal';
+import locationServices from '@/shared/services/location/locationServices';
 import EditAvatarNickname from '../components/EditAvatarNickname';
 import InviteDetail from '../components/InviteDetail';
 import logout from './logout';
@@ -72,18 +73,25 @@ const Detail = {
           </div>
         </div>
       );
-      const detailItem = (
-        <div
-          class={styles['invite-detail']}
-          onClick={() => {
-            this.isVisibleInviteDetailModal = true;
-          }}
-        >
-          {this.$t('inviteFriendsDetail')}
-          <DoubleUserFilled className={styles['invite-detail-icon']} />
+      const investItem = (
+        <div>
+          <div
+            class={styles['invite-item']}
+            onClick={() => { this.isVisibleInviteDetailModal = true; }}
+          >
+            {this.$t('inviteFriendsDetail')}
+          </div>
+          {!this.userInfo.hasBind && (
+            <div
+              class={[styles['invite-item'], styles['invitation-code']]}
+              onClick={() => { locationServices.push(bindInvitationCodePath); }}
+            >
+              {this.$t('inputInviteCodeBind')}
+            </div>
+          )}
         </div>
       );
-      return [qrCodeItem, inviteCodeItem, inviteRewardItem, inviteCountItem, detailItem];
+      return [qrCodeItem, inviteCodeItem, inviteRewardItem, inviteCountItem, investItem];
     },
     closeInviteDetailModal() {
       this.isVisibleInviteDetailModal = false;
@@ -122,7 +130,9 @@ const Detail = {
             </div>
           </div>
           <div class={styles['info-right']}>
-            <div class={styles['invite-info-box']}>{this.getInviteItem().map(item => item)}</div>
+            <div class={[styles['invite-info-box'], { [styles['invited-box']]: this.userInfo.hasBind }]}>
+              {this.getInviteItem().map(item => item)}
+            </div>
             <div
               class={styles['hashrate-coupon']}
               onClick={() => {

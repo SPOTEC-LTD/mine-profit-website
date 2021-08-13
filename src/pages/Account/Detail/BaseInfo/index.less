@@ -1,6 +1,7 @@
 @import '@/shared/styles/variables.less';
 
 .account-base-info {
+  position: relative;
   color: @white;
   background-color: @color__182742;
 }
@@ -64,7 +65,7 @@
   align-items: center;
   justify-content: space-between;
   border: 1px solid @color__8598bb;
-  padding: 18px 28px 18px 26px;
+  padding: 8px 8px 8px 26px;
 
   > div {
     margin-right: 43px;
@@ -73,6 +74,10 @@
   > div:last-child {
     margin-right: 0;
   }
+}
+
+.invited-box {
+  padding: 18px 8px 18px 26px;
 }
 
 .view-qr-box {
@@ -141,16 +146,19 @@
   margin-left: 5px;
 }
 
-.invite-detail {
-  font-size: @font-size-lg;
-  line-height: 22px;
+.invite-item {
+  padding: 6px 0;
+  border: 1px solid @color__8598bb;
+  border-radius: 4px;
+  background-color: rgba(133, 152, 187, 0.19);
+  line-height: 20px;
+  text-align: center;
+  width: 101px;
   cursor: pointer;
+}
 
-  .invite-detail-icon {
-    width: 20px;
-    height: 16px;
-    margin-left: 4px;
-  }
+.invitation-code {
+  margin-top: 6px;
 }
 
 .invite-info-unit {
