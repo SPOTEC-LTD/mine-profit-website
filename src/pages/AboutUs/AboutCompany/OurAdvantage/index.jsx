@@ -1,16 +1,3 @@
-<template>
-  <div>
-    <div class="our-advantage-container">
-      <SquareDotsIcon class="square-line-icon" />
-      <SquareDotsIcon class="square-right-icon" />
-      <BlockTitle :img="advantageTitleImage" class="advantage-title-image" :title="isChinese && $t('ourAdvantage')" />
-      <AdvantageItem :advantages="advantages" />
-      <SquareDotsIcon class="square-blue-icon" />
-    </div>
-  </div>
-</template>
-
-<script>
 import SquareDotsIcon from '@/shared/components/SquareDotsIcon';
 import AdvantageItem from '@/pages/AboutUs/AboutCompany/component/AdvantageItem';
 import CloudOutlined from 'ahoney/lib/icons/CloudOutlined';
@@ -21,14 +8,9 @@ import MoneyLockOutlined from 'ahoney/lib/icons/MoneyLockOutlined';
 import BlockTitle from '@/shared/components/BlockTitle';
 import advantageTitleImage from '@/assets/home/advantage-title.png';
 import { getIsChinese } from '@/shared/utils/getLocalLanguage';
+import styles from './index.less?module';
 
-export default {
-  components: {
-    AdvantageItem,
-    SquareDotsIcon,
-    BlockTitle,
-  },
-
+const OurAdvantage = {
   data() {
     return {
       isChinese: getIsChinese(),
@@ -62,9 +44,23 @@ export default {
       ],
     };
   },
-};
-</script>
 
-<style lang="less" scope>
-@import './index.less';
-</style>
+  render() {
+    return (
+      <div>
+        <div class={styles['our-advantage-container']}>
+          <SquareDotsIcon class={styles['square-right-icon']} />
+          <BlockTitle
+            img={advantageTitleImage}
+            class={styles['advantage-title-image']}
+            title={this.isChinese && this.$t('ourAdvantage')}
+          />
+          <AdvantageItem advantages={this.advantages} />
+          <SquareDotsIcon class={styles['square-blue-icon']} />
+        </div>
+      </div>
+    );
+  },
+};
+
+export default OurAdvantage;
