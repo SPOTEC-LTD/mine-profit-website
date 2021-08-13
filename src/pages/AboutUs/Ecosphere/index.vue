@@ -28,12 +28,16 @@ export default {
     };
   },
 
+  created() {
+    this.scrollThrottle = throttle(this.onHandleScroll, 500);
+  },
+
   mounted() {
-    window.addEventListener('scroll', this.onHandleThrottleScroll, false);
+    window.addEventListener('scroll', this.scrollThrottle, false);
   },
 
   destroyed() {
-    window.removeEventListener('scroll', this.onHandleThrottleScroll);
+    window.removeEventListener('scroll', this.scrollThrottle);
   },
 
   methods: {
@@ -44,10 +48,6 @@ export default {
       } else if (scrollTop > 1200 && scrollTop < 2250) {
         this.isStakingAnimate = true;
       }
-    },
-
-    onHandleThrottleScroll() {
-      throttle(this.onHandleScroll, 500);
     },
   },
 };
