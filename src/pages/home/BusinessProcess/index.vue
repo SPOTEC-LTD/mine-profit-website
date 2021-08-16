@@ -15,7 +15,7 @@
           @changeActivesIndex="changeActivesIndex"
         />
         <VideoGroup
-          :video-groupe="videoGroupe"
+          :video-groupe="finallyVideoGroupe"
           :active-index="activeIndex"
           @onEnded="onEnded"
         />
@@ -29,9 +29,13 @@ import BlockTitle from '@/shared/components/BlockTitle';
 import SquareDotsIcon from '@/shared/components/SquareDotsIcon';
 import businessProcessImage from '@/assets/home/business-process-title.png';
 import purchaceVideo from '@/assets/home/purchaceVideo.mp4';
+import enPurchaceVideo from '@/assets/home/enPurchaceVideo.mp4';
 import cloudManagementVideo from '@/assets/home/cloudManagementVideo.mp4';
+import enCloudManagementVideo from '@/assets/home/enCloudManagementVideo.mp4';
 import miningProfitVideo from '@/assets/home/miningProfitVideo.mp4';
+import enMiningProfitVideo from '@/assets/home/enMiningProfitVideo.mp4';
 import withdrawFreelyVideo from '@/assets/home/withdrawFreelyVideo.mp4';
+import enWithdrawFreelyVideo from '@/assets/home/enWithdrawFreelyVideo.mp4';
 import ShoppingBagOutlined from 'ahoney/lib/icons/ShoppingBagOutlined';
 import MultipleRoundOutlined from 'ahoney/lib/icons/MultipleRoundOutlined';
 import ShovelOutlined from 'ahoney/lib/icons/ShovelOutlined';
@@ -52,7 +56,8 @@ export default {
       isChinese: getIsChinese(),
       businessProcessImage,
       activeIndex: 0,
-      videoGroupe: [purchaceVideo, cloudManagementVideo, miningProfitVideo, withdrawFreelyVideo],
+      cnVideoGroupe: [purchaceVideo, cloudManagementVideo, miningProfitVideo, withdrawFreelyVideo],
+      enVideoGroupe: [enPurchaceVideo, enCloudManagementVideo, enMiningProfitVideo, enWithdrawFreelyVideo],
       businessProcess: [
         {
           title: this.$t('purchaseCloudHashRate'),
@@ -77,6 +82,13 @@ export default {
       ],
     };
   },
+
+  computed: {
+    finallyVideoGroupe() {
+      return getIsChinese() ? this.cnVideoGroupe : this.enVideoGroupe;
+    },
+  },
+
   watch: {
     activeIndex(newIndex, oldIndex) {
       const video = document.querySelectorAll('.purchase-video');
