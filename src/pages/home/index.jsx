@@ -168,7 +168,7 @@ const Home = {
   render() {
     return (
       <div>
-        <Banner />
+        <Banner list={this.bannersList} />
         <BaseContainer>
           <Announcements announcementList={this.announcementList} />
           <CoinMarkets data={this.marketsList} loading={this.marketsLoading} />

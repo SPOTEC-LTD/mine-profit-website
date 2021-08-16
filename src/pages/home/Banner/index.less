@@ -1,18 +1,17 @@
 @import "@/shared/styles/variables.less";
 
 .banner-box {
-  text-align: center;
   height: 494px;
+
+  .banner-img-box {
+    display: flex !important;
+    justify-content: center;
+  }
 
   :global {
     .mp-carousel {
-      display: inline-block;
-      width: 1920px;
-
-      .slick-track {
-        display: flex;
-        align-items: flex-start;
-        transform: translate3d(-1920px, 0, 0);
+      .slick-current img {
+        z-index: @z-index__99;
       }
 
       .slick-dots {
@@ -38,15 +37,4 @@
       }
     }
   }
-}
-
-.banner-content {
-  position: relative;
-}
-
-.banner-text {
-  margin-top: 67px;
-  color: #fff;
-  font-size: 42px;
-  font-weight: 500;
 }
