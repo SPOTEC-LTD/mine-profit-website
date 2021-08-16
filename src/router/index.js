@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import Login from '@/pages/Sign/Login';
 import Home from '@/pages/home';
 import Help from '@/pages/help';
-import QuestionDetail from '@/pages/help/Detail';
+import QuestionDetail from '@/pages/help/QuestionDetail';
 import NotFound from '@/pages/404';
 import MeetError from '@/pages/500';
 import Download from '@/pages/download';
@@ -11,6 +11,7 @@ import { location } from '@/shared/services/location';
 import AboutUs from '@/pages/AboutUs';
 import Rank from '@/pages/Rank';
 import HistoryRank from '@/pages/Rank/HistoryRank';
+import BannerDetail from '@/pages/home/BannerDetail';
 import { buildRoutes } from './utils';
 import accountRoutes from './accountRoutes';
 import newsRoutes from './newsRoutes';
@@ -50,7 +51,7 @@ export function createRouter() {
       },
       {
         path: '/help',
-        name: 'help',
+        name: 'helpCenter',
         component: Help,
       },
       {
@@ -73,6 +74,11 @@ export function createRouter() {
         path: urls.historyRankPath,
         name: 'historyRank',
         component: HistoryRank,
+      },
+      {
+        path: urls.bannerDetailPath,
+        name: 'bannerDetail',
+        component: BannerDetail,
       },
       {
         path: '/500',

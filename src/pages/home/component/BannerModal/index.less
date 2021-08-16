@@ -1,0 +1,42 @@
+@import '@/shared/styles/variables.less';
+
+.banner-modal {
+  :global {
+    .mp-modal-content {
+      background-color: transparent;
+      box-shadow: none;
+    }
+
+    .mp-modal-close {
+      top: 600px;
+      right: 50%;
+      background-color: @color__f3f3f3;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      opacity: 0.8;
+      transform: translateX(18px);
+
+      .mp-modal-close-x {
+        padding: 10px;
+      }
+
+      .spotecicon {
+        color: @color__b2b2b2;
+        width: 15px;
+        height: 15px;
+      }
+    }
+  }
+}
+
+.banner-image-box {
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.push-image {
+  width: 100%;
+  height: 100%;
+}

@@ -2,6 +2,7 @@
 export const homePath = '/';
 export const loginPath = '/sign/login';
 export const downloadPath = '/download';
+export const bannerDetailPath = '/bannerDetail/:id/:userId';
 
 // ==== accountPaths
 export const accountPath = '/account';
