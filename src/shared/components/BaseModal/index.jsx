@@ -6,7 +6,7 @@ import isUndefined from 'lodash/isUndefined';
 import './index.less';
 
 const BaseModal = {
-  props: ['value'],
+  props: ['value', 'iconClassName'],
 
   data() {
     return {
@@ -44,7 +44,11 @@ const BaseModal = {
           width={300}
           footer={null}
           visible={resultVisible}
-          closeIcon={<CancelledOutlined onClick={this.close} />}
+          closeIcon={
+            <div class={this.iconClassName} onClick={this.close}>
+              <CancelledOutlined />
+            </div>
+          }
           {...{
             on: omit(this.$listeners, ['open', 'close']),
             props: this.$attrs,

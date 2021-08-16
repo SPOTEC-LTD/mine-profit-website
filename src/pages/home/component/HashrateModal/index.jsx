@@ -1,8 +1,8 @@
-import BaseModal from '@/shared/components/BaseModal';
 import * as homeAPI from '@/api/home';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import locationHelp from '@/shared/utils/locationHelp';
 import { accountHashRateListPath } from '@/router/consts/urls';
+import HomeModal from '../HomeModal';
 
 import styles from './index.less?module';
 
@@ -43,10 +43,8 @@ const HashrateModal = {
   },
   render() {
     return (
-      <BaseModal
-        wrapClassName={styles['hashrate-modal']}
+      <HomeModal
         width={543}
-        value={true}
         onClose={this.close}
         scopedSlots={{ content: this.getHashrateContent }}
       />

@@ -1,7 +1,7 @@
-import BaseModal from '@/shared/components/BaseModal';
 import locationHelp from '@/shared/utils/locationHelp';
 import { bannerDetailPath } from '@/router/consts/urls';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
+import HomeModal from '../HomeModal';
 import { LINK, H5_CONTENT } from '../../consts/bannerTypes';
 import styles from './index.less?module';
 
@@ -34,15 +34,12 @@ const BannerModal = {
   },
   render() {
     return (
-      <BaseModal
-        value={true}
-        width={389}
-        wrapClassName={styles['banner-modal']}
+      <HomeModal
         onClose={this.close}
         scopedSlots={{
           content: this.getBannerModalContent,
         }}
-      ></BaseModal>
+      />
     );
   },
 };
