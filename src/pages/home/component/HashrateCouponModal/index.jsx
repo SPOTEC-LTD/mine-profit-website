@@ -1,8 +1,8 @@
-import BaseModal from '@/shared/components/BaseModal';
 import * as homeAPI from '@/api/home';
 import locationHelp from '@/shared/utils/locationHelp';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import { hashRateCouponsPath } from '@/router/consts/urls';
+import HomeModal from '../HomeModal';
 
 import styles from './index.less?module';
 
@@ -41,12 +41,9 @@ const HashrateCouponModal = {
   },
   render() {
     return (
-      <BaseModal
-        wrapClassName={styles['hashrate-coupon-modal']}
-        value={true}
+      <HomeModal
         onClose={this.close}
         scopedSlots={{ content: this.getHashrateCouponContent }}
-        width={389}
       />
     );
   },

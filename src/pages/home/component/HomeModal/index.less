@@ -1,0 +1,35 @@
+@import '@/shared/styles/variables.less';
+
+.close-icon-wrap {
+  width: 35px;
+  height: 35px;
+  opacity: 0.8;
+  background-color: @color__f3f3f3;
+  border-radius: 50%;
+  padding-top: 10px;
+}
+
+.home-modal {
+  :global {
+    .mp-modal-content {
+      background-color: transparent;
+      box-shadow: none;
+    }
+
+    .mp-modal-close {
+      top: 600px;
+      right: 50%;
+      transform: translateX(18px);
+
+      .mp-modal-close-x {
+        padding: 0;
+      }
+
+      .spotecicon {
+        color: @color__b2b2b2;
+        width: 15px;
+        height: 15px;
+      }
+    }
+  }
+}

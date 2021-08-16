@@ -74,7 +74,9 @@ const Home = {
       productList: state => state.home.productList,
       marketsLoading: state => state.loading.effects[`${HOME}/${GET_MARKETS_LIST}`],
       hashrateCouponPopupList: state => state.home.hashrateCouponPopupList,
+      hashrateCouponPopupListLoading: state => state.loading.effects[`${HOME}/${GET_HASHRATE_COUPON_POPUP_LIST}`],
       hashratePopupList: state => state.home.hashratePopupList,
+      hashratePopupListLoading: state => state.loading.effects[`${HOME}/${GET_HASHRATE_POPUP_LIST}`],
     }),
     needPopupCouponList() {
       const [needPopupCoupon] = this.hashrateCouponPopupList;
@@ -88,7 +90,8 @@ const Home = {
       return isEmpty(this.hashratePopupList);
     },
     isVisibleBannerPopup() {
-      return isEmpty(this.needPopupCouponList) && isEmpty(this.needPopupHashrateList);
+      return (isEmpty(this.needPopupCouponList) && !this.hashrateCouponPopupListLoading)
+        && ((isEmpty(this.needPopupHashrateList) && !this.hashratePopupListLoading));
     },
   },
 
