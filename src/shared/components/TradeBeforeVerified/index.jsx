@@ -13,6 +13,10 @@ import './index.less';
 
 const TradeBeforeVerified = {
   props: {
+    isOnlyVerifiedKyc: {
+      type: Boolean,
+      default: false, // 只有提币才需要判断是否实名认证
+    },
     isVerifiedKyc: {
       type: Boolean,
       default: false, // 只有提币才需要判断是否实名认证
@@ -60,6 +64,10 @@ const TradeBeforeVerified = {
         this.isKycPass = true;
       }
 
+      if (this.isOnlyVerifiedKyc) {
+        this.isDealCodeSet = true;
+      }
+
       if (!this.isDealCodeSet || (this.isVerifiedKyc && !this.isKycPass)) {
         this.showDialog = true;
       } else {
@@ -72,6 +80,7 @@ const TradeBeforeVerified = {
         e.stopPropagation();
       }
       this.showDialog = false;
+      this.$emit('dialogClose');
     },
 
     getRejectDescribe() {
@@ -84,37 +93,40 @@ const TradeBeforeVerified = {
       );
     },
 
+    getNotSubmitBtnList() {
+      const realName = {
+        label: this.$t('accountAndSecurityTradePwd'),
+        show: !this.isDealCodeSet,
+        onClick: () => { locationHelp.open(setDealPasswordPath); },
+        type: 'primary',
+      };
+
+      const password = {
+        label: this.$t('realNameAuth'),
+        show: this.isVerifiedKyc && this.isKycNotSubmit,
+        onClick: () => { locationHelp.open(realNameAuthPath); },
+        type: 'primary',
+      };
+      const realNameButton = this.isDealCodeSet ? [] : [realName];
+      const passwordButton = (this.isVerifiedKyc && this.isKycNotSubmit) ? [password] : [];
+      return [...realNameButton, ...passwordButton];
+    },
+
     getDialogInfo(status) {
-      const notSubmitBtnList = [
-        {
-          label: this.$t('accountAndSecurityTradePwd'),
-          show: !this.isDealCodeSet,
-          onClick: () => { locationHelp.open(setDealPasswordPath); },
-          type: 'primary',
-        },
-        {
-          label: this.$t('realNameAuth'),
-          show: this.isVerifiedKyc && this.isKycNotSubmit,
-          onClick: () => { locationHelp.open(realNameAuthPath); },
-          type: 'primary',
-        },
-      ];
       const pendingBtnList = [{
         label: this.$t('confirm'),
-        show: true,
         onClick: this.closeDialog,
         type: 'primary',
       }];
       const rejectBtnList = [{
         label: this.$t('tryAgain'),
-        show: true,
         onClick: () => { locationHelp.open(realNameAuthPath); },
         type: 'primary',
       }];
       const kycStatusMap = {
         [NOT_SUBMIT]: {
           title: this.$t('supplementaryInformation'),
-          btnList: notSubmitBtnList,
+          btnList: this.getNotSubmitBtnList(),
           image: verifyImgDialog,
           describe: this.$t('verifyDialogContent'),
         },
@@ -162,7 +174,7 @@ const TradeBeforeVerified = {
           value={this.showDialog}
           title={this.getDialogInfo(this.kycStatus).title}
           width={396}
-          onCancel={() => { this.showDialog = false; }}
+          onCancel={this.closeDialog}
           scopedSlots={{
             content: this.getDialogContentNode,
           }}
