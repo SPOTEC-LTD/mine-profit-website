@@ -1,7 +1,9 @@
 import axios from 'axios';
 import localStorage from '@/shared/utils/localStorage';
+import { loginPath } from '@/router/consts/urls';
+import { location } from '@/shared/services/location';
 import Response from './Response';
-import { errorHandler, isGlobalBusinessError } from './utils';
+import { errorHandler, isGlobalBusinessError, isNotLogin } from './utils';
 import errorModal from './errorModal';
 
 const createOptions = { baseURL: process.env.BASE_API };
@@ -19,7 +21,7 @@ axiosInstance.interceptors.request.use(config => {
 
 // 添加响应拦截器
 axiosInstance.interceptors.response.use(res => {
-  const { data, config: { responseType, catchException = true } } = res;
+  const { data, config: { responseType, catchException = true, fullPath } } = res;
   if (responseType === 'blob') {
     return data;
   }
@@ -36,6 +38,10 @@ axiosInstance.interceptors.response.use(res => {
 
   if (isGlobalBusinessError(response.code) && catchException) {
     errorModal({ title: response.message });
+  }
+
+  if (isNotLogin(response.code)) {
+    location.push(loginPath, { query: { redirectUrl: fullPath || `${window.location.pathname}${window.location.search}` } });
   }
 
   return Promise.reject(response);
