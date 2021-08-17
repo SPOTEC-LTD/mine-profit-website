@@ -1,4 +1,5 @@
 import { Dropdown, Menu } from 'ant-design-vue';
+import Cookies from 'universal-cookie';
 import EarthFilled from 'ahoney/lib/icons/EarthFilled';
 import locationHelp from '@/shared/utils/locationHelp';
 import './index.less';
@@ -8,6 +9,10 @@ export default {
   props: ['items'],
   methods: {
     onclickLanguage(value) {
+      const cookies = new Cookies();
+      const resultLang = value || 'zh';
+      cookies.set('language', resultLang, { path: '/' });
+
       locationHelp.redirect(this.switchLocalePath(value));
     },
   },

@@ -1,22 +1,20 @@
-export default function ({ isHMR, app, store, route, params, error, redirect }) {
-  // const defaultLocale = app.i18n.fallbackLocale
-  // If middleware is called from hot module replacement, ignore it
-  // if (isHMR) { return }
-  // Get locale from params
-  // const locale = params.lang || defaultLocale
-  console.log('params', params);
-  // if (!store.state.locales.includes(locale)) {
-  //   return error({ message: 'This page could not be found.', statusCode: 404 })
-  // }
-  // // Set locale
-  // store.commit('SET_LANG', locale)
-  // app.i18n.locale = store.state.locale
-  // // If route is /<defaultLocale>/... -> redirect to /...
-  // if (locale === defaultLocale && route.fullPath.indexOf('/' + defaultLocale) === 0) {
-  //   const toReplace = '^/' + defaultLocale + (route.fullPath.indexOf('/' + defaultLocale + '/') === 0 ? '/' : '')
-  //   const re = new RegExp(toReplace)
-  //   return redirect(
-  //     route.fullPath.replace(re, '/')
-  //   )
-  // }
+import Cookies from 'universal-cookie';
+import startsWith from 'lodash/startsWith';
+
+export default function (ctx) {
+  if (ctx.isHMR) { return; }
+
+  const { defaultLocale } = ctx.app.i18n;
+
+  const header = ctx.req && ctx.req.headers && ctx.req.headers.cookie;
+  const { language } = new Cookies(header).cookies;
+
+  if (language && language !== defaultLocale) {
+    if (!startsWith(ctx.route.fullPath, `/${language}`)) {
+      // eslint-disable-next-line consistent-return
+      return ctx.redirect(
+        `/${language}${ctx.route.fullPath}`,
+      );
+    }
+  }
 }

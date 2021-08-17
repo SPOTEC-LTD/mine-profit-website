@@ -45,10 +45,9 @@ export default {
   globalName: 'app',
   css: [ ],
 
-  // router: {
-  //   middleware: 'i18n'
-  // },
-
+  router: {
+    middleware: 'i18n'
+  },
   // plugins: ['@/plugins/i18n.js'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
