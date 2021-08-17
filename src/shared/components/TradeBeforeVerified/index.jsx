@@ -51,13 +51,17 @@ const TradeBeforeVerified = {
       this.isKycNotSubmit = this.userInfo.kycStatus === NOT_SUBMIT;
 
       if (!this.isDealCodeSet || !this.isKycPass) {
-        const { body: { userInfo } } = await getUserInfo({ pathParams: { userId: this.userInfo.userId } });
-        const { isDealCode, kycStatus } = userInfo;
-        this.userInfo = userInfo;
-        this.isDealCodeSet = isDealCode;
-        this.kycStatus = kycStatus;
-        this.isKycPass = kycStatus === PASS;
-        this.isKycNotSubmit = kycStatus === NOT_SUBMIT;
+        try {
+          const { body: { userInfo } } = await getUserInfo({ pathParams: { userId: this.userInfo.userId } });
+          const { isDealCode, kycStatus } = userInfo;
+          this.userInfo = userInfo;
+          this.isDealCodeSet = isDealCode;
+          this.kycStatus = kycStatus;
+          this.isKycPass = kycStatus === PASS;
+          this.isKycNotSubmit = kycStatus === NOT_SUBMIT;
+        } catch (error) {
+          console.log('error');
+        }
       }
 
       if (!this.isVerifiedKyc) {
