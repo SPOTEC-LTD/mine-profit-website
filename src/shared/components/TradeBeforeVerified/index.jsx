@@ -15,7 +15,7 @@ const TradeBeforeVerified = {
   props: {
     isOnlyVerifiedKyc: {
       type: Boolean,
-      default: false, // 只有提币才需要判断是否实名认证
+      default: false, // 只验证实名认证，搭配isVerifiedKyc=true
     },
     isVerifiedKyc: {
       type: Boolean,
