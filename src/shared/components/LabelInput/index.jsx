@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import omit from 'lodash/omit';
 import isUndefined from 'lodash/isUndefined';
 import trimEnd from 'lodash/trimEnd';
+import trim from 'lodash/trim';
 import './index.less';
 
 const LabelInput = {
@@ -35,8 +36,12 @@ const LabelInput = {
       this.isFocus = true;
     },
 
-    handleBlur() {
+    handleBlur(e) {
       this.isFocus = false;
+      const resultValue = trim(e.target.value);
+      if (this.value !== resultValue) {
+        this.$emit('change', resultValue);
+      }
     },
 
     handleLabelClick() {
