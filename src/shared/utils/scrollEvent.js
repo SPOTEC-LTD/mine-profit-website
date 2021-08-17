@@ -12,11 +12,11 @@ const scrollEvent = (fetchList, option = {}) => {
     scrollTop = resultTargetDom.scrollTop;
   }
   const windowHeight = resultTargetDom.clientHeight
-    || resultTargetDom.documentElement.clientHeight
-    || resultTargetDom.body.clientHeight;
+  || resultTargetDom.documentElement.clientHeight
+  || resultTargetDom.body.clientHeight;
   const scrollHeight = resultTargetDom.scrollHeight
-    || resultTargetDom.documentElement.scrollHeight
-    || resultTargetDom.body.scrollHeight;
+  || resultTargetDom.documentElement.scrollHeight
+  || resultTargetDom.body.scrollHeight;
   if (scrollHeight - scrollTop - windowHeight <= footerHeight) {
     fetchList();
   }
