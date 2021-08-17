@@ -99,4 +99,5 @@ export default {
   nickname: '昵称',
   nicknameRequire: '昵称不能为空',
   awardAmount: '奖励金额',
+  inputInviteCodeBindSuccess: '邀请码绑定成功',
 };
