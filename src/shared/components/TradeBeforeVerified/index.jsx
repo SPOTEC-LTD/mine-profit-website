@@ -53,7 +53,9 @@ const TradeBeforeVerified = {
       if (!this.isDealCodeSet || !this.isKycPass) {
         try {
           const { body: { userInfo } } = await getUserInfo({ pathParams: { userId: this.userInfo.userId } });
-          const { isDealCode, kycStatus } = userInfo;
+          const { id, ...otherParams } = userInfo;
+          localStorage.setObject('userInfo', { ...this.userInfo, ...otherParams, userId: id });
+          const { isDealCode, kycStatus } = otherParams;
           this.userInfo = userInfo;
           this.isDealCodeSet = isDealCode;
           this.kycStatus = kycStatus;
