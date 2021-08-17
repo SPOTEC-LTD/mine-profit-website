@@ -142,7 +142,7 @@ const RealNameAuth = {
       }
     },
     photoBeforeUpload(file) {
-      if (file.type.indexOf('image/') === -1) {
+      if (file.type !== 'image/png' && file.type !== 'image/png' && file.type !== 'image/jpeg') {
         Notification.error(this.$t('fileFormatError'));
         return false;
       }
@@ -233,9 +233,7 @@ const RealNameAuth = {
               <div>
                 <div class={styles['method-title']}>{this.$t('authMethodTwoTitle')}</div>
                 <div class={styles['method-desc']}>{this.$t('authMethodTwoDesc')}</div>
-                <div class={styles['qr-code-box']}>
-                  <QRCodeModule value={mobileAuthAddress} options={{ width: 136 }} />
-                </div>
+                <QRCodeModule className={styles['qr-code']} value={mobileAuthAddress} options={{ width: 128 }} />
               </div>
               <div></div>
             </div>
