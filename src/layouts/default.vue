@@ -22,7 +22,9 @@ import PageHeader from '@/shared/components/PageHeader';
 import PageFooter from '@/shared/components/page-footer';
 import locale from '@/shared/intl/utils/locale';
 import dateUtils from '@/shared/intl/utils/dateUtils';
+import isServerSide from '@/shared/utils/isServerSide';
 import { ErrorNode, SuccessNode } from '@/shared/services/Notification';
+import asyncStorageToken from '@/shared/utils/request/asyncStorageToken';
 
 import { getZendesk } from '@/api';
 
@@ -48,9 +50,16 @@ export default {
 
     return {
       anLocale: anLocalMap[this.$i18n.locale],
-      hiddenFooter: this.$route.meta.hiddenFooter
+      hiddenFooter: this.$route.meta.hiddenFooter,
     };
   },
+  created() {
+    const isServer = isServerSide();
+    if(!isServer){
+      asyncStorageToken();
+    }
+  },
+
   mounted() {
     Vue.component('ErrorNode', ErrorNode);
     Vue.component('SuccessNode', SuccessNode);
