@@ -24,6 +24,7 @@ import { ID_CARD, DRIVING_LICENSE, PASSPORT } from '@/shared/consts/getIdTypes';
 import { getIsChinese, getIsEnglish } from '@/shared/utils/getLocalLanguage';
 import Notification from '@/shared/services/Notification';
 import NumberInput from '@/shared/components/NumberInput';
+import TradeBeforeVerified from '@/shared/components/TradeBeforeVerified';
 import styles from './index.less?module';
 
 const { Item } = FormModel;
@@ -46,6 +47,7 @@ const RealNameAuth = {
     return {
       frontPhotoUrl: '',
       frontPhotoLoading: false,
+      isControlCheck: false,
       backPhotoUrl: '',
       backPhotoLoading: false,
       videoUploadLoading: false,
@@ -167,8 +169,7 @@ const RealNameAuth = {
 
       this[USER_REAL_NAME_AUTH](params)
         .then(() => {
-          // TODO 需要加一个认证中的弹窗再进行跳转
-          locationServices.push(accountDetailPath);
+          this.isControlCheck = true;
         })
         .catch(async () => {
           this.form.videoUrl = '';
@@ -466,6 +467,14 @@ const RealNameAuth = {
         >
           {this.$t('confirm')}
         </PageButton>
+
+        <TradeBeforeVerified
+          isVerifiedKyc
+          isOnlyVerifiedKyc
+          isControlCheck={this.isControlCheck}
+          onVerifiedPass={() => { locationServices.push(accountDetailPath); }}
+          onDialogClose={() => { locationServices.push(accountDetailPath); }}
+        />
       </div>
     );
   },
