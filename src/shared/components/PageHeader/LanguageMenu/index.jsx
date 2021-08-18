@@ -22,7 +22,6 @@ export default {
         overlayClassName="nav-menu-overlay"
         placement="bottomCenter"
         getPopupContainer={triggerNode => triggerNode.parentNode}
-        trigger='click'
         overlay={(
           <Menu>
             {

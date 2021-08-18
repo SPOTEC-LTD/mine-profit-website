@@ -196,9 +196,6 @@ const StationMail = {
         this.isMailDetail = false;
         this.isShowAllReadNode = false;
         this.fetchStationMailList({ reset: true });
-        document.getElementsByTagName('body')[0].className = styles['stop-scroll'];
-      } else {
-        document.getElementsByTagName('body')[0].removeAttribute('class');
       }
     },
   },
@@ -219,7 +216,6 @@ const StationMail = {
           onVisibleChange={this.visibleChange}
           getPopupContainer={triggerNode => triggerNode.parentNode}
           transitionName=''
-          trigger='click'
         >
           <Badge count={this.badgeInfo.internalMsg}>
             {mailNode}
