@@ -42,6 +42,9 @@ export default {
     });
     this.fetchAnnouncementList();
   },
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
   methods: {
     fetchAnnouncementList() {
       if (this.fetching || this.noData) {

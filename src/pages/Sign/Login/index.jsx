@@ -42,9 +42,18 @@ const Login = {
   },
 
   async asyncData(ctx) {
-    const { body: { list } } = await API.getCountries({}, { ctx });
+    const props = {
+      countries: [],
+    };
 
-    return { countries: list };
+    try {
+      const { body: { list } } = await API.getCountries({}, { ctx });
+      props.countries = list;
+    } catch (error) {
+      console.log(error, 'error');
+    }
+
+    return props;
   },
 
   computed: {
