@@ -5,7 +5,7 @@ const MarketingBanner = {
   render() {
     return (
       <div class={styles['marketing-banner-container']}>
-        <BaseContainer hasBreadcrumb={false}>
+        <BaseContainer hasBreadcrumb={false} class={styles['banner-text-container']}>
           <div class={styles['marketing-banner-title']}>{this.$t('highFreeTrading')}</div>
           <div class={styles['marketing-banner-content']}>{this.$t('twoTypeOfMode')}</div>
         </BaseContainer>

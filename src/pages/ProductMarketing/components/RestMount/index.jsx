@@ -21,7 +21,6 @@ const RestMount = {
   },
 
   render() {
-    // TODO progress的颜色没自带样式，后续需要调整
     return (
       <div class={['rest-mount-wrapper', this.className]}>
         <div class='rest-mount-progress'>
@@ -31,7 +30,6 @@ const RestMount = {
             strokeColor="#FFFFFF"
             width={68}
             strokeWidth={7}
-            strokeColor='#6C7B98'
             format={this.getFormatNode}
           />
         </div>

@@ -1,4 +1,4 @@
-import { FormModel } from 'ant-design-vue';
+import { FormModel, Input } from 'ant-design-vue';
 import { mapActions, mapState } from 'vuex';
 import * as c2cMarketAPI from '@/api/c2cMarket';
 import numberUtils from 'aa-utils/lib/numberUtils';
@@ -17,7 +17,6 @@ import CountDownToLink from '@/shared/components/CountDownToLink';
 import RateFluctuation from '@/shared/components/RateFluctuation';
 import { C2C_MARKET, PLACE_C2C_ORDER } from '@/modules/c2cMarket';
 import ConfirmPayDialog from '@/shared/components/ConfirmPayDialog';
-import SingleInfoCard from '@/pages/ProductMarketing/components/SingleInfoCard';
 
 import styles from './index.less?module';
 
@@ -179,8 +178,11 @@ const Settlement = {
             scopedSlots={hasPowerOff === POWER_OFF ? { rightContent: () => <PowerOffButton/> } : {}}
           />
           <FormContainer class={styles['product-info-card']} title={this.$t('marketConfirmSettle')}>
-            <SingleInfoCard title={this.$t('hashRateUnitPrice')} amount={bigNumberToFixed(price, 2)} unit={`USDT/${unit}`} />
             <FormModel ref="form" hideRequiredMark props={{ model: this.formData }} class="normal-form">
+              <Item label={this.$t('hashRateUnitPrice')}>
+                <Input disabled value={`${bigNumberToFixed(price, 2)} USDT/${unit}`} />
+              </Item>
+
               <Item label={this.$t('walletAllTypesBuyHashrate')} prop="amount" rules={this.formRule()}>
                 <NumberInput
                   value={`${this.formData.amount}`}
