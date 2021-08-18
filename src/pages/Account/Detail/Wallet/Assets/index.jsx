@@ -96,7 +96,7 @@ const Assets = {
                     <div
                       class={styles['card-right-button']}
                       onClick={() => {
-                        locationHelp.open(depositPath, { params: { coinType: item.chainType } });
+                        locationHelp.open(depositPath, { query: { coinType: item.chainType } });
                       }}
                     >
                       {this.$t('walletAllTypesCharge')}
@@ -105,7 +105,7 @@ const Assets = {
                       class={styles['card-right-button']}
                       isVerifiedKyc
                       onVerifiedPass={() => {
-                        locationHelp.open(withdrawPath, { params: { coinType: item.chainType } });
+                        locationHelp.open(withdrawPath, { query: { coinType: item.chainType } });
                       }}
                     >
                       {this.$t('walletAllTypesCarry')}

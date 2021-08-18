@@ -1,2 +1,2 @@
-export const UNREAD = 0;
-export const READ = 1;
+export const UNREAD = '0';
+export const READ = '1';

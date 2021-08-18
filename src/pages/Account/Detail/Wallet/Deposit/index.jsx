@@ -92,6 +92,7 @@ const Deposit = {
                   suffix: () => <CopyToClipboard text={address}>{this.$t('copy')}</CopyToClipboard>,
                 }}
                 value={address}
+                onInput={() => { this.$forceUpdate(); }}
               />
             </Item>
           </FormModel>
