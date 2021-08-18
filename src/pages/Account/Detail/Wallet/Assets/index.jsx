@@ -5,6 +5,7 @@ import HandCardOutlined from 'ahoney/lib/icons/HandCardOutlined';
 
 import { addressPath, depositPath, withdrawPath } from '@/router/consts/urls';
 import { EthIcon, BtcIcon, UsdtIcon } from '@/shared/components/ChainIcon';
+import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 import NewWindowGuide from '@/shared/components/NewWindowGuide';
 import TradeBeforeVerified from '@/shared/components/TradeBeforeVerified';
 import locationHelp from '@/shared/utils/locationHelp';
@@ -26,11 +27,13 @@ const Assets = {
                 minimumFractionDigits: 2,
               })}
             </div>
-            <div class={styles['assets-total-cny']}>
-              {`${numberUtils.formatNumber(totalCny, {
-                minimumFractionDigits: 2,
-              })} CNY`}
-            </div>
+            {getIsChinese() && (
+              <div class={styles['assets-total-cny']}>
+                {`${numberUtils.formatNumber(totalCny, {
+                  minimumFractionDigits: 2,
+                })} CNY`}
+              </div>
+            )}
           </div>
           <div class={styles['info-right']}>
             <div

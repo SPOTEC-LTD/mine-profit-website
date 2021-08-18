@@ -242,6 +242,7 @@ const Withdraw = {
                     placeholder={this.$t('selectPlaceholder')}
                     value={this.formData.withdrawAddress || this.defaultAddress}
                     onChange={this.addressChange}
+                    getPopupContainer={triggerNode => triggerNode.parentNode}
                   >
                     {this.withdrawalAddressList.map(({ address, id }) => (
                       <Select.Option
