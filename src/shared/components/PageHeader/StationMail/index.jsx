@@ -205,7 +205,7 @@ const StationMail = {
 
   render() {
     const mailNode = (
-      <div class={[styles['email-box'], { [styles['no-login']]: this.noLogin }]}>
+      <div class={styles['email-box']}>
         <MailFilled className={styles.email} />
       </div>
     );
@@ -219,6 +219,7 @@ const StationMail = {
           onVisibleChange={this.visibleChange}
           getPopupContainer={triggerNode => triggerNode.parentNode}
           transitionName=''
+          trigger='click'
         >
           <Badge count={this.badgeInfo.internalMsg}>
             {mailNode}
@@ -226,7 +227,7 @@ const StationMail = {
         </Popover>
       </div>
     );
-    return this.noLogin ? mailNode : popoverNode;
+    return this.noLogin ? null : popoverNode;
   },
 };
 
