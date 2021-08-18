@@ -50,7 +50,6 @@ export default {
   hashRateCouponDialogContent: '· 已放入“账户-VIP算力券” ·',
   vipHashrateUsed: 'VIP算力已启用',
   vipExclusive: 'VIP专享',
-  viewNow: '立即查看',
   coinHashrate: '{coin}算力',
   bannerDetail: 'Banner详情',
   goodNewsDetail: '好文详情',

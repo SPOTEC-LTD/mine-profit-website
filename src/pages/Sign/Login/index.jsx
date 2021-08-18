@@ -153,7 +153,9 @@ const Login = {
       return Promise.resolve();
     },
 
-    async handleSubmit() {
+    async handleSubmit(e) {
+      e.preventDefault();
+
       const validatorKeys = this.isPhone ? ['phone'] : ['email'];
       if (this.isVerificationLogin) {
         validatorKeys.push('code');
@@ -208,40 +210,39 @@ const Login = {
             <Tabs.TabPane key="verCode" tab={this.$t('signInVerifyCode')} />
             <Tabs.TabPane key="password" tab={this.$t('signInPwd')} />
           </Tabs>
-          <div class={styles.form}>
-            <Form
-              formError={this.formError}
-              countries={this.countries}
-              isPhone={this.isPhone}
-              isVerificationLogin={this.isVerificationLogin}
-              onValueChange={this.onValueChange}
-              formData={this.formData}
-              getVerCode={this.getVerCode}
-            />
+            <div class={styles.form}>
+              <form onSubmit={this.handleSubmit}>
+                <Form
+                  formError={this.formError}
+                  countries={this.countries}
+                  isPhone={this.isPhone}
+                  isVerificationLogin={this.isVerificationLogin}
+                  onValueChange={this.onValueChange}
+                  formData={this.formData}
+                  getVerCode={this.getVerCode}
+                />
 
-            <div class={styles['login-type']} onClick={this.handleChangeLoginType}>
-              {
-                this.isPhone ?
-                  <div class={styles['login-type-content']}>
-                    <EmailFilled />
-                    <span>{this.$t('emailLogin')}</span>
-                  </div>
-                  :
-                  <div class={styles['login-type-content']}>
-                    <PhoneFilled />
-                    <span>{this.$t('phoneLogin')}</span>
-                  </div>
-              }
-            </div>
-            <PrimaryButton
-              loading={this.loginLoading}
-              onClick={this.handleSubmit}
-            >
-              {this.$t('login')}
-            </PrimaryButton>
-            {
-              // TODO i18n
-            }
+                <div class={styles['login-type']} onClick={this.handleChangeLoginType}>
+                  {
+                    this.isPhone ?
+                      <div class={styles['login-type-content']}>
+                        <EmailFilled />
+                        <span>{this.$t('emailLogin')}</span>
+                      </div>
+                      :
+                      <div class={styles['login-type-content']}>
+                        <PhoneFilled />
+                        <span>{this.$t('phoneLogin')}</span>
+                      </div>
+                  }
+                </div>
+                <PrimaryButton
+                  loading={this.loginLoading}
+                  htmlType="submit"
+                >
+                  {this.$t('login')}
+                </PrimaryButton>
+              </form>
             <div class={styles['protocol-link']}>
               <span>{this.$t('loginMeansAgreed')}</span>
               <Link to={serviceProtocolPath} target="_blank">{`《${this.$t('serviceProtocolName')}》`}</Link>

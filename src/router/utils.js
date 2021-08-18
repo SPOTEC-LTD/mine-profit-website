@@ -1,4 +1,4 @@
-import { I18N } from '@/shared/intl/i18n';
+import { I18N } from '@@/i18n';
 
 export const buildRoutes = routes => {
   const finallyRoutes = [];

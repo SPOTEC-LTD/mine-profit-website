@@ -44,15 +44,13 @@ const buildI18n = () => {
 
   const content = JSON.stringify(messagesObject, null, 2);
 
-  !fs.existsSync('src/locales') && fs.mkdirSync('src/locales');
-  !fs.existsSync('src/locales/en-US.json') && fs.writeFileSync('src/locales/en-US.json', '');
-  fs.writeFileSync('src/locales/zh-CN.json', content);
+  !fs.existsSync('i18n') && fs.mkdirSync('i18n');
+  !fs.existsSync('i18n/locales/en-US.json') && fs.writeFileSync('i18n/locales/en-US.json', '');
+  fs.writeFileSync('i18n/locales/zh-CN.json', content);
   console.log(colors.green(('i18n Compiled successfully')));
 };
 
 buildI18n();
 if (process.env.NODE_ENV !== 'production') {
-  console.log('process.env.NODE_ENV232', process.env.NODE_ENV);
-
   checkI18n();
 }

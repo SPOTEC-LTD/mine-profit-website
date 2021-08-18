@@ -5,7 +5,7 @@ import TipCirccleOutlined from 'ahoney/lib/icons/TipCirccleOutlined';
 import locationServices from '@/shared/services/location/locationServices';
 import { RECOMMEND, NEWSLETTER, ANNOUNCEMENT } from '@/shared/consts/newsType';
 import { ABOUT_US, ECOSPHERE } from '@/shared/consts/aboutUsType';
-import { I18N } from '@/shared/intl/i18n';
+import { I18N } from '@@/i18n';
 import Link from '@/shared/components/Link';
 import logoImg from '@/assets/logo-black.png';
 import * as urls from '@/router/consts/urls';
