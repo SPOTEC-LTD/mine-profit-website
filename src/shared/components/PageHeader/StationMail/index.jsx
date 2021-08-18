@@ -66,7 +66,7 @@ const StationMail = {
       }
       this.fetching = true;
       this[GET_STATION_MAIL_LIST]({
-        // TODO: 待加字段 ’是否已读‘ this.activeTab
+        read: this.activeTab,
         pageNum: this.pageNum,
         pageSize: 10,
       }).then(() => {
@@ -196,6 +196,9 @@ const StationMail = {
         this.isMailDetail = false;
         this.isShowAllReadNode = false;
         this.fetchStationMailList({ reset: true });
+        document.getElementsByTagName('body')[0].className = styles['stop-scroll'];
+      } else {
+        document.getElementsByTagName('body')[0].removeAttribute('class');
       }
     },
   },
@@ -214,7 +217,8 @@ const StationMail = {
           title={this.getPopoverTitle}
           content={this.getPopoverContent}
           onVisibleChange={this.visibleChange}
-          getPopupContainer={() => this.$refs.popoverNode}
+          getPopupContainer={triggerNode => triggerNode.parentNode}
+          transitionName=''
         >
           <Badge count={this.badgeInfo.internalMsg}>
             {mailNode}
