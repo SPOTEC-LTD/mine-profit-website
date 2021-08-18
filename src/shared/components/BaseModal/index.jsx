@@ -24,7 +24,6 @@ const BaseModal = {
 
     close() {
       if (isUndefined(this.value)) {
-        console.log(111);
         this.visible = false;
       }
       this.$emit('close');
