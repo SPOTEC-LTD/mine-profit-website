@@ -21,11 +21,17 @@ const phonePrefixInitValue = '+86';
 
 const BindPhone = {
   async asyncData(ctx) {
-    const {
-      body: { list },
-    } = await API.getCountries({}, { ctx });
+    const props = {
+      countries: [],
+    };
+    try {
+      const { body: { list } } = await API.getCountries({}, { ctx });
+      props.countries = list;
+    } catch (error) {
+      console.log(error, 'error');
+    }
 
-    return { countries: list };
+    return props;
   },
   data() {
     return {

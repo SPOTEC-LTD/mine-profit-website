@@ -40,6 +40,7 @@ const createAPI = (method, url) => (params = {}, config = {}) => {
 
   if (config.ctx) { // fix product evn axios error bug
     config.headers = {
+      ...config.headers,
       lang: languages[config.ctx.app.i18n.locale],
     };
 

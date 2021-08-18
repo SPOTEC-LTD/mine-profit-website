@@ -43,6 +43,9 @@ export default {
     });
     this.fetchNewsletterList();
   },
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
   methods: {
     fetchNewsletterList() {
       if (this.fetching || this.noData) {

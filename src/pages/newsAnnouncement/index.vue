@@ -2,13 +2,13 @@
   <BaseContainer>
     <KeepTabs class="mine-tabs-line" activeKeyName="type" :value="active" @change="onTabsChange">
       <TabPane :key="RECOMMEND" :tab="$t('recommendArticle')">
-        <Recommend />
+        <Recommend v-if="active === RECOMMEND" />
       </TabPane>
       <TabPane :key="NEWSLETTER" :tab="$t('newsletter')">
-        <Newsletter />
+        <Newsletter v-if="active === NEWSLETTER" />
       </TabPane>
       <TabPane :key="ANNOUNCEMENT" :tab="$t('announcement')">
-        <Announcement />
+        <Announcement v-if="active === ANNOUNCEMENT" />
       </TabPane>
     </KeepTabs>
   </BaseContainer>

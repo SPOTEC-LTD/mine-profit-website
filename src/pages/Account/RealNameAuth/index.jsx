@@ -2,7 +2,6 @@ import { Button, FormModel, Input, Row, Col, Select, DatePicker, Upload, Spin } 
 import { mapActions, mapState } from 'vuex';
 import moment from 'moment';
 import split from 'lodash/split';
-import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
 import BaseContainer from '@/shared/components/BaseContainer';
 import appIcon from '@/assets/account/app-icon.png';
@@ -25,6 +24,8 @@ import { getIsChinese, getIsEnglish } from '@/shared/utils/getLocalLanguage';
 import Notification from '@/shared/services/Notification';
 import NumberInput from '@/shared/components/NumberInput';
 import TradeBeforeVerified from '@/shared/components/TradeBeforeVerified';
+import { GLOBAL_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
+import PhotoUpload from './components/PhotoUpload';
 import styles from './index.less?module';
 
 const { Item } = FormModel;
@@ -33,15 +34,29 @@ const defaultDateValue = moment().subtract(18, 'year');
 const RealNameAuth = {
   async asyncData(ctx) {
     const { userId } = getUserInfoFunc(ctx);
+    const props = {
+      countries: [],
+      videoAuthCode: '',
+    };
 
-    const {
-      body: { code },
-    } = await accountAPI.getVideoAuthCode({ pathParams: { userId } }, { ctx });
-    const {
-      body: { list },
-    } = await API.getCountries({}, { ctx });
+    const fetchVideoAuthCode = await accountAPI.getVideoAuthCode({ pathParams: { userId } }, { ctx });
+    const fetchCountries = await API.getCountries({}, { ctx });
 
-    return { countries: list, videoAuthCode: code };
+    try {
+      const { body: { code } } = fetchVideoAuthCode;
+      props.videoAuthCode = code;
+    } catch (error) {
+      console.log(error, 'error');
+    }
+
+    try {
+      const { body: { list } } = fetchCountries;
+      props.countries = list;
+    } catch (error) {
+      console.log(error, 'error');
+    }
+
+    return props;
   },
   data() {
     return {
@@ -78,7 +93,8 @@ const RealNameAuth = {
           }
         }
       }
-      if (isEmpty(this.imageUrlList) || (this.form.idType !== DRIVING_LICENSE && this.imageUrlList.length !== 2)) {
+      const [firstUrl, secondUrl] = this.imageUrlList;
+      if (!firstUrl || !secondUrl) {
         result = true;
       }
       return result;
@@ -116,24 +132,6 @@ const RealNameAuth = {
     disabledDate(current) {
       return current.isAfter(defaultDateValue);
     },
-    frontPhotoChange({ file }) {
-      if (file.status === 'uploading') {
-        this.frontPhotoLoading = true;
-      }
-      if (file.status === 'done') {
-        this.frontPhotoUrl = file.response.body.url;
-        this.frontPhotoLoading = false;
-      }
-    },
-    backPhotoChange({ file }) {
-      if (file.status === 'uploading') {
-        this.backPhotoLoading = true;
-      }
-      if (file.status === 'done') {
-        this.backPhotoUrl = file.response.body.url;
-        this.backPhotoLoading = false;
-      }
-    },
     videoChange({ file }) {
       if (file.status === 'uploading') {
         this.videoUploadLoading = true;
@@ -143,15 +141,9 @@ const RealNameAuth = {
         this.videoUploadLoading = false;
       }
     },
-    photoBeforeUpload(file) {
-      if (file.type !== 'image/png' && file.type !== 'image/png' && file.type !== 'image/jpeg') {
-        Notification.error(this.$t('fileFormatError'));
-        return false;
-      }
-      return true;
-    },
     videoBeforeUpload(file) {
       if (file.type.indexOf('video/') === -1) {
+        this.form.videoUrl = '';
         Notification.error(this.$t('fileFormatError'));
         return false;
       }
@@ -171,13 +163,18 @@ const RealNameAuth = {
         .then(() => {
           this.isControlCheck = true;
         })
-        .catch(async () => {
-          this.form.videoUrl = '';
-          const { userId } = getUserInfoFunc();
-          const {
-            body: { code },
-          } = await accountAPI.getVideoAuthCode({ pathParams: { userId } });
-          this.videoAuthCode = code;
+        .catch(async errorInfo => {
+          const { code: errorCode } = errorInfo;
+          if (errorCode === GLOBAL_BUSINESS_EXCEPTION) {
+            this.form.videoUrl = '';
+            const { userId } = getUserInfoFunc();
+            try {
+              const { body: { code } } = await accountAPI.getVideoAuthCode({ pathParams: { userId } });
+              this.videoAuthCode = code;
+            } catch (error) {
+              console.log(error, 'error');
+            }
+          }
         });
     },
   },
@@ -361,52 +358,18 @@ const RealNameAuth = {
                   </Col>
                 </Row>
                 <Item label={this.$t('uploadCertificatePhoto')}>
-                  <Upload
-                    accept="image/*"
-                    action={uploadFileUrl}
-                    showUploadList={false}
-                    supportServerRender
-                    onChange={this.frontPhotoChange}
-                    beforeUpload={this.photoBeforeUpload}
-                  >
-                    <div class={styles['upload-enter']}>
-                      <Spin spinning={this.frontPhotoLoading}>
-                        {this.frontPhotoUrl ? (
-                          <div class={styles['upload-img-box']}>
-                            <img src={this.frontPhotoUrl} alt="" />
-                          </div>
-                        ) : (
-                          <div class={styles['no-upload']}>
-                            <img src={frontIdPhoto} alt="" />
-                          </div>
-                        )}
-                        <div class={styles['upload-prompt']}>{frontUploadText}</div>
-                      </Spin>
-                    </div>
-                  </Upload>
-                  <Upload
-                    accept="image/*"
-                    action={uploadFileUrl}
-                    showUploadList={false}
-                    supportServerRender
-                    onChange={this.backPhotoChange}
-                    beforeUpload={this.photoBeforeUpload}
-                  >
-                    <div class={styles['upload-enter']}>
-                      <Spin spinning={this.backPhotoLoading}>
-                        {this.backPhotoUrl ? (
-                          <div class={styles['upload-img-box']}>
-                            <img src={this.backPhotoUrl} alt="" />
-                          </div>
-                        ) : (
-                          <div class={styles['no-upload']}>
-                            <img src={backIdPhoto} alt="" />
-                          </div>
-                        )}
-                        <div class={styles['upload-prompt']}>{backUploadText}</div>
-                      </Spin>
-                    </div>
-                  </Upload>
+                  <PhotoUpload
+                    value={this.frontPhotoUrl}
+                    coverImage={frontIdPhoto}
+                    uploadText={frontUploadText}
+                    onChange={ url => { console.log(url, 'fronturl'); this.frontPhotoUrl = url; }}
+                  />
+                  <PhotoUpload
+                    value={this.backPhotoUrl}
+                    coverImage={backIdPhoto}
+                    uploadText={backUploadText}
+                    onChange={ url => { console.log(url, 'backurl'); this.backPhotoUrl = url; }}
+                  />
                 </Item>
                 <Item label={this.$t('authVideoTitle')}>
                   <div class={styles['video-upload-box']}>

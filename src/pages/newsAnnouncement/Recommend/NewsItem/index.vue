@@ -34,7 +34,7 @@ export default {
   },
   computed: {
     updateTime() {
-      return dateUtils.formatDateTime(this.info.updateTime, 'YYYY-MM-DD HH:mm');
+      return dateUtils.formatDateTime(this.info.publishTime, 'YYYY-MM-DD HH:mm');
     },
   },
 };

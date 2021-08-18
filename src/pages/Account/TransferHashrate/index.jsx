@@ -96,7 +96,7 @@ const TransferHashrate = {
         },
       ];
 
-      return hasPowerOff === POWER_OFF ? baseList : [...refPriceList, ...baseList];
+      return hasPowerOff === `${POWER_OFF}` ? baseList : [...refPriceList, ...baseList];
     },
 
     onPageButtonConfirm() {
