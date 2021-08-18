@@ -36,13 +36,15 @@ import styles from './index.less?module';
 
 const OfficialProductDetails = {
   async asyncData(ctx) {
-    const props = { officialProductDetails: initValue, rest: '', rateExchangeList: [], isError: false };
+    const props = { officialProductDetails: initValue, rest: '', rateExchangeList: [], isError: false, isNewUser: false };
     const getProductPromise = officialProductAPI.getProductDetails({ pathParams: { id: ctx.params.id } }, { ctx });
     const getRateExchangeList = rateExchangeAPI.getRateExchange({}, { ctx });
 
     try {
       const { body: { productDetail } } = await getProductPromise;
       props.officialProductDetails = productDetail;
+      const { tags } = productDetail;
+      props.isNewUser = includes(tags, NEW_USER_USED);
       props.rest = +getMinus({ number: productDetail.publishAmountUnit, minuend: productDetail.saleAmountUnit, decimal: 0 });
     } catch (error) {
       props.isError = true;
@@ -61,7 +63,6 @@ const OfficialProductDetails = {
       rate: 1,
       cnyRate: 1,
       isChinese: getIsChinese(),
-      isNewUser: false,
     };
   },
 
@@ -73,9 +74,7 @@ const OfficialProductDetails = {
   },
 
   mounted() {
-    const { tags } = this.officialProductDetails;
     this.cnyRate = +getCoinRate({ rateList: this.rateExchangeList, coin: CNY });
-    this.isNewUser = includes(tags, NEW_USER_USED);
   },
 
   methods: {

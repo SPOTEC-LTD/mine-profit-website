@@ -21,7 +21,7 @@ const ProductMarket = {
 
   render() {
     return (
-      <div>
+      <div class={styles['product-market-wrapper']}>
         <Title title={this.$t('distilledHashRate')} />
         <ProductListCell productList={this.productList} />
         <div class={styles.more}>
