@@ -55,6 +55,6 @@ export default {
   goodNewsDetail: '好文详情',
   announcementDetail: '公告详情',
   questionDetail: '问答详情',
-  getMineApp: '立即获得云算力',
+  getMineApp: '领取免费算力',
   infoScan: '扫码下载MineProfit',
 };
