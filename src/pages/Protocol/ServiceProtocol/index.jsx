@@ -21,7 +21,11 @@ const ServiceProtocol = {
           <div class={[styles['item-gap'], styles['sub-title']]}>1.1</div>
           <div>{this.$t('serviceProtocolText_1_1')}</div>
           <div class={[styles['item-gap'], styles['sub-title']]}>1.2</div>
-          <div>{this.$t('serviceProtocolText_1_2')}</div>
+          <div class={styles['sub-item-gap']}>
+            {this.$t('serviceProtocolText_1_2')}
+            <div>{this.$t('serviceProtocolText_1_2_1')}</div>
+            <div>{this.$t('serviceProtocolText_1_2_2')}</div>
+          </div>
           <div class={styles['protocol-title-box']}>
             <div class={styles['protocol-title']}>{this.$t('serviceProtocolTitle_2')}</div>
           </div>
