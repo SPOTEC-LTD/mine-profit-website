@@ -82,6 +82,9 @@ const PageHeader = {
   },
 
   render() {
+    const [pageName] = this.$route.name.split('___');
+    const isNotLoginPage = pageName !== 'login';
+
     return (
       <div class={styles['page-header']}>
         <div class={styles['page-header-container']}>
@@ -100,8 +103,8 @@ const PageHeader = {
             </div>
           </div>
           <div class={styles['header-right-content']}>
-            <LoginInfo />
-            <StationMail />
+            { isNotLoginPage && <LoginInfo /> }
+            { isNotLoginPage && <StationMail /> }
             <LanguageMenu items={this.languageItems}>{ this.$t('language') }</LanguageMenu>
             <Button class="download-button" type="primary" onClick={this.redirectToDownloadGuidePage}>
               { this.$t('downloadNow') }
