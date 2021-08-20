@@ -118,6 +118,8 @@ const Login = {
     },
 
     handleTabChange(key) {
+      this.formData.code = '';
+      this.formData.password = '';
       this.isVerificationLogin = key === 'verCode';
     },
 
