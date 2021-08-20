@@ -122,6 +122,8 @@ const Login = {
     },
 
     handleChangeLoginType() {
+      this.formError = {};
+
       if (this.isPhone) {
         this.formData.type = EMAIL;
       } else {
