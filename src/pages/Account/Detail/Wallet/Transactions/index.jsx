@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { WALLET_STATUS_ALL, getLedgerStatusList } from '@/shared/consts/rechargeLedgerStatus';
 import { HASH_RATE_ALL, HASH_RATE_BTC, HASH_RATE_ETH, HASH_RATE_USDT } from '@/shared/consts/hashrateType';
 import { WALLET_TYPE_ALL, getLedgerTypeList } from '@/shared/consts/rechargeLedgerType';
@@ -29,7 +30,11 @@ const Transactions = {
       this.getWalletDetail();
     },
     dateChange(date, timeType) {
-      this[timeType] = new Date(date).valueOf();
+      if (timeType === 'endTime') {
+        this[timeType] = moment(date, 'YYYY.MM.DD').endOf('day').valueOf();
+      } else {
+        this[timeType] = moment(date, 'YYYY.MM.DD').valueOf();
+      }
       this.getWalletDetail();
     },
     disabledStartDate(startTime) {
