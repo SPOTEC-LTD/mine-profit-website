@@ -163,4 +163,5 @@ export default {
   confirmRepayment: '确认还款',
   confirmRedeem: '确认赎回',
   waitPay: '待支付',
+  hashRateList: '算力列表',
 };
