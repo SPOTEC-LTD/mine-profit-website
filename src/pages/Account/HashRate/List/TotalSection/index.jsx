@@ -28,7 +28,7 @@ const TotalSection = {
       return [
         {
           label: this.$t('hashrateTotalHash'),
-          value: this.statisticData.totalOutput,
+          value: this.statisticData.totalAmount,
           unit: this.statisticData.unit,
         },
         {

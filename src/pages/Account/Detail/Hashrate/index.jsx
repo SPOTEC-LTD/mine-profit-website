@@ -49,7 +49,7 @@ const Hashrate = {
           value: `${bigNumberToFixed(item.totalOutput, 8)} ${item.hashrateType}`,
         },
         {
-          title: this.$t('hashrateTotalHash'),
+          title: this.$t('hashrateYesterdayNetOutput'),
           value: `${yTotalValue > 0 ? `+${yTotalValue}` : yTotalValue} ${item.hashrateType}`,
         },
       ];
