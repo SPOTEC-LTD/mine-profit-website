@@ -1,3 +1,4 @@
+import { mapState } from 'vuex';
 import { Button } from 'ant-design-vue';
 import DocFilledOutlined from 'ahoney/lib/icons/DocFilledOutlined';
 import EmailCircleOutlined from 'ahoney/lib/icons/EmailCircleOutlined';
@@ -6,6 +7,7 @@ import locationServices from '@/shared/services/location/locationServices';
 import { RECOMMEND, NEWSLETTER, ANNOUNCEMENT } from '@/shared/consts/newsType';
 import { ABOUT_US, ECOSPHERE } from '@/shared/consts/aboutUsType';
 import { I18N } from '@@/i18n';
+import isEmpty from 'lodash/isEmpty';
 import Link from '@/shared/components/Link';
 import logoImg from '@/assets/logo-black.png';
 import * as urls from '@/router/consts/urls';
@@ -22,6 +24,11 @@ const PageHeader = {
     return {
       languageItems: I18N.locales,
     };
+  },
+  computed: {
+    ...mapState({
+      userInfo: state => state.userInfo,
+    }),
   },
   methods: {
     redirectToDownloadGuidePage() {
@@ -93,21 +100,21 @@ const PageHeader = {
               <img class={styles['page-header-logo']} src={logoImg} alt="MINE PROFIT" />
             </Link>
             <div class={styles['page-header-nav']}>
-              <NavLink href={urls.homePath}>{ this.$t('home') }</NavLink>
+              <NavLink href={urls.homePath}>{this.$t('home')}</NavLink>
               <NavMenu hrefPrefix={urls.aboutUsPaths} items={this.getAboutUs()}>{this.$t('aboutUs')}</NavMenu>
               <NavMenu hrefPrefix={urls.marketingPaths} items={this.getHashrateMarkets()}>
                 {this.$t('hashRateMarket')}
               </NavMenu>
-              <NavMenu hrefPrefix={urls.newsPath} items={this.getNews()}>{ this.$t('newsAnnouncement') }</NavMenu>
-              <NavLink href="/help">{this.$t('helpCenter') }</NavLink>
+              <NavMenu hrefPrefix={urls.newsPath} items={this.getNews()}>{this.$t('newsAnnouncement')}</NavMenu>
+              <NavLink href="/help">{this.$t('helpCenter')}</NavLink>
             </div>
           </div>
           <div class={styles['header-right-content']}>
-            { isNotLoginPage && <LoginInfo /> }
-            { isNotLoginPage && <StationMail /> }
-            <LanguageMenu items={this.languageItems}>{ this.$t('language') }</LanguageMenu>
+            {isNotLoginPage && <LoginInfo />}
+            {isNotLoginPage && !isEmpty(this.userInfo) && <StationMail />}
+            <LanguageMenu items={this.languageItems}>{this.$t('language')}</LanguageMenu>
             <Button class="download-button" type="primary" onClick={this.redirectToDownloadGuidePage}>
-              { this.$t('downloadNow') }
+              {this.$t('downloadNow')}
             </Button>
           </div>
         </div>

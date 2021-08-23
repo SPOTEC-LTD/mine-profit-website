@@ -21,7 +21,7 @@ axiosInstance.interceptors.request.use(config => {
 
 // 添加响应拦截器
 axiosInstance.interceptors.response.use(res => {
-  const { data, config: { responseType, catchException = true, fullPath } } = res;
+  const { data, config: { responseType, catchException = true, checkLoginStatus = true, fullPath } } = res;
   if (responseType === 'blob') {
     return data;
   }
@@ -40,7 +40,7 @@ axiosInstance.interceptors.response.use(res => {
     errorModal({ title: response.message });
   }
 
-  if (isNotLogin(response.code)) {
+  if (checkLoginStatus && isNotLogin(response.code)) {
     location.push(loginPath, { query: { redirectUrl: fullPath || `${window.location.pathname}${window.location.search}` } });
   }
 

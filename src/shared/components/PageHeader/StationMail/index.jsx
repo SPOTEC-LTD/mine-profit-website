@@ -2,7 +2,6 @@ import { mapState, mapActions, mapMutations } from 'vuex';
 import { Popover, Tabs, Badge } from 'ant-design-vue';
 import MailFilled from 'ahoney/lib/icons/MailFilled';
 import RightOutlined from 'ahoney/lib/icons/RightOutlined';
-import isEmpty from 'lodash/isEmpty';
 
 import {
   STATION_MAIL, GET_STATION_MAIL_LIST, MAIL_READ_DETAIL, RESET_STATE, GET_USER_BADGE,
@@ -39,14 +38,10 @@ const StationMail = {
       pageInfo: state => state.stationMail.pageInfo,
       getListLoading: state => state.loading.effects[`${STATION_MAIL}/${GET_STATION_MAIL_LIST}`],
     }),
-
-    noLogin() {
-      return isEmpty(this.userInfo);
-    },
   },
 
   mounted() {
-    !this.noLogin && this[GET_USER_BADGE]();
+    this[GET_USER_BADGE]();
   },
 
   methods: {
@@ -201,12 +196,7 @@ const StationMail = {
   },
 
   render() {
-    const mailNode = (
-      <div class={styles['email-box']}>
-        <MailFilled className={styles.email} />
-      </div>
-    );
-    const popoverNode = (
+    return (
       <div ref='popoverNode' class={styles['mail-popover']}>
         <Popover
           overlayClassName={styles['station-mail']}
@@ -218,12 +208,13 @@ const StationMail = {
           transitionName=''
         >
           <Badge count={this.badgeInfo.internalMsg}>
-            {mailNode}
+            <div class={styles['email-box']}>
+              <MailFilled className={styles.email} />
+            </div>
           </Badge>
         </Popover>
       </div>
     );
-    return this.noLogin ? null : popoverNode;
   },
 };
 

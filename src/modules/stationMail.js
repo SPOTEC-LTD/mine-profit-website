@@ -54,9 +54,9 @@ export default {
         return Promise.reject(error);
       }
     },
-    async [GET_USER_BADGE]({ commit }, ctx) {
+    async [GET_USER_BADGE]({ commit }) {
       try {
-        const { body: { badge } } = await getUserBadge({}, { ctx });
+        const { body: { badge } } = await getUserBadge({}, { checkLoginStatus: false });
         commit(UPDATE_BADGE_INFO, badge);
 
         return Promise.resolve();

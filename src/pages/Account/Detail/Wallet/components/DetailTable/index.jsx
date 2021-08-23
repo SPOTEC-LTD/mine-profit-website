@@ -104,6 +104,7 @@ const DetailTable = {
     const paginationConfig = {
       current: pageNum,
       total,
+      showTotal: () => `${this.$t('altogether')} ${total} ${this.$t('number')}`,
       onChange: this.handlePageChange,
     };
     return (

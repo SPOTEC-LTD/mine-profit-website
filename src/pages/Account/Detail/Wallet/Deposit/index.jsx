@@ -2,7 +2,7 @@ import { FormModel, Input } from 'ant-design-vue';
 import isEmpty from 'lodash/isEmpty';
 import filter from 'lodash/filter';
 
-import { LINE_USDT_ERC20 } from '@/pages/Account/Detail/Wallet/consts/lineType';
+import { LINE_USDT_ERC20, LINE_USDT_OMNI } from '@/pages/Account/Detail/Wallet/consts/lineType';
 import * as API from '@/api/account/wallet';
 import CopyToClipboard from '@/shared/components/CopyToClipboard';
 import BaseContainer from '@/shared/components/BaseContainer';
@@ -55,7 +55,7 @@ const Deposit = {
   render() {
     const buttonList = [
       { buttonText: 'ERC20', line: LINE_USDT_ERC20 },
-      // { buttonText: 'OMNI', line: LINE_USDT_OMNI },
+      { buttonText: 'OMNI', line: LINE_USDT_OMNI },
     ];
     const { note, address } = this.finallyCoinInfo;
     return (
