@@ -178,7 +178,7 @@ const SetDealPassword = {
               >
                 <Input
                   v-model={this.form.newDealCode}
-                  placeholder={this.$t('passwordInputPlaceholder')}
+                  placeholder={this.$t('payInputPwd')}
                   maxLength={20}
                   type="password"
                   onChange={this.validateConfirmNewDealCode}
@@ -204,7 +204,7 @@ const SetDealPassword = {
               >
                 <Input
                   v-model={this.form.confirmNewDealCode}
-                  placeholder={this.$t('passwordInputPlaceholder')}
+                  placeholder={this.$t('tradePwdSettingTradePwdAgainHint')}
                   maxLength={20}
                   type="password"
                 />

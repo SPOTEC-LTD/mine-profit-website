@@ -4,6 +4,7 @@ import { uploadFileUrl } from '@/api/file';
 import ModalButton from '@/shared/components/ModalButton';
 import { ACCOUNT, UPDATE_BASE_INFO, GET_USER_BASE_INFO } from '@/modules/account/account';
 import Notification from '@/shared/services/Notification';
+import defaultAvatar from '@/assets/rank/defaultAvatar.png';
 
 import styles from './index.less?module';
 
@@ -17,7 +18,7 @@ const EditAvatarNickname = {
     return {
       uploadAvatarLoading: false,
       form: {
-        avatar: this.userInfo.avatar,
+        avatar: this.userInfo.avatar || defaultAvatar,
         nickname: this.userInfo.nickName,
       },
     };

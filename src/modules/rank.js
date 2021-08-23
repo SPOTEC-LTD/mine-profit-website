@@ -51,9 +51,9 @@ export default {
         return Promise.reject(error);
       }
     },
-    async [GET_HISTORY_DURATION]({ commit }, type) {
+    async [GET_HISTORY_DURATION]({ commit }) {
       try {
-        const { body: { list } } = await API.getHistoryDuration({ data: { type } });
+        const { body: { list } } = await API.getHistoryDuration({ data: { type: 1 } });
         commit(UPDATE_HISTORY_DURATION, list);
 
         return Promise.resolve();
