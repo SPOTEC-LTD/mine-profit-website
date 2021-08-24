@@ -1,7 +1,5 @@
-import {
-  CardOutlined,
-  SyncOutlined,
-} from 'ahoney/lib/icons';
+import CardOutlined from 'ahoney/lib/icons/CardOutlined';
+import SyncOutlined from 'ahoney/lib/icons/SyncOutlined';
 import FooterButtonGroup from '@/pages/Account/HashRate/List/components/FooterButtonGroup';
 import FooterLayout from '@/pages/Account/HashRate/List/components/FooterLayout';
 import { pledgeRedeemPath, pledgeRepaymentPath } from '@/router/consts/urls';

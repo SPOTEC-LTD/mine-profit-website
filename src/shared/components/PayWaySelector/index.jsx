@@ -1,6 +1,7 @@
 import { mapActions, mapState } from 'vuex';
 import { Dropdown, Menu } from 'ant-design-vue';
-import { InfoCircleFilled, TriangleFilled } from 'ahoney/lib/icons';
+import InfoCircleFilled from 'ahoney/lib/icons/InfoCircleFilled';
+import TriangleFilled from 'ahoney/lib/icons/TriangleFilled';
 import getDivided from '@/shared/utils/getDivided';
 import PayWayItem from '@/shared/components/PayWayItem';
 import { USER, GET_USER_BALLANCE } from '@/modules/user';

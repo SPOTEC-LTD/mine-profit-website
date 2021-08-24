@@ -1,8 +1,6 @@
-import {
-  CircleShutdownOutlined,
-  SquareSwitchOutlined,
-  InfoCircleFilled,
-} from 'ahoney/lib/icons';
+import CircleShutdownOutlined from 'ahoney/lib/icons/CircleShutdownOutlined';
+import SquareSwitchOutlined from 'ahoney/lib/icons/SquareSwitchOutlined';
+import InfoCircleFilled from 'ahoney/lib/icons/InfoCircleFilled';
 import classNames from 'classnames';
 import FooterButtonGroup from '@/pages/Account/HashRate/List/components/FooterButtonGroup';
 import locationServices from '@/shared/services/location/locationServices';

@@ -1,7 +1,9 @@
-import {
-  TimeOutlined, PercentOutline, ShutdownOutlined,
-  DashboardOutlined, OneShovelOutlined, TimeTwoOutlined,
-} from 'ahoney/lib/icons';
+import TimeOutlined from 'ahoney/lib/icons/TimeOutlined';
+import PercentOutline from 'ahoney/lib/icons/PercentOutline';
+import ShutdownOutlined from 'ahoney/lib/icons/ShutdownOutlined';
+import DashboardOutlined from 'ahoney/lib/icons/DashboardOutlined';
+import OneShovelOutlined from 'ahoney/lib/icons/OneShovelOutlined';
+import TimeTwoOutlined from 'ahoney/lib/icons/TimeTwoOutlined';
 import getMinus from '@/shared/utils/getMinus';
 import getTimes from '@/shared/utils/getTimes';
 import * as c2cMarketAPI from '@/api/c2cMarket';

@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const filterFloat = ({ value, preValue, precision, enableMinus }) => {
   let nextValue = value.replace(/[^\-\d.]/g, '');
   const matchDecimalPoint = nextValue.match(/[.]/g) || [];

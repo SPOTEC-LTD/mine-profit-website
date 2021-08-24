@@ -1,4 +1,6 @@
-import { CircleCouponFilled, TriangleFilled } from 'ahoney/lib/icons';
+import CircleCouponFilled from 'ahoney/lib/icons/CircleCouponFilled';
+import TriangleFilled from 'ahoney/lib/icons/TriangleFilled';
+
 import CouponChooseModal from '@/pages/Account/HashRateCoupons/CouponChooseModal';
 import './index.less';
 

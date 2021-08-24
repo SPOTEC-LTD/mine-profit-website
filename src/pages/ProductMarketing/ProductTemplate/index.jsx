@@ -1,7 +1,10 @@
-import {
-  TimeOutlined, ShutdownOutlined, TimeTwoOutlined, BoxOutlined,
-  DashboardOutlined, OneShovelOutlined, BlockTowerOutlined,
-} from 'ahoney/lib/icons';
+import TimeOutlined from 'ahoney/lib/icons/TimeOutlined';
+import ShutdownOutlined from 'ahoney/lib/icons/ShutdownOutlined';
+import TimeTwoOutlined from 'ahoney/lib/icons/TimeTwoOutlined';
+import BoxOutlined from 'ahoney/lib/icons/BoxOutlined';
+import DashboardOutlined from 'ahoney/lib/icons/DashboardOutlined';
+import OneShovelOutlined from 'ahoney/lib/icons/OneShovelOutlined';
+import BlockTowerOutlined from 'ahoney/lib/icons/BlockTowerOutlined';
 import getTimes from '@/shared/utils/getTimes';
 import Title from '@/pages/home/component/Title';
 import { CNY } from '@/shared/consts/currencyType';

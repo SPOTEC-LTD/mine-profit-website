@@ -1,13 +1,11 @@
 import { Statistic } from 'ant-design-vue';
+import SquareSwitchOutlined from 'ahoney/lib/icons/SquareSwitchOutlined';
+import SquareLockOutlined from 'ahoney/lib/icons/SquareLockOutlined';
 import {
   HASHRATE_ENOUGH,
   HASHRATE_NO_ENOUGH,
   HASHRATE_NUMBER_NO_ENOUGH,
 } from '@/pages/Account/HashRate/consts/hashrateAmountType';
-import {
-  SquareSwitchOutlined,
-  SquareLockOutlined,
-} from 'ahoney/lib/icons';
 import { ORDINARY } from '@/pages/Account/HashRate/consts/pledgeSourceType';
 import FooterButtonGroup from '@/pages/Account/HashRate/List/components/FooterButtonGroup';
 import DateUtils from '@/shared/intl/utils/dateUtils';

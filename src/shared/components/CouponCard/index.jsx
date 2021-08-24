@@ -1,8 +1,8 @@
 import numberUtils from 'aa-utils/lib/numberUtils';
-import {
-  BtcFilled, EthFilled, CheckCircleOutlined, CheckCircleFilled,
-} from 'ahoney/lib/icons';
-
+import BtcFilled from 'ahoney/lib/icons/BtcFilled';
+import EthFilled from 'ahoney/lib/icons/EthFilled';
+import CheckCircleOutlined from 'ahoney/lib/icons/CheckCircleOutlined';
+import CheckCircleFilled from 'ahoney/lib/icons/CheckCircleFilled';
 import { FOREVER } from '@/shared/consts/validPeriodStatus';
 import dateUtils from '@/shared/intl/utils/dateUtils';
 import InfoTooltip from '@/shared/components/InfoTooltip';

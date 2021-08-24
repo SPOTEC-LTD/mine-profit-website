@@ -25,7 +25,6 @@ const createAPI = (method, url) => (params = {}, config = {}) => {
     finalURL = toPath(url, pathParams);
   }
 
-
   if (isPostOrPut) {
     config.data = data;
   } else {
