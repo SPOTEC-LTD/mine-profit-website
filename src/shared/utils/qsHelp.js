@@ -25,8 +25,8 @@ export const getPathAndQueryObject = search => {
 export const toQueryString = object => `?${queryString.stringify(object, { encode: true })}`;
 
 export const urlToList = url => {
-  const urllist = url.split('/').filter(i => i);
-  return urllist.map((urlItem, index) => `/${urllist.slice(0, index + 1).join('/')}`);
+  const urlList = url.split('/').filter(i => i);
+  return urlList.map((_, index) => `/${urlList.slice(0, index + 1).join('/')}`);
 };
 
 export const toPath = (url, params) => compile(url, { encode: encodeURIComponent })(params);

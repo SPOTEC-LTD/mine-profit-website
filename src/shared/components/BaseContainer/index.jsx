@@ -1,7 +1,9 @@
-import { Breadcrumb } from 'ant-design-vue';
 import find from 'lodash/find';
-import startsWith from 'lodash/startsWith';
+import { Breadcrumb } from 'ant-design-vue';
+import { pathRoutes } from '@/router';
 import Link from '@/shared/components/Link';
+import matchPath from '@/shared/utils/matchPath';
+import { urlToList } from '@/shared/utils/qsHelp';
 
 import './index.less';
 
@@ -13,18 +15,25 @@ const BaseContainer = {
   },
   computed: {
     breadcrumbData() {
-      const { path } = this.$route.meta;
-      const { routes } = this.$router.options;
+      const { fullPath } = this.$route;
       const resultData = [];
-      path.split('/').forEach(name => {
-        if (name && !startsWith(name, ':')) {
-          resultData.push({
-            title: this.$t(name),
-            path: find(routes, { name: `${name}___${this.$i18n.locale}` }).path,
-          });
-        }
-      });
 
+      urlToList(fullPath).forEach(value => {
+        const match = ({ path, name }) => {
+          if (path !== '*') {
+            const data = this.$i18n.locale === 'en' ? value.replace('/en', '') : value;
+            const [pageName] = name.split('__');
+            const matchedPath = matchPath(data, { path, exact: true });
+            if (matchedPath) {
+              resultData.push({
+                path: matchedPath.url,
+                title: this.$t(pageName),
+              });
+            }
+          }
+        };
+        find(pathRoutes, match);
+      });
       return resultData;
     },
   },
@@ -34,31 +43,27 @@ const BaseContainer = {
     return (
       <div class={['container', this.className]}>
         <div class={['content', this.contentClassName]}>
-          {
-            this.hasBreadcrumb && showBreadcrumb && (
-              <Breadcrumb
-                class="page-breadcrumb"
-                scopedSlots={{
-                  separator: () => '>',
-                }}
-              >
-                {
-                  this.breadcrumbData.map(({ title, path }, index) => {
-                    return (
-                      <Breadcrumb.Item>
-                        {
-                          this.breadcrumbData.length !== (index + 1) ?
-                          <Link to={path}>{title}</Link>
-                            :
-                          <span>{title}</span>
-                        }
-                      </Breadcrumb.Item>
-                    );
-                  })
-                }
-              </Breadcrumb>
-            )
-          }
+          {this.hasBreadcrumb && showBreadcrumb && (
+            <Breadcrumb
+              class="page-breadcrumb"
+              scopedSlots={{ separator: () => '>' }}
+            >
+              {
+                this.breadcrumbData.map(({ title, path }, index) => {
+                  return (
+                    <Breadcrumb.Item>
+                      {
+                        this.breadcrumbData.length !== (index + 1) ?
+                        <Link to={path}>{title}</Link>
+                          :
+                        <span>{title}</span>
+                      }
+                    </Breadcrumb.Item>
+                  );
+                })
+              }
+            </Breadcrumb>
+          )}
         {this.$slots.default}
         </div>
       </div>

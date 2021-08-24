@@ -31,8 +31,7 @@ export default [
   },
   {
     path: urls.productTemplatePath,
-    // TODO 和产品详情一模一样的url
-    // meta: { showBreadcrumb: true },
+    meta: { showBreadcrumb: true },
     name: 'marketHashDetail__template',
     component: productTemplate,
   },
@@ -44,13 +43,13 @@ export default [
   },
   {
     path: urls.officialSettlementPath,
-    // TODO 面包屑id识别不了
-    // meta: { showBreadcrumb: true },
+    meta: { showBreadcrumb: true },
     name: 'marketConfirmSettle',
     component: OfficialProductSettlement,
   },
   {
     path: urls.c2cSettlementPath,
+    meta: { showBreadcrumb: true },
     name: 'marketConfirmSettle__c2c',
     component: C2CProductSettlement,
   },
