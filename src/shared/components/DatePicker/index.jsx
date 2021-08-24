@@ -1,5 +1,5 @@
 import { DatePicker } from 'ant-design-vue';
-import { TriangleFilled, Calendar } from 'ahoney/lib/icons';
+import TriangleFilled from 'ahoney/lib/icons/TriangleFilled';
 import './index.less';
 
 const DatePickerWrap = {

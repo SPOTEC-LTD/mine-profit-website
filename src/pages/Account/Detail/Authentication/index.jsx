@@ -1,4 +1,7 @@
-import { CheckCircleFilled, PendingFilled, QuestionCircleFilled, CloseCircleTFilled } from 'ahoney/lib/icons';
+import CheckCircleFilled from 'ahoney/lib/icons/CheckCircleFilled';
+import PendingFilled from 'ahoney/lib/icons/PendingFilled';
+import QuestionCircleFilled from 'ahoney/lib/icons/QuestionCircleFilled';
+import CloseCircleTFilled from 'ahoney/lib/icons/CloseCircleTFilled';
 import { EMAIL } from '@/shared/consts/registerType';
 import { PENDING, PASS, REJECT, NOT_SUBMIT } from '@/shared/consts/kycStatus';
 import {

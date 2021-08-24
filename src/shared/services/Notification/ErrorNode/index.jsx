@@ -1,5 +1,4 @@
-import Vue from 'vue';
-import CloseCircleOutlined from 'ahoney/lib/icons/CloseCircleOutlined'
+import CloseCircleOutlined from 'ahoney/lib/icons/CloseCircleOutlined';
 import './index.less';
 
 const ErrorNode = {

@@ -1,4 +1,3 @@
-import { Spin } from 'ant-design-vue';
 import numberUtils from 'aa-utils/lib/numberUtils';
 import proportionIcon from '@/assets/account/proportion-icon.png';
 import styles from './index.less?module';

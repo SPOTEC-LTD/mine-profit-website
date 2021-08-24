@@ -1,5 +1,6 @@
 import { Badge } from 'ant-design-vue';
-import { HashCouponFilled, QrCode } from 'ahoney/lib/icons';
+import HashCouponFilled from 'ahoney/lib/icons/HashCouponFilled';
+import QrCode from 'ahoney/lib/icons/QrCode';
 import BaseContainer from '@/shared/components/BaseContainer';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import { UPDATE_USER_INFO } from '@/store/consts/actionType';

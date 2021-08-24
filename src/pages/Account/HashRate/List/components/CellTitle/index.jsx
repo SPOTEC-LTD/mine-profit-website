@@ -1,6 +1,5 @@
 import { Tooltip } from 'ant-design-vue';
 import InfoCircleFilled from 'ahoney/lib/icons/InfoCircleFilled';
-import QuestionCircleFilled from 'ahoney/lib/icons/QuestionCircleFilled';
 import './index.less';
 
 const CellTitle = {

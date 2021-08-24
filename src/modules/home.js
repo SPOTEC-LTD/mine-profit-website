@@ -41,19 +41,6 @@ export default {
     },
   },
   actions: {
-    // 获取用户相关信息
-    async getDepositList({ commit }) {
-      try {
-        // const { body: { demandDepositList } } = await getDepositList();
-        // commit('updateDemandDepositList', demandDepositList);
-
-        return Promise.resolve();
-      } catch (error) {
-        console.log('error', error);
-
-        return Promise.reject(error);
-      }
-    },
     async [GET_MARKETS_LIST]({ commit }) {
       try {
         const { body: { list } } = await API.getMarketsList();

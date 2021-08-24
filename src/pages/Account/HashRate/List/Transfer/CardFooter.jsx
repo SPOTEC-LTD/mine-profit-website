@@ -1,8 +1,6 @@
-import {
-  SquareForbidOutlined,
-  SharedFilled,
-  InfoCircleFilled,
-} from 'ahoney/lib/icons';
+import SquareForbidOutlined from 'ahoney/lib/icons/SquareForbidOutlined';
+import SharedFilled from 'ahoney/lib/icons/SharedFilled';
+import InfoCircleFilled from 'ahoney/lib/icons/InfoCircleFilled';
 import { mapActions, mapState } from 'vuex';
 import FooterButtonGroup from '@/pages/Account/HashRate/List/components/FooterButtonGroup';
 import { HASH_RATE, TRANSFER_CANCEL_ACTION } from '@/modules/account/hashRate';

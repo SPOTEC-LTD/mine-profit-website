@@ -1,10 +1,14 @@
 import { Statistic } from 'ant-design-vue';
 import includes from 'lodash/includes';
-import {
-  ReticuleOutlined, TimeOutlined, PercentOutline,
-  ShutdownOutlined, BlockTowerOutlined, BoxOutlined,
-  DashboardOutlined, OneShovelOutlined, TimeTwoOutlined,
-} from 'ahoney/lib/icons';
+import ReticuleOutlined from 'ahoney/lib/icons/ReticuleOutlined';
+import TimeOutlined from 'ahoney/lib/icons/TimeOutlined';
+import PercentOutline from 'ahoney/lib/icons/PercentOutline';
+import ShutdownOutlined from 'ahoney/lib/icons/ShutdownOutlined';
+import BlockTowerOutlined from 'ahoney/lib/icons/BlockTowerOutlined';
+import BoxOutlined from 'ahoney/lib/icons/BoxOutlined';
+import DashboardOutlined from 'ahoney/lib/icons/DashboardOutlined';
+import OneShovelOutlined from 'ahoney/lib/icons/OneShovelOutlined';
+import TimeTwoOutlined from 'ahoney/lib/icons/TimeTwoOutlined';
 import getTimes from '@/shared/utils/getTimes';
 import getMinus from '@/shared/utils/getMinus';
 import Title from '@/pages/home/component/Title';

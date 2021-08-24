@@ -1,4 +1,4 @@
-import { CheckCircleOutlined } from 'ahoney/lib/icons';
+import CheckCircleOutlined from 'ahoney/lib/icons/CheckCircleOutlined';
 import { mapActions, mapState } from 'vuex';
 import FooterButtonGroup from '@/pages/Account/HashRate/List/components/FooterButtonGroup';
 import FooterLayout from '@/pages/Account/HashRate/List/components/FooterLayout';
@@ -11,7 +11,7 @@ const CardFooter = {
   props: ['data'],
   computed: {
     ...mapState({
-      loading: state => state.loading.effects[`${HASH_RATE}/${PLEDGE_CONFIRM_SETTLE}`]
+      loading: state => state.loading.effects[`${HASH_RATE}/${PLEDGE_CONFIRM_SETTLE}`],
     }),
   },
   methods: {
