@@ -3,6 +3,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "baseUrl": ".",
+    "jsx": "react",
     "paths": {
       "@/*": ["./src/*"],
       "utils/*": ["./test/specs/utils/*"]
