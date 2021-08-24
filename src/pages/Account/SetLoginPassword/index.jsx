@@ -180,7 +180,7 @@ const SetLoginPassword = {
               >
                 <Input
                   v-model={this.form.newPassword}
-                  placeholder={this.$t('passwordInputPlaceholder')}
+                  placeholder={this.$t('pwdSettingNewPwdHint')}
                   maxLength={20}
                   type="password"
                   onChange={this.validateConfirmNewLoginCode}
@@ -206,7 +206,7 @@ const SetLoginPassword = {
               >
                 <Input
                   v-model={this.form.confirmNewLoginCode}
-                  placeholder={this.$t('passwordInputPlaceholder')}
+                  placeholder={this.$t('pwdSettingNewPwdAgainHint')}
                   maxLength={20}
                   type="password"
                 />

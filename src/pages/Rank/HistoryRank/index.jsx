@@ -61,14 +61,16 @@ const HistoryRank = {
     },
   },
   mounted() {
-    this[GET_HISTORY_RANK_INFO]({ topType: rankTypeMap[this.currentRankType] });
-    this[GET_HISTORY_DURATION](rankTypeMap[this.currentRankType]);
+    this[GET_HISTORY_RANK_INFO]({ topType: rankTypeMap[this.currentRankType] }).then(() => {
+      const { year, duration } = this.info;
+      this.selectDuration = [year, duration];
+    });
+    this[GET_HISTORY_DURATION]();
   },
   methods: {
     ...mapActions(RANK, [GET_HISTORY_RANK_INFO, GET_HISTORY_DURATION]),
     handleRankTypeChange(value) {
       this.$router.replace({ query: { ...this.$route.query, rankType: value } });
-      this.selectDuration = [];
       this[GET_HISTORY_DURATION](rankTypeMap[value]);
     },
     displayRender({ selectedOptions }) {
