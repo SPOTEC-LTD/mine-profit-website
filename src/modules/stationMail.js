@@ -7,9 +7,11 @@ export const GET_STATION_MAIL_LIST = 'getStationMailList';
 export const GET_USER_BADGE = 'getUserBadge';
 export const MAIL_READ_DETAIL = 'mailReadDetail';
 export const RESET_STATE = 'resetState';
+export const GET_WEEKLY_REPORT_DETAIL = 'getWeeklyReportDetail';
 const UPDATE_MAIL_LIST = 'updateMailList';
 const UPDATE_PAGE_INFO = 'updatePageInfo';
 const UPDATE_BADGE_INFO = 'updateBadgeInfo';
+const UPDATE_REPORT_DETAIL = 'updateReportDetail';
 
 export default {
   namespaced: true,
@@ -17,6 +19,15 @@ export default {
     stationMailList: [],
     badgeInfo: {},
     pageInfo: [],
+    weeklyReportDetail: {
+      amount: '0',
+      btcAmount: '0',
+      ethAmount: '0',
+      weeklyRanking: '0',
+      btcPercentage: '0',
+      annualizedRateOfReturn: '0',
+      miningCycle: '',
+    },
   },
   mutations: {
     [UPDATE_MAIL_LIST](state, stationMailList) {
@@ -27,6 +38,9 @@ export default {
     },
     [UPDATE_BADGE_INFO](state, badge) {
       state.badgeInfo = badge;
+    },
+    [UPDATE_REPORT_DETAIL](state, reportDetail) {
+      state.weeklyReportDetail = reportDetail;
     },
     [RESET_STATE](state) {
       state.stationMailList = [];
@@ -48,6 +62,16 @@ export default {
     async [MAIL_READ_DETAIL](_, data) {
       try {
         await API.mailReadDetail({ pathParams: { id: data.id } });
+
+        return Promise.resolve();
+      } catch (error) {
+        return Promise.reject(error);
+      }
+    },
+    async [GET_WEEKLY_REPORT_DETAIL]({ commit }, { id }) {
+      try {
+        const { body: { weeklyReportInfoVo } } = await API.getWeeklyReportDetail({ pathParams: { id } });
+        commit(UPDATE_REPORT_DETAIL, weeklyReportInfoVo);
 
         return Promise.resolve();
       } catch (error) {

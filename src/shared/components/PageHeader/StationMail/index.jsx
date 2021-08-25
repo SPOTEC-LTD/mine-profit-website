@@ -4,7 +4,8 @@ import MailFilled from 'ahoney/lib/icons/MailFilled';
 import RightOutlined from 'ahoney/lib/icons/RightOutlined';
 
 import {
-  STATION_MAIL, GET_STATION_MAIL_LIST, MAIL_READ_DETAIL, RESET_STATE, GET_USER_BADGE,
+  STATION_MAIL, GET_STATION_MAIL_LIST, MAIL_READ_DETAIL,
+  RESET_STATE, GET_USER_BADGE, GET_WEEKLY_REPORT_DETAIL,
 } from '@/modules/stationMail';
 import { mailAllRead } from '@/api/stationMail';
 import scrollEvent from '@/shared/utils/scrollEvent';
@@ -12,6 +13,7 @@ import dateUtils from '@/shared/intl/utils/dateUtils';
 
 import { UNREAD, READ } from './readStatus';
 import List from './List';
+import WeeklyOutputReportModal from './WeeklyOutputReportModal';
 
 import styles from './index.less?module';
 
@@ -26,6 +28,7 @@ const StationMail = {
       noData: false,
       loading: true,
       fetching: false,
+      showReportModal: false,
       mailInfo: {},
     };
   },
@@ -35,6 +38,7 @@ const StationMail = {
       userInfo: state => state.userInfo,
       badgeInfo: state => state.stationMail.badgeInfo,
       stationMailList: state => state.stationMail.stationMailList,
+      weeklyReportDetail: state => state.stationMail.weeklyReportDetail,
       pageInfo: state => state.stationMail.pageInfo,
       getListLoading: state => state.loading.effects[`${STATION_MAIL}/${GET_STATION_MAIL_LIST}`],
     }),
@@ -46,7 +50,7 @@ const StationMail = {
 
   methods: {
     ...mapMutations(STATION_MAIL, [RESET_STATE]),
-    ...mapActions(STATION_MAIL, [GET_STATION_MAIL_LIST, MAIL_READ_DETAIL, GET_USER_BADGE]),
+    ...mapActions(STATION_MAIL, [GET_STATION_MAIL_LIST, MAIL_READ_DETAIL, GET_USER_BADGE, GET_WEEKLY_REPORT_DETAIL]),
 
     fetchStationMailList(option = {}) {
       const { reset } = option;
@@ -130,7 +134,12 @@ const StationMail = {
     },
 
     showMailDetail(mailInfo) {
-      this.isMailDetail = true;
+      if (mailInfo.ruleKey === 'WEEKLY_SETTLE_REPORT') {
+        this[GET_WEEKLY_REPORT_DETAIL]({ id: mailInfo.id });
+        this.showReportModal = true;
+      } else {
+        this.isMailDetail = true;
+      }
       !mailInfo.read && this[MAIL_READ_DETAIL]({ id: mailInfo.id });
       this.mailInfo = mailInfo;
     },
@@ -213,6 +222,12 @@ const StationMail = {
             </div>
           </Badge>
         </Popover>
+
+        <WeeklyOutputReportModal
+          value={this.showReportModal}
+          reportInfo={this.weeklyReportDetail}
+          onClose={() => { this.showReportModal = false; }}
+        />
       </div>
     );
   },
