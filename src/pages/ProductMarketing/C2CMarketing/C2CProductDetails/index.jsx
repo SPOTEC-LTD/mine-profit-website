@@ -94,7 +94,7 @@ const C2CProductDetails = {
       const listData = [
         {
           icon: <img src={avatar || defaultAvatar} alt="" class={styles['person-avatar']}/>,
-          title: <CellTitle title={this.$t('marketPartHash')} />,
+          title: <CellTitle title={this.$t('Transferor')} />,
           content: <DetailContent mount={`${cname}`} class={styles['c2c-person-name']} />,
         },
         {
