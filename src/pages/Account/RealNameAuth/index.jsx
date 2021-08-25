@@ -17,7 +17,7 @@ import frontIdPhoto from '@/assets/account/front-id-photo.png';
 import backIdPhoto from '@/assets/account/back-id-photo.png';
 import videoAuthImage from '@/assets/account/video-auth-image.png';
 import { uploadFileUrl } from '@/api/file';
-import { idNumberReg } from '@/shared/consts/rules';
+import { idNumberReg, textReg } from '@/shared/consts/rules';
 import { MALE, FEMALE } from '@/shared/consts/getGenders';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import { ID_CARD, DRIVING_LICENSE, PASSPORT } from '@/shared/consts/getIdTypes';
@@ -248,19 +248,40 @@ const RealNameAuth = {
                   {getIsChinese() && (
                     <Col span={6}>
                       <Item label={this.$t('familyName')}>
-                        <Input v-model={this.form.lastName} maxLength={50} />
+                        <FormatInput
+                          value={this.form.lastName}
+                          formatReg={textReg}
+                          maxLength={50}
+                          onChange={value => {
+                            this.form.lastName = value;
+                          }}
+                        />
                       </Item>
                     </Col>
                   )}
                   <Col span={6}>
                     <Item label={this.$t('givenName')}>
-                      <Input v-model={this.form.firstName} maxLength={50} />
+                      <FormatInput
+                        value={this.form.firstName}
+                        formatReg={textReg}
+                        maxLength={50}
+                        onChange={value => {
+                          this.form.firstName = value;
+                        }}
+                      />
                     </Item>
                   </Col>
                   {getIsEnglish() && (
                     <Col span={6}>
                       <Item label={this.$t('familyName')}>
-                        <Input v-model={this.form.lastName} maxLength={50} />
+                      <FormatInput
+                          value={this.form.lastName}
+                          formatReg={textReg}
+                          maxLength={50}
+                          onChange={value => {
+                            this.form.lastName = value;
+                          }}
+                        />
                       </Item>
                     </Col>
                   )}
@@ -364,13 +385,13 @@ const RealNameAuth = {
                     value={this.frontPhotoUrl}
                     coverImage={frontIdPhoto}
                     uploadText={frontUploadText}
-                    onChange={ url => { console.log(url, 'fronturl'); this.frontPhotoUrl = url; }}
+                    onChange={url => { this.frontPhotoUrl = url; }}
                   />
                   <PhotoUpload
                     value={this.backPhotoUrl}
                     coverImage={backIdPhoto}
                     uploadText={backUploadText}
-                    onChange={ url => { console.log(url, 'backurl'); this.backPhotoUrl = url; }}
+                    onChange={ url => { this.backPhotoUrl = url; }}
                   />
                 </Item>
                 <Item label={this.$t('authVideoTitle')}>
