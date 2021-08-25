@@ -48,11 +48,11 @@ const EditAvatarNickname = {
       });
     },
     photoBeforeUpload(file) {
-      if (file.type.indexOf('image/') === -1) {
-        Notification.error(this.$t('fileFormatError'));
-        return false;
+      if (file.type === 'image/png' || file.type === 'image/jpeg' || file.type === 'image/jpg') {
+        return true;
       }
-      return true;
+      Notification.error(this.$t('fileFormatError'));
+      return false;
     },
     uploadAvatar({ file }) {
       if (file.status === 'uploading') {

@@ -17,12 +17,13 @@ import frontIdPhoto from '@/assets/account/front-id-photo.png';
 import backIdPhoto from '@/assets/account/back-id-photo.png';
 import videoAuthImage from '@/assets/account/video-auth-image.png';
 import { uploadFileUrl } from '@/api/file';
+import { idNumberReg } from '@/shared/consts/rules';
 import { MALE, FEMALE } from '@/shared/consts/getGenders';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import { ID_CARD, DRIVING_LICENSE, PASSPORT } from '@/shared/consts/getIdTypes';
 import { getIsChinese, getIsEnglish } from '@/shared/utils/getLocalLanguage';
 import Notification from '@/shared/services/Notification';
-import NumberInput from '@/shared/components/NumberInput';
+import FormatInput from '@/shared/components/FormatInput';
 import TradeBeforeVerified from '@/shared/components/TradeBeforeVerified';
 import { GLOBAL_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
 import PhotoUpload from './components/PhotoUpload';
@@ -335,8 +336,9 @@ const RealNameAuth = {
                   </Col>
                   <Col span={12}>
                     <Item label={this.$t('realNameAuthCertificateNum')}>
-                      <NumberInput
+                      <FormatInput
                         value={this.form.idNumber}
+                        formatReg={idNumberReg}
                         onChange={value => {
                           this.form.idNumber = value;
                         }}
