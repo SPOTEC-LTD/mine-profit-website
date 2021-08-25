@@ -1,3 +1,4 @@
+import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import './index.less';
 
 const OfficialProductInfoSurvey = {
@@ -28,7 +29,7 @@ const OfficialProductInfoSurvey = {
     return (
       <div class={['official-product-survey-wrapper', this.className]} >
         {this.cellNode({ name: this.$t('marketPartHash'), mount: amount, unit: `${unit}/${this.$t('part')}` })}
-        {this.cellNode({ name: this.$t('marketNetOutput'), mount: income, unit: chainType })}
+        {this.cellNode({ name: this.$t('marketNetOutput'), mount: bigNumberToFixed(income, 8), unit: chainType })}
         {this.cellNode({ name: this.$t('hashrateTime'), mount: 'T+1', unit: this.$t('day') })}
       </div>
     );
