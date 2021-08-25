@@ -27,6 +27,9 @@ const Leaderboard = {
   },
   computed: {
     formatTopList() {
+      if (!this.info.topList) {
+        return [];
+      }
       const { length } = this.info.topList;
       if (length < 10 && length > 0) {
         return [...this.topList, ...fill(new Array(10 - length), {})];

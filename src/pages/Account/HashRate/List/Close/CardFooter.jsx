@@ -8,6 +8,7 @@ import FooterButtonGroup from '@/pages/Account/HashRate/List/components/FooterBu
 import locationServices from '@/shared/services/location/locationServices';
 import { CLOSE } from '@/pages/Account/HashRate/consts/pledgeSourceType';
 import { pledgeHashratePath } from '@/router/consts/urls';
+import Notification from '@/shared/services/Notification';
 import FooterLayout from '../components/FooterLayout';
 import AmountValue from '../components/AmountValue';
 
@@ -27,11 +28,7 @@ const CardFooter = {
         [HASHRATE_NUMBER_NO_ENOUGH]: this.$t('hashratePledgeSameNotEnough'),
       };
 
-      // Toast({
-      //   message: pledgeMessageMap[isPledge],
-      //   icon: 'warning-o',
-      //   duration: 1000,
-      // });
+      Notification.error(pledgeMessageMap[isPledge]);
     },
 
     getButtonDataSource(data) {
