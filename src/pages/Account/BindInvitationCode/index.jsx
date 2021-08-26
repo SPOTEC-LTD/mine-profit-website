@@ -81,9 +81,10 @@ const BindInvitationCode = {
                 <Input
                   class={styles['invite-input']}
                   allowClear
-                  v-model={this.formInvitation.invitationCode}
+                  value={this.formInvitation.invitationCode}
                   placeholder={this.$t('pleaseEnterBindInvitationCode')}
                   maxLength={5}
+                  onChange={e => { this.formInvitation.invitationCode = e.target.value.trim(); }}
                 />
               </FormModel.Item>
             </FormModel>

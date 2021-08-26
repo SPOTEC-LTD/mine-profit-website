@@ -13,4 +13,9 @@ export default {
   tryAgain: '点击重试',
   accountAndSecurityAuth: '认证中',
   accountAndSecurityAuthFail: '认证失败',
+  weeklyOutputReport: '产出周报',
+  equivalentIncome: '折合收入',
+  incomeMoreThan: '收入超过了',
+  mpUsers: 'MineProfit用户',
+  nice: '好极了！',
 };
