@@ -9,6 +9,7 @@ import ShareQrCodeModal from '@/shared/components/ShareQrCodeModal';
 import defaultAvatar from '@/assets/rank/defaultAvatar.png';
 import { getLocalLanguage } from '@/shared/utils/getLocalLanguage';
 import BaseModal from '@/shared/components/BaseModal';
+import { PHONE } from '@/shared/consts/registerType';
 import locationServices from '@/shared/services/location/locationServices';
 import locationHelp from '@/shared/utils/locationHelp';
 import EditAvatarNickname from '../components/EditAvatarNickname';
@@ -101,7 +102,8 @@ const Detail = {
   },
   render() {
     const { validCouponCount } = this.info;
-    const { avatar, nickName, registerAccount, level } = this.userInfo;
+    const { avatar, nickName, registerAccount, level, phonePrefix, registerType } = this.userInfo;
+    const account = registerType === PHONE ? `${phonePrefix} ${registerAccount}` : registerAccount;
 
     return (
       <BaseContainer class={styles['account-base-info']}>
@@ -127,7 +129,7 @@ const Detail = {
                 </a>
                 <a onClick={this.handleLogout}>{this.$t('logout')}</a>
               </div>
-              <div>{`${this.$t('accountAndSecurityAccount')}：${registerAccount || '-'}`}</div>
+              <div>{`${this.$t('accountAndSecurityAccount')}：${account || '-'}`}</div>
               <div>{`${this.$t('promoteRank')}：${level || '-'}`}</div>
             </div>
           </div>

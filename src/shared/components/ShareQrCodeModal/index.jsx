@@ -19,7 +19,7 @@ const ShareQrCodeModal = {
     getContent() {
       return (
         <div class={styles.wrapper}>
-          <div class={styles.title}>{this.title}</div>
+          <div class={styles.title}>{this.title}</div>
           <QRCodeModule
             onGetQrCodeUrl={url => {
               this.qrCodeUrl = url;
