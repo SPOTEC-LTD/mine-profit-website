@@ -31,7 +31,7 @@
             </div>
             <Spin :spinning="loading">
               <div class="question-content">
-                <QuestionItem v-for="(item,index) in questionList" :id="item.id" :key="index" :question="item.question" />
+                <QuestionItem v-for="item in questionList" :id="item.id" :key="item.id" :question="item.title" />
               </div>
             </Spin>
           </div>
@@ -76,7 +76,6 @@ import { Input, Spin } from 'ant-design-vue';
 import SearchOutlined from 'ahoney/lib/icons/SearchOutlined';
 import BaseContainer from '@/shared/components/BaseContainer';
 import { fetchQuestionList } from '@/api';
-import { SHOW } from '@/shared/consts/visible';
 import { getLocalLanguage, getIsChinese } from '@/shared/utils/getLocalLanguage';
 import QuestionItem from './QuestionItem/index.vue';
 
@@ -113,7 +112,7 @@ export default {
       this.questionList = [];
       fetchQuestionList({
         data: {
-          pageNum: 1, pageSize: 6, order: 'DESC', field: 'sort', showStatus: SHOW, locale: this.locale,
+          pageNum: 1, pageSize: 6,
         },
       }).then(data => {
         this.loading = false;

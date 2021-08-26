@@ -16,8 +16,6 @@
 <script>
 import { Spin } from 'ant-design-vue';
 import { getAnnouncementList } from '@/api';
-import { SHOW } from '@/shared/consts/visible';
-import getLocalLanguage from '@/shared/utils/getLocalLanguage';
 import scrollEvent from '@/shared/utils/scrollEvent';
 import NewsItem from './NewsItem/index.vue';
 
@@ -53,7 +51,7 @@ export default {
       this.fetching = true;
       getAnnouncementList({
         data: {
-          pageNum: this.pageNum, pageSize: this.pageSize, showStatus: SHOW, locale: getLocalLanguage(),
+          pageNum: this.pageNum, pageSize: this.pageSize,
         },
       }).then(data => {
         const { body: { list } } = data;
