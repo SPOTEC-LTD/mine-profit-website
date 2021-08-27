@@ -191,6 +191,7 @@ const StationMail = {
       mailAllRead()
         .then(() => {
           this.isShowAllReadNode = false;
+          this[GET_USER_BADGE]();
           this.fetchStationMailList({ reset: true });
         });
     },
