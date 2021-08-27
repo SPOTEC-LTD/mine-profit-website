@@ -106,7 +106,7 @@ const PageHeader = {
                 {this.$t('hashRateMarket')}
               </NavMenu>
               <NavMenu hrefPrefix={urls.newsPath} items={this.getNews()}>{this.$t('newsAnnouncement')}</NavMenu>
-              <NavLink href="/help">{this.$t('helpCenter')}</NavLink>
+              <NavLink href={urls.helpPath}>{this.$t('helpCenter')}</NavLink>
             </div>
           </div>
           <div class={styles['header-right-content']}>

@@ -53,3 +53,6 @@ export const historyRankPath = '/historyRank';
 export const investProtocolPath = '/investProtocol';
 export const privacyProtocolPath = '/privacyProtocol';
 export const serviceProtocolPath = '/serviceProtocol';
+
+// ===== helpPaths
+export const helpPath = '/help';
