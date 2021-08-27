@@ -22,20 +22,32 @@
       }
     }
 
-    .announce-main-box {
-      height: 22px;
-      width: 300px;
-      font-size: @font-size-lg;
-      font-weight: 500;
-      line-height: 22px;
-      overflow: hidden;
+    :global {
+      .mp-carousel {
+        .slick-slider {
+          height: 22px;
+          width: 300px;
+          font-size: @font-size-lg;
+          font-weight: 500;
+          line-height: 22px;
+          overflow: hidden;
+        }
 
-      .announce-main {
-        color: @color__232323;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        .slick-list {
+          height: 29px !important;
+        }
+
+        .slick-slide {
+          height: 27px;
+        }
       }
+    }
+
+    .announce-main {
+      color: @color__232323;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
   }
 
