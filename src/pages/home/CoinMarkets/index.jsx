@@ -27,9 +27,23 @@ const CoinMarkets = {
     },
     marketsList() {
       const rebuildList = this.data.map((item, index) => {
+        let textColor = '';
+        if (item.priceRate !== 0) {
+          textColor = item.priceRate > 0 ? 'coin-color-blue' : 'coin-color-red';
+        }
+
         return {
           key: index,
           ...item,
+          textColor,
+          price: numberUtils.formatNumber(item.price, {
+            minimumFractionDigits: 2,
+            useGrouping: false,
+          }),
+          priceRate: numberUtils.formatPercent(item.priceRate, {
+            minimumFractionDigits: 2,
+            usePlus: item.priceRate > 0,
+          }),
         };
       });
       if (this.isHidden) {
@@ -58,10 +72,10 @@ const CoinMarkets = {
         title: this.$t('currentPrice'),
         dataIndex: 'price',
         align: 'right',
-        customRender: (_, { price }) => {
+        customRender: value => {
           return (
             <div class={styles['coin-price']}>
-              {`$${numberUtils.formatNumber(price, { minimumFractionDigits: 2 })}`}
+              {`$${value}`}
             </div>
           );
         },
@@ -71,16 +85,9 @@ const CoinMarkets = {
         dataIndex: 'priceRate',
         align: 'right',
         width: 220,
-        customRender: (_, { priceRate }) => {
+        customRender: (_, { priceRate, textColor }) => {
           return (
-            <div class={styles['coin-price']}>
-              {
-                numberUtils.formatPercent(priceRate, {
-                  minimumFractionDigits: 2,
-                  usePlus: priceRate > 0,
-                })
-              }
-            </div>
+            <div class={[styles['coin-price'], styles[textColor]]}>{priceRate}</div>
           );
         },
       },
