@@ -1,3 +1,5 @@
+import { Statistic } from 'ant-design-vue';
+
 import localStorage from '@/shared/utils/localStorage';
 import { getUserInfo } from '@/api/user';
 import { PENDING, PASS, REJECT, NOT_SUBMIT } from '@/shared/consts/kycStatus';
@@ -99,7 +101,7 @@ const TradeBeforeVerified = {
       );
     },
 
-    getNotSubmitBtnList() {
+    getNotSubmitList() {
       const realName = {
         label: this.$t('accountAndSecurityTradePwd'),
         show: !this.isDealCodeSet,
@@ -115,7 +117,19 @@ const TradeBeforeVerified = {
       };
       const realNameButton = this.isDealCodeSet ? [] : [realName];
       const passwordButton = (this.isVerifiedKyc && this.isKycNotSubmit) ? [password] : [];
-      return [...realNameButton, ...passwordButton];
+      let notSubmitDesc = '';
+      if (this.isVerifiedKyc && this.isKycNotSubmit && !this.isDealCodeSet) {
+        notSubmitDesc = this.$t('verifyDialogContent');
+      } else {
+        notSubmitDesc = !this.isDealCodeSet
+          ? this.$t('verifyDialogRealNameContent')
+          : this.$t('verifyDialogPasswordContent');
+      }
+
+      return {
+        notSubmitBtnList: [...realNameButton, ...passwordButton],
+        notSubmitDesc,
+      };
     },
 
     getDialogInfo(status) {
@@ -129,12 +143,13 @@ const TradeBeforeVerified = {
         onClick: () => { locationHelp.open(realNameAuthPath); },
         type: 'primary',
       }];
+      const { notSubmitBtnList, notSubmitDesc } = this.getNotSubmitList();
       const kycStatusMap = {
         [NOT_SUBMIT]: {
           title: this.$t('supplementaryInformation'),
-          btnList: this.getNotSubmitBtnList(),
+          btnList: notSubmitBtnList,
           image: verifyImgDialog,
-          describe: this.$t('verifyDialogContent'),
+          describe: notSubmitDesc,
         },
         [PENDING]: {
           title: this.$t('accountAndSecurityAuth'),
@@ -158,6 +173,11 @@ const TradeBeforeVerified = {
       return kycStatusMap[this.isDealCodeSet ? status : NOT_SUBMIT];
     },
 
+    handleCountDownFinish({ onClick }) {
+      onClick();
+      this.showDialog = false;
+    },
+
     getDialogContentNode() {
       const { btnList, image, describe } = this.getDialogInfo(this.kycStatus);
       return (
@@ -170,6 +190,15 @@ const TradeBeforeVerified = {
             className={'button-group'}
             dataSource={btnList}
           />
+          {this.showDialog && this.kycStatus === NOT_SUBMIT && btnList.length === 1 && (
+            <div class="verified-countdown">
+              <Statistic.Countdown
+                value={Date.now() + 1000 * 5}
+                format={this.$t('countdownFormat', { second: 's' })}
+                onFinish={() => { this.handleCountDownFinish(btnList[0]); }}
+              />
+            </div>
+          )}
         </div>
       );
     },
