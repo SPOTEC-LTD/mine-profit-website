@@ -34,7 +34,7 @@ const RewardCard = {
               />
               <div>
                 <div class='reward-item-type'>
-                  {item.rewardType === VIP_HASHRATE ? this.$t('vipHashRate') : this.$t('vipCouponTitle')}
+                  {item.rewardType === VIP_HASHRATE ? this.$t('hashrateVIPHash') : this.$t('hashRateCoupons')}
                 </div>
                 <div class='reward-item-name'>{item.name}</div>
               </div>

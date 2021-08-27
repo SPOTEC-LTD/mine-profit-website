@@ -52,12 +52,12 @@
             <Spin :spinning="loading">
               <div v-if="resultNumber !== 0" class="result-box">
                 <QuestionItem
-                  v-for="(item,index) in resultList"
+                  v-for="item in resultList"
                   :id="item.id"
-                  :key="index"
+                  :key="item.id"
                   isHighlight
                   :resultKeyWord="resultSearchValue"
-                  :question="item.question"
+                  :question="item.title"
                 />
               </div>
               <div v-else class="no-result">
@@ -141,7 +141,7 @@ export default {
       this.$refs.boxRef.style.height = '235px';
 
       fetchQuestionList({
-        data: { title: this.searchValue, locale: this.locale },
+        data: { title: this.searchValue },
       }).then(data => {
         this.loading = false;
         const { body: { list } } = data;

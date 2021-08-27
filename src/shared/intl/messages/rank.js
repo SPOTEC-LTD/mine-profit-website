@@ -19,7 +19,7 @@ export default {
   pleaseSelectPeriod: '请选择期数',
   year: '{value}年',
   ranking: '名',
-  vipHashRate: 'VIP算力',
+  rank: '排行榜',
   issueRewardSettings: '本期奖励设置',
   historyRank: '历史排行',
   viewNow: '立即查看',

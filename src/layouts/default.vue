@@ -19,7 +19,7 @@ import { ConfigProvider, Modal } from 'ant-design-vue';
 import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN';
 import enUS from 'ant-design-vue/es/locale/en_US';
 import PageHeader from '@/shared/components/PageHeader';
-import PageFooter from '@/shared/components/page-footer';
+import PageFooter from '@/shared/components/PageFooter';
 import locale from '@/shared/intl/utils/locale';
 import dateUtils from '@/shared/intl/utils/dateUtils';
 import isServerSide from '@/shared/utils/isServerSide';

@@ -25,21 +25,21 @@
             {{ $t('information') }}
           </div>
           <ALink
-            :to="{ path: '/newsAnnouncement', query: { type: '2' } }"
+            :to="{ path: newsAnnouncementPath, query: { type: '2' } }"
             :isReload="true"
             class="page-footer-nav-item"
           >
             {{ $t('newsletter') }}
           </ALink>
           <ALink
-            :to="{ path: '/newsAnnouncement', query: { type: '1' } }"
+            :to="{ path: newsAnnouncementPath, query: { type: '1' } }"
             :isReload="true"
             class="page-footer-nav-item"
           >
             {{ $t('recommendArticle') }}
           </ALink>
           <ALink
-            :to="{ path: '/newsAnnouncement', query: { type: '3' } }"
+            :to="{ path: newsAnnouncementPath, query: { type: '3' } }"
             :isReload="true"
             class="page-footer-nav-item"
           >
@@ -51,7 +51,7 @@
             {{ $t('support') }}
           </div>
           <ALink
-            to="/help"
+            :to="helpPath"
             :isReload="true"
             class="page-footer-nav-item"
           >
@@ -65,11 +65,12 @@
 
 <script>
 import { fetchBizSocialInfo } from '@/api';
-import Link from '@/shared/components/Link';
 import FacebookFilled from 'ahoney/lib/icons/FacebookFilled';
 import TwitterFilled from 'ahoney/lib/icons/TwitterFilled';
 import MailFilled from 'ahoney/lib/icons/MailFilled';
+import Link from '@/shared/components/Link';
 import { getIsEnglish } from '@/shared/utils/getLocalLanguage';
+import { newsAnnouncementPath, helpPath } from '@/router/consts/urls';
 
 export default {
   components: {
@@ -83,6 +84,8 @@ export default {
     return {
       socialData: {},
       isEnLanguage: getIsEnglish(),
+      newsAnnouncementPath,
+      helpPath,
     };
   },
 
