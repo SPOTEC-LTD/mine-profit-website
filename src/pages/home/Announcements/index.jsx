@@ -28,7 +28,6 @@ const Announcements = {
             autoplay
             dotPosition='left'
             dots={false}
-            class={styles['announce-main-box']}
           >
             {
               this.announcementList.map(({ title, id }, i) => (
