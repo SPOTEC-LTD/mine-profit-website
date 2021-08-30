@@ -52,7 +52,7 @@ export default {
   marketNewUserExclusive: '专享',
   marketRemainTime: '剩余',
   shareInvestNow: '立即购买',
-  newUserRemainTime: '剩余专享: {day} 天 {hour} 时 {minute} 分 {second} 秒',
+  newUserRemainTime: '专享剩余: {day} 天 {hour} 时 {minute} 分 {second} 秒',
   marketSoldOut: '已售罄',
   marketConfirmSettle: '确认结算',
   max: '最大',
