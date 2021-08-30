@@ -1,84 +1,86 @@
-.coin-data {
-  width: 484px;
+@import "@/shared/styles/variables.less";
+
+.coin-data-wrapper {
+  width: 582px;
   border-radius: 18px;
   box-shadow: 0 5px 10px 5px  rgba(92, 118, 166, 0.11);
-  border: 1px solid #fff;
   overflow: hidden;
+  background-color: @white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  .coin-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-    height: 82px;
-    padding: 0 26px 0 16px;
-  }
+.coin-content-wrapper {
+  padding: 20px 0 38px 28px;
+}
 
-  .name-icon {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    font-size: 24px;
+.name-icon {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: @font-size__24;
+  padding-bottom: 15px;
 
-    img {
-      width: 48px;
-      padding-top: 5px;
-      padding-left: 10px;
-    }
-  }
-
-  .now-hash-rate {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-
-    .now-number {
-      font-size: 22px;
-      padding-top: 5px;
-    }
-  }
-
-  .coin-content {
-    display: flex;
-    justify-content: space-between;
-    padding: 17px 26px 0;
-    height: 91px;
-    font-weight: 500;
-    font-size: 22px;
-  }
-
-  .different-produce {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-start;
-    color: #0e1d34;
-  }
-
-  .self-produce {
-    .unit {
-      font-size: 14px;
-      font-weight: 400;
-    }
-  }
-
-  .usdt-producer {
-    font-size: 14px;
-    font-weight: 400;
+  img {
+    width: 21px;
+    height: 25px;
+    margin-right: 10px;
   }
 }
 
-.btc-container {
-  margin-right: 30px;
+.now-hash-rate {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  color: @color__242424;
 
-  .coin-title {
-    background-color: #f89e30;
+  &::before {
+    display: inline-block;
+    content: '';
+    width: 144px;
+    height: 1px;
+    background-color: @color__242424;
+    margin-bottom: 18px;
   }
 }
 
-.eth-container {
-  .coin-title {
-    background-color: #343b5b;
-  }
+.hash-rate-details {
+  padding-top: 3px;
+}
+
+.now-number {
+  font-size: @font-size__32;
+}
+
+.coin-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+  height: 91px;
+  color: @color__242424;
+}
+
+.self-produce {
+  font-size: @font-size__32;
+  color: @color__0e1d34;
+  font-weight: 500;
+}
+
+.unit {
+  font-size: @font-size-base;
+  padding-left: 6px;
+}
+
+.usdt-producer {
+  font-size: @font-size-base;
+  font-weight: 400;
+}
+
+.coin-img {
+  height: 100%;
+  width: 216px;
+  display: block;
 }

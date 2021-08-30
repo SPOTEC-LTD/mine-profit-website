@@ -5,18 +5,20 @@ import isEmpty from 'lodash/isEmpty';
 import ProductMarket from '@/pages/home/ProductMarket';
 import BlockChainDate from '@/pages/home/BlockChainDate';
 import BaseContainer from '@/shared/components/BaseContainer';
-import { HOME, GET_MARKETS_LIST, GET_HOME_PRODUCT_LIST, GET_HASHRATE_COUPON_POPUP_LIST,
-  GET_HASHRATE_POPUP_LIST } from '@/modules/home';
-import RankEnter from '@/pages/home/RankEnter';
-import TradeBeforeVerified from '@/shared/components/TradeBeforeVerified';
+import { HOME, GET_MARKETS_LIST, GET_HASHRATE_COUPON_POPUP_LIST,
+  GET_HOME_PRODUCT_LIST, GET_HASHRATE_POPUP_LIST } from '@/modules/home';
+import OurAdvantage from '@/pages/home/OurAdvantage';
 import localStorage from '@/shared/utils/localStorage';
-import HashrateCouponModal from './component/HashrateCouponModal';
-import HashrateModal from './component/HashrateModal';
-import BannerModal from './component/BannerModal';
+import TradeBeforeVerified from '@/shared/components/TradeBeforeVerified';
+import CooperationCompany from '@/pages/home/CooperationCompany';
+import CorporateCulture from '@/pages/home/CorporateCulture';
 import Banner from './Banner';
-import Announcements from './Announcements';
-import CoinMarkets from './CoinMarkets';
 import Download from './Download';
+import CoinMarkets from './CoinMarkets';
+import Announcements from './Announcements';
+import BannerModal from './component/BannerModal';
+import HashrateModal from './component/HashrateModal';
+import HashrateCouponModal from './component/HashrateCouponModal';
 
 import styles from './index.less?module';
 
@@ -177,12 +179,21 @@ const Home = {
           <CoinMarkets data={this.marketsList} loading={this.marketsLoading} />
           <ProductMarket productList={this.productList} />
         </BaseContainer>
-        <RankEnter />
-        <BaseContainer>
-          <BlockChainDate />
-        </BaseContainer>
+
+        <div class={styles['chain-data-wrap']}>
+          <BaseContainer>
+            <BlockChainDate />
+            <OurAdvantage />
+            <CooperationCompany />
+          </BaseContainer>
+        </div>
+
         <BaseContainer className={styles['download-wrap']}>
           <Download versionInfo={this.versionInfo} />
+        </BaseContainer>
+
+        <BaseContainer>
+          <CorporateCulture />
         </BaseContainer>
 
         <TradeBeforeVerified

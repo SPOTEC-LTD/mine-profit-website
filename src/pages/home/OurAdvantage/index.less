@@ -1,0 +1,55 @@
+@import '@/shared/styles/variables.less';
+
+.our-advantage-container {
+  position: relative;
+  margin: 105px 0 115px;
+}
+
+.square-line-icon {
+  position: absolute;
+  left: -16px;
+  top: 22px;
+
+  &::after {
+    display: block;
+    content: '';
+    width: 57px;
+    height: 2px;
+    background-color: @color__ffd100;
+    position: absolute;
+    bottom: 0;
+    left: 40px;
+  }
+}
+
+.square-right-icon {
+  position: absolute;
+  top: 0;
+  right: 30px;
+}
+
+.advantage-title-image {
+  color: @white;
+
+  img {
+    height: 64px;
+  }
+}
+
+.square-blue-icon {
+  position: absolute;
+  right: -16px;
+  bottom: -42px;
+  z-index: @z-index__-1;
+
+  &::after {
+    display: block;
+    content: '';
+    width: 57px;
+    height: 2px;
+    background-color: @color__primary;
+    position: absolute;
+    bottom: -40px;
+    left: 55px;
+  }
+}
