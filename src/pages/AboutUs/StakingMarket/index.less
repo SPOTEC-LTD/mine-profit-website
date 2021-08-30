@@ -1,0 +1,67 @@
+@import "@/shared/styles/variables.less";
+@import "../keyframes.less";
+
+.staking-market-container {
+  min-height: 609px;
+
+  .staking-market-text {
+    padding-bottom: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .staking-market-dots-icon {
+    position: absolute;
+    bottom: 218px;
+    left: 20px;
+  }
+
+  /deep/ .staking-market-title-img {
+    width: 652px;
+    position: relative;
+    padding-bottom: 8px;
+
+    img {
+      height: 63px;
+    }
+  }
+
+  .staking-market-introduce {
+    width: 652px;
+    font-size: @font-size-lg;
+    line-height: 30px;
+    color: @color__0e1d34;
+  }
+
+  .step-card {
+    width: 100%;
+    position: relative;
+    color: @color__393939;
+    font-size: @font-size-lg;
+    height: 772px;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.flow-chart {
+  width: 100%;
+}
+
+.flow-container {
+  position: relative;
+}
+
+.flow-robot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(46px, -28px);
+  width: 74px;
+  height: 96px;
+  animation: robot-move 2s ease-in-out infinite;
+}

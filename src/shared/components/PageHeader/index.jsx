@@ -5,7 +5,6 @@ import EmailCircleOutlined from 'ahoney/lib/icons/EmailCircleOutlined';
 import TipCirccleOutlined from 'ahoney/lib/icons/TipCirccleOutlined';
 import locationServices from '@/shared/services/location/locationServices';
 import { RECOMMEND, NEWSLETTER, ANNOUNCEMENT } from '@/shared/consts/newsType';
-import { ABOUT_US, ECOSPHERE } from '@/shared/consts/aboutUsType';
 import { I18N } from '@@/i18n';
 import isEmpty from 'lodash/isEmpty';
 import Link from '@/shared/components/Link';
@@ -59,21 +58,6 @@ const PageHeader = {
         },
       ];
     },
-    getAboutUs() {
-      return ([
-        {
-          href: urls.aboutUsPaths,
-          name: this.$t('aboutUs'),
-          type: ABOUT_US,
-
-        },
-        {
-          href: urls.aboutUsPaths,
-          name: this.$t('ecosphere'),
-          type: ECOSPHERE,
-        },
-      ]);
-    },
     getHashrateMarkets() {
       return ([
         {
@@ -101,12 +85,12 @@ const PageHeader = {
             </Link>
             <div class={styles['page-header-nav']}>
               <NavLink href={urls.homePath}>{this.$t('home')}</NavLink>
-              <NavMenu hrefPrefix={urls.aboutUsPaths} items={this.getAboutUs()}>{this.$t('aboutUs')}</NavMenu>
               <NavMenu hrefPrefix={urls.marketingPaths} items={this.getHashrateMarkets()}>
                 {this.$t('hashRateMarket')}
               </NavMenu>
               <NavMenu hrefPrefix={urls.newsPath} items={this.getNews()}>{this.$t('newsAnnouncement')}</NavMenu>
               <NavLink href={urls.helpPath}>{this.$t('helpCenter')}</NavLink>
+              <NavLink href={urls.aboutUsPaths}>{this.$t('aboutUs')}</NavLink>
             </div>
           </div>
           <div class={styles['header-right-content']}>

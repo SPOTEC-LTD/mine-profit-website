@@ -1,43 +1,52 @@
-import KeepTabs from '@/shared/components/KeepTabs';
+import throttle from 'lodash/throttle';
+import SubjectSummary from '@/pages/AboutUs/SubjectSummary';
+import HashRateEcosphere from '@/pages/AboutUs/HashRateEcosphere';
+import StakingMarket from '@/pages/AboutUs/StakingMarket';
+import C2CMarket from '@/pages/AboutUs/C2CMarket';
+import CooperationPartner from '@/pages/AboutUs/CooperationPartner';
 import BaseContainer from '@/shared/components/BaseContainer';
-import { ABOUT_US, ECOSPHERE } from '@/shared/consts/aboutUsType';
-import Ecosphere from './Ecosphere';
-import AboutCompany from './AboutCompany';
-import styles from './index.less?module';
 
-const { TabPane } = KeepTabs;
 const AboutUs = {
   data() {
     return {
-      active: this.$route.query.type || ABOUT_US,
+      isC2CAnimate: false,
+      isStakingAnimate: false,
+      isShowCooperation: false,
     };
   },
 
-  methods: {
-    onTabsChange(newKey) {
-      this.active = newKey;
-    },
+  created() {
+    this.scrollThrottle = throttle(this.onHandleScroll, 300);
   },
 
+  mounted() {
+    window.addEventListener('scroll', this.scrollThrottle, false);
+  },
+
+  destroyed() {
+    window.removeEventListener('scroll', this.scrollThrottle);
+  },
+  methods: {
+    onHandleScroll() {
+      const { scrollTop } = document.documentElement;
+      if (scrollTop > 368 && scrollTop < 900) {
+        this.isC2CAnimate = true;
+      } else if (scrollTop > 900 && scrollTop < 1710) {
+        this.isStakingAnimate = true;
+      } else if (scrollTop >= 1710) {
+        this.isShowCooperation = true;
+      }
+    },
+  },
   render() {
     return (
-      <div class={styles['about-us-container']} >
-        <BaseContainer>
-          <KeepTabs
-            class='mine-tabs-line'
-            value={this.active}
-            onChange={this.onTabsChange}
-            activeKeyName="type"
-          >
-            <TabPane key={ABOUT_US} tab={this.$t('aboutUs')}>
-              <AboutCompany />
-            </TabPane>
-            <TabPane key={ECOSPHERE} tab={this.$t('ecosphere')}>
-              <Ecosphere />
-            </TabPane>
-          </KeepTabs>
-        </BaseContainer>
-      </div>
+      <BaseContainer>
+        <SubjectSummary />
+        <HashRateEcosphere />
+        <C2CMarket isC2CAnimate={this.isC2CAnimate} />
+        <StakingMarket isStakingAnimate={this.isStakingAnimate} />
+        <CooperationPartner isShowCooperation={this.isShowCooperation} />
+      </BaseContainer>
     );
   },
 };
