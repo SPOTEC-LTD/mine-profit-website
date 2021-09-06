@@ -5,6 +5,7 @@ import KeepTabs from '@/shared/components/KeepTabs';
 import dateUtils from '@/shared/intl/utils/dateUtils';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import getTimes from '@/shared/utils/getTimes';
+import { getSettleStatusMessage } from '@/shared/consts/settleStatus';
 import Card from '../components/Card';
 import WidgetTitle from '../components/WidgetTitle';
 import styles from './index.less?module';
@@ -53,6 +54,7 @@ const Investment = {
       },
       {
         title: this.$t('investPeople'), // 投资人
+        class: styles['invest-people'],
         dataIndex: 'nickname',
         align: 'center',
       },
@@ -90,6 +92,25 @@ const Investment = {
       },
     ];
 
+    const otherColumns = [
+      {
+        title: this.$t('investItemReson'), // '投资期限'
+        dataIndex: 'settleStatus',
+        align: 'center',
+        customRender: (value) => {
+          return getSettleStatusMessage(value);
+        },
+      },
+      {
+        title: this.$t('investItemTime'),
+        dataIndex: 'settleTime',
+        align: 'center',
+        customRender(value) {
+          return dateUtils.formatDateTime(value, 'YYYY.MM.DD HH:mm');
+        },
+      },
+    ];
+
     return (
       <div>
         <WidgetTitle>{this.$t('mineTitleInvest')}</WidgetTitle>
@@ -114,7 +135,7 @@ const Investment = {
               <Table
                 class={styles.table}
                 rowKey="id"
-                columns={columns}
+                columns={columns.concat(otherColumns)}
                 dataSource={this.settledList}
                 loading={this.getListLoading}
                 pagination={false}
