@@ -88,7 +88,7 @@ const PayWaySelector = {
         resultMount = bigNumberToFixed(this.willPayAmount, 2);
       } else {
         const rate = coin === 'BTC' ? this.btcRate : this.ethRate;
-        resultMount = getDivided({ number: this.willPayAmount, divisor: rate, decimal: 8 });
+        resultMount = getDivided({ number: this.willPayAmount, divisor: rate, decimal: 8, isRounding: true });
       }
       this.choosesCoin = coin;
       this.payAmount = resultMount;

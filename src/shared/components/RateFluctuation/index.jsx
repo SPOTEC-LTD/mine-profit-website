@@ -1,5 +1,6 @@
 import RichText from '@/shared/components/RichText';
 import ConfirmModal from '@/shared/components/ConfirmModal';
+import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import rateFluctuationImg from '@/assets/productMarket/rateFluctuationImg.png';
 import './index.less';
 
@@ -27,7 +28,7 @@ const RateFluctuation = {
         <div class={className} >
           <span class='fluctuation-pay-mount-title'>{title}</span>
           <div class='fluctuation-pay-mount'>
-            <span>{money}</span>
+            <span>{bigNumberToFixed(money, 8)}</span>
             <span class='fluctuation-pay-unit'>{unit}</span>
           </div>
       </div>

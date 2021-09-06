@@ -1,4 +1,3 @@
-import { Statistic } from 'ant-design-vue';
 import includes from 'lodash/includes';
 import ReticuleOutlined from 'ahoney/lib/icons/ReticuleOutlined';
 import TimeOutlined from 'ahoney/lib/icons/TimeOutlined';
@@ -17,7 +16,6 @@ import { CNY } from '@/shared/consts/currencyType';
 import RichText from '@/shared/components/RichText';
 import getCoinRate from '@/shared/utils/getCoinRate';
 import * as rateExchangeAPI from '@/api/rateExchange';
-import DateUtils from '@/shared/intl/utils/dateUtils';
 import TagGroup from '@/pages/home/component/TagGroup';
 import Notification from '@/shared/services/Notification';
 import * as officialProductAPI from '@/api/officialMarket';
@@ -198,28 +196,14 @@ const OfficialProductDetails = {
           <span class={styles['price-tag']}>{this.$t('sellPrice')}</span>
           <span class={styles['result-price']}>{bigNumberToFixed(resultPrice, 2)}</span>
           <div class={styles['discount-info-container']}>
-            {this.isNewUser && (
-              <div>
+            <div>
+              { this.isNewUser && (
                 <span class={styles['deleted-price']}>{bigNumberToFixed(packageHashratePrice, 2)}</span>
-                <span>{`USDT/${this.$t('part')}`}</span>
-              </div>
-            )}
+              )}
+              <span>{`USDT/${this.$t('part')}`}</span>
+            </div>
             {this.isChinese && <div>{`≈${cnyPrice} CNY/${this.$t('part')}`}</div>}
           </div>
-        </div>
-      );
-    },
-
-    getLookingForwardNode() {
-      const { onlineTime } = this.officialProductDetails;
-      const startDate = DateUtils.formatDateTime(onlineTime);
-      const nowTime = DateUtils.formatToTimestamp(DateUtils.getToday());
-      const restTime = +getMinus({ number: onlineTime, minuend: nowTime, decimal: 0 });
-      const format = this.$t('remainTime', { day: 'DD', hour: 'HH', minute: 'mm', second: 'ss' });
-      return (
-        <div class={styles['looking-forward-wrapper']}>
-          <Statistic.Countdown value={Date.now() + restTime} format={format} class={styles['time-count-down']} />
-          <div>{`${startDate} ${this.$t('marketOnlineTime')}`}</div>
         </div>
       );
     },
@@ -261,7 +245,6 @@ const OfficialProductDetails = {
                 total={`${finalTotal}${unit}`}
                 rest={`${this.rest} ${unit}`}
               />
-              {isLookForward && this.getLookingForwardNode()}
             </div>
             <div class={styles['purchase-price']}>
               {this.getSalePriceNode()}

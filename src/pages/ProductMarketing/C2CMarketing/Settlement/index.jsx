@@ -113,9 +113,9 @@ const Settlement = {
       return (
         <div class={styles['footer-pay-mount']}>
           <span class={styles['footer-pay-title']}>{this.$t('orderPrice')}</span>
-          <div class={styles['footer-pay-content']}>
-            <span class={styles['footer-pay-number']}>{this.coinWillPay || this.hashRatePrice}</span>
-            <span>{this.payCoin}</span>
+          <div>
+            <span class={styles['footer-pay-number']}>{bigNumberToFixed(this.hashRatePrice, 2)}</span>
+            <span class={styles['footer-pay-unit']}>USDT</span>
           </div>
         </div>
       );

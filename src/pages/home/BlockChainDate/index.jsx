@@ -58,7 +58,7 @@ const BlockChainDate = {
         <div>
           <BlockTitle
             img={blockChainImg}
-            title={this.isChinese && this.$t('ourAdvantage')}
+            title={this.isChinese && this.$t('mineData')}
             class={styles['block-chain-img']}
           />
           <div class={styles['coin-data-container']}>
