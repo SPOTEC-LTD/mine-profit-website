@@ -42,7 +42,7 @@ const Hashrate = {
       return [
         {
           title: this.$t('hashrateTotalHash'),
-          value: `${bigNumberToFixed(item.totalAmount, 8)} ${item.unit}`,
+          value: `${bigNumberToFixed(item.totalAmount, 2)} ${item.unit}`,
         },
         {
           title: this.$t('hashrateAllNetOutput'),
