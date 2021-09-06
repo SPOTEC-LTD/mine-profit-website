@@ -55,7 +55,7 @@ const TagGroup = {
       return (
         <MarketNewBuyBuff
           buffDays={buffDays}
-          buffRate={getTimes({ number: buffRate, times: 100, decimal: 0 })}
+          buffRate={getTimes({ number: buffRate, times: 100, decimal: 2 })}
         />
       );
     },

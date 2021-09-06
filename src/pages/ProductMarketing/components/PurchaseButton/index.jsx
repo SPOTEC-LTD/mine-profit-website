@@ -1,4 +1,6 @@
 import { Button, Statistic } from 'ant-design-vue';
+import getMinus from '@/shared/utils/getMinus';
+import DateUtils from '@/shared/intl/utils/dateUtils';
 import getNewRegisterTime from '@/shared/utils/getNewRegisterTime';
 import TradeBeforeVerified from '@/shared/components/TradeBeforeVerified';
 import './index.less';
@@ -50,6 +52,22 @@ const PurchaseButton = {
         </TradeBeforeVerified>
       );
     },
+
+    lookForwardNode() {
+      const format = this.$t('remainTime', { day: 'DD', hour: 'HH', minute: 'mm', second: 'ss' });
+      const startDate = DateUtils.formatDateTime(this.lineTime);
+      const nowTime = DateUtils.formatToTimestamp(DateUtils.getToday());
+      const restTime = +getMinus({ number: this.lineTime, minuend: nowTime, decimal: 0 });
+      return (
+        <button class={['look-forward-btn', 'all-btn-size']} disabled={true}>
+          <div class='new-user-text'>{this.$t('marketExpect')}</div>
+          <div class='look-forward-count'>
+            <Statistic.Countdown value={Date.now() + restTime} format={format} />
+            <div>{`${startDate} ${this.$t('marketOnlineTime')}`}</div>
+          </div>
+        </button>
+      );
+    },
   },
 
   render() {
@@ -72,11 +90,7 @@ const PurchaseButton = {
 
         {isNew && this.newUserPurchaseNode()}
 
-        {isLookForward && (
-          <Button class={['disabled-btn', 'all-btn-size']} disabled={true}>
-            {this.$t('marketExpect')}
-          </Button>
-        )}
+        {isLookForward && this.lookForwardNode()}
 
         {isEmpty && (
           <Button class={['disabled-btn', 'all-btn-size']} disabled={true}>

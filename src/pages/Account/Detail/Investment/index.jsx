@@ -97,7 +97,7 @@ const Investment = {
         title: this.$t('investItemReson'), // '投资期限'
         dataIndex: 'settleStatus',
         align: 'center',
-        customRender: (value) => {
+        customRender: value => {
           return getSettleStatusMessage(value);
         },
       },

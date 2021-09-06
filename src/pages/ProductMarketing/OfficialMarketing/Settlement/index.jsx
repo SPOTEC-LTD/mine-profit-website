@@ -93,12 +93,12 @@ const Settlement = {
   },
 
   watch: {
-    value(data) {
+    value() {
       const { isNewUser, productDetail } = this;
       const price = isNewUser ? productDetail.discountPackageHashratePrice : productDetail.packageHashratePrice;
       this.hashRatePrice = numberUtils.times(this.value, price);
       this.hashRatePartAmount = +numberUtils.times(this.value, productDetail.amount);
-      this.getCouponsList({ buyAmount: +data });
+      this.getCouponsList({ buyAmount: +this.hashRatePartAmount });
     },
   },
 
@@ -108,7 +108,7 @@ const Settlement = {
       setTimeout(() => { locationServices.push(officialMarketingPath); }, 1000);
     }
 
-    this.getCouponsList({ buyAmount: this.value });
+    this.getCouponsList({ buyAmount: +this.hashRatePartAmount });
   },
 
   destroyed() {
