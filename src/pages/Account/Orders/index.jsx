@@ -1,10 +1,12 @@
 import { Table } from 'ant-design-vue';
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState, mapMutations } from 'vuex';
+import moment from 'moment';
 import Select from '@/shared/components/Select';
 import BaseContainer from '@/shared/components/BaseContainer';
 import dateUtils from '@/shared/intl/utils/dateUtils';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
-import { INVESTMENT, GET_ORDERS } from '@/modules/account/investment';
+import { INVESTMENT, GET_ORDERS, UPDATE_ORDERS_LIST } from '@/modules/account/investment';
+import DatePicker from '@/shared/components/DatePicker';
 import styles from './index.less?module';
 
 const pageSize = 10;
@@ -29,12 +31,14 @@ const Orders = {
 
   methods: {
     ...mapActions(INVESTMENT, [GET_ORDERS]),
-
+    ...mapMutations(INVESTMENT, [UPDATE_ORDERS_LIST]),
     getOrdersAction() {
       const resultData = {
         pageSize,
         pageNum: this.pageNum,
         chainType: this.chainType,
+        startTime: this.startTime,
+        endTime: this.endTime,
       };
 
       if (this.chainType === 'all') {
@@ -51,8 +55,19 @@ const Orders = {
 
     handleSelectChange(value) {
       this.chainType = value;
+      this.pageNum = 1;
       this.getOrdersAction();
     },
+
+    dateChange(date, timeType) {
+      if (timeType === 'endTime') {
+        this[timeType] = moment(date, 'YYYY.MM.DD').endOf('day').valueOf();
+      } else {
+        this[timeType] = moment(date, 'YYYY.MM.DD').valueOf();
+      }
+      this.getOrdersAction();
+    },
+
   },
 
   render() {
@@ -75,7 +90,7 @@ const Orders = {
         dataIndex: 'ptName',
         align: 'center',
         customRender(value, { pname }) {
-          return `${value} ${pname}`;
+          return pname ? `${value} ${pname}` : value;
         },
       },
       {
@@ -99,7 +114,9 @@ const Orders = {
         dataIndex: 'paymentPrice',
         align: 'center',
         customRender(value, { paymentChainType }) {
-          return `${bigNumberToFixed(value, 2)} ${paymentChainType}`;
+          const precision = paymentChainType === 'USDT' ? 2 : 8;
+
+          return `${bigNumberToFixed(value, precision)} ${paymentChainType}`;
         },
       },
     ];
@@ -121,21 +138,35 @@ const Orders = {
 
     return (
       <BaseContainer>
-        <Select
-          class={styles['hashrate-type-select']}
-          value={this.chainType}
-          onChange={this.handleSelectChange}
-        >
-          {
-            selectData.map(item => (
-              <Select.Option key={item.value}>
-                {item.text}
-              </Select.Option>
-            ))
-          }
-        </Select>
+        <div class={styles['search-form']}>
+          <div class={styles['date-picker-box']}>
+            <DatePicker
+              disabledDate={this.disabledStartDate}
+              onChange={(_, dateString) => this.dateChange(dateString, 'startTime')}
+            />
+            <span class={styles['middle-to']}>{this.$t('to')}</span>
+            <DatePicker
+              disabledDate={this.disabledEndDate}
+              onChange={(_, dateString) => this.dateChange(dateString, 'endTime')}
+            />
+          </div>
+          <Select
+            class={styles['hashrate-type-select']}
+            value={this.chainType}
+            onChange={this.handleSelectChange}
+          >
+            {
+              selectData.map(item => (
+                <Select.Option key={item.value}>
+                  {item.text}
+                </Select.Option>
+              ))
+            }
+          </Select>
+        </div>
         <Table
           rowKey="id"
+          key={this.chainType}
           columns={columns}
           dataSource={this.orderData.list}
           loading={this.getOrdersLoading}

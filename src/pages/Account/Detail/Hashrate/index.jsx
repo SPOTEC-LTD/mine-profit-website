@@ -68,6 +68,7 @@ const Hashrate = {
             rightContent: () => (
               <Link
                 class="modal-text-link"
+                target="_blank"
                 to={accountOrdersPath}
               >
                 {this.$t('markeMyOrde')}

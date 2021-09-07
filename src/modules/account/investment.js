@@ -5,9 +5,9 @@ import { GAINING, SETTLED } from '@/pages/Account/Detail/Investment/consts/inves
 export const INVESTMENT = 'investment';
 export const GET_INVESTMENT_LIST = 'getInvestmentList';
 export const GET_ORDERS = 'getOrders';
+export const UPDATE_ORDERS_LIST = 'updateOrdersList';
 
 const UPDATE_INVESTMENT_LIST = 'updateInvestmentList';
-const UPDATE_ORDERS_LIST = 'updateOrdersList';
 
 const tabKeyMap = {
   gaining: GAINING,

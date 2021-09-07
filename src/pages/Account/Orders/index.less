@@ -1,13 +1,35 @@
 @import "@/shared/styles/variables.less";
 
-.hashrate-type-select {
-  width: 218px;
+.search-form {
+  display: flex;
   margin-top: 30px;
   margin-bottom: 20px;
 
   :global {
-    .mp-select-selection {
+    .mp-select .mp-select-selection {
+      width: 218px;
       background-color: @color__f7f8fc;
+      border: 0;
+
+      &__rendered {
+        color: @color__242424;
+        font-size: 16px;
+        font-weight: 500;
+      }
     }
   }
+}
+
+.date-picker-box {
+  margin-right: 30px;
+  color: @color__242424;
+  font-size: 16px;
+}
+
+.hashrate-type-select {
+  width: 218px;
+}
+
+.middle-to {
+  padding: 0 8px;
 }
