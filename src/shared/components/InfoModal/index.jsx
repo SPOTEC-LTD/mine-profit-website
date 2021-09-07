@@ -53,6 +53,7 @@ const InfoModal = {
           showConfirmButton={false}
           footer={null}
           centered
+          destroyOnClose
           width={280}
           v-model={this.showDialog}
           {...{
