@@ -50,7 +50,7 @@ export const pathRoutes = [
     component: Help,
   },
   {
-    path: '/questionDetail/:id',
+    path: urls.questionDetailPath,
     name: 'questionDetail',
     component: QuestionDetail,
   },

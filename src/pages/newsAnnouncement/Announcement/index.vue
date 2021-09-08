@@ -2,7 +2,7 @@
   <Spin :spinning="loading">
     <div class="news-content">
       <div class="news-box">
-        <NewsItem
+        <AnnouncementItem
           v-for="(item, index) in announcementList"
           :key="index"
           :info="item"
@@ -17,11 +17,11 @@
 import { Spin } from 'ant-design-vue';
 import { getAnnouncementList } from '@/api';
 import scrollEvent from '@/shared/utils/scrollEvent';
-import NewsItem from './NewsItem/index.vue';
+import AnnouncementItem from './AnnouncementItem';
 
 export default {
   components: {
-    NewsItem,
+    AnnouncementItem,
     Spin,
   },
   data() {

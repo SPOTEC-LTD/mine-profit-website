@@ -17,7 +17,7 @@
 import { Spin } from 'ant-design-vue';
 import { getGoodNewsList } from '@/api';
 import scrollEvent from '@/shared/utils/scrollEvent';
-import NewsItem from './NewsItem/index.vue';
+import NewsItem from './NewsItem';
 
 export default {
   components: {

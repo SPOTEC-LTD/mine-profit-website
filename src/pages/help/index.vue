@@ -31,7 +31,13 @@
             </div>
             <Spin :spinning="loading">
               <div class="question-content">
-                <QuestionItem v-for="item in questionList" :id="item.id" :key="item.id" :question="item.title" />
+                <QuestionItem
+                  v-for="item in questionList"
+                  :id="item.id"
+                  :key="item.id"
+                  :question="item.title"
+                  :count="item.count"
+                />
               </div>
             </Spin>
           </div>
@@ -58,6 +64,7 @@
                   isHighlight
                   :resultKeyWord="resultSearchValue"
                   :question="item.title"
+                  :count="item.count"
                 />
               </div>
               <div v-else class="no-result">
@@ -77,7 +84,7 @@ import SearchOutlined from 'ahoney/lib/icons/SearchOutlined';
 import BaseContainer from '@/shared/components/BaseContainer';
 import { fetchQuestionList } from '@/api';
 import { getLocalLanguage, getIsChinese } from '@/shared/utils/getLocalLanguage';
-import QuestionItem from './QuestionItem/index.vue';
+import QuestionItem from './QuestionItem';
 
 export default {
   components: {

@@ -56,3 +56,4 @@ export const serviceProtocolPath = '/serviceProtocol';
 
 // ===== helpPaths
 export const helpPath = '/help';
+export const questionDetailPath = '/questionDetail/:id';
