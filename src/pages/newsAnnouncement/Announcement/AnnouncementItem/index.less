@@ -1,29 +1,27 @@
 @import '@/shared/styles/variables.less';
 
 .news-wrapper {
+  display: block;
   width: 760px;
   text-align: left;
   border-bottom: 1px solid @color__182742;
-  padding-bottom: 25px;
   margin-top: 25px;
+  cursor: pointer;
 }
 
 .news-date {
+  display: flex;
   font-size: @font-size-base;
   line-height: 20px;
   color: @color__959595;
+
+  > span:first-child {
+    margin-right: 30px;
+  }
 }
 
 .news-title {
   font-size: @font-size__24;
-  line-height: 26px;
   color: @color__242424;
   margin: 10px 0;
-}
-
-.news-content {
-  font-size: @font-size-lg;
-  line-height: 22px;
-  color: @color__242424;
-  white-space: pre-wrap;
 }
