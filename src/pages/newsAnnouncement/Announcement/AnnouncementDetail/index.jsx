@@ -20,8 +20,8 @@ const AnnouncementDetail = {
     return props;
   },
   render() {
-    const { publishTime, title, content } = this.detail;
-    return <Article publishTime={publishTime} title={title} content={content} />;
+    const { publishTime, title, content, count } = this.detail;
+    return <Article publishTime={publishTime} count={count} title={title} content={content} />;
   },
 };
 

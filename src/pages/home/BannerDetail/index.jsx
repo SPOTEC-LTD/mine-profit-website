@@ -21,8 +21,17 @@ const BannerDetail = {
   },
   render() {
     const { userId } = this.$route.params;
-    const { publishTime, title, linkH5 } = this.detail;
-    return <Article userId={userId} publishTime={publishTime} showDownloadInfo title={title} content={linkH5} />;
+    const { publishTime, title, linkH5, count } = this.detail;
+    return (
+      <Article
+        userId={userId}
+        count={count}
+        publishTime={publishTime}
+        showDownloadInfo
+        title={title}
+        content={linkH5}
+      />
+    );
   },
 };
 

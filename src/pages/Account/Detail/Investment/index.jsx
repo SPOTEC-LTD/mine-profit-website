@@ -46,7 +46,7 @@ const Investment = {
     const columns = [
       {
         title: this.$t('investTime'), // 投资时间
-        dataIndex: 'settleTime',
+        dataIndex: 'payTime',
         align: 'center',
         customRender(value) {
           return dateUtils.formatDateTime(value, 'YYYY.MM.DD HH:mm');

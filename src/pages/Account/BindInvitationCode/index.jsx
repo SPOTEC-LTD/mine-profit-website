@@ -3,7 +3,7 @@ import { FormModel, Input } from 'ant-design-vue';
 
 import { ACCOUNT, BIND_INVITATION_CODE } from '@/modules/account/account';
 import { SECTION_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
-import { accountDetailPath } from '@/router/consts/urls';
+import { accountDetailPath, homePath } from '@/router/consts/urls';
 import locationServices from '@/shared/services/location/locationServices';
 import PrimaryButton from '@/shared/components/PrimaryButton';
 import Notification from '@/shared/services/Notification';
@@ -56,6 +56,8 @@ const BindInvitationCode = {
       if (redirectUrl) {
         const { path, query } = getPathAndQueryObject(redirectUrl);
         locationServices.push(path, { query });
+      } else if (this.isNewUser) {
+        locationServices.push(homePath);
       } else {
         locationServices.push(accountDetailPath);
       }
