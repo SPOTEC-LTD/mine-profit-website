@@ -56,7 +56,7 @@ const TotalSection = {
               <div class={styles['output-item-label']}>{item.label}</div>
               <div class={styles['output-item-value']}>
                 <span>{item.usePlus && resultValue > 0 ? `+${resultValue}` : resultValue}</span>
-                <span class={styles['output-item-value-unit']}>{this.hashrateType}</span>
+                <span class={styles['output-item-value-unit']}>{item.unit}</span>
               </div>
             </div>
           );
