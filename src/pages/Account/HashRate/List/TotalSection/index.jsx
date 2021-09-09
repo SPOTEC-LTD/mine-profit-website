@@ -25,7 +25,6 @@ const TotalSection = {
     },
 
     outputData() {
-      console.log('this.statisticData', this.statisticData);
       return [
         {
           label: this.$t('hashrateTotalHash'),
