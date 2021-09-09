@@ -22,16 +22,25 @@ const InviteDetail = {
     const columns = [
       {
         title: this.$t('inviter'),
-        dataIndex: 'nickName',
+        dataIndex: 'registerAccount',
         align: 'center',
         ellipsis: true,
-        customRender: (name, { avatar }) => {
+        customRender: (value, { avatar }) => {
           return (
             <div class={styles['user-info-box']}>
               <img src={avatar || defaultAvatar} alt="" />
-              <span>{name}</span>
+              <span>{value}</span>
             </div>
           );
+        },
+      },
+      {
+        title: this.$t('nickname'),
+        dataIndex: 'nickName',
+        align: 'center',
+        ellipsis: true,
+        customRender: name => {
+          return <span>{name}</span>;
         },
       },
       {

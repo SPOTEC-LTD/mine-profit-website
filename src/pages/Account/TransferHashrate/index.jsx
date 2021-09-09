@@ -102,7 +102,7 @@ const TransferHashrate = {
     onPageButtonConfirm() {
       this.$refs.form.validate(valid => {
         if (valid) {
-          if (this.hasPowerOff === POWER_ON) {
+          if (this.hasPowerOff === `${POWER_OFF}`) {
             this.isShowPasswordInput = true;
           } else {
             this.isVisibleTransferPrompt = true;
@@ -182,7 +182,11 @@ const TransferHashrate = {
                     suffix: () => (
                       <div class={styles['amount-input-suffix']}>
                         <span>{this.unit}</span>
-                        <span onClick={() => { this.formData.amount = this.amount; }}>{this.$t('all')}</span>
+                        <span
+                        onClick={() => { this.formData.amount = this.amount; this.$refs.form.validateField('amount'); }}
+                        >
+                          {this.$t('all')}
+                        </span>
                       </div>
                     ),
                   }}

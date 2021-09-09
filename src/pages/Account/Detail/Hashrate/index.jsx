@@ -96,7 +96,9 @@ const Hashrate = {
                     ))
                   }
                   <Col span={2}>
-                    <Button type="primary" onClick={() => this.redirectToHashRateList(item.hashrateType)}>详情</Button>
+                    <Button type="primary" onClick={() => this.redirectToHashRateList(item.hashrateType)}>
+                      {this.$t('webDefaultTitle')}
+                    </Button>
                   </Col>
                 </Row>
               );

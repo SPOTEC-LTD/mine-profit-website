@@ -5,6 +5,8 @@ import ModalButton from '@/shared/components/ModalButton';
 import { ACCOUNT, UPDATE_BASE_INFO, GET_USER_BASE_INFO } from '@/modules/account/account';
 import Notification from '@/shared/services/Notification';
 import defaultAvatar from '@/assets/rank/defaultAvatar.png';
+import FormatInput from '@/shared/components/FormatInput';
+import { textReg } from '@/shared/consts/rules';
 
 import styles from './index.less?module';
 
@@ -94,7 +96,14 @@ const EditAvatarNickname = {
           prop="nickname"
           rules={[{ required: true, message: this.$t('nicknameRequire'), trigger: 'change' }]}
         >
-          <Input v-model={this.form.nickname} maxLength={30} />
+          <FormatInput
+            value={this.form.nickname}
+            formatReg={textReg}
+            maxLength={30}
+            onChange={value => {
+              this.form.nickname = value;
+            }}
+          />
         </Item>
         <div class={styles['modal-button-box']}>
           <ModalButton type="primary" ghost onClick={this.closeModal}>
