@@ -4,6 +4,7 @@ import isServerSide from '@/shared/utils/isServerSide';
 import languages from '@/shared/intl/consts/languages';
 import QRCodeModule from '@/shared/components/QRCodeModule';
 import downloadAppImage from '@/assets/home/download-app-image.png';
+import formatViewCount from '@/shared/utils/formatViewCount';
 
 import './index.less';
 
@@ -24,6 +25,10 @@ const Article = {
       type: String,
       default: '',
     },
+    count: {
+      type: Number,
+      default: 0,
+    },
     showDownloadInfo: {
       type: Boolean,
       default: false,
@@ -42,7 +47,10 @@ const Article = {
     return (
       <BaseContainer contentClassName="article-wrapper">
         <div>
-          <div class="article-date">{this.date}</div>
+          <div class="article-date">
+            <span>{this.date}</span>
+            <span>{this.$t('noticeDetailPageViewCount', { value: formatViewCount(this.count) })}</span>
+          </div>
           <div class="article-title">{this.title}</div>
         </div>
         <div class="article-content" domPropsInnerHTML={this.content} />

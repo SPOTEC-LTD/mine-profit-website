@@ -14,8 +14,8 @@ const QuestionDetail = {
     }
   },
   render() {
-    const { publishTime, question, answer } = this.detail;
-    return <Article publishTime={publishTime} title={question} content={answer} />;
+    const { publishTime, question, answer, count } = this.detail;
+    return <Article publishTime={publishTime} count={count} title={question} content={answer} />;
   },
 };
 

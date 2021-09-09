@@ -2,6 +2,7 @@ import CheckCircleFilled from 'ahoney/lib/icons/CheckCircleFilled';
 import PendingFilled from 'ahoney/lib/icons/PendingFilled';
 import QuestionCircleFilled from 'ahoney/lib/icons/QuestionCircleFilled';
 import CloseCircleTFilled from 'ahoney/lib/icons/CloseCircleTFilled';
+import { Tooltip } from 'ant-design-vue';
 import { EMAIL } from '@/shared/consts/registerType';
 import { PENDING, PASS, REJECT, NOT_SUBMIT } from '@/shared/consts/kycStatus';
 import {
@@ -70,14 +71,17 @@ const Authentication = {
       return kycNodeMap[kycStatus];
     },
     getAuthItem() {
-      const { phone, email, isPassword, isDealCode, registerType } = this.userInfo;
+      const { phone, email, isPassword, isDealCode, registerType, phonePrefix } = this.userInfo;
       const bindEmail = registerType !== EMAIL;
+      const showPhone = phone && phone.replace(phonePrefix, '');
 
       return [
         {
           text: bindEmail ? this.$t('bindEmail') : this.$t('bindPhone'),
           isAuth: bindEmail ? email : phone,
           path: bindEmail ? bindEmailPath : bindPhonePath,
+          isTooltip: true,
+          account: bindEmail ? email : `${phonePrefix} ${showPhone}`,
         },
         {
           text: this.$t('loginPwd'),
@@ -99,11 +103,17 @@ const Authentication = {
           <div class={styles.title}>{this.$t('personalAuthentication')}</div>
           <div class={styles['sub-title']}>{this.$t('personalAuthenticationPrompt')}</div>
           <div class={styles['auth-item-box']}>
-            {this.getAuthItem().map(({ path, text, isAuth }) => (
+            {this.getAuthItem().map(({ path, text, isAuth, isTooltip, account }) => (
               <Link to={path} target="_blank">
                 <div class={isAuth ? styles['auth-item'] : styles['no-auth-item']}>
                   {isAuth ? <CheckCircleFilled /> : <QuestionCircleFilled />}
-                  <span>{text}</span>
+                  {(isAuth && isTooltip) ? (
+                    <Tooltip placement="bottom" scopedSlots={{ title: () => `${this.$t('bound')}：${account}` }}>
+                      {text}
+                    </Tooltip>
+                  ) : (
+                    <span>{text}</span>
+                  )}
                 </div>
               </Link>
             ))}
