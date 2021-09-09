@@ -202,6 +202,7 @@ const PledgeHashrate = {
                           <span
                             onClick={() => {
                               this.formData.pledgePortion = `${maxPledgePortion}`;
+                              this.$refs.form.validateField('pledgePortion');
                             }}
                           >
                             {this.$t('all')}

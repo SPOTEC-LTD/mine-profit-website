@@ -164,4 +164,5 @@ export default {
   confirmRedeem: '确认赎回',
   waitPay: '待支付',
   hashRateList: '算力列表',
+  webDefaultTitle: '详情',
 };

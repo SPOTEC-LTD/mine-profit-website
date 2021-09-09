@@ -172,7 +172,7 @@ const Detail = {
         <BaseModal
           value={this.isVisibleInviteDetailModal}
           destroyOnClose
-          width={622}
+          width={757}
           title={this.$t('inviteFriendsDetail')}
           scopedSlots={{ content: () => <InviteDetail onCloseModal={this.closeInviteDetailModal} /> }}
           onclose={this.closeInviteDetailModal}
