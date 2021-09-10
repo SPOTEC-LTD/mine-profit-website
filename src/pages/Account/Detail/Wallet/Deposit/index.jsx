@@ -1,4 +1,4 @@
-import { FormModel, Input } from 'ant-design-vue';
+import { FormModel } from 'ant-design-vue';
 import isEmpty from 'lodash/isEmpty';
 import filter from 'lodash/filter';
 
@@ -86,14 +86,10 @@ const Deposit = {
               />
             </Item>
             <Item label={this.$t('address')}>
-              <Input
-                class={styles['address-input']}
-                scopedSlots={{
-                  suffix: () => <CopyToClipboard text={address}>{this.$t('copy')}</CopyToClipboard>,
-                }}
-                value={address}
-                onInput={() => { this.$forceUpdate(); }}
-              />
+              <div class={styles['address-input']}>
+                <span>{address}</span>
+                <CopyToClipboard text={address}>{this.$t('copy')}</CopyToClipboard>
+              </div>
             </Item>
           </FormModel>
           <BottomTips note={note} />

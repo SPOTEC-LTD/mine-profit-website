@@ -306,7 +306,7 @@ const Withdraw = {
                 {rowList.map(({ label, number }, index) => (
                   <Col span={12} key={index}>
                     <Item label={label}>
-                      <div class={styles.arrival}>{`${number}  USDT`}</div>
+                      <div class={styles.arrival}>{`${number}  ${this.coin}`}</div>
                     </Item>
                   </Col>
                 ))}

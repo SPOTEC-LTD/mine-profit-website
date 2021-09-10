@@ -4,6 +4,7 @@ export const getGoodNewsList = createAPI('get', '/operation/news/text');
 export const fetchGoodNewsDetail = createAPI('get', '/operation/news/text/:id');
 export const getNewsletterList = createAPI('get', '/operation/news/express');
 export const getAnnouncementList = createAPI('get', '/operation/announcements/app');
+export const getHomeAnnouncementList = createAPI('get', '/operation/announcements/list');
 export const fetchQuestionList = createAPI('get', '/operation/questions/app');
 export const fetchQuestionDetail = createAPI('get', '/operation/questions/:id');
 export const fetchAnnouncementDetail = createAPI('get', '/operation/announcements/:id');

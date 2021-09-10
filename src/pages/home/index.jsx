@@ -36,11 +36,11 @@ const Home = {
       },
       bannersList: [],
     };
-    const getAnnouncementPromise = API.getAnnouncementList({}, { ctx });
+    const getHomeAnnouncementPromise = API.getHomeAnnouncementList({}, { ctx });
     const getBannersPromise = homeAPI.getBanners({}, { ctx });
 
     try {
-      const { body: { list } } = await getAnnouncementPromise;
+      const { body: { list } } = await getHomeAnnouncementPromise;
       props.announcementList = list;
     } catch (error) {
       console.log('error');
