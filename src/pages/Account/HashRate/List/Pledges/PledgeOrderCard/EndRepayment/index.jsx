@@ -4,8 +4,11 @@ import ListCell from '@/pages/Account/HashRate/List/components/ListCell';
 import CellValue from '@/pages/Account/HashRate/List/components/CellValue';
 import PledgesHashrateCellValue from '@/pages/Account/HashRate/List/components/PledgesHashrateCellValue';
 import getFormatBigNumber from '@/pages/Account/HashRate/utils/getFormatBigNumber';
+import PledgeDurationCellValue from '@/pages/Account/HashRate/List/components/PledgeDurationCellValue';
 import ProportionCellValue from '@/pages/Account/HashRate/List/components/ProportionCellValue';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
+import FooterLayout from '@/pages/Account/HashRate/List/components/FooterLayout';
+import PledgeStatusTag from '../components/PledgeStatusTag';
 
 const EndRepayment = {
   props: ['data'],
@@ -92,6 +95,11 @@ const EndRepayment = {
       <Card
         scopedSlots={{
           header: () => this.$scopedSlots.title(),
+          footer: () => <FooterLayout
+          scopedSlots={{
+            leftContent: () => <PledgeStatusTag status={data.status} />,
+          }}
+        />,
         }}
       >
         <ListCell dataSource={this.getListData(data)} />
