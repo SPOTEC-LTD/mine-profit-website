@@ -29,6 +29,7 @@ import stakingMarketTitleImg from '@/assets/ecosphere/staking-market-title-img.p
 import BlockTitle from '@/shared/components/BlockTitle';
 import { getIsChinese, getIsEnglish } from '@/shared/utils/getLocalLanguage';
 import flowVideo from '@/assets/ecosphere/flow-video.mp4';
+import enFlowVideo from '@/assets/ecosphere/en-flow-video.mp4';
 import robotImage from '@/assets/ecosphere/robot.png';
 
 export default {
@@ -44,11 +45,22 @@ export default {
   data() {
     return {
       stakingMarketTitleImg,
-      flowVideo,
       robotImage,
       isChinese: getIsChinese(),
       isEnglish: getIsEnglish(),
     };
+  },
+  computed: {
+    flowVideo() {
+      let flowVideoUrl;
+      if (this.isChinese) {
+        flowVideoUrl = flowVideo;
+      }
+      if (this.isEnglish) {
+        flowVideoUrl = enFlowVideo;
+      }
+      return flowVideoUrl;
+    },
   },
 };
 </script>

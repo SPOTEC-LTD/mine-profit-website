@@ -4,7 +4,6 @@ import isServerSide from '@/shared/utils/isServerSide';
 import languages from '@/shared/intl/consts/languages';
 import QRCodeModule from '@/shared/components/QRCodeModule';
 import downloadAppImage from '@/assets/home/download-app-image.png';
-import formatViewCount from '@/shared/utils/formatViewCount';
 
 import './index.less';
 
@@ -14,6 +13,7 @@ const Article = {
       type: String,
       default: '',
     },
+    topStatus: Boolean,
     userId: {
       default: null,
     },
@@ -49,7 +49,10 @@ const Article = {
         <div>
           <div class="article-date">
             <span>{this.date}</span>
-            <span>{this.$t('noticeDetailPageViewCount', { value: formatViewCount(this.count) })}</span>
+            <span>{this.$t('noticeDetailPageViewCount', { value: this.count })}</span>
+            {
+              this.topStatus && <span class="article-top">{this.$t('infoTop')}</span>
+            }
           </div>
           <div class="article-title">{this.title}</div>
         </div>

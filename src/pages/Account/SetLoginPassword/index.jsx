@@ -1,4 +1,4 @@
-import { FormModel, Input, Statistic } from 'ant-design-vue';
+import { FormModel, Input } from 'ant-design-vue';
 import { mapActions, mapState } from 'vuex';
 import omit from 'lodash/omit';
 import * as API from '@/api/account/userInfo';
@@ -14,6 +14,7 @@ import BaseContainer from '@/shared/components/BaseContainer';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import Notification from '@/shared/services/Notification';
 import { SECTION_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
+import FetchVerifyCode from '../components/FetchVerifyCode';
 import styles from '../index.less?module';
 
 const { Item } = FormModel;
@@ -109,24 +110,6 @@ const SetLoginPassword = {
     handleCountDownFinish() {
       this.isCountDown = false;
     },
-    getButton() {
-      return (
-        <div class="ver-send-button">
-          {this.isCountDown ? (
-            <Statistic.Countdown
-              value={Date.now() + 1000 * 60}
-              format={`${this.buttonText}（ss`}
-              suffix="s）"
-              onFinish={this.handleCountDownFinish}
-            />
-          ) : (
-            <div class="get-vercode-button" onClick={this.getVerCode}>
-              {this.buttonText}
-            </div>
-          )}
-        </div>
-      );
-    },
     validateConfirmNewLoginCode() {
       if (this.form.confirmNewLoginCode !== '') {
         this.$refs.ruleForm.validateField('confirmNewLoginCode');
@@ -166,7 +149,14 @@ const SetLoginPassword = {
                   v-model={this.form.code}
                   placeholder={verificationCodePlaceholder}
                   scopedSlots={{
-                    suffix: this.getButton,
+                    suffix: () => (
+                      <FetchVerifyCode
+                        onFinish={this.handleCountDownFinish}
+                        value={this.isCountDown}
+                        text={this.buttonText}
+                        onClick={this.getVerCode}
+                      />
+                    ),
                   }}
                 />
               </Item>
