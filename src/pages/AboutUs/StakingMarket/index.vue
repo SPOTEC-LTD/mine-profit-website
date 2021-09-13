@@ -52,10 +52,7 @@ export default {
   },
   computed: {
     flowVideo() {
-      let flowVideoUrl;
-      if (this.isChinese) {
-        flowVideoUrl = flowVideo;
-      }
+      let flowVideoUrl = flowVideo;
       if (this.isEnglish) {
         flowVideoUrl = enFlowVideo;
       }
