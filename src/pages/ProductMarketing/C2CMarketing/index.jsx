@@ -5,6 +5,7 @@ import KeepTabs from '@/shared/components/KeepTabs';
 import { BTC, ETH, ALL } from '@/shared/consts/coinType';
 import BaseContainer from '@/shared/components/BaseContainer';
 import ProductListCell from '@/shared/components/ProductListCell';
+import { c2cInitData } from '@/shared/consts/c2cMarketInitialData';
 import { PAGE_SIZE, PAGE_NUM } from '@/shared/consts/defaultInfoAmount';
 import FieldOrderList from '@/shared/components/FieldOrder/FieldOrderList';
 import { C2C_MARKET, GET_C2C_MARKET_LIST, UPDATE_ACTIVE_COIN, RESET_STATE } from '@/modules/c2cMarket';
@@ -29,10 +30,10 @@ const C2CMarketing = {
   }),
 
   mounted() {
-    const chainType = this.activeChainType || this.paramData.chainType || ALL;
-    this.activeChainType = chainType;
-    const resultParamData = { ...this.paramData, chainType: chainType === ALL ? undefined : chainType };
-
+    const resultParamData = {
+      ...this.paramData,
+      chainType: this.activeChainType === ALL ? undefined : this.activeChainType,
+    };
     this.getProductList(resultParamData);
   },
 
@@ -58,7 +59,6 @@ const C2CMarketing = {
         chainType: key === ALL ? undefined : key,
         pageNum: PAGE_NUM,
       };
-
       this.getProductList(resultParamData);
     },
 
@@ -71,7 +71,6 @@ const C2CMarketing = {
 
     onPageChange(pageNum) {
       const resultParamData = { ...this.paramData, pageNum };
-
       this.getProductList(resultParamData);
     },
 
@@ -101,7 +100,7 @@ const C2CMarketing = {
     ListNode() {
       return (
         this.c2cMarketList.length ?
-          <ProductListCell productList={this.c2cMarketList} isOfficialMarket={false}/>
+          <ProductListCell productList={this.c2cMarketList} isOfficialMarket={false} />
           :
           <NoData />
       );
@@ -110,7 +109,7 @@ const C2CMarketing = {
 
   destroyed() {
     this[RESET_STATE]();
-    this[UPDATE_ACTIVE_COIN](this.paramData);
+    this[UPDATE_ACTIVE_COIN](c2cInitData);
   },
 
   render() {

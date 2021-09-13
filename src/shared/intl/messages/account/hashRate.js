@@ -165,4 +165,5 @@ export default {
   waitPay: '待支付',
   hashRateList: '算力列表',
   webDefaultTitle: '详情',
+  priceFluctuation: '结算价变动确认',
 };

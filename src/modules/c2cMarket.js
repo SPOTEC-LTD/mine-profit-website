@@ -1,5 +1,5 @@
 import * as API from '@/api/c2cMarket';
-import { PAGE_NUM } from '@/shared/consts/defaultInfoAmount';
+import { c2cInitData } from '@/shared/consts/c2cMarketInitialData';
 
 export const C2C_MARKET = 'c2cMarket';
 export const GET_C2C_MARKET_LIST = 'getC2CMarketList';
@@ -12,12 +12,7 @@ export const UPDATE_ORDER_INFO = 'updateOrderInfo';
 
 const initValue = {
   c2cMarketList: [],
-  paramData: {
-    chainType: undefined,
-    field: 'createTime',
-    order: 'DESC',
-    pageNum: PAGE_NUM,
-  },
+  paramData: c2cInitData,
   pageInfo: '',
   c2cOrderResult: {},
 };

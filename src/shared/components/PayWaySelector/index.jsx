@@ -3,6 +3,8 @@ import { Dropdown, Menu } from 'ant-design-vue';
 import InfoCircleFilled from 'ahoney/lib/icons/InfoCircleFilled';
 import TriangleFilled from 'ahoney/lib/icons/TriangleFilled';
 import getDivided from '@/shared/utils/getDivided';
+import { depositPath } from '@/router/consts/urls';
+import locationHelp from '@/shared/utils/locationHelp';
 import PayWayItem from '@/shared/components/PayWayItem';
 import { USER, GET_USER_BALLANCE } from '@/modules/user';
 import btcIcon from '@/assets/account/wallet_btc_icon.png';
@@ -119,7 +121,14 @@ const PayWaySelector = {
         <div class='pay-no-balance'>
           <InfoCircleFilled />
           <span class='pay-not-enough'>{this.$t('payNotEnough')}</span>
-          <span class='pay-right-now'>{this.$t('payNow')}</span>
+          <span
+            class='pay-right-now'
+            onClick={() => {
+              locationHelp.open(depositPath, { query: { coinType: this.choosesCoin } });
+            }}
+          >
+            {this.$t('payNow')}
+          </span>
         </div>
       );
     },
