@@ -48,6 +48,15 @@ const Close = {
             />
           ),
         },
+        {
+          label: this.$t('hashrateTodayNetOutputPre'), // '今日净产出（预）'
+          value: (
+            <CellValue
+              value={bigNumberToFixed(data.todayExpectedOutput || '0', 8)}
+              unit={data.hashrateType}
+            />
+          ),
+        },
       ];
 
       return listData.filter(({ hidden }) => !hidden);
