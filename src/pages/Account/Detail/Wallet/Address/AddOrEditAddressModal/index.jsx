@@ -96,7 +96,7 @@ const AddOrEditAddressModal = {
             </Item>
           )}
           <Item
-            label={this.$t('walletChargeAddress')}
+            label={this.$t('withDrawAddress')}
             prop='address'
             rules={
               [
@@ -117,7 +117,7 @@ const AddOrEditAddressModal = {
           >
             <Input.TextArea
               autoSize
-              placeholder={this.$t('walletChargeAddressTip')}
+              placeholder={this.$t('walletWithDrawAddressTip')}
               v-model={this.addressInfo.address}
             />
           </Item>

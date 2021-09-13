@@ -19,7 +19,6 @@ import styles from './index.less?module';
 const Address = {
   data() {
     return {
-      pageNum: 1,
       addressInfo: {},
       coin: this.$route.query.coinType || '',
       manageModel: '',
@@ -30,7 +29,6 @@ const Address = {
   computed: {
     ...mapState({
       withdrawalAddressList: state => state.wallet.withdrawalAddressList,
-      pageInfo: state => state.wallet.pageInfo,
       loading: state => state.loading.effects[`${WALLET}/${GET_WITHDRAWAL_ADDRESS}`],
       addLoading: state => state.loading.effects[`${WALLET}/${ADD_ADDRESS}`],
       editLoading: state => state.loading.effects[`${WALLET}/${EDIT_ADDRESS}`],
@@ -44,19 +42,12 @@ const Address = {
     ...mapActions(WALLET, [GET_WITHDRAWAL_ADDRESS, ADD_ADDRESS, DELETE_ADDRESS, EDIT_ADDRESS]),
 
     getWithdrawalAddressList(options = {}) {
-      const { reset, query = {} } = options;
+      const { query = {} } = options;
       const data = {
-        pageSize: 10,
-        pageNum: reset ? 1 : this.pageNum,
         chainType: this.coin || null,
         ...query,
       };
       this[GET_WITHDRAWAL_ADDRESS](data);
-    },
-
-    handlePageChange(pageNum) {
-      this.pageNum = pageNum;
-      this.getWithdrawalAddressList();
     },
 
     openAddressModal(manageModel, info) {
@@ -127,7 +118,7 @@ const Address = {
       this[method](query)
         .then(() => {
           this.isShowPasswordInput = false;
-          this.getWithdrawalAddressList({ reset: true });
+          this.getWithdrawalAddressList();
           Notification.success(this.$t('operationSuccess'));
         })
         .catch(error => {
@@ -143,7 +134,7 @@ const Address = {
       this[DELETE_ADDRESS]({ id: this.deleteId })
         .then(() => {
           this.showDeleteModal = false;
-          this.getWithdrawalAddressList({ reset: true });
+          this.getWithdrawalAddressList();
           Notification.success(this.$t('operationSuccess'));
         });
     },
@@ -196,12 +187,6 @@ const Address = {
         customRender: (_, info) => this.getActionNode(info),
       },
     ];
-    const { pageNum, total } = this.pageInfo;
-    const paginationConfig = {
-      current: pageNum,
-      total,
-      onChange: this.handlePageChange,
-    };
 
     return (
       <BaseContainer>
@@ -216,7 +201,7 @@ const Address = {
           columns={columns}
           dataSource={this.withdrawalAddressList}
           loading={this.loading}
-          pagination={paginationConfig}
+          pagination={false}
         />
 
         <AddOrEditAddressModal

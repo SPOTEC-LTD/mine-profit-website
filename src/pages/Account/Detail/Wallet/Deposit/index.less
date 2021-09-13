@@ -16,17 +16,21 @@
 }
 
 .address-input {
-  :global {
-    .mp-input {
-      color: @color__242424;
-      font-size: @font-size-sm !important;
-      font-weight: 600;
-    }
+  border-radius: 4px;
+  background-color: @color__f7f8fc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px 14px 12px;
+  color: @color__242424;
+  font-size: @font-size-sm;
+  font-weight: 600;
+  line-height: 17px;
 
-    .mp-input-suffix {
-      color: @color__primary;
-      font-weight: 500;
-      cursor: pointer;
-    }
+  span:last-child {
+    color: @color__primary;
+    font-size: @font-size-base;
+    font-weight: 500;
+    cursor: pointer;
   }
 }
