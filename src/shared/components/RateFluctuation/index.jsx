@@ -68,7 +68,7 @@ const RateFluctuation = {
     return (
       <div>
         <ConfirmModal
-          title={this.$t('inputDealPassword')}
+          title={this.$t('priceFluctuation')}
           width={400}
           visible={this.visible}
           confirmLoading={this.loading}
