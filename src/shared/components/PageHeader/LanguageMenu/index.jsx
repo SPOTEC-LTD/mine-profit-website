@@ -1,5 +1,6 @@
 import { Dropdown, Menu } from 'ant-design-vue';
 import Cookies from 'universal-cookie';
+import filter from 'lodash/filter';
 import EarthFilled from 'ahoney/lib/icons/EarthFilled';
 import locationHelp from '@/shared/utils/locationHelp';
 import './index.less';
@@ -17,6 +18,8 @@ export default {
     },
   },
   render() {
+    const [currentLanguageInfo = {}] = filter(this.items, { code1: this.$i18n.locale });
+
     return (
       <Dropdown
         overlayClassName="nav-menu-overlay"
@@ -46,6 +49,7 @@ export default {
       >
         <a class="language-icon-box">
           <EarthFilled className="language-icon" />
+          <span class="language-name">{currentLanguageInfo.name}</span>
         </a>
       </Dropdown>
     );

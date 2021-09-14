@@ -122,8 +122,8 @@ const TradeBeforeVerified = {
         notSubmitDesc = this.$t('verifyDialogContent');
       } else {
         notSubmitDesc = !this.isDealCodeSet
-          ? this.$t('verifyDialogRealNameContent')
-          : this.$t('verifyDialogPasswordContent');
+          ? this.$t('verifyDialogPasswordContent')
+          : this.$t('verifyDialogRealNameContent');
       }
 
       return {

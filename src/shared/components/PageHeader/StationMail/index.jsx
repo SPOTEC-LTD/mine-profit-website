@@ -134,13 +134,14 @@ const StationMail = {
     },
 
     showMailDetail(mailInfo) {
-      if (mailInfo.ruleKey === 'WEEKLY_SETTLE_REPORT') {
-        this[GET_WEEKLY_REPORT_DETAIL]({ id: mailInfo.id });
+      const { id, read, ruleKey, reportId } = mailInfo;
+      if (ruleKey === 'WEEKLY_SETTLE_REPORT') {
+        this[GET_WEEKLY_REPORT_DETAIL]({ id: reportId });
         this.showReportModal = true;
       } else {
         this.isMailDetail = true;
       }
-      !mailInfo.read && this[MAIL_READ_DETAIL]({ id: mailInfo.id });
+      !read && this[MAIL_READ_DETAIL]({ id });
       this.mailInfo = mailInfo;
     },
 
