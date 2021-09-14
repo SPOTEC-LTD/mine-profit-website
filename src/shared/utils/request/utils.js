@@ -75,6 +75,12 @@ class Error {
       return errorObj;
     }
 
+    if (httpCode === 503) {
+      const errorObj = { title: 'httpError', content: `系统正在升级，请稍后再试 code: ${httpCode}` };
+      errorModal(errorObj);
+      return errorObj;
+    }
+
     return { title: 'httpError', content: '' };
   }
 }

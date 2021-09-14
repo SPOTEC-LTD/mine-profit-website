@@ -18,7 +18,7 @@ export default {
     },
   },
   render() {
-    const [currentLanguageInfo = {}] = filter(this.items, { code1: this.$i18n.locale });
+    const [currentLanguageInfo = {}] = filter(this.items, { code: this.$i18n.locale });
 
     return (
       <Dropdown
