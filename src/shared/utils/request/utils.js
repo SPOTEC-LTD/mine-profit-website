@@ -64,19 +64,19 @@ class Error {
     const httpCode = response.status;
 
     if (httpCode === 404) {
-      const errorObj = { title: 'httpError', content: `请求了不存在的接口 code: ${httpCode}` };
+      const errorObj = { title: '请求了不存在的接口', content: `请求了不存在的接口 code: ${httpCode}` };
       errorModal(errorObj);
       return errorObj;
     }
 
     if (httpCode === 500 || httpCode === 504) {
-      const errorObj = { title: 'httpError', content: `服务器端出错了 code: ${httpCode}` };
+      const errorObj = { title: '服务器端出错了', content: `服务器端出错了 code: ${httpCode}` };
       errorModal(errorObj);
       return errorObj;
     }
 
     if (httpCode === 503) {
-      const errorObj = { title: 'httpError', content: `系统正在升级，请稍后再试 code: ${httpCode}` };
+      const errorObj = { title: '系统正在升级，请稍后再试', content: `系统正在升级，请稍后再试 code: ${httpCode}` };
       errorModal(errorObj);
       return errorObj;
     }
