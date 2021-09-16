@@ -1,16 +1,29 @@
 import { Button, Statistic } from 'ant-design-vue';
 import getMinus from '@/shared/utils/getMinus';
 import DateUtils from '@/shared/intl/utils/dateUtils';
+import { BEFORE_PRE_SALE, PRE_SALE_NOW } from '@/shared/consts/preSaleStatus';
 import getNewRegisterTime from '@/shared/utils/getNewRegisterTime';
 import TradeBeforeVerified from '@/shared/components/TradeBeforeVerified';
 import './index.less';
 
 const PurchaseButton = {
   props: {
-    isLookForward: { type: Boolean },
-    isNew: { type: Boolean },
-    isNoRest: { type: Boolean },
+    isLookForward: Boolean,
+    isNew: Boolean,
+    isNoRest: Boolean,
     lineTime: {
+      type: Number,
+      default: 0,
+    },
+    preStatus: {
+      type: Number,
+      default: 0,
+    },
+    preSaleStartTime: {
+      type: Number,
+      default: 0,
+    },
+    preSaleEndTime: {
       type: Number,
       default: 0,
     },
@@ -26,7 +39,16 @@ const PurchaseButton = {
     return {
       newUserTime: 0,
       newUserEndTime: 0,
+      nowTime: DateUtils.formatToTimestamp(DateUtils.getToday()),
+      preSaleLookForward: this.preStatus === BEFORE_PRE_SALE,
+      formatPreSaleEndTime: DateUtils.formatDateTime(this.preSaleEndTime),
     };
+  },
+
+  computed: {
+    restPreSaleTime() {
+      return +getMinus({ number: this.preSaleEndTime, minuend: this.nowTime, decimal: 0 });
+    },
   },
 
   methods: {
@@ -34,8 +56,8 @@ const PurchaseButton = {
       this.$emit('purchaseNow');
     },
 
-    newUserPurchaseNode() {
-      const format = this.$t('newUserRemainTime', {
+    saleNowCountDownNode(type, timeStamp, endTime) {
+      const format = this.$t(type, {
         day: 'DD',
         hour: 'HH',
         minute: 'mm',
@@ -46,18 +68,18 @@ const PurchaseButton = {
           <button class={['new-user-btn', 'all-btn-size']}>
             <div class='new-user-text'>{this.$t('shareInvestNow')}</div>
             <div class='new-user-count'>
-              <Statistic.Countdown value={Date.now() + this.newUserTime} format={format} />
+              <Statistic.Countdown value={Date.now() + timeStamp} format={format} />
             </div>
+            {endTime && (<div class="sale-now-end-time">{`${endTime} ${this.$t('closeTime')}`}</div>)}
           </button>
         </TradeBeforeVerified>
       );
     },
 
-    lookForwardNode() {
-      const format = this.$t('remainTime', { day: 'DD', hour: 'HH', minute: 'mm', second: 'ss' });
+    lookForwardNode(lookForwardType) {
+      const format = this.$t(lookForwardType, { day: 'DD', hour: 'HH', minute: 'mm', second: 'ss' });
       const startDate = DateUtils.formatDateTime(this.lineTime);
-      const nowTime = DateUtils.formatToTimestamp(DateUtils.getToday());
-      const restTime = +getMinus({ number: this.lineTime, minuend: nowTime, decimal: 0 });
+      const restTime = +getMinus({ number: this.lineTime, minuend: this.nowTime, decimal: 0 });
       return (
         <button class={['look-forward-btn', 'all-btn-size']} disabled={true}>
           <div class='new-user-text'>{this.$t('marketExpect')}</div>
@@ -71,9 +93,10 @@ const PurchaseButton = {
   },
 
   render() {
-    const { isNew, isLookForward, isNoRest } = this;
-    const unNormalButton = isNoRest || isLookForward || isNew;
+    const { isNew, isLookForward, isNoRest, preStatus, preSaleLookForward, newUserTime, restPreSaleTime } = this;
+    const unNormalButton = isNoRest || isLookForward || isNew || preStatus;
     const isEmpty = !isNew && isNoRest;
+    const lookForwardType = preSaleLookForward ? 'preSaleStartTime' : 'remainTime';
 
     return (
       <div class="operate-btn-wrapper">
@@ -88,9 +111,13 @@ const PurchaseButton = {
           </TradeBeforeVerified>
         )}
 
-        {isNew && this.newUserPurchaseNode()}
+        {isNew && this.saleNowCountDownNode('newUserRemainTime', newUserTime)}
 
-        {isLookForward && this.lookForwardNode()}
+        {(!isEmpty && preStatus === PRE_SALE_NOW) && (
+          this.saleNowCountDownNode('preSaleRemainTime', restPreSaleTime, this.formatPreSaleEndTime)
+        )}
+
+        {isLookForward && this.lookForwardNode(lookForwardType)}
 
         {isEmpty && (
           <Button class={['disabled-btn', 'all-btn-size']} disabled={true}>
