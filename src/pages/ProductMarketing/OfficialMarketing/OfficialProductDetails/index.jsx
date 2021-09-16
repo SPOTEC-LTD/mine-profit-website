@@ -16,6 +16,7 @@ import { CNY } from '@/shared/consts/currencyType';
 import RichText from '@/shared/components/RichText';
 import getCoinRate from '@/shared/utils/getCoinRate';
 import * as rateExchangeAPI from '@/api/rateExchange';
+import DateUtils from '@/shared/intl/utils/dateUtils';
 import TagGroup from '@/pages/home/component/TagGroup';
 import Notification from '@/shared/services/Notification';
 import * as officialProductAPI from '@/api/officialMarket';
@@ -84,7 +85,7 @@ const OfficialProductDetails = {
       const {
         amount, unit, unitHashratePrice, discountUnitHashratePrice, transCloseDays,
         chainType, incomeCurrent, incomeTotal, allocationRate, yearReward,
-        yearRewardRate, shutdownCoinPrice,
+        yearRewardRate, shutdownCoinPrice, preStatus, workStartTime,
       } = this.officialProductDetails;
       const { rate, cnyRate } = this;
       const unitPrice = this.isNewUser ? discountUnitHashratePrice : unitHashratePrice;
@@ -154,7 +155,11 @@ const OfficialProductDetails = {
         {
           icon: <OneShovelOutlined />,
           title: <CellTitle title={this.$t('marketStartMineTime')} />,
-          content: <DetailContent mount='T+1' unit={this.$t('day')} />,
+          content: <DetailContent
+            className={preStatus ? 'pre-sale-dig-time' : ''}
+            mount={preStatus ? '' : 'T+1' }
+            unit={preStatus ? DateUtils.formatDateTime(workStartTime) : this.$t('day')}
+          />,
         },
         {
           icon: <DashboardOutlined />,
@@ -188,12 +193,12 @@ const OfficialProductDetails = {
     },
 
     getSalePriceNode() {
-      const { packageHashratePrice, discountPackageHashratePrice } = this.officialProductDetails;
+      const { packageHashratePrice, discountPackageHashratePrice, preStatus } = this.officialProductDetails;
       const resultPrice = this.isNewUser ? discountPackageHashratePrice : packageHashratePrice;
       const cnyPrice = getTimes({ number: resultPrice, times: this.cnyRate, decimal: 2 });
       return (
         <div class={styles['sale-price-container']}>
-          <span class={styles['price-tag']}>{this.$t('sellPrice')}</span>
+          <span class={styles['price-tag']}>{this.$t(preStatus ? 'preSalePrice' : 'sellPrice')}</span>
           <span class={styles['result-price']}>{bigNumberToFixed(resultPrice, 2)}</span>
           <div class={styles['discount-info-container']}>
             <div>
@@ -216,8 +221,8 @@ const OfficialProductDetails = {
 
   render() {
     const {
-      ptName, name, chainType, desc, publishAmountUnit,
-      status, onlineTime, customerLimit, amount, unit,
+      ptName, name, chainType, desc, publishAmountUnit, status, onlineTime,
+      customerLimit, amount, unit, preStatus, preSaleStartTime, preSaleEndTime,
     } = this.officialProductDetails;
     const isNoRest = this.rest <= 0;
     const isLookForward = status === PLEASE_LOOK_FORWARD;
@@ -254,6 +259,9 @@ const OfficialProductDetails = {
                 isNew={this.isNewUser}
                 isLookForward={isLookForward}
                 lineTime={onlineTime}
+                preStatus={preStatus}
+                preSaleStartTime={preSaleStartTime}
+                preSaleEndTime={preSaleEndTime}
               />
             </div>
           </div>

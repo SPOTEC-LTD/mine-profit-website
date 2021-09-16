@@ -8,6 +8,8 @@ import LineProgress from '@/shared/components/LineProgress';
 import sellOutImg from '@/assets/productMarket/sellOut.png';
 import { PLEASE_LOOK_FORWARD } from '@/shared/consts/productStatus';
 import LookForwardSale from '@/shared/components/LookForwardSale';
+import PreSaleDec from '@/shared/components/PreSaleDec';
+import { BEFORE_PRE_SALE } from '@/shared/consts/preSaleStatus';
 import './index.less';
 
 const RestOfficialProduct = {
@@ -18,17 +20,35 @@ const RestOfficialProduct = {
     },
   },
 
+  data() {
+    const { sale, total, status, customerLimit, tags, amount, preStatus } = this.productData;
+    return {
+      isNewUser: includes(tags, NEW_USER_USED),
+      isLookingForward: status === PLEASE_LOOK_FORWARD,
+      newUserTotal: getTimes({ number: customerLimit, times: amount, decimal: 0 }),
+      restCount: getMinus({ number: total, minuend: sale, decimal: 0 }),
+      preSaleLookForward: preStatus === BEFORE_PRE_SALE,
+    };
+  },
+
+  computed: {
+    isSaleOut() { return this.restCount <= 0; },
+    finalTotal() {
+      return this.isNewUser ? this.newUserTotal : this.productData.total;
+    },
+    finalSale() {
+      const { sale, total } = this.productData;
+      const newUsersTotal = getMinus({ number: this.newUserTotal, minuend: total, decimal: 0 });
+      return this.isNewUser ? newUsersTotal : sale;
+    },
+  },
+
   render() {
-    const { sale, total, status, onlineTime, customerLimit, tags, amount, unit } = this.productData;
-    const isNewUser = includes(tags, NEW_USER_USED);
-    const newUserTotal = getTimes({ number: customerLimit, times: amount, decimal: 0 });
-    const restCount = getMinus({ number: total, minuend: sale, decimal: 0 });
-    const isSaleOut = restCount <= 0;
-    const finalTotal = isNewUser ? newUserTotal : total;
-    const finalSale = isNewUser ? getMinus({ number: newUserTotal, minuend: total, decimal: 0 }) : sale;
+    const { onlineTime, unit, preStatus, preSaleStartTime, preSaleEndTime } = this.productData;
+    const { isLookingForward, restCount, isSaleOut, finalTotal, finalSale, preSaleLookForward } = this;
+
     const decimalPercentage = getDivided({ number: finalSale, divisor: finalTotal, decimal: 2 });
     const salePercentage = getTimes({ number: decimalPercentage, times: 100, decimal: 0 });
-    const isLookingForward = status === PLEASE_LOOK_FORWARD;
 
     return (
       <div class='rest-official-product-container'>
@@ -39,14 +59,26 @@ const RestOfficialProduct = {
           class='sale-rest'
         />
 
-        {!isLookingForward && (
+        {(!isLookingForward && preStatus) && (
+          <PreSaleDec
+            preStatus={preStatus}
+            preSaleStartTime={preSaleStartTime}
+            preSaleEndTime={preSaleEndTime}
+            isSaleOut={isSaleOut}
+          />
+        )}
+
+        {(!preStatus && !isLookingForward) && (
           <Button type="primary" class='product-buy-button' disabled={isSaleOut}>
             {this.$t('marketImmediateBuy')}
           </Button>
         )}
 
+        {isLookingForward && (
+          <LookForwardSale time={preSaleLookForward ? preSaleEndTime : onlineTime} />
+        )}
+
         {isSaleOut && <img src={sellOutImg} alt="" class='sale-out-img' />}
-        {isLookingForward && <LookForwardSale time={onlineTime} />}
       </div>
     );
   },

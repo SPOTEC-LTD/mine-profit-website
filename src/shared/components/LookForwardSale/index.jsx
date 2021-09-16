@@ -9,12 +9,12 @@ const LookForwardSale = {
   render() {
     const saleTime = dateUtils.formatDateTime(this.time, 'YYYY-MM-DD HH:mm');
     return (
-      <div class="look-forward-container">
-        <img src={coinImg} alt="" class='look-forward-img' />
-        <div class='look-forward-text'>
-          <span>{this.$t('marketExpect')}</span>
-          <span class='start-time'>{`${saleTime} ${this.$t('marketOnlineTime')}`}</span>
+      <div>
+        <div class='look-forward-title'>
+          <span class='time-title'>{this.$t('marketExpect')}</span>
+          <img src={coinImg} alt="" class='look-forward-img' />
         </div>
+        <div class='start-time'>{`${saleTime} ${this.$t('marketOnlineTime')}`}</div>
       </div>
     );
   },

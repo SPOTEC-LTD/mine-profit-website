@@ -4,6 +4,7 @@ import getTimes from '@/shared/utils/getTimes';
 import numberUtils from 'aa-utils/lib/numberUtils';
 import NewBuyBuffButton from '@/shared/components/NewBuyBuffButton';
 import NewUserButton from '@/shared/components/NewUserButton';
+import PreSaleButton from '@/shared/components/PreSaleButton';
 import NewUserBuff from '@/shared/components/NewUserBuff';
 import MarketNewBuyBuff from '@/shared/components/MarketNewBuyBuff';
 import MarketRenewBuff from '@/shared/components/MarketRenewBuff';
@@ -93,13 +94,16 @@ const TagGroup = {
   },
 
   render() {
-    const { tags } = this.productData;
+    const { tags, preStatus } = this.productData;
     const isNewUser = includes(tags, NEW_USER_USED) && !this.isSettlementPage;
     const isNewBuy = includes(tags, MARKET_NEW_BUY_BUFF);
     const isRenewBuy = includes(tags, MARKET_RENEW_BUFF);
 
     return (
       <div class={['tag-groups', { 'settlement-wrapper': this.isSettlementPage }, this.className]}>
+
+        {preStatus && (<PreSaleButton class='group-tag ' />)}
+
         {isNewUser && (
           this.mentionTips({
             content: this.newUserMentionNode,
