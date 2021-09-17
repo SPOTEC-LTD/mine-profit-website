@@ -156,9 +156,8 @@ const OfficialProductDetails = {
           icon: <OneShovelOutlined />,
           title: <CellTitle title={this.$t('marketStartMineTime')} />,
           content: <DetailContent
-            className={preStatus ? 'pre-sale-dig-time' : ''}
-            mount={preStatus ? '' : 'T+1' }
-            unit={preStatus ? DateUtils.formatDateTime(workStartTime) : this.$t('day')}
+            mount={preStatus ? DateUtils.formatDateTime(workStartTime, 'YYYY.MM.DD') : 'T+1' }
+            unit={preStatus ? '' : this.$t('day')}
           />,
         },
         {

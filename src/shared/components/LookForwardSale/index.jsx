@@ -1,20 +1,24 @@
 import coinImg from '@/assets/productMarket/coin.png';
-import dateUtils from '@/shared/intl/utils/dateUtils';
 import './index.less';
 
 const LookForwardSale = {
   props: {
-    time: { type: Number },
+    time: String,
+    isPreSale: Boolean,
   },
   render() {
-    const saleTime = dateUtils.formatDateTime(this.time, 'YYYY-MM-DD HH:mm');
     return (
       <div>
         <div class='look-forward-title'>
-          <span class='time-title'>{this.$t('marketExpect')}</span>
+          <span class='time-title'>
+            {this.isPreSale ? this.$t('preSaleTime') : this.$t('marketExpect')}
+          </span>
           <img src={coinImg} alt="" class='look-forward-img' />
         </div>
-        <div class='start-time'>{`${saleTime} ${this.$t('marketOnlineTime')}`}</div>
+        <div class='start-time'>
+          <span>{this.time}</span>
+          {!this.isPreSale && <span>{this.$t('marketOnlineTime')}</span>}
+        </div>
       </div>
     );
   },
