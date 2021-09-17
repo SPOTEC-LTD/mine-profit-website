@@ -95,7 +95,6 @@ export default {
   Transferor: '转让人',
   preSale: '预售',
   preSaleTime: '预售时间',
-  preSaleOut: '预售已售罄',
   preSaleNow: '预售中',
   preSalePrice: '预售售价',
   begin: '开始',

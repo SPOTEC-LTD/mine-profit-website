@@ -3,6 +3,7 @@ import includes from 'lodash/includes';
 import getTimes from '@/shared/utils/getTimes';
 import getMinus from '@/shared/utils/getMinus';
 import getDivided from '@/shared/utils/getDivided';
+import dateUtils from '@/shared/intl/utils/dateUtils';
 import { NEW_USER_USED } from '@/shared/consts/productTag';
 import LineProgress from '@/shared/components/LineProgress';
 import sellOutImg from '@/assets/productMarket/sellOut.png';
@@ -21,13 +22,19 @@ const RestOfficialProduct = {
   },
 
   data() {
-    const { sale, total, status, customerLimit, tags, amount, preStatus } = this.productData;
+    const {
+      sale, total, status, customerLimit, tags, onlineTime,
+      amount, preStatus, preSaleStartTime, preSaleEndTime,
+    } = this.productData;
     return {
       isNewUser: includes(tags, NEW_USER_USED),
       isLookingForward: status === PLEASE_LOOK_FORWARD,
       newUserTotal: getTimes({ number: customerLimit, times: amount, decimal: 0 }),
       restCount: getMinus({ number: total, minuend: sale, decimal: 0 }),
       preSaleLookForward: preStatus === BEFORE_PRE_SALE,
+      preSaleStart: dateUtils.formatDateTime(preSaleStartTime, 'YYYY-MM-DD HH:mm'),
+      preSaleEnd: dateUtils.formatDateTime(preSaleEndTime, 'YYYY-MM-DD HH:mm'),
+      LookForwardTime: dateUtils.formatDateTime(onlineTime, 'YYYY-MM-DD HH:mm'),
     };
   },
 
@@ -44,11 +51,15 @@ const RestOfficialProduct = {
   },
 
   render() {
-    const { onlineTime, unit, preStatus, preSaleStartTime, preSaleEndTime } = this.productData;
-    const { isLookingForward, restCount, isSaleOut, finalTotal, finalSale, preSaleLookForward } = this;
+    const { unit, preStatus, preSaleStartTime, preSaleEndTime } = this.productData;
+    const {
+      isLookingForward, restCount, isSaleOut, finalTotal, LookForwardTime,
+      finalSale, preSaleLookForward, preSaleStart, preSaleEnd,
+    } = this;
 
     const decimalPercentage = getDivided({ number: finalSale, divisor: finalTotal, decimal: 2 });
     const salePercentage = getTimes({ number: decimalPercentage, times: 100, decimal: 0 });
+    const preSaleTime = `${preSaleStart}-${preSaleEnd}`;
 
     return (
       <div class='rest-official-product-container'>
@@ -75,7 +86,10 @@ const RestOfficialProduct = {
         )}
 
         {isLookingForward && (
-          <LookForwardSale time={preSaleLookForward ? preSaleEndTime : onlineTime} />
+          <LookForwardSale
+            isPreSale={preSaleLookForward}
+            time={preSaleLookForward ? preSaleTime : LookForwardTime}
+          />
         )}
 
         {isSaleOut && <img src={sellOutImg} alt="" class='sale-out-img' />}

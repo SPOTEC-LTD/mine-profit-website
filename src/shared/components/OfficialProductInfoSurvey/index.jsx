@@ -33,7 +33,7 @@ const OfficialProductInfoSurvey = {
         {this.cellNode({ name: this.$t('marketNetOutput'), mount: bigNumberToFixed(income, 8), unit: chainType })}
         {this.cellNode({
           name: this.$t('hashrateTime'),
-          mount: preStatus ? DateUtils.formatDateTime(workStartTime) : 'T+1',
+          mount: preStatus ? DateUtils.formatDateTime(workStartTime, 'YYYY.MM.DD') : 'T+1',
           unit: preStatus ? '' : this.$t('day'),
         })}
       </div>

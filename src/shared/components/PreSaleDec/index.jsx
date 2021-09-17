@@ -34,7 +34,7 @@ const PreSaleDec = {
     return (
       <div>
         {!isSaleOut && preStatus === PRE_SALE_NOW && (this.cardNode({ timeTitle: this.$t('preSaleNow') }))}
-        {isSaleOut && (this.cardNode({ timeTitle: this.$t('preSaleOut') }))}
+        {isSaleOut && (this.cardNode({ timeTitle: this.$t('marketSoldOut') }))}
       </div>
     );
   },
