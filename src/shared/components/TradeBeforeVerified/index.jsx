@@ -102,17 +102,23 @@ const TradeBeforeVerified = {
     },
 
     getNotSubmitList() {
-      const realName = {
+      const password = {
         label: this.$t('accountAndSecurityTradePwd'),
         show: !this.isDealCodeSet,
-        onClick: () => { locationHelp.open(setDealPasswordPath); },
+        onClick: () => {
+          this.showDialog = false;
+          locationHelp.open(setDealPasswordPath);
+        },
         type: 'primary',
       };
 
-      const password = {
+      const realName = {
         label: this.$t('realNameAuth'),
         show: this.isVerifiedKyc && this.isKycNotSubmit,
-        onClick: () => { locationHelp.open(realNameAuthPath); },
+        onClick: () => {
+          this.showDialog = false;
+          locationHelp.open(realNameAuthPath);
+        },
         type: 'primary',
       };
       const realNameButton = this.isDealCodeSet ? [] : [realName];
