@@ -202,6 +202,8 @@ const StationMail = {
         this.isMailDetail = false;
         this.isShowAllReadNode = false;
         this.fetchStationMailList({ reset: true });
+      } else {
+        this[GET_USER_BADGE]();
       }
     },
   },

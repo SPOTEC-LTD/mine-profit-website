@@ -26,6 +26,7 @@ const Assets = {
               {numberUtils.formatNumber(totalUsdt, {
                 minimumFractionDigits: 2,
               })}
+              <span class={styles['assets-total-unit']}>USDT</span>
             </div>
             {getIsChinese() && (
               <div class={styles['assets-total-cny']}>

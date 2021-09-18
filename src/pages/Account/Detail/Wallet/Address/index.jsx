@@ -215,6 +215,7 @@ const Address = {
           loading={this.manageModel === ADD ? this.addLoading : this.editLoading}
           onConfirm={this.onSubmit}
           visible={this.isShowPasswordInput}
+          clearOnConfirm
         />
 
         <ConfirmModal

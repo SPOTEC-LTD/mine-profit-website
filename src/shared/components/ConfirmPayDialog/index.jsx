@@ -13,6 +13,7 @@ const ConfirmPayDialog = {
     loading: Boolean,
     prompt: String,
     hasProtocol: { type: Boolean, default: false },
+    clearOnConfirm: { type: Boolean, default: false },
   },
 
   data() {
@@ -38,6 +39,7 @@ const ConfirmPayDialog = {
       }
       if (this.password) {
         this.$emit('confirm', this.password);
+        this.clearOnConfirm && (this.password = '');
       } else {
         this.error = true;
       }
