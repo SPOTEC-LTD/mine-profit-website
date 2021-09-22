@@ -43,6 +43,8 @@ const Settlement = {
       chainBalance: [],
       isNewUser: false,
       isError: false,
+      isNormalUser: true,
+      reducedPrice: 0,
     };
     const getProductPromise = officialMarketAPI.getProductDetails(
       { pathParams: { id: params.id } },
@@ -52,9 +54,13 @@ const Settlement = {
 
     try {
       const { body: { productDetail } } = await getProductPromise;
+      const { tags, popularizePrice, discountPackageHashratePrice } = productDetail;
       props.productDetail = productDetail;
       props.restHashRate = numberUtils.minus(productDetail.publishAmount, productDetail.saleAmount);
-      props.isNewUser = includes(productDetail.tags, NEW_USER_USED);
+      const isNewUser = includes(tags, NEW_USER_USED);
+      props.isNewUser = isNewUser;
+      props.isNormalUser = !isNewUser && !popularizePrice;
+      props.reducedPrice = isNewUser ? discountPackageHashratePrice : popularizePrice;
     } catch (error) {
       props.isError = true;
     }
@@ -94,8 +100,8 @@ const Settlement = {
 
   watch: {
     value() {
-      const { isNewUser, productDetail } = this;
-      const price = isNewUser ? productDetail.discountPackageHashratePrice : productDetail.packageHashratePrice;
+      const { isNormalUser, productDetail, reducedPrice } = this;
+      const price = isNormalUser ? productDetail.packageHashratePrice : reducedPrice;
       this.hashRatePrice = numberUtils.times(this.value, price);
       this.hashRatePartAmount = +numberUtils.times(this.value, productDetail.amount);
       this.getCouponsList({ buyAmount: +this.hashRatePartAmount });
@@ -217,11 +223,8 @@ const Settlement = {
   },
 
   render() {
-    const {
-      name, ptName, chainType, packageHashratePrice, unit, amount, discountPackageHashratePrice,
-    } = this.productDetail;
-    const price = bigNumberToFixed(packageHashratePrice, 2);
-    const discountPrice = bigNumberToFixed(discountPackageHashratePrice, 2);
+    const { name, ptName, chainType, packageHashratePrice, unit, amount } = this.productDetail;
+    const price = bigNumberToFixed(this.isNormalUser ? packageHashratePrice : this.reducedPrice, 2);
     const { btcExchangeRate, ethExchangeRate } = this.chainRate;
 
     return (
@@ -233,8 +236,8 @@ const Settlement = {
             <FormContainer class={styles['product-info-card']}>
               <SingleInfoCard
                 title={this.$t('unitPrice')}
-                amount={this.isNewUser ? discountPrice : price}
-                deletedPrice={this.isNewUser ? price : ''}
+                amount={price}
+                deletedPrice={this.isNormalUser ? '' : bigNumberToFixed(packageHashratePrice, 2)}
                 unit='USDT'
               />
               <SingleInfoCard title={this.$t('marketPartHash')} amount={amount} unit={`${unit}/${this.$t('part')}`} />

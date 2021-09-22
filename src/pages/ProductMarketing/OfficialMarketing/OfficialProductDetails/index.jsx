@@ -39,15 +39,22 @@ import styles from './index.less?module';
 
 const OfficialProductDetails = {
   async asyncData(ctx) {
-    const props = { officialProductDetails: initValue, rest: '', rateExchangeList: [], isError: false, isNewUser: false };
+    const props = { officialProductDetails: initValue,
+      rest: '',
+      rateExchangeList: [],
+      isError: false,
+      isNewUser: false,
+      isNormalUser: true,
+    };
     const getProductPromise = officialProductAPI.getProductDetails({ pathParams: { id: ctx.params.id } }, { ctx });
     const getRateExchangeList = rateExchangeAPI.getRateExchange({}, { ctx });
 
     try {
       const { body: { productDetail } } = await getProductPromise;
       props.officialProductDetails = productDetail;
-      const { tags } = productDetail;
+      const { tags, popularizePrice } = productDetail;
       props.isNewUser = includes(tags, NEW_USER_USED);
+      props.isNormalUser = !popularizePrice && !includes(tags, NEW_USER_USED);
       props.rest = +getMinus({ number: productDetail.publishAmountUnit, minuend: productDetail.saleAmountUnit, decimal: 0 });
     } catch (error) {
       props.isError = true;
@@ -84,11 +91,12 @@ const OfficialProductDetails = {
     getDataList() {
       const {
         amount, unit, unitHashratePrice, discountUnitHashratePrice, transCloseDays,
-        chainType, incomeCurrent, incomeTotal, allocationRate, yearReward,
-        yearRewardRate, shutdownCoinPrice, preStatus, workStartTime,
+        chainType, incomeCurrent, incomeTotal, allocationRate, yearReward, yearRewardRate,
+        shutdownCoinPrice, preStatus, workStartTime, popularizeUnitPrice,
       } = this.officialProductDetails;
-      const { rate, cnyRate } = this;
-      const unitPrice = this.isNewUser ? discountUnitHashratePrice : unitHashratePrice;
+      const { cnyRate, isNewUser, isNormalUser } = this;
+      const discountUnitPrice = isNewUser ? discountUnitHashratePrice : popularizeUnitPrice;
+      const unitPrice = isNormalUser ? unitHashratePrice : discountUnitPrice;
 
       const listData = [
         {
@@ -100,7 +108,7 @@ const OfficialProductDetails = {
           icon: <ReticuleOutlined />,
           title: <CellTitle title={this.$t('marketConvertUnitPrice')} />,
           content: <DetailContent
-            mount={getTimes({ number: unitPrice, times: rate, decimal: 2 })}
+            mount={bigNumberToFixed(unitPrice, 2)}
             unit={`USDT/${unit}`}
             extraUnit={this.isChinese ? `≈${getTimes({ number: unitPrice, times: cnyRate, decimal: 2 })} CNY/${unit}` : ''}
           />,
@@ -141,7 +149,7 @@ const OfficialProductDetails = {
           ),
           content: (
             <DetailContent
-              mount={getTimes({ number: shutdownCoinPrice, times: rate, decimal: 2 })}
+              mount={bigNumberToFixed(shutdownCoinPrice, 2)}
               unit={`USDT/${chainType}`}
               extraUnit={
                 this.isChinese ?
@@ -192,16 +200,18 @@ const OfficialProductDetails = {
     },
 
     getSalePriceNode() {
-      const { packageHashratePrice, discountPackageHashratePrice, preStatus } = this.officialProductDetails;
-      const resultPrice = this.isNewUser ? discountPackageHashratePrice : packageHashratePrice;
+      const { packageHashratePrice, discountPackageHashratePrice, preStatus, popularizePrice } = this.officialProductDetails;
+      const reducedPrice = this.isNewUser ? discountPackageHashratePrice : popularizePrice;
+      const resultPrice = this.isNormalUser ? packageHashratePrice : reducedPrice;
       const cnyPrice = getTimes({ number: resultPrice, times: this.cnyRate, decimal: 2 });
+
       return (
         <div class={styles['sale-price-container']}>
           <span class={styles['price-tag']}>{this.$t(preStatus ? 'preSalePrice' : 'sellPrice')}</span>
           <span class={styles['result-price']}>{bigNumberToFixed(resultPrice, 2)}</span>
           <div class={styles['discount-info-container']}>
             <div>
-              { this.isNewUser && (
+              { !this.isNormalUser && (
                 <span class={styles['deleted-price']}>{bigNumberToFixed(packageHashratePrice, 2)}</span>
               )}
               <span>{`USDT/${this.$t('part')}`}</span>

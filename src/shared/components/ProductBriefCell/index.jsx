@@ -62,21 +62,19 @@ const ProductBriefCell = {
     },
 
     getOfficialProductSurveyProps(rate) {
-      const { price, discountPrice, tags } = this.productData;
+      const { price, discountPrice, tags, popularizePrice } = this.productData;
       const isNewUser = includes(tags, NEW_USER_USED);
-      const cnyPrice = getTimes({ number: isNewUser ? discountPrice : price, times: rate, decimal: 2 });
-      const normalUser = {
-        infoUnit: `≈${cnyPrice} CNY`,
+      const normalPrice = !isNewUser && !popularizePrice;
+      const reducedPrice = isNewUser ? discountPrice : popularizePrice;
+      const finalPrice = normalPrice ? price : reducedPrice;
+
+      const officialProductProps = {
+        infoUnit: `≈${getTimes({ number: finalPrice, times: rate, decimal: 2 })} CNY`,
         infoName: this.$t('marketPartPrice'),
-        infoValue: `${bigNumberToFixed(price, 2)} USDT`,
+        infoValue: `${bigNumberToFixed(normalPrice ? price : reducedPrice, 2)} USDT`,
+        extraInfo: normalPrice ? '' : `${bigNumberToFixed(price, 2)} USDT`,
       };
-      const newUser = {
-        infoUnit: `≈${cnyPrice} CNY`,
-        infoName: this.$t('marketPartPrice'),
-        infoValue: `${bigNumberToFixed(discountPrice, 2)}`,
-        extraInfo: `${bigNumberToFixed(price, 2)} USDT`,
-      };
-      return isNewUser ? newUser : normalUser;
+      return officialProductProps;
     },
 
     getC2CSurveyProps(rate) {
