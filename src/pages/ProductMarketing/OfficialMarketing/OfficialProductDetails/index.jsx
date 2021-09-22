@@ -205,8 +205,6 @@ const OfficialProductDetails = {
       const resultPrice = this.isNormalUser ? packageHashratePrice : reducedPrice;
       const cnyPrice = getTimes({ number: resultPrice, times: this.cnyRate, decimal: 2 });
 
-      console.log(this.isNormalUser, resultPrice);
-
       return (
         <div class={styles['sale-price-container']}>
           <span class={styles['price-tag']}>{this.$t(preStatus ? 'preSalePrice' : 'sellPrice')}</span>
