@@ -624,6 +624,8 @@
   "preSalePrice": "预售售价",
   "begin": "开始",
   "closeTime": "截止",
+  "deductedInProfit": "电费从每日收益中扣除",
+  "dailyElectricityCharge": "日电费",
   "permanent": "永久",
   "termOfValidity": "有效期",
   "allStatus": "全部状态",

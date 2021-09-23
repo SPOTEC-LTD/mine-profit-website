@@ -102,7 +102,7 @@ const TagGroup = {
     return (
       <div class={['tag-groups', { 'settlement-wrapper': this.isSettlementPage }, this.className]}>
 
-        {preStatus && (<PreSaleButton class='group-tag ' />)}
+        {(preStatus && !this.isSettlementPage) && (<PreSaleButton class='group-tag ' />)}
 
         {isNewUser && (
           this.mentionTips({

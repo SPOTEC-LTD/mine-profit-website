@@ -4,6 +4,7 @@ import ShutdownOutlined from 'ahoney/lib/icons/ShutdownOutlined';
 import DashboardOutlined from 'ahoney/lib/icons/DashboardOutlined';
 import OneShovelOutlined from 'ahoney/lib/icons/OneShovelOutlined';
 import TimeTwoOutlined from 'ahoney/lib/icons/TimeTwoOutlined';
+import ElectricOutlined from 'ahoney/lib/icons/ElectricOutlined';
 import getMinus from '@/shared/utils/getMinus';
 import getTimes from '@/shared/utils/getTimes';
 import * as c2cMarketAPI from '@/api/c2cMarket';
@@ -86,7 +87,7 @@ const C2CProductDetails = {
     getDataList() {
       const {
         avatar, cname, chainType, allocation, unit, income,
-        shutdownCoinPrice, currentIncome, yearRewardRate,
+        shutdownCoinPrice, currentIncome, yearRewardRate, dayElectricityBill,
       } = this.c2cProductDetails;
       const { cnyRate } = this;
       const cnyShutdownPrice = getTimes({ number: shutdownCoinPrice, times: cnyRate, decimal: 2 });
@@ -154,6 +155,27 @@ const C2CProductDetails = {
           ),
           content: (
             <DetailContent mount={getTimes({ number: yearRewardRate, times: 100, decimal: 2 })} unit='%'/>
+          ),
+        },
+        {
+          icon: <ElectricOutlined />,
+          title: (
+            <CellTitle
+              title={this.$t('dailyElectricityCharge')}
+              showMention={true}
+              notificationContent={this.$t('deductedInProfit')}
+            />
+          ),
+          content: (
+            <DetailContent
+              mount={bigNumberToFixed(dayElectricityBill, 8)}
+              unit={`USDT/${chainType}`}
+              extraUnit={
+                this.isChinese ?
+                  `≈${getTimes({ number: dayElectricityBill, times: cnyRate, decimal: 8 })} CNY/${this.$t('part')}`
+                  : ''
+              }
+            />
           ),
         },
       ];
