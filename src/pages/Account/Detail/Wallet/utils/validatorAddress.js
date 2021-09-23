@@ -14,11 +14,14 @@ export const validateAddress = (value, chainType) => {
 
   const filRules = value.length === 41 && startsWith(value, 'f');
 
+  const trc20Rules = startsWith(value, 'T');
+
   const validateMap = {
     'BTC': ruleTypeOne || rule3 || ruleBc1,
     'USDT-OMNI': ruleTypeOne || rule3,
     'ETH': ruleTypeTwo,
     'USDT-ERC20': ruleTypeTwo,
+    'USDT-TRC20': trc20Rules,
     'FIL': filRules,
   };
 

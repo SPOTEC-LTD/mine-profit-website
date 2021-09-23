@@ -8,3 +8,5 @@ export const getHashratePopupList = createAPI(httpMethod.GET, '/product/hashrate
 export const viewedHashratePopup = createAPI(httpMethod.PUT, '/product/hashrate/template/customer/:userId/:id/home');
 export const viewedHashrateCouponPopup = createAPI(httpMethod.PUT, '/product/hashrate/coupons/customer/:userId/:id/home');
 export const getBannerDetail = createAPI(httpMethod.GET, '/operation/banner/:id');
+export const getWeeklyReportPopupInfo = createAPI(httpMethod.GET, '/operation/weekly/:userId');
+export const viewedWeeklyReportPopup = createAPI(httpMethod.PUT, '/operation/weekly/:id');

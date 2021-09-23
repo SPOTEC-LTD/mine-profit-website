@@ -12,15 +12,15 @@ const CoinLine = {
   render() {
     return (
       <div class={styles['line-button-box']}>
-        {this.buttonList.map(({ buttonText, line }, index) => (
+        {this.buttonList.map(({ text, value }, index) => (
           <Button
             key={index}
-            class={[styles['line-button'], this.lineType === line ? styles['btn-blue'] : styles['btn-gray']]}
-            disabled={this.disabled && this.lineType !== line}
-            onClick={() => this.$emit('changeLine', line)}
+            class={[styles['line-button'], this.lineType === value ? styles['btn-blue'] : styles['btn-gray']]}
+            disabled={this.disabled && this.lineType !== value}
+            onClick={() => this.$emit('changeLine', value)}
           >
-            {buttonText}
-            {this.lineType === line && (
+            {text}
+            {this.lineType === value && (
               <div class={styles['active-button']}>
                 <CorrectOutlined />
               </div>

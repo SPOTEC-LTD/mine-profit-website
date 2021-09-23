@@ -121,8 +121,8 @@ const TradeBeforeVerified = {
         },
         type: 'primary',
       };
-      const realNameButton = this.isDealCodeSet ? [] : [realName];
-      const passwordButton = (this.isVerifiedKyc && this.isKycNotSubmit) ? [password] : [];
+      const passwordButton = this.isDealCodeSet ? [] : [password];
+      const realNameButton = (this.isVerifiedKyc && this.isKycNotSubmit) ? [realName] : [];
       let notSubmitDesc = '';
       if (this.isVerifiedKyc && this.isKycNotSubmit && !this.isDealCodeSet) {
         notSubmitDesc = this.$t('verifyDialogContent');

@@ -5,13 +5,19 @@ import isEmpty from 'lodash/isEmpty';
 import ProductMarket from '@/pages/home/ProductMarket';
 import BlockChainDate from '@/pages/home/BlockChainDate';
 import BaseContainer from '@/shared/components/BaseContainer';
-import { HOME, GET_MARKETS_LIST, GET_HASHRATE_COUPON_POPUP_LIST,
-  GET_HOME_PRODUCT_LIST, GET_HASHRATE_POPUP_LIST } from '@/modules/home';
+import {
+  HOME, GET_MARKETS_LIST, GET_HASHRATE_COUPON_POPUP_LIST,
+  GET_HOME_PRODUCT_LIST, GET_HASHRATE_POPUP_LIST, GET_WEEKLY_REPORT_POPUP_INFO,
+} from '@/modules/home';
+import { STATION_MAIL, GET_WEEKLY_REPORT_DETAIL } from '@/modules/stationMail';
 import OurAdvantage from '@/pages/home/OurAdvantage';
 import localStorage from '@/shared/utils/localStorage';
 import TradeBeforeVerified from '@/shared/components/TradeBeforeVerified';
 import CooperationCompany from '@/pages/home/CooperationCompany';
 import CorporateCulture from '@/pages/home/CorporateCulture';
+import WeeklyOutputReportModal from '@/shared/components/PageHeader/StationMail/WeeklyOutputReportModal';
+import { HAVE_REPORT } from './consts/haveWeeklyReport';
+import { NOT_EJECTED } from './consts/weeklyStatus';
 import Banner from './Banner';
 import Download from './Download';
 import CoinMarkets from './CoinMarkets';
@@ -74,10 +80,12 @@ const Home = {
     ...mapState({
       marketsList: state => state.home.marketsList,
       productList: state => state.home.productList,
-      marketsLoading: state => state.loading.effects[`${HOME}/${GET_MARKETS_LIST}`],
       hashrateCouponPopupList: state => state.home.hashrateCouponPopupList,
-      hashrateCouponPopupListLoading: state => state.loading.effects[`${HOME}/${GET_HASHRATE_COUPON_POPUP_LIST}`],
       hashratePopupList: state => state.home.hashratePopupList,
+      weeklyReportInfo: state => state.home.weeklyReportInfo,
+      weeklyReportDetail: state => state.stationMail.weeklyReportDetail,
+      marketsLoading: state => state.loading.effects[`${HOME}/${GET_MARKETS_LIST}`],
+      hashrateCouponPopupListLoading: state => state.loading.effects[`${HOME}/${GET_HASHRATE_COUPON_POPUP_LIST}`],
       hashratePopupListLoading: state => state.loading.effects[`${HOME}/${GET_HASHRATE_POPUP_LIST}`],
     }),
     needPopupCouponList() {
@@ -94,6 +102,14 @@ const Home = {
     isVisibleBannerPopup() {
       return (isEmpty(this.needPopupCouponList) && !this.hashrateCouponPopupListLoading)
         && ((isEmpty(this.needPopupHashrateList) && !this.hashratePopupListLoading));
+    },
+    isVisibleWeeklyReport() {
+      const { haveWeeklyReport, status } = this.weeklyReportInfo;
+      const isVisible = this.isVisibleBannerPopup
+        && haveWeeklyReport === HAVE_REPORT
+        && status === NOT_EJECTED
+        && isEmpty(this.bannerPopupList);
+      return isVisible;
     },
   },
 
@@ -112,11 +128,21 @@ const Home = {
     if (userId) {
       this[GET_HASHRATE_COUPON_POPUP_LIST]({ userId });
       this[GET_HASHRATE_POPUP_LIST]({ userId });
+      this[GET_WEEKLY_REPORT_POPUP_INFO]({ userId })
+        .then(({ haveWeeklyReport, status, id }) => {
+          if (haveWeeklyReport === HAVE_REPORT && status === NOT_EJECTED) {
+            this[GET_WEEKLY_REPORT_DETAIL]({ id });
+          }
+        });
     }
   },
 
   methods: {
-    ...mapActions(HOME, [GET_MARKETS_LIST, GET_HOME_PRODUCT_LIST, GET_HASHRATE_COUPON_POPUP_LIST, GET_HASHRATE_POPUP_LIST]),
+    ...mapActions(HOME, [
+      GET_MARKETS_LIST, GET_HOME_PRODUCT_LIST, GET_HASHRATE_COUPON_POPUP_LIST,
+      GET_HASHRATE_POPUP_LIST, GET_WEEKLY_REPORT_POPUP_INFO,
+    ]),
+    ...mapActions(STATION_MAIL, [GET_WEEKLY_REPORT_DETAIL]),
     filterBannerPopupList() {
       const localBannerPopupList = isEmpty(localStorage.getObject('bannerPopupList')) ?
         [] : localStorage.getObject('bannerPopupList');
@@ -167,6 +193,15 @@ const Home = {
 
     hashrateViewed() {
       this.hashratePopupList.shift();
+    },
+
+    viewedReport() {
+      const { id } = this.weeklyReportDetail;
+      const { userId } = localStorage.getObject('userInfo');
+      homeAPI.viewedWeeklyReportPopup({ pathParams: { id } })
+        .then(() => {
+          this[GET_WEEKLY_REPORT_POPUP_INFO]({ userId });
+        });
     },
   },
 
@@ -230,6 +265,12 @@ const Home = {
             ))}
           </div>
         )}
+
+        <WeeklyOutputReportModal
+          value={this.isVisibleWeeklyReport}
+          reportInfo={this.weeklyReportDetail}
+          onClose={this.viewedReport}
+        />
       </div>
     );
   },
