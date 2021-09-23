@@ -1,7 +1,7 @@
 import { FormModel, Input } from 'ant-design-vue';
 
 import { EDIT } from '@/pages/Account/Detail/Wallet/consts/dialogType';
-import { COIN, LINE_USDT_ERC20, LINE_USDT_OMNI, getType } from '@/pages/Account/Detail/Wallet/consts/lineType';
+import { COIN, LINE_USDT_ERC20, getType, lineList } from '@/pages/Account/Detail/Wallet/consts/lineType';
 import ChainSelect from '@/shared/components/ChainSelect';
 import ConfirmModal from '@/shared/components/ConfirmModal';
 
@@ -54,10 +54,6 @@ const AddOrEditAddressModal = {
 
   render() {
     const { chainType } = this.addressInfo;
-    const buttonList = [
-      { buttonText: 'ERC20', line: LINE_USDT_ERC20 },
-      { buttonText: 'OMNI', line: LINE_USDT_OMNI },
-    ];
 
     return (
       <ConfirmModal
@@ -90,7 +86,7 @@ const AddOrEditAddressModal = {
               <CoinLine
                 disabled={this.manageModel === EDIT}
                 lineType={chainType}
-                buttonList={buttonList}
+                buttonList={lineList}
                 onChangeLine={this.handleChangeLine}
               />
             </Item>

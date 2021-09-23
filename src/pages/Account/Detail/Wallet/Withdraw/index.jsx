@@ -7,7 +7,7 @@ import numberUtils from 'aa-utils/lib/numberUtils';
 import * as API from '@/api/account/wallet';
 import { WALLET, GET_WITHDRAWAL_ADDRESS, WITHDRAWAL } from '@/modules/account/wallet';
 import { WITH_DRAW_ERROR, SECTION_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
-import { LINE_USDT_ERC20, LINE_USDT_OMNI } from '@/pages/Account/Detail/Wallet/consts/lineType';
+import { LINE_USDT_ERC20, lineList } from '@/pages/Account/Detail/Wallet/consts/lineType';
 import NumberInput, { FLOAT } from '@/shared/components/NumberInput';
 import { addressPath, accountDetailPath } from '@/router/consts/urls';
 import BaseContainer from '@/shared/components/BaseContainer';
@@ -182,10 +182,6 @@ const Withdraw = {
   },
 
   render() {
-    const buttonList = [
-      { buttonText: 'ERC20', line: LINE_USDT_ERC20 },
-      { buttonText: 'OMNI', line: LINE_USDT_OMNI },
-    ];
     const { amount, minWithdraw, handlingFee } = this.finallyCoinInfo;
     const rowList = [
       {
@@ -226,7 +222,7 @@ const Withdraw = {
                 <Item label={this.$t('withDrawChainName')}>
                   <CoinLine
                     lineType={this.lineType}
-                    buttonList={buttonList}
+                    buttonList={lineList}
                     onChangeLine={this.changeLine}
                   />
                 </Item>
