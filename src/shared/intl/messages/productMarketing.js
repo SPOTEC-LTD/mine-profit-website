@@ -99,4 +99,6 @@ export default {
   preSalePrice: '预售售价',
   begin: '开始',
   closeTime: '截止',
+  deductedInProfit: '电费从每日收益中扣除',
+  dailyElectricityCharge: '日电费',
 };

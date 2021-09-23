@@ -1,13 +1,14 @@
 import includes from 'lodash/includes';
-import ReticuleOutlined from 'ahoney/lib/icons/ReticuleOutlined';
+import BoxOutlined from 'ahoney/lib/icons/BoxOutlined';
 import TimeOutlined from 'ahoney/lib/icons/TimeOutlined';
 import PercentOutline from 'ahoney/lib/icons/PercentOutline';
-import ShutdownOutlined from 'ahoney/lib/icons/ShutdownOutlined';
-import BlockTowerOutlined from 'ahoney/lib/icons/BlockTowerOutlined';
-import BoxOutlined from 'ahoney/lib/icons/BoxOutlined';
-import DashboardOutlined from 'ahoney/lib/icons/DashboardOutlined';
-import OneShovelOutlined from 'ahoney/lib/icons/OneShovelOutlined';
 import TimeTwoOutlined from 'ahoney/lib/icons/TimeTwoOutlined';
+import ElectricOutlined from 'ahoney/lib/icons/ElectricOutlined';
+import ShutdownOutlined from 'ahoney/lib/icons/ShutdownOutlined';
+import ReticuleOutlined from 'ahoney/lib/icons/ReticuleOutlined';
+import OneShovelOutlined from 'ahoney/lib/icons/OneShovelOutlined';
+import DashboardOutlined from 'ahoney/lib/icons/DashboardOutlined';
+import BlockTowerOutlined from 'ahoney/lib/icons/BlockTowerOutlined';
 import getTimes from '@/shared/utils/getTimes';
 import getMinus from '@/shared/utils/getMinus';
 import Title from '@/pages/home/component/Title';
@@ -92,7 +93,7 @@ const OfficialProductDetails = {
       const {
         amount, unit, unitHashratePrice, discountUnitHashratePrice, transCloseDays,
         chainType, incomeCurrent, incomeTotal, allocationRate, yearReward, yearRewardRate,
-        shutdownCoinPrice, preStatus, workStartTime, popularizeUnitPrice,
+        shutdownCoinPrice, preStatus, workStartTime, popularizeUnitPrice, dayElectricityBill,
       } = this.officialProductDetails;
       const { cnyRate, isNewUser, isNormalUser } = this;
       const discountUnitPrice = isNewUser ? discountUnitHashratePrice : popularizeUnitPrice;
@@ -192,6 +193,27 @@ const OfficialProductDetails = {
             <DetailContent
               mount={getTimes({ number: this.isNewUser ? yearRewardRate : yearReward, times: 100, decimal: 2 })}
               unit='%'
+            />
+          ),
+        },
+        {
+          icon: <ElectricOutlined />,
+          title: (
+            <CellTitle
+              title={this.$t('dailyElectricityCharge')}
+              showMention={true}
+              notificationContent={this.$t('deductedInProfit')}
+            />
+          ),
+          content: (
+            <DetailContent
+              mount={bigNumberToFixed(dayElectricityBill, 8)}
+              unit={`USDT/${this.$t('part')}`}
+              extraUnit={
+                this.isChinese ?
+                  `≈${getTimes({ number: dayElectricityBill, times: cnyRate, decimal: 8 })} CNY/${this.$t('part')}`
+                  : ''
+              }
             />
           ),
         },
