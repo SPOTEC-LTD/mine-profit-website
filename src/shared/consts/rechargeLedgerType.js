@@ -11,7 +11,8 @@ export const PLEDGE_INVESTMENT = '7'; // 投资质押
 export const INVESTMENT_EARNING = '8'; // 投资收益
 export const INVESTMENT_SETTLEMENT = '9'; // 投资结算
 export const MINING_OUTPUT = '10'; // 挖矿产出
-export const PROMOTION_AWARD = '11'; // 推广奖励
+export const PROMOTION_AWARD = '11'; // 推广产出奖励
+export const PROMOTION_REWARDS = '13'; // 推广购买返佣
 
 export const getLedgerTypeList = () => ([
   { text: locale.t('walletAllTypesAll'), value: WALLET_TYPE_ALL },
@@ -26,6 +27,7 @@ export const getLedgerTypeList = () => ([
   { text: locale.t('walletAllTypesInvestAccounts'), value: INVESTMENT_SETTLEMENT },
   { text: locale.t('walletAllTypesMining'), value: MINING_OUTPUT },
   { text: locale.t('walletAllTypesAward'), value: PROMOTION_AWARD },
+  { text: locale.t('promotionRewards'), value: PROMOTION_REWARDS },
 ]);
 
 export const getLedgerTypeMap = ledgerType => {
@@ -41,6 +43,7 @@ export const getLedgerTypeMap = ledgerType => {
     [INVESTMENT_SETTLEMENT]: locale.t('walletAllTypesInvestAccounts'),
     [MINING_OUTPUT]: locale.t('walletAllTypesMining'),
     [PROMOTION_AWARD]: locale.t('walletAllTypesAward'),
+    [PROMOTION_REWARDS]: locale.t('promotionRewards'),
   };
   return ledgerTypeMap[ledgerType];
 };
