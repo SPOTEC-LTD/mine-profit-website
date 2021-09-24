@@ -169,10 +169,10 @@ const C2CProductDetails = {
           content: (
             <DetailContent
               mount={bigNumberToFixed(dayElectricityBill, 8)}
-              unit={`USDT/${chainType}`}
+              unit={`USDT/${unit}`}
               extraUnit={
                 this.isChinese ?
-                  `≈${getTimes({ number: dayElectricityBill, times: cnyRate, decimal: 8 })} CNY/${this.$t('part')}`
+                  `≈${getTimes({ number: dayElectricityBill, times: cnyRate, decimal: 8 })} CNY/${unit}`
                   : ''
               }
             />
