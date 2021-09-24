@@ -16,6 +16,7 @@ import ProductTitle from '@/shared/components/ProductTitle';
 import PrimaryButton from '@/shared/components/PrimaryButton';
 import BaseContainer from '@/shared/components/BaseContainer';
 import { getIsChinese } from '@/shared/utils/getLocalLanguage';
+import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import CellGroup from '@/pages/ProductMarketing/components/CellGroup';
 import locationServices from '@/shared/services/location/locationServices';
 import CellTitle from '@/pages/Account/HashRate/List/components/CellTitle';
@@ -63,7 +64,7 @@ const ProductTemplate = {
     getDataList() {
       const {
         unit, amount, transCloseDays, allocationRate, incomeCurrent,
-        incomeTotal, chainType, shutdownCoinPrice,
+        incomeTotal, chainType, shutdownCoinPrice, dayElectricityBill,
       } = this.productTemplateInfo;
       const { rate, cnyRate } = this;
 
@@ -128,6 +129,27 @@ const ProductTemplate = {
               mount={`${getTimes({ number: allocationRate, times: 100, decimal: 2 })}`}
               unit='%'
               contentClass="dig-time"
+            />
+          ),
+        },
+        {
+          icon: <ElectricOutlined />,
+          title: (
+            <CellTitle
+              title={this.$t('dailyElectricityCharge')}
+              showMention={true}
+              notificationContent={this.$t('deductedInProfit')}
+            />
+          ),
+          content: (
+            <DetailContent
+              mount={bigNumberToFixed(dayElectricityBill, 8)}
+              unit={`USDT/${this.$t('part')}`}
+              extraUnit={
+                this.isChinese ?
+                  `≈${getTimes({ number: dayElectricityBill, times: cnyRate, decimal: 8 })} CNY/${this.$t('part')}`
+                  : ''
+              }
             />
           ),
         },
