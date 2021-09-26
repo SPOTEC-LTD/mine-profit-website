@@ -1,0 +1,32 @@
+@import '@/shared/styles/variables.less';
+
+.tooltip {
+  width: 264px;
+
+  :global {
+    .mp-tooltip-inner {
+      font-size: @font-size__15;
+      color: @black;
+      padding: 8px 32px 10px 30px;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    .mp-tooltip-arrow {
+      display: none;
+    }
+  }
+}
+
+.tooltip-content-label {
+  font-size: @font-size__18;
+  font-weight: 500;
+}
+
+.tooltip-content {
+  mark {
+    color: @color__primary;
+    background: transparent;
+    padding: 0;
+  }
+}

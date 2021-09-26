@@ -1,5 +1,5 @@
 import BaseContainer from '@/shared/components/BaseContainer';
-import { getUserBadge, getInviteInfo, getUserBaseInfo } from '@/api/account/userInfo';
+import { getUserBadge, getInviteInfo, getUserBaseInfo, getLevelDetail } from '@/api/account/userInfo';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import { getWalletAssets } from '@/api/account/wallet';
 import getOrderBalance from '@/shared/utils/getOrderBalance';
@@ -26,12 +26,23 @@ const Detail = {
         totalCny: 0,
         balanceList: [],
       },
+      personalLevel: {
+        buffList: [],
+      },
     };
 
     const getWalletDetailPromise = getWalletAssets({}, { ctx });
     const getUserBadgePromise = getUserBadge({}, { ctx });
     const fetchInviteInfo = getInviteInfo({ pathParams: { userId } }, { ctx });
     const fetchUserBaseInfo = getUserBaseInfo({ pathParams: { userId } }, { ctx });
+    const fetchLevelDetail = getLevelDetail({}, { ctx });
+
+    try {
+      const { body: { personalLevel } } = await fetchLevelDetail;
+      props.personalLevel = personalLevel;
+    } catch (error) {
+      console.log('error', error);
+    }
 
     try {
       const data = await getUserBadgePromise;
@@ -67,7 +78,12 @@ const Detail = {
   render() {
     return (
       <div>
-        <BaseInfo info={this.badge} userInfo={this.userInfo} inviteInfo={this.inviteInfo} />
+        <BaseInfo
+          personalLevel={this.personalLevel}
+          info={this.badge}
+          userInfo={this.userInfo}
+          inviteInfo={this.inviteInfo}
+        />
         <BaseContainer class={styles['account-other-info']}>
           <Authentication userInfo={this.userInfo} />
           <Wallet userBalance={this.userBalance} />
