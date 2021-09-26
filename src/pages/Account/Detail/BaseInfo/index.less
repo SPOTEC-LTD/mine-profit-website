@@ -3,30 +3,46 @@
 .account-base-info {
   position: relative;
   color: @white;
-  background-color: @color__182742;
+  background-color: @color__141414;
 }
 
 .info-box {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   width: 1200px;
-  padding: 38px 0;
+  padding: 20px 0 30px;
 }
 
-.info-left {
+.info-top {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 25px 20px;
+  height: 114px;
+  border-radius: 8px;
+  background-image: url('~@/assets/account/base-info-bg.png');
+  background-size: cover;
+  margin-bottom: 28px;
+  color: @color__242424;
 }
 
 .avatar {
-  width: 84px;
-  height: 84px;
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
   margin-right: 10px;
   object-fit: cover;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
-.info-left-content {
+.base-info {
+  display: flex;
+  align-items: center;
+}
+
+.info-base-content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -35,7 +51,7 @@
 }
 
 .nickname {
-  max-width: 180px;
+  max-width: 150px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -43,11 +59,13 @@
   line-height: 28px;
 }
 
-.info-left-operate {
+.info-base-operate {
   margin-bottom: 7px;
 
   > a {
     text-decoration: underline;
+    font-weight: 500;
+    color: @color__b2670d;
   }
 
   > a:first-child {
@@ -55,17 +73,19 @@
   }
 }
 
-.info-right {
+.info-bottom {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .invite-info-box {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid @color__8598bb;
+  border: 1px solid @color__d6d6d6;
   padding: 8px 8px 8px 26px;
+  width: 100%;
 
   > div {
     margin-right: 43px;
@@ -98,6 +118,7 @@
   background-color: rgba(133, 152, 187, 0.19);
   margin-left: 40px;
   cursor: pointer;
+  flex-shrink: 0;
 
   .coupon-icon {
     width: 19px;
@@ -158,10 +179,107 @@
 }
 
 .invitation-code {
-  margin-top: 6px;
+  margin-left: 11px;
 }
 
 .invite-info-unit {
   font-size: @font-size-sm;
   line-height: 17px;
+}
+
+.promote-info {
+  display: flex;
+  align-items: center;
+
+  > img {
+    flex-shrink: 0;
+    width: 70px;
+    height: 68px;
+    margin-right: 10px;
+  }
+}
+
+.promote-info-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+}
+
+.promote-level {
+  font-size: @font-size-base;
+  font-weight: 600;
+  margin-bottom: 4px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.view-level-rule {
+  font-weight: 500;
+  color: @color__b2670d;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 11px;
+  white-space: nowrap;
+}
+
+.bonus-item {
+  display: flex;
+  align-items: center;
+  font-size: @font-size-sm;
+  font-weight: 600;
+  margin-right: 31px;
+
+  > img {
+    width: 51px;
+    height: 51px;
+    margin-right: 8px;
+  }
+}
+
+.bonus-box {
+  display: flex;
+  min-width: 675px;
+  margin-left: 22px;
+
+  > .bonus-item:last-child {
+    margin-right: 0;
+  }
+}
+
+.bonus-item-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bonus-value {
+  display: inline-block;
+  padding: 0 6.5px;
+  border-radius: 10px;
+  font-size: @font-size-base;
+  font-weight: 600;
+  color: @white;
+  margin-bottom: 3px;
+  background: linear-gradient(180deg, @color__ffcc85 0%, @color__bf7821 100%);
+}
+
+.invest-wrap {
+  display: flex;
+}
+
+.modal {
+  :global {
+    .mp-modal-close {
+      top: 18px;
+    }
+
+    .mp-modal-close-x {
+      .spotecicon {
+        color: @black;
+      }
+    }
+  }
 }

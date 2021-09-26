@@ -10,16 +10,46 @@ export const UPDATE_DEAL_PASSWORD = 'updateDealPassword';
 export const UPDATE_LOGIN_PASSWORD = 'updateLoginPassword';
 export const BIND_PHONE_OR_EMAIL = 'bindPhoneOrEmail';
 export const UPDATE_BASE_INFO = 'updateBaseInfo';
-export const GET_INVITE_DETAIL_LIST = 'getInviteDetailList';
+export const GET_INVITE_DETAIL_INFO = 'getInviteDetailInfo';
+export const GET_ALL_LEVEL_INFO = 'getAllLevelInfo';
 export const GET_USER_BASE_INFO = 'getUserBaseInfo';
-export const UPDATE_INVITE_DETAIL_LIST = 'updateInviteDetailList';
+export const UPDATE_INVITE_DETAIL_INFO = 'updateInviteDetailList';
+export const UPDATE_ALL_LEVEL_INFO = 'updateAllLevelInfo';
 
 export default {
   namespaced: true,
-  state: { inviteDetailList: [] },
+  state: {
+    inviteDetailInfo: {},
+    allLevelDetail: {
+      currentUserLevel: 3,
+      levelInfoList: [{
+        level: 1,
+        icon: null,
+        name: '天使宝宝1',
+      },
+      {
+        level: 2,
+        icon: null,
+        name: '天使宝宝2',
+      },
+      {
+        level: 3,
+        icon: null,
+        name: '天使宝宝3',
+      },
+      {
+        level: 4,
+        icon: null,
+        name: '天使宝宝4',
+      }],
+    },
+  },
   mutations: {
-    [UPDATE_INVITE_DETAIL_LIST](state, list) {
-      state.inviteDetailList = list;
+    [UPDATE_INVITE_DETAIL_INFO](state, info) {
+      state.inviteDetailInfo = info;
+    },
+    [UPDATE_ALL_LEVEL_INFO](state, info) {
+      state.allLevelDetail = info;
     },
   },
   actions: {
@@ -85,13 +115,11 @@ export default {
         return Promise.reject(error);
       }
     },
-    async [GET_INVITE_DETAIL_LIST]({ commit }, params) {
+    async [GET_INVITE_DETAIL_INFO]({ commit }, params) {
       const { userId } = localStorage.getObject('userInfo');
       try {
-        const {
-          body: { list },
-        } = await API.getInviteDetailList({ data: params, pathParams: { userId } });
-        commit(UPDATE_INVITE_DETAIL_LIST, list);
+        const { body: { userInvite } } = await API.getInviteDetailList({ data: params, pathParams: { userId } });
+        commit(UPDATE_INVITE_DETAIL_INFO, userInvite);
 
         return Promise.resolve();
       } catch (error) {
@@ -107,6 +135,16 @@ export default {
         commit(UPDATE_USER_INFO, userInfo, { root: true });
 
         return Promise.resolve(userInfo);
+      } catch (error) {
+        return Promise.reject(error);
+      }
+    },
+    async [GET_ALL_LEVEL_INFO]({ commit }) {
+      try {
+        const { body: { allLevelDetail } } = await API.getAllLevelInfo();
+        commit(UPDATE_ALL_LEVEL_INFO, allLevelDetail);
+
+        return Promise.resolve();
       } catch (error) {
         return Promise.reject(error);
       }

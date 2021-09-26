@@ -13,3 +13,5 @@ export const userRealNameAuth = createAPI(httpMethod.POST, '/customer/kyc/:userI
 export const getVideoAuthCode = createAPI(httpMethod.GET, '/customer/kyc/:userId/code');
 export const getInviteDetailList = createAPI(httpMethod.GET, '/customer/users/:userId/invite/list');
 export const getInvitePack = createAPI(httpMethod.GET, '/customer/users/invite/pack');
+export const getLevelDetail = createAPI(httpMethod.GET, '/customer/level/personalLevelDetail');
+export const getAllLevelInfo = createAPI(httpMethod.GET, '/customer/level/allLevelInfo');

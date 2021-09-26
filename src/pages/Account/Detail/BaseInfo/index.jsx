@@ -1,6 +1,7 @@
-import { Badge } from 'ant-design-vue';
+import { Badge, Tooltip } from 'ant-design-vue';
 import HashCouponFilled from 'ahoney/lib/icons/HashCouponFilled';
 import QrCode from 'ahoney/lib/icons/QrCode';
+import numberUtils from 'aa-utils/lib/numberUtils';
 import BaseContainer from '@/shared/components/BaseContainer';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import { UPDATE_USER_INFO } from '@/store/consts/actionType';
@@ -12,8 +13,11 @@ import BaseModal from '@/shared/components/BaseModal';
 import { PHONE } from '@/shared/consts/registerType';
 import locationServices from '@/shared/services/location/locationServices';
 import locationHelp from '@/shared/utils/locationHelp';
+import { INVITE_DETAIL, PROMOTE_RANK } from '@/pages/Account/Detail/consts/tabsActiveValue';
+import { getBonusTypeLabelMap, getBonusTypeNotificationMap, getBonusTypeIconMap } from '../consts/getBonusType';
 import EditAvatarNickname from '../components/EditAvatarNickname';
-import InviteDetail from '../components/InviteDetail';
+import BaseInfoModalContent from '../components/BaseInfoModalContent';
+import BonusTooltip from '../components/BonusTooltip';
 import logout from './logout';
 import styles from './index.less?module';
 
@@ -22,14 +26,20 @@ const Detail = {
     info: Object,
     inviteInfo: Object,
     userInfo: Object,
+    personalLevel: Object,
   },
   data() {
     return {
       isVisibleEditInfoModal: false,
       isVisibleInviteDetailModal: false,
+      tabsActive: INVITE_DETAIL,
     };
   },
-
+  computed: {
+    modalWidth() {
+      return this.tabsActive === INVITE_DETAIL ? 1200 : 668;
+    },
+  },
   methods: {
     handleLogout() {
       logout();
@@ -77,17 +87,19 @@ const Detail = {
         </div>
       );
       const investItem = (
-        <div>
+        <div class={styles['invest-wrap']}>
           <div
             class={styles['invite-item']}
-            onClick={() => { this.isVisibleInviteDetailModal = true; }}
+            onClick={() => this.openInviteDetailModal(INVITE_DETAIL)}
           >
             {this.$t('inviteFriendsDetail')}
           </div>
           {!this.userInfo.hasBind && (
             <div
               class={[styles['invite-item'], styles['invitation-code']]}
-              onClick={() => { locationServices.push(bindInvitationCodePath); }}
+              onClick={() => {
+                locationServices.push(bindInvitationCodePath);
+              }}
             >
               {this.$t('inputInviteCodeBind')}
             </div>
@@ -96,44 +108,92 @@ const Detail = {
       );
       return [qrCodeItem, inviteCodeItem, inviteRewardItem, inviteCountItem, investItem];
     },
+    openInviteDetailModal(value) {
+      this.tabsActive = value;
+      this.isVisibleInviteDetailModal = true;
+    },
     closeInviteDetailModal() {
       this.isVisibleInviteDetailModal = false;
     },
   },
   render() {
     const { validCouponCount } = this.info;
-    const { avatar, nickName, registerAccount, level, phonePrefix, registerType } = this.userInfo;
+    const { avatar, nickName, registerAccount, phonePrefix, registerType } = this.userInfo;
     const account = registerType === PHONE ? `${phonePrefix} ${registerAccount}` : registerAccount;
+    const { name, level, icon, buffList } = this.personalLevel;
 
     return (
       <BaseContainer class={styles['account-base-info']}>
         <div class={styles['info-box']}>
-          <div class={styles['info-left']}>
-            <img
-              class={styles.avatar}
-              src={avatar || defaultAvatar}
-              alt=""
-              onClick={() => {
-                this.isVisibleEditInfoModal = true;
-              }}
-            />
-            <div class={styles['info-left-content']}>
-              <div class={styles.nickname}>{nickName || '-'}</div>
-              <div class={styles['info-left-operate']}>
-                <a
-                  onClick={() => {
-                    this.isVisibleEditInfoModal = true;
-                  }}
-                >
-                  {this.$t('edit')}
-                </a>
-                <a onClick={this.handleLogout}>{this.$t('logout')}</a>
+          <div class={styles['info-top']}>
+            <div class={styles['base-info']}>
+              <img
+                class={styles.avatar}
+                src={avatar || defaultAvatar}
+                alt=""
+                onClick={() => {
+                  this.isVisibleEditInfoModal = true;
+                }}
+              />
+              <div class={styles['info-base-content']}>
+                <Tooltip placement="bottom" title={nickName}>
+                  <div class={styles.nickname}>{nickName || '-'}</div>
+                </Tooltip>
+                <div class={styles['info-base-operate']}>
+                  <a
+                    onClick={() => {
+                      this.isVisibleEditInfoModal = true;
+                    }}
+                  >
+                    {this.$t('edit')}
+                  </a>
+                  <a onClick={this.handleLogout}>{this.$t('logout')}</a>
+                </div>
+                <div>{`${this.$t('accountAndSecurityAccount')}：${account || '-'}`}</div>
               </div>
-              <div>{`${this.$t('accountAndSecurityAccount')}：${account || '-'}`}</div>
-              <div>{`${this.$t('promoteRank')}：${level || '-'}`}</div>
+            </div>
+            <div class={styles['promote-info']}>
+              {icon && <img src={icon} alt="" />}
+              <div class={styles['promote-info-content']}>
+                <Tooltip placement="bottom" title={`Lv${level || '-'}${name ? `:${name}` : ''}`}>
+                  <span class={styles['promote-level']}>
+                    <span>{`Lv${level || '-'}`}</span>
+                    {name && <span>{`:${name}`}</span>}
+                  </span>
+                </Tooltip>
+                <span>{this.$t('currentLevel')}</span>
+                <div
+                  class={styles['view-level-rule']}
+                  onClick={() => this.openInviteDetailModal(PROMOTE_RANK)}
+                >
+                  {this.$t('viewPromoteLevel')}
+                </div>
+              </div>
+            </div>
+            <div class={styles['bonus-box']}>
+              {buffList.map(item => {
+                const bonusValue = numberUtils.formatPercent(item.val);
+                return (
+                  <BonusTooltip
+                    word={bonusValue}
+                    text={getBonusTypeNotificationMap(bonusValue)[item.type]}
+                    label={getBonusTypeLabelMap()[item.type]}
+                  >
+                    <div class={styles['bonus-item']}>
+                      <img src={getBonusTypeIconMap()[item.type]} alt="" />
+                      <div class={styles['bonus-item-right']}>
+                        <div>
+                          <div class={styles['bonus-value']}>{bonusValue}</div>
+                        </div>
+                        <span>{getBonusTypeLabelMap()[item.type]}</span>
+                      </div>
+                    </div>
+                  </BonusTooltip>
+                );
+              })}
             </div>
           </div>
-          <div class={styles['info-right']}>
+          <div class={styles['info-bottom']}>
             <div class={[styles['invite-info-box'], { [styles['invited-box']]: this.userInfo.hasBind }]}>
               {this.getInviteItem().map(item => item)}
             </div>
@@ -172,9 +232,19 @@ const Detail = {
         <BaseModal
           value={this.isVisibleInviteDetailModal}
           destroyOnClose
-          width={757}
-          title={this.$t('inviteFriendsDetail')}
-          scopedSlots={{ content: () => <InviteDetail onCloseModal={this.closeInviteDetailModal} /> }}
+          wrapClassName={styles.modal}
+          width={this.modalWidth}
+          scopedSlots={{
+            content: () => (
+              <BaseInfoModalContent
+                active={this.tabsActive}
+                onTabsActiveChange={value => {
+                  this.tabsActive = value;
+                }}
+                onCloseModal={this.closeInviteDetailModal}
+              />
+            ),
+          }}
           onclose={this.closeInviteDetailModal}
         />
       </BaseContainer>

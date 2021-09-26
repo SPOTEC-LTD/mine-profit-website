@@ -1,0 +1,70 @@
+@import '@/shared/styles/variables.less';
+
+.rules-item {
+  display: flex;
+  color: @color__242424;
+  font-size: @font-size-base;
+  line-height: 20px;
+  margin-bottom: 29px;
+  white-space: pre-wrap;
+}
+
+.rules-content-wrap {
+  position: relative;
+  z-index: 1;
+  padding: 22px 246px 22px 201px;
+  background-color: @white;
+  border-radius: 5px;
+  text-align: left;
+
+  > .rules-item:first-child {
+    align-items: center;
+  }
+
+  > .rules-item:first-child + div {
+    align-items: center;
+  }
+
+  > .rules-item:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.rules-item-icon {
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+}
+
+.rules-content-wrap::after {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 43px;
+  left: 220px;
+  height: 207px;
+  border-left: 2px dotted @color__02b4d7;
+  z-index: -1;
+}
+
+.rules-detail-wrap {
+  padding: 0 40px 36px;
+  color: @color__242424;
+  font-size: @font-size-base;
+  line-height: 26px;
+  text-align: left;
+}
+
+.rules-detail-title {
+  color: @color__494949;
+  font-size: @font-size-lg;
+  font-weight: 500;
+  line-height: 22px;
+  margin-bottom: 8px;
+}
+
+.rules-detail-content {
+  padding: 17px 26px;
+  border: 1px solid @color__cacaca;
+  border-radius: 4px;
+}
