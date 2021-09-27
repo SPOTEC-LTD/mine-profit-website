@@ -152,7 +152,7 @@ const PromoteLevel = {
               <div class={[styles['bonus-wrap'], { [styles['mission-completed']]: this.missionCompleted }]}>
                 <Row type="flex" gutter={52}>
                   {this.bonusList.map((item, index) => {
-                    const bonusValue = numberUtils.formatPercent(item.val);
+                    const bonusValue = numberUtils.formatPercent(item.val, { minimumFractionDigits: 2 });
                     return (
                       <Col key={index} span={4.8}>
                         <BonusTooltip

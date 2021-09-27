@@ -172,7 +172,7 @@ const Detail = {
             </div>
             <div class={styles['bonus-box']}>
               {buffList.map(item => {
-                const bonusValue = numberUtils.formatPercent(item.val);
+                const bonusValue = numberUtils.formatPercent(item.val, { minimumFractionDigits: 2 });
                 return (
                   <BonusTooltip
                     word={bonusValue}
