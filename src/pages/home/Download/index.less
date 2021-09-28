@@ -25,6 +25,7 @@
   position: fixed;
   top: 70px;
   bottom: 0;
+  z-index: @z-index__2;
 }
 
 .download-title {
@@ -32,6 +33,17 @@
   font-size: @font-size__40;
   font-weight: 500;
   line-height: 56px;
+  display: flex;
+  align-items: center;
+  padding-bottom: 40px;
+}
+
+.download-logo {
+  width: 84px;
+  height: 84px;
+  margin-right: 25px;
+  border-radius: 17px;
+  box-shadow: 0 0 17px 0 #02a6e3;
 }
 
 .download-sub-title {
@@ -100,42 +112,15 @@
   align-items: center;
 }
 
-.circle,
-.circle::after,
-.circle::before {
-  width: 483px;
-  height: 483px;
-  background-color: @color__primary;
-  border-radius: 50%;
-}
-
 .circle {
   position: relative;
-}
-
-.circle::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: '';
-  display: block;
-  animation: inner-water-ripple 2s linear infinite;
-}
-
-.circle::before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: '';
-  display: block;
-  animation: outer-water-ripple 2s linear infinite;
 }
 
 .download-phone {
   position: absolute;
   top: -66px;
   left: 10px;
-  z-index: 2;
+  z-index: @z-index__2;
   width: 528px;
 }
 
@@ -161,26 +146,9 @@
   }
 }
 
-@keyframes outer-water-ripple {
-  from {
-    transform: scale(1);
-    opacity: 0.6;
-  }
-
-  to {
-    transform: scale(1.15);
-    opacity: 0;
-  }
-}
-
-@keyframes inner-water-ripple {
-  from {
-    transform: scale(1);
-    opacity: 0.6;
-  }
-
-  to {
-    transform: scale(1.3);
-    opacity: 0;
-  }
+.dot-triangle-icon {
+  width: 1200px;
+  position: absolute;
+  z-index: @z-index__-1;
+  bottom: 0;
 }
