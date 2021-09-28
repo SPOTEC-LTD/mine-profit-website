@@ -2,9 +2,8 @@ import classNames from 'classnames';
 import appleImage from '@/assets/home/apple.png';
 import androidImage from '@/assets/download/android.png';
 import QRCodeModule from '@/shared/components/QRCodeModule';
-import downloadPhone from '@/assets/home/download-phone.png';
-import enDownloadPhone from '@/assets/home/en-download-phone.png';
 import purchaceVideo from '@/assets/home/purchaceVideo.mp4';
+import enPurchaceVideo from '@/assets/home/enPurchaceVideo.mp4';
 import downloadLogoImg from '@/assets/home/download-logo.png';
 import halfCircleImg from '@/assets/home/half-circle.png';
 import circleImg from '@/assets/home/circle-img.png';
@@ -12,8 +11,11 @@ import squareImg from '@/assets/home/square-img.png';
 import triangleImg from '@/assets/home/triangle-img.png';
 import dotTriangleIconImg from '@/assets/home/dot-triangle-icon.png';
 import cloudManagementVideo from '@/assets/home/cloudManagementVideo.mp4';
+import enCloudManagementVideo from '@/assets/home/enCloudManagementVideo.mp4';
 import miningProfitVideo from '@/assets/home/miningProfitVideo.mp4';
+import enMiningProfitVideo from '@/assets/home/enMiningProfitVideo.mp4';
 import withdrawFreelyVideo from '@/assets/home/withdrawFreelyVideo.mp4';
+import enWithdrawFreelyVideo from '@/assets/home/enWithdrawFreelyVideo.mp4';
 import DownLoadItem from '@/pages/home/component/DownLoadItem';
 import { getIsEnglish, getLocalLanguage } from '@/shared/utils/getLocalLanguage';
 import styles from './index.less?module';
@@ -34,28 +36,28 @@ const Download = {
       translateY: 27,
       scrollGroupe: [
         {
-          video: purchaceVideo,
+          video: getIsEnglish() ? enPurchaceVideo : purchaceVideo,
           title: this.$t('purchaseCloudHashRate'),
           dec: this.$t('freeTradingByOfficialMarket'),
           backgroundIMG: halfCircleImg,
           className: 'half-circle-wrapper',
         },
         {
-          video: cloudManagementVideo,
+          video: getIsEnglish() ? enCloudManagementVideo : cloudManagementVideo,
           title: this.$t('MineprofitCloudManagement'),
           dec: this.$t('autoDeployWithoutSet'),
           backgroundIMG: triangleImg,
           className: 'triangle-wrapper',
         },
         {
-          video: miningProfitVideo,
+          video: getIsEnglish() ? enMiningProfitVideo : miningProfitVideo,
           title: this.$t('profitOfMining'),
           dec: this.$t('autoClearToWallet'),
           backgroundIMG: squareImg,
           className: 'square-wrapper',
         },
         {
-          video: withdrawFreelyVideo,
+          video: getIsEnglish() ? enWithdrawFreelyVideo : withdrawFreelyVideo,
           title: this.$t('withdrawFreely'),
           dec: this.$t('withdrawFreelyByBlockChain'),
           backgroundIMG: circleImg,
@@ -63,12 +65,6 @@ const Download = {
         },
       ],
     };
-  },
-
-  computed: {
-    downloadPhone() {
-      return getIsEnglish() ? enDownloadPhone : downloadPhone;
-    },
   },
 
   mounted() {
