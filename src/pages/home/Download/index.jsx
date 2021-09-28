@@ -1,11 +1,16 @@
 import classNames from 'classnames';
-import throttle from 'lodash/throttle';
 import appleImage from '@/assets/home/apple.png';
 import androidImage from '@/assets/download/android.png';
 import QRCodeModule from '@/shared/components/QRCodeModule';
 import downloadPhone from '@/assets/home/download-phone.png';
 import enDownloadPhone from '@/assets/home/en-download-phone.png';
 import purchaceVideo from '@/assets/home/purchaceVideo.mp4';
+import downloadLogoImg from '@/assets/home/download-logo.png';
+import halfCircleImg from '@/assets/home/half-circle.png';
+import circleImg from '@/assets/home/circle-img.png';
+import squareImg from '@/assets/home/square-img.png';
+import triangleImg from '@/assets/home/triangle-img.png';
+import dotTriangleIconImg from '@/assets/home/dot-triangle-icon.png';
 import cloudManagementVideo from '@/assets/home/cloudManagementVideo.mp4';
 import miningProfitVideo from '@/assets/home/miningProfitVideo.mp4';
 import withdrawFreelyVideo from '@/assets/home/withdrawFreelyVideo.mp4';
@@ -16,6 +21,7 @@ import styles from './index.less?module';
 const Download = {
   props: {
     versionInfo: Object,
+    downloadRef: Object,
   },
 
   data() {
@@ -23,26 +29,37 @@ const Download = {
       isContentFixed: false,
       isAbsoluteAuto: false,
       activeIndex: 0,
+      downloadTop: 3500,
+      rotateDeg: 275,
+      translateY: 27,
       scrollGroupe: [
         {
           video: purchaceVideo,
           title: this.$t('purchaseCloudHashRate'),
           dec: this.$t('freeTradingByOfficialMarket'),
+          backgroundIMG: halfCircleImg,
+          className: 'half-circle-wrapper',
         },
         {
           video: cloudManagementVideo,
           title: this.$t('MineprofitCloudManagement'),
           dec: this.$t('autoDeployWithoutSet'),
+          backgroundIMG: triangleImg,
+          className: 'triangle-wrapper',
         },
         {
           video: miningProfitVideo,
           title: this.$t('profitOfMining'),
           dec: this.$t('autoClearToWallet'),
+          backgroundIMG: squareImg,
+          className: 'square-wrapper',
         },
         {
           video: withdrawFreelyVideo,
           title: this.$t('withdrawFreely'),
           dec: this.$t('withdrawFreelyByBlockChain'),
+          backgroundIMG: circleImg,
+          className: 'circle-wrapper',
         },
       ],
     };
@@ -54,16 +71,12 @@ const Download = {
     },
   },
 
-  created() {
-    this.scrollThrottle = throttle(this.onHandleScroll, 100);
-  },
-
   mounted() {
-    window.addEventListener('scroll', this.scrollThrottle, false);
+    window.addEventListener('scroll', this.onHandleScroll, false);
   },
 
   destroyed() {
-    window.removeEventListener('scroll', this.scrollThrottle);
+    window.removeEventListener('scroll', this.onHandleScroll);
   },
 
   methods: {
@@ -88,11 +101,24 @@ const Download = {
     onHandleScroll() {
       const clientHeights = document.body.clientHeight;
       const { scrollTop } = document.documentElement;
-      const length = scrollTop - 3100;
-      this.activeIndex = Math.floor(length / clientHeights);
-      if (scrollTop > 3600 && scrollTop < 6178) {
+      const { top, height } = this.$refs.downLoadRef.getBoundingClientRect();
+      // 求download组件在页面上的位置, 允许误差20
+      if (top >= clientHeights - 10 && top <= clientHeights + 10) {
+        this.downloadTop = scrollTop + clientHeights;
+      }
+      const halfScreen = clientHeights / 2;
+      const downloadLastVideo = this.downloadTop + height - clientHeights;
+      // 执行里面转圈动画
+      if (scrollTop > (this.downloadTop - halfScreen) && scrollTop < (downloadLastVideo + halfScreen)) {
+        this.translateY = -(scrollTop - (this.downloadTop + clientHeights)) / 50;
+        this.rotateDeg = this.translateY * 10;
+      }
+      // 执行文字翻转
+      if (scrollTop > this.downloadTop && scrollTop < downloadLastVideo) {
+        const length = scrollTop - (this.downloadTop - halfScreen); // 半屏幕的时候刷新下一个
+        this.activeIndex = Math.floor(length / clientHeights);
         this.isContentFixed = true;
-      } else if (scrollTop > 6178) {
+      } else if (scrollTop > downloadLastVideo) {
         this.isAbsoluteAuto = true;
         this.isContentFixed = false;
       } else {
@@ -100,6 +126,7 @@ const Download = {
         this.isAbsoluteAuto = false;
       }
     },
+
     getDescriptionNode(data, index) {
       return (
         <div class={classNames(styles['effect-box'], { [styles['active-index']]: this.activeIndex === index })}>
@@ -109,6 +136,7 @@ const Download = {
       );
     },
   },
+
   render() {
     return (
       <div class={styles.wrapper}>
@@ -122,7 +150,10 @@ const Download = {
               },
             )}
         >
-          <div class={styles['download-title']}>{this.$t('downloadApp')}</div>
+          <div class={styles['download-title']}>
+            <img src={downloadLogoImg} alt="" class={styles['download-logo']}/>
+            <span>{this.$t('downloadApp')}</span>
+          </div>
           <div class={styles['download-sub-title']}>{this.$t('downloadAppSubTitle')}</div>
           <div class={styles['effect-box']}>
             {this.scrollGroupe.map((item, index) => (
@@ -146,16 +177,28 @@ const Download = {
               {this.getVersionList().map(({ imgSrc, version }) => (
                 <div class={styles['version-item']}>
                   <img src={imgSrc} alt="" />
-                  <span>{`${this.$t('appVersion')}${version}`}</span>
+                  <span>{`${this.$t('appVersion')}${version || '-'}`}</span>
                 </div>
               ))}
             </div>
           </div>
+          <img
+            src={dotTriangleIconImg}
+            alt=""
+            class={styles['dot-triangle-icon']}
+            style={`bottom: ${(this.translateY) * 10}px`}
+          />
         </div>
 
-        <div class={styles['video-group']}>
-          {this.scrollGroupe.map(item => (
-            <DownLoadItem videoSource={item.video} />
+        <div class={styles['video-group']} ref='downLoadRef'>
+          {this.scrollGroupe.map((item, index) => (
+            <DownLoadItem
+              dataSource={item}
+              rotateDeg={this.rotateDeg}
+              translateY={this.translateY}
+              key={index}
+              videoIndex={index}
+            />
           ))}
         </div>
 

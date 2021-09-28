@@ -1,33 +1,42 @@
 import classNames from 'classnames';
-import downloadPhone from '@/assets/home/download-phone.png';
-import enDownloadPhone from '@/assets/home/en-download-phone.png';
 import singlePhone from '@/assets/home/single-phone.png';
-import { getIsEnglish } from '@/shared/utils/getLocalLanguage';
+import lineCircleImg from '@/assets/home/line-circle.png';
+import dotCircleImg from '@/assets/home/dot-circle.png';
 import styles from './index.less?module';
 
 const DownLoadItem = {
   props: {
-    videoSource: String,
+    dataSource: {
+      type: Object,
+      default: () => {},
+    },
+    rotateDeg: Number,
+    translateY: Number,
   },
 
   computed: {
-    downloadPhone() {
-      return getIsEnglish() ? enDownloadPhone : downloadPhone;
+    picTransform() {
+      const { rotateDeg, translateY } = this;
+      return `transform:translateY(${`${translateY * 2}%`}) rotateZ(${rotateDeg}deg)`;
     },
   },
 
   render() {
+    const { video, backgroundIMG, className } = this.dataSource;
+
     return (
-      <div class={styles['video-item']}>
+      <div class={classNames(styles['video-item'], styles[className])}>
         <div class={styles.circle}>
-          <img class={styles['download-phone']} src={singlePhone} alt="" />
-          <video
-            class={classNames(styles['purchase-video'])}
-            src={this.videoSource}
-            preload
-            muted
-            autoPlay
+          <img src={lineCircleImg} alt="" class={styles['line-circle']}/>
+          <img src={dotCircleImg} alt="" class={styles['dot-circle']}/>
+          <img
+            src={backgroundIMG}
+            alt=""
+            class={styles['download-background']}
+            style={this.picTransform}
           />
+          <img class={styles['download-phone']} src={singlePhone} alt="" />
+          <video class={styles['purchase-video']} src={video} preload muted autoPlay loop />
         </div>
       </div>
     );
