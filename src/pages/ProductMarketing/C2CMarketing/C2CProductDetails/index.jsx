@@ -177,6 +177,7 @@ const C2CProductDetails = {
               }
             />
           ),
+          hidden: !dayElectricityBill,
         },
       ];
 
