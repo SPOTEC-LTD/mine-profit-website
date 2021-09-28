@@ -153,6 +153,7 @@ const ProductTemplate = {
               }
             />
           ),
+          hidden: !dayElectricityBill,
         },
       ];
       return listData.filter(({ hidden }) => !hidden);
