@@ -28,17 +28,17 @@ const TotalSection = {
       return [
         {
           label: this.$t('hashrateTotalHash'),
-          value: this.statisticData.totalAmount,
+          value: bigNumberToFixed(this.statisticData.totalAmount, 2),
           unit: this.statisticData.unit,
         },
         {
           label: this.$t('hashrateAllNetOutput'),
-          value: this.statisticData.totalOutput,
+          value: bigNumberToFixed(this.statisticData.totalOutput, 8),
           unit: this.hashrateType,
         },
         {
           label: this.$t('hashrateYesterdayNetOutput'),
-          value: this.statisticData.yesterdayTotalOutput,
+          value: bigNumberToFixed(this.statisticData.yesterdayTotalOutput, 8),
           unit: this.hashrateType,
           usePlus: true,
         },
@@ -49,18 +49,15 @@ const TotalSection = {
   render() {
     return (
       <div class={styles.output}>
-        {this.outputData.map(item => {
-          const resultValue = bigNumberToFixed(item.value, 8);
-          return (
-            <div class={styles['output-item']}>
-              <div class={styles['output-item-label']}>{item.label}</div>
-              <div class={styles['output-item-value']}>
-                <span>{item.usePlus && resultValue > 0 ? `+${resultValue}` : resultValue}</span>
-                <span class={styles['output-item-value-unit']}>{item.unit}</span>
-              </div>
+        {this.outputData.map(item => (
+          <div class={styles['output-item']}>
+            <div class={styles['output-item-label']}>{item.label}</div>
+            <div class={styles['output-item-value']}>
+              <span>{item.usePlus && item.value > 0 ? `+${item.value}` : item.value}</span>
+              <span class={styles['output-item-value-unit']}>{item.unit}</span>
             </div>
-          );
-        })}
+          </div>
+        ))}
     </div>
     );
   },
