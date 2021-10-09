@@ -43,7 +43,7 @@ const Close = {
           label: this.$t('hashrateYesterdayNetOutput'), // '昨日净产出',
           value: (
             <CellValue
-              value={bigNumberToFixed(data.yesterdayIncome || '0', 8)}
+              value={bigNumberToFixed(data.yesterdayOutput || '0', 8)}
               unit={data.hashrateType}
             />
           ),
