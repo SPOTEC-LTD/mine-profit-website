@@ -58,6 +58,7 @@ const CoinMarkets = {
       {
         title: this.$t('chainType'),
         dataIndex: 'coin',
+        class: styles['coin-name-row'],
         customRender: (_, { symbol, icon, symbolCN }) => {
           return (
             <div class={styles['coin-name']}>
@@ -107,6 +108,7 @@ const CoinMarkets = {
         dataIndex: 'globalHashrate',
         align: 'right',
         width: 260,
+        class: styles['coin-price-row'],
         customRender: (_, { globalHashrate, hashrateUnitSuffix }) => {
           const { hashrate, unit } = getHashrateUnit(globalHashrate);
           return (
@@ -125,6 +127,7 @@ const CoinMarkets = {
           dataSource={this.marketsList}
           loading={this.loading}
           pagination={false}
+          class={styles['coin-markets-table']}
         />
         {this.isHidden && (
           <div class={styles.more}>

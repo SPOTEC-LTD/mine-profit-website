@@ -11,6 +11,16 @@
 .coin-markets-box {
   margin-bottom: 20px;
 
+  .coin-markets-table {
+    .coin-name-row {
+      padding-left: 30px;
+    }
+
+    .coin-price-row {
+      padding-right: 30px;
+    }
+  }
+
   :global {
     .mp-table-thead > tr > th {
       color: @color__969696;
@@ -29,6 +39,10 @@
     .mp-table-thead > tr > th,
     .mp-table-tbody > tr > td {
       border-bottom: 1px solid @color__efefef;
+    }
+
+    .mp-table-tbody > tr:hover:not(.mp-table-expanded-row):not(.mp-table-row-selected) > td {
+      background: #f8f8f8;
     }
   }
 }
