@@ -149,7 +149,9 @@ const Detail = {
                   </a>
                   <a onClick={this.handleLogout}>{this.$t('logout')}</a>
                 </div>
-                <div>{`${this.$t('accountAndSecurityAccount')}：${account || '-'}`}</div>
+                <Tooltip placement="bottom" title={account}>
+                  <div class={styles.account}>{`${this.$t('accountAndSecurityAccount')}：${account || '-'}`}</div>
+                </Tooltip>
               </div>
             </div>
             <div class={styles['promote-info']}>

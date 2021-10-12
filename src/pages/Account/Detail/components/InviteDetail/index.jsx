@@ -69,14 +69,6 @@ const InviteDetail = {
         },
       },
       {
-        title: `${this.$t('directBuyRebate')}（USDT）`,
-        dataIndex: 'directBuyReward',
-        align: 'center',
-        customRender: value => {
-          return <div class={styles['reward-box']}>{bigNumberToFixed(value, 8)}</div>;
-        },
-      },
-      {
         title: `${this.$t('indirectOutputReward')}（USDT）`,
         dataIndex: 'indirectReward',
         align: 'center',
@@ -84,22 +76,38 @@ const InviteDetail = {
           return <div class={styles['reward-box']}>{bigNumberToFixed(value, 8)}</div>;
         },
       },
-      {
-        title: `${this.$t('indirectBuyRebate')}（USDT）`,
-        dataIndex: 'indirectBuyReward',
-        align: 'center',
-        customRender: value => {
-          return <div class={styles['reward-box']}>{bigNumberToFixed(value, 8)}</div>;
-        },
-      },
+      ...(type === PROXY
+        ? [
+          {
+            title: `${this.$t('directBuyRebate')}（USDT）`,
+            dataIndex: 'directBuyReward',
+            align: 'center',
+            customRender: value => {
+              return <div class={styles['reward-box']}>{bigNumberToFixed(value, 8)}</div>;
+            },
+          },
+          {
+            title: `${this.$t('indirectBuyRebate')}（USDT）`,
+            dataIndex: 'indirectBuyReward',
+            align: 'center',
+            customRender: value => {
+              return <div class={styles['reward-box']}>{bigNumberToFixed(value, 8)}</div>;
+            },
+          },
+        ]
+        : []),
     ];
 
     const sortTypeList = [
       { text: this.$t('rebateRewardSort'), value: REBATE_REWARD },
       { text: this.$t('directOutputRewardSort'), value: DIRECT_OUTPUT },
-      ...(type === PROXY ? [{ text: this.$t('directBuyRebateSort'), value: DIRECT_BUY }] : []),
       { text: this.$t('indirectOutputRewardSort'), value: INDIRECT_OUTPUT },
-      ...(type === PROXY ? [{ text: this.$t('indirectBuyRebateSort'), value: INDIRECT_BUY }] : []),
+      ...(type === PROXY
+        ? [
+            { text: this.$t('directBuyRebateSort'), value: DIRECT_BUY },
+            { text: this.$t('indirectBuyRebateSort'), value: INDIRECT_BUY },
+          ]
+        : []),
     ];
 
     return (

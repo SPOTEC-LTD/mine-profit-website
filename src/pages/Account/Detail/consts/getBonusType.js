@@ -6,8 +6,8 @@ import bonusIcon4 from '@/assets/account/bonus-icon-4.png';
 import bonusIcon5 from '@/assets/account/bonus-icon-5.png';
 
 const DIRECTLY_INVITED_OUTPUT = 1;
-const DIRECT_INVITATION_PURCHASE = 2;
-const INDIRECT_OUTPUT = 3;
+const INDIRECT_OUTPUT = 2;
+const DIRECT_INVITATION_PURCHASE = 3;
 const INDIRECT_PURCHASE = 4;
 const OUTPUT_BONUS = 5;
 
