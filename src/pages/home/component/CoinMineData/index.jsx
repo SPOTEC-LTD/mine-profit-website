@@ -17,7 +17,7 @@ const CoinMineData = {
       <div class={[this.className, styles['coin-data-wrapper']]}>
         <div class={styles['coin-content-wrapper']}>
           <div class={styles['name-icon']}>
-            <img src={this.img} alt="" />
+            <img src={this.img} alt="" class={styles[`${this.title.toLocaleLowerCase()}-icon-img`]} />
             <span>{this.title}</span>
           </div>
 

@@ -6,13 +6,29 @@
   align-items: center;
   padding: 20px 24px;
   background-color: @white;
-  box-shadow: 0 7px 19px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 19px 0 rgba(0, 0, 0, 0.1);
   margin-bottom: 26px;
+
+  &:hover {
+    box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.2);
+  }
 }
 
 .product-title-intro {
   min-width: 360px;
-  border-right: 3px dotted @color__c3c3c3;
+  position: relative;
+
+  &::after {
+    position: absolute;
+    display: block;
+    content: '';
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 3px;
+    height: calc(100% + 55px);
+    border-right: 3px dotted @color__f2f2f2;
+  }
 }
 
 .product-card-title {
