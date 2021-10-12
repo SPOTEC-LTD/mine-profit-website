@@ -1,4 +1,4 @@
-import { FormModel, Input, Statistic } from 'ant-design-vue';
+import { FormModel, Input } from 'ant-design-vue';
 import { mapActions, mapState } from 'vuex';
 import { SIGN, GET_EMAIL_CODE } from '@/modules/sign';
 import { ACCOUNT, BIND_PHONE_OR_EMAIL } from '@/modules/account/account';
@@ -11,6 +11,7 @@ import { emailReg } from '@/shared/consts/rules';
 import BaseContainer from '@/shared/components/BaseContainer';
 import Notification from '@/shared/services/Notification';
 import { GLOBAL_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
+import FetchVerifyCode from '../components/FetchVerifyCode';
 import styles from '../index.less?module';
 
 const { Item } = FormModel;
@@ -70,24 +71,6 @@ const BindEmail = {
     handleCountDownFinish() {
       this.isCountDown = false;
     },
-    getButton() {
-      return (
-        <div class="ver-send-button">
-          {this.isCountDown ? (
-            <Statistic.Countdown
-              value={Date.now() + 1000 * 60}
-              format={`${this.buttonText}（ss`}
-              suffix="s）"
-              onFinish={this.handleCountDownFinish}
-            />
-          ) : (
-            <div class="get-vercode-button" onClick={this.getVerCode}>
-              {this.buttonText}
-            </div>
-          )}
-        </div>
-      );
-    },
   },
   render() {
     return (
@@ -119,7 +102,14 @@ const BindEmail = {
                   v-model={this.form.code}
                   placeholder={this.$t('fillGetEmailVerificationCode')}
                   scopedSlots={{
-                    suffix: this.getButton,
+                    suffix: () => (
+                      <FetchVerifyCode
+                        onFinish={this.handleCountDownFinish}
+                        value={this.isCountDown}
+                        text={this.buttonText}
+                        onClick={this.getVerCode}
+                      />
+                    ),
                   }}
                 />
               </Item>

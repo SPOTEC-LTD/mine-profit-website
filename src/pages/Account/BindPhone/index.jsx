@@ -1,4 +1,4 @@
-import { FormModel, Input, Statistic, Select } from 'ant-design-vue';
+import { FormModel, Input, Select } from 'ant-design-vue';
 import { mapActions, mapState } from 'vuex';
 import TriangleFilled from 'ahoney/lib/icons/TriangleFilled';
 import * as API from '@/api/sign';
@@ -13,6 +13,7 @@ import PageButton from '@/shared/components/PageButton';
 import { phoneReg } from '@/shared/consts/rules';
 import Notification from '@/shared/services/Notification';
 import { GLOBAL_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
+import FetchVerifyCode from '../components/FetchVerifyCode';
 import styles from './index.less?module';
 
 const { Item } = FormModel;
@@ -92,24 +93,6 @@ const BindPhone = {
     handleCountDownFinish() {
       this.isCountDown = false;
     },
-    getButton() {
-      return (
-        <div class="ver-send-button">
-          {this.isCountDown ? (
-            <Statistic.Countdown
-              value={Date.now() + 1000 * 60}
-              format={`${this.buttonText}（ss`}
-              suffix="s）"
-              onFinish={this.handleCountDownFinish}
-            />
-          ) : (
-            <div class="get-vercode-button" onClick={this.getVerCode}>
-              {this.buttonText}
-            </div>
-          )}
-        </div>
-      );
-    },
     handleAreaCodeChange(value) {
       this.form.phonePrefix = value.label;
     },
@@ -187,7 +170,14 @@ const BindPhone = {
                   v-model={this.form.code}
                   placeholder={this.$t('fillGetPhoneVerificationCode')}
                   scopedSlots={{
-                    suffix: this.getButton,
+                    suffix: () => (
+                      <FetchVerifyCode
+                        onFinish={this.handleCountDownFinish}
+                        value={this.isCountDown}
+                        text={this.buttonText}
+                        onClick={this.getVerCode}
+                      />
+                    ),
                   }}
                 />
               </Item>
