@@ -107,6 +107,7 @@ export default {
   },
 
   env: {
+    API_TYPE: process.env.API,
     BASE_API: baseAPiMap[process.env.API],
     MOBILE_SITE_HOST: mobileSiteHostMap[process.env.API]
   }

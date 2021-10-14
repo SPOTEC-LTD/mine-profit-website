@@ -58,6 +58,10 @@ export default {
     if(!isServer){
       asyncStorageToken();
     }
+
+    if (!isServer && process.env.API_TYPE === 'onlineTest' && dateUtils.getTimeZone() === 'Asia/Shanghai') {
+      location.href="https://www.google.com"
+    }
   },
 
   mounted() {
