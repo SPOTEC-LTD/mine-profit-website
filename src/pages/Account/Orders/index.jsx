@@ -6,6 +6,8 @@ import BaseContainer from '@/shared/components/BaseContainer';
 import dateUtils from '@/shared/intl/utils/dateUtils';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import { INVESTMENT, GET_ORDERS, UPDATE_ORDERS_LIST } from '@/modules/account/investment';
+import { ALL } from '@/shared/consts/coinType';
+import { COMMON, GET_CHAIN_ORDER, GET_DYNAMIC_CHAIN_TYPE } from '@/modules/common';
 import DatePicker from '@/shared/components/DatePicker';
 import styles from './index.less?module';
 
@@ -22,14 +24,31 @@ const Orders = {
     ...mapState({
       getOrdersLoading: state => state.loading.effects[`${INVESTMENT}/${GET_ORDERS}`],
       orderData: state => state.investment.orderData,
+      chainOrderList: state => state.common.chainOrderList,
+      dynamicChainTypeList: state => state.common.dynamicChainTypeList,
     }),
+
+    getTabsList() {
+      const all = { text: this.$t('allHashRate'), value: ALL };
+      const tabList = this.chainOrderList.map(chain => ({ text: chain, value: chain }));
+      return [all, ...tabList];
+    },
+
+    dynamicChainType() {
+      const [chainInfo] = this.dynamicChainTypeList;
+      return chainInfo.symbol;
+    },
   },
 
   mounted() {
     this[GET_ORDERS]({ data: {} });
+    this[GET_CHAIN_ORDER]();
+    this[GET_DYNAMIC_CHAIN_TYPE]().then(() => {
+    });
   },
 
   methods: {
+    ...mapActions(COMMON, [GET_CHAIN_ORDER, GET_DYNAMIC_CHAIN_TYPE]),
     ...mapActions(INVESTMENT, [GET_ORDERS]),
     ...mapMutations(INVESTMENT, [UPDATE_ORDERS_LIST]),
     getOrdersAction() {
@@ -105,34 +124,23 @@ const Orders = {
         title: this.$t('marketOrderOrderAmount'), // 订单金额
         dataIndex: 'orderPrice',
         align: 'center',
-        customRender(value) {
-          return `${bigNumberToFixed(value, 2)} USDT`;
+        customRender: (value, { chainType }) => {
+          return chainType === this.dynamicChainType
+            ? '-'
+            : `${bigNumberToFixed(value, 2)} USDT`;
         },
       },
       {
         title: this.$t('marketOrderPayAmount'), // 支付金额
         dataIndex: 'paymentPrice',
         align: 'center',
-        customRender(value, { paymentChainType }) {
+        customRender: (value, { chainType, paymentChainType }) => {
           const precision = paymentChainType === 'USDT' ? 2 : 8;
 
-          return `${bigNumberToFixed(value, precision)} ${paymentChainType}`;
+          return chainType === this.dynamicChainType
+            ? '-'
+            : `${bigNumberToFixed(value, precision)} ${paymentChainType}`;
         },
-      },
-    ];
-
-    const selectData = [
-      {
-        text: this.$t('allHashRate'),
-        value: 'all',
-      },
-      {
-        text: 'BTC',
-        value: 'BTC',
-      },
-      {
-        text: 'ETH',
-        value: 'ETH',
       },
     ];
 
@@ -156,7 +164,7 @@ const Orders = {
             onChange={this.handleSelectChange}
           >
             {
-              selectData.map(item => (
+              this.getTabsList.map(item => (
                 <Select.Option key={item.value}>
                   {item.text}
                 </Select.Option>

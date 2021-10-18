@@ -8,7 +8,7 @@ import home from '../modules/home';
 import hashRate from '../modules/account/hashRate';
 import investment from '../modules/account/investment';
 import account from '../modules/account/account';
-import publicData from '../modules/public';
+import common from '../modules/common';
 import rateExchange from '../modules/rateExchange';
 import hashRateCoupons from '../modules/hashRateCoupons';
 import officialProduct from '../modules/officialProduct';
@@ -50,7 +50,7 @@ export const modules = {
   home,
   sign,
   hashRate,
-  publicData,
+  common,
   rateExchange,
   hashRateCoupons,
   officialProduct,
