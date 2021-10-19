@@ -1,5 +1,5 @@
 import { FormModel, Input, Statistic } from 'ant-design-vue';
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapMutations } from 'vuex';
 import BaseContainer from '@/shared/components/BaseContainer';
 import PageButton from '@/shared/components/PageButton';
 import * as API from '@/api/account/hashRate';
@@ -11,6 +11,7 @@ import ProductTitle from '@/shared/components/ProductTitle';
 import PayWaySelector from '@/shared/components/PayWaySelector';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import ErrorAlert from '@/shared/components/ErrorAlert';
+import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
 import ConfirmPayDialog from '@/shared/components/ConfirmPayDialog';
 import CountDownToLink from '@/shared/components/CountDownToLink';
 import styles from './index.less?module';
@@ -56,8 +57,12 @@ const PledgeRepayment = {
       loading: state => state.loading.effects[`${HASH_RATE}/${PLEDGE_REPAYMENT_PAY}`],
     }),
   },
+  created() {
+    this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
+  },
   methods: {
     ...mapActions(HASH_RATE, [PLEDGE_REPAYMENT_PAY]),
+    ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
     onSubmit(password) {
       this.password = password || this.password;
       this[PLEDGE_REPAYMENT_PAY]({

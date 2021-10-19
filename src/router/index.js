@@ -12,6 +12,8 @@ import AboutUs from '@/pages/AboutUs';
 import Rank from '@/pages/Rank';
 import HistoryRank from '@/pages/Rank/HistoryRank';
 import BannerDetail from '@/pages/home/BannerDetail';
+import PlatformCurrency from '@/pages/PlatformCurrency';
+import PlatformCurrencyDetail from '@/pages/PlatformCurrency/PlatformCurrencyDetail';
 import { buildRoutes } from './utils';
 import accountRoutes from './accountRoutes';
 import newsRoutes from './newsRoutes';
@@ -69,6 +71,16 @@ export const pathRoutes = [
     path: urls.historyRankPath,
     name: 'historyRank',
     component: HistoryRank,
+  },
+  {
+    path: urls.platformCurrencyPaths,
+    name: 'platformCurrency',
+    component: PlatformCurrency,
+  },
+  {
+    path: urls.platformCurrencyDetailPath,
+    name: 'platformCurrencyDetail',
+    component: PlatformCurrencyDetail,
   },
   {
     path: urls.bannerDetailPath,

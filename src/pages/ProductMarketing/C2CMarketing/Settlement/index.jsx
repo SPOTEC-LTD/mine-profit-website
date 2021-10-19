@@ -1,5 +1,5 @@
 import { FormModel, Input } from 'ant-design-vue';
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState, mapMutations } from 'vuex';
 import * as c2cMarketAPI from '@/api/c2cMarket';
 import numberUtils from 'aa-utils/lib/numberUtils';
 import { POWER_OFF } from '@/shared/consts/isPowerOff';
@@ -17,6 +17,7 @@ import CountDownToLink from '@/shared/components/CountDownToLink';
 import RateFluctuation from '@/shared/components/RateFluctuation';
 import { C2C_MARKET, PLACE_C2C_ORDER } from '@/modules/c2cMarket';
 import ConfirmPayDialog from '@/shared/components/ConfirmPayDialog';
+import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
 
 import styles from './index.less?module';
 
@@ -66,6 +67,9 @@ const Settlement = {
       return numberUtils.times(this.value, this.c2cDetail.price);
     },
   },
+  created() {
+    this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
+  },
 
   destroyed() {
     this.isShowPasswordInput = false;
@@ -75,7 +79,7 @@ const Settlement = {
 
   methods: {
     ...mapActions(C2C_MARKET, [PLACE_C2C_ORDER]),
-
+    ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
     refresh() { window.$nuxt.refresh(); },
 
     handleInputMax() {

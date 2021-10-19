@@ -1,0 +1,143 @@
+@import '@/shared/styles/variables.less';
+
+.wrapper {
+  width: 760px;
+
+  img {
+    width: 334px;
+  }
+
+  .chart {
+    width: 453px;
+    margin-top: 36px;
+  }
+}
+
+.content {
+  padding: 14px 20px 90px;
+  color: @color__242424;
+  font-size: @font-size-base;
+  line-height: 20px;
+
+  :global {
+    .van-cell__title {
+      font-size: @font-size__15;
+    }
+
+    .cell-group-wrapper {
+      margin-bottom: 34px;
+    }
+  }
+}
+
+.article-title {
+  color: @color__242424;
+  font-size: @font-size__32;
+  font-weight: 500;
+  line-height: 45px;
+  margin-bottom: 57px;
+}
+
+.title {
+  position: relative;
+  color: @color__242424;
+  font-weight: 600;
+  padding-left: 14px;
+  margin: 50px 0 8px;
+  font-size: @font-size__20;
+  letter-spacing: 0;
+  line-height: 28px;
+}
+
+.title::after {
+  position: absolute;
+  top: 7px;
+  left: 0;
+  display: block;
+  content: '';
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background: linear-gradient(225deg, @color__48cff8 0%, @color__ed5347 100%);
+}
+
+.formula {
+  margin-top: 10px;
+}
+
+.download-book {
+  display: inline-block;
+  color: @color__primary;
+  font-size: @font-size__18;
+  font-weight: 600;
+  line-height: 25px;
+  text-decoration: underline;
+  margin-top: 38px;
+}
+
+.sub-desc {
+  text-indent: 42px;
+}
+
+.table-remark {
+  font-size: @font-size-sm;
+  line-height: 17px;
+}
+
+.price-table {
+  margin: 12px 0;
+}
+
+.capital-table {
+  margin: 14px 0 34px;
+}
+
+.amount {
+  color: @color__242424;
+  font-size: @font-size__15;
+  font-weight: 600;
+  line-height: 21px;
+  margin-right: 4px;
+}
+
+.data-wrap {
+  width: 453px;
+  border-radius: 16px;
+  background-color: @white;
+  box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.21);
+}
+
+.data-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-bottom: 1px solid @color__f3f3f3;
+  color: @color__242424;
+  font-size: @font-size__15;
+  line-height: 21px;
+}
+
+.data-value {
+  font-size: @font-size__15;
+  font-weight: 600;
+}
+
+.data-unit {
+  color: @color__8b8b8b;
+  font-size: @font-size-sm;
+  line-height: @font-size-sm;
+  margin-left: 4px;
+}
+
+.chart-content-wrap {
+  padding: 6px 40px 6px 19px;
+  font-size: @font-size__15;
+  line-height: 24px;
+}
+
+.chart-content-title {
+  font-size: @font-size__18;
+  font-weight: 500;
+  line-height: 25px;
+  margin-bottom: 7px;
+}

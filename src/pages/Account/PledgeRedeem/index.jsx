@@ -1,5 +1,5 @@
 import { FormModel, Input } from 'ant-design-vue';
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapMutations } from 'vuex';
 import BaseContainer from '@/shared/components/BaseContainer';
 import PageButton from '@/shared/components/PageButton';
 import * as API from '@/api/account/hashRate';
@@ -13,6 +13,7 @@ import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import ConfirmPayDialog from '@/shared/components/ConfirmPayDialog';
 import CountDownToLink from '@/shared/components/CountDownToLink';
 import RateFluctuation from '@/shared/components/RateFluctuation';
+import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
 
 import styles from './index.less?module';
 
@@ -58,8 +59,12 @@ const PledgeRedeem = {
       loading: state => state.loading.effects[`${HASH_RATE}/${PLEDGE_REDEEM_PAY}`],
     }),
   },
+  created() {
+    this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
+  },
   methods: {
     ...mapActions(HASH_RATE, [PLEDGE_REDEEM_PAY]),
+    ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
     onSubmit(password) {
       this.password = password || this.password;
       this[PLEDGE_REDEEM_PAY]({

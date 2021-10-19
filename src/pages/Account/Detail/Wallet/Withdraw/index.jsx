@@ -1,9 +1,9 @@
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapMutations } from 'vuex';
 import { FormModel, Row, Col } from 'ant-design-vue';
 import filter from 'lodash/filter';
 import isEmpty from 'lodash/isEmpty';
 import numberUtils from 'aa-utils/lib/numberUtils';
-
+import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
 import * as API from '@/api/account/wallet';
 import { WALLET, GET_WITHDRAWAL_ADDRESS, WITHDRAWAL } from '@/modules/account/wallet';
 import { WITH_DRAW_ERROR, SECTION_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
@@ -110,6 +110,9 @@ const Withdraw = {
       return address;
     },
   },
+  created() {
+    this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
+  },
 
   mounted() {
     this.getAddressList();
@@ -117,7 +120,7 @@ const Withdraw = {
 
   methods: {
     ...mapActions(WALLET, [GET_WITHDRAWAL_ADDRESS, WITHDRAWAL]),
-
+    ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
     getAddressList() {
       const data = {
         chainType: this.finallyChainType,

@@ -3,18 +3,20 @@
     <div>
       <PageHeader />
       <div
-        class="layout"
+        :class="['layout', { 'has-page-button': hasPageButton}]"
         :style="{ 'overflow-x': overflowxHidden ? 'auto' : 'hidden' }"
       >
         <Nuxt />
       </div>
       <PageFooter v-if="!hiddenFooter"/>
+      <div v-if="hasPageButton" :style="{ height: '95px' }" />
     </div>
   </ConfigProvider>
 </template>
 
 <script>
 import Vue from 'vue';
+import { mapState, mapMutations } from 'vuex';
 import { ConfigProvider, Modal } from 'ant-design-vue';
 import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN';
 import enUS from 'ant-design-vue/es/locale/en_US';
@@ -25,6 +27,7 @@ import dateUtils from '@/shared/intl/utils/dateUtils';
 import isServerSide from '@/shared/utils/isServerSide';
 import { ErrorNode, SuccessNode } from '@/shared/services/Notification';
 import asyncStorageToken from '@/shared/utils/request/asyncStorageToken';
+import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
 
 import { getZendesk } from '@/api';
 
@@ -53,6 +56,11 @@ export default {
       hiddenFooter: this.$route.meta.hiddenFooter,
     };
   },
+  computed: {
+    ...mapState({
+      hasPageButton: state => state.hasPageButton,
+    }),
+  },
   created() {
     const isServer = isServerSide();
     if(!isServer){
@@ -71,12 +79,19 @@ export default {
     document.title = this.$t('essayHashRate')
     // this.setLivechat();
     this.upateDocumentTitle();
+    this.$router.beforeEach((_, from, next) => {
+      if(this.hasPageButton) {
+        this[UPDATE_HAS_PAGE_BUTTON_STATUS](false);
+      }
+      next()
+    });
     this.$router.afterEach(() => {
       this.upateDocumentTitle();
     });
   },
 
   methods: {
+    ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
     setLivechat(){
       getZendesk().then(({ body: { apiZendeskWebVo } }) => {
         window.__lc = window.__lc || {};

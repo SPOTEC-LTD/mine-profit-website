@@ -1,5 +1,5 @@
 import { FormModel, Input } from 'ant-design-vue';
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState, mapMutations } from 'vuex';
 import omit from 'lodash/omit';
 import * as API from '@/api/account/userInfo';
 import { SIGN, GET_EMAIL_CODE, GET_PHONE_CODE } from '@/modules/sign';
@@ -10,6 +10,7 @@ import locationServices from '@/shared/services/location/locationServices';
 import PageButton from '@/shared/components/PageButton';
 import { emailReg, passwordReg } from '@/shared/consts/rules';
 import { PHONE } from '@/shared/consts/registerType';
+import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
 import BaseContainer from '@/shared/components/BaseContainer';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import Notification from '@/shared/services/Notification';
@@ -59,9 +60,13 @@ const SetDealPassword = {
       return this.isPhone ? `${phonePrefix} ${registerAccount}` : registerAccount;
     },
   },
+  created() {
+    this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
+  },
   methods: {
     ...mapActions(SIGN, [GET_EMAIL_CODE, GET_PHONE_CODE]),
     ...mapActions(ACCOUNT, [UPDATE_DEAL_PASSWORD]),
+    ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
     getVerCode() {
       let resultActinType = GET_PHONE_CODE;
       let params = {
