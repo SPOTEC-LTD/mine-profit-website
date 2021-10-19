@@ -1,5 +1,5 @@
 import { FormModel, Input } from 'ant-design-vue';
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState, mapMutations } from 'vuex';
 import numberUtils from 'aa-utils/lib/numberUtils';
 import ExclamationCircleFilled from 'ahoney/lib/icons/ExclamationCircleFilled';
 import * as API from '@/api/account/hashRate';
@@ -10,7 +10,7 @@ import PageButton from '@/shared/components/PageButton';
 import FormContainer from '@/shared/components/FormContainer';
 import ConfirmModal from '@/shared/components/ConfirmModal';
 import ConfirmPayDialog from '@/shared/components/ConfirmPayDialog';
-import { POWER_ON, POWER_OFF } from '@/shared/consts/powerStatus';
+import { POWER_OFF } from '@/shared/consts/powerStatus';
 import locationServices from '@/shared/services/location/locationServices';
 import CountDownToLink from '@/shared/components/CountDownToLink';
 import getTimes from '@/shared/utils/getTimes';
@@ -19,6 +19,7 @@ import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import getMinus from '@/shared/utils/getMinus';
 import NumberInput from '@/shared/components/NumberInput';
 import TradeBeforeVerified from '@/shared/components/TradeBeforeVerified';
+import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
 
 import styles from './index.less?module';
 
@@ -74,9 +75,12 @@ const TransferHashrate = {
       return getTimes({ number: this.formData.price, times: (1 - HANDLING_FEE), isFormat: true });
     },
   },
-
+  created() {
+    this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
+  },
   methods: {
     ...mapActions(HASH_RATE, [HASHRATE_TRANSFER]),
+    ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
     getReferInfoList() {
       const { refPrice, hasPowerOff, unit } = this;
       const baseList = [
@@ -286,7 +290,6 @@ const TransferHashrate = {
           promptText={this.$t('hashrateJumpTransfer')}
         />
         <PageButton
-          class={styles.button}
           type="primary"
           loading={this.loading}
           onClick={this.onPageButtonConfirm}

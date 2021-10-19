@@ -1,5 +1,5 @@
 import includes from 'lodash/includes';
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState, mapMutations } from 'vuex';
 import { Spin, FormModel } from 'ant-design-vue';
 import Title from '@/pages/home/component/Title';
 import numberUtils from 'aa-utils/lib/numberUtils';
@@ -27,6 +27,7 @@ import SingleInfoCard from '@/pages/ProductMarketing/components/SingleInfoCard';
 import CouponSelector from '@/pages/ProductMarketing/components/CouponSelector';
 import { OFFICIAL_PRODUCT, PLACE_PRODUCT_ORDER } from '@/modules/officialProduct';
 import { officialMarketingPath, accountHashRateListPath } from '@/router/consts/urls';
+import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
 import initValue from '../consts/productInitialValue';
 
 import styles from './index.less?module';
@@ -107,7 +108,9 @@ const Settlement = {
       this.getCouponsList({ buyAmount: +this.hashRatePartAmount });
     },
   },
-
+  created() {
+    this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
+  },
   mounted() {
     if (this.isError) {
       Notification.error(this.$t('noData'));
@@ -126,7 +129,7 @@ const Settlement = {
   methods: {
     ...mapActions(OFFICIAL_PRODUCT, [PLACE_PRODUCT_ORDER]),
     ...mapActions(HASH_RATE_COUPONS, [GET_VIP_COUPONS]),
-
+    ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
     getCouponsList(options = {}) {
       const { chainType } = this.productDetail;
       const initialValue = {
@@ -282,7 +285,6 @@ const Settlement = {
           </BaseContainer>
 
           <PageButton
-            class={styles.button}
             type="primary"
             onClick={this.onClickButtonConfirm}
             disabled={!this.hashRatePartAmount}

@@ -1,5 +1,5 @@
 import { Button, FormModel, Input, Row, Col, Select, DatePicker, Upload, Spin } from 'ant-design-vue';
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState, mapMutations } from 'vuex';
 import moment from 'moment';
 import split from 'lodash/split';
 import omit from 'lodash/omit';
@@ -25,6 +25,7 @@ import { getIsChinese, getIsEnglish } from '@/shared/utils/getLocalLanguage';
 import Notification from '@/shared/services/Notification';
 import FormatInput from '@/shared/components/FormatInput';
 import TradeBeforeVerified from '@/shared/components/TradeBeforeVerified';
+import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
 import { GLOBAL_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
 import PhotoUpload from './components/PhotoUpload';
 import styles from './index.less?module';
@@ -111,8 +112,12 @@ const RealNameAuth = {
       return result;
     },
   },
+  created() {
+    this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
+  },
   methods: {
     ...mapActions(ACCOUNT, [USER_REAL_NAME_AUTH]),
+    ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
     redirectToDownloadGuidePage() {
       locationServices.push(downloadPath);
     },

@@ -1,6 +1,6 @@
 import { Select, FormModel, Input, Spin } from 'ant-design-vue';
 import numberUtils from 'aa-utils/lib/numberUtils';
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState, mapMutations } from 'vuex';
 import * as API from '@/api/account/hashRate';
 import TriangleFilled from 'ahoney/lib/icons/TriangleFilled';
 import { accountHashRateListPath } from '@/router/consts/urls';
@@ -17,6 +17,7 @@ import CountDownToLink from '@/shared/components/CountDownToLink';
 import ConfirmPayDialog from '@/shared/components/ConfirmPayDialog';
 import locationServices from '@/shared/services/location/locationServices';
 import ShareQrCodeModal from '@/shared/components/ShareQrCodeModal';
+import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
 import { getLocalLanguage } from '@/shared/utils/getLocalLanguage';
 import { CLOSE } from '@/pages/Account/HashRate/consts/pledgeSourceType';
 import styles from './index.less?module';
@@ -76,6 +77,9 @@ const PledgeHashrate = {
       });
     },
   },
+  created() {
+    this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
+  },
   mounted() {
     const { productTemplateId } = this.$route.params;
     const { source, id, sourceType, hashrateType } = this.$route.query;
@@ -91,6 +95,7 @@ const PledgeHashrate = {
   },
   methods: {
     ...mapActions(HASH_RATE, [HASHRATE_PLEDGE, GET_HASHRATE_PLEDGE_INFO]),
+    ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
     onPageButtonConfirm() {
       this.$refs.form.validate(valid => {
         if (valid) {
@@ -267,7 +272,7 @@ const PledgeHashrate = {
           title={this.$t('myHashratePledgeShare')}
           content={link}
         />
-        <PageButton class={styles.button} type="primary" loading={this.loading} onClick={this.onPageButtonConfirm}>
+        <PageButton type="primary" loading={this.loading} onClick={this.onPageButtonConfirm}>
           {this.$t('confirmPledge')}
         </PageButton>
       </div>

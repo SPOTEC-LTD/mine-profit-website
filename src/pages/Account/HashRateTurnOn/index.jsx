@@ -1,5 +1,5 @@
 import numberUtils from 'aa-utils/lib/numberUtils';
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapMutations } from 'vuex';
 import ProductTitle from '@/shared/components/ProductTitle';
 import { getHashRateTurnOnDetail } from '@/api/account/hashRate';
 import BaseContainer from '@/shared/components/BaseContainer';
@@ -10,6 +10,7 @@ import ListCell from '@/pages/Account/HashRate/List/components/ListCell';
 import CellValue from '@/pages/Account/HashRate/List/components/CellValue';
 import ConfirmPayDialog from '@/shared/components/ConfirmPayDialog';
 import CountDownToLink from '@/shared/components/CountDownToLink';
+import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
 import { HASH_RATE, HASHRATE_POWER_ON, hashrateStatusMap } from '@/modules/account/hashRate';
 import FormContainer from '@/shared/components/FormContainer';
 import ErrorAlert from '@/shared/components/ErrorAlert';
@@ -44,9 +45,12 @@ const HashRateTurnOn = {
       powerOnLoading: state => state.loading.effects[`${HASH_RATE}/${HASHRATE_POWER_ON}`],
     }),
   },
+  created() {
+    this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
+  },
   methods: {
     ...mapActions(HASH_RATE, [HASHRATE_POWER_ON]),
-
+    ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
     onPowerOn(dealCode) {
       this[HASHRATE_POWER_ON]({ dealCode, productTemplateId: this.$route.params.productTemplateId }).then(() => {
         this.isShowPasswordInput = false;

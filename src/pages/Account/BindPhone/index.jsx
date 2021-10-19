@@ -1,5 +1,5 @@
 import { FormModel, Input, Select } from 'ant-design-vue';
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState, mapMutations } from 'vuex';
 import TriangleFilled from 'ahoney/lib/icons/TriangleFilled';
 import * as API from '@/api/sign';
 import { SIGN, GET_PHONE_CODE } from '@/modules/sign';
@@ -11,6 +11,7 @@ import { accountDetailPath } from '@/router/consts/urls';
 import locationServices from '@/shared/services/location/locationServices';
 import PageButton from '@/shared/components/PageButton';
 import { phoneReg } from '@/shared/consts/rules';
+import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
 import Notification from '@/shared/services/Notification';
 import { GLOBAL_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
 import FetchVerifyCode from '../components/FetchVerifyCode';
@@ -51,9 +52,13 @@ const BindPhone = {
       loading: state => state.loading.effects[`${ACCOUNT}/${BIND_PHONE_OR_EMAIL}`],
     }),
   },
+  created() {
+    this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
+  },
   methods: {
     ...mapActions(SIGN, [GET_PHONE_CODE]),
     ...mapActions(ACCOUNT, [BIND_PHONE_OR_EMAIL]),
+    ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
     getVerCode() {
       this.$refs.ruleForm.validateField('phone', error => {
         if (!error) {

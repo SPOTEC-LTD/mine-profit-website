@@ -1,6 +1,6 @@
 import { getUserBaseInfo } from '@/api/account/userInfo';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
-import { UPDATE_USER_INFO } from '@/store/consts/actionType';
+import { UPDATE_USER_INFO, UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
 import rank from '../modules/rank';
 import loadingPlugin from './loadingPlugin';
 import sign from '../modules/sign';
@@ -16,6 +16,7 @@ import c2cMarket from '../modules/c2cMarket';
 import wallet from '../modules/account/wallet';
 import user from '../modules/user';
 import stationMail from '../modules/stationMail';
+import platformCurrency from '../modules/platformCurrency';
 
 export const strict = false;
 export const plugins = [loadingPlugin()];
@@ -24,10 +25,14 @@ export const mutations = {
   [UPDATE_USER_INFO](state, userData) {
     state.userInfo = userData;
   },
+  [UPDATE_HAS_PAGE_BUTTON_STATUS](state, status) {
+    state.hasPageButton = status;
+  },
 };
 
 export const state = () => ({
   userInfo: {},
+  hasPageButton: false,
 });
 
 export const actions = {
@@ -61,4 +66,5 @@ export const modules = {
   rank,
   user,
   stationMail,
+  platformCurrency,
 };

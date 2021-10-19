@@ -1,4 +1,5 @@
 import { Badge, Tooltip } from 'ant-design-vue';
+import { mapMutations } from 'vuex';
 import HashCouponFilled from 'ahoney/lib/icons/HashCouponFilled';
 import QrCode from 'ahoney/lib/icons/QrCode';
 import numberUtils from 'aa-utils/lib/numberUtils';
@@ -41,9 +42,10 @@ const Detail = {
     },
   },
   methods: {
+    ...mapMutations([UPDATE_USER_INFO]),
     handleLogout() {
       logout();
-      this.$store.commit(UPDATE_USER_INFO, {});
+      this[UPDATE_USER_INFO]({});
     },
     getInviteItem() {
       const { invitationCode, inviteReward, inviteCount } = this.inviteInfo;

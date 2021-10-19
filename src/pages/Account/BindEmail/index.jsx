@@ -1,5 +1,5 @@
 import { FormModel, Input } from 'ant-design-vue';
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState, mapMutations } from 'vuex';
 import { SIGN, GET_EMAIL_CODE } from '@/modules/sign';
 import { ACCOUNT, BIND_PHONE_OR_EMAIL } from '@/modules/account/account';
 import * as verCodeType from '@/shared/consts/verCodeType';
@@ -8,6 +8,7 @@ import { accountDetailPath } from '@/router/consts/urls';
 import locationServices from '@/shared/services/location/locationServices';
 import PageButton from '@/shared/components/PageButton';
 import { emailReg } from '@/shared/consts/rules';
+import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
 import BaseContainer from '@/shared/components/BaseContainer';
 import Notification from '@/shared/services/Notification';
 import { GLOBAL_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
@@ -33,9 +34,13 @@ const BindEmail = {
       loading: state => state.loading.effects[`${ACCOUNT}/${BIND_PHONE_OR_EMAIL}`],
     }),
   },
+  created() {
+    this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
+  },
   methods: {
     ...mapActions(SIGN, [GET_EMAIL_CODE]),
     ...mapActions(ACCOUNT, [BIND_PHONE_OR_EMAIL]),
+    ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
     getVerCode() {
       this.$refs.ruleForm.validateField('email', error => {
         if (!error) {
