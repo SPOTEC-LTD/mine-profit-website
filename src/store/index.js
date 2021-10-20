@@ -17,6 +17,7 @@ import wallet from '../modules/account/wallet';
 import user from '../modules/user';
 import stationMail from '../modules/stationMail';
 import platformCurrency from '../modules/platformCurrency';
+import activity from '../modules/activity';
 
 export const strict = false;
 export const plugins = [loadingPlugin()];
@@ -67,4 +68,5 @@ export const modules = {
   user,
   stationMail,
   platformCurrency,
+  activity,
 };

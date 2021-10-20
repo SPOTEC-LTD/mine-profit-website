@@ -2,6 +2,7 @@
 export default {
   check: '查看',
   clear: '清除',
+  activity: '活动',
   mineData: '矿场数据',
   nowHashRate: '当前算力',
   yesterdayProducer: '昨日产出',

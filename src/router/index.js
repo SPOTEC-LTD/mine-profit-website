@@ -9,7 +9,6 @@ import MeetError from '@/pages/500';
 import Download from '@/pages/download';
 import { location } from '@/shared/services/location';
 import AboutUs from '@/pages/AboutUs';
-import Rank from '@/pages/Rank';
 import HistoryRank from '@/pages/Rank/HistoryRank';
 import BannerDetail from '@/pages/home/BannerDetail';
 import PlatformCurrency from '@/pages/PlatformCurrency';
@@ -19,6 +18,7 @@ import accountRoutes from './accountRoutes';
 import newsRoutes from './newsRoutes';
 import productMarketingRoutes from './productMarketingRoutes';
 import protocolRoutes from './protocolRoutes';
+import activityRoutes from './activityRoutes';
 import * as urls from './consts/urls';
 
 import { homePath, loginPath } from './consts/urls';
@@ -36,6 +36,7 @@ export const pathRoutes = [
   ...newsRoutes,
   ...productMarketingRoutes,
   ...protocolRoutes,
+  ...activityRoutes,
   {
     path: homePath,
     name: 'home',
@@ -61,11 +62,6 @@ export const pathRoutes = [
     name: 'download',
     meta: { hiddenFooter: true },
     component: Download,
-  },
-  {
-    path: urls.rankPath,
-    name: 'rank',
-    component: Rank,
   },
   {
     path: urls.historyRankPath,
