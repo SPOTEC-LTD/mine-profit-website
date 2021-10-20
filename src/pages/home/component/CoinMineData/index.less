@@ -1,7 +1,7 @@
 @import "@/shared/styles/variables.less";
 
 .coin-data-wrapper {
-  width: 582px;
+  width: 380px;
   border-radius: 18px;
   box-shadow: 0 5px 10px 5px  rgba(92, 118, 166, 0.11);
   overflow: hidden;
@@ -13,6 +13,8 @@
 
 .coin-content-wrapper {
   padding: 20px 0 38px 28px;
+  color: @color__242424;
+  font-weight: 600;
 }
 
 .name-icon {
@@ -28,15 +30,15 @@
 }
 
 .btc-icon-img {
-  width: 21px;
   height: 25px;
-  display: inline-block;
 }
 
 .eth-icon-img {
-  width: 18px;
   height: 26px;
-  display: inline-block;
+}
+
+.dynamic-icon-img {
+  height: 20px;
 }
 
 .now-hash-rate {
@@ -44,7 +46,6 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  color: @color__242424;
 
   &::before {
     display: inline-block;
@@ -54,6 +55,11 @@
     background-color: @color__242424;
     margin-bottom: 18px;
   }
+}
+
+.now-hash-rate > span:first-child,
+.coin-content > span:first-child {
+  font-size: 12px;
 }
 
 .hash-rate-details {
@@ -70,12 +76,15 @@
   align-items: flex-start;
   margin-top: 20px;
   height: 91px;
-  color: @color__242424;
 }
 
 .self-produce {
-  font-size: @font-size__32;
+  font-size: @font-size__24;
   color: @color__0e1d34;
+}
+
+.self-produce span:first-child,
+.approximation {
   font-weight: 500;
 }
 
@@ -91,6 +100,6 @@
 
 .coin-img {
   height: 100%;
-  width: 216px;
+  width: 127px;
   display: block;
 }

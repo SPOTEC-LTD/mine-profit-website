@@ -1,3 +1,4 @@
+import { mapState } from 'vuex';
 import { getMineDatalist } from '@/api';
 import CoinMineData from '@/pages/home/component/CoinMineData';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
@@ -8,6 +9,8 @@ import btcIcon from '@/assets/home/icon-btc.png';
 import ethIcon from '@/assets/home/icon-eth.png';
 import ethCoinImg from '@/assets/home/eth-icon-coin.png';
 import btcCoinImg from '@/assets/home/btc-icon-coin.png';
+import dynamicIcon from '@/assets/home/icon-dynamic.png';
+import dynamicCoinImg from '@/assets/home/dynamic-icon-coin.png';
 import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 import styles from './index.less?module';
 
@@ -18,13 +21,33 @@ const BlockChainDate = {
       btcIcon,
       ethIcon,
       isChinese: getIsChinese(),
-      iconMap: { btc: btcIcon, eth: ethIcon },
-      coinImgMap: { btc: btcCoinImg, eth: ethCoinImg },
       coinList: [
         { icon: btcIcon, symbol: 'BTC', hashrate: '-', incomeCoin: '', incomeUsd: '-', unit: '-', coinImg: '' },
         { icon: ethIcon, symbol: 'ETH', hashrate: '-', incomeCoin: '', incomeUsd: '-', unit: '-', coinImg: '' },
       ],
     };
+  },
+
+  computed: {
+    ...mapState({
+      dynamicChainTypeList: state => state.common.dynamicChainTypeList,
+    }),
+
+    aboutCoinMap() {
+      const [chainInfo = { symbol: '' }] = this.dynamicChainTypeList;
+      const dynamic = chainInfo.symbol.toLocaleLowerCase();
+      const iconMap = {
+        btc: btcIcon,
+        eth: ethIcon,
+        [dynamic]: dynamicIcon,
+      };
+      const coinImgMap = {
+        btc: btcCoinImg,
+        eth: ethCoinImg,
+        [dynamic]: dynamicCoinImg,
+      };
+      return { iconMap, coinImgMap };
+    },
   },
 
   mounted() {
@@ -36,8 +59,8 @@ const BlockChainDate = {
       getMineDatalist().then(data => {
         const { body: { list } } = data;
         const dataList = list.map(item => {
-          item.icon = this.iconMap[item.symbol];
-          item.coinImg = this.coinImgMap[item.symbol];
+          item.icon = this.aboutCoinMap.iconMap[item.symbol];
+          item.coinImg = this.aboutCoinMap.coinImgMap[item.symbol];
           item.symbol = item.symbol.toUpperCase();
           const { hashrate, unit } = getHashrateUnit(item.hashrate);
           item.hashrate = hashrate;
