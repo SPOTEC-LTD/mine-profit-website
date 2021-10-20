@@ -192,7 +192,7 @@ const C2CProductDetails = {
 
     return (
       <div>
-        <BaseContainer >
+        <BaseContainer>
           <ProductTitle
             class={styles['product-detail-title']}
             chainType={chainType}

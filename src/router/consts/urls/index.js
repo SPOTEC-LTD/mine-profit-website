@@ -46,6 +46,8 @@ export const officialSettlementPath = `${officialDetailsPath}/marketConfirmSettl
 export const c2cSettlementPath = `${c2cDetailsPath}/marketConfirmSettle`;
 
 // ==== rankPaths
+
+export const activityPath = '/activity';
 export const rankPath = '/rank';
 export const historyRankPath = '/historyRank';
 

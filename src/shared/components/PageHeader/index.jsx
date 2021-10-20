@@ -85,6 +85,7 @@ const PageHeader = {
             </Link>
             <div class={styles['page-header-nav']}>
               <NavLink href={urls.homePath}>{this.$t('home')}</NavLink>
+              <NavLink href={urls.activityPath}>{this.$t('activity')}</NavLink>
               <NavMenu hrefPrefix={urls.marketingPaths} items={this.getHashrateMarkets()}>
                 {this.$t('hashRateMarket')}
               </NavMenu>
