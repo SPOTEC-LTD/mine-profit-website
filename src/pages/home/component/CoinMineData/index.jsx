@@ -18,13 +18,9 @@ const CoinMineData = {
       dynamicChainTypeList: state => state.common.dynamicChainTypeList,
     }),
 
-    dynamicChainType() {
-      const [chainInfo = { symbol: '' }] = this.dynamicChainTypeList;
-      return chainInfo;
-    },
-
     classMap() {
-      const dynamic = this.dynamicChainType.symbol.toLocaleLowerCase();
+      const [chainInfo = { symbol: '' }] = this.dynamicChainTypeList;
+      const dynamic = chainInfo.symbol.toLocaleLowerCase();
       return {
         eth: 'eth-icon-img',
         btc: 'btc-icon-img',

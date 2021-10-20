@@ -33,13 +33,9 @@ const BlockChainDate = {
       dynamicChainTypeList: state => state.common.dynamicChainTypeList,
     }),
 
-    dynamicChainType() {
-      const [chainInfo = { symbol: '' }] = this.dynamicChainTypeList;
-      return chainInfo;
-    },
-
     aboutCoinMap() {
-      const dynamic = this.dynamicChainType.symbol.toLocaleLowerCase();
+      const [chainInfo = { symbol: '' }] = this.dynamicChainTypeList;
+      const dynamic = chainInfo.symbol.toLocaleLowerCase();
       const iconMap = {
         btc: btcIcon,
         eth: ethIcon,
