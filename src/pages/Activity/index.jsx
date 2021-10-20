@@ -1,6 +1,6 @@
 import { Carousel } from 'ant-design-vue';
 import { mapActions, mapState } from 'vuex';
-import { rankPath } from '@/router/consts/urls';
+import { rankPath, platformCurrencyPaths } from '@/router/consts/urls';
 import { ACTIVITY, GET_ACTIVITY_LIST } from '@/modules/activity';
 import locationServices from '@/shared/services/location/locationServices';
 import decorationLeftImg from '@/assets/activity/decorationLeftImg.png';
@@ -14,10 +14,11 @@ const Activity = {
     return {
       currentImg: 0,
       activityData: [
+        // TODO 后续加上对应的id和path
         { id: 8, to: rankPath },
         { id: 6, to: rankPath },
         { id: 2, to: rankPath },
-        { id: 4, to: rankPath },
+        { id: 4, to: platformCurrencyPaths },
       ],
     };
   },
