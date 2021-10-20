@@ -1,3 +1,4 @@
+import { mapState } from 'vuex';
 import styles from './index.less?module';
 
 const CoinMineData = {
@@ -12,12 +13,32 @@ const CoinMineData = {
     coinImg: String,
   },
 
+  computed: {
+    ...mapState({
+      dynamicChainTypeList: state => state.common.dynamicChainTypeList,
+    }),
+
+    dynamicChainType() {
+      const [chainInfo = { symbol: '' }] = this.dynamicChainTypeList;
+      return chainInfo;
+    },
+
+    classMap() {
+      const dynamic = this.dynamicChainType.symbol.toLocaleLowerCase();
+      return {
+        eth: 'eth-icon-img',
+        btc: 'btc-icon-img',
+        [dynamic]: 'dynamic-icon-img',
+      };
+    },
+  },
+
   render() {
     return (
       <div class={[this.className, styles['coin-data-wrapper']]}>
         <div class={styles['coin-content-wrapper']}>
           <div class={styles['name-icon']}>
-            <img src={this.img} alt="" class={styles[`${this.title.toLocaleLowerCase()}-icon-img`]} />
+            <img src={this.img} alt="" class={styles[this.classMap[this.title.toLocaleLowerCase()]]} />
             <span>{this.title}</span>
           </div>
 
@@ -35,7 +56,7 @@ const CoinMineData = {
               <span>{this.coinProduce}</span>
               <span class={styles.unit}>{this.title}</span>
             </div>
-            <div>
+            <div class={styles.approximation}>
               <span>≈{this.usdtProduce}</span>
               <span class={styles.unit}>USDT</span>
             </div>

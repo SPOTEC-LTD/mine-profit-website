@@ -43,8 +43,7 @@ const Orders = {
   mounted() {
     this[GET_ORDERS]({ data: {} });
     this[GET_CHAIN_ORDER]();
-    this[GET_DYNAMIC_CHAIN_TYPE]().then(() => {
-    });
+    this[GET_DYNAMIC_CHAIN_TYPE]();
   },
 
   methods: {
