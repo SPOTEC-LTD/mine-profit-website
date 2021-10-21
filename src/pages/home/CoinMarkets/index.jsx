@@ -1,6 +1,8 @@
+import { mapState } from 'vuex';
 import { Table } from 'ant-design-vue';
 import numberUtils from 'aa-utils/lib/numberUtils';
 import getHashrateUnit from '@/shared/utils/getHashrateUnit';
+import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import CoinLineChart from './CoinLineChart';
 import styles from './index.less?module';
 
@@ -22,6 +24,13 @@ const CoinMarkets = {
   },
 
   computed: {
+    ...mapState({
+      dynamicChainTypeList: state => state.dynamicChainTypeList,
+    }),
+    dynamicChain() {
+      const [chainInfo = { symbol: '' }] = this.dynamicChainTypeList;
+      return chainInfo.symbol;
+    },
     isHidden() {
       return !this.showMore && this.data.length > 3;
     },
@@ -73,10 +82,11 @@ const CoinMarkets = {
         title: this.$t('currentPrice'),
         dataIndex: 'price',
         align: 'right',
-        customRender: value => {
+        customRender: (value, { symbol }) => {
+          const resultDecimal = symbol.toUpperCase() === this.dynamicChain ? 10 : 2;
           return (
             <div class={styles['coin-price']}>
-              {`$${value}`}
+              {`$${bigNumberToFixed(value, resultDecimal)}`}
             </div>
           );
         },

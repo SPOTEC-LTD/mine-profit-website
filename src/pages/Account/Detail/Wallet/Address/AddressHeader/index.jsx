@@ -1,15 +1,25 @@
+import { mapState } from 'vuex';
 import { Button } from 'ant-design-vue';
-
 import { HASH_RATE_ALL } from '@/shared/consts/hashrateType';
 import { COIN, lineList, getType } from '@/pages/Account/Detail/Wallet/consts/lineType';
 import { EthIcon, BtcIcon, UsdtIcon } from '@/shared/components/ChainIcon';
+import walletMptIconBlack from '@/assets/account/wallet/wallet_mpt_icon_black.png';
 import Select from '@/shared/components/Select';
-
 import styles from './index.less?module';
 
 const AddressHeader = {
   props: {
     coin: String,
+  },
+  computed: {
+    ...mapState({
+      dynamicChainTypeList: state => state.dynamicChainTypeList,
+    }),
+
+    dynamicChain() {
+      const [chainInfo = { symbol: '' }] = this.dynamicChainTypeList;
+      return chainInfo.symbol;
+    },
   },
   methods: {
     coinChange(value) {
@@ -19,6 +29,7 @@ const AddressHeader = {
   },
   render() {
     const iconMap = {
+      MPT: <img class={styles['dynamic-icon']} src={walletMptIconBlack} alt="" />, // TODO:
       USDT: <UsdtIcon class={styles.icon} />,
       BTC: <BtcIcon class={styles.icon} />,
       ETH: <EthIcon class={styles.icon} />,
@@ -28,6 +39,7 @@ const AddressHeader = {
       { text: 'USDT', value: 'USDT' },
       { text: 'BTC', value: 'BTC' },
       { text: 'ETH', value: 'ETH' },
+      { text: this.dynamicChain, value: this.dynamicChain },
     ];
     return (
       <div class={['select-table', styles['filter-group']]}>

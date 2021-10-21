@@ -1,20 +1,32 @@
+import { mapState } from 'vuex';
 import { List } from 'ant-design-vue';
 import numberUtils from 'aa-utils/lib/numberUtils';
 import LockOutline from 'ahoney/lib/icons/LockOutline';
 import HandCardOutlined from 'ahoney/lib/icons/HandCardOutlined';
 
-import { addressPath, depositPath, withdrawPath } from '@/router/consts/urls';
+import { addressPath, depositPath, withdrawPath, buyBackPath } from '@/router/consts/urls';
 import { EthIcon, BtcIcon, UsdtIcon } from '@/shared/components/ChainIcon';
 import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 import NewWindowGuide from '@/shared/components/NewWindowGuide';
 import TradeBeforeVerified from '@/shared/components/TradeBeforeVerified';
 import locationHelp from '@/shared/utils/locationHelp';
+import walletMptIconBlack from '@/assets/account/wallet/wallet_mpt_icon_black.png';
 
 import styles from './index.less?module';
 
 const Assets = {
   props: { userBalance: Object },
+  computed: {
+    ...mapState({
+      dynamicChainTypeList: state => state.dynamicChainTypeList,
+    }),
 
+    dynamicChain() {
+      const [chainInfo = { symbol: '' }] = this.dynamicChainTypeList;
+      return chainInfo.symbol;
+    },
+
+  },
   methods: {
     getWalletTotal() {
       const { totalUsdt, totalCny } = this.userBalance;
@@ -61,6 +73,7 @@ const Assets = {
 
     getCoinCardList() {
       const iconMap = {
+        MPT: <img class='spotecicon' src={walletMptIconBlack} alt="" />, // TODO:
         USDT: <UsdtIcon />,
         BTC: <BtcIcon />,
         ETH: <EthIcon />,
@@ -83,11 +96,11 @@ const Assets = {
             {
               this.userBalance.balanceList.map(item => (
                 <List.Item>
+                  <div class={styles['card-title']}>
+                    {iconMap[item.chainType]}
+                    <div>{item.chainType}</div>
+                  </div>
                   <div class={styles['coin-card-content']}>
-                    <div class={styles['card-title']}>
-                      {iconMap[item.chainType]}
-                      <div>{item.chainType}</div>
-                    </div>
                     <div class={styles.balance}>
                       {`${numberUtils.formatBigFloatNumber(item.balance, {
                         useGrouping: true,
@@ -95,25 +108,35 @@ const Assets = {
                         maximumFractionDigits: 8,
                       })} ${item.chainType}`}
                     </div>
-                  </div>
-                  <div class={styles['coin-card-operate']}>
-                    <div
-                      class={styles['card-right-button']}
-                      onClick={() => {
-                        locationHelp.open(depositPath, { query: { coinType: item.chainType } });
-                      }}
-                    >
-                      {this.$t('walletAllTypesCharge')}
+                    <div class={styles['coin-card-operate']}>
+                      {item.chainType === this.dynamicChain && (
+                        <div
+                          class={styles['card-right-button']}
+                          onClick={() => {
+                            locationHelp.open(buyBackPath);
+                          }}
+                        >
+                          {this.$t('buyBack')}
+                        </div>
+                      )}
+                      <div
+                        class={styles['card-right-button']}
+                        onClick={() => {
+                          locationHelp.open(depositPath, { query: { coinType: item.chainType } });
+                        }}
+                      >
+                        {this.$t('walletAllTypesCharge')}
+                      </div>
+                      <TradeBeforeVerified
+                        class={styles['card-right-button']}
+                        isVerifiedKyc
+                        onVerifiedPass={() => {
+                          locationHelp.open(withdrawPath, { query: { coinType: item.chainType } });
+                        }}
+                      >
+                        {this.$t('walletAllTypesCarry')}
+                      </TradeBeforeVerified>
                     </div>
-                    <TradeBeforeVerified
-                      class={styles['card-right-button']}
-                      isVerifiedKyc
-                      onVerifiedPass={() => {
-                        locationHelp.open(withdrawPath, { query: { coinType: item.chainType } });
-                      }}
-                    >
-                      {this.$t('walletAllTypesCarry')}
-                    </TradeBeforeVerified>
                   </div>
                 </List.Item>
               ))}

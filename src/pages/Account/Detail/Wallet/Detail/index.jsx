@@ -17,7 +17,7 @@ const Detail = {
       <div class={styles['detail-list']}>
         <DetailTable
           pagination={false}
-          scroll={{ y: 245 }}
+          scroll={{ y: 300 }}
           columnsConfig={columns}
           query={{ pageNum: 1, pageSize: 30 }}
         />

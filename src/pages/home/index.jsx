@@ -10,7 +10,6 @@ import {
   GET_HOME_PRODUCT_LIST, GET_HASHRATE_POPUP_LIST, GET_WEEKLY_REPORT_POPUP_INFO,
 } from '@/modules/home';
 import { STATION_MAIL, GET_WEEKLY_REPORT_DETAIL } from '@/modules/stationMail';
-import { COMMON, GET_DYNAMIC_CHAIN_TYPE } from '@/modules/common';
 import OurAdvantage from '@/pages/home/OurAdvantage';
 import localStorage from '@/shared/utils/localStorage';
 import TradeBeforeVerified from '@/shared/components/TradeBeforeVerified';
@@ -125,7 +124,6 @@ const Home = {
     }
     this[GET_MARKETS_LIST]();
     this[GET_HOME_PRODUCT_LIST]();
-    this[GET_DYNAMIC_CHAIN_TYPE]();
 
     if (userId) {
       this[GET_HASHRATE_COUPON_POPUP_LIST]({ userId });
@@ -140,7 +138,6 @@ const Home = {
   },
 
   methods: {
-    ...mapActions(COMMON, [GET_DYNAMIC_CHAIN_TYPE]),
     ...mapActions(HOME, [
       GET_MARKETS_LIST, GET_HOME_PRODUCT_LIST, GET_HASHRATE_COUPON_POPUP_LIST,
       GET_HASHRATE_POPUP_LIST, GET_WEEKLY_REPORT_POPUP_INFO,

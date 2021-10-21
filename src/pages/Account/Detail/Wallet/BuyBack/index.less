@@ -1,0 +1,120 @@
+@import "@/shared/styles/variables.less";
+
+.buy-back {
+  width: 610px;
+}
+
+.buy-back-header {
+  display: flex;
+  align-items: center;
+  padding: 25px 0 30px;
+}
+
+.buy-back-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 100%;
+  box-shadow: 0 4px 5px 0 rgba(22, 38, 65, 0.42);
+  background: url('~@/assets/account/wallet/wallet_mpt_icon_black.png') no-repeat;
+  background-size: cover;
+  margin-right: 12px;
+}
+
+.buy-back-title {
+  color: @color__1d1d1d;
+  font-size: @font-size__20;
+  font-weight: 500;
+  line-height: 32px;
+}
+
+.buy-back-body {
+  border: 1px solid @color__e6e6e6;
+  padding: 20px 30px 32px;
+  margin-bottom: 28px;
+}
+
+.official-price {
+  width: 413px;
+  margin-right: 19px;
+}
+
+.official-price-rate {
+  width: 118px;
+}
+
+.official-price,
+.official-price-rate {
+  color: @color__242424;
+  font-size: @font-size-lg;
+  line-height: 22px;
+  padding: 11px 0 11px 12px;
+  border: 1px solid @color__e6e6e6;
+  border-radius: 4px;
+}
+
+.rate-color-red {
+  color: @color__fe6565;
+}
+
+.rate-color-blue {
+  color: @color__01d0aa;
+}
+
+.body-info {
+  display: flex;
+}
+
+.amount-input-suffix {
+  span {
+    &:first-child {
+      margin-right: 48px;
+      font-weight: 500;
+      color: @color__242424;
+    }
+
+    &:last-child {
+      color: @color__primary;
+      font-weight: 500;
+      cursor: pointer;
+    }
+  }
+}
+
+.transfer-amount-prompt {
+  font-size: @font-size-sm;
+  line-height: 17px;
+  color: @color__242424;
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+.line-chart {
+  margin-bottom: 28px;
+}
+
+.sale-total-price {
+  color: @color__1d1d1d;
+  font-weight: 500;
+}
+
+.price-title {
+  font-size: @font-size-lg;
+  line-height: 18px;
+}
+
+.total-price-box {
+  display: flex;
+  align-items: end;
+}
+
+.total-price {
+  color: @color__fe6565;
+  font-size: @font-size__26;
+  line-height: 28px;
+  margin-right: 7px;
+}
+
+.total-price-unit {
+  font-size: @font-size-sm;
+  line-height: 18px;
+}

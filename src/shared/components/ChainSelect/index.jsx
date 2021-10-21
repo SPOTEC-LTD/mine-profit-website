@@ -1,9 +1,10 @@
+import { mapState, mapActions } from 'vuex';
 import TriangleFilled from 'ahoney/lib/icons/TriangleFilled';
+import { HASH_RATE_BTC, HASH_RATE_ETH, HASH_RATE_USDT } from '@/shared/consts/hashrateType';
 import { EthIcon, BtcIcon, UsdtIcon } from '@/shared/components/ChainIcon';
+import walletMptIconBlack from '@/assets/account/wallet/wallet_mpt_icon_black.png';
 import Select from '@/shared/components/Select';
 import styles from './index.less?module';
-
-const columns = ['USDT', 'BTC', 'ETH'];
 
 const ChainSelect = {
   props: {
@@ -17,7 +18,24 @@ const ChainSelect = {
       default: false,
     },
   },
+  computed: {
+    ...mapState({
+      dynamicChainTypeList: state => state.dynamicChainTypeList,
+    }),
+
+    dynamicChainType() {
+      const [chainInfo = { symbol: '' }] = this.dynamicChainTypeList;
+      return chainInfo.symbol;
+    },
+    aboutDynamicCoin() {
+      const columns = [
+        HASH_RATE_USDT, HASH_RATE_BTC, HASH_RATE_ETH, this.dynamicChainType,
+      ];
+      return columns;
+    },
+  },
   methods: {
+
     getSuffixNode() {
       return (
         <div class={styles['Suffix-box']}>
@@ -32,6 +50,7 @@ const ChainSelect = {
       USDT: <UsdtIcon />,
       BTC: <BtcIcon />,
       ETH: <EthIcon />,
+      [this.dynamicChainType]: <img class='spotecicon' src={walletMptIconBlack} alt="" />, // TODO: 换成icon,
     };
 
     return (
@@ -43,7 +62,7 @@ const ChainSelect = {
           onChange={value => this.$emit('coinChange', value)}
           disabled={this.disabled}
         >
-          {columns.map((value, i) => (
+          {this.aboutDynamicCoin.map((value, i) => (
             <Select.Option
               key={i}
               value={value}

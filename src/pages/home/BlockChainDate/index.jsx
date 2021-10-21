@@ -30,7 +30,7 @@ const BlockChainDate = {
 
   computed: {
     ...mapState({
-      dynamicChainTypeList: state => state.common.dynamicChainTypeList,
+      dynamicChainTypeList: state => state.dynamicChainTypeList,
     }),
 
     aboutCoinMap() {
