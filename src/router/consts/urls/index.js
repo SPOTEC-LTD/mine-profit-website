@@ -25,6 +25,7 @@ export const addressPath = `${accountPath}/withdrawAddressManagement`;
 export const pledgeRepaymentPath = `${accountPath}/payTypeRepay/:id`;
 export const pledgeRedeemPath = `${accountPath}/payTypeRedeem/:id`;
 export const withdrawPath = `${accountPath}/walletAllTypesCarry`;
+export const buyBackPath = `${accountPath}/buyBack`;
 
 // ==== aboutUsPaths
 export const aboutUsPaths = '/aboutUs';

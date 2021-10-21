@@ -32,7 +32,7 @@ export const getLineName = line => {
 };
 
 export const getType = (coinType, type) => {
-  if (coinType && coinType !== 'BTC' && coinType !== 'ETH') {
+  if (coinType && coinType.includes('USDT')) {
     return type === COIN ? 'USDT' : getLineName(coinType);
   }
   return coinType;

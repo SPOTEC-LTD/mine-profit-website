@@ -9,7 +9,10 @@ export const RESET_STATE = 'resetState';
 export const ADD_ADDRESS = 'addAddress';
 export const DELETE_ADDRESS = 'deleteAddress';
 export const EDIT_ADDRESS = 'editAddress';
+export const GET_BUY_BACK_DETAIL = 'getBuyBackDetail';
+export const OFFICIAL_BUY_BACK = 'officialBuyBack';
 
+const UPDATE_BUY_BACK_DETAIL = 'updateBuyBackDetail';
 const UPDATE_WALLET_DETAIL = 'updateWalletDetail';
 const UPDATE_WITHDRAWAL_ADDRESS = 'updateWithdrawalAddress';
 const UPDATE_PAGE_INFO = 'updatePageInfo';
@@ -25,6 +28,7 @@ export default {
       totalPage: 0,
     },
     withdrawalAddressList: [],
+    buyBackDetail: {},
   },
   mutations: {
     [UPDATE_WALLET_DETAIL](state, list) {
@@ -33,6 +37,10 @@ export default {
 
     [UPDATE_WITHDRAWAL_ADDRESS](state, list) {
       state.withdrawalAddressList = list;
+    },
+
+    [UPDATE_BUY_BACK_DETAIL](state, detail) {
+      state.buyBackDetail = detail;
     },
 
     [UPDATE_PAGE_INFO](state, pageInfo) {
@@ -101,6 +109,23 @@ export default {
     async [WITHDRAWAL](_, data) {
       try {
         await API.updateWithDraw({ data });
+        return Promise.resolve();
+      } catch (error) {
+        return Promise.reject(error);
+      }
+    },
+    async [GET_BUY_BACK_DETAIL]({ commit }) {
+      try {
+        const { body: { buyBackDetail } } = await API.getBuyBackDetail();
+        commit(UPDATE_BUY_BACK_DETAIL, buyBackDetail);
+        return Promise.resolve();
+      } catch (error) {
+        return Promise.reject(error);
+      }
+    },
+    async [OFFICIAL_BUY_BACK](_, data) {
+      try {
+        await API.officialBuyBack({ data });
         return Promise.resolve();
       } catch (error) {
         return Promise.reject(error);

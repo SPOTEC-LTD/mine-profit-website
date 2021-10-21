@@ -2,7 +2,6 @@ import BaseContainer from '@/shared/components/BaseContainer';
 import { getUserBadge, getInviteInfo, getUserBaseInfo, getLevelDetail } from '@/api/account/userInfo';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import { getWalletAssets } from '@/api/account/wallet';
-import getOrderBalance from '@/shared/utils/getOrderBalance';
 import BaseInfo from './BaseInfo';
 import Authentication from './Authentication';
 import Wallet from './Wallet';
@@ -68,7 +67,7 @@ const Detail = {
 
     try {
       const { body: { userBalance } } = await getWalletDetailPromise;
-      props.userBalance = { ...userBalance, balanceList: getOrderBalance(userBalance.balanceList) };
+      props.userBalance = userBalance;
     } catch (error) {
       console.log('error', error);
     }

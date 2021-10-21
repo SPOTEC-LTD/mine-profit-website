@@ -7,7 +7,7 @@ import dateUtils from '@/shared/intl/utils/dateUtils';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import { INVESTMENT, GET_ORDERS, UPDATE_ORDERS_LIST } from '@/modules/account/investment';
 import { ALL } from '@/shared/consts/coinType';
-import { COMMON, GET_CHAIN_ORDER, GET_DYNAMIC_CHAIN_TYPE } from '@/modules/common';
+import { COMMON, GET_CHAIN_ORDER } from '@/modules/common';
 import DatePicker from '@/shared/components/DatePicker';
 import styles from './index.less?module';
 
@@ -25,7 +25,7 @@ const Orders = {
       getOrdersLoading: state => state.loading.effects[`${INVESTMENT}/${GET_ORDERS}`],
       orderData: state => state.investment.orderData,
       chainOrderList: state => state.common.chainOrderList,
-      dynamicChainTypeList: state => state.common.dynamicChainTypeList,
+      dynamicChainTypeList: state => state.dynamicChainTypeList,
     }),
 
     getTabsList() {
@@ -43,11 +43,10 @@ const Orders = {
   mounted() {
     this[GET_ORDERS]({ data: {} });
     this[GET_CHAIN_ORDER]();
-    this[GET_DYNAMIC_CHAIN_TYPE]();
   },
 
   methods: {
-    ...mapActions(COMMON, [GET_CHAIN_ORDER, GET_DYNAMIC_CHAIN_TYPE]),
+    ...mapActions(COMMON, [GET_CHAIN_ORDER]),
     ...mapActions(INVESTMENT, [GET_ORDERS]),
     ...mapMutations(INVESTMENT, [UPDATE_ORDERS_LIST]),
     getOrdersAction() {

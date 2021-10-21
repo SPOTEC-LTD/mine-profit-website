@@ -16,6 +16,7 @@ import Address from '@/pages/Account/Detail/Wallet/Address';
 import PledgeRedeem from '@/pages/Account/PledgeRedeem';
 import PledgeRepayment from '@/pages/Account/PledgeRepayment';
 import Withdraw from '@/pages/Account/Detail/Wallet/Withdraw';
+import BuyBack from '@/pages/Account/Detail/Wallet/BuyBack';
 import BindInvitationCode from '@/pages/Account/BindInvitationCode';
 import * as urls from './consts/urls';
 
@@ -43,6 +44,12 @@ const walletRoutes = [
     meta: { showBreadcrumb: true },
     name: 'walletAllTypesCarry',
     component: Withdraw,
+  },
+  {
+    path: urls.buyBackPath,
+    meta: { showBreadcrumb: true },
+    name: 'buyBack',
+    component: BuyBack,
   },
 ];
 

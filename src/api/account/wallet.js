@@ -10,3 +10,5 @@ export const editAddress = createAPI(httpMethod.PUT, '/customer/withdraw/address
 export const updateWithDraw = createAPI(httpMethod.POST, '/customer/withdraw');
 export const getAllBalance = createAPI(httpMethod.GET, '/customer/withdraw/balanceNHandlingFee');
 export const getWalletBalance = createAPI(httpMethod.GET, '/customer/users/:userId/balance');
+export const getBuyBackDetail = createAPI(httpMethod.GET, '/customer/buy_back/detail');
+export const officialBuyBack = createAPI(httpMethod.POST, '/customer/buy_back');

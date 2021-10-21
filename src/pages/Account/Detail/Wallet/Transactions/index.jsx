@@ -1,3 +1,4 @@
+import { mapState } from 'vuex';
 import moment from 'moment';
 import { WALLET_STATUS_ALL, getLedgerStatusList } from '@/shared/consts/rechargeLedgerStatus';
 import { HASH_RATE_ALL, HASH_RATE_BTC, HASH_RATE_ETH, HASH_RATE_USDT } from '@/shared/consts/hashrateType';
@@ -14,6 +15,16 @@ const LEDGER_TYPE = 'ledgerType';
 const LEDGER_STATUS = 'ledgerStatus';
 
 const Transactions = {
+  computed: {
+    ...mapState({
+      dynamicChainTypeList: state => state.dynamicChainTypeList,
+    }),
+
+    dynamicChain() {
+      const [chainInfo = { symbol: '' }] = this.dynamicChainTypeList;
+      return chainInfo.symbol;
+    },
+  },
   methods: {
     getWalletDetail() {
       const query = {
@@ -66,6 +77,7 @@ const Transactions = {
       { text: HASH_RATE_USDT, value: HASH_RATE_USDT },
       { text: HASH_RATE_BTC, value: HASH_RATE_BTC },
       { text: HASH_RATE_ETH, value: HASH_RATE_ETH },
+      { text: this.dynamicChain, value: this.dynamicChain },
     ];
 
     const selectList = [

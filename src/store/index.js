@@ -1,6 +1,8 @@
 import { getUserBaseInfo } from '@/api/account/userInfo';
+import { getDynamicChainType } from '@/api/common';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import { UPDATE_USER_INFO, UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
+import { UPDATE_DYNAMIC_CHAIN_TYPE_LIST } from '@/store/consts/dynamicChainType';
 import rank from '../modules/rank';
 import loadingPlugin from './loadingPlugin';
 import sign from '../modules/sign';
@@ -29,11 +31,15 @@ export const mutations = {
   [UPDATE_HAS_PAGE_BUTTON_STATUS](state, status) {
     state.hasPageButton = status;
   },
+  [UPDATE_DYNAMIC_CHAIN_TYPE_LIST](state, chainTypeList) {
+    state.dynamicChainTypeList = chainTypeList;
+  },
 };
 
 export const state = () => ({
   userInfo: {},
   hasPageButton: false,
+  dynamicChainTypeList: [{ symbol: '' }],
 });
 
 export const actions = {
@@ -48,6 +54,13 @@ export const actions = {
       }
     } else {
       commit(UPDATE_USER_INFO, {});
+    }
+
+    try {
+      const { body: { list } } = await getDynamicChainType({}, { ctx });
+      commit(UPDATE_DYNAMIC_CHAIN_TYPE_LIST, list);
+    } catch (error) {
+      console.log('error', error);
     }
   },
 };

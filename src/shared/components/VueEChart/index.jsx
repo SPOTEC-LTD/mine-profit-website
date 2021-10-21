@@ -22,7 +22,23 @@ const VueEChart = {
     className: String,
     silent: Boolean,
     lazyUpdate: Boolean,
+  },
 
+  watch: {
+    option: {
+      handler(newVal, oldVal) {
+        if (this.chartRef) {
+          if (newVal) {
+            this.chartRef.setOption(newVal);
+          } else {
+            this.chartRef.setOption(oldVal);
+          }
+        } else {
+          this.init();
+        }
+      },
+      deep: true,
+    },
   },
 
   mounted() {
