@@ -62,7 +62,7 @@ const BuyBack = {
     onSubmit(password) {
       const paramsData = {
         password,
-        count: +this.buyBackCount,
+        count: +this.formData.count,
       };
       this[OFFICIAL_BUY_BACK](paramsData)
         .then(() => {
