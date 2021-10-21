@@ -49,8 +49,12 @@ const Activity = {
   methods: {
     ...mapActions(ACTIVITY, [GET_ACTIVITY_LIST]),
 
-    linkToActivity(to, status) {
+    linkToActivity(to, status, linkType) {
       if (!to || status === ACTIVITY_DONE) { return; }
+      if (linkType === URL_TYPE) {
+        window.open(to);
+        return;
+      }
       locationServices.push(to);
     },
 
@@ -82,7 +86,7 @@ const Activity = {
                 {this.activityDataList.map((item, index) => (
                   <div
                     class={styles['img-box']}
-                    onClick={() => { this.linkToActivity(item.to, item.activityStatus); }}
+                    onClick={() => { this.linkToActivity(item.to, item.activityStatus, item.linkType); }}
                   >
                     <img
                       src={item.webImage}
