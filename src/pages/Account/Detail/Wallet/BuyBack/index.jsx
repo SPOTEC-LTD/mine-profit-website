@@ -84,7 +84,7 @@ const BuyBack = {
         <BaseContainer contentClassName={styles['buy-back']}>
           <div class={styles['buy-back-header']}>
             <div class={styles['buy-back-icon']} />
-            <div class={styles['buy-back-title']}>{this.$t('officialByuBack')}</div>
+            <div class={styles['buy-back-title']}>{this.$t('officialByuBack', { value: this.dynamicChainType.symbol })}</div>
           </div>
           <div class={styles['buy-back-body']}>
             <FormModel
@@ -113,7 +113,7 @@ const BuyBack = {
               </div>
               <div class={styles['line-chart']}>
                 <MPTLineChart
-                  title={this.$t('priceTrend')}
+                  title={this.$t('priceTrend', { value: this.dynamicChainType.symbol })}
                   dataSource={trend}
                   nameY={'USDT'}
                 />
