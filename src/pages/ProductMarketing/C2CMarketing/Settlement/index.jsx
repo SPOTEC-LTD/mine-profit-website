@@ -18,6 +18,12 @@ import RateFluctuation from '@/shared/components/RateFluctuation';
 import { C2C_MARKET, PLACE_C2C_ORDER } from '@/modules/c2cMarket';
 import ConfirmPayDialog from '@/shared/components/ConfirmPayDialog';
 import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
+import {
+  MAN_MACHINE_VERIFICATION,
+  UPDATE_IS_DEAL_PASSWORD_VERIFICATION,
+  UPDATE_CAPTCHA_VERIFICATION,
+} from '@/modules/manMachineVerification';
+import { MAN_MACHINE_VERIFICATION_CODE } from '@/shared/utils/request/consts/ResponseCode';
 
 import styles from './index.less?module';
 
@@ -59,6 +65,9 @@ const Settlement = {
 
   computed: {
     ...mapState({
+      captchaVerification: state => state.manMachineVerification.captchaVerification,
+      isVerificationSuccess: state => state.manMachineVerification.isVerificationSuccess,
+      isDealPasswordVerification: state => state.manMachineVerification.isDealPasswordVerification,
       placeOrderLoading: state => state.loading.effects[`${C2C_MARKET}/${PLACE_C2C_ORDER}`],
       c2cOrderResult: state => state.c2cMarket.c2cOrderResult,
     }),
@@ -67,7 +76,17 @@ const Settlement = {
       return numberUtils.times(this.value, this.c2cDetail.price);
     },
   },
-  created() {
+  watch: {
+    isVerificationSuccess(value) {
+      if (value) {
+        if (this.isDealPasswordVerification) {
+          this.handlePayment();
+          this[UPDATE_IS_DEAL_PASSWORD_VERIFICATION](false);
+        }
+      }
+    },
+  },
+  mounted() {
     this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
   },
 
@@ -80,6 +99,7 @@ const Settlement = {
   methods: {
     ...mapActions(C2C_MARKET, [PLACE_C2C_ORDER]),
     ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
+    ...mapMutations(MAN_MACHINE_VERIFICATION, [UPDATE_IS_DEAL_PASSWORD_VERIFICATION, UPDATE_CAPTCHA_VERIFICATION]),
     refresh() { window.$nuxt.refresh(); },
 
     handleInputMax() {
@@ -153,6 +173,10 @@ const Settlement = {
         ptId: this.c2cDetail.ptId,
         hasPowerOff: this.c2cDetail.hasPowerOff,
       };
+      if (this.captchaVerification) {
+        data.captchaVerification = this.captchaVerification;
+        this[UPDATE_CAPTCHA_VERIFICATION]('');
+      }
       this[PLACE_C2C_ORDER](data)
         .then(({ paySuccess }) => {
           if (paySuccess) {
@@ -162,6 +186,10 @@ const Settlement = {
             this.showFluctuationDialog = true;
           }
           this.isShowPasswordInput = false;
+        }).catch(({ code }) => {
+          if (code === MAN_MACHINE_VERIFICATION_CODE) {
+            this[UPDATE_IS_DEAL_PASSWORD_VERIFICATION](true);
+          }
         });
     },
   },

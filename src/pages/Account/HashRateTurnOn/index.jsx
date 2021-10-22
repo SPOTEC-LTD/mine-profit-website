@@ -14,6 +14,12 @@ import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
 import { HASH_RATE, HASHRATE_POWER_ON, hashrateStatusMap } from '@/modules/account/hashRate';
 import FormContainer from '@/shared/components/FormContainer';
 import ErrorAlert from '@/shared/components/ErrorAlert';
+import {
+  MAN_MACHINE_VERIFICATION,
+  UPDATE_IS_DEAL_PASSWORD_VERIFICATION,
+  UPDATE_CAPTCHA_VERIFICATION,
+} from '@/modules/manMachineVerification';
+import { MAN_MACHINE_VERIFICATION_CODE } from '@/shared/utils/request/consts/ResponseCode';
 import styles from './index.less?module';
 
 const HashRateTurnOn = {
@@ -42,19 +48,47 @@ const HashRateTurnOn = {
   },
   computed: {
     ...mapState({
+      captchaVerification: state => state.manMachineVerification.captchaVerification,
+      isVerificationSuccess: state => state.manMachineVerification.isVerificationSuccess,
+      isDealPasswordVerification: state => state.manMachineVerification.isDealPasswordVerification,
       powerOnLoading: state => state.loading.effects[`${HASH_RATE}/${HASHRATE_POWER_ON}`],
     }),
   },
-  created() {
+  watch: {
+    isVerificationSuccess(value) {
+      if (value) {
+        if (this.isDealPasswordVerification) {
+          this.onPowerOn();
+          this[UPDATE_IS_DEAL_PASSWORD_VERIFICATION](false);
+        }
+      }
+    },
+  },
+  mounted() {
     this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
   },
   methods: {
     ...mapActions(HASH_RATE, [HASHRATE_POWER_ON]),
     ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
+    ...mapMutations(MAN_MACHINE_VERIFICATION, [UPDATE_IS_DEAL_PASSWORD_VERIFICATION, UPDATE_CAPTCHA_VERIFICATION]),
     onPowerOn(dealCode) {
-      this[HASHRATE_POWER_ON]({ dealCode, productTemplateId: this.$route.params.productTemplateId }).then(() => {
+      this.dealCode = dealCode || this.dealCode;
+      const data = {
+        dealCode: this.dealCode,
+        productTemplateId: this.$route.params.productTemplateId,
+      };
+
+      if (this.captchaVerification) {
+        data.captchaVerification = this.captchaVerification;
+        this[UPDATE_CAPTCHA_VERIFICATION]('');
+      }
+      this[HASHRATE_POWER_ON](data).then(() => {
         this.isShowPasswordInput = false;
         this.showCountDownToLink = true;
+      }).catch(({ code }) => {
+        if (code === MAN_MACHINE_VERIFICATION_CODE) {
+          this[UPDATE_IS_DEAL_PASSWORD_VERIFICATION](true);
+        }
       });
     },
 

@@ -112,7 +112,7 @@ const RealNameAuth = {
       return result;
     },
   },
-  created() {
+  mounted() {
     this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
   },
   methods: {

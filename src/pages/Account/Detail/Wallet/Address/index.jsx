@@ -1,15 +1,20 @@
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapMutations } from 'vuex';
 import { Table } from 'ant-design-vue';
 
 import { WALLET, GET_WITHDRAWAL_ADDRESS, ADD_ADDRESS, DELETE_ADDRESS, EDIT_ADDRESS } from '@/modules/account/wallet';
 import { ADD, EDIT } from '@/pages/Account/Detail/Wallet/consts/dialogType';
-import { SECTION_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
+import { SECTION_BUSINESS_EXCEPTION, MAN_MACHINE_VERIFICATION_CODE } from '@/shared/utils/request/consts/ResponseCode';
 import { COIN, LINE, getType } from '@/pages/Account/Detail/Wallet/consts/lineType';
 import BaseContainer from '@/shared/components/BaseContainer';
 import ConfirmPayDialog from '@/shared/components/ConfirmPayDialog';
 import Notification from '@/shared/services/Notification';
 import ConfirmModal from '@/shared/components/ConfirmModal';
 import InfoTooltip from '@/shared/components/InfoTooltip';
+import {
+  MAN_MACHINE_VERIFICATION,
+  UPDATE_IS_DEAL_PASSWORD_VERIFICATION,
+  UPDATE_CAPTCHA_VERIFICATION,
+} from '@/modules/manMachineVerification';
 
 import AddressHeader from './AddressHeader';
 import AddOrEditAddressModal from './AddOrEditAddressModal';
@@ -24,10 +29,14 @@ const Address = {
       manageModel: '',
       isShowPasswordInput: false,
       showDeleteModal: false,
+      password: '',
     };
   },
   computed: {
     ...mapState({
+      captchaVerification: state => state.manMachineVerification.captchaVerification,
+      isVerificationSuccess: state => state.manMachineVerification.isVerificationSuccess,
+      isDealPasswordVerification: state => state.manMachineVerification.isDealPasswordVerification,
       withdrawalAddressList: state => state.wallet.withdrawalAddressList,
       loading: state => state.loading.effects[`${WALLET}/${GET_WITHDRAWAL_ADDRESS}`],
       addLoading: state => state.loading.effects[`${WALLET}/${ADD_ADDRESS}`],
@@ -35,12 +44,22 @@ const Address = {
       deleteLoading: state => state.loading.effects[`${WALLET}/${DELETE_ADDRESS}`],
     }),
   },
+  watch: {
+    isVerificationSuccess(value) {
+      if (value) {
+        if (this.isDealPasswordVerification) {
+          this.onSubmit();
+          this[UPDATE_IS_DEAL_PASSWORD_VERIFICATION](false);
+        }
+      }
+    },
+  },
   mounted() {
     this.getWithdrawalAddressList();
   },
   methods: {
     ...mapActions(WALLET, [GET_WITHDRAWAL_ADDRESS, ADD_ADDRESS, DELETE_ADDRESS, EDIT_ADDRESS]),
-
+    ...mapMutations(MAN_MACHINE_VERIFICATION, [UPDATE_IS_DEAL_PASSWORD_VERIFICATION, UPDATE_CAPTCHA_VERIFICATION]),
     getWithdrawalAddressList(options = {}) {
       const { query = {} } = options;
       const data = {
@@ -97,13 +116,19 @@ const Address = {
     },
 
     onSubmit(password) {
+      this.password = password || this.password;
       const { address, addressName, chainType } = this.addressInfo;
       const data = {
-        dealCode: password,
+        dealCode: this.password,
         address,
         addressName,
         chainType,
       };
+
+      if (this.captchaVerification) {
+        data.captchaVerification = this.captchaVerification;
+        this[UPDATE_CAPTCHA_VERIFICATION]('');
+      }
       const methodsMap = {
         [EDIT]: {
           method: EDIT_ADDRESS,
@@ -126,6 +151,9 @@ const Address = {
           if (isBusinessError && code === SECTION_BUSINESS_EXCEPTION) {
             this.isShowPasswordInput = false;
             Notification.error(messageDetails.address);
+          }
+          if (code === MAN_MACHINE_VERIFICATION_CODE) {
+            this[UPDATE_IS_DEAL_PASSWORD_VERIFICATION](true);
           }
         });
     },

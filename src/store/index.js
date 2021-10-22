@@ -20,6 +20,7 @@ import user from '../modules/user';
 import stationMail from '../modules/stationMail';
 import platformCurrency from '../modules/platformCurrency';
 import activity from '../modules/activity';
+import manMachineVerification from '../modules/manMachineVerification';
 
 export const strict = false;
 export const plugins = [loadingPlugin()];
@@ -82,4 +83,5 @@ export const modules = {
   stationMail,
   platformCurrency,
   activity,
+  manMachineVerification,
 };

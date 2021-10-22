@@ -14,7 +14,12 @@ import ConfirmPayDialog from '@/shared/components/ConfirmPayDialog';
 import CountDownToLink from '@/shared/components/CountDownToLink';
 import RateFluctuation from '@/shared/components/RateFluctuation';
 import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
-
+import {
+  MAN_MACHINE_VERIFICATION,
+  UPDATE_IS_DEAL_PASSWORD_VERIFICATION,
+  UPDATE_CAPTCHA_VERIFICATION,
+} from '@/modules/manMachineVerification';
+import { MAN_MACHINE_VERIFICATION_CODE } from '@/shared/utils/request/consts/ResponseCode';
 import styles from './index.less?module';
 
 const { Item } = FormModel;
@@ -56,23 +61,42 @@ const PledgeRedeem = {
   },
   computed: {
     ...mapState({
+      captchaVerification: state => state.manMachineVerification.captchaVerification,
+      isVerificationSuccess: state => state.manMachineVerification.isVerificationSuccess,
+      isDealPasswordVerification: state => state.manMachineVerification.isDealPasswordVerification,
       loading: state => state.loading.effects[`${HASH_RATE}/${PLEDGE_REDEEM_PAY}`],
     }),
   },
-  created() {
+  watch: {
+    isVerificationSuccess(value) {
+      if (value) {
+        if (this.isDealPasswordVerification) {
+          this.onSubmit();
+          this[UPDATE_IS_DEAL_PASSWORD_VERIFICATION](false);
+        }
+      }
+    },
+  },
+  mounted() {
     this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
   },
   methods: {
     ...mapActions(HASH_RATE, [PLEDGE_REDEEM_PAY]),
     ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
+    ...mapMutations(MAN_MACHINE_VERIFICATION, [UPDATE_IS_DEAL_PASSWORD_VERIFICATION, UPDATE_CAPTCHA_VERIFICATION]),
     onSubmit(password) {
       this.password = password || this.password;
-      this[PLEDGE_REDEEM_PAY]({
+      const params = {
         id: this.$route.params.id,
-        payAmount: password ? this.pledgeRedeemInfo.payAmountUsdt : this.productOrderResult.currentAmount,
+        payAmount: this.productOrderResult.currentAmount || this.pledgeRedeemInfo.payAmountUsdt,
         dealCode: this.password,
         payType: this.payType,
-      }).then(data => {
+      };
+      if (this.captchaVerification) {
+        params.captchaVerification = this.captchaVerification;
+        this[UPDATE_CAPTCHA_VERIFICATION]('');
+      }
+      this[PLEDGE_REDEEM_PAY](params).then(data => {
         const { success } = data;
         this.productOrderResult = data;
         if (success) {
@@ -82,6 +106,10 @@ const PledgeRedeem = {
         } else {
           this.showFluctuationDialog = true;
           this.isShowPasswordInput = false;
+        }
+      }).catch(({ code }) => {
+        if (code === MAN_MACHINE_VERIFICATION_CODE) {
+          this[UPDATE_IS_DEAL_PASSWORD_VERIFICATION](true);
         }
       });
     },

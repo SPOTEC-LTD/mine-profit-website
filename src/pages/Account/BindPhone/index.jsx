@@ -13,7 +13,12 @@ import PageButton from '@/shared/components/PageButton';
 import { phoneReg } from '@/shared/consts/rules';
 import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
 import Notification from '@/shared/services/Notification';
-import { GLOBAL_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
+import { GLOBAL_BUSINESS_EXCEPTION, MAN_MACHINE_VERIFICATION_CODE } from '@/shared/utils/request/consts/ResponseCode';
+import {
+  MAN_MACHINE_VERIFICATION,
+  UPDATE_IS_PHONE_OR_EMAIL_VERIFICATION,
+  UPDATE_CAPTCHA_VERIFICATION,
+} from '@/modules/manMachineVerification';
 import FetchVerifyCode from '../components/FetchVerifyCode';
 import styles from './index.less?module';
 
@@ -49,16 +54,30 @@ const BindPhone = {
   },
   computed: {
     ...mapState({
+      isVerificationSuccess: state => state.manMachineVerification.isVerificationSuccess,
+      isPhoneOrEmailVerification: state => state.manMachineVerification.isPhoneOrEmailVerification,
+      captchaVerification: state => state.manMachineVerification.captchaVerification,
       loading: state => state.loading.effects[`${ACCOUNT}/${BIND_PHONE_OR_EMAIL}`],
     }),
   },
-  created() {
+  watch: {
+    isVerificationSuccess(value) {
+      if (value) {
+        if (this.isPhoneOrEmailVerification) {
+          this.getVerCode();
+          this[UPDATE_IS_PHONE_OR_EMAIL_VERIFICATION](false);
+        }
+      }
+    },
+  },
+  mounted() {
     this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
   },
   methods: {
     ...mapActions(SIGN, [GET_PHONE_CODE]),
     ...mapActions(ACCOUNT, [BIND_PHONE_OR_EMAIL]),
     ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
+    ...mapMutations(MAN_MACHINE_VERIFICATION, [UPDATE_CAPTCHA_VERIFICATION, UPDATE_IS_PHONE_OR_EMAIL_VERIFICATION]),
     getVerCode() {
       this.$refs.ruleForm.validateField('phone', error => {
         if (!error) {
@@ -68,9 +87,18 @@ const BindPhone = {
             phone: this.form.phone,
           };
 
+          if (this.captchaVerification) {
+            params.captchaVerification = this.captchaVerification;
+            this[UPDATE_CAPTCHA_VERIFICATION]('');
+          }
+
           this[GET_PHONE_CODE](params).then(() => {
             this.isCountDown = true;
             this.buttonText = this.$t('refetch');
+          }).catch(({ code }) => {
+            if (code === MAN_MACHINE_VERIFICATION_CODE) {
+              this[UPDATE_IS_PHONE_OR_EMAIL_VERIFICATION](true);
+            }
           });
         }
       });
@@ -91,9 +119,6 @@ const BindPhone = {
         }
         return false;
       });
-    },
-    resetForm() {
-      this.$refs.ruleForm.resetFields();
     },
     handleCountDownFinish() {
       this.isCountDown = false;

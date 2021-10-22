@@ -1,13 +1,14 @@
 import axios from 'axios';
 import errorModal from './errorModal';
 import {
-  SUCCESS, SERVER_EXCEPTION, GLOBAL_BUSINESS_EXCEPTION, NOT_LOGIN,
+  SUCCESS, SERVER_EXCEPTION, GLOBAL_BUSINESS_EXCEPTION, NOT_LOGIN, MAN_MACHINE_VERIFICATION_CODE,
 } from './consts/ResponseCode';
 
 export const isSuccess = responseCode => responseCode === SUCCESS;
 export const isSystemError = responseCode => responseCode === SERVER_EXCEPTION;
 export const isGlobalBusinessError = responseCode => responseCode === GLOBAL_BUSINESS_EXCEPTION;
 export const isNotLogin = responseCode => responseCode === NOT_LOGIN;
+export const isManMachineVerification = responseCode => responseCode === MAN_MACHINE_VERIFICATION_CODE;
 
 const isCancel = resError => axios.isCancel(resError);
 const isTimeout = resError => resError.code === 'ECONNABORTED';
