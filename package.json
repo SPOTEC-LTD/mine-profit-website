@@ -35,6 +35,7 @@
     "bignumber.js": "^9.0.1",
     "classnames": "^2.3.1",
     "core-js": "^3.6.5",
+    "crypto-js": "^4.1.1",
     "dayjs": "^1.10.6",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
@@ -44,15 +45,15 @@
     "path-to-regexp": "^6.2.0",
     "qrcode": "^1.4.4",
     "qs": "^6.9.6",
+    "swiper": "^5.2.8",
     "universal-cookie": "^4.0.4",
     "vue": "^2.6.12",
+    "vue-awesome-swiper": "^4.1.1",
     "vue-copy-to-clipboard": "^1.0.3",
     "vue-highlight-words": "^1.2.0",
     "vue-i18n": "^8.22.2",
     "vue-router": "^3.5.1",
-    "vuex": "^3.6.2",
-    "swiper": "^5.2.8",
-    "vue-awesome-swiper": "^4.1.1"
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.10",

@@ -6,7 +6,11 @@ import numberUtils from 'aa-utils/lib/numberUtils';
 import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
 import * as API from '@/api/account/wallet';
 import { WALLET, GET_WITHDRAWAL_ADDRESS, WITHDRAWAL } from '@/modules/account/wallet';
-import { WITH_DRAW_ERROR, SECTION_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
+import {
+  WITH_DRAW_ERROR,
+  SECTION_BUSINESS_EXCEPTION,
+  MAN_MACHINE_VERIFICATION_CODE,
+} from '@/shared/utils/request/consts/ResponseCode';
 import { LINE_USDT_ERC20, lineList } from '@/pages/Account/Detail/Wallet/consts/lineType';
 import NumberInput, { FLOAT } from '@/shared/components/NumberInput';
 import { addressPath, accountDetailPath } from '@/router/consts/urls';
@@ -21,6 +25,11 @@ import ConfirmPayDialog from '@/shared/components/ConfirmPayDialog';
 import Notification from '@/shared/services/Notification';
 import locationServices from '@/shared/services/location/locationServices';
 import locationHelp from '@/shared/utils/locationHelp';
+import {
+  MAN_MACHINE_VERIFICATION,
+  UPDATE_IS_DEAL_PASSWORD_VERIFICATION,
+  UPDATE_CAPTCHA_VERIFICATION,
+} from '@/modules/manMachineVerification';
 
 import NoActiveModal from './NoActiveModal';
 import CoinLine from '../components/CoinLine';
@@ -40,6 +49,7 @@ const Withdraw = {
       },
       isShowPasswordInput: false,
       showNoActiveModal: false,
+      password: '',
     };
   },
   async asyncData(ctx) {
@@ -70,6 +80,9 @@ const Withdraw = {
 
   computed: {
     ...mapState({
+      captchaVerification: state => state.manMachineVerification.captchaVerification,
+      isVerificationSuccess: state => state.manMachineVerification.isVerificationSuccess,
+      isDealPasswordVerification: state => state.manMachineVerification.isDealPasswordVerification,
       withdrawalAddressList: state => state.wallet.withdrawalAddressList,
       pageInfo: state => state.wallet.pageInfo,
       loading: state => state.loading.effects[`${WALLET}/${WITHDRAWAL}`],
@@ -110,17 +123,25 @@ const Withdraw = {
       return address;
     },
   },
-  created() {
-    this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
+  watch: {
+    isVerificationSuccess(value) {
+      if (value) {
+        if (this.isDealPasswordVerification) {
+          this.onSubmit();
+          this[UPDATE_IS_DEAL_PASSWORD_VERIFICATION](false);
+        }
+      }
+    },
   },
-
   mounted() {
     this.getAddressList();
+    this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
   },
 
   methods: {
     ...mapActions(WALLET, [GET_WITHDRAWAL_ADDRESS, WITHDRAWAL]),
     ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
+    ...mapMutations(MAN_MACHINE_VERIFICATION, [UPDATE_IS_DEAL_PASSWORD_VERIFICATION, UPDATE_CAPTCHA_VERIFICATION]),
     getAddressList() {
       const data = {
         chainType: this.finallyChainType,
@@ -156,31 +177,39 @@ const Withdraw = {
     },
 
     onSubmit(password) {
+      this.password = password || this.password;
       const paramsData = {
         chainType: this.finallyChainType,
-        password,
+        password: this.password,
         ...this.formData,
       };
+
+      if (this.captchaVerification) {
+        paramsData.captchaVerification = this.captchaVerification;
+        this[UPDATE_CAPTCHA_VERIFICATION]('');
+      }
+
       this[WITHDRAWAL](paramsData)
-        .then(
-          () => {
+        .then(() => {
+          this.isShowPasswordInput = false;
+          locationServices.push(accountDetailPath);
+          Notification.success(this.$t('withDrawSuccess'));
+        })
+        .catch(error => {
+          const { isBusinessError, code, messageDetails } = error;
+          if (isBusinessError && code === WITH_DRAW_ERROR) {
             this.isShowPasswordInput = false;
-            locationServices.push(accountDetailPath);
-            Notification.success(this.$t('withDrawSuccess'));
-          },
-          error => {
-            const { isBusinessError, code, messageDetails } = error;
-            if (isBusinessError && code === WITH_DRAW_ERROR) {
-              this.isShowPasswordInput = false;
-              this.showNoActiveModal = true;
-            }
-            if (isBusinessError && code === SECTION_BUSINESS_EXCEPTION) {
-              this.isShowPasswordInput = false;
-              const { withdrawAddress } = messageDetails;
-              Notification.error(withdrawAddress);
-            }
-          },
-        );
+            this.showNoActiveModal = true;
+          }
+          if (isBusinessError && code === SECTION_BUSINESS_EXCEPTION) {
+            this.isShowPasswordInput = false;
+            const { withdrawAddress } = messageDetails;
+            Notification.error(withdrawAddress);
+          }
+          if (code === MAN_MACHINE_VERIFICATION_CODE) {
+            this[UPDATE_IS_DEAL_PASSWORD_VERIFICATION](true);
+          }
+        });
     },
   },
 

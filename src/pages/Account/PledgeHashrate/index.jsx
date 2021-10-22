@@ -7,7 +7,7 @@ import { accountHashRateListPath } from '@/router/consts/urls';
 import ProductTitle from '@/shared/components/ProductTitle';
 import { HASH_RATE, HASHRATE_PLEDGE, GET_HASHRATE_PLEDGE_INFO, hashrateStatusMap } from '@/modules/account/hashRate';
 import getTimes from '@/shared/utils/getTimes';
-import { SELLING_PRICE_CHANGE } from '@/shared/utils/request/consts/ResponseCode';
+import { SELLING_PRICE_CHANGE, MAN_MACHINE_VERIFICATION_CODE } from '@/shared/utils/request/consts/ResponseCode';
 import Notification from '@/shared/services/Notification';
 import PageButton from '@/shared/components/PageButton';
 import BaseContainer from '@/shared/components/BaseContainer';
@@ -20,6 +20,11 @@ import ShareQrCodeModal from '@/shared/components/ShareQrCodeModal';
 import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
 import { getLocalLanguage } from '@/shared/utils/getLocalLanguage';
 import { CLOSE } from '@/pages/Account/HashRate/consts/pledgeSourceType';
+import {
+  MAN_MACHINE_VERIFICATION,
+  UPDATE_IS_DEAL_PASSWORD_VERIFICATION,
+  UPDATE_CAPTCHA_VERIFICATION,
+} from '@/modules/manMachineVerification';
 import styles from './index.less?module';
 
 const { Item } = FormModel;
@@ -53,11 +58,15 @@ const PledgeHashrate = {
         pledgeDuration: null,
       },
       pledgeDurationText: '',
+      password: '',
       nowLanguage: getLocalLanguage(),
     };
   },
   computed: {
     ...mapState({
+      captchaVerification: state => state.manMachineVerification.captchaVerification,
+      isVerificationSuccess: state => state.manMachineVerification.isVerificationSuccess,
+      isDealPasswordVerification: state => state.manMachineVerification.isDealPasswordVerification,
       submitLoading: state => state.loading.effects[`${HASH_RATE}/${HASHRATE_PLEDGE}`],
       fetchInfoLoading: state => state.loading.effects[`${HASH_RATE}/${GET_HASHRATE_PLEDGE_INFO}`],
       hashratePledgeInfo: state => state.hashRate.hashratePledgeInfo,
@@ -77,10 +86,18 @@ const PledgeHashrate = {
       });
     },
   },
-  created() {
-    this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
+  watch: {
+    isVerificationSuccess(value) {
+      if (value) {
+        if (this.isDealPasswordVerification) {
+          this.onSubmit();
+          this[UPDATE_IS_DEAL_PASSWORD_VERIFICATION](false);
+        }
+      }
+    },
   },
   mounted() {
+    this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
     const { productTemplateId } = this.$route.params;
     const { source, id, sourceType, hashrateType } = this.$route.query;
     const params = +source === CLOSE ? { source, id, sourceType, hashrateType } : { source };
@@ -96,6 +113,7 @@ const PledgeHashrate = {
   methods: {
     ...mapActions(HASH_RATE, [HASHRATE_PLEDGE, GET_HASHRATE_PLEDGE_INFO]),
     ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
+    ...mapMutations(MAN_MACHINE_VERIFICATION, [UPDATE_IS_DEAL_PASSWORD_VERIFICATION, UPDATE_CAPTCHA_VERIFICATION]),
     onPageButtonConfirm() {
       this.$refs.form.validate(valid => {
         if (valid) {
@@ -114,10 +132,11 @@ const PledgeHashrate = {
       });
     },
     onSubmit(password) {
+      this.password = password || this.password;
       const { source, annualRate, id, productTemplateId, sourceType, hashrateUnitPrice } = this.hashratePledgeInfo;
-      this[HASHRATE_PLEDGE]({
+      const data = {
         annualRate,
-        dealCode: password,
+        dealCode: this.password,
         hashrateUnitPrice,
         id,
         pledgeDuration: this.formData.pledgeDuration,
@@ -125,7 +144,14 @@ const PledgeHashrate = {
         source,
         sourceType,
         productTemplateId,
-      })
+      };
+
+      if (this.captchaVerification) {
+        data.captchaVerification = this.captchaVerification;
+        this[UPDATE_CAPTCHA_VERIFICATION]('');
+      }
+
+      this[HASHRATE_PLEDGE](data)
         .then(pledgeId => {
           this.pledgeId = pledgeId;
           this.showCountDownToLink = true;
@@ -139,6 +165,9 @@ const PledgeHashrate = {
             setTimeout(() => {
               window.$nuxt.refresh();
             }, 3000);
+          }
+          if (code === MAN_MACHINE_VERIFICATION_CODE) {
+            this[UPDATE_IS_DEAL_PASSWORD_VERIFICATION](true);
           }
         });
     },

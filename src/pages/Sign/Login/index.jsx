@@ -1,5 +1,5 @@
 import { Tabs } from 'ant-design-vue';
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState, mapMutations } from 'vuex';
 import Schema from 'async-validator';
 import PhoneFilled from 'ahoney/lib/icons/PhoneFilled';
 import EmailFilled from 'ahoney/lib/icons/EmailFilled';
@@ -11,9 +11,15 @@ import PrimaryButton from '@/shared/components/PrimaryButton';
 import { passwordReg, phoneReg } from '@/shared/consts/rules';
 import * as verCodeType from '@/shared/consts/verCodeType';
 import Notification from '@/shared/services/Notification';
-import { SECTION_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
+import { SECTION_BUSINESS_EXCEPTION, MAN_MACHINE_VERIFICATION_CODE } from '@/shared/utils/request/consts/ResponseCode';
 import Link from '@/shared/components/Link';
 import { serviceProtocolPath, privacyProtocolPath } from '@/router/consts/urls';
+import {
+  MAN_MACHINE_VERIFICATION,
+  UPDATE_IS_LOGIN_VERIFICATION,
+  UPDATE_IS_PHONE_OR_EMAIL_VERIFICATION,
+  UPDATE_CAPTCHA_VERIFICATION,
+} from '@/modules/manMachineVerification';
 import storageUserInfo from './storageUserInfo';
 import Form from './Form';
 import styles from './index.less?module';
@@ -57,14 +63,34 @@ const Login = {
   },
 
   computed: {
-    ...mapState({ loginLoading: state => state.loading.effects[`${SIGN}/${LOGIN}`] }),
+    ...mapState({
+      captchaVerification: state => state.manMachineVerification.captchaVerification,
+      isVerificationSuccess: state => state.manMachineVerification.isVerificationSuccess,
+      isPhoneOrEmailVerification: state => state.manMachineVerification.isPhoneOrEmailVerification,
+      isLoginVerification: state => state.manMachineVerification.isLoginVerification,
+      showManMachineVerification: state => state.manMachineVerification.showManMachineVerification,
+      loginLoading: state => state.loading.effects[`${SIGN}/${LOGIN}`] }),
     isPhone() {
       return this.formData.type === PHONE;
     },
   },
 
+  watch: {
+    isVerificationSuccess(value) {
+      if (value) {
+        if (this.isLoginVerification) {
+          this.handleSubmit();
+          this[UPDATE_IS_LOGIN_VERIFICATION](false);
+        }
+      }
+    },
+  },
   methods: {
     ...mapActions(SIGN, [GET_PHONE_CODE, GET_EMAIL_CODE, LOGIN]),
+    ...mapMutations(
+      MAN_MACHINE_VERIFICATION,
+      [UPDATE_CAPTCHA_VERIFICATION, UPDATE_IS_PHONE_OR_EMAIL_VERIFICATION, UPDATE_IS_LOGIN_VERIFICATION],
+    ),
     validatorForm(keys) {
       const descriptor = {
         code: {
@@ -162,13 +188,17 @@ const Login = {
         };
       }
       /// codeType 获取验证码类型,可用值:BINDING,DEAL,LOGIN,PASSWORD
-      this[resultActinType](params);
-      return Promise.resolve();
+      if (this.captchaVerification) {
+        params.captchaVerification = this.captchaVerification;
+        this[UPDATE_CAPTCHA_VERIFICATION]('');
+      }
+      return this[resultActinType](params);
     },
 
     async handleSubmit(e) {
-      e.preventDefault();
-
+      if (e) {
+        e.preventDefault();
+      }
       const validatorKeys = this.isPhone ? ['phone'] : ['email'];
       if (this.isVerificationLogin) {
         validatorKeys.push('code');
@@ -179,6 +209,10 @@ const Login = {
       const isValidatorPass = await this.validatorForm(validatorKeys);
       if (isValidatorPass) {
         const paramsData = { ...this.formData };
+        if (this.captchaVerification) {
+          paramsData.captchaVerification = this.captchaVerification;
+          this[UPDATE_CAPTCHA_VERIFICATION]('');
+        }
 
         paramsData.isVerificationLogin = this.isVerificationLogin;
         if (this.isPhone) {
@@ -201,6 +235,9 @@ const Login = {
           .catch(({ message, code }) => {
             if (code === SECTION_BUSINESS_EXCEPTION) {
               Notification.error(message);
+            }
+            if (code === MAN_MACHINE_VERIFICATION_CODE) {
+              this[UPDATE_IS_LOGIN_VERIFICATION](true);
             }
           });
       }

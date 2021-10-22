@@ -10,6 +10,9 @@
       </div>
       <PageFooter v-if="!hiddenFooter"/>
       <div v-if="hasPageButton" :style="{ height: '95px' }" />
+      <client-only>
+        <ManMachineVerification v-if="showManMachineVerification" />
+      </client-only>
     </div>
   </ConfigProvider>
 </template>
@@ -28,6 +31,8 @@ import isServerSide from '@/shared/utils/isServerSide';
 import { ErrorNode, SuccessNode } from '@/shared/services/Notification';
 import asyncStorageToken from '@/shared/utils/request/asyncStorageToken';
 import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
+import { MAN_MACHINE_VERIFICATION, UPDATE_SHOW_MAN_MACHINE_VERIFICATION} from '@/modules/manMachineVerification';
+import ManMachineVerification from '@/shared/components/ManMachineVerification';
 
 import { getZendesk } from '@/api';
 
@@ -36,6 +41,7 @@ export default {
     ConfigProvider,
     PageHeader,
     PageFooter,
+    ManMachineVerification
   },
   props: {
     overflowxHidden: {
@@ -59,6 +65,7 @@ export default {
   computed: {
     ...mapState({
       hasPageButton: state => state.hasPageButton,
+      showManMachineVerification: state => state.manMachineVerification.showManMachineVerification,
     }),
   },
   created() {
@@ -88,10 +95,17 @@ export default {
     this.$router.afterEach(() => {
       this.upateDocumentTitle();
     });
+    window.__selfStore__ = {
+      changeManMachineVerificationStatus: this.changeManMachineVerificationStatus
+    };
   },
 
   methods: {
     ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
+    ...mapMutations(MAN_MACHINE_VERIFICATION, [UPDATE_SHOW_MAN_MACHINE_VERIFICATION]),
+    changeManMachineVerificationStatus(boolean) {
+      this[UPDATE_SHOW_MAN_MACHINE_VERIFICATION](boolean);
+    },
     setLivechat(){
       getZendesk().then(({ body: { apiZendeskWebVo } }) => {
         window.__lc = window.__lc || {};

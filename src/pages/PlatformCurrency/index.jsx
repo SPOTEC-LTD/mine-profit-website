@@ -70,7 +70,7 @@ const PlatformCurrency = {
       return getIsChinese() ? bannerList : enBannerList;
     },
   },
-  created() {
+  mounted() {
     this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
   },
   methods: {

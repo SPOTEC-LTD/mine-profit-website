@@ -21,10 +21,8 @@ const PlatformCurrencyDetail = {
       loading: state => state.loading.effects[`${PLATFORM_CURRENCY}/${GET_PLATFORM_CURRENCY_DETAIL}`]
     }),
   },
-  created() {
-    this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
-  },
   mounted() {
+    this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
     this[GET_PLATFORM_CURRENCY_DETAIL]();
     this[GET_DYNAMIC_CHAIN_INFO]();
   },

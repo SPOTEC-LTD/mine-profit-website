@@ -3,7 +3,7 @@ import localStorage from '@/shared/utils/localStorage';
 import { loginPath } from '@/router/consts/urls';
 import { location } from '@/shared/services/location';
 import Response from './Response';
-import { errorHandler, isGlobalBusinessError, isNotLogin } from './utils';
+import { errorHandler, isGlobalBusinessError, isNotLogin, isManMachineVerification } from './utils';
 import errorModal from './errorModal';
 
 const createOptions = { baseURL: process.env.BASE_API };
@@ -38,6 +38,10 @@ axiosInstance.interceptors.response.use(res => {
 
   if (isGlobalBusinessError(response.code) && catchException) {
     errorModal({ title: response.message });
+  }
+
+  if (isManMachineVerification(response.code)) {
+    window.__selfStore__.changeManMachineVerificationStatus(true);
   }
 
   if (checkLoginStatus && isNotLogin(response.code)) {

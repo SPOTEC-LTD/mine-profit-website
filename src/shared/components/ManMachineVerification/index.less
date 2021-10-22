@@ -1,0 +1,134 @@
+@import '@/shared/styles/variables.less';
+
+.verify-box {
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 18px;
+  border: 1px solid @color__e4e7eb;
+  background-color: @white;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 389px;
+  padding: 14px 17px 26px;
+  user-select: none;
+}
+
+.verify-box-top {
+  text-align: left;
+  color: @color__242424;
+  font-size: @font-size-base;
+  line-height: 20px;
+}
+
+.verify-box-bottom {
+  padding-top: 10px;
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1001;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  transition: all 0.5s;
+}
+
+.verify-tips {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 4px 20px;
+  color: @white;
+}
+
+.suc-bg {
+  background-color: rgba(92, 184, 92, 0.5);
+  filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#7f5CB85C, endcolorstr=#7f5CB85C);
+}
+
+.err-bg {
+  background-color: rgba(217, 83, 79, 0.5);
+  filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#7fD9534F, endcolorstr=#7fD9534F);
+}
+
+.tips-enter,
+.tips-leave-to {
+  bottom: -30px;
+}
+
+.tips-enter-active,
+.tips-leave-active {
+  transition: bottom 0.5s;
+}
+
+.verify-bar-area {
+  position: relative;
+  text-align: center;
+  border-radius: 7.5px;
+  background-color: @color__e6e6e6;
+}
+
+.verify-bar-area .verify-move-block {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: @white;
+  cursor: pointer;
+  border-radius: 7.5px;
+  font-size: @font-size__18;
+}
+
+.verify-bar-area .verify-left-bar {
+  background: @color__cbe0f2;
+  cursor: pointer;
+  border-radius: 7.5px;
+}
+
+.verify-img-panel {
+  position: relative;
+  margin: 0;
+}
+
+.verify-bar-area .verify-move-block .verify-sub-block {
+  position: absolute;
+  text-align: center;
+  z-index: 3;
+}
+
+.verify-bar-area .verify-msg {
+  z-index: 3;
+}
+
+.icon-right::before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 63px;
+  height: 32px;
+  background-size: cover;
+  z-index: 9999;
+  background-image: url('~assets/move-block.png');
+}
+
+.verify-operate {
+  padding-top: 23px;
+  text-align: right;
+
+  a {
+    font-weight: 500;
+    color: @color__3093ea;
+  }
+
+  > a:last-child {
+    margin-left: 26px;
+  }
+}

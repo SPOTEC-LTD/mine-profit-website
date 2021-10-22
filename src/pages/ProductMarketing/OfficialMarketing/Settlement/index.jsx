@@ -28,6 +28,13 @@ import CouponSelector from '@/pages/ProductMarketing/components/CouponSelector';
 import { OFFICIAL_PRODUCT, PLACE_PRODUCT_ORDER } from '@/modules/officialProduct';
 import { officialMarketingPath, accountHashRateListPath } from '@/router/consts/urls';
 import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
+import {
+  MAN_MACHINE_VERIFICATION,
+  UPDATE_IS_DEAL_PASSWORD_VERIFICATION,
+  UPDATE_CAPTCHA_VERIFICATION,
+} from '@/modules/manMachineVerification';
+import { MAN_MACHINE_VERIFICATION_CODE } from '@/shared/utils/request/consts/ResponseCode';
+
 import initValue from '../consts/productInitialValue';
 
 import styles from './index.less?module';
@@ -92,6 +99,9 @@ const Settlement = {
 
   computed: {
     ...mapState({
+      captchaVerification: state => state.manMachineVerification.captchaVerification,
+      isVerificationSuccess: state => state.manMachineVerification.isVerificationSuccess,
+      isDealPasswordVerification: state => state.manMachineVerification.isDealPasswordVerification,
       placeOrderLoading: state => state.loading.effects[`${OFFICIAL_PRODUCT}/${PLACE_PRODUCT_ORDER}`],
       productOrderResult: state => state.officialProduct.productOrderResult,
       vipCouponsList: state => state.hashRateCoupons.vipCouponsList,
@@ -107,11 +117,17 @@ const Settlement = {
       this.hashRatePartAmount = +numberUtils.times(this.value, productDetail.amount);
       this.getCouponsList({ buyAmount: +this.hashRatePartAmount });
     },
-  },
-  created() {
-    this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
+    isVerificationSuccess(value) {
+      if (value) {
+        if (this.isDealPasswordVerification) {
+          this.handlePayment();
+          this[UPDATE_IS_DEAL_PASSWORD_VERIFICATION](false);
+        }
+      }
+    },
   },
   mounted() {
+    this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
     if (this.isError) {
       Notification.error(this.$t('noData'));
       setTimeout(() => { locationServices.push(officialMarketingPath); }, 1000);
@@ -130,6 +146,7 @@ const Settlement = {
     ...mapActions(OFFICIAL_PRODUCT, [PLACE_PRODUCT_ORDER]),
     ...mapActions(HASH_RATE_COUPONS, [GET_VIP_COUPONS]),
     ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
+    ...mapMutations(MAN_MACHINE_VERIFICATION, [UPDATE_IS_DEAL_PASSWORD_VERIFICATION, UPDATE_CAPTCHA_VERIFICATION]),
     getCouponsList(options = {}) {
       const { chainType } = this.productDetail;
       const initialValue = {
@@ -212,6 +229,10 @@ const Settlement = {
         preOrderId: this.chainRate.orderId,
         ptId: this.productDetail.ptId,
       };
+      if (this.captchaVerification) {
+        data.captchaVerification = this.captchaVerification;
+        this[UPDATE_CAPTCHA_VERIFICATION]('');
+      }
       this[PLACE_PRODUCT_ORDER](data)
         .then(({ paySuccess }) => {
           if (paySuccess) {
@@ -221,6 +242,10 @@ const Settlement = {
             this.showFluctuationDialog = true;
           }
           this.isShowPasswordInput = false;
+        }).catch(({ code }) => {
+          if (code === MAN_MACHINE_VERIFICATION_CODE) {
+            this[UPDATE_IS_DEAL_PASSWORD_VERIFICATION](true);
+          }
         });
     },
   },

@@ -15,6 +15,11 @@ import BaseContainer from '@/shared/components/BaseContainer';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import Notification from '@/shared/services/Notification';
 import { SECTION_BUSINESS_EXCEPTION } from '@/shared/utils/request/consts/ResponseCode';
+import {
+  MAN_MACHINE_VERIFICATION,
+  UPDATE_IS_PHONE_OR_EMAIL_VERIFICATION,
+  UPDATE_CAPTCHA_VERIFICATION,
+} from '@/modules/manMachineVerification';
 import FetchVerifyCode from '../components/FetchVerifyCode';
 import styles from '../index.less?module';
 
@@ -50,6 +55,9 @@ const SetDealPassword = {
   },
   computed: {
     ...mapState({
+      isVerificationSuccess: state => state.manMachineVerification.isVerificationSuccess,
+      isPhoneOrEmailVerification: state => state.manMachineVerification.isPhoneOrEmailVerification,
+      captchaVerification: state => state.manMachineVerification.captchaVerification,
       loading: state => state.loading.effects[`${ACCOUNT}/${UPDATE_DEAL_PASSWORD}`],
     }),
     isPhone() {
@@ -60,13 +68,24 @@ const SetDealPassword = {
       return this.isPhone ? `${phonePrefix} ${registerAccount}` : registerAccount;
     },
   },
-  created() {
+  watch: {
+    isVerificationSuccess(value) {
+      if (value) {
+        if (this.isPhoneOrEmailVerification) {
+          this.getVerCode();
+          this[UPDATE_IS_PHONE_OR_EMAIL_VERIFICATION](false);
+        }
+      }
+    },
+  },
+  mounted() {
     this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
   },
   methods: {
     ...mapActions(SIGN, [GET_EMAIL_CODE, GET_PHONE_CODE]),
     ...mapActions(ACCOUNT, [UPDATE_DEAL_PASSWORD]),
     ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
+    ...mapMutations(MAN_MACHINE_VERIFICATION, [UPDATE_CAPTCHA_VERIFICATION, UPDATE_IS_PHONE_OR_EMAIL_VERIFICATION]),
     getVerCode() {
       let resultActinType = GET_PHONE_CODE;
       let params = {
@@ -81,6 +100,11 @@ const SetDealPassword = {
           codeType: verCodeType.DEAL,
           email: this.userInfo.registerAccount,
         };
+      }
+
+      if (this.captchaVerification) {
+        params.captchaVerification = this.captchaVerification;
+        this[UPDATE_CAPTCHA_VERIFICATION]('');
       }
 
       this[resultActinType](params).then(() => {
