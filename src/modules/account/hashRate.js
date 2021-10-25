@@ -34,9 +34,11 @@ export const PLEDGE_REDEEM_PAY = 'pledgeRedeemPay';
 export const PLEDGE_REPAYMENT_PAY = 'pledgeRepaymentPay';
 export const PLEDGE_CONFIRM_SETTLE = 'pledgeConfirmSettle';
 export const GET_HASHRATE_PLEDGE_INFO = 'getHashratePledgeInfo';
+export const GET_DYNAMIC_HASH_INFO = 'getDynamicHashInfo';
 
 const UPDATE_PRODUCT_HASHRATE_STATISTICS_LIST = 'updateProductHashrateStatisticsList';
 const UPDATE_PRODUCT_HASHRATE_LIST = 'updateProductHashrateList';
+const UPDATE_DYNAMIC_HASH_INFO = 'updateDynamicHashInfo';
 export const UPDATE_HASHRATE_BUFF_LIST = 'updateHashrateBuffList';
 export const UPDATE_HASHRATE_PLEDGES_SOURCE_INFO = 'updateHashratePledgesSourceInfo';
 export const TRANSFER_CANCEL_ACTION = 'cancelTransfer';
@@ -90,6 +92,7 @@ export default {
       unit: '-',
       name: '--',
     },
+    dynamicHashInfo: {},
   },
   mutations: {
     [UPDATE_PRODUCT_HASHRATE_STATISTICS_LIST](state, { data }) {
@@ -115,6 +118,9 @@ export default {
     },
     [UPDATE_HASHRATE_PLEDGE_INFO](state, params) {
       state.hashratePledgeInfo = params;
+    },
+    [UPDATE_DYNAMIC_HASH_INFO](state, info) {
+      state.dynamicHashInfo = info;
     },
   },
   actions: {
@@ -306,6 +312,17 @@ export default {
         const { body: { hashratePledgeInfo } } = await API.getHashRatePledgeDetail({ pathParams, data: restData });
         commit(UPDATE_HASHRATE_PLEDGE_INFO, hashratePledgeInfo);
 
+        return Promise.resolve();
+      } catch (error) {
+        return Promise.reject(error);
+      }
+    },
+    async [GET_DYNAMIC_HASH_INFO]({ commit }) {
+      const { userId } = localStorage.getObject('userInfo');
+
+      try {
+        const { body: { mptHashrate } } = await API.getDynamicHashInfo({ pathParams: { userId } });
+        commit(UPDATE_DYNAMIC_HASH_INFO, mptHashrate);
         return Promise.resolve();
       } catch (error) {
         return Promise.reject(error);

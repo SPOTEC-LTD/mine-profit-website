@@ -1,8 +1,11 @@
-import { Spin } from 'ant-design-vue';
 import { mapActions, mapState } from 'vuex';
+import { Spin, Button } from 'ant-design-vue';
+import { platformCurrencyPaths } from '@/router/consts/urls';
+import locationServices from '@/shared/services/location/locationServices';
 import Select from '@/shared/components/Select';
 import BaseContainer from '@/shared/components/BaseContainer';
-import { HASH_RATE, GET_PRODUCT_HASHRATE_LIST, hashrateStatusMap } from '@/modules/account/hashRate';
+import { HASH_RATE, GET_PRODUCT_HASHRATE_LIST, GET_DYNAMIC_HASH_INFO, hashrateStatusMap } from '@/modules/account/hashRate';
+import { COMMON, GET_CHAIN_ORDER } from '@/modules/common';
 import * as hashRateAPI from '@/api/account/hashRate';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import KeepTabs from '@/shared/components/KeepTabs';
@@ -14,6 +17,7 @@ import Close from './Close';
 import Pledges from './Pledges';
 import Transfer from './Transfer';
 import Shutdown from './Shutdown';
+import DynamicHash from './DynamicHash';
 import styles from './index.less?module';
 
 const { TabPane } = KeepTabs;
@@ -52,18 +56,31 @@ const HashrateList = {
       pledgesList: state => state.hashRate[hashrateStatusMap.PLEDGES],
       transferList: state => state.hashRate[hashrateStatusMap.TRANSFER],
       shutdownList: state => state.hashRate[hashrateStatusMap.SHUTDOWN],
+      chainOrderList: state => state.common.chainOrderList,
+      dynamicChainTypeList: state => state.dynamicChainTypeList,
     }),
+
+    dynamicChain() {
+      const [chainInfo = { symbol: '' }] = this.dynamicChainTypeList;
+      return chainInfo.symbol;
+    },
   },
 
   mounted() {
-    if (this.$route.query.hashrateType) {
-      this.hashrateType = this.$route.query.hashrateType;
+    const hashRate = this.$route.query.hashrateType;
+    this[GET_CHAIN_ORDER]();
+    if (hashRate === this.dynamicChain) {
+      this[GET_DYNAMIC_HASH_INFO]();
+    }
+    if (hashRate) {
+      this.hashrateType = hashRate;
     }
     this.getProductHashrateListAction();
   },
 
   methods: {
-    ...mapActions(HASH_RATE, [GET_PRODUCT_HASHRATE_LIST]),
+    ...mapActions(COMMON, [GET_CHAIN_ORDER]),
+    ...mapActions(HASH_RATE, [GET_PRODUCT_HASHRATE_LIST, GET_DYNAMIC_HASH_INFO]),
     onOrderChange(value) {
       this.orderStatus = value;
       this.getProductHashrateListAction();
@@ -97,16 +114,25 @@ const HashrateList = {
       if (this.$route.query.hashrateType !== value) {
         this.$router.replace({ query: { ...this.$route.query, hashrateType: value } });
       }
-      this.getProductHashrateListAction();
+      if (value === this.dynamicChain) {
+        this[GET_DYNAMIC_HASH_INFO]();
+      } else {
+        this.getProductHashrateListAction();
+      }
     },
 
     toTransferPage() {
       this.hashTypeStatusKey = hashrateStatusMap.TRANSFER;
       this.getProductHashrateListAction();
     },
+
+    toEcologyPage() {
+      locationServices.push(platformCurrencyPaths);
+    },
   },
 
   render() {
+    const isDynamicChain = this.hashrateType === this.dynamicChain;
     return (
       <BaseContainer>
         <div>
@@ -116,19 +142,24 @@ const HashrateList = {
             onChange={this.handleSelectChange}
           >
             {
-              ['BTC', 'ETH'].map(value => (
+              this.chainOrderList.map(value => (
                 <Select.Option key={value}>
                   {value}
                 </Select.Option>
               ))
             }
           </Select>
+          {isDynamicChain && (
+            <Button class={styles['view-ecology']} type="primary" onClick={this.toEcologyPage}>
+              {this.$t('viewEcology', { value: this.dynamicChain })}
+            </Button>
+          )}
         </div>
         <TotalSection
           hashrateType={this.hashrateType}
           statistics={this.statistics}
         />
-
+        {!isDynamicChain && (
           <KeepTabs
             class={['mine-tabs-card', styles['hashrate-list-container']]}
             value={this.hashTypeStatusKey}
@@ -206,6 +237,10 @@ const HashrateList = {
               </Spin>
             </TabPane>
           </KeepTabs>
+        )}
+        {isDynamicChain && (
+          <DynamicHash />
+        )}
       </BaseContainer>
     );
   },
