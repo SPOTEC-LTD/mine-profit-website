@@ -166,4 +166,10 @@ export default {
   hashRateList: '算力列表',
   webDefaultTitle: '详情',
   priceFluctuation: '结算价变动确认',
+  viewEcology: '查看{value}生态',
+  todayPreOutput: '今日产出（预）',
+  unitOutput: '单位产量（预）',
+  cumulativeRepurchase: '累计回购',
+  cumulativeRepurchaseValue: '累计回购价值',
+  outputWithin7Days: '{value}7日内产量',
 };

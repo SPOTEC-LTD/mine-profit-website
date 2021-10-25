@@ -26,3 +26,4 @@ export const getPledgeRepaymentInfo = createAPI(httpMethod.GET, '/product/hashra
 export const pledgeRedeemPay = createAPI(httpMethod.PUT, '/product/hashrate/pledges/:userId/:id/redeem');
 export const pledgeRepaymentPay = createAPI(httpMethod.PUT, '/product/hashrate/pledges/:userId/:id/repayment');
 export const pledgeConfirmSettle = createAPI(httpMethod.PUT, '/product/hashrate/pledges/:userId/:id/settle');
+export const getDynamicHashInfo = createAPI(httpMethod.GET, '/product/hashrate/:userId/mpt');
