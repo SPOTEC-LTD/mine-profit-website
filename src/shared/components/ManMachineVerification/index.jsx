@@ -1,5 +1,6 @@
 import { mapActions, mapState, mapMutations } from 'vuex';
 import { Spin } from 'ant-design-vue';
+import Notification from '@/shared/services/Notification';
 import {
   MAN_MACHINE_VERIFICATION,
   UPDATE_SHOW_MAN_MACHINE_VERIFICATION,
@@ -36,8 +37,7 @@ const ManMachineVerification = {
       moveBlockLeft: undefined,
       leftBarWidth: 0,
       // 移动中样式
-      moveBlockBackgroundColor: undefined,
-      leftBarBorderColor: '#ddd',
+      leftBarBackgroundColor: '#cbe0f2',
       iconClass: 'icon-right',
       status: false, // 鼠标状态
       isEnd: false, // 是够验证完成
@@ -113,8 +113,7 @@ const ManMachineVerification = {
       this.startMoveTime = +new Date(); // 开始滑动的时间
       if (this.isEnd === false) {
         this.text = '';
-        this.moveBlockBackgroundColor = '#337ab7';
-        this.leftBarBorderColor = '#337AB7';
+        this.leftBarBackgroundColor = '#cbe0f2';
         this.iconColor = '#fff';
         e.stopPropagation();
         this.status = true;
@@ -141,7 +140,7 @@ const ManMachineVerification = {
         }
         // 拖动后小方块的left值
         this.moveBlockLeft = `${moveBlockLeft}px`;
-        this.leftBarWidth = `${moveBlockLeft}px`;
+        this.leftBarWidth = `${moveBlockLeft + 2}px`;
       }
     },
 
@@ -162,16 +161,14 @@ const ManMachineVerification = {
         this[REQ_CHECK](data)
           .then(() => {
             this.isEnd = true;
-            // setTimeout(() => {
-            //   this.refresh();
-            // }, 1500);
             this.passFlag = true;
+            this.leftBarBackgroundColor = 'rgba(92, 184, 92, 0.5)';
             this.tipWords = `${((this.endMoveTime - this.startMoveTime) / 1000).toFixed(2)}s验证成功`;
             const captchaVerification = this.secretKey
               ? aesEncrypt(
-                  `${this.backToken}---${JSON.stringify({ x: moveLeftDistance, y: 5.0 })}`,
-                  this.secretKey
-                )
+                `${this.backToken}---${JSON.stringify({ x: moveLeftDistance, y: 5.0 })}`,
+                this.secretKey,
+              )
               : `${this.backToken}---${JSON.stringify({ x: moveLeftDistance, y: 5.0 })}`;
             this[UPDATE_CAPTCHA_VERIFICATION](captchaVerification);
             setTimeout(() => {
@@ -185,6 +182,7 @@ const ManMachineVerification = {
             this.passFlag = false;
             this.$parent.$emit('error', this);
             this.tipWords = message;
+            this.leftBarBackgroundColor = 'rgba(217, 83, 79, 0.5)';
             setTimeout(() => {
               this.refresh();
             }, 1000);
@@ -204,8 +202,7 @@ const ManMachineVerification = {
       this.leftBarWidth = 0;
       this.transitionWidth = 'width .3s';
 
-      this.leftBarBorderColor = '#ddd';
-      this.moveBlockBackgroundColor = '#fff';
+      this.leftBarBackgroundColor = '#cbe0f2';
       this.iconClass = 'icon-right';
       this.isEnd = false;
       this.tipWords = '';
@@ -221,7 +218,8 @@ const ManMachineVerification = {
     getData() {
       this[GET_PICTURE]().catch(error => {
         const { message } = error;
-        this.tipWords = message;
+        Notification.error(message);
+        this.closeBox();
       });
     },
   },
@@ -274,7 +272,7 @@ const ManMachineVerification = {
                   style={{
                     width: `${this.leftBarWidth}`,
                     height: `${this.setSize.barHeight}px`,
-                    borderColor: this.leftBarBorderColor,
+                    backgroundColor: this.leftBarBackgroundColor,
                     transaction: this.transitionWidth,
                   }}
                 >
@@ -282,7 +280,6 @@ const ManMachineVerification = {
                     class="verify-move-block"
                     style={{
                       height: `${this.setSize.barHeight}px`,
-                      backgroundColor: this.moveBlockBackgroundColor,
                       left: this.moveBlockLeft,
                       transition: this.transitionLeft,
                     }}

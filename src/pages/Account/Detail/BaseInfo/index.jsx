@@ -238,6 +238,7 @@ const Detail = {
           destroyOnClose
           wrapClassName={styles.modal}
           width={this.modalWidth}
+          centered={false}
           scopedSlots={{
             content: () => (
               <BaseInfoModalContent
