@@ -13,6 +13,7 @@ import rank from './rank';
 import protocol from './protocol';
 import stationMail from './stationMail';
 import platformCurrency from './platformCurrency';
+import activity from './activity';
 
 export default {
   ...pageName,
@@ -30,4 +31,5 @@ export default {
   ...protocol,
   ...stationMail,
   ...platformCurrency,
+  ...activity,
 };
