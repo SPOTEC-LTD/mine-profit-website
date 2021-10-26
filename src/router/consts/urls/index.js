@@ -51,6 +51,7 @@ export const c2cSettlementPath = `${c2cDetailsPath}/marketConfirmSettle`;
 export const activityPath = '/activity';
 export const rankPath = '/rank';
 export const historyRankPath = '/historyRank';
+export const activityContentPath = '/activityH5Path/:id/:userId';
 
 // ===== protocolPaths
 export const investProtocolPath = '/investProtocol';

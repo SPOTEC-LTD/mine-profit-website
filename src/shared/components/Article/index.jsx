@@ -49,7 +49,9 @@ const Article = {
         <div>
           <div class="article-date">
             <span>{this.date}</span>
-            <span>{this.$t('noticeDetailPageViewCount', { value: this.count })}</span>
+            {!!this.count && (
+              <span>{this.$t('noticeDetailPageViewCount', { value: this.count })}</span>
+            )}
             {
               this.topStatus && <span class="article-top">{this.$t('infoTop')}</span>
             }

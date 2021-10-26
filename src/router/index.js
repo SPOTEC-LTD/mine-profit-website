@@ -11,6 +11,7 @@ import { location } from '@/shared/services/location';
 import AboutUs from '@/pages/AboutUs';
 import HistoryRank from '@/pages/Rank/HistoryRank';
 import BannerDetail from '@/pages/home/BannerDetail';
+import ActivityH5ContentDetails from '@/pages/Activity/H5ContentDetails';
 import PlatformCurrency from '@/pages/PlatformCurrency';
 import PlatformCurrencyDetail from '@/pages/PlatformCurrency/PlatformCurrencyDetail';
 import { buildRoutes } from './utils';
@@ -82,6 +83,11 @@ export const pathRoutes = [
     path: urls.bannerDetailPath,
     name: 'bannerDetail',
     component: BannerDetail,
+  },
+  {
+    path: urls.activityContentPath,
+    name: 'contentDetails',
+    component: ActivityH5ContentDetails,
   },
   {
     path: '/500',
