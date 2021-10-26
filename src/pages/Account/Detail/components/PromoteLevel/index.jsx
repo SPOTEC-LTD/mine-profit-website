@@ -47,6 +47,7 @@ const PromoteLevel = {
       bonusList: [],
       conditionList: [],
       missionCompleted: true,
+      isCurrentLevel: false,
     };
   },
   computed: {
@@ -78,16 +79,18 @@ const PromoteLevel = {
       this.$nextTick(() => {
         this.levelSwiperRef.slideTo(currentIndex, 1000, false);
       });
-      this.bonusList = levelInfoList[0].bonusList;
+      this.bonusList = levelInfoList[0].buffList;
       this.conditionList = levelInfoList[0].ruleList;
+      this.isCurrentLevel = levelInfoList[0].level === currentUserLevel;
     });
   },
   methods: {
     ...mapActions(ACCOUNT, [GET_ALL_LEVEL_INFO]),
     onSlideChange(index) {
-      const { levelInfoList } = this.allLevelDetail;
+      const { levelInfoList, currentUserLevel } = this.allLevelDetail;
       this.bonusList = levelInfoList[index].buffList;
       this.conditionList = levelInfoList[index].ruleList;
+      this.isCurrentLevel = levelInfoList[index].level === currentUserLevel;
       this.missionCompleted = true;
     },
   },
@@ -149,12 +152,17 @@ const PromoteLevel = {
           </div>
           <div class={styles.content}>
             {this.isShowBonus && (
-              <div class={[styles['bonus-wrap'], { [styles['mission-completed']]: this.missionCompleted }]}>
-                <Row type="flex" gutter={52}>
+              <div
+                class={[
+                  styles['bonus-wrap'],
+                  { [styles['mission-completed']]: this.missionCompleted || this.isCurrentLevel },
+                ]}
+              >
+                <Row type="flex">
                   {this.bonusList.map((item, index) => {
                     const bonusValue = numberUtils.formatPercent(item.val, { minimumFractionDigits: 2 });
                     return (
-                      <Col key={index} span={4.8}>
+                      <Col key={index} span={5}>
                         <BonusTooltip
                           word={bonusValue}
                           text={getBonusTypeNotificationMap(bonusValue)[item.type]}
@@ -179,33 +187,35 @@ const PromoteLevel = {
             {this.isShowUpCondition && (
               <div class={styles['up-conditions-wrap']}>
                 <div class={styles['up-conditions-title']}>{this.$t('upConditions')}</div>
-                {this.conditionList.map(item => {
-                  const complete = +item.used >= +item.ruleValue;
-                  const percentage = complete ? 100 : (item.used / item.ruleValue) * 100;
-                  if (!complete) {
-                    this.missionCompleted = false;
-                  }
+                <div class={styles['up-conditions-box']}>
+                  {this.conditionList.map(item => {
+                    const complete = +item.used >= +item.ruleValue;
+                    const percentage = complete ? 100 : (item.used / item.ruleValue) * 100;
+                    if (!complete) {
+                      this.missionCompleted = false;
+                    }
 
-                  return (
-                    <div class={styles['condition-item']}>
-                      <div class={styles['condition-text']}>{item.title}</div>
-                      {complete ? (
-                        <div class={styles['condition-complete']}>
-                          <span>{this.$t('completed')}</span>
-                          <img class={styles['condition-complete-icon']} src={conditionComplete} alt="" />
-                        </div>
-                      ) : (
-                        <div class={styles['condition-schedule']}>
-                          <div>
-                            <span class={styles['condition-value']}>{item.used}</span>
-                            <span>{`/${item.ruleValue}`}</span>
+                    return (
+                      <div class={styles['condition-item']}>
+                        <div class={styles['condition-text']}>{item.title}</div>
+                        {complete ? (
+                          <div class={styles['condition-complete']}>
+                            <span>{this.$t('completed')}</span>
+                            <img class={styles['condition-complete-icon']} src={conditionComplete} alt="" />
                           </div>
-                          <Progress strokeColor="#02A6E3" strokeWidth={3} showInfo={false} percent={percentage} />
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
+                        ) : (
+                          <div class={styles['condition-schedule']}>
+                            <div>
+                              <span class={styles['condition-value']}>{item.used}</span>
+                              <span>{`/${item.ruleValue}`}</span>
+                            </div>
+                            <Progress strokeColor="#02A6E3" strokeWidth={3} showInfo={false} percent={percentage} />
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             )}
           </div>
