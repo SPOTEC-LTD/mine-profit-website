@@ -36,6 +36,15 @@ const Detail = {
       tabsActive: INVITE_DETAIL,
     };
   },
+
+  mounted() {
+    if (this.$route.query.inviteModelActiveKey) {
+      // 活动页跳转
+      this.isVisibleInviteDetailModal = true;
+      this.tabsActive = this.$route.query.inviteModelActiveKey;
+    }
+  },
+
   computed: {
     modalWidth() {
       return this.tabsActive === INVITE_DETAIL ? 1200 : 668;

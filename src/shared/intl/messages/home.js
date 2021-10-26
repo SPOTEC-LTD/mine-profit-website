@@ -62,4 +62,7 @@ export default {
   questionDetail: '问答详情',
   getMineApp: '领取免费算力',
   infoScan: '扫码下载MineProfit',
+  contentDetails: '内容详情',
+  closedActivity: '往期活动',
+  progressActivity: '当前活动',
 };

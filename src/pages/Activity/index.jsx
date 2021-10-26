@@ -1,12 +1,19 @@
-import { Carousel } from 'ant-design-vue';
 import { mapActions, mapState } from 'vuex';
-import { rankPath, platformCurrencyPaths } from '@/router/consts/urls';
+import locationHelp from '@/shared/utils/locationHelp';
+import BlockTitle from '@/shared/components/BlockTitle';
+import BaseContainer from '@/shared/components/BaseContainer';
+import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 import { ACTIVITY, GET_ACTIVITY_LIST } from '@/modules/activity';
-import locationServices from '@/shared/services/location/locationServices';
-import decorationLeftImg from '@/assets/activity/decorationLeftImg.png';
-import decorationRightImg from '@/assets/activity/decorationRightImg.png';
-import { ACTIVITY_DONE } from './consts/activityStatus';
+import closedTitleImage from '@/assets/activity/closed-title.png';
+import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
+import progressTitleImage from '@/assets/activity/progress-title.png';
+import { PROMOTE_RULE } from '@/pages/Account/Detail/consts/tabsActiveValue';
+import { rankPath, platformCurrencyPaths, activityContentPath, accountDetailPath } from '@/router/consts/urls';
+import BannerList from './BannerList';
+import { INVITE_FRIENDS } from './consts/activityPreSetType';
 import { URL_TYPE, H5_CONTENT, PRE_SET } from './consts/activityType';
+import { ACTIVITY_DONE, ACTIVITY_PROGRESSING } from './consts/activityStatus';
+
 import styles from './index.less?module';
 
 const Activity = {
@@ -14,12 +21,13 @@ const Activity = {
     return {
       currentImg: 0,
       activityData: [
-        // TODO 后续加上对应的id和path
-        { id: 8, to: rankPath },
-        { id: 6, to: rankPath },
-        { id: 2, to: rankPath },
-        { id: 4, to: platformCurrencyPaths },
+        // TODO 后续加上对应的type和path
+        { type: 1, to: rankPath }, // 排行榜
+        { type: 2, to: accountDetailPath }, // 邀请好友
+        { type: 3, to: rankPath }, // 新手三重福利
+        { type: 4, to: platformCurrencyPaths }, // 算力买一赠一
       ],
+      isChinese: getIsChinese(),
     };
   },
 
@@ -30,91 +38,87 @@ const Activity = {
   computed: {
     ...mapState({ activityList: state => state.activity.activityList }),
 
-    activityDataList() {
-      const resultList = this.activityList.map(item => {
-        let activityPath;
-        if (item.linkType === URL_TYPE) {
-          activityPath = item.linkUrl;
-        } else if (item.linkType === H5_CONTENT || item.linkType === PRE_SET) {
-          const [localPath] = this.activityData.filter(data => data.id === item.id);
-          activityPath = localPath ? localPath.to : '';
-        }
-        item.to = activityPath;
-        return item;
-      });
-      return resultList;
+    inProgressList() {
+      const resultList = this.getPathList(this.activityList);
+      return resultList.filter(item => item.activityStatus === ACTIVITY_PROGRESSING);
+    },
+
+    closedList() {
+      const resultList = this.getPathList(this.activityList);
+      return resultList.filter(item => item.activityStatus === ACTIVITY_DONE);
     },
   },
 
   methods: {
     ...mapActions(ACTIVITY, [GET_ACTIVITY_LIST]),
 
-    linkToActivity(to, status, linkType) {
-      if (!to || status === ACTIVITY_DONE) { return; }
+    getPathList(list = []) {
+      const resultList = list.map(item => {
+        let activityPath = '';
+        if (item.linkType === URL_TYPE) {
+          // urlType 跳转返回url
+          activityPath = item.linkUrl;
+        } else if (item.linkType === PRE_SET) {
+          // 预设 跳转内部路径
+          const [localPath] = this.activityData.filter(data => data.type === item.type);
+          activityPath = localPath ? localPath.to : '';
+        } else if (item.linkType === H5_CONTENT) {
+          // h5内容 跳转展示h5内容
+          activityPath = activityContentPath;
+        }
+        item.to = activityPath;
+        return item;
+      });
+      return resultList;
+    },
+
+    linkToActivity({ id, path, linkType, type }) {
+      if (!path) { return; }
       if (linkType === URL_TYPE) {
-        window.open(to);
-        return;
+        window.open(path);
+      } else if (linkType === H5_CONTENT) {
+        const { userId = 'null' } = getUserInfoFunc();
+        locationHelp.open(path, { params: { userId, id } });
+      } else {
+        let pathParams = {};
+        if (type === INVITE_FRIENDS) {
+          pathParams = { query: { inviteModelActiveKey: PROMOTE_RULE } };
+        }
+        locationHelp.open(path, pathParams);
       }
-      locationServices.push(to);
-    },
-
-    getDisplayIndex(from, to) {
-      this.currentImg = to;
-      this.$refs.controller.scrollTop = 80 * to;
-    },
-
-    goTo(index) {
-      this.$refs.carousel.goTo(index);
     },
   },
 
   render() {
     return (
       <div class={styles['activity-wrapper']}>
-        <div class={styles['activity-container']}>
-          <img src={decorationLeftImg} alt="" class={styles['decoration-left-img']} />
-          <img src={decorationRightImg} alt="" class={styles['decoration-right-img']} />
-          <div class={styles['activity-content']}>
-            <div class={styles['carousel-wrapper']}>
-              <Carousel
-                effect="fade"
-                dots={false}
-                beforeChange={this.getDisplayIndex}
-                ref="carousel"
-                autoplay
-              >
-                {this.activityDataList.map((item, index) => (
-                  <div
-                    class={styles['img-box']}
-                    onClick={() => { this.linkToActivity(item.to, item.activityStatus, item.linkType); }}
-                  >
-                    <img
-                      src={item.webImage}
-                      alt=""
-                      key={index}
-                      class={{ [styles['disabled-banner']]: item.activityStatus === ACTIVITY_DONE }}
-                    />
-                  </div>
-                ))}
-              </Carousel>
+        <div class={styles['activity-list']}>
+          <BaseContainer>
+            <div class={styles['in-progress-list']}>
+              <BlockTitle
+                img={progressTitleImage}
+                class={[styles['list-title'], styles['progress-title']]}
+                title={this.isChinese && this.$t('progressActivity')}
+              />
+              <BannerList
+                className={styles['data-list']}
+                dataList={this.inProgressList}
+                onHandleClick={this.linkToActivity}
+              />
             </div>
-
-            <div class={styles['activity-chooser-wrapper']} ref="controller">
-              <div class={styles['activity-chooser-container']}>
-                {this.activityDataList.map((item, index) => (
-                  <div class={[styles['little-img-wrapper'], { [styles['chooses-wrapper']]: this.currentImg === index }]}>
-                    <img
-                      src={item.webImage}
-                      alt=""
-                      key={index}
-                      class={[styles['little-img'], { [styles['chooses-img']]: this.currentImg === index }]}
-                      onClick={() => { this.goTo(index); }}
-                    />
-                  </div>
-                ))}
-              </div>
+            <div class={styles['closed-list']}>
+              <BlockTitle
+                img={closedTitleImage}
+                class={styles['list-title']}
+                title={this.isChinese && this.$t('closedActivity')}
+              />
+              <BannerList
+                className={styles['data-list']}
+                dataList={this.closedList}
+                onHandleClick={this.linkToActivity}
+              />
             </div>
-          </div>
+          </BaseContainer>
         </div>
       </div>
     );

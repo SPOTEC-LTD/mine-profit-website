@@ -104,9 +104,9 @@ const InviteDetail = {
       { text: this.$t('indirectOutputRewardSort'), value: INDIRECT_OUTPUT },
       ...(type === PROXY
         ? [
-            { text: this.$t('directBuyRebateSort'), value: DIRECT_BUY },
-            { text: this.$t('indirectBuyRebateSort'), value: INDIRECT_BUY },
-          ]
+          { text: this.$t('directBuyRebateSort'), value: DIRECT_BUY },
+          { text: this.$t('indirectBuyRebateSort'), value: INDIRECT_BUY },
+        ]
         : []),
     ];
 
