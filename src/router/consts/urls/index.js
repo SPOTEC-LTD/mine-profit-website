@@ -52,6 +52,7 @@ export const activityPath = '/activity';
 export const rankPath = '/rank';
 export const historyRankPath = '/historyRank';
 export const activityContentPath = '/activityH5Path/:id/:userId';
+export const noviceBenefitsPath = '/activity/noviceBenefits';
 
 // ===== protocolPaths
 export const investProtocolPath = '/investProtocol';

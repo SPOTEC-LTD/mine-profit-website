@@ -1,0 +1,220 @@
+@import '@/shared/styles/variables.less';
+
+.novice-bg {
+  background-color: @color__ac3228;
+}
+
+.novice-benefits {
+  background: url('~@/assets/noviceBenefits/novice_benefits_bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 52px 0 0;
+
+  &-bg {
+    position: relative;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &-title-img {
+    width: 107%;
+  }
+
+  &-main-content {
+    border-radius: 32px;
+    background-color: @color__ac3228;
+    box-shadow: inset 0 0 6px 0 @color__fdaca5, 0 3px 10px 0 rgba(0, 0, 0, 0.5);
+    padding: 39px 70px;
+    padding-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    margin-top: -148px;
+    position: relative;
+    margin-bottom: 52px;
+  }
+
+  &-content-item {
+    width: 320px;
+    font-weight: 600;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.benefits-detail {
+  &-head {
+    position: relative;
+    overflow: hidden;
+    border-radius: 25px;
+    background: linear-gradient(180deg, @color__fffbf0 0%, @color__f9d3a9 100%);
+    box-shadow: inset 0 -4px 3px 0 @color__ff8b27;
+    padding-top: 20px;
+    height: 177px;
+  }
+
+  &-tag {
+    width: 100px;
+    font-size: @font-size-sm;
+    color: @white;
+    line-height: 15px;
+    padding: 3px;
+    background-color: @color__ffd100;
+    transform: rotate(-48deg);
+    position: absolute;
+    top: 14px;
+    left: -30px;
+    text-align: center;
+  }
+
+  &-title {
+    color: @color__242424;
+    font-size: @font-size__18;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+
+    span {
+      border: 1px solid @color__c38a43;
+      border-radius: 4px;
+      font-size: @font-size__13;
+      line-height: 15px;
+      color: @color__c38a43;
+      padding: 1px 4px;
+      margin-left: 4px;
+    }
+  }
+
+  &-subTitle {
+    color: @color__bb231e;
+    font-size: @font-size__13;
+    line-height: 18px;
+    margin-top: -1px;
+  }
+
+  &-button {
+    border-radius: 19px;
+    box-shadow: inset 0 -2px 3px 0 rgba(0, 0, 0, 0.28);
+    color: @white;
+    font-size: @font-size__15;
+    line-height: 21px;
+    padding: 8px 15px;
+  }
+
+  &-body {
+    position: relative;
+    top: -36px;
+    margin: 0 14px;
+  }
+}
+
+.head-top {
+  padding: 0 14px 0 41px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.condition-box {
+  border-top: 1px solid @color__d69d4e;
+  margin: 9px 14px 0;
+  padding: 9px 27px 0;
+  font-weight: normal;
+}
+
+.condition {
+  color: @color__494949;
+  font-size: @font-size-base;
+  line-height: 20px;
+  margin-bottom: 3px;
+}
+
+.benefits-line {
+  height: 11px;
+  border-radius: 5.5px;
+  background-color: @color__942016;
+  box-shadow: inset 0 -6px 5px 0 rgba(0, 0, 0, 0.5);
+}
+
+.content-detail {
+  margin: 0 4px;
+  position: relative;
+  top: -6px;
+  background: linear-gradient(180deg, @color__e3e3e3 0%, @color__cacaca 0.61%, @color__f8f4f4 1.63%, @white 8.6%, @white 100%);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  padding: 19px 17px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    width: 225px;
+    min-height: 225px;
+  }
+}
+
+.content-describe {
+  color: @color__242424;
+  font-size: @font-size-sm;
+  line-height: 16px;
+  align-self: flex-start;
+}
+
+.condition-three {
+  color: @color__242424;
+  font-size: @font-size-base;
+  line-height: 20px;
+
+  > div {
+    display: flex;
+    align-items: center;
+  }
+
+  > div:first-child {
+    padding-bottom: 7px;
+  }
+}
+
+.we-chat {
+  border-radius: 3px;
+  background-color: @color__fff6ec;
+  box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  font-size: @font-size-sm;
+  font-weight: 600;
+  line-height: 17px;
+  padding: 3px 10px;
+  margin-left: 4px;
+  min-height: 22px;
+  min-width: 94px;
+}
+
+.we-chat-button,
+.telegram-button {
+  border: 1px solid @color__eab951;
+  border-radius: 3px;
+  background: linear-gradient(180deg, @color__eed79d 0.05%, @color__aa5d10 100%);
+  box-shadow: inset 0 -2px 3px 0 rgba(0, 0, 0, 0.28);
+  color: @white;
+  font-size: @font-size-sm;
+  font-weight: 600;
+  line-height: 17px;
+  padding: 3px 8px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.gray-button {
+  border: 1px solid @color__c9c9c9;
+  background: linear-gradient(180deg, @color__f0f0f0 0.05%, @color__8c8c8c 100%);
+  cursor: not-allowed;
+}
+
+.brown-button {
+  border: 1px solid @color__eab951;
+  background: linear-gradient(180deg, @color__eed79d 0.05%, @color__aa5d10 100%);
+  cursor: pointer;
+}
