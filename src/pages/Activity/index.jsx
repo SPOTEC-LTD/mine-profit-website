@@ -9,10 +9,10 @@ import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import progressTitleImage from '@/assets/activity/progress-title.png';
 import { PROMOTE_RULE } from '@/pages/Account/Detail/consts/tabsActiveValue';
 import {
-  rankPath, platformCurrencyPaths, activityContentPath, accountDetailPath, noviceBenefitsPath,
+  rankPath, platformCurrencyPath, activityContentPath, accountDetailPath, noviceBenefitsPath,
 } from '@/router/consts/urls';
+import { INVITE_FRIENDS } from '@/shared/consts/activityTypes';
 import BannerList from './BannerList';
-import { INVITE_FRIENDS } from './consts/activityPreSetType';
 import { URL_TYPE, H5_CONTENT, PRE_SET } from './consts/activityType';
 import { ACTIVITY_DONE, ACTIVITY_PROGRESSING } from './consts/activityStatus';
 
@@ -26,7 +26,7 @@ const Activity = {
         { type: 1, to: rankPath }, // 排行榜
         { type: 2, to: accountDetailPath }, // 邀请好友
         { type: 3, to: noviceBenefitsPath }, // 新手三重福利
-        { type: 4, to: platformCurrencyPaths }, // 算力买一赠一
+        { type: 4, to: platformCurrencyPath }, // 算力买一赠一
       ],
       isChinese: getIsChinese(),
     };

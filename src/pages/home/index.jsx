@@ -9,6 +9,7 @@ import {
   HOME, GET_MARKETS_LIST, GET_HASHRATE_COUPON_POPUP_LIST,
   GET_HOME_PRODUCT_LIST, GET_HASHRATE_POPUP_LIST, GET_WEEKLY_REPORT_POPUP_INFO,
 } from '@/modules/home';
+import { ACTIVITY, GET_ACTIVITY_LIST } from '@/modules/activity';
 import { STATION_MAIL, GET_WEEKLY_REPORT_DETAIL } from '@/modules/stationMail';
 import OurAdvantage from '@/pages/home/OurAdvantage';
 import localStorage from '@/shared/utils/localStorage';
@@ -25,6 +26,7 @@ import Announcements from './Announcements';
 import BannerModal from './component/BannerModal';
 import HashrateModal from './component/HashrateModal';
 import HashrateCouponModal from './component/HashrateCouponModal';
+import ActivityModal from './component/ActivityModal';
 
 import styles from './index.less?module';
 
@@ -72,12 +74,15 @@ const Home = {
     return {
       bannerPopupList: [],
       needPopupBannerList: [],
+      activityPopupList: [],
+      needPopupActivityList: [],
       isControlCheck: false,
       isVerifyChecked: true,
     };
   },
   computed: {
     ...mapState({
+      activityList: state => state.activity.activityList,
       marketsList: state => state.home.marketsList,
       productList: state => state.home.productList,
       hashrateCouponPopupList: state => state.home.hashrateCouponPopupList,
@@ -103,6 +108,9 @@ const Home = {
       return (isEmpty(this.needPopupCouponList) && !this.hashrateCouponPopupListLoading)
         && ((isEmpty(this.needPopupHashrateList) && !this.hashratePopupListLoading));
     },
+    isVisibleActivityPopup() {
+      return this.isVisibleBannerPopup && isEmpty(this.bannerPopupList);
+    },
     isVisibleWeeklyReport() {
       const { haveWeeklyReport, status } = this.weeklyReportInfo;
       const isVisible = this.isVisibleBannerPopup
@@ -115,6 +123,9 @@ const Home = {
 
   mounted() {
     this.filterBannerPopupList();
+    this[GET_ACTIVITY_LIST]().then(() => {
+      this.filterActivityPopupList();
+    });
     const { registerStatus, userId } = localStorage.getObject('userInfo');
     const isNotFirstShow = localStorage.get('isNotFirstShow');
     if (registerStatus && !isNotFirstShow) {
@@ -143,6 +154,7 @@ const Home = {
       GET_HASHRATE_POPUP_LIST, GET_WEEKLY_REPORT_POPUP_INFO,
     ]),
     ...mapActions(STATION_MAIL, [GET_WEEKLY_REPORT_DETAIL]),
+    ...mapActions(ACTIVITY, [GET_ACTIVITY_LIST]),
     filterBannerPopupList() {
       const localBannerPopupList = isEmpty(localStorage.getObject('bannerPopupList')) ?
         [] : localStorage.getObject('bannerPopupList');
@@ -163,6 +175,27 @@ const Home = {
       const needPopupBanner = this.needPopupBannerList.find(item => item.isPopup);
 
       this.bannerPopupList = needPopupBanner ? [needPopupBanner] : [];
+    },
+    filterActivityPopupList() {
+      const localActivityPopupList = isEmpty(localStorage.getObject('activityPopupList')) ?
+        [] : localStorage.getObject('activityPopupList');
+      this.needPopupActivityList = this.activityList.filter(newActivity => {
+        let needPopup = true;
+        localActivityPopupList.forEach(oldActivity => {
+          if (newActivity.id === oldActivity.id && !oldActivity.isPopup) {
+            needPopup = false;
+          }
+        });
+        if (needPopup) {
+          newActivity.isPopup = true;
+        } else {
+          newActivity.isPopup = false;
+        }
+        return newActivity.needPush;
+      });
+      const needPopupActivity = this.needPopupActivityList.find(item => item.isPopup);
+
+      this.activityPopupList = needPopupActivity ? [needPopupActivity] : [];
     },
     viewed(id) {
       const needPopupBannerList = this.needPopupBannerList.map(item => {
@@ -186,6 +219,29 @@ const Home = {
 
       this.bannerPopupList = needPopupBanner ? [needPopupBanner] : [];
       localStorage.setObject('bannerPopupList', saveLocalBannerList);
+    },
+    activityViewed(id) {
+      const needPopupActivityList = this.needPopupActivityList.map(item => {
+        if (item.id === id) {
+          item.isPopup = false;
+        }
+        return item;
+      });
+
+      const localActivityPopupList = isEmpty(localStorage.getObject('ActivityPopupList')) ?
+        [] : localStorage.getObject('ActivityPopupList');
+
+      const recordId = {};
+
+      const saveLocalActivityList = [...this.needPopupActivityList, ...localActivityPopupList].reduce((item, next) => {
+        recordId[next.id] ? '' : recordId[next.id] = true && item.push(next);
+        return item;
+      }, []);
+
+      const needPopupActivity = needPopupActivityList.find(item => item.isPopup);
+
+      this.activityPopupList = needPopupActivity ? [needPopupActivity] : [];
+      localStorage.setObject('activityPopupList', saveLocalActivityList);
     },
     hashrateCouponViewed() {
       this.hashrateCouponPopupList.shift();
@@ -245,6 +301,13 @@ const Home = {
           <div>
             {this.bannerPopupList.map(item => (
               <div>{item.isPopup && <BannerModal info={item} onViewed={this.viewed} />}</div>
+            ))}
+          </div>
+        )}
+        {this.isVisibleActivityPopup && (
+          <div>
+            {this.activityPopupList.map(item => (
+              <div>{item.isPopup && <ActivityModal info={item} onViewed={this.activityViewed} />}</div>
             ))}
           </div>
         )}

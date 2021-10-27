@@ -1,6 +1,6 @@
 import { mapActions, mapState } from 'vuex';
 import { Spin, Button } from 'ant-design-vue';
-import { platformCurrencyPaths } from '@/router/consts/urls';
+import { platformCurrencyPath } from '@/router/consts/urls';
 import locationServices from '@/shared/services/location/locationServices';
 import Select from '@/shared/components/Select';
 import BaseContainer from '@/shared/components/BaseContainer';
@@ -127,7 +127,7 @@ const HashrateList = {
     },
 
     toEcologyPage() {
-      locationServices.push(platformCurrencyPaths);
+      locationServices.push(platformCurrencyPath);
     },
   },
 
