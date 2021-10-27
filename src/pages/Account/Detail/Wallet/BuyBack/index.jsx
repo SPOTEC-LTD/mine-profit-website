@@ -1,4 +1,4 @@
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapMutations } from 'vuex';
 import numberUtils from 'aa-utils/lib/numberUtils';
 import { FormModel } from 'ant-design-vue';
 import { WALLET, GET_BUY_BACK_DETAIL, OFFICIAL_BUY_BACK } from '@/modules/account/wallet';
@@ -10,6 +10,12 @@ import PageButton from '@/shared/components/PageButton';
 import ConfirmPayDialog from '@/shared/components/ConfirmPayDialog';
 import locationServices from '@/shared/services/location/locationServices';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
+import {
+  MAN_MACHINE_VERIFICATION,
+  UPDATE_IS_DEAL_PASSWORD_VERIFICATION,
+  UPDATE_CAPTCHA_VERIFICATION,
+} from '@/modules/manMachineVerification';
+import { MAN_MACHINE_VERIFICATION_CODE } from '@/shared/utils/request/consts/ResponseCode';
 import styles from './index.less?module';
 
 const { Item } = FormModel;
@@ -18,10 +24,14 @@ const BuyBack = {
     return {
       isShowPasswordInput: false,
       formData: { count: null },
+      password: '',
     };
   },
   computed: {
     ...mapState({
+      captchaVerification: state => state.manMachineVerification.captchaVerification,
+      isVerificationSuccess: state => state.manMachineVerification.isVerificationSuccess,
+      isDealPasswordVerification: state => state.manMachineVerification.isDealPasswordVerification,
       buyBackDetail: state => state.wallet.buyBackDetail,
       dynamicChainTypeList: state => state.dynamicChainTypeList,
     }),
@@ -29,6 +39,16 @@ const BuyBack = {
     dynamicChainType() {
       const [chainInfo = { symbol: '', unit: '' }] = this.dynamicChainTypeList;
       return chainInfo;
+    },
+  },
+  watch: {
+    isVerificationSuccess(value) {
+      if (value) {
+        if (this.isDealPasswordVerification) {
+          this.onSubmit();
+          this[UPDATE_IS_DEAL_PASSWORD_VERIFICATION](false);
+        }
+      }
     },
   },
   mounted() {
@@ -42,7 +62,7 @@ const BuyBack = {
   },
   methods: {
     ...mapActions(WALLET, [OFFICIAL_BUY_BACK, GET_BUY_BACK_DETAIL]),
-
+    ...mapMutations(MAN_MACHINE_VERIFICATION, [UPDATE_IS_DEAL_PASSWORD_VERIFICATION, UPDATE_CAPTCHA_VERIFICATION]),
     getTextColor(rate) {
       if (+rate) {
         return rate > 0 ? 'rate-color-blue' : 'rate-color-red';
@@ -60,15 +80,25 @@ const BuyBack = {
     },
 
     onSubmit(password) {
+      this.password = password || this.password;
       const paramsData = {
-        password,
+        password: this.password,
         count: +this.formData.count,
       };
+      if (this.captchaVerification) {
+        paramsData.captchaVerification = this.captchaVerification;
+        this[UPDATE_CAPTCHA_VERIFICATION]('');
+      }
       this[OFFICIAL_BUY_BACK](paramsData)
         .then(() => {
           this.isShowPasswordInput = false;
           locationServices.push(accountPath);
           Notification.success(this.$t('operationSuccess'));
+        })
+        .catch(({ code }) => {
+          if (code === MAN_MACHINE_VERIFICATION_CODE) {
+            this[UPDATE_IS_DEAL_PASSWORD_VERIFICATION](true);
+          }
         });
     },
   },
