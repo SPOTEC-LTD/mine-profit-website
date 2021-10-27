@@ -40,15 +40,13 @@ const CoinMarkets = {
         if (item.priceRate !== 0) {
           textColor = item.priceRate > 0 ? 'coin-color-blue' : 'coin-color-red';
         }
+        const resultDecimal = item.symbol.toUpperCase() === this.dynamicChain ? 10 : 2;
 
         return {
           key: index,
           ...item,
           textColor,
-          price: numberUtils.formatNumber(item.price, {
-            minimumFractionDigits: 2,
-            useGrouping: false,
-          }),
+          price: bigNumberToFixed(item.price, resultDecimal),
           priceRate: numberUtils.formatPercent(item.priceRate, {
             minimumFractionDigits: 2,
             usePlus: item.priceRate > 0,
@@ -82,11 +80,10 @@ const CoinMarkets = {
         title: this.$t('currentPrice'),
         dataIndex: 'price',
         align: 'right',
-        customRender: (value, { symbol }) => {
-          const resultDecimal = symbol.toUpperCase() === this.dynamicChain ? 10 : 2;
+        customRender: value => {
           return (
             <div class={styles['coin-price']}>
-              {`$${bigNumberToFixed(value, resultDecimal)}`}
+              {`$${value}`}
             </div>
           );
         },

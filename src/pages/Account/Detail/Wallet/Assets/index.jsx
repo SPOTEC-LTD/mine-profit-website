@@ -73,7 +73,7 @@ const Assets = {
 
     getCoinCardList() {
       const iconMap = {
-        MPT: <img class='spotecicon' src={walletMptIconBlack} alt="" />, // TODO:
+        [this.dynamicChain]: <img class='spotecicon' src={walletMptIconBlack} alt="" />, // TODO:
         USDT: <UsdtIcon />,
         BTC: <BtcIcon />,
         ETH: <EthIcon />,
