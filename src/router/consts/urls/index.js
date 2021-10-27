@@ -65,5 +65,5 @@ export const questionDetailPath = '/questionDetail/:id';
 
 // ===== platformCurrencyPaths
 
-export const platformCurrencyPaths = '/platformCurrency';
+export const platformCurrencyPath = '/platformCurrency';
 export const platformCurrencyDetailPath = '/platformCurrencyDetail';

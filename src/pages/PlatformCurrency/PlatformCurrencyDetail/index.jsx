@@ -43,11 +43,11 @@ const PlatformCurrencyDetail = {
         <div class={styles['chart-content-wrap']}>
           <div>
             <div class={styles['chart-content-title']}>{this.$t('illustrate')}</div>
-            <div>2020.12.18 100W</div>
-            <div>2021.06.18 18000W</div>
-            <div>2021.12.18 27000W</div>
-            <div>2022.06.18 31500W</div>
-            <div>2022.12.18 33750W</div>
+            <div>2021.12.18 100W</div>
+            <div>2022.06.18 18000W</div>
+            <div>2022.12.18 27000W</div>
+            <div>2023.06.18 31500W</div>
+            <div>2023.12.18 33750W</div>
             <div>X 36000W</div>
           </div>
         </div>

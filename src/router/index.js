@@ -70,7 +70,7 @@ export const pathRoutes = [
     component: HistoryRank,
   },
   {
-    path: urls.platformCurrencyPaths,
+    path: urls.platformCurrencyPath,
     name: 'platformCurrency',
     component: PlatformCurrency,
   },
