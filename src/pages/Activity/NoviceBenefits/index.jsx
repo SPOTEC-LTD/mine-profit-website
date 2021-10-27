@@ -3,6 +3,7 @@ import { Spin } from 'ant-design-vue';
 import classNames from 'classnames';
 import { ACTIVITY, GET_HASH_MODAL_LIST } from '@/modules/activity';
 import { getIsChinese, getLocalLanguage } from '@/shared/utils/getLocalLanguage';
+import { loginPath } from '@/router/consts/urls';
 import * as activityAPI from '@/api/activity';
 import noviceBenefits from '@/assets/noviceBenefits/novice_benefits.png';
 import noviceBenefitsEn from '@/assets/noviceBenefits/novice_benefits_en.png';
@@ -14,6 +15,7 @@ import HashrateModal from '@/pages/home/component/HashrateModal';
 import HashrateCouponModal from '@/pages/home/component/HashrateCouponModal';
 import BaseContainer from '@/shared/components/BaseContainer';
 import ShareQrCodeModal from '@/shared/components/ShareQrCodeModal';
+import locationServices from '@/shared/services/location/locationServices';
 import {
   NOT_FINISHED, COMPLETED, RECEIVED, CONDITION_ONE, CONDITION_TWO, CONDITION_THREE,
 } from './completionStatus';
@@ -131,7 +133,7 @@ const NoviceBenefits = {
       const resultStatus = status || NOT_FINISHED;
       const benefitsMap = {
         [CONDITION_ONE]: { text: this.$t('sign'), on: this.toSignPage, color: 'brown-button' },
-        [CONDITION_TWO]: { text: this.$t('invite'), on: this.toInviteFriendPage, color: 'brown-button' },
+        [CONDITION_TWO]: { text: this.$t('invite'), on: () => { this.showShareQrCodeModal = true; }, color: 'brown-button' },
         [CONDITION_THREE]: { text: this.$t('uncompleted'), on: loop, color: 'gray-button' },
       };
       const statusMap = {
@@ -141,6 +143,11 @@ const NoviceBenefits = {
       };
 
       return statusMap[resultStatus];
+    },
+
+    toSignPage() {
+      const currentFullPath = this.$router.history.current.fullPath;
+      locationServices.push(loginPath, { query: { redirectUrl: currentFullPath } });
     },
 
     openHashRateModal(index) {

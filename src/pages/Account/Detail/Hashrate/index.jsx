@@ -5,6 +5,7 @@ import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import { HASH_RATE, GET_PRODUCT_HASHRATE_STATISTICS } from '@/modules/account/hashRate';
 import locationServices from '@/shared/services/location/locationServices';
 import { accountHashRateListPath, accountOrdersPath } from '@/router/consts/urls';
+import walletMptIconBlack from '@/assets/account/wallet/wallet_mpt_icon_black.png';
 import Link from '@/shared/components/Link';
 import Card from '../components/Card';
 import WidgetTitle from '../components/WidgetTitle';
@@ -15,7 +16,13 @@ const Hashrate = {
     ...mapState({
       getProductHashrateStatisticsLoading: state => state.loading.effects[`${HASH_RATE}/${GET_PRODUCT_HASHRATE_STATISTICS}`],
       statisticsList: state => state.hashRate.statisticsList,
+      dynamicChainTypeList: state => state.dynamicChainTypeList,
     }),
+    dynamicChain() {
+      const [chainInfo = { symbol: '' }] = this.dynamicChainTypeList;
+      return chainInfo.symbol;
+    },
+
   },
 
   mounted() {
@@ -58,6 +65,7 @@ const Hashrate = {
 
   render() {
     const iconMap = {
+      [this.dynamicChain]: <img class='spotecicon' src={walletMptIconBlack} alt="" />, // TODO:
       BTC: <BtcIcon />,
       ETH: <EthIcon />,
     };

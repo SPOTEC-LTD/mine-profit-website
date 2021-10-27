@@ -29,7 +29,7 @@ const AddressHeader = {
   },
   render() {
     const iconMap = {
-      MPT: <img class={styles['dynamic-icon']} src={walletMptIconBlack} alt="" />, // TODO:
+      [this.dynamicChain]: <img class={styles['dynamic-icon']} src={walletMptIconBlack} alt="" />, // TODO:
       USDT: <UsdtIcon class={styles.icon} />,
       BTC: <BtcIcon class={styles.icon} />,
       ETH: <EthIcon class={styles.icon} />,
