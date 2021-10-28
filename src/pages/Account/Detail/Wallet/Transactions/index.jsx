@@ -49,18 +49,10 @@ const Transactions = {
       this.getWalletDetail();
     },
     disabledStartDate(startTime) {
-      const { endTime } = this;
-      if (!startTime || !endTime) {
-        return false;
-      }
-      return startTime.valueOf() > endTime.valueOf();
+      return startTime.isAfter(this.endTime);
     },
     disabledEndDate(endTime) {
-      const { startTime } = this;
-      if (!endTime || !startTime) {
-        return false;
-      }
-      return startTime.valueOf() >= endTime.valueOf();
+      return endTime.isBefore(this.startTime);
     },
   },
 

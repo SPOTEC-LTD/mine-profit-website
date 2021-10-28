@@ -85,6 +85,13 @@ const Orders = {
       this.getOrdersAction();
     },
 
+    disabledStartDate(startTime) {
+      return startTime.isAfter(this.endTime);
+    },
+
+    disabledEndDate(endTime) {
+      return endTime.isBefore(this.startTime);
+    },
   },
 
   render() {
