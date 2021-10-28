@@ -149,7 +149,7 @@ const BuyBack = {
                 />
               </div>
               <Item
-                label={this.$t('pledgeAmount')}
+                label={this.$t('quantitySold')}
                 prop="count"
                 rules={[
                   { required: true, message: this.$t('quantitySoldTips'), trigger: 'change' },
@@ -173,7 +173,6 @@ const BuyBack = {
                   precision={8}
                   onChange={value => {
                     this.formData.count = value;
-                    console.log(value, this.formData.count);
                   }}
                   scopedSlots={{
                     suffix: () => (
@@ -190,10 +189,10 @@ const BuyBack = {
                       </div>
                     ),
                   }}
-                  placeholder={`${this.$t('marketFieldHintMax')}${max}`}
+                  placeholder={this.$t('inputSalabilityNumber')}
                 />
                 <div class={styles['transfer-amount-prompt']}>
-                  {`${this.$t('transferRemainAmount')}：${max}${this.dynamicChainType.unit}`}
+                  {`${this.$t('salabilityNumber')}：${max}${this.dynamicChainType.unit}`}
                 </div>
               </Item>
               <div class={styles['sale-total-price']}>

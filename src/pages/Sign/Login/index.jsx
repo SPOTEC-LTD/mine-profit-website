@@ -249,7 +249,7 @@ const Login = {
       <div class={styles.login}>
         <div class={styles['login-content']}>
           <div class={styles['login-title']}>
-            <div>{this.$t('loginMineprofit', { enProductName: this.$('enProductName') })}</div>
+            <div>{this.$t('loginMineprofit', { enProductName: this.$t('enProductName') })}</div>
             <div>{this.$t('signInTips')}</div>
           </div>
           <Tabs
