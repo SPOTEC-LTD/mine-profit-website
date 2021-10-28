@@ -1,14 +1,15 @@
 export default {
-  investProtocolName: 'MineProfit投资邀请条款',
+  investProtocol: '投资邀请条款',
+  investProtocolName: '{enProductName}投资邀请条款',
   investProtocolDescription:
     '为确保投资者基于主协议的协议权利得以实现，邀请者同意以算力质押的方式向投资者提供担保。就算力质押担保一事达成如下协议：',
   investProtocolTitle_1: '一、身份定义',
   investProtocolText_1_1:
-    '投资者: 即受邀请者邀请，并在财务上帮助邀请人在盈算力MineProfit购买对应数量的标准算力的自然人。',
+    '投资者: 即受邀请者邀请，并在财务上帮助邀请人在{zhProductName}{enProductName}购买对应数量的标准算力的自然人。',
   investProtocolText_1_2: '邀请者: 即发起质押邀请购买指定数量的标准算力的人。',
   investProtocolText_1_3: '担保人: 邀请者亦将担任担保人，保证承诺的利息和本金可以兑现。',
   investProtocolTitle_2: '二、质押算力',
-  investProtocolText_2_1: '质押算力即本协议的质押标的，为投资者在盈算力MineProfit享有的算力及其派生的权益。',
+  investProtocolText_2_1: '质押算力即本协议的质押标的，为投资者在{zhProductName}{enProductName}享有的算力及其派生的权益。',
   investProtocolText_2_2: '质押算力所购买的新算力数量不得超过质押算力的50%。',
   investProtocolTitle_3: '三、质押担保范围',
   investProtocolText_3: '包括但不限于投资者基于上述主协议享有的主债权及利息、实现质权的费用等一切权利。',
@@ -54,7 +55,7 @@ export default {
     '如质押算力价值减少或有减少可能，包括但不限于因算力价格波动、邀请者拒绝向标的增资等，为保证投资者权利，邀请者接受并认可：',
   investProtocolTitle_9_4_1: '(1) 根据要求提供与减少的价值相当的担保或其他补救措施。',
   investProtocolTitle_9_4_2:
-    '(2) 盈算力MineProfit有权对邀请者质押算力进行提前清算，清算所得并优先偿还投资者，以及作为违约金支付，如有剩余部分则将继续归还邀请者。',
+    '(2) {zhProductName}{enProductName}有权对邀请者质押算力进行提前清算，清算所得并优先偿还投资者，以及作为违约金支付，如有剩余部分则将继续归还邀请者。',
   investProtocolTitle_10: '十、争议解决',
   investProtocolText_10:
     '因本协议引起的或与本协议有关的任何争议由双方协商解决，协商不成任何一方可向合同签订地人民法院提起诉讼。',

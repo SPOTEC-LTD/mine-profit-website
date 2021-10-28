@@ -6,7 +6,7 @@ import * as urls from './consts/urls';
 export default [
   {
     path: urls.investProtocolPath,
-    name: 'investProtocolName',
+    name: 'investProtocol',
     component: InvestProtocol,
   },
   {
@@ -16,7 +16,7 @@ export default [
   },
   {
     path: urls.serviceProtocolPath,
-    name: 'serviceProtocolName',
+    name: 'serviceProtocol',
     component: ServiceProtocol,
   },
 ];

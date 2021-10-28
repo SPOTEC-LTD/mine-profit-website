@@ -10,7 +10,7 @@ const PromoteRules = {
     const ruleList = [
       {
         icon: ruleIcon1,
-        text: this.$t('iconRuleText1'),
+        text: this.$t('iconRuleText1', { enProductName: this.$t('enProductName') }),
       },
       {
         icon: ruleIcon2,

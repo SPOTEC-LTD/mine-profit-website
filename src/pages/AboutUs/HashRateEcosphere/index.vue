@@ -15,7 +15,9 @@
       <SquareDotsIcon class="ecosphere-dots-icon" />
       <SquareDotsIcon class="ecosphere-right-dots-icon" />
       <transition name="text-fade">
-        <div v-if="showText" class="ecosphere-intro">{{ $t('hashRateEcosphereIntroduce') }}</div>
+        <div v-if="showText" class="ecosphere-intro">
+          {{ $t('hashRateEcosphereIntroduce', { enProductName: $t('enProductName') }) }}
+        </div>
       </transition>
       <div class="ecosphere-advantage">
         <transition name="card-one-fade">

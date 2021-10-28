@@ -92,7 +92,9 @@ const ConfirmPayDialog = {
             }}
           >
             <span>{this.$t('agreementViewAgree')}</span>
-            <Link to={investProtocolPath} target="_blank">{`《${this.$t('investProtocolName')}》`}</Link>
+            <Link to={investProtocolPath} target="_blank">
+              {`《${this.$t('investProtocolName', { enProductName: this.$t('enProductName') })}》`}
+            </Link>
           </Checkbox>
         )}
       </div>

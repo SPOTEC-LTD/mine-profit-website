@@ -44,7 +44,7 @@ const Download = {
         },
         {
           video: getIsEnglish() ? enCloudManagementVideo : cloudManagementVideo,
-          title: this.$t('MineprofitCloudManagement'),
+          title: this.$t('MineprofitCloudManagement', { enProductName: this.$t('enProductName') }),
           dec: this.$t('autoDeployWithoutSet'),
           backgroundIMG: triangleImg,
           className: 'triangle-wrapper',
@@ -148,7 +148,7 @@ const Download = {
         >
           <div class={styles['download-title']}>
             <img src={downloadLogoImg} alt="" class={styles['download-logo']}/>
-            <span>{this.$t('downloadApp')}</span>
+            <span>{this.$t('downloadApp', { enProductName: this.$t('enProductName') })}</span>
           </div>
           <div class={styles['download-sub-title']}>{this.$t('downloadAppSubTitle')}</div>
           <div class={styles['effect-box']}>

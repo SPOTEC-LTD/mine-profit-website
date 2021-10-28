@@ -249,7 +249,7 @@ const Login = {
       <div class={styles.login}>
         <div class={styles['login-content']}>
           <div class={styles['login-title']}>
-            <div>{this.$t('loginMineprofit')}</div>
+            <div>{this.$t('loginMineprofit', { enProductName: this.$('enProductName') })}</div>
             <div>{this.$t('signInTips')}</div>
           </div>
           <Tabs
@@ -295,7 +295,9 @@ const Login = {
               </form>
             <div class={styles['protocol-link']}>
               <span>{this.$t('loginMeansAgreed')}</span>
-              <Link to={serviceProtocolPath} target="_blank">{`《${this.$t('serviceProtocolName')}》`}</Link>
+              <Link to={serviceProtocolPath} target="_blank">
+                {`《${this.$t('serviceProtocolName', { enProductName: this.$t('enProductName') })}》`}
+              </Link>
               <Link to={privacyProtocolPath} target="_blank">{`《${this.$t('privacyProtocolName')}》`}</Link>
             </div>
           </div>

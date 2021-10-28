@@ -105,11 +105,11 @@ const PlatformCurrencyDetail = {
           <div class={styles['article-title']}>{this.$t('detail_article_title', { name })}</div>
           <div>
             <div class={styles.title}>{this.$t('detail_1_title')}</div>
-            <div>{this.$t('detail_1_text_1', { name, fullName })}</div>
+            <div>{this.$t('detail_1_text_1', { name, fullName, enProductName: this.$t('enProductName') })}</div>
             <br />
-            <div>{this.$t('detail_1_text_2', { name })}</div>
+            <div>{this.$t('detail_1_text_2', { name, enProductName: this.$t('enProductName') })}</div>
             <br />
-            <div>{this.$t('detail_1_text_3', { name })}</div>
+            <div>{this.$t('detail_1_text_3', { name, enProductName: this.$t('enProductName') })}</div>
           </div>
           <div>
             <div class={styles.title}>{this.$t('detail_2_title')}</div>
@@ -165,8 +165,8 @@ const PlatformCurrencyDetail = {
             <div>{this.$t('detail_8_text_1', { name })}</div>
             <br />
             <div>{this.$t('detail_8_text_2')}</div>
-            <div>{this.$t('detail_8_text_3')}</div>
-            <div>{this.$t('detail_8_text_4')}</div>
+            <div>{this.$t('detail_8_text_3', { enProductName: this.$t('enProductName') })}</div>
+            <div>{this.$t('detail_8_text_4', { enProductName: this.$t('enProductName') })}</div>
             <div>{this.$t('detail_8_text_5')}</div>
             <div class={styles['sub-desc']}>
               <div>{this.$t('detail_8_text_6')}</div>

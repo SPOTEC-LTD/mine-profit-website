@@ -79,7 +79,7 @@ const WeeklyOutputReportModal = {
               </span>
               <div>
                 <span class={styles['percent-sign']}>%</span>
-                &nbsp;&nbsp;{this.$t('mpUsers')}</div>
+                &nbsp;&nbsp;{this.$t('mpUsers', { enProductName: this.$t('enProductName') })}</div>
             </div>
             <div class={styles['progress-box']}>
               <div style={{ width: `${percentMoreThan}%` }} class={styles['progress-color']} />

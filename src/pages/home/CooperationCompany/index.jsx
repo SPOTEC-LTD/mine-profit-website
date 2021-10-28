@@ -23,7 +23,12 @@ const CooperationCompany = {
             title={this.isChinese && this.$t('cooperationPartner')}
           />
           <div class={styles['cooperation-introduce']}>
-            <div>{this.$t('companyBackground')}</div>
+            <div>
+              {this.$t('companyBackground', {
+                enProductName: this.$t('enProductName'),
+                zhProductName: this.$t('zhProductName'),
+              })}
+            </div>
           </div>
         </div>
         <CooperationMap />

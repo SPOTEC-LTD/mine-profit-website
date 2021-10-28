@@ -11,7 +11,7 @@
       </transition>
       <transition name="text-fade">
         <div v-if="isStakingAnimate" class="staking-market-introduce">
-          {{ $t('stakingMarketIntroduce') }}
+          {{ $t('stakingMarketIntroduce', { enProductName: $t('enProductName') }) }}
         </div>
       </transition>
     </div>

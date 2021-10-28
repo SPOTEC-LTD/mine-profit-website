@@ -20,7 +20,7 @@ export default {
   fetchVerificationCode: '获取验证码',
   verifyCodeRequired: '验证码不能为空',
   login: '登录',
-  loginMineprofit: '登录Mineprofit',
+  loginMineprofit: '登录{enProductName}',
   emailLogin: '邮箱登录',
   phoneLogin: '手机登录',
   loginSignUp: '登录/注册',
