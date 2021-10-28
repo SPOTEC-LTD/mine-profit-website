@@ -88,13 +88,7 @@ const BlockChainDate = {
             {this.coinList.map((item, index) => (
               <CoinMineData
                 key={index}
-                img={item.icon}
-                title={item.symbol}
-                unit={item.unit}
-                nowHashRate={item.hashrate}
-                coinProduce={item.incomeCoin}
-                usdtProduce={item.incomeUsd}
-                coinImg={item.coinImg}
+                info={item}
               />
             ))}
           </div>
