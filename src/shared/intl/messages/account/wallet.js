@@ -74,4 +74,6 @@ export default {
   transferThanZero: '必须大于0',
   priceTrend: '{value}7天价格趋势',
   priceRate24H: '24小时涨跌',
+  salabilityNumber: '可出售算力数量：',
+  inputSalabilityNumber: '请输入出售数量',
 };

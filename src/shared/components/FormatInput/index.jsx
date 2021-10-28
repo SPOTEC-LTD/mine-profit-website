@@ -48,8 +48,6 @@ const FormatInput = {
 
     const resultValue = this.isControl ? this.value : this.inputValue;
 
-    console.log(this.isControl, 'isControl');
-
     return (
       <Input
         value={resultValue}

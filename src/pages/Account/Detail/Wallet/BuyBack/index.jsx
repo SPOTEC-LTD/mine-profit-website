@@ -2,7 +2,7 @@ import { mapState, mapActions, mapMutations } from 'vuex';
 import numberUtils from 'aa-utils/lib/numberUtils';
 import { FormModel } from 'ant-design-vue';
 import { WALLET, GET_BUY_BACK_DETAIL, OFFICIAL_BUY_BACK } from '@/modules/account/wallet';
-import { accountPath } from '@/router/consts/urls';
+import { accountDetailPath } from '@/router/consts/urls';
 import NumberInput from '@/shared/components/NumberInput';
 import BaseContainer from '@/shared/components/BaseContainer';
 import MPTLineChart from '@/shared/components/MPTLineChart';
@@ -92,7 +92,7 @@ const BuyBack = {
       this[OFFICIAL_BUY_BACK](paramsData)
         .then(() => {
           this.isShowPasswordInput = false;
-          locationServices.push(accountPath);
+          locationServices.push(accountDetailPath);
           Notification.success(this.$t('operationSuccess'));
         })
         .catch(({ code }) => {
@@ -149,7 +149,7 @@ const BuyBack = {
                 />
               </div>
               <Item
-                label={this.$t('pledgeAmount')}
+                label={this.$t('quantitySold')}
                 prop="count"
                 rules={[
                   { required: true, message: this.$t('quantitySoldTips'), trigger: 'change' },
@@ -173,7 +173,6 @@ const BuyBack = {
                   precision={8}
                   onChange={value => {
                     this.formData.count = value;
-                    console.log(value, this.formData.count);
                   }}
                   scopedSlots={{
                     suffix: () => (
@@ -190,10 +189,10 @@ const BuyBack = {
                       </div>
                     ),
                   }}
-                  placeholder={`${this.$t('marketFieldHintMax')}${max}`}
+                  placeholder={this.$t('inputSalabilityNumber')}
                 />
                 <div class={styles['transfer-amount-prompt']}>
-                  {`${this.$t('transferRemainAmount')}：${max}${this.dynamicChainType.unit}`}
+                  {`${this.$t('salabilityNumber')}：${max}${this.dynamicChainType.unit}`}
                 </div>
               </Item>
               <div class={styles['sale-total-price']}>
