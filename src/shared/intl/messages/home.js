@@ -66,4 +66,5 @@ export default {
   contentDetails: '内容详情',
   closedActivity: '往期活动',
   progressActivity: '当前活动',
+  capitalPool: '回购资金池',
 };

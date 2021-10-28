@@ -1,16 +1,10 @@
 import { mapState } from 'vuex';
+import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import styles from './index.less?module';
 
 const CoinMineData = {
   props: {
-    img: { type: String },
-    title: { type: String },
-    nowHashRate: { type: String },
-    className: { type: String },
-    unit: { type: String },
-    coinProduce: { type: String },
-    usdtProduce: { type: String },
-    coinImg: String,
+    info: { type: Object, default: () => {} },
   },
 
   computed: {
@@ -30,35 +24,48 @@ const CoinMineData = {
   },
 
   render() {
+    const {
+      icon, symbol, unit, hashrate, incomeCoin,
+      incomeUsd, coinImg, whetherCustomToken, buybackCapitalPool,
+    } = this.info;
     return (
       <div class={[this.className, styles['coin-data-wrapper']]}>
         <div class={styles['coin-content-wrapper']}>
           <div class={styles['name-icon']}>
-            <img src={this.img} alt="" class={styles[this.classMap[this.title.toLocaleLowerCase()]]} />
-            <span>{this.title}</span>
+            <img src={icon} alt="" class={styles[this.classMap[symbol.toLocaleLowerCase()]]} />
+            <span>{symbol}</span>
           </div>
 
           <div class={styles['now-hash-rate']}>
             <span>{this.$t('nowHashRate')}</span>
             <div class={styles['hash-rate-details']}>
-              <span class={styles['now-number']}>{ this.nowHashRate }</span>
-              <span>{this.unit}</span>
+              <span class={styles['now-number']}>{hashrate}</span>
+              <span>{unit}</span>
             </div>
           </div>
 
           <div class={styles['coin-content']}>
-            <span>{ this.$t('yesterdayProducer') }</span>
+            <span>
+              {whetherCustomToken ? this.$t('capitalPool') : this.$t('yesterdayProducer')}
+            </span>
             <div class={styles['self-produce']}>
-              <span>{this.coinProduce}</span>
-              <span class={styles.unit}>{this.title}</span>
+              <span>
+                {whetherCustomToken
+                  ? bigNumberToFixed(buybackCapitalPool, 2)
+                  : incomeCoin
+                }
+              </span>
+              <span class={styles.unit}>{whetherCustomToken ? 'USDT' : symbol}</span>
             </div>
-            <div class={styles.approximation}>
-              <span>≈{this.usdtProduce}</span>
-              <span class={styles.unit}>USDT</span>
-            </div>
+            {!whetherCustomToken && (
+              <div class={styles.approximation}>
+                <span>≈{incomeUsd}</span>
+                <span class={styles.unit}>USDT</span>
+              </div>
+            )}
           </div>
         </div>
-        <img src={this.coinImg} alt="" class={styles['coin-img']} />
+        <img src={coinImg} alt="" class={styles['coin-img']} />
       </div>
     );
   },
