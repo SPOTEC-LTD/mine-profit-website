@@ -1,7 +1,5 @@
 import locale from '@/shared/intl/utils/locale';
 
-/** 所有类型 */
-// export const WALLET_TYPE_ALL = '';
 /** 所有状态，所有类型 */
 export const ALL = '';
 export const PROGRESSING = 1;
