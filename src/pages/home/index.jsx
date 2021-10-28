@@ -9,7 +9,7 @@ import {
   HOME, GET_MARKETS_LIST, GET_HASHRATE_COUPON_POPUP_LIST,
   GET_HOME_PRODUCT_LIST, GET_HASHRATE_POPUP_LIST, GET_WEEKLY_REPORT_POPUP_INFO,
 } from '@/modules/home';
-import { ACTIVITY, GET_ACTIVITY_LIST } from '@/modules/activity';
+import { ACTIVITY, GET_ACTIVITY_PUSH_LIST } from '@/modules/activity';
 import { STATION_MAIL, GET_WEEKLY_REPORT_DETAIL } from '@/modules/stationMail';
 import OurAdvantage from '@/pages/home/OurAdvantage';
 import localStorage from '@/shared/utils/localStorage';
@@ -82,7 +82,7 @@ const Home = {
   },
   computed: {
     ...mapState({
-      activityList: state => state.activity.activityList,
+      activityPushList: state => state.activity.activityPushList,
       marketsList: state => state.home.marketsList,
       productList: state => state.home.productList,
       hashrateCouponPopupList: state => state.home.hashrateCouponPopupList,
@@ -123,7 +123,7 @@ const Home = {
 
   mounted() {
     this.filterBannerPopupList();
-    this[GET_ACTIVITY_LIST]().then(() => {
+    this[GET_ACTIVITY_PUSH_LIST]().then(() => {
       this.filterActivityPopupList();
     });
     const { registerStatus, userId } = localStorage.getObject('userInfo');
@@ -154,7 +154,7 @@ const Home = {
       GET_HASHRATE_POPUP_LIST, GET_WEEKLY_REPORT_POPUP_INFO,
     ]),
     ...mapActions(STATION_MAIL, [GET_WEEKLY_REPORT_DETAIL]),
-    ...mapActions(ACTIVITY, [GET_ACTIVITY_LIST]),
+    ...mapActions(ACTIVITY, [GET_ACTIVITY_PUSH_LIST]),
     filterBannerPopupList() {
       const localBannerPopupList = isEmpty(localStorage.getObject('bannerPopupList')) ?
         [] : localStorage.getObject('bannerPopupList');
@@ -179,7 +179,7 @@ const Home = {
     filterActivityPopupList() {
       const localActivityPopupList = isEmpty(localStorage.getObject('activityPopupList')) ?
         [] : localStorage.getObject('activityPopupList');
-      this.needPopupActivityList = this.activityList.filter(newActivity => {
+      this.needPopupActivityList = this.activityPushList.filter(newActivity => {
         let needPopup = true;
         localActivityPopupList.forEach(oldActivity => {
           if (newActivity.id === oldActivity.id && !oldActivity.isPopup) {

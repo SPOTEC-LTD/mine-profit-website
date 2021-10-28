@@ -131,7 +131,7 @@ const PlatformCurrencyDetail = {
             <div class={styles.title}>{this.$t('detail_4_title')}</div>
             <div>{this.$t('detail_4_text_1')}</div>
             <div>{this.$t('detail_4_text_2')}</div>
-            <div>{this.$t('detail_4_text_3')}</div>
+            <div>{this.$t('detail_4_text_3', { name })}</div>
           </div>
           <div>
             <div class={styles.title}>{this.$t('detail_5_title')}</div>
