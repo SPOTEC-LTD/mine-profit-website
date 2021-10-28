@@ -2,7 +2,7 @@ import { mapState, mapActions, mapMutations } from 'vuex';
 import numberUtils from 'aa-utils/lib/numberUtils';
 import { FormModel } from 'ant-design-vue';
 import { WALLET, GET_BUY_BACK_DETAIL, OFFICIAL_BUY_BACK } from '@/modules/account/wallet';
-import { accountPath } from '@/router/consts/urls';
+import { accountDetailPath } from '@/router/consts/urls';
 import NumberInput from '@/shared/components/NumberInput';
 import BaseContainer from '@/shared/components/BaseContainer';
 import MPTLineChart from '@/shared/components/MPTLineChart';
@@ -92,7 +92,7 @@ const BuyBack = {
       this[OFFICIAL_BUY_BACK](paramsData)
         .then(() => {
           this.isShowPasswordInput = false;
-          locationServices.push(accountPath);
+          locationServices.push(accountDetailPath);
           Notification.success(this.$t('operationSuccess'));
         })
         .catch(({ code }) => {
