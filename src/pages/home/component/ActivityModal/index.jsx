@@ -1,3 +1,4 @@
+import { mapActions } from 'vuex';
 import locationHelp from '@/shared/utils/locationHelp';
 import {
   rankPath,
@@ -16,6 +17,7 @@ import {
   LINK,
   H5_CONTENT,
 } from '@/shared/consts/activityTypes';
+import { ACTIVITY, ACTIVITY_VIEW_COUNT } from '@/modules/activity';
 import { PROMOTE_RULE } from '@/pages/Account/Detail/consts/tabsActiveValue';
 import HomeModal from '../HomeModal';
 import styles from './index.less?module';
@@ -25,6 +27,7 @@ const ActivityModal = {
     info: Object,
   },
   methods: {
+    ...mapActions(ACTIVITY, [ACTIVITY_VIEW_COUNT]),
     toActivityDetailPage() {
       const { type, linkUrl, id, activityCommonId } = this.info;
       const { userId = 'null' } = getUserInfoFunc();
@@ -40,6 +43,7 @@ const ActivityModal = {
         [H5_CONTENT]: () => locationHelp.open(activityContentPath, { params: { userId, id: activityCommonId } }),
       };
       if (type !== ONLY_SHOW) {
+        this[ACTIVITY_VIEW_COUNT]({ id: activityCommonId });
         activityTypeMap[type]();
       }
       this.$emit('viewed', id);
