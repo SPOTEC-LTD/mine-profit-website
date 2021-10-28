@@ -2,9 +2,8 @@ import { mapState, mapMutations, mapActions } from 'vuex';
 import { Table } from 'ant-design-vue';
 import CorrectOutlined from 'ahoney/lib/icons/CorrectOutlined';
 
-import { WALLET, GET_WALLET_DETAIL, RESET_STATE } from '@/modules/account/wallet';
+import { WALLET, GET_WALLET_DETAIL, RESET_STATE, GET_LEDGER_TYPE_LIST } from '@/modules/account/wallet';
 import { PROGRESSING, FAIL, SUCCESS } from '@/shared/consts/rechargeLedgerStatus';
-import { getLedgerTypeMap } from '@/shared/consts/rechargeLedgerType';
 import dateUtils from '@/shared/intl/utils/dateUtils';
 
 import styles from './index.less?module';
@@ -30,15 +29,17 @@ const DetailTable = {
     ...mapState({
       walletDetailList: state => state.wallet.walletDetailList,
       pageInfo: state => state.wallet.pageInfo,
+      ledgerTypeMap: state => state.wallet.ledgerTypeMap,
       walletDetailLoading: state => state.loading.effects[`${WALLET}/${GET_WALLET_DETAIL}`],
     }),
   },
   mounted() {
     this.getWalletDetailList();
+    this[GET_LEDGER_TYPE_LIST]();
   },
   methods: {
     ...mapMutations(WALLET, [RESET_STATE]),
-    ...mapActions(WALLET, [GET_WALLET_DETAIL]),
+    ...mapActions(WALLET, [GET_WALLET_DETAIL, GET_LEDGER_TYPE_LIST]),
 
     getWalletDetailList(options = {}) {
       const { reset, query = {} } = options;
@@ -72,7 +73,7 @@ const DetailTable = {
         {
           dataIndex: 'ledgerType',
           align: 'center',
-          customRender: (_, { ledgerType }) => getLedgerTypeMap(ledgerType),
+          customRender: (_, { ledgerType }) => this.ledgerTypeMap[ledgerType],
         },
         {
           dataIndex: 'amount',

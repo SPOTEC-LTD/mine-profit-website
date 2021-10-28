@@ -1,8 +1,7 @@
 import { mapState } from 'vuex';
 import moment from 'moment';
-import { WALLET_STATUS_ALL, getLedgerStatusList } from '@/shared/consts/rechargeLedgerStatus';
+import { ALL, getLedgerStatusList } from '@/shared/consts/rechargeLedgerStatus';
 import { HASH_RATE_ALL, HASH_RATE_BTC, HASH_RATE_ETH, HASH_RATE_USDT } from '@/shared/consts/hashrateType';
-import { WALLET_TYPE_ALL, getLedgerTypeList } from '@/shared/consts/rechargeLedgerType';
 import BaseContainer from '@/shared/components/BaseContainer';
 import Select from '@/shared/components/Select';
 import DatePicker from '@/shared/components/DatePicker';
@@ -18,11 +17,19 @@ const Transactions = {
   computed: {
     ...mapState({
       dynamicChainTypeList: state => state.dynamicChainTypeList,
+      ledgerTypeList: state => state.wallet.ledgerTypeList,
     }),
 
     dynamicChain() {
       const [chainInfo = { symbol: '' }] = this.dynamicChainTypeList;
       return chainInfo.symbol;
+    },
+
+    resultLegerTypeList() {
+      return [
+        { text: this.$t('walletAllTypesAll'), value: ALL },
+        ...this.ledgerTypeList,
+      ];
     },
   },
   methods: {
@@ -73,9 +80,9 @@ const Transactions = {
     ];
 
     const selectList = [
-      { name: LEDGER_TYPE, optionsList: getLedgerTypeList(), defaultValue: WALLET_TYPE_ALL },
+      { name: LEDGER_TYPE, optionsList: this.resultLegerTypeList, defaultValue: ALL },
       { name: CHAIN_TYPE, optionsList: chainTypeList, defaultValue: HASH_RATE_ALL },
-      { name: LEDGER_STATUS, optionsList: getLedgerStatusList(), defaultValue: WALLET_STATUS_ALL },
+      { name: LEDGER_STATUS, optionsList: getLedgerStatusList(), defaultValue: ALL },
     ];
 
     return (

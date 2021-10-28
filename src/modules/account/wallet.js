@@ -11,7 +11,10 @@ export const DELETE_ADDRESS = 'deleteAddress';
 export const EDIT_ADDRESS = 'editAddress';
 export const GET_BUY_BACK_DETAIL = 'getBuyBackDetail';
 export const OFFICIAL_BUY_BACK = 'officialBuyBack';
+export const GET_LEDGER_TYPE_LIST = 'getLedgerTypeList';
 
+const UPDATE_LEDGER_TYPE_LIST = 'updateLedgerTypeList';
+const UPDATE_LEDGER_TYPE_MAP = 'updateLedgerTypeMap';
 const UPDATE_BUY_BACK_DETAIL = 'updateBuyBackDetail';
 const UPDATE_WALLET_DETAIL = 'updateWalletDetail';
 const UPDATE_WITHDRAWAL_ADDRESS = 'updateWithdrawalAddress';
@@ -29,6 +32,8 @@ export default {
     },
     withdrawalAddressList: [],
     buyBackDetail: {},
+    ledgerTypeList: [],
+    ledgerTypeMap: {},
   },
   mutations: {
     [UPDATE_WALLET_DETAIL](state, list) {
@@ -45,6 +50,14 @@ export default {
 
     [UPDATE_PAGE_INFO](state, pageInfo) {
       state.pageInfo = pageInfo;
+    },
+
+    [UPDATE_LEDGER_TYPE_LIST](state, typeList) {
+      state.ledgerTypeList = typeList;
+    },
+
+    [UPDATE_LEDGER_TYPE_MAP](state, typeMap) {
+      state.ledgerTypeMap = typeMap;
     },
 
     [RESET_STATE](state) {
@@ -126,6 +139,24 @@ export default {
     async [OFFICIAL_BUY_BACK](_, data) {
       try {
         await API.officialBuyBack({ data });
+        return Promise.resolve();
+      } catch (error) {
+        return Promise.reject(error);
+      }
+    },
+    async [GET_LEDGER_TYPE_LIST]({ commit }) {
+      try {
+        const { body: { list } } = await API.getLedgerTypeList();
+        const resultList = list.map(item => ({
+          text: item.label,
+          value: item.code,
+        }));
+        const resultMap = list.reduce((map, item) => ({
+          [item.code]: item.label,
+          ...map,
+        }), {});
+        commit(UPDATE_LEDGER_TYPE_LIST, resultList);
+        commit(UPDATE_LEDGER_TYPE_MAP, resultMap);
         return Promise.resolve();
       } catch (error) {
         return Promise.reject(error);

@@ -12,3 +12,4 @@ export const getAllBalance = createAPI(httpMethod.GET, '/customer/withdraw/balan
 export const getWalletBalance = createAPI(httpMethod.GET, '/customer/users/:userId/balance');
 export const getBuyBackDetail = createAPI(httpMethod.GET, '/customer/buy_back/detail');
 export const officialBuyBack = createAPI(httpMethod.POST, '/customer/buy_back');
+export const getLedgerTypeList = createAPI(httpMethod.GET, '/finance/ledger/typeList');
