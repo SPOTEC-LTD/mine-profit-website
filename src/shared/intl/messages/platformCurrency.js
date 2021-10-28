@@ -3,8 +3,9 @@ export default {
   repurchasePlan: '回购计划',
   introduction_1_title: '什么是{name}？',
   introduction_1_text_1:
-    '{name}（{fullName}，简称{name}）是由算力交易所MineProfit发行的稳定增长币，{name}作为MineProfit对其平台长期用户的一种激励层奖励，{name}只能通过{name}算力进行挖矿获得。',
-  introduction_1_text_2: '购买MineProfit官方BTC或ETH算力，便可免费获得{name}算力。',
+    // eslint-disable-next-line max-len
+    '{name}（{fullName}，简称{name}）是由算力交易所{enProductName}发行的稳定增长币，{name}作为{enProductName}对其平台长期用户的一种激励层奖励，{name}只能通过{name}算力进行挖矿获得。',
+  introduction_1_text_2: '购买{enProductName}官方BTC或ETH算力，便可免费获得{name}算力。',
   introduction_2_title: '{name}价值增长的秘密',
   secret_text_1: '发行总量有限',
   secret_text_2: '官方回购销毁',
@@ -15,7 +16,7 @@ export default {
   introduction_table_remark: '注：以上数据由最低币值模型计算得出，该模型不计交易所溢价等因素',
   introduction_5_title: '2021年12月18日正式发行',
   introduction_5_text_1: '创始空投',
-  introduction_5_text_2: '根据用户在2021年10月18日～2021年12月18日已购买Mineprofit官方算力的价值进行空投：',
+  introduction_5_text_2: '根据用户在2021年10月18日～2021年12月18日已购买{enProductName}官方算力的价值进行空投：',
   introduction_5_text_3: '初始HXT算力=Max（购买时价值，12.18价值）',
   introduction_6_title: '主流交易所上币时间预估',
   introduction_7_title: '2022年5月～2022年6月',
@@ -25,11 +26,12 @@ export default {
   detail_1_title: '简介',
   detail_1_text_1:
     // eslint-disable-next-line max-len
-    '哈希币（{fullName}，简称{name}）是由算力交易所MineProfit发行的稳定增长币，{name}作为MineProfit对其平台长期用户的一种激励层奖励，因此{name}只能通过{name}算力进行挖矿获得，无其他发行方式。获得{name}算力的唯一途径便是在MineProfit进行官方算力购买。',
+    '哈希币（{fullName}，简称{name}）是由算力交易所{enProductName}发行的稳定增长币，{name}作为{enProductName}对其平台长期用户的一种激励层奖励，因此{name}只能通过{name}算力进行挖矿获得，无其他发行方式。获得{name}算力的唯一途径便是在{enProductName}进行官方算力购买。',
   detail_1_text_2:
-    '{name}的发行总量为360,000,000，MineProfit每日均会对{name}回购资金池进行注资，任何MineProfit回购的{name}均会被并放入黑洞地址进行销毁。',
+    '{name}的发行总量为360,000,000，{enProductName}每日均会对{name}回购资金池进行注资，任何{enProductName}回购的{name}均会被并放入黑洞地址进行销毁。',
   detail_1_text_3:
-    '{name}每日注入回购资金池的资金由MineProfit的每日收益所决定，未使用完的回购资金将不断累积，MineProfit对{name}回购价格的独特算法保障了所有{name}均会被回购，且{name}价值稳定上升。',
+    // eslint-disable-next-line max-len
+    '{name}每日注入回购资金池的资金由{enProductName}的每日收益所决定，未使用完的回购资金将不断累积，{enProductName}对{name}回购价格的独特算法保障了所有{name}均会被回购，且{name}价值稳定上升。',
   detail_2_title: '产量规则',
   detail_2_title_1: '{name}最初每日产出为100万枚，每180天产量递减一半',
   detail_2_title_2: '总产量：约3亿6千万枚',
@@ -51,8 +53,8 @@ export default {
   detail_8_text_1:
     '本模型根据{name}的产出原则、回购原则及销毁原则进行模型设计。为保证最低回购预测，本模型所有假设数据均为最低条件状态下，因此现实结果可能将远高于模型数据。',
   detail_8_text_2: '模型假设数据：',
-  detail_8_text_3: '1.MineProfit初始注入回购池资金为$1,000',
-  detail_8_text_4: '2.MineProfit项目不会出现任何收益增长',
+  detail_8_text_3: '1.{enProductName}初始注入回购池资金为$1,000',
+  detail_8_text_4: '2.{enProductName}项目不会出现任何收益增长',
   detail_8_text_5: '3.模型计算两种情况数据',
   detail_8_text_6: '类型1:无任何回购发生',
   detail_8_text_7: '类型2:每日所挖{name}均被官方完全回购',

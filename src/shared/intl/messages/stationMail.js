@@ -16,7 +16,7 @@ export default {
   weeklyOutputReport: '产出周报',
   equivalentIncome: '折合收入',
   incomeMoreThan: '收入超过了',
-  mpUsers: 'MineProfit用户',
+  mpUsers: '{enProductName}用户',
   nice: '好极了！',
   verifyDialogRealNameContent: '为保证您的账户合规\n需补充以下资料',
   verifyDialogPasswordContent: '为保证您的交易安全性\n请设置交易密码',

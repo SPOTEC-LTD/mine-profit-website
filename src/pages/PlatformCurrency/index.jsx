@@ -117,9 +117,9 @@ const PlatformCurrency = {
           <div class={styles.content}>
             <div class={styles.title}>{this.$t('introduction_1_title', { name })}</div>
             <img class={styles['coin-img']} src={defaultCoin} alt="" />
-            <div>{this.$t('introduction_1_text_1', { name, fullName })}</div>
+            <div>{this.$t('introduction_1_text_1', { name, fullName, enProductName: this.$t('enProductName') })}</div>
             <br />
-            <div>{this.$t('introduction_1_text_2', { name })}</div>
+            <div>{this.$t('introduction_1_text_2', { name, enProductName: this.$t('enProductName') })}</div>
 
             <div class={styles.title}>{this.$t('introduction_2_title', { name })}</div>
             <div class={styles['secret-box']}>
@@ -141,7 +141,7 @@ const PlatformCurrency = {
 
             <div class={styles.title}>{this.$t('introduction_5_title')}</div>
             <div>{this.$t('introduction_5_text_1')}</div>
-            <div>{this.$t('introduction_5_text_2')}</div>
+            <div>{this.$t('introduction_5_text_2', { enProductName: this.$t('enProductName') })}</div>
             <div>{this.$t('introduction_5_text_3')}</div>
 
             <div class={styles.title}>

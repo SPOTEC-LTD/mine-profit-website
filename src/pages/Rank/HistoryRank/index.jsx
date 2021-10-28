@@ -193,13 +193,13 @@ const HistoryRank = {
         {this.currentRankType === INCOME && (
           <div class={styles['rules-text']}>
             <div>{this.$t('incomeRankRule1')}</div>
-            <div>{this.$t('incomeRankRule2')}</div>
+            <div>{this.$t('incomeRankRule2', { enProductName: this.$t('enProductName') })}</div>
           </div>
         )}
         {this.currentRankType === ANGEL && (
           <div class={styles['rules-text']}>
             <div>{this.$t('newBuyRankRule1')}</div>
-            <div>{this.$t('newBuyRankRule2')}</div>
+            <div>{this.$t('newBuyRankRule2', { enProductName: this.$t('enProductName') })}</div>
           </div>
         )}
         {this.currentRankType === BUYER && (
@@ -207,7 +207,7 @@ const HistoryRank = {
             <div>{this.$t('angelRankRule1')}</div>
             <div>{this.$t('angelRankRule2')}</div>
             <div>{this.$t('angelRankRule3')}</div>
-            <div>{this.$t('angelRankRule4')}</div>
+            <div>{this.$t('angelRankRule4', { enProductName: this.$t('enProductName') })}</div>
           </div>
         )}
       </BaseContainer>

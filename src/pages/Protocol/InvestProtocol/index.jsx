@@ -4,7 +4,7 @@ import styles from '../index.less?module';
 
 const InvestProtocol = {
   mounted() {
-    document.title = this.$t('investProtocolName');
+    document.title = this.$t('investProtocolName', { enProductName: this.$t('enProductName') });
   },
   render() {
     return (
@@ -13,13 +13,20 @@ const InvestProtocol = {
           <div class={styles['app-icon-box']}>
             <img class={styles['app-icon']} src={appIcon} alt="" />
           </div>
-          <div class={styles['protocol-name']}>{`《${this.$t('investProtocolName')}》`}</div>
+          <div class={styles['protocol-name']}>
+            {`《${this.$t('investProtocolName', { enProductName: this.$t('enProductName') })}》`}
+          </div>
           <div class={styles['protocol-desc']}>{this.$t('investProtocolDescription')}</div>
           <div class={styles['protocol-title-box']}>
             <div class={styles['protocol-title']}>{this.$t('investProtocolTitle_1')}</div>
           </div>
           <div class={styles['sub-title']}>1.1</div>
-          <div>{this.$t('investProtocolText_1_1')}</div>
+          <div>
+            {this.$t('investProtocolText_1_1', {
+              zhProductName: this.$t('zhProductName'),
+              enProductName: this.$t('enProductName'),
+            })}
+          </div>
           <div class={[styles['item-gap'], styles['sub-title']]}>1.2</div>
           <div>{this.$t('investProtocolText_1_2')}</div>
           <div class={[styles['item-gap'], styles['sub-title']]}>1.3</div>
@@ -28,7 +35,12 @@ const InvestProtocol = {
             <div class={styles['protocol-title']}>{this.$t('investProtocolTitle_2')}</div>
           </div>
           <div class={styles['sub-title']}>2.1</div>
-          <div>{this.$t('investProtocolText_2_1')}</div>
+          <div>
+            {this.$t('investProtocolText_2_1', {
+              enProductName: this.$t('enProductName'),
+              zhProductName: this.$t('zhProductName'),
+            })}
+          </div>
           <div class={[styles['item-gap'], styles['sub-title']]}>2.2</div>
           <div>{this.$t('investProtocolText_2_2')}</div>
           <div class={styles['protocol-title-box']}>
@@ -88,7 +100,12 @@ const InvestProtocol = {
           <div class={styles['sub-item-gap']}>
             {this.$t('investProtocolTitle_9_4')}
             <div>{this.$t('investProtocolTitle_9_4_1')}</div>
-            <div>{this.$t('investProtocolTitle_9_4_2')}</div>
+            <div>
+              {this.$t('investProtocolTitle_9_4_2', {
+                enProductName: this.$t('enProductName'),
+                zhProductName: this.$t('zhProductName'),
+              })}
+            </div>
           </div>
           <div class={styles['protocol-title-box']}>
             <div class={styles['protocol-title']}>{this.$t('investProtocolTitle_10')}</div>

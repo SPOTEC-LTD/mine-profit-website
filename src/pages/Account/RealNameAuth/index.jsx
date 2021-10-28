@@ -223,7 +223,9 @@ const RealNameAuth = {
             <div class={styles['method-one']}>
               <div class={styles['method-one-left']}>
                 <div class={styles['method-title']}>{this.$t('authMethodOneTitle')}</div>
-                <div class={styles['method-desc']}>{this.$t('authMethodOneDesc')}</div>
+                <div class={styles['method-desc']}>
+                  {this.$t('authMethodOneDesc', { enProductName: this.$t('enProductName') })}
+                </div>
               </div>
               <div class={styles['method-one-right']}>
                 <img class={styles['app-icon']} src={appIcon} alt="" />

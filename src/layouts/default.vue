@@ -83,7 +83,7 @@ export default {
     Vue.component('ErrorNode', ErrorNode);
     Vue.component('SuccessNode', SuccessNode);
     Vue.use(Modal);
-    document.title = this.$t('essayHashRate')
+    document.title = this.$t('zhProductName')
     // this.setLivechat();
     this.upateDocumentTitle();
     this.$router.beforeEach((_, from, next) => {

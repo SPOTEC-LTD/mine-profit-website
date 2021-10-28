@@ -11,16 +11,18 @@
               v-if="showTitle"
               :img="aboutTitleImage"
               class="about-title-image"
-              :title="isChinese && $t('essayHashRate')"
+              :title="isChinese && $t('zhProductName')"
             />
           </transition>
           <transition name="text-fade">
             <div v-if="showText" class="summary-content-text">
-              <div class="introduce-detail" :class="[{ 'en-introduce-detail': isEnglish}]">{{ $t('basicIntroduce') }} </div>
               <div class="introduce-detail" :class="[{ 'en-introduce-detail': isEnglish}]">
-                {{ $t('secondParagraphIntroduce') }}
+                {{ $t('basicIntroduce', { enProductName: $t('enProductName') }) }}
               </div>
-              <div>{{ $t('thirdlyParagraphIntroduce') }} </div>
+              <div class="introduce-detail" :class="[{ 'en-introduce-detail': isEnglish}]">
+                {{ $t('secondParagraphIntroduce', { enProductName: $t('enProductName') }) }}
+              </div>
+              <div>{{ $t('thirdlyParagraphIntroduce', { enProductName: $t('enProductName') }) }} </div>
             </div>
           </transition>
         </div>

@@ -14,7 +14,7 @@
       <div v-if="isC2CAnimate" class="yellow-line" />
       <transition name="text-fade">
         <div v-if="isC2CAnimate" class="c2c-market-introduce">
-          <div class="c2c-inline-mode">{{ $t('c2cInlineMode') }}</div>
+          <div class="c2c-inline-mode">{{ $t('c2cInlineMode', { enProductName: $t('enProductName') }) }}</div>
           <div>{{ $t('c2cTradingFreely') }}</div>
         </div>
       </transition>

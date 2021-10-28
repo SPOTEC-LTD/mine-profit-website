@@ -65,7 +65,9 @@ const Article = {
             <div class="article-download-right">
               <div class="article-desc-box">
                 <div class="article-get-app-desc">{this.$t('getMineApp')}</div>
-                <div class="article-download-app-desc">{this.$t('infoScan')}</div>
+                <div class="article-download-app-desc">
+                  {this.$t('infoScan', { enProductName: this.$t('enProductName') })}
+                </div>
               </div>
               <QRCodeModule className="article-qr-box" value={registerURL} options={{ width: 78 }} />
             </div>
