@@ -9,6 +9,7 @@
   top: 0;
   left: 0;
   right: 0;
+  box-shadow: 0 3px 7px 0 rgba(7, 17, 31, 0.08);
 }
 
 .page-header-container {
@@ -44,6 +45,12 @@
   }
 
   :global {
+    .nav-link-content {
+      line-height: 18px;
+      margin: 3px 0;
+      color: @color__1d1d1d;
+    }
+
     .router-link-exact-active.router-link-active {
       .nav-link {
         display: flex;
@@ -69,12 +76,6 @@
 
     .mark-hidden {
       display: none;
-    }
-
-    .nav-link-content {
-      line-height: 18px;
-      margin: 3px 0;
-      color: @color__1d1d1d;
     }
   }
 }

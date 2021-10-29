@@ -1,3 +1,4 @@
+import { mapMutations } from 'vuex';
 import TimeOutlined from 'ahoney/lib/icons/TimeOutlined';
 import PercentOutline from 'ahoney/lib/icons/PercentOutline';
 import ShutdownOutlined from 'ahoney/lib/icons/ShutdownOutlined';
@@ -15,6 +16,7 @@ import RichText from '@/shared/components/RichText';
 import getCoinRate from '@/shared/utils/getCoinRate';
 import * as rateExchangeAPI from '@/api/rateExchange';
 import { POWER_OFF } from '@/shared/consts/isPowerOff';
+import PageButton from '@/shared/components/PageButton';
 import { c2cSettlementPath } from '@/router/consts/urls';
 import ProductTitle from '@/shared/components/ProductTitle';
 import BaseContainer from '@/shared/components/BaseContainer';
@@ -24,6 +26,7 @@ import defaultAvatar from '@/assets/account/defaultAvatar.png';
 import PowerOffButton from '@/shared/components/PowerOffButton';
 import RestMount from '@/pages/ProductMarketing/components/RestMount';
 import CellGroup from '@/pages/ProductMarketing/components/CellGroup';
+import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
 import CellTitle from '@/pages/Account/HashRate/List/components/CellTitle';
 import locationServices from '@/shared/services/location/locationServices';
 import DetailContent from '@/pages/ProductMarketing/components/DetailContent';
@@ -62,9 +65,12 @@ const C2CProductDetails = {
 
   mounted() {
     this.cnyRate = +getCoinRate({ rateList: this.rateExchangeList, coin: CNY });
+    this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
   },
 
   methods: {
+    ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
+
     purchaseNow() {
       const { id } = this.c2cProductDetails;
       locationServices.push(c2cSettlementPath, { params: { id } });
@@ -207,21 +213,23 @@ const C2CProductDetails = {
             <RichText content={desc} class={styles['product-detail-dec']} />
           </ContentContainer>
         </BaseContainer>
-        <BaseContainer hasBreadcrumb={false} class={styles['product-detail-footer']}>
-          <div class={styles['rest-product']}>
-            <div class={styles['rest-c2c-product']}>
-              <RestMount
-                restPercentage={+getTimes({ number: restPercentage, times: 100, decimal: 0 })}
-                total={`${bigNumberToFixed(totalAmount, 2)}${unit}`}
-                rest={`${rest} ${unit}`}
-              />
-            </div>
-            <div class={styles['purchase-price']}>
-              {this.getSalePriceNode()}
-              <PurchaseButton onPurchaseNow={this.purchaseNow} />
-            </div>
-          </div>
-        </BaseContainer>
+        <PageButton
+          isCustomizeBtn
+          scopedSlots={{
+            rightContent: this.getSalePriceNode,
+            leftContent: () => (
+              <div class={styles['rest-c2c-product']}>
+                <RestMount
+                  restPercentage={+getTimes({ number: restPercentage, times: 100, decimal: 0 })}
+                  total={`${bigNumberToFixed(totalAmount, 2)}${unit}`}
+                  rest={`${rest} ${unit}`}
+                />
+              </div>
+            ),
+          }}
+        >
+          <PurchaseButton onPurchaseNow={this.purchaseNow} />
+        </PageButton>
       </div>
     );
   },

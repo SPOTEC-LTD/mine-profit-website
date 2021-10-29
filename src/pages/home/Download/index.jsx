@@ -31,7 +31,7 @@ const Download = {
       isContentFixed: false,
       isAbsoluteAuto: false,
       activeIndex: 0,
-      downloadTop: 3500,
+      downloadTop: 3700,
       rotateDeg: 275,
       translateY: 27,
       scrollGroupe: [
@@ -96,12 +96,11 @@ const Download = {
 
     onHandleScroll() {
       const clientHeights = document.body.clientHeight;
+      const topElementHeight = document.querySelector('#download-top-container').clientHeight;
+      const headerHeight = document.querySelector('#page-header-container').clientHeight;
+      this.downloadTop = topElementHeight + headerHeight;
       const { scrollTop } = document.documentElement;
-      const { top, height } = this.$refs.downLoadRef.getBoundingClientRect();
-      // 求download组件在页面上的位置, 允许误差20
-      if (top >= clientHeights - 10 && top <= clientHeights + 10) {
-        this.downloadTop = scrollTop + clientHeights;
-      }
+      const { height } = this.$refs.downLoadRef.getBoundingClientRect();
       const halfScreen = clientHeights / 2;
       const downloadLastVideo = this.downloadTop + height - clientHeights;
       // 执行里面转圈动画
@@ -114,7 +113,7 @@ const Download = {
         const length = scrollTop - (this.downloadTop - halfScreen); // 半屏幕的时候刷新下一个
         this.activeIndex = Math.floor(length / clientHeights);
         this.isContentFixed = true;
-      } else if (scrollTop > downloadLastVideo) {
+      } else if (scrollTop > downloadLastVideo - 20) {
         this.isAbsoluteAuto = true;
         this.isContentFixed = false;
       } else {
@@ -155,7 +154,12 @@ const Download = {
             {this.scrollGroupe.map((item, index) => (
               <div
                 class={classNames(
-                  styles['groupe-item'], { [styles['active-index']]: this.activeIndex === index },
+                  styles['groupe-item'],
+                  {
+                    [styles.fadeInUp]: this.activeIndex === index,
+                    [styles.fadeOutUp]: this.activeIndex === (index + 1),
+                    [styles['fade-item']]: this.activeIndex !== index,
+                  },
                 )}
               >
                 <div class={styles['effect-item']}>{item.title}</div>
