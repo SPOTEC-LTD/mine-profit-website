@@ -1,4 +1,5 @@
 import axios from 'axios';
+import startsWith from 'lodash/startsWith';
 import { isNotLogin } from '@/shared/utils/request/utils';
 import { loginPath } from '@/router/consts/urls';
 import getUserInfoFunc from './getUserInfoFunc';
@@ -33,7 +34,9 @@ axiosInstance.interceptors.response.use(res => {
 
   if (isNotLogin(response.code) && catchException) {
     const finlayUrl = ctx.locale === 'zh' ? loginPath : `/${ctx.locale}${loginPath}`;
-    ctx.redirect(`${finlayUrl}?redirectUrl=${ctx.route.fullPath}`);
+    if (!startsWith(ctx.route.fullPath, loginPath)) {
+      ctx.redirect(`${finlayUrl}?redirectUrl=${ctx.route.fullPath}`);
+    }
   }
 
   return Promise.reject(response);

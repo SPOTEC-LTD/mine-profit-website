@@ -1,4 +1,5 @@
 import axios from 'axios';
+import startsWith from 'lodash/startsWith';
 import localStorage from '@/shared/utils/localStorage';
 import { loginPath } from '@/router/consts/urls';
 import { location } from '@/shared/services/location';
@@ -45,7 +46,12 @@ axiosInstance.interceptors.response.use(res => {
   }
 
   if (checkLoginStatus && isNotLogin(response.code)) {
-    location.push(loginPath, { query: { redirectUrl: fullPath || `${window.location.pathname}${window.location.search}` } });
+    if (!startsWith(fullPath, loginPath)) {
+      location.push(loginPath, {
+        query: { redirectUrl: fullPath || `${window.location.pathname}${window.location.search}`,
+        },
+      });
+    }
   }
 
   return Promise.reject(response);
