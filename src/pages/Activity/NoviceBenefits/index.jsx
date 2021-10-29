@@ -1,6 +1,7 @@
 import { mapState, mapActions } from 'vuex';
 import { Spin } from 'ant-design-vue';
 import classNames from 'classnames';
+import isEmpty from 'lodash/isEmpty';
 import { ACTIVITY, GET_HASH_MODAL_LIST } from '@/modules/activity';
 import { getIsChinese, getLocalLanguage } from '@/shared/utils/getLocalLanguage';
 import { loginPath } from '@/router/consts/urls';
@@ -45,9 +46,13 @@ const NoviceBenefits = {
   },
   computed: {
     ...mapState({
+      userInfo: state => state.userInfo,
       hashModalList: state => state.activity.hashModalList,
       loading: state => state.loading.effects[`${ACTIVITY}/${GET_HASH_MODAL_LIST}`],
     }),
+    noLogin() {
+      return isEmpty(this.userInfo);
+    },
   },
   methods: {
     ...mapActions(ACTIVITY, [GET_HASH_MODAL_LIST]),
@@ -129,11 +134,19 @@ const NoviceBenefits = {
       return benefitsList;
     },
 
+    toInvitePage() {
+      if (this.noLogin) {
+        this.toSignPage();
+      } else {
+        this.showShareQrCodeModal = true;
+      }
+    },
+
     getTaskCompletionMap(index, status) {
       const resultStatus = status || NOT_FINISHED;
       const benefitsMap = {
         [CONDITION_ONE]: { text: this.$t('sign'), on: this.toSignPage, color: 'brown-button' },
-        [CONDITION_TWO]: { text: this.$t('invite'), on: () => { this.showShareQrCodeModal = true; }, color: 'brown-button' },
+        [CONDITION_TWO]: { text: this.$t('invite'), on: this.toInvitePage, color: 'brown-button' },
         [CONDITION_THREE]: { text: this.$t('uncompleted'), on: loop, color: 'gray-button' },
       };
       const statusMap = {
