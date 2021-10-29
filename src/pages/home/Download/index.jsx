@@ -17,7 +17,7 @@ import enMiningProfitVideo from '@/assets/home/enMiningProfitVideo.mp4';
 import withdrawFreelyVideo from '@/assets/home/withdrawFreelyVideo.mp4';
 import enWithdrawFreelyVideo from '@/assets/home/enWithdrawFreelyVideo.mp4';
 import DownLoadItem from '@/pages/home/component/DownLoadItem';
-import { getIsEnglish, getLocalLanguage } from '@/shared/utils/getLocalLanguage';
+import { getIsChinese, getLocalLanguage } from '@/shared/utils/getLocalLanguage';
 import styles from './index.less?module';
 
 const Download = {
@@ -36,28 +36,28 @@ const Download = {
       translateY: 27,
       scrollGroupe: [
         {
-          video: getIsEnglish() ? enPurchaceVideo : purchaceVideo,
+          video: getIsChinese() ? purchaceVideo : enPurchaceVideo,
           title: this.$t('purchaseCloudHashRate'),
           dec: this.$t('freeTradingByOfficialMarket'),
           backgroundIMG: halfCircleImg,
           className: 'half-circle-wrapper',
         },
         {
-          video: getIsEnglish() ? enCloudManagementVideo : cloudManagementVideo,
+          video: getIsChinese() ? cloudManagementVideo : enCloudManagementVideo,
           title: this.$t('MineprofitCloudManagement', { enProductName: this.$t('enProductName') }),
           dec: this.$t('autoDeployWithoutSet'),
           backgroundIMG: triangleImg,
           className: 'triangle-wrapper',
         },
         {
-          video: getIsEnglish() ? enMiningProfitVideo : miningProfitVideo,
+          video: getIsChinese() ? miningProfitVideo : enMiningProfitVideo,
           title: this.$t('profitOfMining'),
           dec: this.$t('autoClearToWallet'),
           backgroundIMG: squareImg,
           className: 'square-wrapper',
         },
         {
-          video: getIsEnglish() ? enWithdrawFreelyVideo : withdrawFreelyVideo,
+          video: getIsChinese() ? withdrawFreelyVideo : enWithdrawFreelyVideo,
           title: this.$t('withdrawFreely'),
           dec: this.$t('withdrawFreelyByBlockChain'),
           backgroundIMG: circleImg,

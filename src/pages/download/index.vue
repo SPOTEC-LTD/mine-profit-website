@@ -3,59 +3,59 @@
     <div class="scenario-container">
       <div class="main-imgs">
         <transition name="fade-left-img1" mode="out-in">
-          <img v-if="isEnLanguage && isScenario1" class="img-0-1" src="@/assets/download/en-1-1.png" alt="" />
-          <img v-if="!isEnLanguage && isScenario1" class="img-0-1" src="@/assets/download/1-1.png" alt="" />
+          <img v-if="!isCnLanguage && isScenario1" class="img-0-1" src="@/assets/download/en-1-1.png" alt="" />
+          <img v-if="isCnLanguage && isScenario1" class="img-0-1" src="@/assets/download/1-1.png" alt="" />
         </transition>
         <transition name="fade-left-img2" mode="out-in">
-          <img v-if="isEnLanguage && isScenario1" class="img-0-2" src="@/assets/download/en-1-2.png" alt="" />
-          <img v-if="!isEnLanguage && isScenario1" class="img-0-2" src="@/assets/download/1-2.png" alt="" />
+          <img v-if="!isCnLanguage && isScenario1" class="img-0-2" src="@/assets/download/en-1-2.png" alt="" />
+          <img v-if="isCnLanguage && isScenario1" class="img-0-2" src="@/assets/download/1-2.png" alt="" />
         </transition>
         <transition name="fade-left-img3" mode="out-in" @afterEnter="setAnimationCompleted">
-          <img v-if="isEnLanguage && isScenario1" class="img-0-3" src="@/assets/download/en-1-3.png" alt="" />
-          <img v-if="!isEnLanguage && isScenario1" class="img-0-3" src="@/assets/download/1-3.png" alt="" />
+          <img v-if="!isCnLanguage && isScenario1" class="img-0-3" src="@/assets/download/en-1-3.png" alt="" />
+          <img v-if="isCnLanguage && isScenario1" class="img-0-3" src="@/assets/download/1-3.png" alt="" />
         </transition>
         <transition name="fade-bottom-img1" mode="out-in">
-          <img v-if="isEnLanguage && isScenario2" class="img-1-1" src="@/assets/download/en-2-2.png" alt="" />
-          <img v-if="!isEnLanguage && isScenario2" class="img-1-1" src="@/assets/download/2-2.png" alt="" />
+          <img v-if="!isCnLanguage && isScenario2" class="img-1-1" src="@/assets/download/en-2-2.png" alt="" />
+          <img v-if="isCnLanguage && isScenario2" class="img-1-1" src="@/assets/download/2-2.png" alt="" />
         </transition>
         <transition name="fade-bottom-img2" mode="out-in">
-          <img v-if="isEnLanguage && isScenario2" class="img-1-2" src="@/assets/download/en-2-3.png" alt="" />
-          <img v-if="!isEnLanguage && isScenario2" class="img-1-2" src="@/assets/download/2-3.png" alt="" />
+          <img v-if="!isCnLanguage && isScenario2" class="img-1-2" src="@/assets/download/en-2-3.png" alt="" />
+          <img v-if="isCnLanguage && isScenario2" class="img-1-2" src="@/assets/download/2-3.png" alt="" />
         </transition>
         <transition name="fade-bottom-img3" mode="out-in">
-          <img v-if="isEnLanguage && isScenario2" class="img-1-3" src="@/assets/download/en-2-1.png" alt="" />
-          <img v-if="!isEnLanguage && isScenario2" class="img-1-3" src="@/assets/download/2-1.png" alt="" />
+          <img v-if="!isCnLanguage && isScenario2" class="img-1-3" src="@/assets/download/en-2-1.png" alt="" />
+          <img v-if="isCnLanguage && isScenario2" class="img-1-3" src="@/assets/download/2-1.png" alt="" />
         </transition>
         <transition name="fade-delay" mode="out-in">
           <div v-if="isScenario2" class="img-shadow" />
         </transition>
         <transition name="zoom-img4" mode="out-in" @afterEnter="setAnimationCompleted">
-          <img v-if="isEnLanguage && isScenario2" class="img-1-4" src="@/assets/download/en-screen-shot.png" alt="" />
-          <img v-if="!isEnLanguage && isScenario2" class="img-1-4" src="@/assets/download/screen-shot.png" alt="" />
+          <img v-if="!isCnLanguage && isScenario2" class="img-1-4" src="@/assets/download/en-screen-shot.png" alt="" />
+          <img v-if="isCnLanguage && isScenario2" class="img-1-4" src="@/assets/download/screen-shot.png" alt="" />
         </transition>
         <transition name="fade-bottom-rotate-img1" mode="out-in">
-          <img v-if="isEnLanguage && isScenario3" class="img-2-1" src="@/assets/download/en-3-1.png" alt="" />
-          <img v-if="!isEnLanguage && isScenario3" class="img-2-1" src="@/assets/download/3-1.png" alt="" />
+          <img v-if="!isCnLanguage && isScenario3" class="img-2-1" src="@/assets/download/en-3-1.png" alt="" />
+          <img v-if="isCnLanguage && isScenario3" class="img-2-1" src="@/assets/download/3-1.png" alt="" />
         </transition>
         <transition name="fade-bottom-rotate-img2" mode="out-in">
-          <img v-if="isEnLanguage && isScenario3" class="img-2-2" src="@/assets/download/en-3-2.png" alt="" />
-          <img v-if="!isEnLanguage && isScenario3" class="img-2-2" src="@/assets/download/3-2.png" alt="" />
+          <img v-if="!isCnLanguage && isScenario3" class="img-2-2" src="@/assets/download/en-3-2.png" alt="" />
+          <img v-if="isCnLanguage && isScenario3" class="img-2-2" src="@/assets/download/3-2.png" alt="" />
         </transition>
         <transition name="fade-bottom-rotate-img3" mode="out-in" @afterEnter="setAnimationCompleted">
-          <img v-if="isEnLanguage && isScenario3" class="img-2-3" src="@/assets/download/en-3-3.png" alt="" />
-          <img v-if="!isEnLanguage && isScenario3" class="img-2-3" src="@/assets/download/3-3.png" alt="" />
+          <img v-if="!isCnLanguage && isScenario3" class="img-2-3" src="@/assets/download/en-3-3.png" alt="" />
+          <img v-if="isCnLanguage && isScenario3" class="img-2-3" src="@/assets/download/3-3.png" alt="" />
         </transition>
         <transition name="fade-left-img1" mode="out-in">
-          <img v-if="isEnLanguage && isScenario4" class="img-3-1" src="@/assets/download/en-4-1.png" alt="" />
-          <img v-if="!isEnLanguage && isScenario4" class="img-3-1" src="@/assets/download/4-1.png" alt="" />
+          <img v-if="!isCnLanguage && isScenario4" class="img-3-1" src="@/assets/download/en-4-1.png" alt="" />
+          <img v-if="isCnLanguage && isScenario4" class="img-3-1" src="@/assets/download/4-1.png" alt="" />
         </transition>
         <transition name="fade-left-img2" mode="out-in">
-          <img v-if="isEnLanguage && isScenario4" class="img-3-2" src="@/assets/download/en-4-2.png" alt="" />
-          <img v-if="!isEnLanguage && isScenario4" class="img-3-2" src="@/assets/download/4-2.png" alt="" />
+          <img v-if="!isCnLanguage && isScenario4" class="img-3-2" src="@/assets/download/en-4-2.png" alt="" />
+          <img v-if="isCnLanguage && isScenario4" class="img-3-2" src="@/assets/download/4-2.png" alt="" />
         </transition>
         <transition name="fade-left-img3" mode="out-in" @afterEnter="setAnimationCompleted">
-          <img v-if="isEnLanguage && isScenario4" class="img-3-3" src="@/assets/download/en-4-3.png" alt="" />
-          <img v-if="!isEnLanguage && isScenario4" class="img-3-3" src="@/assets/download/4-3.png" alt="" />
+          <img v-if="!isCnLanguage && isScenario4" class="img-3-3" src="@/assets/download/en-4-3.png" alt="" />
+          <img v-if="isCnLanguage && isScenario4" class="img-3-3" src="@/assets/download/4-3.png" alt="" />
         </transition>
       </div>
 
@@ -200,7 +200,7 @@ import { fetchAppVersion } from '@/api';
 
 import QRCodeModule from '@/shared/components/QRCodeModule';
 import SquareDotsIcon from '@/shared/components/SquareDotsIcon';
-import { getIsEnglish, getLocalLanguage } from '@/shared/utils/getLocalLanguage';
+import { getIsEnglish, getLocalLanguage, getIsChinese } from '@/shared/utils/getLocalLanguage';
 
 import GlassSquare from './GlassSquare.vue';
 
@@ -236,6 +236,7 @@ export default {
       androidVersion: '',
       mobileSiteHost: process.env.MOBILE_SITE_HOST,
       isEnLanguage: getIsEnglish(),
+      isCnLanguage: getIsChinese(),
       nowLanguage: getLocalLanguage(),
     };
   },
