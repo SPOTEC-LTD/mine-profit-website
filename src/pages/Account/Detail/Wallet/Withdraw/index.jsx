@@ -321,7 +321,10 @@ const Withdraw = {
                     suffix: () => (
                       <div
                         class={styles['withdraw-number']}
-                        onClick={() => { this.formData.amount = amount; }}
+                        onClick={() => {
+                          this.formData.amount = amount;
+                          this.$refs.form.validateField('amount');
+                        }}
                       >
                         {this.$t('all')}
                       </div>
