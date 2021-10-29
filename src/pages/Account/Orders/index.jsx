@@ -54,9 +54,14 @@ const Orders = {
         pageSize,
         pageNum: this.pageNum,
         chainType: this.chainType,
-        startTime: this.startTime,
-        endTime: this.endTime,
       };
+
+      if (this.startTime) {
+        resultData.startTime = this.startTime;
+      }
+      if (this.endTime) {
+        resultData.endTime = this.endTime;
+      }
 
       if (this.chainType === 'all') {
         delete resultData.chainType;
