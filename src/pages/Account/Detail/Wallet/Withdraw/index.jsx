@@ -218,7 +218,7 @@ const Withdraw = {
     const rowList = [
       {
         label: this.$t('withDrawFee'),
-        number: handlingFee,
+        number: handlingFee || '-',
       },
       {
         label: this.$t('withDrawReceivedNum'),
