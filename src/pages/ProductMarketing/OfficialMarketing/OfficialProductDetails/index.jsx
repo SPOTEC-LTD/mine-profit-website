@@ -1,3 +1,4 @@
+import { mapMutations } from 'vuex';
 import includes from 'lodash/includes';
 import BoxOutlined from 'ahoney/lib/icons/BoxOutlined';
 import TimeOutlined from 'ahoney/lib/icons/TimeOutlined';
@@ -19,6 +20,7 @@ import getCoinRate from '@/shared/utils/getCoinRate';
 import * as rateExchangeAPI from '@/api/rateExchange';
 import DateUtils from '@/shared/intl/utils/dateUtils';
 import TagGroup from '@/pages/home/component/TagGroup';
+import PageButton from '@/shared/components/PageButton';
 import Notification from '@/shared/services/Notification';
 import * as officialProductAPI from '@/api/officialMarket';
 import { NEW_USER_USED } from '@/shared/consts/productTag';
@@ -29,6 +31,7 @@ import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import { PLEASE_LOOK_FORWARD } from '@/shared/consts/productStatus';
 import CellGroup from '@/pages/ProductMarketing/components/CellGroup';
 import RestMount from '@/pages/ProductMarketing/components/RestMount';
+import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
 import locationServices from '@/shared/services/location/locationServices';
 import CellTitle from '@/pages/Account/HashRate/List/components/CellTitle';
 import DetailContent from '@/pages/ProductMarketing/components/DetailContent';
@@ -86,9 +89,12 @@ const OfficialProductDetails = {
 
   mounted() {
     this.cnyRate = +getCoinRate({ rateList: this.rateExchangeList, coin: CNY });
+    this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
   },
 
   methods: {
+    ...mapMutations([UPDATE_HAS_PAGE_BUTTON_STATUS]),
+
     getDataList() {
       const {
         amount, unit, unitHashratePrice, discountUnitHashratePrice, transCloseDays,
@@ -274,30 +280,32 @@ const OfficialProductDetails = {
             <RichText content={desc} class={styles['product-detail-dec']} />
           </ContentContainer>
         </BaseContainer>
-        <BaseContainer hasBreadcrumb={false} class={styles['product-detail-footer']}>
-          <div class={styles['rest-product']}>
-            <div class={styles['rest-look-forward']}>
-              <RestMount
-                restPercentage={+getTimes({ number: restPercentage, times: 100, decimal: 0 })}
-                total={`${finalTotal}${unit}`}
-                rest={`${this.rest} ${unit}`}
-              />
-            </div>
-            <div class={styles['purchase-price']}>
-              {this.getSalePriceNode()}
-              <PurchaseButton
-                onPurchaseNow={this.purchaseNow}
-                isNoRest={isNoRest}
-                isNew={this.isNewUser}
-                isLookForward={isLookForward}
-                lineTime={onlineTime}
-                preStatus={preStatus}
-                preSaleStartTime={preSaleStartTime}
-                preSaleEndTime={preSaleEndTime}
-              />
-            </div>
-          </div>
-        </BaseContainer>
+        <PageButton
+          isCustomizeBtn
+          scopedSlots={{
+            rightContent: this.getSalePriceNode,
+            leftContent: () => (
+              <div class={styles['rest-look-forward']}>
+                <RestMount
+                  restPercentage={+getTimes({ number: restPercentage, times: 100, decimal: 0 })}
+                  total={`${finalTotal}${unit}`}
+                  rest={`${this.rest} ${unit}`}
+                />
+              </div>
+            ),
+          }}
+        >
+          <PurchaseButton
+            onPurchaseNow={this.purchaseNow}
+            isNoRest={isNoRest}
+            isNew={this.isNewUser}
+            isLookForward={isLookForward}
+            lineTime={onlineTime}
+            preStatus={preStatus}
+            preSaleStartTime={preSaleStartTime}
+            preSaleEndTime={preSaleEndTime}
+          />
+        </PageButton>
       </div>
     );
   },

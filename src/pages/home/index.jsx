@@ -264,19 +264,22 @@ const Home = {
   render() {
     return (
       <div>
-        <Banner list={this.bannersList} />
-        <BaseContainer>
-          <Announcements announcementList={this.announcementList} />
-          <CoinMarkets data={this.marketsList} loading={this.marketsLoading} />
-          <ProductMarket productList={this.productList} />
-        </BaseContainer>
-
-        <div class={styles['chain-data-wrap']}>
+        {/* id为下载页面所需，切勿删除，如加元素在download组件之上，请放置在download-top-container中 */}
+        <div id='download-top-container'>
+          <Banner list={this.bannersList} />
           <BaseContainer>
-            <BlockChainDate />
-            <OurAdvantage />
-            <CooperationCompany />
+            <Announcements announcementList={this.announcementList} />
+            <CoinMarkets data={this.marketsList} loading={this.marketsLoading} />
+            <ProductMarket productList={this.productList} />
           </BaseContainer>
+
+          <div class={styles['chain-data-wrap']}>
+            <BaseContainer>
+              <BlockChainDate />
+              <OurAdvantage />
+              <CooperationCompany />
+            </BaseContainer>
+          </div>
         </div>
 
         <BaseContainer className={styles['download-wrap']}>

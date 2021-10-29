@@ -5,6 +5,7 @@ import EmailCircleOutlined from 'ahoney/lib/icons/EmailCircleOutlined';
 import TipCirccleOutlined from 'ahoney/lib/icons/TipCirccleOutlined';
 import locationServices from '@/shared/services/location/locationServices';
 import { RECOMMEND, NEWSLETTER, ANNOUNCEMENT } from '@/shared/consts/newsType';
+import { getIsEnglish } from '@/shared/utils/getLocalLanguage';
 import { I18N } from '@@/i18n';
 import isEmpty from 'lodash/isEmpty';
 import Link from '@/shared/components/Link';
@@ -22,6 +23,7 @@ const PageHeader = {
   data() {
     return {
       languageItems: I18N.locales,
+      isEnglish: getIsEnglish(),
     };
   },
   computed: {
@@ -34,7 +36,7 @@ const PageHeader = {
       locationServices.push(urls.downloadPath);
     },
     getNews() {
-      return [
+      const newsList = [
         {
           href: urls.newsAnnouncementPath,
           name: this.$t('recommendArticle'),
@@ -48,6 +50,7 @@ const PageHeader = {
           type: NEWSLETTER,
           description: this.$t('newsletterDesc'),
           icon: <EmailCircleOutlined />,
+          hidden: this.isEnglish,
         },
         {
           href: urls.newsAnnouncementPath,
@@ -57,6 +60,7 @@ const PageHeader = {
           icon: <TipCirccleOutlined />,
         },
       ];
+      return newsList.filter(({ hidden }) => !hidden);
     },
     getHashrateMarkets() {
       return ([
@@ -77,7 +81,8 @@ const PageHeader = {
     const isNotLoginPage = pageName !== 'login';
 
     return (
-      <div class={styles['page-header']}>
+      // id为下载页面所需，切勿删除
+      <div id='page-header-container' class={styles['page-header']}>
         <div class={styles['page-header-container']}>
           <div class={styles['header-left-content']}>
             <Link to={urls.homePath}>
