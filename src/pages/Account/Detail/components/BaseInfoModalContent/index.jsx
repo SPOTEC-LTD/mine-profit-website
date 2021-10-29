@@ -22,7 +22,7 @@ const BaseInfoModalContent = {
       <div class={styles.wrapper}>
         <KeepTabs
           class="mine-tabs-card"
-          activeKeyName="OfficialCoinType"
+          activeKeyName="active"
           value={this.active}
           onChange={this.onTabsChange}
         >

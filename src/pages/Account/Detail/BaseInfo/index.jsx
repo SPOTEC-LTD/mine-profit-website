@@ -124,6 +124,7 @@ const Detail = {
       this.isVisibleInviteDetailModal = true;
     },
     closeInviteDetailModal() {
+      this.$router.replace({ query: {} });
       this.isVisibleInviteDetailModal = false;
     },
   },
