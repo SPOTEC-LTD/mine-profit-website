@@ -1,6 +1,6 @@
 export default {
   noviceBenefits: '三重福利',
-  inviteFriendsRealName: '邀请好友完成实名认证：',
+  inviteFriendsRealName: '邀请好友完成实名认证',
   weChatCustomerService: '微信客服',
   telegramCustomerService: 'Telegram客服',
   clickGoOn: '点击前往',

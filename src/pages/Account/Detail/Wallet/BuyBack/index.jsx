@@ -5,7 +5,6 @@ import { WALLET, GET_BUY_BACK_DETAIL, OFFICIAL_BUY_BACK } from '@/modules/accoun
 import { accountDetailPath } from '@/router/consts/urls';
 import NumberInput from '@/shared/components/NumberInput';
 import BaseContainer from '@/shared/components/BaseContainer';
-import MPTLineChart from '@/shared/components/MPTLineChart';
 import PageButton from '@/shared/components/PageButton';
 import ConfirmPayDialog from '@/shared/components/ConfirmPayDialog';
 import locationServices from '@/shared/services/location/locationServices';
@@ -16,6 +15,7 @@ import {
   UPDATE_CAPTCHA_VERIFICATION,
 } from '@/modules/manMachineVerification';
 import { MAN_MACHINE_VERIFICATION_CODE } from '@/shared/utils/request/consts/ResponseCode';
+import PriceTrendChart from './PriceTrendChart';
 import styles from './index.less?module';
 
 const { Item } = FormModel;
@@ -142,10 +142,9 @@ const BuyBack = {
                 </Item>
               </div>
               <div class={styles['line-chart']}>
-                <MPTLineChart
-                  title={this.$t('priceTrend', { value: this.dynamicChainType.symbol })}
+                <PriceTrendChart
+                  chainName={this.dynamicChainType.symbol}
                   dataSource={trend}
-                  nameY={'USDT'}
                 />
               </div>
               <Item

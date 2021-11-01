@@ -3,7 +3,7 @@ import dateUtils from '@/shared/intl/utils/dateUtils';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import styles from './index.less?module';
 
-const OutputLineChart = {
+const PriceTrendChart = {
   props: {
     dataSource: {
       type: Array,
@@ -17,17 +17,18 @@ const OutputLineChart = {
 
   computed: {
     dateList() {
-      return this.dataSource.map(item => dateUtils.formatDate(item.date, 'MM.DD'));
+      return this.dataSource.map(item => dateUtils.formatDate(item.dateTime, 'MM.DD'));
     },
 
     valueList() {
-      return this.dataSource.map(item => bigNumberToFixed(item.outputAmount, 8));
+      return this.dataSource.map(item => bigNumberToFixed(item.value, 10));
     },
 
     chartOptions() {
       return {
         title: {
-          text: this.$t('outputWithin7Days', { value: this.chainName }),
+          top: 10,
+          text: this.$t('priceTrend', { value: this.chainName }),
           left: 'center',
           textStyle: {
             color: '#242424',
@@ -49,7 +50,7 @@ const OutputLineChart = {
           },
           confine: true,
           className: styles['tooltip-dark'],
-          formatter: `{c} ${this.chainName}`,
+          formatter: '{c} USDT',
           backgroundColor: 'rgba(0, 0, 0, 0.5)',
           padding: [6, 13],
           textStyle: {
@@ -61,12 +62,14 @@ const OutputLineChart = {
         },
         grid: {
           right: 0,
-          bottom: 20,
-          top: 35,
-          left: 0,
+          bottom: 30,
+          top: 50,
+          left: 90,
         },
         textStyle: {
           color: '#242424',
+          fontSize: 12,
+          lineHeight: 17,
         },
         xAxis: {
           type: 'category',
@@ -83,6 +86,7 @@ const OutputLineChart = {
           },
         },
         yAxis: {
+          name: 'USDT',
           type: 'value',
           scale: true,
           nameTextStyle: {
@@ -94,13 +98,9 @@ const OutputLineChart = {
             },
           },
           axisLabel: {
-            inside: true,
-            align: 'left',
-            verticalAlign: 'top',
-            color: '#cacaca',
-            lineHeight: 26,
-            showMinLabel: false,
-            formatter: value => bigNumberToFixed(value, 8),
+            formatter(value) {
+              return bigNumberToFixed(value, 10);
+            },
           },
         },
         series: [{
@@ -142,4 +142,4 @@ const OutputLineChart = {
   },
 };
 
-export default OutputLineChart;
+export default PriceTrendChart;

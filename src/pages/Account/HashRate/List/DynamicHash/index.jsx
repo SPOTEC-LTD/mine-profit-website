@@ -62,7 +62,7 @@ const DynamicHash = {
         <div class={styles['dynamic-trend']}>
           <OutputLineChart
             dataSource={outputList}
-            title={this.$t('outputWithin7Days', { value: this.dynamicChain })}
+            chainName={this.dynamicChain}
           />
         </div>
       </div>

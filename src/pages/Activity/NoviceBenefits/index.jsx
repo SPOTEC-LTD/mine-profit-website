@@ -25,7 +25,16 @@ import styles from './index.less?module';
 const loop = () => { };
 const NoviceBenefits = {
   async asyncData(ctx) {
-    const props = { noviceBenefitsInfo: {} };
+    const props = {
+      noviceBenefitsInfo: {
+        inviteCount: '0/0',
+        kycCount: '0/0',
+        registrationCount: '0/0',
+        registrationStatus: NOT_FINISHED,
+        inviteStatus: NOT_FINISHED,
+        addCusServiceStatus: NOT_FINISHED,
+      },
+    };
     const getBenefitsInfoPromise = activityAPI.getBenefitsInfo({}, { ctx });
     try {
       const data = await getBenefitsInfoPromise;
@@ -56,10 +65,10 @@ const NoviceBenefits = {
   },
   methods: {
     ...mapActions(ACTIVITY, [GET_HASH_MODAL_LIST]),
-    getOneConditionNode(addCusServiceStatus) {
+    getOneConditionNode(registrationCount) {
       return (
         <div class={styles['condition-box']}>
-          <div class={styles.condition}>{`${this.$t('completeRegistration')}${addCusServiceStatus}`}</div>
+          <div class={styles.condition}>{`${this.$t('completeRegistration')}: ${registrationCount}`}</div>
         </div>
       );
     },
@@ -67,8 +76,8 @@ const NoviceBenefits = {
     getTwoConditionNode({ inviteCount, kycCount }) {
       return (
         <div class={styles['condition-box']}>
-          <div class={styles.condition}>{`${this.$t('drawerInviteFriend')}${inviteCount}`}</div>
-          <div class={styles.condition}>{`${this.$t('inviteFriendsRealName')}${kycCount}`}</div>
+          <div class={styles.condition}>{`${this.$t('drawerInviteFriend')}: ${inviteCount}`}</div>
+          <div class={styles.condition}>{`${this.$t('inviteFriendsRealName')}: ${kycCount}`}</div>
         </div>
       );
     },
@@ -143,7 +152,6 @@ const NoviceBenefits = {
     },
 
     getTaskCompletionMap(index, status) {
-      const resultStatus = status || NOT_FINISHED;
       const benefitsMap = {
         [CONDITION_ONE]: { text: this.$t('sign'), on: this.toSignPage, color: 'brown-button' },
         [CONDITION_TWO]: { text: this.$t('invite'), on: this.toInvitePage, color: 'brown-button' },
@@ -155,7 +163,7 @@ const NoviceBenefits = {
         [RECEIVED]: { text: this.$t('alreadyReceived'), on: loop, color: 'gray-button' },
       };
 
-      return statusMap[resultStatus];
+      return statusMap[status];
     },
 
     toSignPage() {
