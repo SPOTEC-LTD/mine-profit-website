@@ -11,7 +11,7 @@
     "start": "nuxt start -p 4567",
     "testStart": "nuxt start -p 4567",
     "mockServer": "nodemon ./mock/server/index.js --exec babel-node -e js",
-    "i18n:merge": "babel-node build/i18n/mergeTranslate.js -f",
+    "i18n:merge": "babel-node build/i18n/mergeEnTranslate.js",
     "i18n:export": "babel-node build/i18n/mergeTranslate.js exportNoTranslate",
     "build:i18n": "cross-env NODE_ENV=production babel-node build/i18n/index.js",
     "i18n:watch": "nodemon --watch ./src/shared/intl/messages build/i18n/index.js --exec babel-node -e js",
