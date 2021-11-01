@@ -26,23 +26,6 @@ const PageFooter = {
           text: this.$t('marketC2CMarket'),
         },
       ],
-      informationData: [
-        {
-          to: { path: newsAnnouncementPath, query: { type: '2' } },
-          isReload: true,
-          text: this.$t('newsletter'),
-        },
-        {
-          to: { path: newsAnnouncementPath, query: { type: '1' } },
-          isReload: true,
-          text: this.$t('recommendArticle'),
-        },
-        {
-          to: { path: newsAnnouncementPath, query: { type: '3' } },
-          isReload: true,
-          text: this.$t('announcement'),
-        },
-      ],
       helpCenterData: [
         {
           to: helpPath,
@@ -77,6 +60,28 @@ const PageFooter = {
         this.socialData = otherSettings;
       });
     },
+
+    getInformationData() {
+      const newsList = [
+        {
+          to: { path: newsAnnouncementPath, query: { type: '2' } },
+          isReload: true,
+          text: this.$t('newsletter'),
+          hidden: this.isEnLanguage,
+        },
+        {
+          to: { path: newsAnnouncementPath, query: { type: '1' } },
+          isReload: true,
+          text: this.$t('recommendArticle'),
+        },
+        {
+          to: { path: newsAnnouncementPath, query: { type: '3' } },
+          isReload: true,
+          text: this.$t('announcement'),
+        },
+      ];
+      return newsList.filter(({ hidden }) => !hidden);
+    },
   },
 
   render() {
@@ -107,7 +112,7 @@ const PageFooter = {
             </div>
             <div class="page-footer-navs">
               <FooterMenuItem navTitle={this.$t('hashRateMarket')} itemData={this.hashRateMarketData} />
-              <FooterMenuItem navTitle={this.$t('information')} itemData={this.informationData} />
+              <FooterMenuItem navTitle={this.$t('information')} itemData={this.getInformationData()} />
               <FooterMenuItem navTitle={this.$t('support')} itemData={this.helpCenterData} />
               <FooterMenuItem navTitle={this.$t('businessCooperation')} itemData={this.businessCop} />
             </div>
