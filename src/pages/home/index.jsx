@@ -113,10 +113,10 @@ const Home = {
     },
     isVisibleWeeklyReport() {
       const { haveWeeklyReport, status } = this.weeklyReportInfo;
-      const isVisible = this.isVisibleBannerPopup
+      const isVisible = !isEmpty(this.weeklyReportDetail) && this.isVisibleActivityPopup
         && haveWeeklyReport === HAVE_REPORT
         && status === NOT_EJECTED
-        && isEmpty(this.bannerPopupList);
+        && isEmpty(this.activityPopupList);
       return isVisible;
     },
   },
@@ -265,7 +265,7 @@ const Home = {
     return (
       <div>
         {/* id为下载页面所需，切勿删除，如加元素在download组件之上，请放置在download-top-container中 */}
-        <div id='download-top-container'>
+        <div id="download-top-container">
           <Banner list={this.bannersList} />
           <BaseContainer>
             <Announcements announcementList={this.announcementList} />
@@ -332,11 +332,9 @@ const Home = {
           </div>
         )}
 
-        <WeeklyOutputReportModal
-          value={this.isVisibleWeeklyReport}
-          reportInfo={this.weeklyReportDetail}
-          onClose={this.viewedReport}
-        />
+        {this.isVisibleWeeklyReport && (
+          <WeeklyOutputReportModal value={true} reportInfo={this.weeklyReportDetail} onClose={this.viewedReport} />
+        )}
       </div>
     );
   },
