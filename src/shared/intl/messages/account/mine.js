@@ -130,7 +130,7 @@ export default {
   directlyInvitedOutputNotification: '直接邀请的好友的算力开始产出，获得{value}产出价值的奖励',
   directInvitationPurchaseNotification: '直接邀请的好友购买官方算力，立即获得{value}购买金额的返佣',
   indirectOutputNotification: '间接邀请好友的算力开始产出，获得{value}产出价值的奖励',
-  indirectPurchaseNotification: '间接邀请好友下级客户购买官方算力，立即获得{value}购买金额的返佣',
+  indirectPurchaseNotification: '间接邀请好友购买官方算力，立即获得{value}购买金额的返佣',
   outputBonusNotification: '“我的”算力（除去VIP算力）的基础产出分配加成',
   rebateRewardSort: '返佣奖励↓',
   directOutputRewardSort: '直邀产出奖励↓',
