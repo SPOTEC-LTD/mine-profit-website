@@ -6,9 +6,9 @@ const RecommendDetail = {
     const { params, redirect } = ctx;
     let textInfo = {};
     try {
-      const { body } = await fetchGoodNewsDetail({
-        pathParams: { id: params.id },
-      }, { ctx });
+      const { body } = await fetchGoodNewsDetail(
+        { pathParams: { id: params.id } }, { ctx },
+      );
       textInfo = body.textInfo;
     } catch (error) {
       redirect('/500');
@@ -18,7 +18,15 @@ const RecommendDetail = {
   },
   render() {
     const { publishTime, title, content, count, topStatus } = this.detail;
-    return <Article publishTime={publishTime} count={count} title={title} topStatus={!!topStatus} content={content} />;
+    return (
+      <Article
+        publishTime={publishTime}
+        count={count}
+        title={title}
+        topStatus={!!topStatus}
+        content={content}
+      />
+    );
   },
 };
 
