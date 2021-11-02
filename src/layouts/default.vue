@@ -84,7 +84,7 @@ export default {
     Vue.component('SuccessNode', SuccessNode);
     Vue.use(Modal);
     document.title = this.$t('zhProductName')
-    // this.setLivechat();
+    this.setLivechat();
     this.upateDocumentTitle();
     this.$router.beforeEach((_, from, next) => {
       if(this.hasPageButton) {
