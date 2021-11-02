@@ -17,7 +17,7 @@ import {
   LINK,
   H5_CONTENT,
 } from '@/shared/consts/activityTypes';
-import { ACTIVITY, ACTIVITY_VIEW_COUNT } from '@/modules/activity';
+import { ACTIVITY, ACTIVITY_VIEW_COUNT, ACTIVITY_SHOW_COUNT } from '@/modules/activity';
 import { PROMOTE_RULE } from '@/pages/Account/Detail/consts/tabsActiveValue';
 import HomeModal from '../HomeModal';
 import styles from './index.less?module';
@@ -26,8 +26,19 @@ const ActivityModal = {
   props: {
     info: Object,
   },
+  watch: {
+    info() {
+      this.updateActivityShowCount();
+    },
+  },
+  mounted() {
+    this.updateActivityShowCount();
+  },
   methods: {
-    ...mapActions(ACTIVITY, [ACTIVITY_VIEW_COUNT]),
+    ...mapActions(ACTIVITY, [ACTIVITY_VIEW_COUNT, ACTIVITY_SHOW_COUNT]),
+    updateActivityShowCount() {
+      this[ACTIVITY_SHOW_COUNT]({ id: this.info.activityCommonId });
+    },
     toActivityDetailPage() {
       const { type, linkUrl, id, activityCommonId } = this.info;
       const { userId = 'null' } = getUserInfoFunc();
