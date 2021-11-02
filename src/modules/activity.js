@@ -6,6 +6,7 @@ export const GET_ACTIVITY_LIST = 'getActivityList';
 export const GET_HASH_MODAL_LIST = 'getHashModalList';
 export const ACTIVITY_VIEW_COUNT = 'activityViewCount';
 export const GET_ACTIVITY_PUSH_LIST = 'getActivityPushList';
+export const ACTIVITY_SHOW_COUNT = 'activityShowCount';
 
 export const UPDATE_ACTIVITY_LIST = 'updateActivityList';
 const UPDATE_HASH_MODAL_LIST = 'updateHashModalList';
@@ -32,6 +33,14 @@ export default {
     },
   },
   actions: {
+    async [ACTIVITY_SHOW_COUNT](_, { id }) {
+      try {
+        await API.activityShowCount({ pathParams: { id } });
+        return Promise.resolve();
+      } catch (error) {
+        return Promise.reject(error);
+      }
+    },
     async [GET_ACTIVITY_PUSH_LIST]({ commit }) {
       try {
         const { body: { list } } = await API.getActivityPushList();

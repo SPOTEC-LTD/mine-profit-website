@@ -6,3 +6,4 @@ export const getActivityPushList = createAPI(httpMethod.GET, '/operation/activit
 export const activityViewCount = createAPI(httpMethod.PUT, '/operation/activity/:id/click');
 export const getBenefitsInfo = createAPI(httpMethod.GET, '/product/benefits/mark/info');
 export const getHashModalList = createAPI(httpMethod.GET, '/product/benefits/:userId/receive/benefits');
+export const activityShowCount = createAPI(httpMethod.PUT, '/operation/activity/:id/show');
