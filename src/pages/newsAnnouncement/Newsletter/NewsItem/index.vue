@@ -1,8 +1,10 @@
 <template>
   <div class="news-wrapper">
-    <div class="news-date">{{ updateTime }}</div>
-    <div class="news-title">{{ info.title }}</div>
-    <div class="news-content">{{ info.content }}</div>
+    <div class="news-container">
+      <div class="news-date">{{ updateTime }}</div>
+      <div class="news-title">{{ info.title }}</div>
+      <div class="news-content">{{ info.content }}</div>
+    </div>
   </div>
 </template>
 

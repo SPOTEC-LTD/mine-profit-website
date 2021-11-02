@@ -18,19 +18,24 @@ const NewsItem = {
     },
   },
   render() {
-    const { imageUrl, title, id, count, topStatus } = this.info;
+    const { imageUrl, title, id, count, topStatus, content } = this.info;
 
     return (
       <Link target="_blank" class={styles['news-wrapper']} to={{ path: urls.recommendDetailPath, params: { id } }}>
-        <div class={styles['image-wrapper']}>
-          <img class={styles['news-image']} src={imageUrl} alt="" />
-          {topStatus && <div class={styles.top}>{this.$t('infoTop')}</div>}
+        <div class={styles['content-box']}>
+          <div class={styles['image-wrapper']}>
+            <img class={styles['news-image']} src={imageUrl} alt="" />
+            {topStatus && <div class={styles.top}>{this.$t('infoTop')}</div>}
+          </div>
+          <div class={styles['right-content']}>
+            <span class={styles['news-title']}>{title}</span>
+            <div class={styles['news-text']}>{content}</div>
+            <div>
+              <span>{this.updateTime}</span>
+              <span class={styles['news-view-count']}>{`${this.$t('viewCount')}：${formatViewCount(count)}`}</span>
+            </div>
+          </div>
         </div>
-        <div class={styles['mid-content']}>
-          <span>{this.updateTime}</span>
-          <span>{`${this.$t('viewCount')}：${formatViewCount(count)}`}</span>
-        </div>
-        <span class={styles['news-title']}>{title}</span>
       </Link>
     );
   },

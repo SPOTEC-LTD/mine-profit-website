@@ -1,16 +1,22 @@
+@import '@/shared/styles/variables.less';
+
 .news-content {
   text-align: center;
+  padding-top: 34px;
   min-height: calc(100vh - 471px);
 }
 
 .news-box {
   display: inline-block;
-  padding-bottom: 222px;
+
+  > div:last-child::after {
+    display: none;
+  }
 }
 
 .no-data {
-  font-size: 16px;
+  font-size: @font-size-lg;
   line-height: 22px;
-  color: #242424;
+  color: @color__242424;
   margin-bottom: 22px;
 }
