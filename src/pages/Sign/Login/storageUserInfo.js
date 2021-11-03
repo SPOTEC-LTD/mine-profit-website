@@ -6,7 +6,6 @@ import localStorage from '@/shared/utils/localStorage';
 
 export default userInfo => {
   localStorage.setObject('userInfo', userInfo);
-  localStorage.set('token', userInfo.token);
   const cookies = new Cookies();
 
   cookies.set('token', userInfo.token, { path: '/' });

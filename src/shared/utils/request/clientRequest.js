@@ -1,6 +1,6 @@
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 import startsWith from 'lodash/startsWith';
-import localStorage from '@/shared/utils/localStorage';
 import { loginPath } from '@/router/consts/urls';
 import { location } from '@/shared/services/location';
 import Response from './Response';
@@ -13,10 +13,12 @@ const axiosInstance = axios.create(createOptions);
 
 const request = config => axiosInstance(config);
 
+const cookies = new Cookies();
+
 // 添加请求拦截器
 axiosInstance.interceptors.request.use(config => {
   // 在发送请求之前做些什么
-  config.headers.Authorization = localStorage.get('token');
+  config.headers.Authorization = cookies.get('token');
   return config;
 });
 

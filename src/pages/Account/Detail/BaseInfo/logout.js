@@ -7,7 +7,6 @@ const logout = () => {
   new Cookie().remove('userId', { path: '/' });
   new Cookie().remove('token', { path: '/' });
   localStorage.setObject('userInfo', {});
-  localStorage.set('token', '');
   localStorage.set('isNotFirstShow', '');
 
   locationServices.push(homePath);
