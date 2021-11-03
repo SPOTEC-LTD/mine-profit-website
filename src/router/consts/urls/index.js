@@ -5,27 +5,26 @@ export const downloadPath = '/download';
 export const bannerDetailPath = '/bannerDetail/:id/:userId';
 
 // ==== accountPaths
-export const accountPath = '/account';
-export const accountDetailPath = `${accountPath}/detail`;
-export const accountOrdersPath = `${accountPath}/orders`;
-export const accountHashRateListPath = `${accountPath}/hashrateList`;
-export const hashRateTurnOnPath = `${accountPath}/hashRateTurnOn/:productTemplateId`;
-export const transferHashratePath = `${accountPath}/transferHashrate/:productTemplateId`;
-export const pledgeHashratePath = `${accountPath}/pledgePageTitle/:productTemplateId`;
-export const bindInvitationCodePath = `${accountPath}/inputInviteCodeBind`;
-export const hashRateCouponsPath = `${accountPath}/hashRateCoupons`;
-export const bindPhonePath = `${accountPath}/bindPhone`;
-export const bindEmailPath = `${accountPath}/bindEmail`;
-export const setDealPasswordPath = `${accountPath}/dealPasswordSet`;
-export const setLoginPasswordPath = `${accountPath}/loginPasswordSet`;
-export const realNameAuthPath = `${accountPath}/realNameAuth`;
-export const transactionsPath = `${accountPath}/transactions`;
-export const depositPath = `${accountPath}/walletAllTypesCharge`;
-export const addressPath = `${accountPath}/withdrawAddressManagement`;
-export const pledgeRepaymentPath = `${accountPath}/payTypeRepay/:id`;
-export const pledgeRedeemPath = `${accountPath}/payTypeRedeem/:id`;
-export const withdrawPath = `${accountPath}/walletAllTypesCarry`;
-export const buyBackPath = `${accountPath}/buyBack`;
+export const accountDetailPath = '/account';
+export const accountOrdersPath = `${accountDetailPath}/orders`;
+export const accountHashRateListPath = `${accountDetailPath}/hashrateList`;
+export const hashRateTurnOnPath = `${accountDetailPath}/hashRateTurnOn/:productTemplateId`;
+export const transferHashratePath = `${accountDetailPath}/transferHashrate/:productTemplateId`;
+export const pledgeHashratePath = `${accountDetailPath}/pledgePageTitle/:productTemplateId`;
+export const bindInvitationCodePath = `${accountDetailPath}/inputInviteCodeBind`;
+export const hashRateCouponsPath = `${accountDetailPath}/hashRateCoupons`;
+export const bindPhonePath = `${accountDetailPath}/bindPhone`;
+export const bindEmailPath = `${accountDetailPath}/bindEmail`;
+export const setDealPasswordPath = `${accountDetailPath}/dealPasswordSet`;
+export const setLoginPasswordPath = `${accountDetailPath}/loginPasswordSet`;
+export const realNameAuthPath = `${accountDetailPath}/realNameAuth`;
+export const transactionsPath = `${accountDetailPath}/transactions`;
+export const depositPath = `${accountDetailPath}/walletAllTypesCharge`;
+export const addressPath = `${accountDetailPath}/withdrawAddressManagement`;
+export const pledgeRepaymentPath = `${accountDetailPath}/payTypeRepay/:id`;
+export const pledgeRedeemPath = `${accountDetailPath}/payTypeRedeem/:id`;
+export const withdrawPath = `${accountDetailPath}/walletAllTypesCarry`;
+export const buyBackPath = `${accountDetailPath}/buyBack`;
 
 // ==== aboutUsPaths
 export const aboutUsPaths = '/aboutUs';
