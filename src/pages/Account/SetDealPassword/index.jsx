@@ -195,7 +195,7 @@ const SetDealPassword = {
                   { required: true, message: this.$t('payPwdEmptyHint') },
                 ]}
               >
-                <Input
+                <Input.Password
                   v-model={this.form.newDealCode}
                   placeholder={this.$t('payInputPwd')}
                   maxLength={20}
@@ -221,7 +221,7 @@ const SetDealPassword = {
                   },
                 ]}
               >
-                <Input
+                <Input.Password
                   v-model={this.form.confirmNewDealCode}
                   placeholder={this.$t('tradePwdSettingTradePwdAgainHint')}
                   maxLength={20}

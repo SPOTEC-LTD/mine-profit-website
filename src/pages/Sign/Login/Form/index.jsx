@@ -1,3 +1,5 @@
+import EyeInvisibleFilled from 'ahoney/lib/icons/EyeInvisibleOutlined';
+import EyeFilled from 'ahoney/lib/icons/EyeOutlined';
 import PhoneInput from '@/shared/components/PhoneInput';
 import VerificationInput from '@/shared/components/VerificationInput';
 import LabelInput from '@/shared/components/LabelInput';
@@ -23,6 +25,11 @@ const Form = {
     getVerCode: {
       type: Function,
     },
+  },
+  data() {
+    return {
+      isShowPassword: false,
+    };
   },
   methods: {
     onFieldChange(value, key) {
@@ -60,7 +67,17 @@ const Form = {
         value={this.formData.password}
         error={this.formError.password}
         label={this.$t('password')}
-        type="password"
+        type={this.isShowPassword ? 'text' : 'password'}
+        suffix={
+          <div
+            class={styles['eye-icon']}
+            onClick={() => {
+              this.isShowPassword = !this.isShowPassword;
+            }}
+          >
+            {this.isShowPassword ? <EyeFilled /> : <EyeInvisibleFilled />}
+          </div>
+        }
         onChange={value => this.onFieldChange(value, 'password')}
       />
     );

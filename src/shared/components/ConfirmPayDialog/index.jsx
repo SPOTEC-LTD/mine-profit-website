@@ -62,7 +62,7 @@ const ConfirmPayDialog = {
             <div>{this.prompt}</div>
           </div>
         )}
-        <Input
+        <Input.Password
           value={this.password}
           onChange={this.handlePassWordChange}
           name="password"

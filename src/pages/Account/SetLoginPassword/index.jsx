@@ -197,7 +197,7 @@ const SetLoginPassword = {
                   { required: true, message: this.$t('loginPasswordRequire') },
                 ]}
               >
-                <Input
+                <Input.Password
                   v-model={this.form.newPassword}
                   placeholder={this.$t('pwdSettingNewPwdHint')}
                   maxLength={20}
@@ -223,7 +223,7 @@ const SetLoginPassword = {
                   },
                 ]}
               >
-                <Input
+                <Input.Password
                   v-model={this.form.confirmNewLoginCode}
                   placeholder={this.$t('pwdSettingNewPwdAgainHint')}
                   maxLength={20}
