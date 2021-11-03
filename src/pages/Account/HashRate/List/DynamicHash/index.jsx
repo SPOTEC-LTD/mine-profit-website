@@ -18,7 +18,8 @@ const DynamicHash = {
   methods: {
     getChainInfoList() {
       const {
-        cumulativeRepurchase, hashrateType, todayExpectedOutput, unitOutput, unit,
+        cumulativeRepurchase, hashrateType, todayExpectedOutput,
+        unitOutput, unit, cumulativeRepurchaseUsdt,
       } = this.dynamicHashInfo;
 
       return [
@@ -39,7 +40,7 @@ const DynamicHash = {
         },
         {
           label: this.$t('cumulativeRepurchaseValue'),
-          value: bigNumberToFixed(cumulativeRepurchase || 0, 10),
+          value: bigNumberToFixed(cumulativeRepurchaseUsdt || 0, 10),
           unit: 'USDT',
         },
       ];

@@ -51,6 +51,9 @@ const NoviceBenefits = {
       showShareQrCodeModal: false,
       showHashrateModal: false,
       modalIndex: 0,
+      registrationLoading: false,
+      inviteLoading: false,
+      addOfficialLoading: false,
     };
   },
   computed: {
@@ -119,6 +122,7 @@ const NoviceBenefits = {
           describe: this.$t('welfareDesc1', { enProductName: this.$t('enProductName') }),
           image: benefitsImg1,
           status: registrationStatus,
+          loading: this.registrationLoading,
         },
         {
           title: this.$t('drawerInviteFriend'),
@@ -128,6 +132,7 @@ const NoviceBenefits = {
           describe: this.$t('welfareDesc2', { enProductName: this.$t('enProductName') }),
           image: benefitsImg2,
           status: inviteStatus,
+          loading: this.inviteLoading,
         },
         {
           title: this.$t('addOfficialService'),
@@ -137,6 +142,7 @@ const NoviceBenefits = {
           describe: this.$t('welfareDesc3'),
           image: benefitsImg3,
           status: addCusServiceStatus,
+          loading: this.addOfficialLoading,
         },
       ];
 
@@ -175,9 +181,18 @@ const NoviceBenefits = {
       const benefitsTypeList = [
         'REGISTRATION_SUCCESS', 'INVITE_FRIENDS', 'ADD_CUSTOMER_SERVICE_STAFF',
       ];
+      const loadingKeys = [
+        'registrationLoading', 'inviteLoading', 'addOfficialLoading',
+      ];
+      this[loadingKeys[index]] = true;
       this[GET_HASH_MODAL_LIST]({ benefitsType: benefitsTypeList[index] })
         .then(() => {
           this.showHashrateModal = true;
+          this[loadingKeys[index]] = false;
+        })
+        .catch(err => {
+          console.log(err);
+          this[loadingKeys[index]] = false;
         });
     },
 
@@ -249,7 +264,7 @@ const NoviceBenefits = {
                         )}
                         onClick={this.getTaskCompletionMap(index, item.status).on}
                       >
-                        <Spin spinning={item.status === COMPLETED && !!this.loading}>
+                        <Spin spinning={item.status === COMPLETED && item.loading}>
                           {this.getTaskCompletionMap(index, item.status).text}
                         </Spin>
                       </div>
