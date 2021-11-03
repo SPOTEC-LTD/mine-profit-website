@@ -1,4 +1,5 @@
 import { mapActions, mapState } from 'vuex';
+import NoData from '@/shared/components/NoData';
 import locationHelp from '@/shared/utils/locationHelp';
 import BlockTitle from '@/shared/components/BlockTitle';
 import BaseContainer from '@/shared/components/BaseContainer';
@@ -101,11 +102,14 @@ const Activity = {
                 class={[styles['list-title'], styles['progress-title']]}
                 title={this.isChinese && this.$t('progressActivity')}
               />
-              <BannerList
-                className={styles['data-list']}
-                dataList={this.inProgressList}
-                onHandleClick={this.linkToActivity}
-              />
+              {this.inProgressList.length
+                ? (<BannerList
+                    className={styles['data-list']}
+                    dataList={this.inProgressList}
+                    onHandleClick={this.linkToActivity}
+                  />)
+                : <NoData class={styles['no-data']} />
+              }
             </div>
             <div class={styles['closed-list']}>
               <BlockTitle
@@ -113,11 +117,14 @@ const Activity = {
                 class={styles['list-title']}
                 title={this.isChinese && this.$t('closedActivity')}
               />
-              <BannerList
-                className={styles['data-list']}
-                dataList={this.closedList}
-                onHandleClick={this.linkToActivity}
-              />
+              {this.closedList.length
+                ? (<BannerList
+                  className={styles['data-list']}
+                  dataList={this.closedList}
+                  onHandleClick={this.linkToActivity}
+                  />)
+                : <NoData class={styles['no-data']} />
+              }
             </div>
           </BaseContainer>
         </div>
