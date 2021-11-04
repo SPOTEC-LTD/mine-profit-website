@@ -3,7 +3,7 @@ import { Breadcrumb } from 'ant-design-vue';
 import { pathRoutes } from '@/router';
 import Link from '@/shared/components/Link';
 import matchPath from '@/shared/utils/matchPath';
-import { urlToList } from '@/shared/utils/qsHelp';
+import { urlToList, getPathAndQueryObject } from '@/shared/utils/qsHelp';
 
 import './index.less';
 
@@ -23,7 +23,8 @@ const BaseContainer = {
           if (path !== '*') {
             const data = this.$i18n.locale === 'en' ? value.replace('/en', '') : value;
             const [pageName] = name.split('__');
-            const matchedPath = matchPath(data, { path, exact: true });
+            const { path: resultPath } = getPathAndQueryObject(data);
+            const matchedPath = matchPath(resultPath, { path, exact: true });
             if (matchedPath) {
               resultData.push({
                 path: matchedPath.url,

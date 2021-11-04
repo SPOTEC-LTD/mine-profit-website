@@ -68,7 +68,8 @@ export default [
   },
   {
     path: urls.accountHashRateListPath,
-    name: 'hashRateList',
+    name: 'hashRateDetail',
+    meta: { showBreadcrumb: true },
     component: HashRateList,
   },
   {

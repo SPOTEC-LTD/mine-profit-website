@@ -16,7 +16,9 @@ export const getPathAndQueryObject = search => {
   if (search) {
     const [path, query] = search.split('?');
     searchQueryObject.path = path;
-    searchQueryObject.query = getQueryObject(query);
+    if (query) {
+      searchQueryObject.query = getQueryObject(query);
+    }
     return searchQueryObject;
   }
   return searchQueryObject;
