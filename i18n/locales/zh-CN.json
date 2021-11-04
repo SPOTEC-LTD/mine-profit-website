@@ -256,6 +256,7 @@
   "priceRate24H": "24小时涨跌",
   "salabilityNumber": "可出售算力数量：",
   "inputSalabilityNumber": "请输入出售数量",
+  "hashRateDetail": "算力详情",
   "typeNormal": "普通",
   "typeClose": "封闭",
   "typePledge": "质押",

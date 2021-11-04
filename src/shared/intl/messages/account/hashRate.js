@@ -1,4 +1,5 @@
 export default {
+  hashRateDetail: '算力详情',
   typeNormal: '普通',
   typeClose: '封闭',
   typePledge: '质押',
