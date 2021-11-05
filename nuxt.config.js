@@ -77,8 +77,7 @@ export default {
       // config.resolve.modules.push(resolveCwd('src'));
       // config.resolve.alias['@'] = resolveCwd('src');
     },
-
-    transpile: [/ant-design-vue/],
+    transpile: [/ant-design-vue/, "dom7", "swiper"], // fix ie11 swiper bug
     extractCSS: true,
     babel: {
       babelrc: false,
