@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { Modal } from 'ant-design-vue';
 import CancelledOutlined from 'ahoney/lib/icons/CancelledOutlined';
 import omit from 'lodash/omit';
@@ -39,7 +40,7 @@ const BaseModal = {
           <span class='click-node' onClick={this.open}>{this.$scopedSlots.default()}</span>
         }
         <Modal
-          class="base-modal"
+          class={classNames('base-modal', { 'is-hidden': !resultVisible })}
           centered
           width={300}
           footer={null}
