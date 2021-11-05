@@ -45,8 +45,9 @@ const BaseModal = {
           width={300}
           footer={null}
           visible={resultVisible}
+          onCancel={this.close}
           closeIcon={
-            <div class={this.iconClassName} onClick={this.close}>
+            <div class={this.iconClassName}>
               <CancelledOutlined />
             </div>
           }
