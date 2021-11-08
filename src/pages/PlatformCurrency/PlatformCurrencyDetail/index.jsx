@@ -124,13 +124,13 @@ const PlatformCurrencyDetail = {
           </div>
           <div>
             <div class={styles.title}>{this.$t('detail_3_title')}</div>
-            <div>{this.$t('detail_3_text')}</div>
+            <div>{this.$t('detail_3_text', { enProductName: this.$t('enProductName') })}</div>
             <img class={styles.formula} src={formula2} alt="" />
           </div>
           <div>
             <div class={styles.title}>{this.$t('detail_4_title')}</div>
             <div>{this.$t('detail_4_text_1')}</div>
-            <div>{this.$t('detail_4_text_2')}</div>
+            <div>{this.$t('detail_4_text_2', { enProductName: this.$t('enProductName') })}</div>
             <div>{this.$t('detail_4_text_3', { name })}</div>
           </div>
           <div>
