@@ -126,6 +126,7 @@ export default {
   share: '分享',
   pledgeCancel: '立即取消',
   pledgeCancelTips: '确认取消质押？',
+  cancelPledge: '取消质押',
   pledgeInvestHint: '确认后，30分钟内需完成质押认购，未完成将自动取消。',
   hashrateOpening: '开机中 ···',
   hashrateOpenSuccess: '开机成功',

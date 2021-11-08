@@ -1,9 +1,13 @@
 import { Statistic } from 'ant-design-vue';
+import { mapActions, mapState } from 'vuex';
 import SharedFilled from 'ahoney/lib/icons/SharedFilled';
+import InfoCircleFilled from 'ahoney/lib/icons/InfoCircleFilled';
 import FooterButtonGroup from '@/pages/Account/HashRate/List/components/FooterButtonGroup';
 import FooterLayout from '@/pages/Account/HashRate/List/components/FooterLayout';
 import { getLocalLanguage } from '@/shared/utils/getLocalLanguage';
 import ShareQrCodeModal from '@/shared/components/ShareQrCodeModal';
+import ConfirmModal from '@/shared/components/ConfirmModal';
+import { CANCEL_HASHRATE_PLEDGE, HASH_RATE } from '@/modules/account/hashRate';
 import PledgeStatusTag from '../components/PledgeStatusTag';
 import styles from './index.less?module';
 
@@ -12,9 +16,22 @@ const CardFooter = {
   data() {
     return {
       showShareQrCodeModal: false,
+      isVisibleModal: false,
     };
   },
+  computed: {
+    ...mapState({
+      loading: state => state.loading.effects[`${HASH_RATE}/${CANCEL_HASHRATE_PLEDGE}`],
+    }),
+  },
   methods: {
+    ...mapActions(HASH_RATE, [CANCEL_HASHRATE_PLEDGE]),
+    cancelPledge(id) {
+      this[CANCEL_HASHRATE_PLEDGE]({ id }).then(() => {
+        this.isVisibleModal = false;
+        this.$emit('refresh');
+      });
+    },
     getButtonDataSource() {
       return [
         {
@@ -68,6 +85,18 @@ const CardFooter = {
           title={this.$t('myHashratePledgeShare')}
           content={link}
         />
+        <ConfirmModal
+            value={this.isVisibleModal}
+            confirmLoading={this.loading}
+            title={this.$t('cancelPledge')}
+            onConfirm={() => this.cancelPledge(data.id)}
+            onCancel={() => { this.isVisibleModal = false; }}
+          >
+            <div class={styles['cannel-modal']}>
+              <InfoCircleFilled />
+              <div>{this.$t('pledgeCancelTips')}</div>
+            </div>
+          </ConfirmModal>
       </div>
     );
   },
