@@ -10,9 +10,9 @@ const BannerDetail = {
     try {
       const { id } = params;
       const {
-        body: { bannerAdmin },
+        body: { banner },
       } = await getBannerDetail({ pathParams: { id } }, { ctx });
-      props.detail = bannerAdmin;
+      props.detail = banner;
     } catch (error) {
       redirect('/500');
     }

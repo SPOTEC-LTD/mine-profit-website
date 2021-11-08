@@ -7,6 +7,8 @@ export const GET_HOME_PRODUCT_LIST = 'getHomeProductList';
 export const GET_HASHRATE_COUPON_POPUP_LIST = 'getHashrateCouponPopupList';
 export const GET_HASHRATE_POPUP_LIST = 'getHashratePopupList';
 export const GET_WEEKLY_REPORT_POPUP_INFO = 'getWeeklyReportPopupInfo';
+export const UPDATE_BANNER_SHOW_COUNT = 'updateBannerShowCount';
+export const UPDATE_BANNER_CLICK_COUNT = 'updateBannerClickCount';
 
 const UPDATE_MARKETS_LIST = 'updateMarketsList';
 const UPDATE_HOME_PRODUCT_LIST = 'updateHomeProductList';
@@ -47,6 +49,22 @@ export default {
     },
   },
   actions: {
+    async [UPDATE_BANNER_SHOW_COUNT](_, { id }) {
+      try {
+        await HomeAPI.updateBannerShowCount({ pathParams: { id } });
+        return Promise.resolve();
+      } catch (error) {
+        return Promise.reject(error);
+      }
+    },
+    async [UPDATE_BANNER_CLICK_COUNT](_, { id }) {
+      try {
+        await HomeAPI.updateBannerClickCount({ pathParams: { id } });
+        return Promise.resolve();
+      } catch (error) {
+        return Promise.reject(error);
+      }
+    },
     async [GET_MARKETS_LIST]({ commit }) {
       try {
         const { body: { list } } = await API.getMarketsList();
