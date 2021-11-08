@@ -21,7 +21,6 @@ const BannerModal = {
       this.$emit('viewed', id);
     },
     close() {
-      alert('2323');
       this.$emit('viewed', this.info.id);
     },
     getBannerModalContent() {
