@@ -1,9 +1,7 @@
 import classNames from 'classnames';
 import CorrectOutlined from 'ahoney/lib/icons/CorrectOutlined';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
-import btcIcon from '@/assets/account/wallet_btc_icon.png';
-import ethIcon from '@/assets/account/wallet_eth_icon.png';
-import usdtIcon from '@/assets/account/wallet_usdt_icon.png';
+import { EthIcon, BtcIcon, UsdtIcon } from '@/shared/components/ChainIcon';
 import './index.less';
 
 const PayWayItem = {
@@ -16,9 +14,9 @@ const PayWayItem = {
     return {
       show: true,
       iconArr: {
-        BTC: btcIcon,
-        ETH: ethIcon,
-        USDT: usdtIcon,
+        BTC: <BtcIcon class='btc-img' />,
+        ETH: <EthIcon class='eth-img'/>,
+        USDT: <UsdtIcon class='usdt-img'/>,
       },
     };
   },
@@ -41,7 +39,9 @@ const PayWayItem = {
         onClick={this.handleClick}
       >
         <div class='img-chain-type'>
-          <img src={this.iconArr[chainType]} alt="" class='coin-img' />
+          <div class='coin-img-wrapper'>
+            {this.iconArr[chainType]}
+          </div>
           <span class='head-unit'>{chainType}</span>
           {chooses && <CorrectOutlined />}
         </div>

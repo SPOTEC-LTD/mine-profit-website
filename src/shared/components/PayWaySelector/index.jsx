@@ -7,9 +7,7 @@ import { depositPath } from '@/router/consts/urls';
 import locationHelp from '@/shared/utils/locationHelp';
 import PayWayItem from '@/shared/components/PayWayItem';
 import { USER, GET_USER_BALLANCE } from '@/modules/user';
-import btcIcon from '@/assets/account/wallet_btc_icon.png';
-import ethIcon from '@/assets/account/wallet_eth_icon.png';
-import usdtIcon from '@/assets/account/wallet_usdt_icon.png';
+import { EthIcon, BtcIcon, UsdtIcon } from '@/shared/components/ChainIcon';
 import getOrderBalance from '@/shared/utils/getOrderBalance';
 import FormContainer from '@/shared/components/FormContainer';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
@@ -30,9 +28,9 @@ const PayWaySelector = {
       menuVisible: false,
       balance: 0,
       iconArr: {
-        BTC: btcIcon,
-        ETH: ethIcon,
-        USDT: usdtIcon,
+        BTC: <BtcIcon class='pay-way-coin-img' />,
+        ETH: <EthIcon class='pay-way-coin-img'/>,
+        USDT: <UsdtIcon class='pay-way-coin-img'/>,
       },
     };
   },
@@ -156,7 +154,7 @@ const PayWaySelector = {
         >
           <div class='pay-way-selectors' onClick={e => { e.stopPropagation(); }}>
             <div class='pay-way-chooses-coin'>
-              <img src={this.iconArr[this.choosesCoin]} alt="" class='pay-way-coin-img' />
+              {this.iconArr[this.choosesCoin]}
               <span>{this.choosesCoin}</span>
             </div>
             {!this.menuVisible && (

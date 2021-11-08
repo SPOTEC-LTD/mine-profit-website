@@ -18,6 +18,7 @@ import PledgeRepayment from '@/pages/Account/PledgeRepayment';
 import Withdraw from '@/pages/Account/Detail/Wallet/Withdraw';
 import BuyBack from '@/pages/Account/Detail/Wallet/BuyBack';
 import BindInvitationCode from '@/pages/Account/BindInvitationCode';
+import PledgeHelp from '@/pages/Account/PledgeHelp';
 import * as urls from './consts/urls';
 
 const walletRoutes = [
@@ -142,5 +143,10 @@ export default [
     path: urls.bindInvitationCodePath,
     name: 'inputInviteCodeBind',
     component: BindInvitationCode,
+  },
+  {
+    path: urls.pledgeHelpPath,
+    name: 'pledgeHelp',
+    component: PledgeHelp,
   },
 ];

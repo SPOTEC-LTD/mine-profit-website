@@ -25,6 +25,7 @@ export const pledgeRepaymentPath = `${accountDetailPath}/payTypeRepay/:id`;
 export const pledgeRedeemPath = `${accountDetailPath}/payTypeRedeem/:id`;
 export const withdrawPath = `${accountDetailPath}/walletAllTypesCarry`;
 export const buyBackPath = `${accountDetailPath}/buyBack`;
+export const pledgeHelpPath = `${accountDetailPath}/pledgeHelp/:userId`;
 
 // ==== aboutUsPaths
 export const aboutUsPaths = '/aboutUs';
