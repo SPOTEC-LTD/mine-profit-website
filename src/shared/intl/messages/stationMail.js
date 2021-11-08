@@ -21,4 +21,5 @@ export default {
   verifyDialogRealNameContent: '为保证您的账户合规\n需补充以下资料',
   verifyDialogPasswordContent: '为保证您的交易安全性\n请设置交易密码',
   countdownFormat: '{second}秒后自动进入',
+  infinity: '无限大',
 };
