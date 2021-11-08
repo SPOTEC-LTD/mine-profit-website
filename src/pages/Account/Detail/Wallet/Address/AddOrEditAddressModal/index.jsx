@@ -61,7 +61,10 @@ const AddOrEditAddressModal = {
         width={494}
         visible={this.visible}
         onConfirm={this.modalConfirm}
-        onCancel={() => { this.visible = false; }}
+        onCancel={() => {
+          this.visible = false;
+          this.$refs.form.resetFields();
+        }}
       >
         <FormModel
           ref="form"
