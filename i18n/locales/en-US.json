@@ -685,5 +685,6 @@
     "verifyCodeRequired": "Verification code must be filled",
     "loginMineprofit": "Sign in {enProductName}",
     "emailLogin": "Email Login",
-    "phoneLogin": "Log in with phone"
+    "phoneLogin": "Log in with phone",
+    "buyBack": "Buy-back"
 }
