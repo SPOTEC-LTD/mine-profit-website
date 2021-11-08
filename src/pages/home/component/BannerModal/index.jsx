@@ -11,22 +11,15 @@ const BannerModal = {
   props: {
     info: Object,
   },
-  watch: {
-    info() {
-      this.updateBannerViewCount();
-    },
-  },
-  mounted() {
-    this.updateBannerViewCount();
-  },
   methods: {
     ...mapActions(HOME, [UPDATE_BANNER_SHOW_COUNT, UPDATE_BANNER_CLICK_COUNT]),
-    updateBannerViewCount() {
-      this[UPDATE_BANNER_SHOW_COUNT]({ id: this.info.id });
+    updateBannerViewCount(id) {
+      this[UPDATE_BANNER_SHOW_COUNT]({ id });
     },
     toBannerDetailPage() {
       const { linkType, linkUrl, id } = this.info;
       const { userId = 'null' } = getUserInfoFunc();
+      this.updateBannerViewCount(id);
       this[UPDATE_BANNER_CLICK_COUNT]({ id });
       if (linkType === LINK) {
         locationHelp.open(linkUrl);
@@ -36,6 +29,7 @@ const BannerModal = {
       this.$emit('viewed', id);
     },
     close() {
+      this.updateBannerViewCount(this.info.id);
       this.$emit('viewed', this.info.id);
     },
     getBannerModalContent() {

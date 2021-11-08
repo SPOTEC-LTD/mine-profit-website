@@ -37,10 +37,11 @@ export default {
   detail_2_title_2: '总产量：约3亿6千万枚',
   detail_3_title: '获取方式',
   detail_3_text:
-    '购买任何官方市场产品将可以免费获得MP算力。获得比例：1USDT=1T MP算力，即如果客户购买的官方市场产品价值为100USDT，则该客户将免费再获得100T MP算力。',
+    // eslint-disable-next-line max-len
+    '购买任何官方市场产品将可以免费获得{enProductName}算力。获得比例：1USDT=1T {enProductName}算力，即如果客户购买的官方市场产品价值为100USDT，则该客户将免费再获得100T {enProductName}算力。',
   detail_4_title: '创始空投',
   detail_4_text_1: '2021.12.18上线',
-  detail_4_text_2: '根据客户已购买MP官方算力的价值进行空投：',
+  detail_4_text_2: '根据客户已购买{enProductName}官方算力的价值进行空投：',
   detail_4_text_3: '初始{name}算力=Max（购买时价值，12.18价值）',
   downloadWhitePaper: '下载白皮书',
   whitePaper: '白皮书',
