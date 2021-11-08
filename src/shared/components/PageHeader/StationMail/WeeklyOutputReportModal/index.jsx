@@ -4,6 +4,8 @@ import { EthIcon, BtcIcon } from '@/shared/components/ChainIcon';
 import BaseModal from '@/shared/components/BaseModal';
 import ProgressLoop from '@/shared/components/ProgressLoop';
 import pageTwoImage from '@/assets/stationMail/page-two-image.png';
+import pageTwoInfinityImage from '@/assets/stationMail/page-two-infinity-image.png';
+import infinityImage from '@/assets/stationMail/infinity-image.png';
 import bubbleArrowIcon from '@/assets/stationMail/bubble-arrow.png';
 
 import styles from './index.less?module';
@@ -91,26 +93,38 @@ const WeeklyOutputReportModal = {
 
     getContentRight() {
       const { desc, annualizedRateOfReturn } = this.reportInfo;
+      const isNull = annualizedRateOfReturn === null;
 
       return (
         <div class={styles['content-right']}>
           <div class={styles['content-main']}>
             <div class={styles['income-rate']}>{this.$t('investItemAnnualRate')}</div>
-            <div class={styles['income-percent']}>
-              {numberUtils.formatPercent(
-                annualizedRateOfReturn,
-                {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                  usePlus: annualizedRateOfReturn > 0,
-                },
-              )}
-            </div>
+            {!isNull && (
+              <div class={styles['income-percent']}>
+                {numberUtils.formatPercent(
+                  annualizedRateOfReturn,
+                  {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                    usePlus: annualizedRateOfReturn > 0,
+                  },
+                )}
+              </div>
+            )}
+            {isNull && (
+              <div class={styles.infinity}>
+                <img class={styles['infinity-img']} src={infinityImage} alt="" />
+                <span class={styles['infinity-text']}>{this.$t('infinity')}</span>
+              </div>
+            )}
           </div>
           <div class={styles['content-main']}>
             <div class={styles['income-tip']}>{desc}</div>
             <img class={styles['income-icon']} src={bubbleArrowIcon} alt="" />
-            <img class={styles['income-img']} src={pageTwoImage} alt="" />
+            {isNull
+              ? <img class={styles['income-infinity-img']} src={pageTwoInfinityImage} alt="" />
+              : <img class={styles['income-img']} src={pageTwoImage} alt="" />
+            }
           </div>
         </div>
       );
