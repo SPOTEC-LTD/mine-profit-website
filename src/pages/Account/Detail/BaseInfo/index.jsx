@@ -199,7 +199,7 @@ const Detail = {
                         <div>
                           <div class={styles['bonus-value']}>{bonusValue}</div>
                         </div>
-                        <span>{getBonusTypeLabelMap()[item.type]}</span>
+                        <div class={styles['bonus-text']}>{getBonusTypeLabelMap()[item.type]}</div>
                       </div>
                     </div>
                   </BonusTooltip>
