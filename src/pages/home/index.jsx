@@ -228,8 +228,8 @@ const Home = {
         return item;
       });
 
-      const localActivityPopupList = isEmpty(localStorage.getObject('ActivityPopupList')) ?
-        [] : localStorage.getObject('ActivityPopupList');
+      const localActivityPopupList = isEmpty(localStorage.getObject('activityPopupList')) ?
+        [] : localStorage.getObject('activityPopupList');
 
       const recordId = {};
 
