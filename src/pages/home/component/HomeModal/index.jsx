@@ -8,6 +8,7 @@ const HomeModal = {
       <BaseModal
         value={true}
         width={389}
+        maskClosable={false}
         iconClassName={styles['close-icon-wrap']}
         wrapClassName={styles['home-modal']}
         scopedSlots={{
