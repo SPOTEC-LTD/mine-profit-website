@@ -167,7 +167,10 @@ const PledgeRepayment = {
         <RateFluctuation
           visible={this.showFluctuationDialog}
           onHandleConfirm={this.onSubmit}
-          onHandleCancel={() => { window.$nuxt.refresh(); }}
+          onHandleCancel={() => {
+            this.showFluctuationDialog = false;
+            window.$nuxt.refresh();
+          }}
           placeOrderResult={this.productOrderResult}
           loading={this.loading}
         />
