@@ -27,3 +27,4 @@ export const pledgeRedeemPay = createAPI(httpMethod.PUT, '/product/hashrate/pled
 export const pledgeRepaymentPay = createAPI(httpMethod.PUT, '/product/hashrate/pledges/:userId/:id/repayment');
 export const pledgeConfirmSettle = createAPI(httpMethod.PUT, '/product/hashrate/pledges/:userId/:id/settle');
 export const getDynamicHashInfo = createAPI(httpMethod.GET, '/product/hashrate/:userId/mpt');
+export const getThemeDetail = createAPI(httpMethod.GET, '/operation/themes/:id');

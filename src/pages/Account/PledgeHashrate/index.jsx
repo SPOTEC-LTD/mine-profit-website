@@ -1,12 +1,14 @@
-import { Select, FormModel, Input, Spin } from 'ant-design-vue';
 import numberUtils from 'aa-utils/lib/numberUtils';
 import { mapActions, mapState, mapMutations } from 'vuex';
-import * as API from '@/api/account/hashRate';
 import TriangleFilled from 'ahoney/lib/icons/TriangleFilled';
-import { accountHashRateListPath } from '@/router/consts/urls';
+import { Select, FormModel, Input, Spin } from 'ant-design-vue';
+import InfoCircleFilled from 'ahoney/lib/icons/InfoCircleFilled';
+import * as API from '@/api/account/hashRate';
+import getTimes from '@/shared/utils/getTimes';
+import locationHelp from '@/shared/utils/locationHelp';
+import { accountHashRateListPath, pledgeHelpPath } from '@/router/consts/urls';
 import ProductTitle from '@/shared/components/ProductTitle';
 import { HASH_RATE, HASHRATE_PLEDGE, GET_HASHRATE_PLEDGE_INFO, hashrateStatusMap } from '@/modules/account/hashRate';
-import getTimes from '@/shared/utils/getTimes';
 import { SELLING_PRICE_CHANGE, MAN_MACHINE_VERIFICATION_CODE } from '@/shared/utils/request/consts/ResponseCode';
 import Notification from '@/shared/services/Notification';
 import PageButton from '@/shared/components/PageButton';
@@ -20,6 +22,7 @@ import ShareQrCodeModal from '@/shared/components/ShareQrCodeModal';
 import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
 import { getLocalLanguage } from '@/shared/utils/getLocalLanguage';
 import { CLOSE } from '@/pages/Account/HashRate/consts/pledgeSourceType';
+import localStorage from '@/shared/utils/localStorage';
 import {
   MAN_MACHINE_VERIFICATION,
   UPDATE_IS_DEAL_PASSWORD_VERIFICATION,
@@ -130,6 +133,18 @@ const PledgeHashrate = {
           activeName: hashrateStatusMap.PLEDGES,
         },
       });
+    },
+    linkToPledgeHelp() {
+      const { userId } = localStorage.getObject('userInfo');
+      locationHelp.open(pledgeHelpPath, { params: { userId } });
+    },
+    pledgeHelp() {
+      return (
+        <div class={styles['pledge-help']} onClick={this.linkToPledgeHelp}>
+          <span>{this.$t('pledgeHelp')}</span>
+          <InfoCircleFilled />
+        </div>
+      );
     },
     onSubmit(password) {
       this.password = password || this.password;
@@ -301,7 +316,12 @@ const PledgeHashrate = {
           title={this.$t('myHashratePledgeShare')}
           content={link}
         />
-        <PageButton type="primary" loading={this.loading} onClick={this.onPageButtonConfirm}>
+        <PageButton
+          type="primary"
+          loading={this.loading}
+          onClick={this.onPageButtonConfirm}
+          scopedSlots={{ rightContent: this.pledgeHelp }}
+        >
           {this.$t('confirmPledge')}
         </PageButton>
       </div>
