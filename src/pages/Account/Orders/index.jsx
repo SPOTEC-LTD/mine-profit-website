@@ -87,6 +87,7 @@ const Orders = {
       } else {
         this[timeType] = moment(date, 'YYYY.MM.DD').valueOf();
       }
+      this.pageNum = 1;
       this.getOrdersAction();
     },
 
