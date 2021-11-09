@@ -1,6 +1,8 @@
 import { mapState, mapMutations, mapActions } from 'vuex';
 import { Table } from 'ant-design-vue';
 import CorrectOutlined from 'ahoney/lib/icons/CorrectOutlined';
+import BigEllipsisOutlined from 'ahoney/lib/icons/BigEllipsisOutlined';
+import CancelledOutlined from 'ahoney/lib/icons/CancelledOutlined';
 
 import { WALLET, GET_WALLET_DETAIL, RESET_STATE, GET_LEDGER_TYPE_LIST } from '@/modules/account/wallet';
 import { PROGRESSING, FAIL, SUCCESS } from '@/shared/consts/rechargeLedgerStatus';
@@ -59,9 +61,9 @@ const DetailTable = {
 
     finallyColumns() {
       const ledgerTagMap = {
-        [PROGRESSING]: <span>{this.$t('walletStatusOngoing')}</span>,
-        [FAIL]: <span class={styles.fail}>{this.$t('walletStatusFailure')}</span>,
-        [SUCCESS]: <CorrectOutlined />,
+        [PROGRESSING]: <BigEllipsisOutlined className={styles.progressing} />,
+        [FAIL]: <CancelledOutlined className={styles.fail} />,
+        [SUCCESS]: <CorrectOutlined className={styles.success} />,
       };
 
       const columns = [
@@ -83,7 +85,7 @@ const DetailTable = {
         {
           dataIndex: 'status',
           align: 'center',
-          customRender: (_, { status }) => <span class={styles.success}>{ledgerTagMap[status]}</span>,
+          customRender: (_, { status }) => <span class={styles.ledgerTag}>{ledgerTagMap[status]}</span>,
         },
       ];
       return columns.map((item, index) => {

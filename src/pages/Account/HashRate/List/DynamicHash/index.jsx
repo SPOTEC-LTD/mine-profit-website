@@ -18,8 +18,8 @@ const DynamicHash = {
   methods: {
     getChainInfoList() {
       const {
-        cumulativeRepurchase, hashrateType, todayExpectedOutput,
-        unitOutput, unit, cumulativeRepurchaseUsdt,
+        cumulativeRepurchase, hashrateType = '', todayExpectedOutput,
+        unitOutput, unit = '', cumulativeRepurchaseUsdt,
       } = this.dynamicHashInfo;
 
       return [
