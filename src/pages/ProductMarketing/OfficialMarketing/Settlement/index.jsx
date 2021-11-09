@@ -7,7 +7,6 @@ import { USABLE } from '@/shared/consts/useStatus';
 import TagGroup from '@/pages/home/component/TagGroup';
 import PageButton from '@/shared/components/PageButton';
 import Notification from '@/shared/services/Notification';
-import NumberInput from '@/shared/components/NumberInput';
 import * as officialMarketAPI from '@/api/officialMarket';
 import { NEW_USER_USED } from '@/shared/consts/productTag';
 import ProductTitle from '@/shared/components/ProductTitle';
@@ -20,6 +19,7 @@ import { hashrateStatusMap } from '@/modules/account/hashRate';
 import PayWaySelector from '@/shared/components/PayWaySelector';
 import CountDownToLink from '@/shared/components/CountDownToLink';
 import RateFluctuation from '@/shared/components/RateFluctuation';
+import NumberInput, { INT } from '@/shared/components/NumberInput';
 import ConfirmPayDialog from '@/shared/components/ConfirmPayDialog';
 import locationServices from '@/shared/services/location/locationServices';
 import { HASH_RATE_COUPONS, GET_VIP_COUPONS } from '@/modules/hashRateCoupons';
@@ -272,9 +272,9 @@ const Settlement = {
               <FormModel ref="form" hideRequiredMark props={{ model: this.formData }} class="normal-form">
                 <Item label={this.$t('marketBuyPart')} prop="amount" rules={this.formRule()}>
                   <NumberInput
+                    numberType={INT}
                     value={`${this.formData.amount}`}
                     max={+this.restHashRate}
-                    precision={2}
                     onChange={value => { this.formData.amount = value; this.value = value; }}
                     scopedSlots={{ suffix: () => this.maxNode() }}
                     placeholder={`${this.$t('marketFieldHintMax')}${this.restHashRate}`}
