@@ -691,5 +691,19 @@
     "loginSignUp": "Login/Register",
     "loginMeansAgreed": "Logging in means that you have agreed",
     "searchInputPlaceholder": "Search for the question that you want to ask",
-    "detail_4_text_2": "Airdrop quantity according to the value of the {enProductName} official hashrates purchased by the customer:"
+    "detail_4_text_2": "Airdrop quantity according to the value of the {enProductName} official hashrates purchased by the customer:",
+    "commonProblem": "Q&A",
+    "searchPrompt": "Search results for \"{searchValue}\"",
+    "number": "pieces",
+    "check": "View",
+    "clear": "Clear",
+    "activity": "Activity",
+    "mineData": "Pool Stats",
+    "nowHashRate": "Current hashrate",
+    "yesterdayProducer": "Rev. 24h",
+    "ourMissionDec": "Standardize \"every\" hashrate and build a fair blockchain hash ecosystem.",
+    "ourWorth": "Our values",
+    "ourWorthDec": "We are unremittingly committed to simplifying the difficulty of blockchain mining and helping our users, partners, employees and everyone.",
+    "ourVisionDec": "Become a friend of crypto miners, establish a global miners alliance, help solve mining problems, and promote effective ways to obtain cryptocurrencies to more people.",
+    "secondParagraphIntroduce": "Both BTC and ETH rely on the consensus value of human society. {enProductName} hopes to achieve the goal of holding cryptocurrency without threshold through these standard hashrates free transactions, so that people in every corner of the world can become the possession of cryptocurrencies. To make a contribution to the human consensus value of cryptocurrency."
 }
