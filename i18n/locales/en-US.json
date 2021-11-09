@@ -775,5 +775,7 @@
     "increaseProfit": "Significantly increase hashrate gains",
     "flexibleAllocationAssets": "Flexible configuration of hashrate assets",
     "eightTimes": "Income growth rate can reach 2.4 times",
-    "hashRateEcosphereIntroduce": "{enProductName} hashrate ecosystem is composed of the \"hashrate Trading Market\" and the \"hashrate Pledge Market\". It achieves the goal of a tripartite win-win situation for mines, investors, and electric companies. The hashrate ecosystem allows users to:"
+    "hashRateEcosphereIntroduce": "{enProductName} hashrate ecosystem is composed of the \"hashrate Trading Market\" and the \"hashrate Pledge Market\". It achieves the goal of a tripartite win-win situation for mines, investors, and electric companies. The hashrate ecosystem allows users to:",
+    "c2cMarket": "Hashrate trading market",
+    "c2cInlineMode": "The {enProductName} computing power trading market has an online dual-choice trading mode of \"official self-operating computing power\" + \"C2C computing power trading\", creating a highly free computing power trading system."
 }
