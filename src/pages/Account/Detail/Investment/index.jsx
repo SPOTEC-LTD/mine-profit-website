@@ -1,7 +1,6 @@
-import { Table } from 'ant-design-vue';
+import { Table, Tabs } from 'ant-design-vue';
 import { mapActions, mapState } from 'vuex';
 import { INVESTMENT, GET_INVESTMENT_LIST } from '@/modules/account/investment';
-import KeepTabs from '@/shared/components/KeepTabs';
 import dateUtils from '@/shared/intl/utils/dateUtils';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import getTimes from '@/shared/utils/getTimes';
@@ -115,13 +114,14 @@ const Investment = {
       <div>
         <WidgetTitle>{this.$t('mineTitleInvest')}</WidgetTitle>
         <Card>
-          <KeepTabs
+          <Tabs
+            animated={false}
+            tabBarGutter={0}
             class='mine-tabs-card'
             value={this.hashTypeStatusKey}
             onChange={this.onTabsChange}
-            activeKeyName="hashTypeStatus"
           >
-            <KeepTabs.TabPane key="gaining" tab={this.$t('typeInRevenue')}>
+            <Tabs.TabPane key="gaining" tab={this.$t('typeInRevenue')}>
               <Table
                 class={styles.table}
                 rowKey="id"
@@ -130,8 +130,8 @@ const Investment = {
                 loading={this.getListLoading}
                 pagination={false}
               />
-            </KeepTabs.TabPane>
-            <KeepTabs.TabPane key="settled" tab={this.$t('typeSettled')}>
+            </Tabs.TabPane>
+            <Tabs.TabPane key="settled" tab={this.$t('typeSettled')}>
               <Table
                 class={styles.table}
                 rowKey="id"
@@ -140,8 +140,8 @@ const Investment = {
                 loading={this.getListLoading}
                 pagination={false}
               />
-            </KeepTabs.TabPane>
-          </KeepTabs>
+            </Tabs.TabPane>
+          </Tabs>
         </Card>
       </div>
     );
