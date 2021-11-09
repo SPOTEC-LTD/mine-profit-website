@@ -26,22 +26,15 @@ const ActivityModal = {
   props: {
     info: Object,
   },
-  watch: {
-    info() {
-      this.updateActivityShowCount();
-    },
-  },
-  mounted() {
-    this.updateActivityShowCount();
-  },
   methods: {
     ...mapActions(ACTIVITY, [ACTIVITY_VIEW_COUNT, ACTIVITY_SHOW_COUNT]),
-    updateActivityShowCount() {
-      this[ACTIVITY_SHOW_COUNT]({ id: this.info.activityCommonId });
+    updateActivityShowCount(id) {
+      this[ACTIVITY_SHOW_COUNT]({ id });
     },
     toActivityDetailPage() {
       const { type, linkUrl, id, activityCommonId } = this.info;
       const { userId = 'null' } = getUserInfoFunc();
+      this.updateActivityShowCount(activityCommonId);
       const activityTypeMap = {
         [RANK]: () => locationHelp.open(rankPath),
         [INVITE_FRIENDS]: () => {
@@ -60,6 +53,7 @@ const ActivityModal = {
       this.$emit('viewed', id);
     },
     close() {
+      this.updateActivityShowCount(this.info.activityCommonId);
       this.$emit('viewed', this.info.id);
     },
     getActivityModalContent() {
