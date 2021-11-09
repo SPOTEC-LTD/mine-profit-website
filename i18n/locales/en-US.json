@@ -833,5 +833,17 @@
     "priceTrend": "{value}7 days price trend",
     "priceRate24H": "24h change",
     "quantitySold": "Number of sales",
-    "salabilityNumber": "Saleable hashrate:"
+    "salabilityNumber": "Saleable hashrate:",
+    "inputSalabilityNumber": "Please enter the number of hashrates sold",
+    "hashRateDetail": "Detail",
+    "pleaseSelectPledgeDuration": "Select the pledge period",
+    "myHashratePledgeShare": "My hashrate pledge sharing",
+    "inputDealPassword": "Enter transaction password",
+    "transferHashrate": "Transfer of hashrate",
+    "pledgeAmount": "Pledge amount",
+    "confirmPledge": "Confirm pledge",
+    "confirmTransfer": "Confirm transfer",
+    "copyLink": "Copy Link",
+    "cancelPledge": "Cancel pledge",
+    "hashRateTurnOn": "Power on"
 }
