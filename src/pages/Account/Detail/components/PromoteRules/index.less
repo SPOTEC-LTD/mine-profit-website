@@ -1,17 +1,29 @@
 @import '@/shared/styles/variables.less';
 
 .rules-item {
+  position: relative;
   display: flex;
   color: @color__242424;
   font-size: @font-size-base;
   line-height: 20px;
-  margin-bottom: 29px;
+  padding-bottom: 29px;
   white-space: pre-wrap;
+  z-index: 1;
+}
+
+.rules-item::after {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 19px;
+  width: 0;
+  height: 100%;
+  z-index: -1;
+  border-left: 2px dotted @color__02b4d7;
 }
 
 .rules-content-wrap {
-  position: relative;
-  z-index: 1;
   padding: 22px 246px 22px 201px;
   background-color: @white;
   border-radius: 5px;
@@ -25,8 +37,8 @@
     align-items: center;
   }
 
-  > .rules-item:last-child {
-    margin-bottom: 0;
+  > .rules-item:last-child::after {
+    display: none;
   }
 }
 
@@ -34,17 +46,6 @@
   height: 40px;
   width: 40px;
   margin-right: 10px;
-}
-
-.rules-content-wrap::after {
-  display: block;
-  content: '';
-  position: absolute;
-  top: 43px;
-  left: 220px;
-  height: 207px;
-  border-left: 2px dotted @color__02b4d7;
-  z-index: -1;
 }
 
 .rules-detail-wrap {
