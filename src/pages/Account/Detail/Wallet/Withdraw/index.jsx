@@ -154,6 +154,7 @@ const Withdraw = {
       this.getAddressList();
       this.formData.withdrawAddress = undefined;
       this.formData.amount = null;
+      this.$refs.form.clearValidate('amount');
     },
 
     changeLine(val) {
@@ -161,6 +162,7 @@ const Withdraw = {
       this.getAddressList();
       this.formData.withdrawAddress = undefined;
       this.formData.amount = null;
+      this.$refs.form.clearValidate('amount');
     },
 
     addressChange(address) {
