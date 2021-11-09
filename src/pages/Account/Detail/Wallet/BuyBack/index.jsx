@@ -191,7 +191,7 @@ const BuyBack = {
                   placeholder={this.$t('inputSalabilityNumber')}
                 />
                 <div class={styles['transfer-amount-prompt']}>
-                  {`${this.$t('salabilityNumber')}：${max}${this.dynamicChainType.unit}`}
+                  {`${this.$t('salabilityNumber')}${max}${this.dynamicChainType.unit}`}
                 </div>
               </Item>
               <div class={styles['sale-total-price']}>
