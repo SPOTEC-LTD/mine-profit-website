@@ -8,6 +8,7 @@
           :info="item"
         />
       </div>
+      <NoData v-if="isListEmpty" />
       <div v-if="noData" class="no-data">{{ $t('allContentLoaded') }}</div>
     </div>
   </Spin>
@@ -15,6 +16,8 @@
 
 <script>
 import { Spin } from 'ant-design-vue';
+import isEmpty from 'lodash/isEmpty';
+import NoData from '@/shared/components/NoData';
 import { getGoodNewsList } from '@/api';
 import scrollEvent from '@/shared/utils/scrollEvent';
 import NewsItem from './NewsItem';
@@ -23,6 +26,7 @@ export default {
   components: {
     NewsItem,
     Spin,
+    NoData,
   },
   data() {
     return {
@@ -33,6 +37,11 @@ export default {
       loading: true,
       fetching: false,
     };
+  },
+  computed: {
+    isListEmpty() {
+      return isEmpty(this.goodNewsList);
+    },
   },
   mounted() {
     this.$nextTick(() => {
@@ -56,7 +65,7 @@ export default {
       }).then(data => {
         const { body: { list } } = data;
         this.loading = false;
-        this.noData = list.length < this.pageSize;
+        this.noData = !isEmpty(list) && list.length < this.pageSize;
         this.goodNewsList = [...this.goodNewsList, ...list];
         this.pageNum += 1;
         this.fetching = false;
