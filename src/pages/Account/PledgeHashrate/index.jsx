@@ -240,7 +240,7 @@ const PledgeHashrate = {
                   <NumberInput
                     value={this.formData.pledgePortion}
                     max={+maxPledgePortion}
-                    precision={2}
+                    numberType="int"
                     onChange={value => {
                       this.formData.pledgePortion = value;
                     }}
