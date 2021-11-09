@@ -32,7 +32,7 @@ const Leaderboard = {
       }
       const { length } = this.info.topList;
       if (length < 10 && length > 0) {
-        return [...this.topList, ...fill(new Array(10 - length), {})];
+        return [...this.info.topList, ...fill(new Array(10 - length), {})];
       }
       return this.info.topList;
     },
