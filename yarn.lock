@@ -3399,10 +3399,10 @@ aggregate-error@^3.0.0:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
 
-ahoney@^1.0.23:
-  version "1.0.23"
-  resolved "https://registry.yarnpkg.com/ahoney/-/ahoney-1.0.23.tgz#e69130d5f2d5a551e7e5cef7c8702cf02eb305c5"
-  integrity sha512-Txo32WX+D1nCXA3/fcUNr1chlsk/LMRTHYtYcF6G9vJvUNbIqv/FW1VOZ6iC1s/XTkCeo0d9DKLxcwiriiomow==
+ahoney@^1.0.25:
+  version "1.0.25"
+  resolved "https://registry.npmjs.org/ahoney/-/ahoney-1.0.25.tgz#9998d84764793ea6a3efcc51ea7b8976ab911986"
+  integrity sha512-Tst+ZemDMhUpkEXsWkFaNVbrWRKtHZ4DlfcEmF9ybErhu0jWa5uBeplPLBkplihCzTshm/9GcmDML4V/RTARXg==
   dependencies:
     insert-css "^2.0.0"
 

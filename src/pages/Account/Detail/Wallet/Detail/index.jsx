@@ -8,8 +8,8 @@ import styles from './index.less?module';
 const Detail = {
   render() {
     const columns = [
-      { title: this.$t('time'), width: 170 },
-      { title: this.$t('walletType'), width: 90 },
+      { title: this.$t('time'), width: 110 },
+      { title: this.$t('walletType'), width: 180 },
       { title: this.$t('coinNumber'), width: 200 },
       { title: this.$t('status') },
     ];

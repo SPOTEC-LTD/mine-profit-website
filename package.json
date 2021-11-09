@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "aa-utils": "^1.0.6",
-    "ahoney": "^1.0.23",
+    "ahoney": "^1.0.25",
     "ant-design-vue": "^1.7.8",
     "async-validator": "^3.5.2",
     "axios": "^0.21.1",
