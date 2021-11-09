@@ -153,7 +153,7 @@ const WeeklyOutputReportModal = {
       <BaseModal
         ref='outputReport'
         value={this.value}
-        title={`${this.$t('weeklyOutputReport')}${this.reportInfo.miningCycle}`}
+        title={`${this.$t('weeklyOutputReport')} ${this.reportInfo.miningCycle}`}
         width={845}
         onClose={() => { this.$emit('close'); }}
         scopedSlots={{
