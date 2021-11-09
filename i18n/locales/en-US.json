@@ -686,5 +686,10 @@
     "loginMineprofit": "Sign in {enProductName}",
     "emailLogin": "Email Login",
     "phoneLogin": "Log in with phone",
-    "buyBack": "Buy-back"
+    "buyBack": "Buy-back",
+    "account": "My account",
+    "loginSignUp": "Login/Register",
+    "loginMeansAgreed": "Logging in means that you have agreed",
+    "searchInputPlaceholder": "Search for the question that you want to ask",
+    "detail_4_text_2": "Airdrop quantity according to the value of the {enProductName} official hashrates purchased by the customer:"
 }
