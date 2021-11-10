@@ -1,6 +1,7 @@
 import { mapState } from 'vuex';
 import { Table } from 'ant-design-vue';
 import numberUtils from 'aa-utils/lib/numberUtils';
+import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 import getHashrateUnit from '@/shared/utils/getHashrateUnit';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import CoinLineChart from './CoinLineChart';
@@ -71,7 +72,7 @@ const CoinMarkets = {
             <div class={styles['coin-name']}>
               <img src={icon} alt="" />
               <span>{symbol.toUpperCase()}</span>
-              <span class={styles['coin-symbolCN']}>{symbolCN}</span>
+              {getIsChinese() && <span class={styles['coin-symbolCN']}>{symbolCN}</span>}
             </div>
           );
         },
