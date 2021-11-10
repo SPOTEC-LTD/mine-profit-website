@@ -25,4 +25,8 @@ export default {
   phoneLogin: '手机登录',
   loginSignUp: '登录/注册',
   loginMeansAgreed: '登录即代表你已经同意了',
+  verificationSuccess: '验证成功',
+  refresh: '刷新',
+  close: '关闭',
+  manMachineVerificationPrompt: '请拖动下方滑块完成验证',
 };

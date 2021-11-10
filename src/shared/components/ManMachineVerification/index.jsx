@@ -1,5 +1,6 @@
 import { mapActions, mapState, mapMutations } from 'vuex';
 import { Spin } from 'ant-design-vue';
+import dateUtils from '@/shared/intl/utils/dateUtils';
 import Notification from '@/shared/services/Notification';
 import {
   MAN_MACHINE_VERIFICATION,
@@ -163,7 +164,8 @@ const ManMachineVerification = {
             this.isEnd = true;
             this.passFlag = true;
             this.leftBarBackgroundColor = 'rgba(92, 184, 92, 0.5)';
-            this.tipWords = `${((this.endMoveTime - this.startMoveTime) / 1000).toFixed(2)}s验证成功`;
+            this.tipWords = `${((this.endMoveTime - this.startMoveTime) / 1000).toFixed(2)}s${
+              this.$t('verificationSuccess')}`;
             const captchaVerification = this.secretKey
               ? aesEncrypt(
                 `${this.backToken}---${JSON.stringify({ x: moveLeftDistance, y: 5.0 })}`,
@@ -216,7 +218,8 @@ const ManMachineVerification = {
     },
 
     getData() {
-      this[GET_PICTURE]().catch(error => {
+      const nowDate = dateUtils.formatToTimestamp(dateUtils.getToday());
+      this[GET_PICTURE]({ date: nowDate }).catch(error => {
         const { message } = error;
         Notification.error(message);
         this.closeBox();
@@ -227,7 +230,7 @@ const ManMachineVerification = {
     return (
       <div class="mask">
         <div class="verify-box">
-          <div class="verify-box-top">请拖动下方滑块完成验证</div>
+          <div class="verify-box-top">{this.$t('manMachineVerificationPrompt')}</div>
           <div class="verify-box-bottom">
             <div style={{ position: 'relative' }}>
               <div
@@ -309,8 +312,8 @@ const ManMachineVerification = {
             </div>
           </div>
           <div class="verify-operate">
-            <a onClick={this.refresh}>刷新</a>
-            <a onClick={this.closeBox}>关闭</a>
+            <a onClick={this.refresh}>{this.$t('refresh')}</a>
+            <a onClick={this.closeBox}>{this.$t('close')}</a>
           </div>
         </div>
       </div>
