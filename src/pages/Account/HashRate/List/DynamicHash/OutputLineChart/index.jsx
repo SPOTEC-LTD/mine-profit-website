@@ -106,7 +106,6 @@ const OutputLineChart = {
         series: [{
           data: this.valueList,
           type: 'line',
-          smooth: true,
           lineStyle: {
             color: {
               type: 'linear',
