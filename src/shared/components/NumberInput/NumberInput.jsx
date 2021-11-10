@@ -28,9 +28,6 @@ const NumberInput = {
 
   methods: {
     formatter(newValue) {
-      if (+newValue <= 0) {
-        return newValue;
-      }
       let newNumber;
       const preValue = this.isControl ? this.value : this.inputValue;
 
@@ -48,12 +45,15 @@ const NumberInput = {
 
     onNumberChange(e) {
       const resultValue = this.formatter(e.target.value);
+
       if (!this.isControl) {
         this.inputValue = resultValue;
       }
+
       if (this.value !== resultValue) {
         this.$emit('change', resultValue);
       }
+
       this.$forceUpdate();
     },
   },
