@@ -1,4 +1,4 @@
-import { FormModel, Input, Upload } from 'ant-design-vue';
+import { FormModel, Upload } from 'ant-design-vue';
 import { mapState, mapActions } from 'vuex';
 import { uploadFileUrl } from '@/api/file';
 import ModalButton from '@/shared/components/ModalButton';

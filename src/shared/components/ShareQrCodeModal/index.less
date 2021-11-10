@@ -1,7 +1,6 @@
 @import '@/shared/styles/variables.less';
 
 .wrapper {
-  position: relative;
   text-align: center;
 }
 
@@ -14,15 +13,14 @@
 
 .button-box {
   margin-top: 20px;
-
-  > button:last-child {
-    margin-left: 17px;
-  }
+  display: flex;
+  justify-content: space-between;
 }
 
 .modal-wrap {
   :global {
     .mp-modal-body {
+      position: relative;
       padding: 26px 28px 31px;
       border-radius: 8px;
     }
@@ -41,9 +39,8 @@
 
 .share-prompt {
   position: absolute;
-  bottom: -124px;
-  left: -28px;
-  width: 261px;
+  top: calc(100% + 10px);
+  left: 0;
   font-size: @font-size__18;
   line-height: 25px;
   color: @white;
