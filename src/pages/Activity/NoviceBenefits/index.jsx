@@ -253,20 +253,24 @@ const NoviceBenefits = {
                       <div>
                         <div class={styles['benefits-detail-title']}>
                           {item.title}
-                          <span>{this.$t('worth')}</span>
                         </div>
                         <div class={styles['benefits-detail-subTitle']}>{item.subTitle}</div>
                       </div>
-                      <div
-                        class={classNames(
-                          styles['benefits-detail-button'],
-                          styles[this.getTaskCompletionMap(index, item.status).color],
-                        )}
-                        onClick={this.getTaskCompletionMap(index, item.status).on}
-                      >
-                        <Spin spinning={item.status === COMPLETED && item.loading}>
-                          {this.getTaskCompletionMap(index, item.status).text}
-                        </Spin>
+                      <div class={styles['head-button-box']}>
+                        <div
+                          class={classNames(
+                            styles['benefits-detail-button'],
+                            styles[this.getTaskCompletionMap(index, item.status).color],
+                          )}
+                          onClick={this.getTaskCompletionMap(index, item.status).on}
+                        >
+                          <Spin spinning={item.status === COMPLETED && item.loading}>
+                            {this.getTaskCompletionMap(index, item.status).text}
+                          </Spin>
+                        </div>
+                        <div class={styles['benefits-detail-worth']}>
+                          {this.$t('worth')}
+                        </div>
                       </div>
                     </div>
                     {item.conditions}
