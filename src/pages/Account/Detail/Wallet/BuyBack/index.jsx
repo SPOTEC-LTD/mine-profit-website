@@ -1,7 +1,11 @@
 import { mapState, mapActions, mapMutations } from 'vuex';
 import numberUtils from 'aa-utils/lib/numberUtils';
 import { FormModel } from 'ant-design-vue';
+import { MAN_MACHINE_VERIFICATION_CODE } from '@/shared/utils/request/consts/ResponseCode';
 import { WALLET, GET_BUY_BACK_DETAIL, OFFICIAL_BUY_BACK } from '@/modules/account/wallet';
+import {
+  MAN_MACHINE_VERIFICATION, UPDATE_IS_DEAL_PASSWORD_VERIFICATION, UPDATE_CAPTCHA_VERIFICATION,
+} from '@/modules/manMachineVerification';
 import { accountDetailPath } from '@/router/consts/urls';
 import NumberInput from '@/shared/components/NumberInput';
 import BaseContainer from '@/shared/components/BaseContainer';
@@ -9,12 +13,7 @@ import PageButton from '@/shared/components/PageButton';
 import ConfirmPayDialog from '@/shared/components/ConfirmPayDialog';
 import locationServices from '@/shared/services/location/locationServices';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
-import {
-  MAN_MACHINE_VERIFICATION,
-  UPDATE_IS_DEAL_PASSWORD_VERIFICATION,
-  UPDATE_CAPTCHA_VERIFICATION,
-} from '@/modules/manMachineVerification';
-import { MAN_MACHINE_VERIFICATION_CODE } from '@/shared/utils/request/consts/ResponseCode';
+import Notification from '@/shared/services/Notification';
 import PriceTrendChart from './PriceTrendChart';
 import styles from './index.less?module';
 
