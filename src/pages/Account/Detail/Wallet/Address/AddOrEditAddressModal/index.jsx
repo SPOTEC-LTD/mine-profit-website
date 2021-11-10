@@ -35,10 +35,12 @@ const AddOrEditAddressModal = {
 
     handleCoinChange(coin) {
       this.addressInfo.chainType = coin === 'USDT' ? LINE_USDT_ERC20 : coin;
+      this.$refs.form.clearValidate();
     },
 
     handleChangeLine(coin) {
       this.addressInfo.chainType = coin;
+      this.$refs.form.clearValidate();
     },
 
     modalConfirm() {
