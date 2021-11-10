@@ -28,6 +28,10 @@ const NumberInput = {
 
   methods: {
     formatter(newValue) {
+      if (+newValue < 0) {
+        return newValue;
+      }
+
       let newNumber;
       const preValue = this.isControl ? this.value : this.inputValue;
 
