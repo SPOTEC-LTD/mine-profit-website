@@ -12,7 +12,6 @@ const NumberInput = {
     precision: Number,
     numberType: String,
     buttonNode: Function,
-    min: Number,
     max: Number,
   },
 
@@ -28,14 +27,10 @@ const NumberInput = {
 
   methods: {
     formatter(newValue) {
-      if (+newValue < 0) {
-        return newValue;
-      }
-
       let newNumber;
       const preValue = this.isControl ? this.value : this.inputValue;
 
-      if (newValue < this.min || newValue > this.max) {
+      if (newValue > this.max) {
         return preValue;
       }
 
