@@ -113,7 +113,7 @@
 .content-right {
   width: 50%;
   border-left: 1px solid @color__e6e6e6;
-  padding: 34px 0 7px 8px;
+  padding: 34px 8px 7px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -142,6 +142,7 @@
 }
 
 .income-tip {
+  max-width: 100%;
   color: @white;
   font-size: @font-size__20;
   line-height: 28px;
@@ -152,9 +153,17 @@
   min-width: 200px;
 }
 
+.main-desc {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
 .income-icon {
   position: absolute;
-  top: 37px;
+  bottom: -33px;
   right: 130px;
   height: 36px;
 }

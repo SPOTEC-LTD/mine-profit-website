@@ -119,8 +119,10 @@ const WeeklyOutputReportModal = {
             )}
           </div>
           <div class={styles['content-main']}>
-            <div class={styles['income-tip']}>{desc}</div>
-            <img class={styles['income-icon']} src={bubbleArrowIcon} alt="" />
+            <div class={styles['main-desc']}>
+              <div class={styles['income-tip']}>{desc}</div>
+              <img class={styles['income-icon']} src={bubbleArrowIcon} alt="" />
+            </div>
             {isNull
               ? <img class={styles['income-infinity-img']} src={pageTwoInfinityImage} alt="" />
               : <img class={styles['income-img']} src={pageTwoImage} alt="" />
