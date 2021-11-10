@@ -1050,5 +1050,9 @@
     "detail_2_title_1": "{name} will initially produce 1 million per day, and the output will decrease by half each every 180 days",
     "detail_3_text": "Buying any official product will give you free {enProductName} hashrates. Earning ratio: 1USDT=1T {enProductName} hashrate. e.g. If the value of the official product purchased by a customer is 100USDT, the customer will get another 100T {enProductName} hashraties for free.",
     "detail_5_text": "Initially, 1% of the daily project income is used as the buy-back fund. The buy-back funds will be put into the buy-back capital pool for official buy-back of {name} and put into the black hole address for destruction. After that, the proportion of buy-back funds in total profits doubles for each every 180 days, with the highest proportion being 64%.",
-    "detail_8_text_1": "This model is designed according to the output principle, buy-back principle and destruction principle of {name}. In order to guarantee the lowest buy-back forecast, all hypothetical data in this model are under the worst condition, so the actual results may be much higher than the model data."
+    "detail_8_text_1": "This model is designed according to the output principle, buy-back principle and destruction principle of {name}. In order to guarantee the lowest buy-back forecast, all hypothetical data in this model are under the worst condition, so the actual results may be much higher than the model data.",
+    "verificationSuccess": "Verification succeeded",
+    "refresh": "Refresh",
+    "close": "Close",
+    "manMachineVerificationPrompt": "Please drag the slider to complete the verification"
 }
