@@ -240,7 +240,7 @@ const TransferHashrate = {
                   {
                     validator: (rule, value) => {
                       return new Promise((resolve, reject) => {
-                        if (value && value === '0') {
+                        if (value && +value < 0.01) {
                           reject(true);
                         } else {
                           resolve();
