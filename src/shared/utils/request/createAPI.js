@@ -7,12 +7,13 @@ import { toPath } from '@/shared/utils/qsHelp';
 import isServerSide from '@/shared/utils/isServerSide';
 import languages from '@/shared/intl/consts/languages';
 import locale from '@/shared/intl/utils/locale';
+import dateUtils from '@/shared/intl/utils/dateUtils';
 import clientRequest from './clientRequest';
 import serverRequest from './serverRequest';
 import httpMethod from './consts/httpMethod';
 
 const createAPI = (method, url) => (params = {}, config = {}) => {
-  const { pathParams, data } = params;
+  const { pathParams, data = {} } = params;
   const isPostOrPut = (method === httpMethod.POST || method === httpMethod.PUT);
 
   let finalURL = url;
@@ -29,6 +30,7 @@ const createAPI = (method, url) => (params = {}, config = {}) => {
     config.data = data;
   } else {
     config.params = data;
+    config.params.t = dateUtils.getToday().valueOf();
   }
 
   config.headers = {
