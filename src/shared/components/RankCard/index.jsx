@@ -12,6 +12,7 @@ import rankTop10 from '@/assets/rank/rank-top-10.png';
 import defaultAvatar from '@/assets/rank/defaultAvatar.png';
 import Link from '@/shared/components/Link';
 import { loginPath } from '@/router/consts/urls';
+import PictureProcess from '@/shared/components/PictureProcess';
 
 import './index.less';
 
@@ -82,7 +83,7 @@ const RankCard = {
             <Link class='login-link' to={loginPath}>{this.$t('loginViewMyRanking')}</Link>
           ) : (
             <div class="user-info">
-              <img class="avatar" src={avatar || defaultAvatar} alt="" />
+              <PictureProcess className="avatar" image={avatar || defaultAvatar} />
               <div class="name">{name}</div>
             </div>
           )}

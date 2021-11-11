@@ -12,6 +12,7 @@ import {
   INDIRECT_OUTPUT,
 } from '@/shared/consts/inviteType';
 import { ACCOUNT, GET_INVITE_DETAIL_INFO } from '@/modules/account/account';
+import PictureProcess from '@/shared/components/PictureProcess';
 import { PROXY } from './consts/promoteType';
 import styles from './index.less?module';
 
@@ -42,7 +43,7 @@ const InviteDetail = {
           return (
             <div class={styles['user-info-wrap']}>
               <div class={styles['user-info-box']}>
-                <img src={avatar || defaultAvatar} alt="" />
+                <PictureProcess className={styles['user-avatar']} image={avatar || defaultAvatar} />
                 <div class={styles['user-info']}>
                   <span>{value}</span>
                   <span>{nickName}</span>
