@@ -1,5 +1,6 @@
 import find from 'lodash/find';
 import { Breadcrumb } from 'ant-design-vue';
+import { I18N } from '@@/i18n';
 import { pathRoutes } from '@/router';
 import Link from '@/shared/components/Link';
 import matchPath from '@/shared/utils/matchPath';
@@ -21,7 +22,7 @@ const BaseContainer = {
       urlToList(fullPath).forEach(value => {
         const match = ({ path, name }) => {
           if (path !== '*') {
-            const data = this.$i18n.locale === 'en' ? value.replace('/en', '') : value;
+            const data = this.$i18n.locale !== I18N.defaultLocale ? value.replace(`/${this.$i18n.locale}`, '') : value;
             const [pageName] = name.split('__');
             const { path: resultPath } = getPathAndQueryObject(data);
             const matchedPath = matchPath(resultPath, { path, exact: true });
