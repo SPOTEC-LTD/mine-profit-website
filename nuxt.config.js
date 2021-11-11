@@ -81,6 +81,7 @@ export default {
     extractCSS: true,
     babel: {
       babelrc: false,
+      compact: false,
       plugins: [
         ['import', { libraryName: 'ant-design-vue', style: true }], // `style: true` 会加载 less 文件
       ],

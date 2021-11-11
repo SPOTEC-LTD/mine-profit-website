@@ -10,7 +10,6 @@ export default function i18nChange(ctx) {
 
   const headerCookie = header.cookie;
   const { language } = new Cookies(headerCookie).cookies;
-  console.log('2323', language, locale, ctx.route.fullPath);
   if (!language && header['accept-language']) {
     const [clientLang] = header['accept-language'].split(',');
 

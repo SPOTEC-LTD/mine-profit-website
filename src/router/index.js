@@ -95,7 +95,7 @@ export const pathRoutes = [
     component: MeetError,
   },
   {
-    path: '*',
+    path: '/*',
     name: '404',
     component: NotFound,
   },
