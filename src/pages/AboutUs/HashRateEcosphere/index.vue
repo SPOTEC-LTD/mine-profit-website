@@ -23,19 +23,19 @@
         <transition name="card-one-fade">
           <div v-if="showCardOne" class="ecosphere-advantage-item">
             <img src="@/assets/ecosphere/paper-img.png" alt="" />
-            <div>{{ $t('flexibleAllocationAssets') }}</div>
+            <div class="ecosphere-advantage-text">{{ $t('flexibleAllocationAssets') }}</div>
           </div>
         </transition>
         <transition name="card-two-fade">
           <div v-if="showCardTwo" class="ecosphere-advantage-item">
             <img src="@/assets/ecosphere/money-img.png" alt="" />
-            <div>{{ $t('increaseProfit') }}</div>
+            <div class="ecosphere-advantage-text">{{ $t('increaseProfit') }}</div>
           </div>
         </transition>
         <transition name="card-three-fade">
           <div v-if="showCardThree" class="ecosphere-advantage-item">
             <img src="@/assets/ecosphere/piggyBank.png" alt="" />
-            <div>{{ $t('eightTimes') }}</div>
+            <div class="ecosphere-advantage-text">{{ $t('eightTimes') }}</div>
           </div>
         </transition>
       </div>

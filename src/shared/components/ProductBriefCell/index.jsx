@@ -14,6 +14,7 @@ import RestOfficialProduct from '@/shared/components/RestOfficialProduct';
 import locationServices from '@/shared/services/location/locationServices';
 import { officialDetailsPath, c2cDetailsPath } from '@/router/consts/urls';
 import C2CProductInfoSurvey from '@/shared/components/C2CProductInfoSurvey';
+import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 import OfficialProductInfoSurvey from '@/shared/components/OfficialProductInfoSurvey';
 import './index.less';
 
@@ -69,7 +70,7 @@ const ProductBriefCell = {
       const finalPrice = normalPrice ? price : reducedPrice;
 
       const officialProductProps = {
-        infoUnit: `≈${getTimes({ number: finalPrice, times: rate, decimal: 2 })} CNY`,
+        infoUnit: getIsChinese() ? `≈${getTimes({ number: finalPrice, times: rate, decimal: 2 })} CNY` : '',
         infoName: this.$t('marketPartPrice'),
         infoValue: `${bigNumberToFixed(normalPrice ? price : reducedPrice, 2)} USDT`,
         extraInfo: normalPrice ? '' : `${bigNumberToFixed(price, 2)} USDT`,
@@ -81,7 +82,7 @@ const ProductBriefCell = {
       const { price, unit } = this.productData;
       const cnyPrice = getTimes({ number: price, times: rate, decimal: 2 });
       return {
-        infoUnit: `≈${cnyPrice} CNY/${unit}`,
+        infoUnit: getIsChinese() ? `≈${cnyPrice} CNY/${unit}` : '',
         infoName: this.$t('sellPrice'),
         infoValue: `${bigNumberToFixed(price, 2)} USDT/${unit}`,
       };

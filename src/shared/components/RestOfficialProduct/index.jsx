@@ -4,12 +4,14 @@ import getTimes from '@/shared/utils/getTimes';
 import getMinus from '@/shared/utils/getMinus';
 import getDivided from '@/shared/utils/getDivided';
 import dateUtils from '@/shared/intl/utils/dateUtils';
+import PreSaleDec from '@/shared/components/PreSaleDec';
 import { NEW_USER_USED } from '@/shared/consts/productTag';
 import LineProgress from '@/shared/components/LineProgress';
 import sellOutImg from '@/assets/productMarket/sellOut.png';
+import { getIsChinese } from '@/shared/utils/getLocalLanguage';
+import sellOutEnImg from '@/assets/productMarket/sellOutEn.png';
 import { PLEASE_LOOK_FORWARD } from '@/shared/consts/productStatus';
 import LookForwardSale from '@/shared/components/LookForwardSale';
-import PreSaleDec from '@/shared/components/PreSaleDec';
 import { BEFORE_PRE_SALE } from '@/shared/consts/preSaleStatus';
 import './index.less';
 
@@ -92,7 +94,7 @@ const RestOfficialProduct = {
           />
         )}
 
-        {isSaleOut && <img src={sellOutImg} alt="" class='sale-out-img' />}
+        {isSaleOut && <img src={getIsChinese() ? sellOutImg : sellOutEnImg} alt="" class='sale-out-img' />}
       </div>
     );
   },
