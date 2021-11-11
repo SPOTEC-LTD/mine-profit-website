@@ -229,6 +229,7 @@ const Detail = {
           title={this.$t('editPersonalInfo')}
           value={this.isVisibleEditInfoModal}
           destroyOnClose
+          maskClosable={false}
           scopedSlots={{
             content: () => (
               <EditAvatarNickname
@@ -249,6 +250,7 @@ const Detail = {
           wrapClassName={styles.modal}
           width={this.modalWidth}
           centered={false}
+          maskClosable={false}
           scopedSlots={{
             content: () => (
               <BaseInfoModalContent
