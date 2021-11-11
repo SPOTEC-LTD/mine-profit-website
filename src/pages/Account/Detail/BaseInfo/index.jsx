@@ -15,6 +15,7 @@ import { PHONE } from '@/shared/consts/registerType';
 import locationServices from '@/shared/services/location/locationServices';
 import locationHelp from '@/shared/utils/locationHelp';
 import { INVITE_DETAIL, PROMOTE_RANK } from '@/pages/Account/Detail/consts/tabsActiveValue';
+import PictureProcess from '@/shared/components/PictureProcess';
 import { getBonusTypeLabelMap, getBonusTypeNotificationMap, getBonusTypeIconMap } from '../consts/getBonusType';
 import EditAvatarNickname from '../components/EditAvatarNickname';
 import BaseInfoModalContent from '../components/BaseInfoModalContent';
@@ -139,10 +140,9 @@ const Detail = {
         <div class={styles['info-box']}>
           <div class={styles['info-top']}>
             <div class={styles['base-info']}>
-              <img
-                class={styles.avatar}
-                src={avatar || defaultAvatar}
-                alt=""
+              <PictureProcess
+                className={styles.avatar}
+                image={avatar || defaultAvatar}
                 onClick={() => {
                   this.isVisibleEditInfoModal = true;
                 }}
@@ -167,7 +167,7 @@ const Detail = {
               </div>
             </div>
             <div class={styles['promote-info']}>
-              {icon && <img src={icon} alt="" />}
+              {icon && <PictureProcess class={styles['promote-info-avatar']} image={icon} />}
               <div class={styles['promote-info-content']}>
                 <Tooltip placement="bottom" title={`Lv${level || '-'}${name ? `:${name}` : ''}`}>
                   <span class={styles['promote-level']}>

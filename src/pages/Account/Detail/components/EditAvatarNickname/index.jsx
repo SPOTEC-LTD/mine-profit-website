@@ -7,6 +7,7 @@ import Notification from '@/shared/services/Notification';
 import defaultAvatar from '@/assets/rank/defaultAvatar.png';
 import FormatInput from '@/shared/components/FormatInput';
 import { textReg } from '@/shared/consts/rules';
+import PictureProcess from '@/shared/components/PictureProcess';
 
 import styles from './index.less?module';
 
@@ -78,7 +79,7 @@ const EditAvatarNickname = {
         class={['normal-form', styles['edit-info-wrap']]}
       >
         <div class={styles['upload-avatar-box']}>
-          <img src={this.form.avatar} alt="" />
+          <PictureProcess className={styles.avatar} image={this.form.avatar} />
           <Upload
             accept="image/*"
             action={uploadFileUrl}

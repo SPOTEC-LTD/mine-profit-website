@@ -17,6 +17,7 @@ import {
   getBonusTypeIconMap,
 } from '@/pages/Account/Detail/consts/getBonusType';
 import conditionComplete from '@/assets/account/condition-complete.png';
+import PictureProcess from '@/shared/components/PictureProcess';
 import BonusTooltip from '../BonusTooltip';
 import styles from './index.less?module';
 
@@ -130,10 +131,9 @@ const PromoteLevel = {
                       <div class={styles['level-item']}>
                         <img class={styles['level-bg']} src={isLock ? levelBg : levelUnlockBg} alt="" />
                         <div class={[styles['level-icon-box']]}>
-                          <img
-                            class={[styles['level-icon'], { [styles['icon-lock']]: isLock }]}
-                            src={item.icon}
-                            alt=""
+                          <PictureProcess
+                            className={[styles['level-icon'], { [styles['icon-lock']]: isLock }]}
+                            image={item.icon}
                           />
                           {isLock && <img class={styles['level-icon-lock']} src={levelIconLock} alt="" />}
                         </div>
