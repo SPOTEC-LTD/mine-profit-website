@@ -62,7 +62,8 @@
       <div class="main-content">
         <transition name="fade-down" mode="out-in">
           <div v-if="isScenario1" class="text-content" :class="{ [`scenario--0`]: isScenario1 }">
-            <img src="@/assets/download/project.png" alt="" />
+            <img v-if="!isCnLanguage" src="@/assets/download/project-en.png" alt="" />
+            <img v-if="isCnLanguage" src="@/assets/download/project.png" alt="" />
             <div class="description">
               {{ $t('downloadDesc1') }}
             </div>
