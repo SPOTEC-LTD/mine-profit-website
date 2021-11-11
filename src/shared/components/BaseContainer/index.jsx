@@ -21,8 +21,8 @@ const BaseContainer = {
 
       urlToList(fullPath).forEach(value => {
         const match = ({ path, name }) => {
-          if (path !== '*') {
-            const data = this.$i18n.locale !== I18N.defaultLocale ? value.replace(`/${this.$i18n.locale}`, '') : value;
+          if (path !== '/*') {
+            const data = value.replace(`/${this.$i18n.locale}`, '');
             const [pageName] = name.split('__');
             const { path: resultPath } = getPathAndQueryObject(data);
             const matchedPath = matchPath(resultPath, { path, exact: true });
