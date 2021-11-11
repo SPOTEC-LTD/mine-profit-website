@@ -80,23 +80,27 @@ const RankCard = {
             </div>
           )}
           {this.isShowLogin ? (
-            <Link class='login-link' to={loginPath}>{this.$t('loginViewMyRanking')}</Link>
+            <Link class="login-link" to={loginPath}>
+              {this.$t('loginViewMyRanking')}
+            </Link>
           ) : (
             <div class="user-info">
               <PictureProcess className="avatar" image={avatar || defaultAvatar} />
-              <div class="name">{name}</div>
             </div>
           )}
         </div>
         <div class="rank-card-right">
-          <span class="amount">
-            {numberUtils.formatNumber(amount, {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-              useGrouping: false,
-            })}
-          </span>
-          <span class="unit">{unit}</span>
+          <div class="name">{name}</div>
+          <div>
+            <span class="amount">
+              {numberUtils.formatNumber(amount, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+                useGrouping: false,
+              })}
+            </span>
+            <span class="unit">{unit}</span>
+          </div>
         </div>
       </div>
     );
