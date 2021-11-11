@@ -35,7 +35,7 @@ const ManMachineVerification = {
       },
       top: 0,
       left: 0,
-      moveBlockLeft: undefined,
+      moveBlockLeft: 0,
       leftBarWidth: 0,
       // 移动中样式
       leftBarBackgroundColor: '#cbe0f2',
@@ -151,8 +151,12 @@ const ManMachineVerification = {
       // 判断是否重合
       if (this.status && this.isEnd === false) {
         let moveLeftDistance = parseInt((this.moveBlockLeft || '').replace('px', ''), 10);
-        moveLeftDistance = (moveLeftDistance * 350) / parseInt(this.setSize.imgWidth, 10);
-        moveLeftDistance *= 2;
+        if (this.moveBlockLeft !== 0) {
+          moveLeftDistance = (moveLeftDistance * 350) / parseInt(this.setSize.imgWidth, 10);
+          moveLeftDistance *= 2;
+        } else {
+          moveLeftDistance = 0;
+        }
         const data = {
           pointJson: this.secretKey
             ? aesEncrypt(JSON.stringify({ x: moveLeftDistance, y: 5.0 }), this.secretKey)

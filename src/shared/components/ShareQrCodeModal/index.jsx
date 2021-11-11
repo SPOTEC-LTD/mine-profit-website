@@ -53,6 +53,7 @@ const ShareQrCodeModal = {
     return (
       <BaseModal
         width={261}
+        maskClosable={false}
         wrapClassName={styles['modal-wrap']}
         scopedSlots={{
           content: this.getContent,
