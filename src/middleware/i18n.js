@@ -2,7 +2,7 @@
 import Cookies from 'universal-cookie';
 import startsWith from 'lodash/startsWith';
 
-export default function (ctx) {
+export default function i18nChange(ctx) {
   if (ctx.isHMR) { return; }
 
   const { defaultLocale, locale } = ctx.app.i18n;
@@ -10,15 +10,16 @@ export default function (ctx) {
 
   const headerCookie = header.cookie;
   const { language } = new Cookies(headerCookie).cookies;
+  console.log('2323', language, locale, ctx.route.fullPath);
   if (!language && header['accept-language']) {
     const [clientLang] = header['accept-language'].split(',');
 
     if (clientLang.toLowerCase().indexOf('zh') === -1) {
       if (locale !== 'en') {
-        return ctx.redirect(`/en${ctx.route.fullPath}`);
+        return ctx.redirect(ctx.route.fullPath.replace(/^\/\w+\//, '/'));
       }
     } else if (locale !== 'zh') {
-      return ctx.redirect(ctx.route.fullPath.replace(/^\/en/, ''));
+      return ctx.redirect(`/zh${ctx.route.fullPath.replace(/^\/\w+\//, '/')}`);
     }
   }
 
@@ -28,5 +29,11 @@ export default function (ctx) {
         `/${language}${ctx.route.fullPath}`,
       );
     }
+  }
+
+  if (!startsWith(ctx.route.fullPath, `/${locale}`)) {
+    return ctx.redirect(
+      `/${locale}${ctx.route.fullPath}`,
+    );
   }
 }

@@ -2,6 +2,7 @@ import qs from 'qs';
 import startsWith from 'lodash/startsWith';
 import { toPath } from '@/shared/utils/qsHelp';
 import locale from '@/shared/intl/utils/locale';
+import { I18N } from '@@/i18n';
 
 /**
  * These actions correspond to the history API.
@@ -18,7 +19,7 @@ class Location {
     const { params = {}, query = {} } = options;
     let serializedUrl = toPath(url, params);
 
-    if (locale.currentLocale !== 'zh' && !startsWith(serializedUrl, `/${locale.currentLocale}`)) {
+    if (locale.currentLocale !== I18N.defaultLocale && !startsWith(serializedUrl, `/${locale.currentLocale}`)) {
       serializedUrl = `/${locale.currentLocale}${serializedUrl}`;
     }
 
