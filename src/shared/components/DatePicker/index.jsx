@@ -7,7 +7,6 @@ const DatePickerWrap = {
   render() {
     return (
       <span>
-        {/* <Calendar className="date-picker-icon" /> */}
         <DatePicker
           placeholder={this.$t('selectDate')}
           format='YYYY.MM.DD'
