@@ -332,7 +332,7 @@
     "completed": "Finished",
     "rule1": "1.Friends is defined as: directly inviting friends which called direct friend, and lower-level customers promoted by directly friends which called indirect friend",
     "rule2": "2. The VIP hashrates that friends receive through official activities will not be counted in the output reward",
-    "rule3": "The output bonus is not applicable to VIP hashrates",
+    "rule3": "3.The output bonus is not applicable to VIP hashrates",
     "rule4": "4. The commission is settled in the form of USDT",
     "rule5": "5. You can automatically upgrade to the level when you meet the level requirements",
     "rule6": "6. When you meet the different levels requirements, you will automatically upgrade to the highest level",
