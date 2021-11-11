@@ -456,7 +456,7 @@
     "rankType": "Ranking type",
     "selectRankType": "Choose ranking type",
     "periodsNumber": "Number of session",
-    "year": "{value}year",
+    "year": "{value} year ",
     "ranking": "Place",
     "issueRewardSettings": "Reward Settings for this Season",
     "historyRank": "Historical ranking",
