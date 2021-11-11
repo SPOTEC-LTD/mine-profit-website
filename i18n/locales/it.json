@@ -1053,5 +1053,6 @@
     "uncompleted": "annullato",
     "draw": "ricevere",
     "alreadyReceived": "Ricevuto",
-    "worth": "Vale $500"
+    "worth": "Vale $500",
+    "buyBack": "Riacquisto"
 }
