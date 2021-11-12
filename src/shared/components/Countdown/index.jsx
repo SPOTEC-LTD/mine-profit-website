@@ -15,16 +15,33 @@ const ChainSelect = {
   },
 
   mounted() {
-    this.count = this.deadline;
-    this.timer = setInterval(() => {
-      this.count = this.count > 0 ? this.count : this.deadline;
-      this.timeArray = formatCountdown(this.count, 'DD HH mm ss').split(' ');
-      this.count -= 1000;
-    }, 1000);
+    if (this.deadline) {
+      this.initTimer();
+    }
   },
 
   beforeDestroy() {
     clearInterval(this.timer);
+  },
+
+  watch: {
+    deadline() {
+      if (this.timer) {
+        clearInterval(this.timer);
+      } else {
+        this.initTimer();
+      }
+    },
+  },
+
+  methods: {
+    initTimer() {
+      this.count = this.deadline;
+      this.timer = setInterval(() => {
+        this.timeArray = formatCountdown(this.count, 'DD HH mm ss').split(' ');
+        this.count -= 1000;
+      }, 1000);
+    },
   },
 
   render() {
