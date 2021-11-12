@@ -1,4 +1,4 @@
-import JsCrypto from 'jsCrypto';
+import JsCrypto from 'jscrypto';
 /**
  * @word 要加密的内容
  * @keyWord String  服务器随机返回的关键字
