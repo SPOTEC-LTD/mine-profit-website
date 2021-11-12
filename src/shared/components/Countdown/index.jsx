@@ -1,7 +1,7 @@
 import { formatCountdown } from 'aa-utils/lib/formatCountdown';
 import './index.less';
 
-const ChainSelect = {
+const Countdown = {
   props: {
     deadline: Number,
     prefix: String,
@@ -28,9 +28,8 @@ const ChainSelect = {
     deadline() {
       if (this.timer) {
         clearInterval(this.timer);
-      } else {
-        this.initTimer();
       }
+      this.initTimer();
     },
   },
 
@@ -59,4 +58,4 @@ const ChainSelect = {
   },
 };
 
-export default ChainSelect;
+export default Countdown;
