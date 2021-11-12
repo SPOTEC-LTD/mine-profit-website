@@ -17,6 +17,7 @@ export default {
   remainTimeMS: '{minute} 分 {second} 秒',
   remainTimeDHM: '{day} 天 {hour} 时 {minute} 分',
   remainTime: '剩余: {day} 天 {hour} 时 {minute} 分 {second} 秒',
+  timeRemains: '剩余:',
   present: '赠送',
   outPutTime: '产出时间：',
   hashrateVIPHash: 'VIP算力',
