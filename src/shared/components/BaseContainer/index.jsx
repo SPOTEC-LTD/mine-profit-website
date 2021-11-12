@@ -1,6 +1,5 @@
 import find from 'lodash/find';
 import { Breadcrumb } from 'ant-design-vue';
-import { I18N } from '@@/i18n';
 import { pathRoutes } from '@/router';
 import Link from '@/shared/components/Link';
 import matchPath from '@/shared/utils/matchPath';

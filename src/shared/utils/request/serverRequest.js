@@ -33,9 +33,8 @@ axiosInstance.interceptors.response.use(res => {
   }
 
   if (isNotLogin(response.code) && catchException) {
-    const finlayUrl = ctx.locale === 'zh' ? loginPath : `/${ctx.locale}${loginPath}`;
     if (!startsWith(ctx.route.fullPath, loginPath)) {
-      ctx.redirect(`${finlayUrl}?redirectUrl=${ctx.route.fullPath}`);
+      ctx.redirect(`${loginPath}?redirectUrl=${ctx.route.fullPath}`);
     }
   }
 

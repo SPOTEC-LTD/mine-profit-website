@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 import Cookies from 'universal-cookie';
 import find from 'lodash/find';
-import { I18N, ZH } from '@@/i18n';
+import { I18N, ZH, EN } from '@@/i18n';
 
 const { locales } = I18N;
 
@@ -34,7 +34,10 @@ export default function i18nChange(ctx) {
   }
 
   if (language && language !== urlLang) {
-    return ctx.redirect(`/${language}${sourcePath}`);
+    if (find(locales, { code: language })) {
+      return ctx.redirect(`/${language}${sourcePath}`);
+    }
+    return ctx.redirect(`/${EN}${sourcePath}`);
   }
 
   if (!urlIsLang) {
