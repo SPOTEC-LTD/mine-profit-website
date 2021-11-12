@@ -28,12 +28,14 @@ axiosInstance.interceptors.request.use(config => {
 axiosInstance.interceptors.response.use(res => {
   const { data, config: { ctx, catchException = true } } = res;
   const response = new Response(data);
+  console.log('3', ctx.route);
+
   if (response.isSuccess) {
     return Promise.resolve(data);
   }
 
   if (isNotLogin(response.code) && catchException) {
-    if (!startsWith(ctx.route.fullPath, loginPath)) {
+    if (!startsWith(ctx.route.name, 'login')) {
       ctx.redirect(`${loginPath}?redirectUrl=${ctx.route.fullPath}`);
     }
   }
