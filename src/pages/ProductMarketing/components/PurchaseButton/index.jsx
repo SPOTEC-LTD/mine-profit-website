@@ -1,6 +1,7 @@
-import { Button, Statistic } from 'ant-design-vue';
+import { Button } from 'ant-design-vue';
 import getMinus from '@/shared/utils/getMinus';
 import DateUtils from '@/shared/intl/utils/dateUtils';
+import Countdown from '@/shared/components/Countdown';
 import { BEFORE_PRE_SALE, PRE_SALE_NOW } from '@/shared/consts/preSaleStatus';
 import getNewRegisterTime from '@/shared/utils/getNewRegisterTime';
 import TradeBeforeVerified from '@/shared/components/TradeBeforeVerified';
@@ -57,18 +58,12 @@ const PurchaseButton = {
     },
 
     saleNowCountDownNode(type, timeStamp, endTime) {
-      const format = this.$t(type, {
-        day: 'DD',
-        hour: 'HH',
-        minute: 'mm',
-        second: 'ss',
-      });
       return (
         <TradeBeforeVerified onVerifiedPass={this.purchaseNow}>
           <button class={['new-user-btn', 'all-btn-size']}>
             <div class='new-user-text'>{this.$t('shareInvestNow')}</div>
             <div class='new-user-count'>
-              <Statistic.Countdown value={Date.now() + timeStamp} format={format} />
+              <Countdown deadline={timeStamp} prefix={type} />
             </div>
             {endTime && (<div class="sale-now-end-time">{`${endTime} ${this.$t('closeTime')}`}</div>)}
           </button>
@@ -77,14 +72,13 @@ const PurchaseButton = {
     },
 
     lookForwardNode(lookForwardType) {
-      const format = this.$t(lookForwardType, { day: 'DD', hour: 'HH', minute: 'mm', second: 'ss' });
       const startDate = DateUtils.formatDateTime(this.lineTime);
       const restTime = +getMinus({ number: this.lineTime, minuend: this.nowTime, decimal: 0 });
       return (
         <button class={['look-forward-btn', 'all-btn-size']} disabled={true}>
           <div class='new-user-text'>{this.$t('marketExpect')}</div>
           <div class='look-forward-count'>
-            <Statistic.Countdown value={Date.now() + restTime} format={format} />
+            <Countdown deadline={restTime} prefix={lookForwardType} />
             <div>{`${startDate} ${this.$t('marketOnlineTime')}`}</div>
           </div>
         </button>
@@ -96,7 +90,7 @@ const PurchaseButton = {
     const { isNew, isLookForward, isNoRest, preStatus, preSaleLookForward, newUserTime, restPreSaleTime } = this;
     const unNormalButton = isNoRest || isLookForward || isNew || preStatus;
     const isEmpty = !isNew && isNoRest;
-    const lookForwardType = preSaleLookForward ? 'preSaleStartTime' : 'remainTime';
+    const lookForwardType = preSaleLookForward ? this.$t('preSaleStart') : this.$t('timeRemains');
 
     return (
       <div class="operate-btn-wrapper">
@@ -111,10 +105,10 @@ const PurchaseButton = {
           </TradeBeforeVerified>
         )}
 
-        {isNew && this.saleNowCountDownNode('newUserRemainTime', newUserTime)}
+        {isNew && this.saleNowCountDownNode(this.$t('vipRemainTime'), newUserTime)}
 
         {(!isEmpty && preStatus === PRE_SALE_NOW) && (
-          this.saleNowCountDownNode('preSaleRemainTime', restPreSaleTime, this.formatPreSaleEndTime)
+          this.saleNowCountDownNode(this.$t('preSaleRemain'), restPreSaleTime, this.formatPreSaleEndTime)
         )}
 
         {isLookForward && this.lookForwardNode(lookForwardType)}
