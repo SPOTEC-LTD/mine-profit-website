@@ -12,7 +12,7 @@ import it from './locales/it.json';
 import ar from './locales/ar.json';
 
 export const EN = 'en';
-export const CN = 'zh-CN';
+export const ZH = 'zh-CN';
 export const ZH_TW = 'zh-TW';
 export const KO = 'ko-KR';
 export const JA = 'ja-JP';
@@ -24,6 +24,21 @@ export const RU = 'ru-RU';
 export const IT = 'it-IT';
 export const AR = 'ar-sa';
 
+export const languages = {
+  [EN]: EN,
+  [ZH]: ZH,
+  [ZH_TW]: ZH_TW,
+  [KO]: KO,
+  [JA]: JA,
+  [ES]: ES,
+  [FR]: FR,
+  [PT]: PT,
+  [DE]: DE,
+  [RU]: RU,
+  [IT]: IT,
+  [AR]: AR,
+};
+
 export const I18N = {
   locales: [
     {
@@ -32,8 +47,8 @@ export const I18N = {
       name: 'English',
     },
     {
-      code: 'zh',
-      iso: 'zh-CN',
+      code: ZH,
+      iso: ZH,
       name: '简体',
     },
     {
@@ -93,7 +108,7 @@ export const I18N = {
     fallbackLocale: 'en',
     messages: {
       en,
-      zh,
+      [ZH]: zh,
       [ZH_TW]: zh_Hant,
       [KO]: ko,
       [JA]: ja,

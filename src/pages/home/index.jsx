@@ -46,6 +46,7 @@ const Home = {
     };
     const getHomeAnnouncementPromise = API.getHomeAnnouncementList({}, { ctx });
     const getBannersPromise = homeAPI.getBanners({}, { ctx });
+    const fetchAppVersionPromise = API.fetchAppVersion({}, { ctx });
 
     try {
       const { body: { list } } = await getHomeAnnouncementPromise;
@@ -55,7 +56,7 @@ const Home = {
     }
 
     try {
-      const { body } = await API.fetchAppVersion({}, { ctx });
+      const { body } = await fetchAppVersionPromise;
       props.versionInfo = body;
     } catch (error) {
       console.log('error', error);

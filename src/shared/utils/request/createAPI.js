@@ -5,7 +5,7 @@ import isNull from 'lodash/isNull';
 import isPlainObject from 'lodash/isPlainObject';
 import { toPath } from '@/shared/utils/qsHelp';
 import isServerSide from '@/shared/utils/isServerSide';
-import languages from '@/shared/intl/consts/languages';
+import { languages } from '@@/i18n';
 import locale from '@/shared/intl/utils/locale';
 import dateUtils from '@/shared/intl/utils/dateUtils';
 import clientRequest from './clientRequest';

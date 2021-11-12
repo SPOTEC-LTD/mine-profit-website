@@ -7,7 +7,8 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import timezone from 'dayjs/plugin/timezone';
 import momentTimezone from 'moment-timezone'; // fix ie tz.guess bug;
 import isNumber from 'lodash/isNumber';
-import { CN } from '../consts/languages';
+import { ZH } from '@@/i18n';
+
 import { dayjsLocaleMap } from '../consts/localeTypes';
 
 dayjs.extend(localeData);
@@ -38,7 +39,7 @@ class DateUtils {
     Object.defineProperties(this, {
       locale: {
         get() {
-          return this.currentLocale || CN;
+          return this.currentLocale || ZH;
         },
         set(v) {
           this.currentLocale = v;
