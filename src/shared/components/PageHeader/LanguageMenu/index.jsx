@@ -1,8 +1,10 @@
 import { Dropdown, Menu } from 'ant-design-vue';
 import Cookies from 'universal-cookie';
 import filter from 'lodash/filter';
+import { EN } from '@@/i18n';
 import EarthFilled from 'ahoney/lib/icons/EarthFilled';
 import locationHelp from '@/shared/utils/locationHelp';
+
 import './index.less';
 
 export default {
@@ -11,7 +13,7 @@ export default {
   methods: {
     onclickLanguage(value) {
       const cookies = new Cookies();
-      const resultLang = value || 'zh';
+      const resultLang = value || EN;
       cookies.set('language', resultLang, { path: '/' });
 
       locationHelp.redirect(this.switchLocalePath(value));
