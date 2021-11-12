@@ -1,12 +1,12 @@
-import { CN, US } from './languages';
+import { EN, ZH } from '@@/i18n';
 
 // only use require
 require('dayjs/locale/zh-cn');
 require('dayjs/locale/en');
 
 const dayjsLocaleMap = {
-  [US]: 'en',
-  [CN]: 'zh-cn',
+  [EN]: 'en',
+  [ZH]: 'zh-cn',
 };
 
 export {

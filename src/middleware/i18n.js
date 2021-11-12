@@ -1,38 +1,43 @@
 /* eslint-disable consistent-return */
 import Cookies from 'universal-cookie';
-import startsWith from 'lodash/startsWith';
+import find from 'lodash/find';
+import { I18N, ZH } from '@@/i18n';
+
+const { locales } = I18N;
 
 export default function i18nChange(ctx) {
   if (ctx.isHMR) { return; }
 
-  const { defaultLocale, locale } = ctx.app.i18n;
+  const { locale } = ctx.app.i18n;
   const header = (ctx.req && ctx.req.headers) || {};
 
   const headerCookie = header.cookie;
   const { language } = new Cookies(headerCookie).cookies;
+  const urlLang = ctx.route.fullPath.split('/')[1];
+  const urlIsLang = !!find(locales, { code: urlLang });
+  let sourcePath = ctx.route.fullPath;
+  if (urlIsLang) {
+    sourcePath = ctx.route.fullPath.replace(`/${urlLang}`, '');
+  }
+
+  // 没有设置语言根据游览器显示中文还是英文
   if (!language && header['accept-language']) {
-    const [clientLang] = header['accept-language'].split(',');
+    const [browserLang] = header['accept-language'].split(',');
 
-    if (clientLang.toLowerCase().indexOf('zh') === -1) {
-      if (locale !== 'en') {
-        return ctx.redirect(ctx.route.fullPath.replace(/^\/\w+\//, '/'));
+    if (browserLang.toLowerCase().indexOf('zh') === -1) {
+      if (locale !== I18N.defaultLocale) {
+        return ctx.redirect(`${I18N.defaultLocale}sourcePath`);
       }
-    } else if (locale !== 'zh') {
-      return ctx.redirect(`/zh${ctx.route.fullPath.replace(/^\/\w+\//, '/')}`);
+    } else if (locale !== ZH) {
+      return ctx.redirect(`/${ZH}${sourcePath}`);
     }
   }
 
-  if (language && language !== defaultLocale) {
-    if (!startsWith(ctx.route.fullPath, `/${language}`)) {
-      return ctx.redirect(
-        `/${language}${ctx.route.fullPath}`,
-      );
-    }
+  if (language && language !== urlLang) {
+    return ctx.redirect(`/${language}${sourcePath}`);
   }
 
-  if (!startsWith(ctx.route.fullPath, `/${locale}`)) {
-    return ctx.redirect(
-      `/${locale}${ctx.route.fullPath}`,
-    );
+  if (!urlIsLang) {
+    return ctx.redirect(`/${locale}${sourcePath}`);
   }
 }

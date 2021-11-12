@@ -1,7 +1,7 @@
 import BaseContainer from '@/shared/components/BaseContainer';
 import dateUtils from '@/shared/intl/utils/dateUtils';
 import isServerSide from '@/shared/utils/isServerSide';
-import languages from '@/shared/intl/consts/languages';
+import { languages } from '@@/i18n';
 import QRCodeModule from '@/shared/components/QRCodeModule';
 import downloadAppImage from '@/assets/home/download-app-image.png';
 
