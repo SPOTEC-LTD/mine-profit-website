@@ -11,7 +11,7 @@ import ru from './locales/ru.json';
 import it from './locales/it.json';
 import ar from './locales/ar.json';
 
-export const EN = 'en-US';
+export const EN = 'en';
 export const ZH = 'zh-CN';
 export const ZH_TW = 'zh-TW';
 export const KO = 'ko-KR';
@@ -25,7 +25,7 @@ export const IT = 'it-IT';
 export const AR = 'ar-sa';
 
 export const languages = {
-  [EN]: EN,
+  [EN]: 'en-US',
   [ZH]: ZH,
   [ZH_TW]: ZH_TW,
   [KO]: KO,
