@@ -70,7 +70,7 @@ const BindInvitationCode = {
         <div class={styles['invite-code-content']}>
           <div class={styles['invite-code-title']}>
             <div>{this.$t('inputInviteCodeBind')}</div>
-            <div>{this.$t('receiveNow')}</div>
+            <div>{this.$t('inputInviteCodeOtherTips')}</div>
           </div>
           <div class={styles.form}>
             <FormModel

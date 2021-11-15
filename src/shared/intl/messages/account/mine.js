@@ -18,6 +18,7 @@ export default {
   receiveNow: '立即领取价值168元的云算力礼包',
   invitationCodeRequire: '邀请码不能为空',
   pleaseEnterBindInvitationCode: '请输入邀请码',
+  inputInviteCodeOtherTips: '领取新人礼包',
   jump: '跳过',
   inviteFriendsPerson: '人',
   inviteFriendsDetail: '邀请详情',
