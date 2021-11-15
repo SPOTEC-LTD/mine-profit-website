@@ -8,7 +8,9 @@ import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
 import { INVESTMENT, GET_ORDERS, UPDATE_ORDERS_LIST } from '@/modules/account/investment';
 import { ALL } from '@/shared/consts/coinType';
 import { COMMON, GET_CHAIN_ORDER } from '@/modules/common';
+import { productTemplatePath } from '@/router/consts/urls';
 import DatePicker from '@/shared/components/DatePicker';
+import Link from '@/shared/components/Link';
 import styles from './index.less?module';
 
 const pageSize = 10;
@@ -125,9 +127,14 @@ const Orders = {
         title: this.$t('hashRateName'), // 算力名称
         dataIndex: 'ptName',
         align: 'center',
-        customRender(value, { pname }) {
-          return pname ? `${value} ${pname}` : value;
-        },
+        customRender: (value, { pname, ptId }) => (
+          <Link
+            class={styles['product-temp']}
+            to={{ path: productTemplatePath, params: { id: ptId } }}
+          >
+            {pname ? `${value} ${pname}` : value}
+          </Link>
+        ),
       },
       {
         title: this.$t('marketOrderHashrateNum'), // 算力数量
