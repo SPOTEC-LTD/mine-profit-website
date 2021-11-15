@@ -10,7 +10,7 @@ const Countdown = {
   data() {
     return {
       count: this.deadline,
-      timeArray: [],
+      timeArray: formatCountdown(this.deadline, 'DD HH mm ss').split(' '),
     };
   },
 

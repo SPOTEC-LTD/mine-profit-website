@@ -84,7 +84,6 @@ const Settlement = {
   data() {
     return {
       value: '',
-      hashRatePrice: '0',
       hashRatePartAmount: 0,
       payCoin: 'USDT',
       isShowPasswordInput: false,
@@ -107,14 +106,17 @@ const Settlement = {
       vipCouponsList: state => state.hashRateCoupons.vipCouponsList,
       getVipListLoading: state => state.loading.effects[`${HASH_RATE_COUPONS}/${GET_VIP_COUPONS}`],
     }),
+
+    hashRatePrice() {
+      const { isNormalUser, productDetail, reducedPrice } = this;
+      const price = isNormalUser ? productDetail.packageHashratePrice : reducedPrice;
+      return numberUtils.times(this.value, price);
+    },
   },
 
   watch: {
     value() {
-      const { isNormalUser, productDetail, reducedPrice } = this;
-      const price = isNormalUser ? productDetail.packageHashratePrice : reducedPrice;
-      this.hashRatePrice = numberUtils.times(this.value, price);
-      this.hashRatePartAmount = +numberUtils.times(this.value, productDetail.amount);
+      this.hashRatePartAmount = +numberUtils.times(this.value, this.productDetail.amount);
       this.getCouponsList({ buyAmount: +this.hashRatePartAmount });
     },
     isVerificationSuccess(value) {
