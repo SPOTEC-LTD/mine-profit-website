@@ -199,8 +199,9 @@ const TradeBeforeVerified = {
           {this.showDialog && this.kycStatus === NOT_SUBMIT && btnList.length === 1 && (
             <div class="verified-countdown">
               <Statistic.Countdown
-                value={Date.now() + 1000 * 5}
-                format={this.$t('countdownFormat', { second: 's' })}
+                value={Date.now() + 1000 * 6}
+                format="s"
+                suffix={this.$t('countdownFormat')}
                 onFinish={() => { this.handleCountDownFinish(btnList[0]); }}
               />
             </div>
