@@ -3,7 +3,7 @@ import './index.less';
 const PictureProcess = {
   props: {
     image: String,
-    className: String,
+    className: [String, Array],
   },
   render() {
     return (
