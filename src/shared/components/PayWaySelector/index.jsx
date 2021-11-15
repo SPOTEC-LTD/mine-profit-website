@@ -58,6 +58,14 @@ const PayWaySelector = {
     willPayAmount() {
       this.handleCoinChange(this.choosesCoin);
     },
+
+    btcRate() {
+      this.handleCoinChange(this.choosesCoin);
+    },
+
+    ethRate() {
+      this.handleCoinChange(this.choosesCoin);
+    },
   },
 
   mounted() {
