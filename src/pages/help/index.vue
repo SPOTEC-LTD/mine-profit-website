@@ -4,7 +4,7 @@
     <BaseContainer>
       <div class="banner">
         <div>
-          <img class="banner-text-img" src="@/assets/help/banner-text.png" alt="" />
+          <img class="banner-text-img" :src="bannerText" alt="" />
         </div>
         <AInput
           v-model="searchValue"
@@ -84,6 +84,8 @@ import SearchOutlined from 'ahoney/lib/icons/SearchOutlined';
 import BaseContainer from '@/shared/components/BaseContainer';
 import { fetchQuestionList } from '@/api';
 import { getLocalLanguage, getIsChinese } from '@/shared/utils/getLocalLanguage';
+import bannerText from '@/assets/help/banner-text.png';
+import enBannerText from '@/assets/help/en-banner-text.png';
 import QuestionItem from './QuestionItem';
 
 export default {
@@ -108,6 +110,11 @@ export default {
       locale: getLocalLanguage(),
       isChinese: getIsChinese(),
     };
+  },
+  computed: {
+    bannerText() {
+      return this.isChinese ? bannerText : enBannerText;
+    },
   },
   mounted() {
     this.fetchCommonProblem();

@@ -1,6 +1,6 @@
 import { Select } from 'ant-design-vue';
 import TriangleFilled from 'ahoney/lib/icons/TriangleFilled';
-import { ZH } from '@@/I18n';
+import { ZH } from '@@/i18n';
 import filterInt from '@/shared/utils/filterInt';
 import LabelInput from '../LabelInput';
 import './index.less';
