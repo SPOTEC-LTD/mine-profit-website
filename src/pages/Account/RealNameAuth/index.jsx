@@ -21,7 +21,7 @@ import { idNumberReg, textReg } from '@/shared/consts/rules';
 import { MALE, FEMALE } from '@/shared/consts/getGenders';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import { ID_CARD, DRIVING_LICENSE, PASSPORT } from '@/shared/consts/getIdTypes';
-import { getIsChinese, getIsEnglish } from '@/shared/utils/getLocalLanguage';
+import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 import Notification from '@/shared/services/Notification';
 import FormatInput from '@/shared/components/FormatInput';
 import TradeBeforeVerified from '@/shared/components/TradeBeforeVerified';
@@ -79,6 +79,7 @@ const RealNameAuth = {
         lastName: '',
         firstName: '',
       },
+      isChinese: getIsChinese(),
     };
   },
   computed: {
@@ -110,6 +111,9 @@ const RealNameAuth = {
         result.push(this.backPhotoUrl);
       }
       return result;
+    },
+    lang() {
+      return this.isChinese ? 'zh' : 'en';
     },
   },
   mounted() {
@@ -157,7 +161,7 @@ const RealNameAuth = {
     },
     handleSubmit() {
       let name = `${this.form.lastName}${this.form.firstName}`;
-      if (getIsEnglish()) {
+      if (!this.isChinese) {
         name = `${this.form.firstName} ${this.form.lastName}`;
       }
       const params = omit(this.form, ['firstName', 'lastName']);
@@ -185,7 +189,6 @@ const RealNameAuth = {
     },
   },
   render() {
-    const lang = this.$i18n.locale;
     const idTypeColumns = [
       { value: ID_CARD, text: this.$t('idCard') },
       { value: DRIVING_LICENSE, text: this.$t('driverLicense') },
@@ -252,7 +255,7 @@ const RealNameAuth = {
 
               <FormModel ref="ruleForm" hideRequiredMark props={{ model: this.form }} class="normal-form">
                 <Row gutter={[32, 0]}>
-                  {getIsChinese() && (
+                  {this.isChinese && (
                     <Col span={6}>
                       <Item label={this.$t('familyName')}>
                         <FormatInput
@@ -278,7 +281,7 @@ const RealNameAuth = {
                       />
                     </Item>
                   </Col>
-                  {getIsEnglish() && (
+                  {!this.isChinese && (
                     <Col span={6}>
                       <Item label={this.$t('familyName')}>
                       <FormatInput
@@ -304,8 +307,8 @@ const RealNameAuth = {
                         dropdownMatchSelectWidth={false}
                       >
                         {this.countries.map(item => (
-                          <Select.Option search={item[lang]} key={item.nation} label={item[lang]}>
-                            {item[lang]}
+                          <Select.Option search={item[this.lang]} key={item.nation} label={item[this.lang]}>
+                            {item[this.lang]}
                           </Select.Option>
                         ))}
                       </Select>
