@@ -8,7 +8,7 @@ import TriangleFilled from 'ahoney/lib/icons/TriangleFilled';
 import BaseContainer from '@/shared/components/BaseContainer';
 import RankCard from '@/shared/components/RankCard';
 import NoData from '@/shared/components/NoData';
-import { getIsEnglish } from '@/shared/utils/getLocalLanguage';
+import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 import { INCOME, ANGEL, BUYER, rankTypeMap } from '../consts/rankType';
 import styles from './index.less?module';
 
@@ -19,7 +19,7 @@ const HistoryRank = {
   data() {
     return {
       selectDuration: [],
-      isEnglish: getIsEnglish(),
+      isChinese: getIsChinese(),
     };
   },
   computed: {
@@ -144,7 +144,7 @@ const HistoryRank = {
             </Col>
           </Row>
         </FormModel>
-        <div class={[styles['my-ranking'], { [styles['en-my-ranking']]: this.isEnglish }]}>
+        <div class={[styles['my-ranking'], { [styles['en-my-ranking']]: !this.isChinese }]}>
           <Row gutter={[30, 0]}>
             <Col span={12}>
               <RankCard
@@ -159,7 +159,7 @@ const HistoryRank = {
             <Col span={12} />
           </Row>
         </div>
-        <div class={[styles['all-ranking'], { [styles['en-all-ranking']]: this.isEnglish }]}>
+        <div class={[styles['all-ranking'], { [styles['en-all-ranking']]: !this.isChinese }]}>
           <Row gutter={[30, 0]}>
             <Col span={12}>
               {topFive.map((item, index) => (
