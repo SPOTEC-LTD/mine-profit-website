@@ -21,7 +21,7 @@ const EditAvatarNickname = {
     return {
       uploadAvatarLoading: false,
       form: {
-        avatar: this.userInfo.avatar || defaultAvatar,
+        avatar: this.userInfo.avatar,
         nickname: this.userInfo.nickName,
       },
     };
@@ -79,7 +79,7 @@ const EditAvatarNickname = {
         class={['normal-form', styles['edit-info-wrap']]}
       >
         <div class={styles['upload-avatar-box']}>
-          <PictureProcess className={styles.avatar} image={this.form.avatar} />
+          <PictureProcess className={styles.avatar} image={this.form.avatar || defaultAvatar } />
           <Upload
             accept="image/*"
             action={uploadFileUrl}
