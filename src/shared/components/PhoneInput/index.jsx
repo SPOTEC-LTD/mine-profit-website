@@ -1,5 +1,6 @@
 import { Select } from 'ant-design-vue';
 import TriangleFilled from 'ahoney/lib/icons/TriangleFilled';
+import { ZH } from '@@/I18n';
 import filterInt from '@/shared/utils/filterInt';
 import LabelInput from '../LabelInput';
 import './index.less';
@@ -52,7 +53,7 @@ const PhoneInput = {
       attrs: this.$attrs,
     };
 
-    const lang = this.$i18n.locale;
+    const lang = this.$i18n.locale === ZH ? 'zh' : 'en';
 
     const selectNode = (
       <Select
