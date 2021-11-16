@@ -127,14 +127,19 @@ const Orders = {
         title: this.$t('hashRateName'), // 算力名称
         dataIndex: 'ptName',
         align: 'center',
-        customRender: (value, { pname, ptId }) => (
-          <Link
-            class={styles['product-temp']}
-            to={{ path: productTemplatePath, params: { id: ptId } }}
-          >
-            {pname ? `${value} ${pname}` : value}
-          </Link>
-        ),
+        customRender: (value, { pname, ptId, chainType }) => {
+          const resultName = pname ? `${value} ${pname}` : value;
+          return chainType === this.dynamicChainType
+            ? resultName
+            : (
+              <Link
+                class={styles['product-temp']}
+                to={{ path: productTemplatePath, params: { id: ptId } }}
+              >
+                {resultName}
+              </Link>
+            );
+        },
       },
       {
         title: this.$t('marketOrderHashrateNum'), // 算力数量
