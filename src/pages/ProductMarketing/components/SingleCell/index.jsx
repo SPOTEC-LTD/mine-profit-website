@@ -28,7 +28,7 @@ const SingleCell = {
           <div class='single-cell-img'>{this.$scopedSlots.icon && this.$scopedSlots.icon()}</div>
           <div class='c2c-cell-detail'>
             <span>{this.$scopedSlots.title && this.$scopedSlots.title()}</span>
-            <div>{this.$scopedSlots.default && this.$scopedSlots.default()}</div>
+            <div class='c2c-cell-content-wrapper'>{this.$scopedSlots.default && this.$scopedSlots.default()}</div>
           </div>
         </div>
       );
