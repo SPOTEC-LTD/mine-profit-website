@@ -19,7 +19,7 @@ import newPurchaseLeftIcon from '@/assets/rank/new-purchase-left-icon.png';
 import newPurchaseRightIcon from '@/assets/rank/new-purchase-right-icon.png';
 import topNameBg from '@/assets/rank/top-name-bg.png';
 import BaseContainer from '@/shared/components/BaseContainer';
-import { getIsEnglish } from '@/shared/utils/getLocalLanguage';
+import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 import KeepTabs from '@/shared/components/KeepTabs';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import { INCOME, ANGEL, BUYER } from '@/pages/Rank/consts/rankType';
@@ -66,18 +66,18 @@ const Rank = {
   },
   data() {
     return {
-      isEnglish: getIsEnglish(),
+      isChinese: getIsChinese(),
     };
   },
   computed: {
     incomeTab() {
-      return this.isEnglish ? enIncomeTab : incomeTab;
+      return this.isChinese ? incomeTab : enIncomeTab;
     },
     angelTab() {
-      return this.isEnglish ? enAngelTab : angelTab;
+      return this.isChinese ? angelTab : enAngelTab;
     },
     buyerTab() {
-      return this.isEnglish ? enBuyerTab : buyerTab;
+      return this.isChinese ? buyerTab : enBuyerTab;
     },
     isTotalIncomeRank() {
       const { rankType = INCOME } = this.$route.query;
@@ -90,13 +90,13 @@ const Rank = {
       return this.$route.query.rankType === BUYER;
     },
     incomeIcon() {
-      return this.isEnglish ? enIncomeIcon : incomeIcon;
+      return this.isChinese ? incomeIcon : enIncomeIcon;
     },
     angelRankIcon() {
-      return this.isEnglish ? enAngelRankIcon : angelRankIcon;
+      return this.isChinese ? angelRankIcon : enAngelRankIcon;
     },
     newPurchaseRankIcon() {
-      return this.isEnglish ? enNewPurchaseRankIcon : newPurchaseRankIcon;
+      return this.isChinese ? newPurchaseRankIcon : enNewPurchaseRankIcon;
     },
   },
   render() {

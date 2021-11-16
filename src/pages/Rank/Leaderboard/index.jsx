@@ -3,7 +3,7 @@ import slice from 'lodash/slice';
 import fill from 'lodash/fill';
 import isEmpty from 'lodash/isEmpty';
 import { mapMutations, mapActions } from 'vuex';
-import { getIsEnglish } from '@/shared/utils/getLocalLanguage';
+import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 import RankCard from '@/shared/components/RankCard';
 import TriangleFilled from 'ahoney/lib/icons/TriangleFilled';
 import rewardImg from '@/assets/rank/reward-img.png';
@@ -22,7 +22,7 @@ const Leaderboard = {
   },
   data() {
     return {
-      isEnglish: getIsEnglish(),
+      isChinese: getIsChinese(),
     };
   },
   computed: {
@@ -65,7 +65,7 @@ const Leaderboard = {
             <div class={styles['duration-scope']}>{date}</div>
           </div>
         </div>
-        <div class={[styles['my-ranking'], { [styles['en-my-ranking']]: this.isEnglish }]}>
+        <div class={[styles['my-ranking'], { [styles['en-my-ranking']]: !this.isChinese }]}>
           <Row gutter={[30, 0]}>
             <Col span={12}>
               <RankCard
@@ -96,7 +96,7 @@ const Leaderboard = {
             </Col>
           </Row>
         </div>
-        <div class={[styles['all-ranking'], { [styles['en-all-ranking']]: this.isEnglish }]}>
+        <div class={[styles['all-ranking'], { [styles['en-all-ranking']]: !this.isChinese }]}>
           <Row gutter={[30, 0]}>
             <Col span={12}>
               {topFive.map((item, index) => (
