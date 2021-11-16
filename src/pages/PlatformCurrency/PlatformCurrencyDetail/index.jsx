@@ -3,23 +3,37 @@ import { Tooltip } from 'ant-design-vue';
 import { PLATFORM_CURRENCY, GET_PLATFORM_CURRENCY_DETAIL, GET_DYNAMIC_CHAIN_INFO } from '@/modules/platformCurrency';
 import formula from '@/assets/platformCurrency/formula.png';
 import formula2 from '@/assets/platformCurrency/formula-2.png';
+import enFormula2 from '@/assets/platformCurrency/en-formula-2.png';
 import formula3 from '@/assets/platformCurrency/formula-3.png';
+import enFormula3 from '@/assets/platformCurrency/en-formula-3.png';
 import chart from '@/assets/platformCurrency/chart.png';
 import BaseContainer from '@/shared/components/BaseContainer';
 import PageButton from '@/shared/components/PageButton';
 import { UPDATE_HAS_PAGE_BUTTON_STATUS } from '@/store/consts/actionType';
 import bigNumberToFixed from '@/shared/utils/bigNumberToFixed';
+import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 import { columns, dataSource } from '../consts/tableValue';
 import CoinPriceTable from '../components/CoinPriceTable';
 import styles from './index.less?module';
 
 const PlatformCurrencyDetail = {
+  data() {
+    return {
+      isChinese: getIsChinese(),
+    };
+  },
   computed: {
     ...mapState({
       platformCurrencyDetail: state => state.platformCurrency.platformCurrencyDetail,
       dynamicChainInfo: state => state.platformCurrency.dynamicChainInfo,
-      loading: state => state.loading.effects[`${PLATFORM_CURRENCY}/${GET_PLATFORM_CURRENCY_DETAIL}`]
+      loading: state => state.loading.effects[`${PLATFORM_CURRENCY}/${GET_PLATFORM_CURRENCY_DETAIL}`],
     }),
+    formula2() {
+      return this.isChinese ? formula2 : enFormula2;
+    },
+    formula3() {
+      return this.isChinese ? formula3 : enFormula3;
+    },
   },
   mounted() {
     this[UPDATE_HAS_PAGE_BUTTON_STATUS](true);
@@ -125,7 +139,7 @@ const PlatformCurrencyDetail = {
           <div>
             <div class={styles.title}>{this.$t('detail_3_title')}</div>
             <div>{this.$t('detail_3_text', { enProductName: this.$t('enProductName') })}</div>
-            <img class={styles.formula} src={formula2} alt="" />
+            <img class={styles.formula} src={this.formula2} alt="" />
           </div>
           <div>
             <div class={styles.title}>{this.$t('detail_4_title')}</div>
@@ -158,7 +172,7 @@ const PlatformCurrencyDetail = {
           </div>
           <div>
             <div class={styles.title}>{this.$t('detail_7_title')}</div>
-            <img class={styles.formula} src={formula3} alt="" />
+            <img class={styles.formula} src={this.formula3} alt="" />
           </div>
           <div>
             <div class={styles.title}>{this.$t('detail_8_title', { name })}</div>
