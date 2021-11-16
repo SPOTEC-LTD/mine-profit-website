@@ -4,7 +4,9 @@ import './index.less';
 const Countdown = {
   props: {
     deadline: Number,
-    prefix: String,
+    prefix: { type: String, default: '' },
+    className: String,
+    inPledgePage: { type: Boolean, default: false },
   },
 
   data() {
@@ -39,6 +41,10 @@ const Countdown = {
       this.timer = setInterval(() => {
         this.timeArray = formatCountdown(this.count, 'DD HH mm ss').split(' ');
         this.count -= 1000;
+        if (this.count === -1000) {
+          clearInterval(this.timer);
+          this.$emit('finish');
+        }
       }, 1000);
     },
   },
@@ -52,8 +58,15 @@ const Countdown = {
       second: ss,
     });
 
+    const onlyMSFormat = this.$t('remainTimeMS', {
+      minute: mm,
+      second: ss,
+    });
+
     return (
-      <div class="countdown-timer-wrapper">{`${this.prefix} ${timeFormat}`}</div>
+      <div class={['countdown-timer-wrapper', this.className]}>
+        {`${this.prefix} ${this.inPledgePage ? onlyMSFormat : timeFormat}`}
+      </div>
     );
   },
 };
