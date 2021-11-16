@@ -1,80 +1,79 @@
-import { fetchBizSocialInfo } from "@/api";
-import MailFilled from "ahoney/lib/icons/MailFilled";
-import TwitterFilled from "ahoney/lib/icons/TwitterFilled";
-import FacebookFilled from "ahoney/lib/icons/FacebookFilled";
-import footerSubject from "@/assets/footer-subject.png";
-import enFooterSubject from "@/assets/en-footer-subject.png";
-import { getIsEnglish } from "@/shared/utils/getLocalLanguage";
+import { fetchBizSocialInfo } from '@/api';
+import MailFilled from 'ahoney/lib/icons/MailFilled';
+import TwitterFilled from 'ahoney/lib/icons/TwitterFilled';
+import FacebookFilled from 'ahoney/lib/icons/FacebookFilled';
+import footerSubject from '@/assets/footer-subject.png';
+import enFooterSubject from '@/assets/en-footer-subject.png';
+import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 import {
   helpPath,
   aboutUsPaths,
   c2cMarketingPath,
   newsAnnouncementPath,
-  officialMarketingPath
-} from "@/router/consts/urls";
+  officialMarketingPath,
+} from '@/router/consts/urls';
 
-import FooterMenuItem from "./FooterMenuItem";
-import "./index.less";
+import FooterMenuItem from './FooterMenuItem';
+import './index.less';
 
 const PageFooter = {
   data() {
     return {
       socialData: {},
-      isEnLanguage: getIsEnglish(),
       menuList: [
         {
-          navTitle: this.$t("hashRateMarket"),
+          navTitle: this.$t('hashRateMarket'),
           list: [
             {
               to: officialMarketingPath,
               isReload: true,
-              text: this.$t("marketOfficialMarket")
+              text: this.$t('marketOfficialMarket'),
             },
             {
               to: c2cMarketingPath,
               isReload: true,
-              text: this.$t("marketC2CMarket")
-            }
-          ]
+              text: this.$t('marketC2CMarket'),
+            },
+          ],
         },
         {
-          navTitle: this.$t("information"),
+          navTitle: this.$t('information'),
           list: [
             {
-              to: { path: newsAnnouncementPath, query: { type: "2" } },
+              to: { path: newsAnnouncementPath, query: { type: '2' } },
               isReload: true,
-              text: this.$t("newsletter"),
-              hidden: getIsEnglish()
+              text: this.$t('newsletter'),
+              hidden: !getIsChinese(),
             },
             {
-              to: { path: newsAnnouncementPath, query: { type: "1" } },
+              to: { path: newsAnnouncementPath, query: { type: '1' } },
               isReload: true,
-              text: this.$t("recommendArticle")
+              text: this.$t('recommendArticle'),
             },
             {
-              to: { path: newsAnnouncementPath, query: { type: "3" } },
+              to: { path: newsAnnouncementPath, query: { type: '3' } },
               isReload: true,
-              text: this.$t("announcement")
-            }
-          ]
+              text: this.$t('announcement'),
+            },
+          ],
         },
         {
-          navTitle: this.$t("support"),
+          navTitle: this.$t('support'),
           list: [
             {
               to: helpPath,
               isReload: true,
-              text: this.$t("helpCenter")
+              text: this.$t('helpCenter'),
             },
             {
               to: aboutUsPaths,
               isReload: true,
-              text: this.$t("aboutUs")
-            }
-          ]
-        }
+              text: this.$t('aboutUs'),
+            },
+          ],
+        },
       ],
-      copyrightInfo: "Copyright © 2021 MineProfit"
+      copyrightInfo: 'Copyright © 2021 MineProfit',
     };
   },
 
@@ -86,11 +85,11 @@ const PageFooter = {
     fetchBizSocialData() {
       fetchBizSocialInfo().then(data => {
         const {
-          body: { otherSettings }
+          body: { otherSettings },
         } = data;
         this.socialData = otherSettings;
       });
-    }
+    },
   },
 
   render() {
@@ -144,7 +143,7 @@ const PageFooter = {
         <div class="copyright-container">{this.copyrightInfo}</div>
       </div>
     );
-  }
+  },
 };
 
 export default PageFooter;

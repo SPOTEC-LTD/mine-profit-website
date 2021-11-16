@@ -5,7 +5,7 @@ import EmailCircleOutlined from 'ahoney/lib/icons/EmailCircleOutlined';
 import TipCirccleOutlined from 'ahoney/lib/icons/TipCirccleOutlined';
 import locationServices from '@/shared/services/location/locationServices';
 import { RECOMMEND, NEWSLETTER, ANNOUNCEMENT } from '@/shared/consts/newsType';
-import { getIsEnglish } from '@/shared/utils/getLocalLanguage';
+import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 import { I18N } from '@@/i18n';
 import isEmpty from 'lodash/isEmpty';
 import Link from '@/shared/components/Link';
@@ -23,7 +23,6 @@ const PageHeader = {
   data() {
     return {
       languageItems: I18N.locales,
-      isEnglish: getIsEnglish(),
     };
   },
   computed: {
@@ -50,7 +49,7 @@ const PageHeader = {
           type: NEWSLETTER,
           description: this.$t('newsletterDesc'),
           icon: <EmailCircleOutlined />,
-          hidden: this.isEnglish,
+          hidden: !getIsChinese(),
         },
         {
           href: urls.newsAnnouncementPath,

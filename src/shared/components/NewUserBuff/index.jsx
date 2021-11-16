@@ -1,5 +1,5 @@
-import { Statistic } from 'ant-design-vue';
 import newUsedImg from '@/assets/home/newUsed.png';
+import Countdown from '@/shared/components/Countdown';
 import NewCustomerImg from '@/assets/home/newCustomer.png';
 import getNewRegisterTime from '@/shared/utils/getNewRegisterTime';
 import './index.less';
@@ -29,13 +29,6 @@ const NewUserBuff = {
   },
 
   render() {
-    const format = this.$t('remainTime', {
-      day: 'DD',
-      hour: 'HH',
-      minute: 'mm',
-      second: 'ss',
-    });
-
     return (
       <div class='new-user-container'>
         <div class='new-customer'>
@@ -45,11 +38,7 @@ const NewUserBuff = {
         <div class='new-buy-title'>
           <img src={newUsedImg} alt="" class='new-user-img' />
           <div class='remain-time'>
-            <Statistic.Countdown
-              class='time-countdown'
-              value={Date.now() + this.time}
-              format={format}
-            />
+            <Countdown deadline={this.time} prefix={this.$t('timeRemains')} />
           </div>
         </div>
 
