@@ -20,6 +20,7 @@ const PageFooter = {
   data() {
     return {
       socialData: {},
+      isCnLanguage: getIsChinese(),
       menuList: [
         {
           navTitle: this.$t('hashRateMarket'),
@@ -99,10 +100,10 @@ const PageFooter = {
       <div class="page-footer">
         <div class="page-footer-container">
           <div class="page-footer-subject">
-            {!this.isEnLanguage && (
+            {this.isCnLanguage && (
               <img class="page-footer-vision" src={footerSubject} alt="" />
             )}
-            {this.isEnLanguage && (
+            {!this.isCnLanguage && (
               <img class="en-page-footer-vision" src={enFooterSubject} alt="" />
             )}
             <div class="page-footer-social">
