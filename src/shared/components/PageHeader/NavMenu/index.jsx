@@ -2,6 +2,7 @@ import { Dropdown, Menu } from 'ant-design-vue';
 import RightOutlined from 'ahoney/lib/icons/RightOutlined';
 import Link from '@/shared/components/Link';
 import activeImg from '@/assets/active.png';
+import locale from '@/shared/intl/utils/locale';
 import './index.less';
 
 export default {
@@ -9,6 +10,8 @@ export default {
   props: ['hrefPrefix', 'items', 'children'],
   render() {
     const isActive = this.$route.path.indexOf(this.hrefPrefix) >= 0;
+    const language = locale.currentLocale;
+
     return (
       <Dropdown
         overlayClassName="nav-menu-overlay"
@@ -19,7 +22,7 @@ export default {
             {
               this.items.map(item => {
                 const choosesType = this.$route.query.type && this.$route.query.type === item.type;
-                const chooseRouter = this.$route.fullPath === item.href;
+                const chooseRouter = this.$route.fullPath === `/${language}${item.href}`;
                 return (
                   <Menu.Item key={item.name}>
                     <Link to={{ path: item.href, query: { type: item.type } }} isReload>
