@@ -1,13 +1,13 @@
-import { Statistic } from 'ant-design-vue';
-
 import localStorage from '@/shared/utils/localStorage';
 import { getUserInfo } from '@/api/user';
+import { REAL_NAME_DIALOG } from '@/shared/consts/countdownFormatType';
 import { PENDING, PASS, REJECT, NOT_SUBMIT } from '@/shared/consts/kycStatus';
 import { setDealPasswordPath, realNameAuthPath } from '@/router/consts/urls';
 import verifyImgDialog from '@/assets/account/verify_img_dialog.png';
 import verifyPendingImage from '@/assets/account/verify-pending-image.png';
 import verifyRejectImage from '@/assets/account/verify-reject-image.png';
 import BaseModal from '@/shared/components/BaseModal';
+import Countdown from '@/shared/components/Countdown';
 import ModalFooterButtonGroup from '@/shared/components/ModalFooterButtonGroup';
 import locationHelp from '@/shared/utils/locationHelp';
 
@@ -193,18 +193,16 @@ const TradeBeforeVerified = {
           </div>
           <div class="user-verified-content">{describe}</div>
           <ModalFooterButtonGroup
-            className={'button-group'}
+            className="button-group"
             dataSource={btnList}
           />
           {this.showDialog && this.kycStatus === NOT_SUBMIT && btnList.length === 1 && (
-            <div class="verified-countdown">
-              <Statistic.Countdown
-                value={Date.now() + 1000 * 6}
-                format="s"
-                suffix={this.$t('countdownFormat')}
-                onFinish={() => { this.handleCountDownFinish(btnList[0]); }}
-              />
-            </div>
+            <Countdown
+              className="verified-countdown"
+              deadline={5000}
+              formatType={REAL_NAME_DIALOG}
+              onFinish={() => { this.handleCountDownFinish(btnList[0]); }}
+            />
           )}
         </div>
       );

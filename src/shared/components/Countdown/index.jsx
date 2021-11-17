@@ -1,4 +1,5 @@
 import { formatCountdown } from 'aa-utils/lib/formatCountdown';
+import { DEFAULT, PLEDGE_PAGE, REAL_NAME_DIALOG } from '@/shared/consts/countdownFormatType';
 import './index.less';
 
 const Countdown = {
@@ -6,7 +7,7 @@ const Countdown = {
     deadline: Number,
     prefix: { type: String, default: '' },
     className: String,
-    inPledgePage: { type: Boolean, default: false },
+    formatType: Number,
   },
 
   data() {
@@ -47,25 +48,40 @@ const Countdown = {
         }
       }, 1000);
     },
+
+    getResultFormat(type) {
+      const [DD, HH, mm, ss] = this.timeArray;
+
+      const timeFormat = this.$t('timeFormat', {
+        day: DD,
+        hour: HH,
+        minute: mm,
+        second: ss,
+      });
+
+      const onlyMSFormat = this.$t('remainTimeMS', {
+        minute: mm,
+        second: ss,
+      });
+
+      const countdownFormat = this.$t('countdownFormat', {
+        second: ss,
+      });
+
+      const formatMap = {
+        [DEFAULT]: timeFormat,
+        [PLEDGE_PAGE]: onlyMSFormat,
+        [REAL_NAME_DIALOG]: countdownFormat,
+      };
+
+      return formatMap[type];
+    },
   },
 
   render() {
-    const [DD, HH, mm, ss] = this.timeArray;
-    const timeFormat = this.$t('timeFormat', {
-      day: DD,
-      hour: HH,
-      minute: mm,
-      second: ss,
-    });
-
-    const onlyMSFormat = this.$t('remainTimeMS', {
-      minute: mm,
-      second: ss,
-    });
-
     return (
       <div class={['countdown-timer-wrapper', this.className]}>
-        {`${this.prefix} ${this.inPledgePage ? onlyMSFormat : timeFormat}`}
+        {`${this.prefix} ${this.getResultFormat(this.formatType || DEFAULT)}`}
       </div>
     );
   },

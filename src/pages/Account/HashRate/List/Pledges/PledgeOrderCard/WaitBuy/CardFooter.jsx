@@ -6,6 +6,7 @@ import FooterLayout from '@/pages/Account/HashRate/List/components/FooterLayout'
 import { getLocalLanguage } from '@/shared/utils/getLocalLanguage';
 import ShareQrCodeModal from '@/shared/components/ShareQrCodeModal';
 import ConfirmModal from '@/shared/components/ConfirmModal';
+import { PLEDGE_PAGE } from '@/shared/consts/countdownFormatType';
 import { CANCEL_HASHRATE_PLEDGE, HASH_RATE } from '@/modules/account/hashRate';
 import Countdown from '@/shared/components/Countdown';
 import PledgeStatusTag from '../components/PledgeStatusTag';
@@ -55,7 +56,7 @@ const CardFooter = {
         <Countdown
           className={styles['count-down']}
           deadline={1000 * data.remainTime}
-          inPledgePage
+          formatType={PLEDGE_PAGE}
           onFinish={() => this.$emit('refresh')}
         />
         <span class={styles.cancel} onClick={() => { this.isVisibleModal = true; }} >{this.$t('pledgeCancel')}</span>
