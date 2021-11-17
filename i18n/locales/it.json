@@ -1054,5 +1054,11 @@
     "draw": "ricevere",
     "alreadyReceived": "Ricevuto",
     "worth": "Vale $500",
-    "buyBack": "Riacquisto"
+    "buyBack": "Riacquisto",
+    "timeRemains": "Rimanente:",
+    "preSaleStart": "Inizio prevendita:",
+    "inputInviteCodeOtherTips": "Ricevi il pacchetto per i nuovi arrivati",
+    "vipRemainTime": "Residuo esclusivo:",
+    "timeFormat": "Rimanenti: {day} giorni {hour} ore {minuti} minuti {second} secondi",
+    "preSaleRemain": "Prevendita rimanente:"
 }
