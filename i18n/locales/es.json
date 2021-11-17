@@ -1054,5 +1054,11 @@
     "uncompleted": "deshecho",
     "draw": "recibir",
     "alreadyReceived": "Recibió",
-    "worth": "Vale $ 500"
+    "worth": "Vale $ 500",
+    "timeRemains": "Restante:",
+    "preSaleStart": "Comienza la preventa:",
+    "vipRemainTime": "Exclusivo restante:",
+    "timeFormat": "Restante: {day} días {hour} horas {minute} minutos {second} segundos",
+    "preSaleRemain": "Preventa restante:",
+    "inputInviteCodeOtherTips": "Reciba el paquete para recién llegados"
 }
