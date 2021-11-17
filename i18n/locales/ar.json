@@ -1054,5 +1054,11 @@
     "welfareDesc3": "أضف خدمة العملاء الرسمية ، ورد على \"مزايا المبتدئين\" لتلقيها (استلمها مرة واحدة فقط)",
     "invite": "للدعوة",
     "alreadyReceived": "تم الاستلام",
-    "worth": "بقيمة 500 دولار"
+    "worth": "بقيمة 500 دولار",
+    "vipRemainTime": "المتبقي الحصري:",
+    "timeRemains": "متبقي:",
+    "timeFormat": "المتبقية: {day} أيام {hour} ساعات {minute} دقيقة {second} ثانية",
+    "preSaleRemain": "ما قبل البيع المتبقي:",
+    "preSaleStart": "يبدأ البيع المسبق:",
+    "inputInviteCodeOtherTips": "احصل على باقة الوافد الجديد"
 }
