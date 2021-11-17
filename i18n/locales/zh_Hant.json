@@ -1054,5 +1054,11 @@
     "experienceIsForce": "5T BTC體驗算力",
     "welfareDesc1": "使用未註冊手機或郵箱登錄{enProductName}，自動完成註冊",
     "welfareDesc2": "登錄{enProductName}，在“賬戶-邀請好友”，按引導邀請好友",
-    "welfareDesc3": "添加官方客服，回复“新手福利”領取（僅限領取一次）"
+    "welfareDesc3": "添加官方客服，回复“新手福利”領取（僅限領取一次）",
+    "inputInviteCodeOtherTips": "領取新人禮包",
+    "vipRemainTime": "專享剩餘:",
+    "timeFormat": "{day} 天 {hour} 時 {minute} 分 {second} 秒",
+    "preSaleRemain": "預售剩餘:",
+    "preSaleStart": "預售開始:",
+    "timeRemains": "剩餘:"
 }
