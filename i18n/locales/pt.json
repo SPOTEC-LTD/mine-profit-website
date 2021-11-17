@@ -1054,5 +1054,11 @@
     "welfareDesc1": "Use um telefone celular ou e-mail não registrado para fazer login em {enProductName}, e o registro será concluído automaticamente",
     "welfareDesc2": "Faça login em {enProductName}, em \"Account-Invite Friends\", siga o guia para convidar amigos",
     "welfareDesc3": "Adicione atendimento ao cliente oficial, responda a \"benefícios para novatos\" para receber (receba apenas uma vez)",
-    "invite": "Convidar"
+    "invite": "Convidar",
+    "vipRemainTime": "Restantes exclusivos:",
+    "timeFormat": "Restantes: {day} dias {hour} horas {minute} minutos {second} segundos",
+    "preSaleRemain": "Pré-venda restante:",
+    "preSaleStart": "A pré-venda começa:",
+    "inputInviteCodeOtherTips": "Receba o pacote de recém-chegado",
+    "timeRemains": "Restante:"
 }
