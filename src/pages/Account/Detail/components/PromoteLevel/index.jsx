@@ -18,6 +18,7 @@ import {
 } from '@/pages/Account/Detail/consts/getBonusType';
 import conditionComplete from '@/assets/account/condition-complete.png';
 import PictureProcess from '@/shared/components/PictureProcess';
+import Paragraph from '@/shared/components/Paragraph';
 import BonusTooltip from '../BonusTooltip';
 import styles from './index.less?module';
 
@@ -174,7 +175,9 @@ const PromoteLevel = {
                               <div>
                                 <div class={styles['bonus-value']}>{bonusValue}</div>
                               </div>
-                              <span>{getBonusTypeLabelMap()[item.type]}</span>
+                              <div class={styles['bonus-text']}>
+                                <Paragraph row={2}>{getBonusTypeLabelMap()[item.type]}</Paragraph>
+                              </div>
                             </div>
                           </div>
                         </BonusTooltip>

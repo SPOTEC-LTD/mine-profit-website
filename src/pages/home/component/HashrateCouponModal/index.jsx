@@ -2,6 +2,7 @@ import * as homeAPI from '@/api/home';
 import locationHelp from '@/shared/utils/locationHelp';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import { hashRateCouponsPath } from '@/router/consts/urls';
+import Paragraph from '@/shared/components/Paragraph';
 import HomeModal from '../HomeModal';
 
 import styles from './index.less?module';
@@ -25,7 +26,9 @@ const HashrateCouponModal = {
       return (
         <div class={styles.wrapper}>
           <div class={styles.title}>{this.$t('hashRateCouponDialogGetCoupon')}</div>
-          <div class={styles.name}>{name}</div>
+          <div class={styles.name}>
+            <Paragraph row={2}>{name}</Paragraph>
+          </div>
           <div>
             <span class={styles.amount}>{`${eachAmount}${unit}`}</span>
             <span class={styles.validity}>{`${validity}${this.$t('day')}`}</span>

@@ -2,6 +2,7 @@ import dateUtils from '@/shared/intl/utils/dateUtils';
 import * as urls from '@/router/consts/urls';
 import Link from '@/shared/components/Link';
 import formatViewCount from '@/shared/utils/formatViewCount';
+import Paragraph from '@/shared/components/Paragraph';
 
 import styles from './index.less?module';
 
@@ -29,7 +30,9 @@ const NewsItem = {
           </div>
           <div class={styles['right-content']}>
             <span class={styles['news-title']}>{title}</span>
-            <div class={styles['news-text']}>{content}</div>
+            <div class={styles['news-text']}>
+              <Paragraph row={3} >{content}</Paragraph>
+            </div>
             <div>
               <span>{this.updateTime}</span>
               <span class={styles['news-view-count']}>{`${this.$t('viewCount')}：${formatViewCount(count)}`}</span>
