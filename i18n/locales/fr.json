@@ -1054,5 +1054,11 @@
     "uncompleted": "défait",
     "draw": "recevoir",
     "alreadyReceived": "A reçu",
-    "worth": "D'une valeur de 500 $"
+    "worth": "D'une valeur de 500 $",
+    "timeRemains": "Restant:",
+    "vipRemainTime": "Exclusif restant :",
+    "timeFormat": "{day} jours {hour} heures {minute} minutes {second} secondes",
+    "preSaleRemain": "Prévente restante :",
+    "preSaleStart": "Début de la prévente :",
+    "inputInviteCodeOtherTips": "Recevez le pack nouveau venu"
 }
