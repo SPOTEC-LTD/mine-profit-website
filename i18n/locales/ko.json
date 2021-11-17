@@ -1054,5 +1054,11 @@
     "uncompleted": "푼",
     "draw": "받다",
     "alreadyReceived": "받았다",
-    "worth": "가치 $500"
+    "worth": "가치 $500",
+    "vipRemainTime": "독점 잔여량:",
+    "timeFormat": "남은 시간: {day}일 {hour}시간 {minute}분 {second}초",
+    "preSaleRemain": "남은 사전 판매:",
+    "preSaleStart": "사전 판매 시작:",
+    "inputInviteCodeOtherTips": "신입사원 패키지 받기",
+    "timeRemains": "남은:"
 }
