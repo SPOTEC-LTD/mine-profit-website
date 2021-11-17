@@ -1054,5 +1054,11 @@
     "uncompleted": "отменен",
     "draw": "Получать",
     "alreadyReceived": "Полученный",
-    "worth": "Стоит 500 долларов"
+    "worth": "Стоит 500 долларов",
+    "inputInviteCodeOtherTips": "Получите пакет новичка",
+    "vipRemainTime": "Эксклюзивные оставшиеся:",
+    "timeFormat": "Осталось: {день} дни {hour} часы {minute} минуты {second} секунды",
+    "preSaleRemain": "Осталось до продажи:",
+    "timeRemains": "Оставшийся:",
+    "preSaleStart": "Предпродажа начинается:"
 }
