@@ -1054,5 +1054,11 @@
     "uncompleted": "元に戻す",
     "draw": "受け取る",
     "alreadyReceived": "受け取った",
-    "worth": "500ドル相当"
+    "worth": "500ドル相当",
+    "vipRemainTime": "残りの独占：",
+    "inputInviteCodeOtherTips": "新人パッケージを受け取る",
+    "timeRemains": "残り：",
+    "timeFormat": "残り：{day}日{time}時間{minute}分{second}秒",
+    "preSaleRemain": "残りの先行販売：",
+    "preSaleStart": "プレセール開始："
 }
