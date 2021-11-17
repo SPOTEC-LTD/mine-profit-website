@@ -1054,5 +1054,11 @@
     "uncompleted": "rückgängig gemacht",
     "alreadyReceived": "Empfangen",
     "worth": "Im Wert von $500",
-    "buyBack": "Rückkauf"
+    "buyBack": "Rückkauf",
+    "inputInviteCodeOtherTips": "Erhalte das Newcomer-Paket",
+    "vipRemainTime": "Exklusiver Rest:",
+    "preSaleRemain": "Restvorverkauf:",
+    "timeRemains": "Verblieben:",
+    "timeFormat": "Verbleibend: {day} Tage {hour} Stunden {minute} Minuten {second} Sekunden",
+    "preSaleStart": "Der Vorverkauf startet:"
 }
