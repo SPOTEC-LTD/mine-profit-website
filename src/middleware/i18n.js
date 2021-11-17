@@ -16,6 +16,7 @@ export default function i18nChange(ctx) {
   const urlLang = ctx.route.fullPath.split('/')[1];
   const urlIsLang = !!find(locales, { code: urlLang });
   let sourcePath = ctx.route.fullPath;
+
   if (urlIsLang) {
     sourcePath = ctx.route.fullPath.replace(`/${urlLang}`, '');
   }
@@ -26,7 +27,7 @@ export default function i18nChange(ctx) {
 
     if (browserLang.toLowerCase().indexOf('zh') === -1) {
       if (locale !== I18N.defaultLocale) {
-        return ctx.redirect(`${I18N.defaultLocale}sourcePath`);
+        return ctx.redirect(`${I18N.defaultLocale}${sourcePath}`);
       }
     } else if (locale !== ZH) {
       return ctx.redirect(`/${ZH}${sourcePath}`);
