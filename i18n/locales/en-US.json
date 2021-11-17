@@ -1059,5 +1059,6 @@
     "preSaleStart": "Pre-sales start:",
     "vipRemainTime": "Exclusive remaining:",
     "timeFormat": "{day} d {hour} h {minute} m {second} s",
-    "preSaleRemain": "Pre-sales remaining:"
+    "preSaleRemain": "Pre-sales remaining:",
+    "inputInviteCodeOtherTips": "Get newcomer gift package"
 }
