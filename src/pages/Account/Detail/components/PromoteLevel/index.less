@@ -90,13 +90,13 @@
 }
 
 .level-info {
+  max-width: 150px;
   font-size: @font-size-base;
   font-weight: 500;
   line-height: 20px;
   overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .only-level-info {
@@ -162,7 +162,7 @@
     background: linear-gradient(180deg, @color__ffd79f 0%, @color__ecb052 100%);
   }
 
-  .bonus-item-content > span {
+  .bonus-item-content .bonus-text {
     color: @color__242424;
   }
 }
@@ -258,7 +258,6 @@
   flex-direction: column;
 
   > img {
-    width: 51px;
     height: 51px;
   }
 }

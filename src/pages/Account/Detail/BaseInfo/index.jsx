@@ -16,6 +16,7 @@ import locationServices from '@/shared/services/location/locationServices';
 import locationHelp from '@/shared/utils/locationHelp';
 import { INVITE_DETAIL, PROMOTE_RANK } from '@/pages/Account/Detail/consts/tabsActiveValue';
 import PictureProcess from '@/shared/components/PictureProcess';
+import Paragraph from '@/shared/components/Paragraph';
 import { getBonusTypeLabelMap, getBonusTypeNotificationMap, getBonusTypeIconMap } from '../consts/getBonusType';
 import EditAvatarNickname from '../components/EditAvatarNickname';
 import BaseInfoModalContent from '../components/BaseInfoModalContent';
@@ -199,7 +200,11 @@ const Detail = {
                         <div>
                           <div class={styles['bonus-value']}>{bonusValue}</div>
                         </div>
-                        <div class={styles['bonus-text']}>{getBonusTypeLabelMap()[item.type]}</div>
+                        <div class={styles['bonus-text']}>
+                          <Paragraph row={2}>
+                            {getBonusTypeLabelMap()[item.type]}
+                          </Paragraph>
+                        </div>
                       </div>
                     </div>
                   </BonusTooltip>
