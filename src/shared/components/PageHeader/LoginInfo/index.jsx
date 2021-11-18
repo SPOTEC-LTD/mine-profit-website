@@ -7,7 +7,6 @@ import defaultAvatar from '@/assets/rank/defaultAvatar.png';
 import PictureProcess from '@/shared/components/PictureProcess';
 import styles from './index.less?module';
 
-// TODO 只做了显示，需要补上跳转和相应操作
 const LoginInfo = {
   computed: {
     ...mapState({
