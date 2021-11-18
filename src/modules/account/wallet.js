@@ -80,9 +80,8 @@ export default {
     async [GET_WITHDRAWAL_ADDRESS]({ commit }, data) {
       try {
         const { userId } = localStorage.getObject('userInfo');
-        const { body: { list, pageInfo } } = await API.getWithdrawalAddress({ data, pathParams: { userId } });
+        const { body: { list } } = await API.getWithdrawalAddress({ data, pathParams: { userId } });
         commit(UPDATE_WITHDRAWAL_ADDRESS, list);
-        commit(UPDATE_PAGE_INFO, pageInfo);
         return Promise.resolve();
       } catch (error) {
         return Promise.reject(error);
