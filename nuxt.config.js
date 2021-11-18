@@ -22,6 +22,14 @@ const mobileSiteHostMap = {
   pro: 'http://h5.mp.testmego.com',
 }
 
+/** mobileWebApp的域名 */
+const webAppSiteHostMap = {
+  dev: 'http://192.168.0.80:9060',
+  test: 'http://192.168.0.80:9060',
+  onlineTest: 'mineprofit://h5.mp.testmego.com/main',
+  pro: 'mineprofit://h5.mp.testmego.com/main',
+}
+
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head).
   head: {
@@ -109,6 +117,7 @@ export default {
   env: {
     API_TYPE: process.env.API,
     BASE_API: baseAPiMap[process.env.API],
-    MOBILE_SITE_HOST: mobileSiteHostMap[process.env.API]
+    MOBILE_SITE_HOST: mobileSiteHostMap[process.env.API],
+    WEB_APP_SITE_HOST: webAppSiteHostMap[process.env.API],
   }
 };

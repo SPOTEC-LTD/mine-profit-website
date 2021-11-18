@@ -22,6 +22,7 @@ import { MALE, FEMALE } from '@/shared/consts/getGenders';
 import getUserInfoFunc from '@/shared/utils/request/getUserInfoFunc';
 import { ID_CARD, DRIVING_LICENSE, PASSPORT } from '@/shared/consts/getIdTypes';
 import { getIsChinese } from '@/shared/utils/getLocalLanguage';
+import locale from '@/shared/intl/utils/locale';
 import Notification from '@/shared/services/Notification';
 import FormatInput from '@/shared/components/FormatInput';
 import TradeBeforeVerified from '@/shared/components/TradeBeforeVerified';
@@ -216,9 +217,7 @@ const RealNameAuth = {
     const frontUploadText = this.frontPhotoUrl ? this.$t('reUpload') : firstPromptText;
     const backUploadText = this.backPhotoUrl ? this.$t('reUpload') : secondPromptText;
     const codeItemList = split(this.videoAuthCode, '');
-    // TODO 地址暂时固定，需要后端配合
-    const mobileAuthAddress = 'http://192.168.0.126:9060';
-
+    const mobileAuthAddress = `${process.env.WEB_APP_SITE_HOST}/${locale.currentLocale}/account/realNameAuth`;
     return (
       <div>
         <BaseContainer contentClassName={styles['content-wrap']}>
