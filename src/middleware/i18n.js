@@ -15,11 +15,12 @@ export default function i18nChange(ctx) {
   const { language } = new Cookies(headerCookie).cookies;
   const urlLang = ctx.route.fullPath.split('/')[1];
   const urlIsLang = !!find(locales, { code: urlLang });
-  let sourcePath = ctx.route.fullPath;
 
   if (urlIsLang) {
-    sourcePath = ctx.route.fullPath.replace(`/${urlLang}`, '');
+    return;
   }
+
+  const sourcePath = ctx.route.fullPath;
 
   // 没有设置语言根据游览器显示中文还是英文
   if (!language && header['accept-language']) {
