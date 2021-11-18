@@ -1,4 +1,3 @@
-import { Statistic } from 'ant-design-vue';
 import SquareSwitchOutlined from 'ahoney/lib/icons/SquareSwitchOutlined';
 import SquareLockOutlined from 'ahoney/lib/icons/SquareLockOutlined';
 import {
@@ -13,6 +12,7 @@ import locationServices from '@/shared/services/location/locationServices';
 import Notification from '@/shared/services/Notification';
 import { transferHashratePath, pledgeHashratePath } from '@/router/consts/urls';
 import { POWER_ON } from '@/shared/consts/powerStatus';
+import Countdown from '@/shared/components/Countdown';
 import FooterLayout from '../components/FooterLayout';
 import AmountValue from '../components/AmountValue';
 import styles from './index.less?module';
@@ -61,20 +61,13 @@ const CardFooter = {
     getVipHashrateFooter(data) {
       const startDate = DateUtils.formatDate(data.startTime, 'YYYY.MM.DD');
       const endDate = DateUtils.formatDate(data.endTime, 'YYYY.MM.DD');
-      const format = this.$t('remainTime', {
-        day: 'DD',
-        hour: 'HH',
-        minute: 'mm',
-        second: 'ss',
-      });
       return (
         <div class={styles['vip-hashrate-footer']}>
           {
             data.remainTime ? (
-              <Statistic.Countdown
-                class={styles['time-countdown']}
-                value={Date.now() + 1000 * data.remainTime}
-                format={format}
+              <Countdown
+                className={styles['time-countdown']}
+                deadline={ 1000 * data.remainTime}
                 onFinish={() => this.$emit('refresh')}
               />
 
