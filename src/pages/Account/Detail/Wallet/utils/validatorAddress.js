@@ -20,7 +20,6 @@ export const validateAddress = (value, chainType) => {
     'BTC': ruleTypeOne || rule3 || ruleBc1,
     'USDT-OMNI': ruleTypeOne || rule3,
     'ETH': ruleTypeTwo,
-    'MPT': ruleTypeTwo, // TODO: 待改动态
     'USDT-ERC20': ruleTypeTwo,
     'USDT-TRC20': trc20Rules,
     'FIL': filRules,

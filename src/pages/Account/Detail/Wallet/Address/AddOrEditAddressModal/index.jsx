@@ -1,4 +1,6 @@
+import { mapState } from 'vuex';
 import { FormModel, Input } from 'ant-design-vue';
+import startsWith from 'lodash/startsWith';
 
 import { EDIT } from '@/pages/Account/Detail/Wallet/consts/dialogType';
 import { COIN, LINE_USDT_ERC20, getType, lineList } from '@/pages/Account/Detail/Wallet/consts/lineType';
@@ -26,6 +28,16 @@ const AddOrEditAddressModal = {
       },
       visible: false,
     };
+  },
+  computed: {
+    ...mapState({
+      dynamicChainTypeList: state => state.dynamicChainTypeList,
+    }),
+
+    dynamicChain() {
+      const [chainInfo = { symbol: '' }] = this.dynamicChainTypeList;
+      return chainInfo.symbol;
+    },
   },
   methods: {
     openDialog(manageModel, data) {
@@ -104,8 +116,12 @@ const AddOrEditAddressModal = {
                 { required: true, message: this.$t('withDrawNullAddressTips') },
                 {
                   validator: (rule, value) => {
+                    const ruleDynamic = value.length === 42
+                      && (startsWith(value, '0x') || startsWith(value, 'm') || startsWith(value, 'n'));
+                    const isValidate = chainType === this.dynamicChain ? ruleDynamic : validateAddress(value, chainType);
+
                     return new Promise((resolve, reject) => {
-                      if (value && validateAddress(value, chainType)) {
+                      if (value && !!isValidate) {
                         resolve();
                       } else {
                         reject(true);
