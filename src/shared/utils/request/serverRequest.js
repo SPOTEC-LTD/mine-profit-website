@@ -1,14 +1,16 @@
 import axios from 'axios';
 import startsWith from 'lodash/startsWith';
+import find from 'lodash/find';
+import { I18N } from '@@/i18n';
 import { isNotLogin } from '@/shared/utils/request/utils';
 import { loginPath } from '@/router/consts/urls';
 import getUserInfoFunc from './getUserInfoFunc';
 import Response from './Response';
 
+const { locales } = I18N;
+
 const createOptions = { baseURL: process.env.BASE_API };
-
 const axiosInstance = axios.create(createOptions);
-
 const request = config => axiosInstance(config);
 
 // 添加请求拦截器
@@ -35,7 +37,13 @@ axiosInstance.interceptors.response.use(res => {
 
   if (isNotLogin(response.code) && catchException) {
     if (!startsWith(ctx.route.name, 'login')) {
-      ctx.redirect(`${loginPath}?redirectUrl=${ctx.route.fullPath}`);
+      const urlLang = ctx.route.fullPath.split('/')[1];
+      const urlIsLang = !!find(locales, { code: urlLang });
+      if (urlIsLang) {
+        ctx.redirect(`/${urlLang}${loginPath}?redirectUrl=${ctx.route.fullPath}`);
+      } else {
+        ctx.redirect(`${loginPath}?redirectUrl=${ctx.route.fullPath}`);
+      }
     }
   }
 
