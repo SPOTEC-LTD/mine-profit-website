@@ -93,6 +93,7 @@ export default {
       next()
     });
     this.$router.afterEach(() => {
+      this.hiddenFooter = this.$route.meta.hiddenFooter;
       this.upateDocumentTitle();
     });
     window.__selfStore__ = {
