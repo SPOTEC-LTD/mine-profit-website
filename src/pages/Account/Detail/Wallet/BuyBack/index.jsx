@@ -103,7 +103,7 @@ const BuyBack = {
   },
 
   render() {
-    const { buyBackPrice, priceRate, maxAmount, trend } = this.buyBackDetail;
+    const { buyBackPrice, priceRate, maxAmount, trend, icon } = this.buyBackDetail;
     const max = maxAmount || 0;
     const price = buyBackPrice || 0;
     const rate = priceRate || 0;
@@ -112,7 +112,7 @@ const BuyBack = {
       <div>
         <BaseContainer contentClassName={styles['buy-back']}>
           <div class={styles['buy-back-header']}>
-            <div class={styles['buy-back-icon']} />
+            <img class={styles['buy-back-icon']} src={icon} alt="" />
             <div class={styles['buy-back-title']}>{this.$t('officialByuBack', { value: this.dynamicChainType.symbol })}</div>
           </div>
           <div class={styles['buy-back-body']}>

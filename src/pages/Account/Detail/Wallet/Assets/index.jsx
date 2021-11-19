@@ -10,7 +10,6 @@ import { getIsChinese } from '@/shared/utils/getLocalLanguage';
 import NewWindowGuide from '@/shared/components/NewWindowGuide';
 import TradeBeforeVerified from '@/shared/components/TradeBeforeVerified';
 import locationHelp from '@/shared/utils/locationHelp';
-import walletMptIconBlack from '@/assets/account/wallet/wallet_mpt_icon_black.png';
 
 import styles from './index.less?module';
 
@@ -21,9 +20,9 @@ const Assets = {
       dynamicChainTypeList: state => state.dynamicChainTypeList,
     }),
 
-    dynamicChain() {
-      const [chainInfo = { symbol: '' }] = this.dynamicChainTypeList;
-      return chainInfo.symbol;
+    dynamicChainType() {
+      const [chainInfo = { symbol: '', icon: '' }] = this.dynamicChainTypeList;
+      return chainInfo;
     },
 
   },
@@ -72,8 +71,9 @@ const Assets = {
     },
 
     getCoinCardList() {
+      const { symbol, icon } = this.dynamicChainType;
       const iconMap = {
-        [this.dynamicChain]: <img class='spotecicon' src={walletMptIconBlack} alt="" />, // TODO:
+        [symbol]: <img class='spotecicon' src={icon} alt="" />,
         USDT: <UsdtIcon />,
         BTC: <BtcIcon />,
         ETH: <EthIcon />,
@@ -109,7 +109,7 @@ const Assets = {
                       })} ${item.chainType}`}
                     </div>
                     <div class={styles['coin-card-operate']}>
-                      {item.chainType === this.dynamicChain && (
+                      {item.chainType === symbol && (
                         <div
                           class={styles['card-right-button']}
                           onClick={() => {
