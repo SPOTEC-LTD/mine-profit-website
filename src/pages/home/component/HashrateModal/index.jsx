@@ -28,7 +28,7 @@ const HashrateModal = {
         <div class={styles.wrapper}>
           <div class={styles.container}>
             <div class={styles.name}>
-              <Paragraph row={2}>{name}</Paragraph>
+              <Paragraph row={2} text={name} />
             </div>
             <div>
               <span class={styles.amount}>{`${eachAmount}${unit}`}</span>

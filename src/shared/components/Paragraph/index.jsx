@@ -3,18 +3,19 @@ import './index.less';
 const Paragraph = {
   props: {
     row: { type: Number, default: 1 },
+    text: { type: String, default: '' },
   },
   data() {
     return {
       textDomHeight: 0,
       rowHeight: 0,
-      text: '',
+      realText: '',
       maxHeight: 0,
       initHeight: 0,
     };
   },
   watch: {
-    text() {
+    realText() {
       this.handleContent();
     },
   },
@@ -36,7 +37,7 @@ const Paragraph = {
       });
     },
     getText() {
-      this.text = this.$slots.default ? this.$slots.default[0].text : '';
+      this.realText = this.text;
     },
     getMaxHeight() {
       this.maxHeight = parseInt(window.getComputedStyle(this.$refs.text).lineHeight, 10) * this.row;
@@ -44,10 +45,10 @@ const Paragraph = {
     handleContent() {
       this.$nextTick(() => {
         if (this.textDomHeight > this.maxHeight) {
-          this.text = this.text.slice(0, this.text.length - 1);
+          this.realText = this.realText.slice(0, this.realText.length - 1);
         }
         if (this.initHeight > this.maxHeight && this.textDomHeight <= this.maxHeight) {
-          this.text = `${this.text.slice(0, this.text.length - 3)}...`;
+          this.realText = `${this.realText.slice(0, this.realText.length - 3)}...`;
         }
 
         this.getTextDomHeight();
@@ -57,7 +58,7 @@ const Paragraph = {
   render() {
     return (
       <div ref="content" style={{ maxHeight: `${this.maxHeight}px` }} class="paragraph-content">
-        <div ref="text" class="paragraph-text">{this.text}</div>
+        <div ref="text" class="paragraph-text">{this.realText}</div>
       </div>
     );
   },

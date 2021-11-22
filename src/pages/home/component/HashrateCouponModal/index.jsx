@@ -27,7 +27,7 @@ const HashrateCouponModal = {
         <div class={styles.wrapper}>
           <div class={styles.title}>{this.$t('hashRateCouponDialogGetCoupon')}</div>
           <div class={styles.name}>
-            <Paragraph row={2}>{name}</Paragraph>
+            <Paragraph row={2} text={name} />
           </div>
           <div>
             <span class={styles.amount}>{`${eachAmount}${unit}`}</span>
