@@ -31,7 +31,7 @@ const NewsItem = {
           <div class={styles['right-content']}>
             <span class={styles['news-title']}>{title}</span>
             <div class={styles['news-text']}>
-              <Paragraph row={3} >{content}</Paragraph>
+              <Paragraph row={3} text={content} />
             </div>
             <div>
               <span>{this.updateTime}</span>

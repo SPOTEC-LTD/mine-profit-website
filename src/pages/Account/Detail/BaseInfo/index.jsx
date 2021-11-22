@@ -201,9 +201,7 @@ const Detail = {
                           <div class={styles['bonus-value']}>{bonusValue}</div>
                         </div>
                         <div class={styles['bonus-text']}>
-                          <Paragraph row={2}>
-                            {getBonusTypeLabelMap()[item.type]}
-                          </Paragraph>
+                          <Paragraph row={2} text={getBonusTypeLabelMap()[item.type]} />
                         </div>
                       </div>
                     </div>
