@@ -23,11 +23,11 @@ const mobileSiteHostMap = {
 }
 
 /** mobileWebApp的域名 */
-const webAppSiteHostMap = {
+const mobileWebAppSiteHostMap = {
   dev: 'http://192.168.0.80:9060',
   test: 'http://192.168.0.80:9060',
-  onlineTest: 'mineprofit://h5.mp.testmego.com/main',
-  pro: 'mineprofit://h5.mp.testmego.com/main',
+  onlineTest: 'http://m.mp.testmego.com',
+  pro: 'http://m.mp.testmego.com/',
 }
 
 export default {
@@ -118,6 +118,6 @@ export default {
     API_TYPE: process.env.API,
     BASE_API: baseAPiMap[process.env.API],
     MOBILE_SITE_HOST: mobileSiteHostMap[process.env.API],
-    WEB_APP_SITE_HOST: webAppSiteHostMap[process.env.API],
+    WEB_APP_SITE_HOST: mobileWebAppSiteHostMap[process.env.API],
   }
 };
