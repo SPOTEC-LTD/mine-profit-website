@@ -30,7 +30,7 @@
               <span v-if="isChinese" class="question-top-text">{{ $t('commonProblem') }}</span>
             </div>
             <Spin :spinning="loading">
-              <div class="question-content">
+              <div v-if="questionList.length !== 0" class="question-content">
                 <QuestionItem
                   v-for="item in questionList"
                   :id="item.id"
@@ -39,6 +39,7 @@
                   :count="item.count"
                 />
               </div>
+              <NoData v-else />
             </Spin>
           </div>
         </transition>
@@ -86,6 +87,7 @@ import { fetchQuestionList } from '@/api';
 import { getLocalLanguage, getIsChinese } from '@/shared/utils/getLocalLanguage';
 import bannerText from '@/assets/help/banner-text.png';
 import enBannerText from '@/assets/help/en-banner-text.png';
+import NoData from '@/shared/components/NoData';
 import QuestionItem from './QuestionItem';
 
 export default {
@@ -95,6 +97,7 @@ export default {
     Spin,
     SearchOutlined,
     QuestionItem,
+    NoData,
   },
   data() {
     return {
