@@ -19,6 +19,7 @@ import {
   UPDATE_IS_PHONE_OR_EMAIL_VERIFICATION,
   UPDATE_CAPTCHA_VERIFICATION,
 } from '@/modules/manMachineVerification';
+import { ZH } from '@@/i18n';
 import FetchVerifyCode from '../components/FetchVerifyCode';
 import styles from './index.less?module';
 
@@ -127,7 +128,7 @@ const BindPhone = {
       this.form.phonePrefix = value.label;
     },
     getSelectNode() {
-      const lang = this.$i18n.locale;
+      const lang = this.$i18n.locale === ZH ? 'zh' : 'en';
 
       return (
         <div>
