@@ -84,12 +84,12 @@ const Assets = {
           <List
             scopedSlots={{
               footer: () => (
-                <div class={styles['bottom-guide']}>
-                  <NewWindowGuide
-                    label={this.$t('withdrawAddressManagement')}
-                    onGuide={() => { locationHelp.open(addressPath); }}
-                  />
-                </div>
+                <TradeBeforeVerified
+                  class={styles['bottom-guide']}
+                  onVerifiedPass={() => { locationHelp.open(addressPath); }}
+                >
+                  <NewWindowGuide label={this.$t('withdrawAddressManagement')} />
+                </TradeBeforeVerified>
               ),
             }}
           >
